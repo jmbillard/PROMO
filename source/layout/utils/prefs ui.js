@@ -137,27 +137,6 @@ function prefsDialog() {
 
 	//
 
-// 	var orgFoldersGrp = projectGrp.add('group');
-// 	orgFoldersGrp.spacing = ckbGrpSpacing;
-
-// 	var orgFoldersTxt = orgFoldersGrp.add('statictext', undefined, 'organization folders');
-// 	orgFoldersTxt.helpTip = 'use PROMO organization folders with collect files\n\
-// > ex: proj id: \'DOC120723\' → \'Projects/PROGRAMAS/documentario/DOC120723 doc name\'\n\
-// > only available with \'hard news\' mode disabled\n\
-// > current folders:\n' + formatObjTxt(promoSubPath);
-// 	orgFoldersTxt.preferredSize = txtSize;
-
-// 	var orgFoldersCkb = orgFoldersGrp.add('checkbox', [8, 4, 24, 18]);
-// 	orgFoldersCkb.value = orgFolders;
-
-// 	var resetOrgFoldersBtn = orgFoldersGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
-// 	resetOrgFoldersBtn.helpTip = 'reset PROMO organization folders';
-// 	resetOrgFoldersBtn.enabled = orgFolders;
-
-	// orgFoldersGrp.enabled = !hardNews;
-
-	//
-
 	var projFldGrp = projectGrp.add('group');
 	projFldGrp.spacing = btnGrpSpacing;
 
@@ -170,9 +149,6 @@ function prefsDialog() {
 
 	var resetFldProjBtn = projFldGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
 	resetFldProjBtn.helpTip = 'reset \'save project\' default folder';
-	//resetFldProjBtn.enabled = false;
-
-	// projFldGrp.enabled = homeOffice ? true : !hardNews;
 
 	//---------------------------------------------------------
 
@@ -260,71 +236,6 @@ on the script preferences folder\n\
 
 	var hoCkb = hoGrp.add('checkbox', [8, 4, 24, 18]);
 	hoCkb.value = homeOffice;
-
-	//
-
-// 	var hnGrp = modeGrp.add('group');
-// 	hnGrp.spacing = ckbGrpSpacing;
-
-// 	var hnTxt = hnGrp.add('statictext', undefined, 'hard news');
-// 	hnTxt.helpTip = 'hard news mode\n\
-// > overwrites the \'save project\' button\
-// default folder to \'PRODUCAO DIA-A-DIA\'\n\
-// > overwrites the default naming scheme to\
-// \'user prefix\' + GNEWS + \'proj name\' + \'client name\'\
-// ex: \'RTR - GNEWS DESTAQUES J10 - mariana\'\
-// (only available with \'home office\' mode disabled)\'';
-// 	hnTxt.preferredSize = txtSize;
-
-// 	// var hnCkb = hnGrp.add('checkbox', [8, 4, 24, 18]);
-// 	// hnCkb.value = hardNews;
-
-// 	hnGrp.enabled = !hoCkb.value;
-
-	//---------------------------------------------------------
-
-	var divider4 = wPref.add('panel');
-	divider4.alignment = 'fill';
-
-	var networkGrp = wPref.add('group');
-	networkGrp.orientation = 'column';
-	networkGrp.alignChildren = ['left', 'center'];
-	networkGrp.spacing = 2;
-
-	var networkGrpTxt = networkGrp.add('statictext', undefined, 'network:');
-	setTxtColor(networkGrpTxt, sTxtColor.light);
-
-	//
-
-	var fldGrp1 = networkGrp.add('group');
-	fldGrp1.spacing = btnGrpSpacing;
-
-	var fldMagTxt = fldGrp1.add('statictext', undefined, 'MAM - magazine');
-	fldMagTxt.helpTip = 'upload MAM - magazine';
-	fldMagTxt.preferredSize = txtSize;
-
-	var fldMagBtn = fldGrp1.add('iconbutton', iconSize, magazineFolderIcon.light, { style: 'toolbutton' });
-	fldMagBtn.helpTip = 'map folder\n\n' + '> \'' + magazinePath + '\'';
-
-	var resetFldMagBtn = fldGrp1.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
-	resetFldMagBtn.helpTip = 'reset \'upload MAM - magazine\' folder';
-	// resetFldMagBtn.enabled = false;
-
-	//
-
-	var fldGrp2 = networkGrp.add('group');
-	fldGrp2.spacing = btnGrpSpacing;
-
-	var fldArteTxt = fldGrp2.add('statictext', undefined, 'MAM - para arte');
-	fldArteTxt.helpTip = 'download MAM - para arte';
-	fldArteTxt.preferredSize = txtSize;
-
-	var fldArteBtn = fldGrp2.add('iconbutton', iconSize, arteFolderIcon.light, { style: 'toolbutton' });
-	fldArteBtn.helpTip = 'map folder\n\n' + '> \'' + artePath + '\'';
-
-	var resetFldArteBtn = fldGrp2.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
-	resetFldArteBtn.helpTip = 'reset \'download MAM - para arte\' folder';
-	// resetFldArteBtn.enabled = false;
 
 	//---------------------------------------------------------
 
@@ -472,71 +383,6 @@ on the script preferences folder\n\
 
 	//---------------------------------------------------------
 
-	// configure 'MAM - magazine' path...
-	fldMagBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		var saveFolder = Folder.selectDialog();
-
-		if (saveFolder != null) {
-			magazinePath = decodeURI(saveFolder).toString();
-			JSONPrefsObj.folders.magazinePath = magazinePath;
-			fldMagBtn.helpTip = 'map folder\n\n' + '> \'' + magazinePath + '\'';
-
-			savePrefs();
-		}
-	};
-
-	resetFldMagBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		magazinePath = defPrefsObj.folders.magazinePath;
-		JSONPrefsObj.folders.magazinePath = magazinePath;
-		fldMagBtn.helpTip = 'map folder\n\n' + '> \'' + magazinePath + '\'';
-
-		savePrefs();
-	};
-
-	//---------------------------------------------------------
-
-	// configure 'MAM - para arte' path...
-	fldArteBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		var saveFolder = Folder.selectDialog();
-
-		if (saveFolder != null) {
-			artePath = decodeURI(saveFolder).toString();
-			JSONPrefsObj.folders.artePath = artePath;
-			fldArteBtn.helpTip = 'map folder\n\n' + '> \'' + artePath + '\'';
-
-			savePrefs();
-		}
-	};
-
-	resetFldArteBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		artePath = defPrefsObj.folders.artePath;
-		JSONPrefsObj.folders.artePath = artePath;
-		fldArteBtn.helpTip = 'map folder\n\n' + '> \'' + artePath + '\'';
-		savePrefs();
-	};
-
-	//---------------------------------------------------------
-
 	// configure 'MAM - para arte' path...
 	fldProjBtn.onClick = function () {
 		// error...
@@ -641,8 +487,6 @@ on the script preferences folder\n\
 		mamHardNewsBtn.enabled = !homeOffice;
 		dayBtn.enabled = !homeOffice;
 		baseJorBtn.enabled = !homeOffice;
-		hnGrp.enabled = !homeOffice;
-		// projFldGrp.enabled = homeOffice ? true : !hardNews;
 
 		savePrefs(); // → save preferences.json
 		updateFolderPaths(); // → update templates and fonts folder
@@ -669,47 +513,5 @@ on the script preferences folder\n\
 
 	//---------------------------------------------------------
 
-	// hnCkb.onClick = function () {
-	// 	hardNews = this.value;
-	// 	projIdContent = hardNews ? 'client' : 'PROJ ID';
-	// 	JSONPrefsObj.hardNews = hardNews;
-	// 	fldProjBtn.helpTip = hardNews ? '> \'PRODUCAO DIA-A-DIA\'' : 'map folder\n\n' + '> \'' + projPath + '\'';
-
-	// 	projFldGrp.enabled = !hardNews;
-	// 	orgFoldersGrp.enabled = !hardNews;
-	// 	endPagePresetBtn.enabled = !hardNews; // end page presets button > project tab
-	// 	aboutTxt.text = !hardNews ? vStr : vStr + ' HN';
-	// 	savePrefs(); // → save preferences.json
-
-	// };
-
-	//---------------------------------------------------------
-
-	// orgFoldersCkb.onClick = function () {
-	// 	orgFolders = this.value;
-	// 	JSONPrefsObj.orgFolders = orgFolders;		
-	// 	resetOrgFoldersBtn.enabled = orgFolders;
-
-	// 	savePrefs(); // → save preferences.json
-	// };
-
-	// resetOrgFoldersBtn.onClick = function () {
-	// 	// error...
-	// 	if (!netAccess()) {
-	// 		alert(netConfigName + ' not checked');
-	// 		return;
-	// 	}
-	// 	var promoSubPath = defPrefsObj.folders.promoSubPath;
-	// 	JSONPrefsObj.folders.promoSubPath = promoSubPath;
-	// 	orgFoldersTxt.helpTip = 'use PROMO organization folders with collect files\n\
-	// 	> ex: proj id: \'DOC120723\' → \'Projects/PROGRAMAS/documentario/DOC120723 doc name\'\n\
-	// 	> only available with \'hard news\' mode disabled\n\
-	// 	> current folders:\n' + formatObjTxt(promoSubPath);
-
-	// 	savePrefs(); // → save preferences.json
-	// };
-
 	wPref.show();
 }
-
-// prefsDialog();

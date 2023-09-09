@@ -2,7 +2,7 @@
 
 ---------------------------- info ----------------------------
 
-  title:   PROMO GNEWS utilities script
+  title:   PROMO utilities script
 
   notes:   a collection of tools designed to
   speedup the motion graphics team workflow

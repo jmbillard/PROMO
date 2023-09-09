@@ -650,7 +650,7 @@ guidesBtn.onClick = function () {
 
 	var guideLayer = app.project.activeItem.layers.addShape();
 	addPseudoEffect('guides', toolGuides);
-	guideLayer.name = 'guides - GNEWS';
+	guideLayer.name = 'guides';
 	guideLayer.guideLayer = true;
 
 	app.endUndoGroup();

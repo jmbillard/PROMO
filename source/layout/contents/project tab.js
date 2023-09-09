@@ -98,61 +98,6 @@ projIdTxt.addEventListener('blur', function () {
 	this.text = this.text == '' ? projIdContent : this.text;
 });
 
-// projIdTxt.addEventListener('keydown', function (k) {
-
-//   //alert(k.keyName);
-//   if (k.keyName == 'Escape') {
-//     // alert('foi');
-//     projIdTxt.text = projId;
-//     projIdTxt.active = false;
-//   }
-// });
-
-//---------------------------------------------------------
-
-// projNameTxt.onChange = projNameTxt.onEnterKey = function () {
-// 	this.text = projName = this.text
-// 		.replaceSpecialCharacters()
-// 		.toLowerCase();
-
-// 	if (hardNews) this.text = projName = this.text.toUpperCase();
-
-// 	setXMPdata('title', projName);
-// 	if (this.text.trim() == '') this.text = 'proj name';
-// };
-
-// projNameTxt.addEventListener('focus', function () {
-// 	this.text = this.text == 'proj name' ? '' : this.text;
-// });
-
-// projNameTxt.addEventListener('blur', function () {
-// 	this.text = this.text == '' ? 'proj name' : this.text;
-// });
-
-//---------------------------------------------------------
-
-// insertUserIdBtn.onClick = function () {
-// 	// error...
-// 	if (app.project.numItems == 0) {
-// 		showTabErr('empty project');
-// 		return;
-// 	}
-// 	app.beginUndoGroup('insert ID');
-
-// 	var dateStr = system
-// 		.callSystem('cmd.exe /c date /t')
-// 		.trim();
-// 	setXMPdata('creator', system.userName);
-// 	setXMPdata('date', dateStr);
-
-// 	if (hardNews) {
-// 		insertHnID(projId);
-// 	} else {
-// 		insertPromoID(projId);
-// 	}
-// 	app.endUndoGroup();
-// };
-
 //---------------------------------------------------------
 
 renameItemBtn.onClick = function () {
@@ -217,33 +162,11 @@ projOrgBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-// saveBtn.addEventListener('click', function (c) {
-// 	if (c.button == 2) {
-
-// 		if (app.project.numItems == 0) return;
-
-// 		var dateStr = system
-// 			.callSystem('cmd.exe /c date /t')
-// 			.trim();
-
-// 		setXMPdata('creator', system.userName);
-// 		setXMPdata('date', dateStr);
-
-// 		app.beginUndoGroup('save project');
-
-// 		var savePath = '~/Desktop';
-// 		var promoProjectName = projId;//, projName].join(' '); // ex: 'COB110423 historia ao vivo'
-// 		// var hnProjectName = [userPrefix, '- GNEWS', projName].join(' '); // ex: 'JBI - GNEWS TWITTER PRESIDENTE'
-
-// 		var projFullName = promoProjectName; // final project name
-
-// 		projFile = new File(savePath + '/' + projFullName);
-// 		app.project.save(projFile);
-		
-// 		openFolder(savePath);
-// 		setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
-// 	}
-// });
+saveBtn.addEventListener('click', function (c) {
+	if (c.button == 2) {
+		alert(wip);
+	}
+});
 
 saveBtn.onClick = function () {
 	var dateStr = system
@@ -314,25 +237,12 @@ saveBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-// endPagePresetBtn.onClick = function () {
-// 	currentGrp = tabsGrp.menu;
-// 	// error...
-// 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
-// 		return;
-// 	}
-// 	endPagePresetDialog();
-// };
-
-//---------------------------------------------------------
-
 fldProjBtn2.onClick = function () {
 	// error...
 	if (!netAccess()) {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	// var todayPath = PRODUCAO_DIA_A_DIA();
 	var currentProj = app.project.file;
 	// var currentProjPath = currentProj != null ? decodeURI(currentProj.path) : projPath;
 	var currentProjPath = decodeURI(currentProj.path);

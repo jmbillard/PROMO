@@ -81,7 +81,7 @@ function shpPallet(aLayer, colorArray) {
 			'ADBE Vector Graphic - Fill'
 		);
 		colorFill.property('ADBE Vector Fill Color').setValue(color);
-		colorFill.name = 'GNEWS ' + Hex;
+		colorFill.name = Hex;
 		colorGroup.name = Hex;
 	}
 	return pallet;
@@ -92,14 +92,14 @@ function colorPallet() {
 	var layer = app.project.activeItem.layers.addShape();
 
 	// main pallet vector group...
-	var pallet1 = shpPallet(layer, GNEWS_mainColors1.concat(GNEWS_mainColors2));
+	var pallet1 = shpPallet(layer, monoColors);
 	pallet1
 		.property('ADBE Vector Transform Group')
 		.property('ADBE Vector Position')
 		.setValue([45, 540]);
 	pallet1.name = 'pallet 1';
 	// secondary pallet vector group...
-	var pallet2 = shpPallet(layer, GNEWS_secColors);
+	var pallet2 = shpPallet(layer, mainColors);
 	pallet2
 		.property('ADBE Vector Transform Group')
 		.property('ADBE Vector Position')

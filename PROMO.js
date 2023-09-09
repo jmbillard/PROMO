@@ -6,7 +6,7 @@
 
 ---------------------------- info ----------------------------
 
-  title:   PROMO GNEWS utilities script
+  title:   PROMO utilities script
 
   notes:   a collection of tools designed to
   speedup the motion graphics team workflow
@@ -22,7 +22,7 @@
 
 */
 
-function PROMO_GNEWS_UTL(thisObj) {
+function PROMO_UTL(thisObj) {
 
 	// current script version...
 	var vStr = 'v0.1-b';
@@ -36,7 +36,7 @@ function PROMO_GNEWS_UTL(thisObj) {
 	clearOutput();
 	write(aboutStr);
 
-	var PROMO_GNEWS_WINDOW = PROMO_GNEWS_UI(thisObj);
+	var PROMO_WINDOW = PROMO_UI(thisObj);
 
 	// checks network access...
 	if (!netAccess()) {
@@ -52,11 +52,11 @@ function PROMO_GNEWS_UTL(thisObj) {
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...
-	if (PROMO_GNEWS_WINDOW.toString() != '[object Panel]') {
-		PROMO_GNEWS_WINDOW.show(); // → show UI
+	if (PROMO_WINDOW.toString() != '[object Panel]') {
+		PROMO_WINDOW.show(); // → show UI
 	}
-	return PROMO_GNEWS_WINDOW;
+	return PROMO_WINDOW;
 }
 
 // finally runs everything... ヽ(✿ﾟ▽ﾟ)ノ
-PROMO_GNEWS_UTL(this);
+PROMO_UTL(this);

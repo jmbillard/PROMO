@@ -109,11 +109,6 @@ function setLayout() {
 			colorSubGrp2.children[c2].maximumSize = [20, 20];
 			colorSubGrp2.children[c2].size = [(w.size.width - 520) / 22, 20];
 		}
-		for (var c3 = 1; c3 < colorSubGrp3.children.length; c3++) {
-			colorSubGrp3.children[c3].minimumSize = [10, 20];
-			colorSubGrp3.children[c3].maximumSize = [20, 20];
-			colorSubGrp3.children[c3].size = [(w.size.width - 520) / 22, 20];
-		}
 		// error tab
 		errTxt.visible = true;
 		errTxt.size.width = 500;
@@ -172,11 +167,6 @@ function setLayout() {
 			colorSubGrp2.children[b2].maximumSize = [80, 20];
 			colorSubGrp2.children[b2].size = [w.size.width - 8, (w.size.height - 402) / 22];
 		}
-		for (var b3 = 1; b3 < colorSubGrp3.children.length; b3++) {
-			colorSubGrp3.children[b3].minimumSize = [vMin, 10];
-			colorSubGrp3.children[b3].maximumSize = [80, 20];
-			colorSubGrp3.children[b3].size = [w.size.width - 8, (w.size.height - 402) / 22];
-		}
 		// error tab
 		errTxt.visible = false;
 		errTxt.size.width = 0;
@@ -186,7 +176,7 @@ function setLayout() {
 		progTxt2.visible = false;
 		progTxt2.size.width = 0;
 
-		GNEWS_LOGO.size.width = w.size.width - 8;
+		LOGO.size.width = w.size.width - 8;
 		progImg.size.width = w.size.width - 8;
 
 		for (var mlv = 0; mlv < mainMenuLabels.length; mlv++) {
@@ -199,7 +189,7 @@ function setLayout() {
 			}
 		}
 		if (w.size.width < vMin + 8) {
-			GNEWS_LOGO.size.width = 0;
+			LOGO.size.width = 0;
 			progImg.size.width = 0;
 			aboutTxt.text = '...';
 		}

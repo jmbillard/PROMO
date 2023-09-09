@@ -81,13 +81,13 @@ function tagDialog() {
 
 			//---------------------------------------------------------
 
-			if (tagGrpName == 'MovieTags') setTxtColor(tagTxt, GNEWS_secColors[1]);
-			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, GNEWS_secColors[9]);
+			if (tagGrpName == 'MovieTags') setTxtColor(tagTxt, mainColors[1]);
+			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, mainColors[9]);
 
 			//---------------------------------------------------------
 
 			if (tagGrpName == 'compCommentTags') {
-				setTxtColor(tagTxt, GNEWS_secColors[10]);
+				setTxtColor(tagTxt, mainColors[10]);
 
 				tagBtn.onClick = function () {
 
@@ -103,7 +103,7 @@ function tagDialog() {
 			//---------------------------------------------------------
 
 			if (tagGrpName == 'compCommentTags') {
-				setTxtColor(tagTxt, GNEWS_secColors[10]);
+				setTxtColor(tagTxt, mainColors[10]);
 
 				tagBtn.onClick = function () {
 
@@ -113,23 +113,6 @@ function tagDialog() {
 						if (!(app.project.selection[i] instanceof CompItem)) continue;
 
 						app.project.selection[i].comment = this.properties.name;
-					}
-				};
-			}
-
-			//---------------------------------------------------------
-
-			if (tagGrpName == 'compTemplatePromoTags') {
-				setTxtColor(tagTxt, GNEWS_secColors[8]);
-
-				tagBtn.onClick = function () {
-
-					if (app.project.selection.length == 0) return;
-
-					for (var i = 0; i < app.project.selection.length; i++) {
-						if (!(app.project.selection[i] instanceof CompItem)) continue;
-
-						app.project.selection[i].motionGraphicsTemplateName = this.properties.name;
 					}
 				};
 			}

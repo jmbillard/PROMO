@@ -74,12 +74,12 @@ function templateDialog() {
 	// preview...
 	var pathTxt = vGrp2.add('statictext', undefined, '...');
 	pathTxt.characters = 60;
-	setTxtColor(pathTxt, GNEWS_mainColors2[3]);
+	setTxtColor(pathTxt, monoColors[3]);
 	var previewImg = vGrp2.add('image', undefined, no_preview);
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];
 	var updateTxt = vGrp2.add('statictext', undefined, '...');
 	updateTxt.characters = 40;
-	setTxtColor(updateTxt, GNEWS_secColors[10]);
+	setTxtColor(updateTxt, mainColors[10]);
 
 	//---------------------------------------------------------
 
@@ -169,7 +169,7 @@ function templateDialog() {
 			return;
 		}
 		var url = repoURL + '/raw/main/downloads/templates.zip';
-		var zipPath = tempPath + '/templates.zip'; // → ~AppData\Roaming\PROMO GNEWS script\temp\templates.zip
+		var zipPath = tempPath + '/templates.zip'; // → ~AppData\Roaming\PROMO\temp\templates.zip
 		var templatesLocalFolder = new Folder(templatesLocalPath);
     
 		removeFolder(templatesLocalFolder); // → delete previous templates folder

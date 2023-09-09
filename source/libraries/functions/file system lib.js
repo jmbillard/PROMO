@@ -56,7 +56,7 @@ function getURLContent(urlArray, dstArray) {
 		// powershell command string...
 		// header...
 		var cmd =
-			'Write-Host \'------------- PROMO GNEWS script -------------\'';
+			'Write-Host \'------------- PROMO script -------------\'';
 		cmd += ' -ForegroundColor white -BackgroundColor DarkRed;';
 
 		for (var i = 0; i < urlArray.length; i++) {
@@ -87,7 +87,7 @@ function unzipContent(zipPath, dstPath) {
 
 		// powershell command string...
 		// header...
-		var cmd = 'Write-Host \'------------- PROMO GNEWS script -------------\'';
+		var cmd = 'Write-Host \'------------- PROMO script -------------\'';
 		cmd += ' -ForegroundColor white -BackgroundColor DarkRed;';
 		// current action description...
 		cmd += 'Write-Host \'> extracting ' + fileName + '...\';';
@@ -110,7 +110,7 @@ function zipContent(path, zipPath) {
 
 		// powershell command string...
 		// header...
-		var cmd = 'Write-Host \'------------- PROMO GNEWS script -------------\'';
+		var cmd = 'Write-Host \'------------- PROMO script -------------\'';
 		cmd += ' -ForegroundColor white -BackgroundColor DarkRed;';
 		// current action description...
 		cmd += 'Write-Host \'> compressing ' + fileName + '...\';';
@@ -135,7 +135,7 @@ function installFonts(fontsPath) {
 
 	if (filesArray.length == 0) return;
 
-	var installFontsPS = 'Write-Host \'------------- PROMO GNEWS script -------------\'';
+	var installFontsPS = 'Write-Host \'------------- PROMO script -------------\'';
 	installFontsPS += ' -ForegroundColor white -BackgroundColor DarkRed;';
 	installFontsPS += 'Write-Host \'                (u.u )...zzz\';';
 	installFontsPS += '$Destination = (New-Object -ComObject Shell.Application).Namespace(0x14);';
@@ -248,20 +248,6 @@ function copyFolderContentContent(src, dst) {
 			aFile.copy(cFile);
 		}
 	}
-}
-
-function PRODUCAO_DIA_A_DIA() {
-	var dateStr = system
-		.callSystem('cmd.exe /c date /t')
-		.trim();
-
-	var y = dateStr.split('/')[2].trim(); // -> 2022
-	var m = dateStr.split('/')[1]; // -> 11
-	m += '_' + shortMonthArray[parseInt(m) - 1]; // -> 11_NOV
-	var d = dateStr.split('/')[0]; // -> 24
-	var todayPath = nAdd + '/PRODUCAO-DIA-A-DIA/' + y + '/' + m + '/' + d + '/GNEWS';
-
-	return todayPath;
 }
 
 function createPathFolders(path) {
@@ -493,7 +479,7 @@ function createDefaultProjFolders(pathArray, progressWindow) {
 	for (var i = 0; i < pathArray.length; i++) {
 		
 		var path = pathArray[i];
-		createPath(path);
+		createPathFolders(path);
 		progressLabel.text = '...' + path.match(/\/.+$/);
 		progressBar.value = i;
 	}

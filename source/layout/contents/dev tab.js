@@ -67,8 +67,8 @@ zipTemplatesBtn.onClick = function () {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	// dev folder path '[user name]/PROMO-GNEWS-script'...
-	var destPath = Folder.myDocuments.parent.toString() + '/PROMO-GNEWS-script';
+	// dev folder path '[user name]/PROMO'...
+	var destPath = Folder.myDocuments.parent.toString() + '/PROMO';
 	var devFolder = new Folder(destPath);
 
 	if (templatesFolder.exists) {
@@ -130,8 +130,8 @@ zipFontsBtn.onClick = function () {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	// dev folder path '[user name]/PROMO-GNEWS-script'...
-	var destPath = Folder.myDocuments.parent.toString() + '/PROMO-GNEWS-script';
+	// dev folder path '[user name]/PROMO'...
+	var destPath = Folder.myDocuments.parent.toString() + '/PROMO';
 	var devFolder = new Folder(destPath);
 
 	if (fontsFolder.exists) {
