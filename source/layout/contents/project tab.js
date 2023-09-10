@@ -28,15 +28,14 @@ projIdTxt.helpTip = projIdContent;
 // projNameTxt.helpTip = 'project name';
 // projNameTxt.enabled = false;
 // projNameTxt.visible = false;
+//---------------------------------------------------------
+
+// currentGrp.add('panel');
+
 var renameItemBtn = projSubGrp1.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 renameItemBtn.helpTip = 'rename comps';
 
-//---------------------------------------------------------
-
-currentGrp.add('panel');
- 
-
-var projOrgBtn = currentGrp.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var projOrgBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projOrgBtn.helpTip = 'organize project | organization tags';
 
 //---------------------------------------------------------
@@ -117,7 +116,7 @@ renameItemBtn.onClick = function () {
 
 	var compArray = app.project.selection;
 
-	compArray = compArray.length > 0 ? compArray : getCompsAndTemplates();
+	// compArray = compArray.length > 0 ? compArray : getCompsAndTemplates();
 	renamePromoComps(compArray);
 
 	app.endUndoGroup();
@@ -187,7 +186,6 @@ saveBtn.onClick = function () {
 	if (!saveFolder.exists) saveFolder.create();
 
 	var savePath = decodeURI(saveFolder.fullName);
-	// alert(savePath);
 
 	if (projFoldersTogBtn.value) {
 		var pathArray = [
@@ -200,22 +198,11 @@ saveBtn.onClick = function () {
 			savePath + '/05 SAIDA',
 			savePath + '/06 EXTERNOS'
 		];
-		var progressWindow = progressDialog('are you sure?');
-		var enterBtn = progressWindow.children[2].children[0];
-		var cancelBtn = progressWindow.children[2].children[1];
-
-		enterBtn.onClick = progressWindow.onEnterKey = function () {
-			createDefaultProjFolders(pathArray, progressWindow);
-			progressWindow.close();
-		};
-
-		cancelBtn.onClick = function () {
-			progressWindow.close();//
-
-			alert('escaping...');
-			escape = true;
-		};
-		progressWindow.show();
+		for (var i = 0; i < pathArray.length; i++) {
+			var path = pathArray[i];
+			alert(path);
+			createPathFolders(path);
+		}
 	}
 	if (escape) return;
 
@@ -244,7 +231,6 @@ fldProjBtn2.onClick = function () {
 		return;
 	}
 	var currentProj = app.project.file;
-	// var currentProjPath = currentProj != null ? decodeURI(currentProj.path) : projPath;
 	var currentProjPath = decodeURI(currentProj.path);
 	var fld =  new Folder(currentProjPath);
 

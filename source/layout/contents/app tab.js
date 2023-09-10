@@ -12,17 +12,17 @@
 */
 
 currentGrp = tabsGrp.app;
-var appSubGrp1 = currentGrp.add('group');
+// var appSubGrp1 = currentGrp.add('group');
 
-var appBatchTxt = appSubGrp1.add('statictext', undefined, 'batch:', { name: 'label' , truncate: 'end'});
-appBatchTxt.maximumSize.width = 35;
+// var appBatchTxt = appSubGrp1.add('statictext', undefined, 'batch:', { name: 'label' , truncate: 'end'});
+// appBatchTxt.maximumSize.width = 35;
 
-var batchVNDBtn = appSubGrp1.add('iconbutton', iconSize, batchVNDIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-batchVNDBtn.helpTip = 'vinheta nunca desliga\nselect file sources';
+// var batchVNDBtn = appSubGrp1.add('iconbutton', iconSize, batchVNDIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// batchVNDBtn.helpTip = 'vinheta nunca desliga\nselect file sources';
 
 
-//---------------------------------------------------------
-currentGrp.add('panel');
+// //---------------------------------------------------------
+// currentGrp.add('panel');
 var appSubGrp2 = currentGrp.add('group');
 
 var appUtilTxt = appSubGrp2.add('statictext', undefined, 'utilities:', { name: 'label' , truncate: 'end'});
@@ -65,38 +65,38 @@ setupCompBtn.helpTip = 'setup selected comp:\n\nhorizontal | vertical\nbg color:
 
 */
 
-batchVNDBtn.onClick = function () {
-	var footageArray = app.project.importFileWithDialog();
+// batchVNDBtn.onClick = function () {
+// 	var footageArray = app.project.importFileWithDialog();
 	
-	app.beginUndoGroup('batch...');
+// 	app.beginUndoGroup('batch...');
 
-	for (var i = 0; i < footageArray.length; i++) {
-		try {
-			var footage = footageArray[i];
+// 	for (var i = 0; i < footageArray.length; i++) {
+// 		try {
+// 			var footage = footageArray[i];
 			
-			var compN = 'vinheta nunca desliga ' + (i + 1);
-			var compW = 1920;
-			var compH = 1080;
-			var compAspect = 1;
-			var compDuration = 6;
-			var compFPS = 29.97;
+// 			var compN = 'vinheta nunca desliga ' + (i + 1);
+// 			var compW = 1920;
+// 			var compH = 1080;
+// 			var compAspect = 1;
+// 			var compDuration = 6;
+// 			var compFPS = 29.97;
   
-			var comp = app.project.items.addComp(compN, compW, compH, compAspect, compDuration, compFPS);
-			comp.layers.add(footage);
+// 			var comp = app.project.items.addComp(compN, compW, compH, compAspect, compDuration, compFPS);
+// 			comp.layers.add(footage);
 			
-			layersVND(comp);
-			comp.bgColor = [0, 0, 0];
-			comp.hideShyLayers = true;
-			comp.comment = 'export';
+// 			layersVND(comp);
+// 			comp.bgColor = [0, 0, 0];
+// 			comp.hideShyLayers = true;
+// 			comp.comment = 'export';
 		
-		} catch (err) {
-			alert(err.message);
-		}
-	}
+// 		} catch (err) {
+// 			alert(err.message);
+// 		}
+// 	}
 	
-	app.endUndoGroup();
-	projOrgBtn.notify();
-};
+// 	app.endUndoGroup();
+// 	projOrgBtn.notify();
+// };
 
 copyAMEPresetsBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {

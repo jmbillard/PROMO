@@ -18,14 +18,14 @@ currentGrp = tabsGrp.brand;
 
 var colorSubGrp1 = currentGrp.add('group');
 var colors1Txt = colorSubGrp1.add('statictext', undefined, 'mono:', { name: 'label' , truncate: 'end'});
-colors1Txt.maximumSize.width = 30;
+colors1Txt.maximumSize.width = 35;
 
 //---------------------------------------------------------
 
 
 var colorSubGrp2 = currentGrp.add('group');
 var colors2Txt = colorSubGrp2.add('statictext', undefined, 'main:', { name: 'label' , truncate: 'end'});
-colors2Txt.maximumSize.width = 35;
+colors2Txt.maximumSize.width = 30;
 
 
 // mono colors...

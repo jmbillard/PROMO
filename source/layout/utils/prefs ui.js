@@ -296,7 +296,6 @@ on the script preferences folder\n\
 		menuSubGrp5.enabled = menuSubGrp5.visible = devMode;
 		setLayout();
 		savePrefs(); // → save preferences.json
-		alert(devLab.size);
 	};
 
 	//---------------------------------------------------------
