@@ -14,7 +14,6 @@
 currentGrp = tabsGrp.brand;
 
 // ui color buttons...
-//var colorsGrp = currentGrp.add('group');
 
 var colorSubGrp1 = currentGrp.add('group');
 var colors1Txt = colorSubGrp1.add('statictext', undefined, 'mono:', { name: 'label' , truncate: 'end'});
@@ -45,9 +44,6 @@ shpPalletBtn.helpTip = 'color pallet as shape layer';
   ---------------------------------------------------------------
 
 */
-
-//  linter settings:
-//  jshint -W083
 
 for (var i = 1; i < colorSubGrp1.children.length; i++) {
 	colorSubGrp1.children[i].onClick = function () {
