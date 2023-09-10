@@ -33,21 +33,21 @@ function prefsDialog() {
 
 	//
 
-	var userGrp = wPref.add('group');
-	userGrp.spacing = 2;
+	// var userGrp = wPref.add('group');
+	// userGrp.spacing = 2;
 
-	var userTxt = userGrp.add('statictext', undefined, 'user prefix');
-	userTxt.helpTip = 'user prefix';
-	userTxt.preferredSize = txtSize;
+	// var userTxt = userGrp.add('statictext', undefined, 'user prefix');
+	// userTxt.helpTip = 'user prefix';
+	// userTxt.preferredSize = txtSize;
 
-	var projUserTxt = userGrp.add('edittext', undefined, userPrefix);
-	projUserTxt.preferredSize = dropSize;
-	projUserTxt.helpTip = 'user prefix';
+	// var projUserTxt = userGrp.add('edittext', undefined, userPrefix);
+	// projUserTxt.preferredSize = dropSize;
+	// projUserTxt.helpTip = 'user prefix';
 
-	//---------------------------------------------------------
+	// //---------------------------------------------------------
 
-	var divider0 = wPref.add('panel');
-	divider0.alignment = 'fill';
+	// var divider0 = wPref.add('panel');
+	// divider0.alignment = 'fill';
 
 	var layerGrp = wPref.add('group');
 	layerGrp.orientation = 'column';
@@ -293,9 +293,10 @@ on the script preferences folder\n\
 	devTogBtn.onClick = function () {
 		devMode = this.value;
 		JSONPrefsObj.devMode = devMode;
-		setLayout();
 		menuSubGrp5.enabled = menuSubGrp5.visible = devMode;
+		setLayout();
 		savePrefs(); // → save preferences.json
+		alert(devLab.size);
 	};
 
 	//---------------------------------------------------------
@@ -322,13 +323,13 @@ on the script preferences folder\n\
 
 	//---------------------------------------------------------
 
-	projUserTxt.onEnterKey = projUserTxt.onChange = function () {
-		this.text = this.text.toUpperCase();
-		userPrefix = this.text;
-		JSONPrefsObj.userPrefix = userPrefix;
-		savePrefs(); // → save preferences.json
-		userTxt.active = true;
-	};
+	// projUserTxt.onEnterKey = projUserTxt.onChange = function () {
+	// 	this.text = this.text.toUpperCase();
+	// 	userPrefix = this.text;
+	// 	JSONPrefsObj.userPrefix = userPrefix;
+	// 	savePrefs(); // → save preferences.json
+	// 	userTxt.active = true;
+	// };
 
 	//---------------------------------------------------------
 

@@ -145,6 +145,7 @@ function setLayout() {
 		if (w.size.width > 1380) {
 			tabsGrp.menu.margins = [0, 0, 0, 0];
 		}
+		if (w.size.width > 1380 && showLabels) devLab.size.width = devMode ? 50 : 0;
 
 	} else {
 		// vertical layout
@@ -193,6 +194,7 @@ function setLayout() {
 			progImg.size.width = 0;
 			aboutTxt.text = '...';
 		}
+		if (w.size.width > 100 && showLabels) devLab.size.height = devMode ? 12 : 0;
 	}
 	imgGrp.orientation = wLayout;
 
@@ -221,7 +223,6 @@ function setLayout() {
 	rightGrp.alignment = rbAlignment;
 
 	devBtn.size = devMode ? [36, 36] : [0, 0];
-	if (w.size.width > 1380 && showLabels) devLab.size = devMode ? [60, 12] : [0, 0];
 
 	updateLayout();
 }
