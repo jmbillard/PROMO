@@ -13,53 +13,56 @@
 
 currentGrp = tabsGrp.shortcuts;
 
-var linksSubGrp2 = currentGrp.add('group');
+var linksSubGrp1 = currentGrp.add('group');
 
-var linkTxt1 = linksSubGrp2.add('statictext', undefined, 'sites:', { name: 'label' , truncate: 'end'});
+var linkTxt1 = linksSubGrp1.add('statictext', undefined, 'sites:', { name: 'label' , truncate: 'end'});
 linkTxt1.maximumSize.width = 30;
 
-var oneDriveBtn = linksSubGrp2.add('iconbutton', iconSize, oneDriveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var oneDriveBtn = linksSubGrp1.add('iconbutton', iconSize, oneDriveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 oneDriveBtn.helpTip = 'OneDrive globo';
 
 //---------------------------------------------------------
 
 // var linksSubGrp3 = currentGrp.add('group');
-var trelloBtn = linksSubGrp2.add('iconbutton', iconSize, trelloIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var trelloBtn = linksSubGrp1.add('iconbutton', iconSize, trelloIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 trelloBtn.helpTip = 'trello promo';
+trelloBtn.enabled = false;
 
-var apontamentoBtn = linksSubGrp2.add('iconbutton', iconSize, apontamentoIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-apontamentoBtn.helpTip = 'apontamento globo';
+// var apontamentoBtn = linksSubGrp1.add('iconbutton', iconSize, apontamentoIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// apontamentoBtn.helpTip = 'apontamento globo';
 
-var plannerBtn = linksSubGrp2.add('iconbutton', iconSize, plannerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-plannerBtn.helpTip = 'planner globo';
+// var plannerBtn = linksSubGrp1.add('iconbutton', iconSize, plannerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// plannerBtn.helpTip = 'planner globo';
 
 //---------------------------------------------------------
 
 currentGrp.add('panel');
  
-var linksSubGrp1 = currentGrp.add('group');
+var linksSubGrp2 = currentGrp.add('group');
 
-var linkTxt2 = linksSubGrp1.add('statictext', undefined, 'folders:', { name: 'label' , truncate: 'end'});
+var linkTxt2 = linksSubGrp2.add('statictext', undefined, 'folders:', { name: 'label' , truncate: 'end'});
 linkTxt2.maximumSize.width = 40;
 
-var mamArteBtn = linksSubGrp1.add('iconbutton', iconSize, arteFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var mamArteBtn = linksSubGrp2.add('iconbutton', iconSize, arteFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 mamArteBtn.helpTip = 'MAM Para Arte | set custom folder';
-var mamMagBtn = linksSubGrp1.add('iconbutton', iconSize, magazineFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+mamArteBtn.enabled = false;
+var mamMagBtn = linksSubGrp2.add('iconbutton', iconSize, magazineFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 mamMagBtn.helpTip = 'upload MAM Magazine | set custom folder';
+mamMagBtn.enabled = false;
 
 //---------------------------------------------------------
 
-var mamHardNewsBtn = linksSubGrp1.add('iconbutton', iconSize, hardNewsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var mamHardNewsBtn = linksSubGrp2.add('iconbutton', iconSize, hardNewsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 mamHardNewsBtn.helpTip = 'upload MAM Hard News';
-mamHardNewsBtn.enabled = !homeOffice;
+mamHardNewsBtn.enabled = false;
 
-var nUtilsBtn = linksSubGrp1.add('iconbutton', iconSize, utilsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var nUtilsBtn = linksSubGrp2.add('iconbutton', iconSize, utilsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 nUtilsBtn.helpTip = 'N: Utilidades';
-nUtilsBtn.enabled = !homeOffice;
+nUtilsBtn.enabled = false;
 
-var baseJorBtn = linksSubGrp1.add('iconbutton', iconSize, baseFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var baseJorBtn = linksSubGrp2.add('iconbutton', iconSize, baseFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 baseJorBtn.helpTip = 'Bases Jornais';
-baseJorBtn.enabled = !homeOffice;
+baseJorBtn.enabled = false;
 
 // var dayBtn = linksSubGrp1.add('iconbutton', iconSize, dayFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 // dayBtn.helpTip = 'HOJE - dia a dia';
@@ -99,29 +102,29 @@ trelloBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-apontamentoBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	var site = 'https://gglobo-pea-hdg-prd.web.app/#card_view';
+// apontamentoBtn.onClick = function () {
+// 	// error...
+// 	if (!netAccess()) {
+// 		showTabErr(netConfigName + ' not checked');
+// 		return;
+// 	}
+// 	var site = 'https://gglobo-pea-hdg-prd.web.app/#card_view';
 
-	openWebSite(site);
-};
+// 	openWebSite(site);
+// };
 
-//---------------------------------------------------------
+// //---------------------------------------------------------
 
-plannerBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	var site = 'https://tasks.office.com/tvglobocorp.onmicrosoft.com/en-US/Home/Planner/#/userboard';
+// plannerBtn.onClick = function () {
+// 	// error...
+// 	if (!netAccess()) {
+// 		showTabErr(netConfigName + ' not checked');
+// 		return;
+// 	}
+// 	var site = 'https://tasks.office.com/tvglobocorp.onmicrosoft.com/en-US/Home/Planner/#/userboard';
 
-	openWebSite(site);
-};
+// 	openWebSite(site);
+// };
 
 //---------------------------------------------------------
 

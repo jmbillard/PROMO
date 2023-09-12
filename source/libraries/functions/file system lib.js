@@ -479,7 +479,6 @@ function createDefaultProjFolders(pathArray, progressWindow) {
 	for (var i = 0; i < pathArray.length; i++) {
 		
 		var path = pathArray[i];
-		alert(path);
 		createPathFolders(path);
 		progressLabel.text = '...' + path.match(/\/.+$/);
 		progressBar.value = i;
