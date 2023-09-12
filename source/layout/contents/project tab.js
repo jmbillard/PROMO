@@ -33,10 +33,10 @@ projIdTxt.helpTip = projIdContent;
 // currentGrp.add('panel');
 
 var renameItemBtn = projSubGrp1.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = 'rename comps';
+renameItemBtn.helpTip = '◖ -> rename comps\n◗ -> rename all comps\n\nALL CAPS and removes special characters';
 
 var projOrgBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = 'organize project | organization tags';
+projOrgBtn.helpTip = '◖ -> create project folders\n⦶ -> organization tags\n◗ -> organize project';
 
 //---------------------------------------------------------
 
@@ -54,7 +54,7 @@ currentGrp.add('panel');
  
 var projSubGrp2 = currentGrp.add('group');
 
-var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, fldTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
+var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, ftgTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
 projFoldersTogBtn.helpTip = 'create _DEFAULT project folders';
 
 var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
@@ -99,6 +99,29 @@ projIdTxt.addEventListener('blur', function () {
 
 //---------------------------------------------------------
 
+renameItemBtn.addEventListener('click', function (c) {
+	if (c.button == 2) {
+		// error...
+		if (app.project.numItems == 0) {
+			showTabErr('empty project');
+			return;
+		}
+		app.beginUndoGroup('rename all comps');
+
+		var dateStr = system
+			.callSystem('cmd.exe /c date /t')
+			.trim();
+
+		setXMPdata('creator', system.userName);
+		setXMPdata('date', dateStr);
+
+		var compArray = getCompsAndTemplates();
+		renamePromoComps(compArray);
+
+		app.endUndoGroup();
+	}
+});
+
 renameItemBtn.onClick = function () {
 	// error...
 	if (app.project.numItems == 0) {
@@ -125,39 +148,45 @@ renameItemBtn.onClick = function () {
 //---------------------------------------------------------
 
 projOrgBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
+	if (c.button == 1) {
 		if (app.project.numItems == 0) return;
 		tagDialog();
 	}
 });
 
 projOrgBtn.onClick = function () {
-	if (app.project.numItems == 0) return;
+	projectTemplateFolders(projectMode); // project folder structure...
+}
 
-	var progressWindow = progressDialog('organize project...');
-	var enterBtn = progressWindow.children[2].children[0];
-	var cancelBtn = progressWindow.children[2].children[1];
-	app.beginUndoGroup('organize project');
+projOrgBtn.addEventListener('click', function (c) {
+	if (c.button == 2) {
+		if (app.project.numItems == 0) return;
 
-	progressWindow.onShow = enterBtn.onClick = progressWindow.onEnterKey = function () {
-		deleteProjectFolders();
-		populateProjectFolders(progressWindow);
-		deleteEmptyProjectFolders();
+		var progressWindow = progressDialog('organize project...');
+		var enterBtn = progressWindow.children[2].children[0];
+		var cancelBtn = progressWindow.children[2].children[1];
+		app.beginUndoGroup('organize project');
 
-		app.endUndoGroup();
-		progressWindow.close();
-	};
+		progressWindow.onShow = enterBtn.onClick = progressWindow.onEnterKey = function () {
+			deleteProjectFolders();
+			populateProjectFolders(progressWindow);
+			deleteEmptyProjectFolders();
 
-	cancelBtn.onClick = function () {
-		progressWindow.close();
-		app.endUndoGroup();
+			app.endUndoGroup();
+			progressWindow.close();
+		};
 
-		alert('escaping...');
-		executeCommandID('Undo organize project');
-	};
+		cancelBtn.onClick = function () {
+			progressWindow.close();
+			app.endUndoGroup();
 
-	progressWindow.show();
-};
+			alert('escaping...');
+			executeCommandID('Undo organize project');
+		};
+
+		progressWindow.show();
+	}
+});
 
 //---------------------------------------------------------
 
@@ -200,7 +229,6 @@ saveBtn.onClick = function () {
 		];
 		for (var i = 0; i < pathArray.length; i++) {
 			var path = pathArray[i];
-			alert(path);
 			createPathFolders(path);
 		}
 	}
