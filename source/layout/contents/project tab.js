@@ -33,10 +33,10 @@ projIdTxt.helpTip = projIdContent;
 // currentGrp.add('panel');
 
 var renameItemBtn = projSubGrp1.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ -> rename comps\n◗ -> rename all comps\n\nALL CAPS and removes special characters';
+renameItemBtn.helpTip = '◖ → rename comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
 
 var projOrgBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ -> create project folders\n⦶ -> organization tags\n◗ -> organize project';
+projOrgBtn.helpTip = '◖ → create project folders\n⦶ → organization tags\n◗ → organize project';
 
 //---------------------------------------------------------
 
@@ -55,13 +55,13 @@ currentGrp.add('panel');
 var projSubGrp2 = currentGrp.add('group');
 
 var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, ftgTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-projFoldersTogBtn.helpTip = 'create _DEFAULT project folders';
+projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project folders';
 
 var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-collectFontsTogBtn.helpTip = 'collect fonts';
+collectFontsTogBtn.helpTip = '⦿ → collect fonts';
 
 var saveBtn = projSubGrp2.add('iconbutton', iconSize, saveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = 'save project';
+saveBtn.helpTip = '◖ → save project';
 
 //---------------------------------------------------------
 
@@ -70,7 +70,7 @@ currentGrp.add('panel');
 var projSubGrp3 = currentGrp.add('group');
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-fldProjBtn2.helpTip = 'project folder';
+fldProjBtn2.helpTip = '◖ → open current project folder';
 
 /*
 
