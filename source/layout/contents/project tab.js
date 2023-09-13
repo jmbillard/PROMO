@@ -33,10 +33,10 @@ projIdTxt.helpTip = projIdContent;
 // currentGrp.add('panel');
 
 var renameItemBtn = projSubGrp1.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
+renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
 
 var projOrgBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create project folders\n⦶ → organization tags\n◗ → organize project';
+projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → organize project';
 
 //---------------------------------------------------------
 
@@ -54,8 +54,8 @@ currentGrp.add('panel');
  
 var projSubGrp2 = currentGrp.add('group');
 
-var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, ftgTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project folders';
+var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, fldTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
+projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project system folders';
 
 var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
 collectFontsTogBtn.helpTip = '⦿ → collect fonts';
