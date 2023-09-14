@@ -14,7 +14,7 @@
 currentGrp = tabsGrp.effects;
 
 var shpAdjBtn = currentGrp.add('iconbutton', iconSize, shpAdjIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-shpAdjBtn.helpTip = 'adjustment layer';
+shpAdjBtn.helpTip = '◖ → adjustment layer';
 
 //---------------------------------------------------------
 

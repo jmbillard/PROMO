@@ -35,7 +35,7 @@ createColorButtons(mainColors, colorSubGrp2);
 //---------------------------------------------------------
 
 var shpPalletBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-shpPalletBtn.helpTip = 'color pallet as shape layer';
+shpPalletBtn.helpTip = '◖ → color pallet as shape layer';
 
 /*
 

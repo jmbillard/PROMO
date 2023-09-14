@@ -15,7 +15,7 @@ var animSubGrp1 = currentGrp.add('group');
 
 // copy keyframe influences...
 var copyInfBtn = animSubGrp1.add('iconbutton', iconSize, copyInfluenceIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-copyInfBtn.helpTip = 'copy keyframe influence';
+copyInfBtn.helpTip = '◖ → copy keyframe influence';
 
 var keyStatsGrp = animSubGrp1.add('group', undefined, { name: 'keyStatsGrp' });
 keyStatsGrp.orientation = 'stack';
@@ -31,7 +31,7 @@ for (var kf = 0; kf < keyImgs.length; kf++) {
 
 // paste keyframe influences...
 var pasteInfBtn = animSubGrp1.add('iconbutton', iconSize, pasteInfluenceIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-pasteInfBtn.helpTip = 'paste keyframe influence';
+pasteInfBtn.helpTip = '◖ → paste keyframe influence';
 
 //---------------------------------------------------------
 
@@ -64,7 +64,7 @@ currentGrp.add('panel');
  
 
 var lockTrmBtn = currentGrp.add('iconbutton', iconSize, lockPropIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-lockTrmBtn.helpTip = 'lock transform properties';
+lockTrmBtn.helpTip = '◖ → lock transform properties';
 
 //---------------------------------------------------------
 
@@ -74,13 +74,13 @@ currentGrp.add('panel');
 var animSubGrp3 = currentGrp.add('group');
 
 var layerRandBtn = animSubGrp3.add('iconbutton', iconSize, randomizeLayerTimesIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-layerRandBtn.helpTip = 'randomize layers';
+layerRandBtn.helpTip = '◖ → randomize layers';
 
 var layerRandTxt = animSubGrp3.add('edittext', undefined, '30');
 layerRandTxt.minimumSize.width = vMin;
 
 var layerSeqBtn = animSubGrp3.add('iconbutton', iconSize, sequenceLayerTimesIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-layerSeqBtn.helpTip = 'sequence layers';
+layerSeqBtn.helpTip = '◖ → sequence layers';
 
 //---------------------------------------------------------
 
@@ -467,11 +467,11 @@ currentGrp = tabsGrp.tools;
 
 // guides rig...
 var guidesBtn = currentGrp.add('iconbutton', iconSize, guidesIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-guidesBtn.helpTip = 'columns guide layer rig';
+guidesBtn.helpTip = '◖ → columns guide layer rig';
 
 // dynamic arrow rig...
 var arrowBtn = currentGrp.add('iconbutton', iconSize, arrowIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-arrowBtn.helpTip = 'simple arrow rig';
+arrowBtn.helpTip = '◖ → simple arrow rig';
 
 //---------------------------------------------------------
 
@@ -480,7 +480,7 @@ currentGrp.add('panel');
 
 // simple counter rig...
 var counterBtn = currentGrp.add('iconbutton', iconSize, counterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-counterBtn.helpTip = 'make counter rig';
+counterBtn.helpTip = '◖ → make counter rig';
 
 //---------------------------------------------------------
 
@@ -488,13 +488,13 @@ var toolsSubGrp1 = currentGrp.add('group');
 
 // text typing rig...
 var typeAnimBtn = toolsSubGrp1.add('iconbutton', iconSize, typewriterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-typeAnimBtn.helpTip = 'typewriter animation';
+typeAnimBtn.helpTip = '◖ → typewriter animation';
 
 var wordsBtn = toolsSubGrp1.add('iconbutton', iconSize, wordsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-wordsBtn.helpTip = 'words animation';
+wordsBtn.helpTip = '◖ → words animation';
 
 var simpleBoxBtn = toolsSubGrp1.add('iconbutton', iconSize, boxIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-simpleBoxBtn.helpTip = 'simple box bg base';
+simpleBoxBtn.helpTip = '◖ → simple box bg base';
 
 //---------------------------------------------------------
 
@@ -503,7 +503,7 @@ currentGrp.add('panel');
 
 // wiggle position rig...
 var wigBtn = currentGrp.add('iconbutton', iconSize, wigIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-wigBtn.helpTip = 'wig rig';
+wigBtn.helpTip = '◖ → wig rig';
 
 //---------------------------------------------------------
 
@@ -512,7 +512,7 @@ currentGrp.add('panel');
 
 // simple ik rig...
 var ikBtn = currentGrp.add('iconbutton', iconSize, ikIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-ikBtn.helpTip = 'simple ik rig';
+ikBtn.helpTip = '◖ → simple ik rig';
 
 /*
 

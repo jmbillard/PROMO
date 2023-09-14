@@ -10,13 +10,13 @@ currentGrp = tabsGrp.text;
 var textSubGrp1 = currentGrp.add('group');
 
 var txtUpperBtn = textSubGrp1.add('iconbutton', iconSize, txtUpperIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtUpperBtn.helpTip = 'set text layer to upper case';
+txtUpperBtn.helpTip = '◖ → set text layer to upper case';
 
 var txtLowerBtn = textSubGrp1.add('iconbutton', iconSize, txtLowerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtLowerBtn.helpTip = 'set text layer to lower case';
+txtLowerBtn.helpTip = '◖ → set text layer to lower case';
 
 var txtTitleBtn = textSubGrp1.add('iconbutton', iconSize, txtTitleIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtTitleBtn.helpTip = 'set text layer to title case';
+txtTitleBtn.helpTip = '◖ → set text layer to title case';
 
 //---------------------------------------------------------
 
@@ -26,10 +26,10 @@ currentGrp.add('panel');
 var textSubGrp2 = currentGrp.add('group');
 
 var txtCleanerBtn = textSubGrp2.add('iconbutton', iconSize, txtCleanerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtCleanerBtn.helpTip = 'deletes consecutive spaces and line breaks';
+txtCleanerBtn.helpTip = '◖ → deletes consecutive spaces and line breaks';
 
 var txtColumnBtn = textSubGrp2.add('iconbutton', iconSize, txtColumnsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtColumnBtn.helpTip = 'divides consecutive spaces in columns';
+txtColumnBtn.helpTip = '◖ → divides consecutive spaces in columns';
 
 //---------------------------------------------------------
 

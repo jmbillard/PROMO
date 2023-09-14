@@ -33,7 +33,7 @@ function findDialog() {
 	var findEdTxt = inputGrp.add('edittext', [0, 0, 260, 38]);
 
 	var findBtn = inputGrp.add('iconbutton', iconSize, findIcon.light, { style: 'toolbutton' });
-	findBtn.helpTip = 'find';
+	findBtn.helpTip = '◖ → find';
 
 	//---------------------------------------------------------
 
@@ -48,7 +48,7 @@ function findDialog() {
 	optCkb5.value = true;
 
 	var optIco5 = optGrp5.add('image', undefined, eyeOpenLabelIcon);
-	optCkb5.helpTip = optIco5.helpTip = 'only visible layers';
+	optCkb5.helpTip = optIco5.helpTip = '⦿ → only visible layers';
 
 	//---------------------------------------------------------
 
@@ -60,7 +60,7 @@ function findDialog() {
 	optCkb1.value = false;
 
 	var optTxt1 = optGrp1.add('statictext', undefined, 'Tt');
-	optCkb1.helpTip = optTxt1.helpTip = 'match case';
+	optCkb1.helpTip = optTxt1.helpTip = '⦿ → match case';
 
 	//---------------------------------------------------------
 
@@ -72,7 +72,7 @@ function findDialog() {
 	optCkb2.value = false;
 
 	var optTxt2 = optGrp2.add('statictext', undefined, 'àê');
-	optCkb2.helpTip = optTxt2.helpTip = 'match accentuation';
+	optCkb2.helpTip = optTxt2.helpTip = '⦿ → match accentuation';
 
 	//---------------------------------------------------------
 
@@ -84,7 +84,7 @@ function findDialog() {
 	optCkb4.value = false;
 
 	var optTxt4 = optGrp4.add('statictext', undefined, '!=');
-	optCkb4.helpTip = optTxt4.helpTip = 'results will not include the search keyword';
+	optCkb4.helpTip = optTxt4.helpTip = '⦿ → results will not include the search keyword';
 
 	//---------------------------------------------------------
 
@@ -96,7 +96,7 @@ function findDialog() {
 	optCkb3.value = false;
 
 	var optTxt3 = optGrp3.add('statictext', undefined, 'RegExp');
-	optCkb3.helpTip = optTxt3.helpTip = 'use regular expression';
+	optCkb3.helpTip = optTxt3.helpTip = '⦿ → use regular expression';
 
 	//---------------------------------------------------------
 

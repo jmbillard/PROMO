@@ -16,7 +16,7 @@ binTxt.maximumSize.width = 30;
 
 
 var binBtn = devGrp1.add('iconbutton', iconSize, binIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-binBtn.helpTip = 'binary converter | layer source code';
+binBtn.helpTip = '◖ → binary converter and layer source code';
 
 //---------------------------------------------------------
 
@@ -25,7 +25,7 @@ var dTxt = devGrp2.add('statictext', undefined, 'dark:', { name: 'label' , trunc
 dTxt.maximumSize.width = 30;
 
 var dBtn = devGrp2.add('iconbutton', iconSize, darkIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-dBtn.helpTip = 'convert .png to dark icon theme';
+dBtn.helpTip = '◖ → convert .png to dark icon theme';
 
 //---------------------------------------------------------
 
@@ -38,13 +38,13 @@ var zipTxt1 = devGrp3.add('statictext', undefined, 'templates:', { name: 'label'
 zipTxt1.maximumSize.width = 60;
 
 var zipTemplatesBtn = devGrp3.add('iconbutton', iconSize, zipIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-zipTemplatesBtn.helpTip = 'zip the templates folder';
+zipTemplatesBtn.helpTip = '◖ → zip the templates folder';
 
 var zipTxt2 = devGrp3.add('statictext', undefined, 'fonts:', { name: 'label' , truncate: 'end'});
 zipTxt2.maximumSize.width = 30;
 
 var zipFontsBtn = devGrp3.add('iconbutton', iconSize, zipIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-zipFontsBtn.helpTip = 'zip the fonts folder';
+zipFontsBtn.helpTip = '◖ → zip the fonts folder';
 
 
 /*

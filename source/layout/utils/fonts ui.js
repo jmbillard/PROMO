@@ -40,14 +40,14 @@ function fontsDialog() {
 	bGrp2.alignment = 'right';
 	// left buttons...
 	var downloadBtn = bGrp1.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-	downloadBtn.helpTip = 'downloads the latest templates';
+	downloadBtn.helpTip = '◖ → downloads the latest templates';
 	var refreshBtn = bGrp1.add('iconbutton', iconSize, refreshIcon.light, { style: 'toolbutton' }); //bGroup.add('button', undefined, 'refresh');
-	refreshBtn.helpTip = 'refresh list content';
+	refreshBtn.helpTip = '◖ → refresh list content';
 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' }); //bGroup.add('button', undefined, 'refresh');
-	openFldBtn.helpTip = 'open fonts folder';
+	openFldBtn.helpTip = '◖ → open fonts folder';
 	// right buttons...
 	var installBtn = bGrp2.add('button', undefined, 'install');
-	installBtn.helpTip = 'install selected fonts';
+	installBtn.helpTip = '◖ → install selected fonts';
 	installBtn.enabled = false; // → disable install button
 
 	//---------------------------------------------------------

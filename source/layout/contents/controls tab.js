@@ -16,15 +16,15 @@ var ctrlSubGrp1 = currentGrp.add('group');
 
 // copy animation toggle... 
 var aniTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, aniTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-aniTogBtn.helpTip = 'copy animation';
+aniTogBtn.helpTip = '⦿ → copy animation';
 
 // copy expressions toggle... 
 var exprTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, exprTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-exprTogBtn.helpTip = 'copy expressions';
+exprTogBtn.helpTip = '⦿ → copy expressions';
 
 // create parent null... 
 var nullShpBtn = currentGrp.add('iconbutton', iconSize, nullIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullShpBtn.helpTip = 'create parent null';
+nullShpBtn.helpTip = '\n◗ → create parent null';
 
 //---------------------------------------------------------
 
@@ -34,7 +34,7 @@ var ctrlSubGrp2 = currentGrp.add('group');
 
 // create centered null
 var nullCShpBtn = ctrlSubGrp2.add('iconbutton', iconSize, nullCenterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullCShpBtn.helpTip = 'centered null';
+nullCShpBtn.helpTip = '◖ → centered null';
 
 //---------------------------------------------------------
 
@@ -44,15 +44,15 @@ var ctrlSubGrp3 = currentGrp.add('group');
 
 // select hierarchy sub group...
 var hGrp = ctrlSubGrp3.add('group', undefined, { name: 'hGrp' });
-hGrp.orientation = 'column';
+hGrp.orientation = '◖ → column';
 
 // select parent button...
 var upHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], upIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-upHBtn.helpTip = 'select parent';
+upHBtn.helpTip = '◖ → select parent';
 
 // select children button...
 var dwnHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], downIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-dwnHBtn.helpTip = 'select children';
+dwnHBtn.helpTip = '◖ → select children';
 
 /*
 

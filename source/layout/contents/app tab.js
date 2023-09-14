@@ -29,10 +29,10 @@ var appUtilTxt = appSubGrp2.add('statictext', undefined, 'utilities:', { name: '
 appUtilTxt.maximumSize.width = 45;
 
 var installFontsBtn = appSubGrp2.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-installFontsBtn.helpTip = 'install fonts';
+installFontsBtn.helpTip = '◖ → install fonts';
 
 var copyAMEPresetsBtn = appSubGrp2.add('iconbutton', iconSize, eprIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-copyAMEPresetsBtn.helpTip = 'install Encoder presets | open presets folder';
+copyAMEPresetsBtn.helpTip = '◖ → install Encoder presets\n◗ → open presets folder';
 
 //---------------------------------------------------------
 
@@ -43,10 +43,10 @@ var appProjTxt = appSubGrp3.add('statictext', undefined, 'project:', { name: 'la
 appProjTxt.maximumSize.width = 40;
 
 var setupProjBtn = appSubGrp3.add('iconbutton', iconSize, setupProjIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-setupProjBtn.helpTip = 'setup project:\n\nbit depth: 8\ncolor space: \'Rec 709\'\nexp. engine: \'javascript\'';
+setupProjBtn.helpTip = '◖ → setup project:\n\nbit depth: 8\ncolor space: \'Rec 709\'\nexp. engine: \'javascript\'';
 
 var setupLabsBtn = appSubGrp3.add('iconbutton', iconSize, setupLabIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-setupLabsBtn.helpTip = 'setup project label colors / names';
+setupLabsBtn.helpTip = '◖ → setup project label colors / names';
 
 currentGrp.add('panel');
 var appSubGrp4 = currentGrp.add('group');
@@ -55,7 +55,7 @@ var appCompTxt = appSubGrp4.add('statictext', undefined, 'comp:', { name: 'label
 appCompTxt.maximumSize.width = 35;
 
 var setupCompBtn = appSubGrp4.add('iconbutton', iconSize, setupCompIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-setupCompBtn.helpTip = 'setup selected comp:\n\nhorizontal | vertical\nbg color: \'#000000\'\npreserve framerate: true';
+setupCompBtn.helpTip = 'setup selected comp:\n\n◖ → horizontal\n◗ → vertical\nbg color: \'#000000\'\npreserve framerate: true';
 
 /*
 

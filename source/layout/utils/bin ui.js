@@ -444,25 +444,25 @@ function bin_ui() {
 	var btnGrp = wBin.add('group');
 	btnGrp.alignment = 'center';
 	var pickBtn = btnGrp.add('iconbutton', undefined, pickIcon, { style: 'toolbutton' });
-	pickBtn.helpTip = 'pick files | selected layer';
+	pickBtn.helpTip = '◖ → pick files or selected layer';
 
 	btnGrp.add('image', undefined, spacer);
 
 	var exportBtn = btnGrp.add('iconbutton', undefined, exportIcon, { style: 'toolbutton' });
-	exportBtn.helpTip = 'export data';
+	exportBtn.helpTip = '◖ → export data';
 
 	var evalBtn = btnGrp.add('iconbutton', undefined, evalIcon, { style: 'toolbutton' });
-	evalBtn.helpTip = 'run data';
+	evalBtn.helpTip = '◖ → run data';
 
 	var radGrp = btnGrp.add('group');
 	var expRad01 = radGrp.add('radiobutton', undefined, 'binary');
-	expRad01.helpTip = 'binary converter';
+	expRad01.helpTip = '⦿ → binary converter';
 	var expRad02 = radGrp.add('radiobutton', undefined, 'layer def.');
-	expRad02.helpTip = 'get selected layer definition';
+	expRad02.helpTip = '⦿ → get selected layer definition';
 	var expRad03 = radGrp.add('radiobutton', undefined, 'exp. string');
-	expRad03.helpTip = 'format selected property expression string';
+	expRad03.helpTip = '⦿ → format selected property expression string';
 	var expRad04 = radGrp.add('radiobutton', undefined, 'icon images');
-	expRad04.helpTip = 'light and dark icon objects';
+	expRad04.helpTip = '⦿ → light and dark icon objects';
 
 	var pType = stcTxt.graphics.PenType.SOLID_COLOR;
 	var bType = wBin.graphics.BrushType.SOLID_COLOR;
