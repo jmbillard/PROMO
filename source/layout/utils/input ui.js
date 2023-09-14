@@ -49,7 +49,7 @@ function inputDialog(val, pos) {
 	cBtn.onClick = function () {
 		output = val;
 		wInput.close();
-		alert('escaping...');
+		alert('nothing changed!...');
 	};
 
 	wInput.show();

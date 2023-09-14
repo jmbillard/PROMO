@@ -17,7 +17,7 @@
 
 function progressDialog (text) {
 
-	var progW = new Window('dialog', undefined, undefined, { borderless: true });
+	var progW = new Window('dialog', '    (。_。)?', undefined, { closeButton: false });
 	progW.margins = 24;
 	progW.spacing = 4;
 
@@ -25,7 +25,7 @@ function progressDialog (text) {
 
 	var progLabelTxt = progW.add('statictext', undefined, text);
 	progLabelTxt.size = [430, 24];
-	setTxtColor(progLabelTxt, sTxtColor.light);
+	// setTxtColor(progLabelTxt, sTxtColor.light);
 
 	var progPb = progW.add('progressbar', [0, 0, 430, 5], 0);
   
@@ -34,6 +34,7 @@ function progressDialog (text) {
 	var cancelBtn = btnGrp.add('button', [0, 0, 0, 0], '', { name: 'cancel' });
 	var keyLabelTxt = progW.add('statictext', undefined, '"ENTER" to proceed                                                                                   "ESC" to cancel');
 
-
+	setBgColor(progW, rgb(255, 255, 255));
+	setTxtColor(progLabelTxt, rgb(20, 20, 20));
 	return progW;
 }

@@ -155,19 +155,23 @@ projOrgBtn.addEventListener('click', function (c) {
 });
 
 projOrgBtn.onClick = function () {
+	app.beginUndoGroup('create project folders');
+
 	projectTemplateFolders(projectMode); // project folder structure...
+	app.endUndoGroup();
 }
 
 projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		if (app.project.numItems == 0) return;
 
-		var progressWindow = progressDialog('organize project...');
+		var progressWindow = progressDialog('are you sure?...');
 		var enterBtn = progressWindow.children[2].children[0];
 		var cancelBtn = progressWindow.children[2].children[1];
 		app.beginUndoGroup('organize project');
 
-		progressWindow.onShow = enterBtn.onClick = progressWindow.onEnterKey = function () {
+		// progressWindow.onShow = enterBtn.onClick = progressWindow.onEnterKey = function () {
+		enterBtn.onClick = progressWindow.onEnterKey = function () {
 			deleteProjectFolders();
 			populateProjectFolders(progressWindow);
 			deleteEmptyProjectFolders();
@@ -180,7 +184,6 @@ projOrgBtn.addEventListener('click', function (c) {
 			progressWindow.close();
 			app.endUndoGroup();
 
-			alert('escaping...');
 			executeCommandID('Undo organize project');
 		};
 
