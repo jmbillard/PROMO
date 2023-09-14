@@ -54,11 +54,14 @@ currentGrp.add('panel');
  
 var projSubGrp2 = currentGrp.add('group');
 
-var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, fldTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project system folders';
+var collectFontsBtn = projSubGrp2.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+collectFontsBtn.helpTip = '◖ → collect project fonts';
 
-var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-collectFontsTogBtn.helpTip = '⦿ → collect fonts';
+// var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, fldTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
+// projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project system folders';
+
+// var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
+// collectFontsTogBtn.helpTip = '⦿ → collect fonts';
 
 var saveBtn = projSubGrp2.add('iconbutton', iconSize, saveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 saveBtn.helpTip = '◖ → save project';
@@ -199,6 +202,30 @@ saveBtn.addEventListener('click', function (c) {
 	}
 });
 
+collectFontsBtn.onClick = function () {
+	var dateStr = system
+		.callSystem('cmd.exe /c date /t')
+		.trim();
+
+	setXMPdata('creator', system.userName);
+	setXMPdata('date', dateStr);
+
+	if (app.project.numItems == 0) return;
+
+	var selectedFolder = Folder.selectDialog();
+
+	if (selectedFolder == null) return;
+
+	var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
+	if (!saveFolder.exists) saveFolder.create();
+
+	var savePath = decodeURI(saveFolder.fullName);
+
+	fontCollect(savePath);
+	
+	openFolder(savePath);
+};
+
 saveBtn.onClick = function () {
 	var dateStr = system
 		.callSystem('cmd.exe /c date /t')
@@ -209,8 +236,9 @@ saveBtn.onClick = function () {
 
 	if (app.project.numItems == 0) return;
 
-	var escape = false;
-	var selectedFolder = Folder.selectDialog();
+	// var escape = false;
+	// var selectedFolder = Folder.selectDialog();
+	var selectedFolder = new Folder(servidorRJ).selectDlg();
 
 	if (selectedFolder == null) return;
 
@@ -219,25 +247,25 @@ saveBtn.onClick = function () {
 
 	var savePath = decodeURI(saveFolder.fullName);
 
-	if (projFoldersTogBtn.value) {
-		var pathArray = [
-			savePath + '/01 PROJETOS',
-			savePath + '/02 ARQUIVOS/FONT',
-			savePath + '/02 ARQUIVOS/IMAGENS',
-			savePath + '/02 ARQUIVOS/VIDEOS',
-			savePath + '/03 BOARDS',
-			savePath + '/04 REFs',
-			savePath + '/05 SAIDA',
-			savePath + '/06 EXTERNOS'
-		];
-		for (var i = 0; i < pathArray.length; i++) {
-			var path = pathArray[i];
-			createPathFolders(path);
-		}
-	}
-	if (escape) return;
+	// if (projFoldersTogBtn.value) {
+	// 	var pathArray = [
+	// 		savePath + '/01 PROJETOS',
+	// 		savePath + '/02 ARQUIVOS/FONT',
+	// 		savePath + '/02 ARQUIVOS/IMAGENS',
+	// 		savePath + '/02 ARQUIVOS/VIDEOS',
+	// 		savePath + '/03 BOARDS',
+	// 		savePath + '/04 REFs',
+	// 		savePath + '/05 SAIDA',
+	// 		savePath + '/06 EXTERNOS'
+	// 	];
+	// 	for (var i = 0; i < pathArray.length; i++) {
+	// 		var path = pathArray[i];
+	// 		createPathFolders(path);
+	// 	}
+	// }
+	// if (escape) return;
 
-	if (collectFontsTogBtn.value) fontCollect(savePath);
+	// if (collectFontsTogBtn.value) fontCollect(savePath);
 
 	var projFolder = new Folder(savePath + '/01 PROJETOS/');
 	if (!projFolder.exists) projFolder.create();

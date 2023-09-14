@@ -128,19 +128,19 @@ trelloBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-mamHardNewsBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	var fld = new Folder(hnPath);
-	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
-		return;
-	}
-	openFolder(hnPath);
-};
+// mamHardNewsBtn.onClick = function () {
+// 	// error...
+// 	if (!netAccess()) {
+// 		showTabErr(netConfigName + ' not checked');
+// 		return;
+// 	}
+// 	var fld = new Folder(hnPath);
+// 	if (!fld.exists) {
+// 		showTabErr('this folder is not accessible...');
+// 		return;
+// 	}
+// 	openFolder(hnPath);
+// };
 
 //---------------------------------------------------------
 

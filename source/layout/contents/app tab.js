@@ -28,8 +28,8 @@ var appSubGrp2 = currentGrp.add('group');
 var appUtilTxt = appSubGrp2.add('statictext', undefined, 'utilities:', { name: 'label' , truncate: 'end'});
 appUtilTxt.maximumSize.width = 45;
 
-var installFontsBtn = appSubGrp2.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-installFontsBtn.helpTip = '◖ → install fonts';
+// var installFontsBtn = appSubGrp2.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// installFontsBtn.helpTip = '◖ → install fonts';
 
 var copyAMEPresetsBtn = appSubGrp2.add('iconbutton', iconSize, eprIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 copyAMEPresetsBtn.helpTip = '◖ → install Encoder presets\n◗ → open presets folder';
@@ -155,36 +155,36 @@ copyAMEPresetsBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-installFontsBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	// github main repo...
-	var url = repoURL + '/raw/main/downloads/fonts.zip';
-	var zipPath = tempPath + '/fonts.zip';
-	var fontsLocalFolder = new Folder(fontsLocalPath);
+// installFontsBtn.onClick = function () {
+// 	// error...
+// 	if (!netAccess()) {
+// 		showTabErr(netConfigName + ' not checked');
+// 		return;
+// 	}
+// 	// github main repo...
+// 	var url = repoURL + '/raw/main/downloads/fonts.zip';
+// 	var zipPath = tempPath + '/fonts.zip';
+// 	var fontsLocalFolder = new Folder(fontsLocalPath);
 
-	if (!tempFolder.exists) {
-		tempFolder.create();
-	}
-	if (!fontsFolder.exists || fontsFolder.getFiles().length == 0) {
-		removeFolder(fontsLocalFolder); // → delete previous fonts folder
-		fontsLocalFolder.create(); // → delete previous fonts folder
+// 	if (!tempFolder.exists) {
+// 		tempFolder.create();
+// 	}
+// 	if (!fontsFolder.exists || fontsFolder.getFiles().length == 0) {
+// 		removeFolder(fontsLocalFolder); // → delete previous fonts folder
+// 		fontsLocalFolder.create(); // → delete previous fonts folder
 
-		getURLContent([url], [tempPath]);
-		unzipContent(zipPath, fontsPath);
+// 		getURLContent([url], [tempPath]);
+// 		unzipContent(zipPath, fontsPath);
 
-		// HO preference
-		if (!homeOffice) {
-			removeFolder(fontsFolder); // → delete previous templates folder
-			fontsFolder.create(); // → delete previous templates folder
-			copyFolderContent(fontsLocalPath, fontsPath);
-		}
-	}
-	fontsDialog();
-};
+// 		// HO preference
+// 		if (!homeOffice) {
+// 			removeFolder(fontsFolder); // → delete previous templates folder
+// 			fontsFolder.create(); // → delete previous templates folder
+// 			copyFolderContent(fontsLocalPath, fontsPath);
+// 		}
+// 	}
+// 	fontsDialog();
+// };
 
 //---------------------------------------------------------
 
