@@ -13,11 +13,11 @@
 currentGrp = tabsGrp.project;
 var projSubGrp1 = currentGrp.add('group');
 
-// var projIdContent = 'PROJ ID';
-// var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
-// projIdTxt.maximumSize.width = 100;
-// projIdTxt.minimumSize.width = vMin;
-// projIdTxt.helpTip = projIdContent;
+var projIdContent = 'PROJ ID';
+var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
+projIdTxt.maximumSize.width = 100;
+projIdTxt.minimumSize.width = vMin;
+projIdTxt.helpTip = projIdContent;
 
 // var insertUserIdBtn = projSubGrp1.add('iconbutton', iconSize, addIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 // insertUserIdBtn.helpTip = 'insert user with ' + projIdContent;
@@ -83,22 +83,22 @@ fldProjBtn2.helpTip = '◖ → open current project folder';
 
 */
 
-// projIdTxt.onChange = projIdTxt.onEnterKey = function () {
-// 	this.text = projId = this.text
-// 		.replaceSpecialCharacters()
-// 		.toUpperCase();
+projIdTxt.onChange = projIdTxt.onEnterKey = function () {
+	this.text = projId = this.text
+		.replaceSpecialCharacters()
+		.toUpperCase();
 
-// 	if (projIdTxt.text != projIdContent) setXMPdata('identifier', projId);
-// 	if (this.text.trim() == '') this.text = projIdContent;
-// };
+	if (projIdTxt.text != projIdContent) setXMPdata('identifier', projId);
+	if (this.text.trim() == '') this.text = projIdContent;
+};
 
-// projIdTxt.addEventListener('focus', function () {
-// 	this.text = this.text == projIdContent ? '' : this.text;
-// });
+projIdTxt.addEventListener('focus', function () {
+	this.text = this.text == projIdContent ? '' : this.text;
+});
 
-// projIdTxt.addEventListener('blur', function () {
-// 	this.text = this.text == '' ? projIdContent : this.text;
-// });
+projIdTxt.addEventListener('blur', function () {
+	this.text = this.text == '' ? projIdContent : this.text;
+});
 
 //---------------------------------------------------------
 
@@ -168,12 +168,11 @@ projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		if (app.project.numItems == 0) return;
 
-		var progressWindow = progressDialog('are you sure?...');
+		var progressWindow = progressDialog('are you sure? all existing folders will be deleted...');
 		var enterBtn = progressWindow.children[2].children[0];
 		var cancelBtn = progressWindow.children[2].children[1];
 		app.beginUndoGroup('organize project');
 
-		// progressWindow.onShow = enterBtn.onClick = progressWindow.onEnterKey = function () {
 		enterBtn.onClick = progressWindow.onEnterKey = function () {
 			deleteProjectFolders();
 			populateProjectFolders(progressWindow);
@@ -216,7 +215,8 @@ collectFontsBtn.onClick = function () {
 
 	if (selectedFolder == null) return;
 
-	var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
+	// var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
+	var saveFolder = new Folder(decodeURI(selectedFolder.fullName));
 	if (!saveFolder.exists) saveFolder.create();
 
 	var savePath = decodeURI(saveFolder.fullName);
