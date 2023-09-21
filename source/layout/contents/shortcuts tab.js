@@ -25,14 +25,8 @@ oneDriveBtn.helpTip = 'OneDrive globo';
 
 // var linksSubGrp3 = currentGrp.add('group');
 var trelloBtn = linksSubGrp1.add('iconbutton', iconSize, trelloIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-trelloBtn.helpTip = 'trello promo';
-trelloBtn.enabled = false;
-
-// var apontamentoBtn = linksSubGrp1.add('iconbutton', iconSize, apontamentoIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// apontamentoBtn.helpTip = 'apontamento globo';
-
-// var plannerBtn = linksSubGrp1.add('iconbutton', iconSize, plannerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// plannerBtn.helpTip = 'planner globo';
+trelloBtn.helpTip = 'trello teste board';
+// trelloBtn.enabled = false;
 
 //---------------------------------------------------------
 
@@ -43,30 +37,30 @@ var linksSubGrp2 = currentGrp.add('group');
 var linkTxt2 = linksSubGrp2.add('statictext', undefined, 'folders:', { name: 'label' , truncate: 'end'});
 linkTxt2.maximumSize.width = 40;
 
-var mamArteBtn = linksSubGrp2.add('iconbutton', iconSize, arteFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-mamArteBtn.helpTip = 'MAM Para Arte | set custom folder';
-mamArteBtn.enabled = false;
-var mamMagBtn = linksSubGrp2.add('iconbutton', iconSize, magazineFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-mamMagBtn.helpTip = 'upload MAM Magazine | set custom folder';
-mamMagBtn.enabled = false;
+var projRJBtn = linksSubGrp2.add('iconbutton', iconSize, projRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+projRJBtn.helpTip = 'projects RJ';
+// projRJBtn.enabled = false;
+
+var outRJBtn = linksSubGrp2.add('iconbutton', iconSize, outRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+outRJBtn.helpTip = 'output RJ';
+// outRJBtn.enabled = false;
 
 //---------------------------------------------------------
 
-var mamHardNewsBtn = linksSubGrp2.add('iconbutton', iconSize, hardNewsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-mamHardNewsBtn.helpTip = 'upload MAM Hard News';
-mamHardNewsBtn.enabled = false;
+var projSPBtn = linksSubGrp2.add('iconbutton', iconSize, projSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+projSPBtn.helpTip = 'projects SP';
+// projSPBtn.enabled = false;
 
-var nUtilsBtn = linksSubGrp2.add('iconbutton', iconSize, utilsFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nUtilsBtn.helpTip = 'N: Utilidades';
-nUtilsBtn.enabled = false;
+var outSPBtn = linksSubGrp2.add('iconbutton', iconSize, outSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+outSPBtn.helpTip = 'output SP';
+// outSPBtn.enabled = false;
 
-var baseJorBtn = linksSubGrp2.add('iconbutton', iconSize, baseFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-baseJorBtn.helpTip = 'Bases Jornais';
-baseJorBtn.enabled = false;
+//---------------------------------------------------------
 
-// var dayBtn = linksSubGrp1.add('iconbutton', iconSize, dayFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// dayBtn.helpTip = 'HOJE - dia a dia';
-// dayBtn.enabled = !homeOffice;
+var inFtgBtn = linksSubGrp2.add('iconbutton', iconSize, inFtgFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+inFtgBtn.helpTip = 'editors export folder';
+// outSPBtn.enabled = false;
+
 
 /*
   
@@ -95,163 +89,87 @@ trelloBtn.onClick = function () {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	var site = 'https://trello.com/promo126/home';
+	var site = 'https://trello.com/b/wGakrIDP/board-de-teste';
 
 	openWebSite(site);
 };
 
 //---------------------------------------------------------
 
-// apontamentoBtn.onClick = function () {
-// 	// error...
-// 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
-// 		return;
-// 	}
-// 	var site = 'https://gglobo-pea-hdg-prd.web.app/#card_view';
-
-// 	openWebSite(site);
-// };
-
-// //---------------------------------------------------------
-
-// plannerBtn.onClick = function () {
-// 	// error...
-// 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
-// 		return;
-// 	}
-// 	var site = 'https://tasks.office.com/tvglobocorp.onmicrosoft.com/en-US/Home/Planner/#/userboard';
-
-// 	openWebSite(site);
-// };
-
 //---------------------------------------------------------
 
-// mamHardNewsBtn.onClick = function () {
-// 	// error...
-// 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
-// 		return;
-// 	}
-// 	var fld = new Folder(hnPath);
-// 	if (!fld.exists) {
-// 		showTabErr('this folder is not accessible...');
-// 		return;
-// 	}
-// 	openFolder(hnPath);
-// };
-
-//---------------------------------------------------------
-
-// right click -> configure 'MAM - magazine' path...
-mamMagBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
-		// error...
-		if (!netAccess()) {
-			showTabErr(netConfigName + ' not checked');
-			return;
-		}
-		var saveFolder = Folder.selectDialog();
-
-		if (saveFolder != null) {
-			magazinePath = decodeURI(saveFolder).toString();
-			JSONPrefsObj.folders.magazinePath = magazinePath;
-			savePrefs();
-		}
-	}
-});
-
-//---------------------------------------------------------
-
-mamMagBtn.onClick = function () {
+outRJBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	openFolder(magazinePath);
-};
-
-//---------------------------------------------------------
-
-// right click -> configure 'MAM - para arte' path...
-mamArteBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
-		// error...
-		if (!netAccess()) {
-			showTabErr(netConfigName + ' not checked');
-			return;
-		}
-		var saveFolder = Folder.selectDialog();
-
-		if (saveFolder != null) {
-			artePath = decodeURI(saveFolder).toString();
-			JSONPrefsObj.folders.artePath = artePath;
-			savePrefs();
-		}
-	}
-});
-
-//---------------------------------------------------------
-
-mamArteBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	openFolder(artePath);
-};
-
-//---------------------------------------------------------
-
-nUtilsBtn.onClick = function () {
-	// error...
-	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
-		return;
-	}
-	var fld = new Folder(utiPath);
+	var fld = new Folder(outRJ);
 	if (!fld.exists) {
 		showTabErr('this folder is not accessible...');
 		return;
 	}
-	openFolder(utiPath);
+	openFolder(outRJ);
 };
 
 //---------------------------------------------------------
 
-baseJorBtn.onClick = function () {
+projRJBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	var basesPath = arcPath + '/Jornalismo/Jornais/_Bases Jornais';
-	var fld = new Folder(basesPath);
-
+	var fld = new Folder(projRJ);
 	if (!fld.exists) {
 		showTabErr('this folder is not accessible...');
 		return;
 	}
-	openFolder(basesPath);
+	openFolder(projRJ);
 };
 
 //---------------------------------------------------------
 
-// dayBtn.onClick = function () {
-// 	// error...
-// 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
-// 		return;
-// 	}
-// 	var todayPath = PRODUCAO_DIA_A_DIA ();
-// 	var fld = new Folder(todayPath);
+outSPBtn.onClick = function () {
+	// error...
+	if (!netAccess()) {
+		showTabErr(netConfigName + ' not checked');
+		return;
+	}
+	var fld = new Folder(outSP);
+	if (!fld.exists) {
+		showTabErr('this folder is not accessible...');
+		return;
+	}
+	openFolder(outSP);
+};
 
-// 	if (!fld.exists) {
-// 		showTabErr('this folder is not accessible...');
-// 		return;
-// 	}
-// 	openFolder(todayPath);
-// };
+//---------------------------------------------------------
+
+projSPBtn.onClick = function () {
+	// error...
+	if (!netAccess()) {
+		showTabErr(netConfigName + ' not checked');
+		return;
+	}
+	var fld = new Folder(projSP);
+	if (!fld.exists) {
+		showTabErr('this folder is not accessible...');
+		return;
+	}
+	openFolder(projSP);
+};
+
+inFtgBtn.onClick = function () {
+	// error...
+	if (!netAccess()) {
+		showTabErr(netConfigName + ' not checked');
+		return;
+	}
+	var fld = new Folder(inFtg);
+	if (!fld.exists) {
+		showTabErr('this folder is not accessible...');
+		return;
+	}
+	openFolder(inFtg);
+};
