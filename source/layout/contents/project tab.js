@@ -13,11 +13,11 @@
 currentGrp = tabsGrp.project;
 var projSubGrp1 = currentGrp.add('group');
 
-var projIdContent = 'PROJ ID';
-var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
-projIdTxt.maximumSize.width = 100;
-projIdTxt.minimumSize.width = vMin;
-projIdTxt.helpTip = projIdContent;
+// var projIdContent = 'PROJ ID';
+// var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
+// projIdTxt.maximumSize.width = 100;
+// projIdTxt.minimumSize.width = vMin;
+// projIdTxt.helpTip = projIdContent;
 
 // var insertUserIdBtn = projSubGrp1.add('iconbutton', iconSize, addIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 // insertUserIdBtn.helpTip = 'insert user with ' + projIdContent;
@@ -83,22 +83,22 @@ fldProjBtn2.helpTip = '◖ → open current project folder';
 
 */
 
-projIdTxt.onChange = projIdTxt.onEnterKey = function () {
-	this.text = projId = this.text
-		.replaceSpecialCharacters()
-		.toUpperCase();
+// projIdTxt.onChange = projIdTxt.onEnterKey = function () {
+// 	this.text = projId = this.text
+// 		.replaceSpecialCharacters()
+// 		.toUpperCase();
 
-	if (projIdTxt.text != projIdContent) setXMPdata('identifier', projId);
-	if (this.text.trim() == '') this.text = projIdContent;
-};
+// 	if (projIdTxt.text != projIdContent) setXMPdata('identifier', projId);
+// 	if (this.text.trim() == '') this.text = projIdContent;
+// };
 
-projIdTxt.addEventListener('focus', function () {
-	this.text = this.text == projIdContent ? '' : this.text;
-});
+// projIdTxt.addEventListener('focus', function () {
+// 	this.text = this.text == projIdContent ? '' : this.text;
+// });
 
-projIdTxt.addEventListener('blur', function () {
-	this.text = this.text == '' ? projIdContent : this.text;
-});
+// projIdTxt.addEventListener('blur', function () {
+// 	this.text = this.text == '' ? projIdContent : this.text;
+// });
 
 //---------------------------------------------------------
 

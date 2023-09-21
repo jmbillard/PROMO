@@ -206,7 +206,7 @@ function setLayout() {
 	easeSld2.size.width = w.size.width - 16;
 
 	// project tab - controls
-	projIdTxt.size.width = w.size.width - 8;
+	// projIdTxt.size.width = w.size.width - 8;
 	// projNameTxt.size.width = w.size.width - 8;
 
 	// all tab subgroups
