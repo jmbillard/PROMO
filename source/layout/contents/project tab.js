@@ -19,58 +19,30 @@ projIdTxt.maximumSize.width = 100;
 projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
-// var insertUserIdBtn = projSubGrp1.add('iconbutton', iconSize, addIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// insertUserIdBtn.helpTip = 'insert user with ' + projIdContent;
-
-// var projNameTxt = projSubGrp1.add('edittext', undefined, '');
-// projNameTxt.maximumSize.width = 100;
-// projNameTxt.minimumSize.width = vMin;
-// projNameTxt.helpTip = 'project name';
-// projNameTxt.enabled = false;
-// projNameTxt.visible = false;
-//---------------------------------------------------------
-
-// currentGrp.add('panel');
-
-var renameItemBtn = projSubGrp1.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
-
-var projOrgBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → organize project';
-
-//---------------------------------------------------------
-
-// currentGrp.add('panel');
- 
-
-// // end page presets UI button...
-// var endPagePresetBtn = currentGrp.add('iconbutton', iconSize, endPagePresetIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// endPagePresetBtn.helpTip = 'end page JSON presets';
-// endPagePresetBtn.enabled = false;
+var saveBtn = projSubGrp1.add('iconbutton', iconSize, saveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+saveBtn.helpTip = '◖ → save project with _DEFAULT folder structure';
 
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 var projSubGrp2 = currentGrp.add('group');
 
-var collectFontsBtn = projSubGrp2.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-collectFontsBtn.helpTip = '◖ → collect project fonts';
 
-// var projFoldersTogBtn = projSubGrp2.add('iconbutton', iconTogSize, fldTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-// projFoldersTogBtn.helpTip = '⦿ → create _DEFAULT project system folders';
+var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → organize project';
 
-// var collectFontsTogBtn = projSubGrp2.add('iconbutton', iconTogSize, txtTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-// collectFontsTogBtn.helpTip = '⦿ → collect fonts';
-
-var saveBtn = projSubGrp2.add('iconbutton', iconSize, saveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = '◖ → save project';
+var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
 
 //---------------------------------------------------------
 
 currentGrp.add('panel');
  
 var projSubGrp3 = currentGrp.add('group');
+
+var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+collectFontsBtn.helpTip = '◖ → collect project fonts';
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → open current project folder';
@@ -234,11 +206,11 @@ saveBtn.onClick = function () {
 	setXMPdata('creator', system.userName);
 	setXMPdata('date', dateStr);
 
-	if (app.project.numItems == 0) return;
+	// if (app.project.numItems == 0) return;
 
 	// var escape = false;
-	// var selectedFolder = Folder.selectDialog();
-	var selectedFolder = new Folder(servidorRJ).selectDlg();
+	var selectedFolder = Folder.selectDialog();
+	// var selectedFolder = new Folder(servidorRJ).selectDlg();
 
 	if (selectedFolder == null) return;
 
@@ -247,25 +219,20 @@ saveBtn.onClick = function () {
 
 	var savePath = decodeURI(saveFolder.fullName);
 
-	// if (projFoldersTogBtn.value) {
-	// 	var pathArray = [
-	// 		savePath + '/01 PROJETOS',
-	// 		savePath + '/02 ARQUIVOS/FONT',
-	// 		savePath + '/02 ARQUIVOS/IMAGENS',
-	// 		savePath + '/02 ARQUIVOS/VIDEOS',
-	// 		savePath + '/03 BOARDS',
-	// 		savePath + '/04 REFs',
-	// 		savePath + '/05 SAIDA',
-	// 		savePath + '/06 EXTERNOS'
-	// 	];
-	// 	for (var i = 0; i < pathArray.length; i++) {
-	// 		var path = pathArray[i];
-	// 		createPathFolders(path);
-	// 	}
-	// }
-	// if (escape) return;
-
-	// if (collectFontsTogBtn.value) fontCollect(savePath);
+	var pathArray = [
+		savePath + '/01 PROJETOS',
+		savePath + '/02 ARQUIVOS/FONT',
+		savePath + '/02 ARQUIVOS/IMAGENS',
+		savePath + '/02 ARQUIVOS/VIDEOS',
+		savePath + '/03 BOARDS',
+		savePath + '/04 REFs',
+		savePath + '/05 SAIDA',
+		savePath + '/06 EXTERNOS'
+	];
+	for (var i = 0; i < pathArray.length; i++) {
+		var path = pathArray[i];
+		createPathFolders(path);
+	}
 
 	var projFolder = new Folder(savePath + '/01 PROJETOS/');
 	if (!projFolder.exists) projFolder.create();
