@@ -28,12 +28,11 @@ currentGrp.add('panel');
 
 var projSubGrp2 = currentGrp.add('group');
 
+var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+renameItemBtn.helpTip = '◖ → rename selected comps\n\nALL CAPS and removes special characters';
 
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projOrgBtn.helpTip = '◖ → create AE project folders\n◗ → auto organize project';
-
-var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename selected comps\n\nALL CAPS and removes special characters';
 
 //---------------------------------------------------------
 
@@ -145,7 +144,7 @@ projOrgBtn.addEventListener('click', function (c) {
 		var cancelBtn = progressWindow.children[2].children[1];
 		app.beginUndoGroup('organize project');
 
-		enterBtn.onClick = progressWindow.onEnterKey = function () {
+		enterBtn.onClick = progressWindow.onEnterKey = progressWindow.onShow = function () {
 			deleteProjectFolders();
 			populateProjectFolders(progressWindow);
 			deleteEmptyProjectFolders();
