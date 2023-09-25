@@ -183,19 +183,12 @@ collectFontsBtn.onClick = function () {
 
 	if (app.project.numItems == 0) return;
 
-	var selectedFolder = Folder.selectDialog();
+	var currentProj = app.project.file;
+	var currentProjPath = new Folder(decodeURI(currentProj.path)).path;
 
-	if (selectedFolder == null) return;
-
-	// var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
-	var saveFolder = new Folder(decodeURI(selectedFolder.fullName));
-	if (!saveFolder.exists) saveFolder.create();
-
-	var savePath = decodeURI(saveFolder.fullName);
-
-	fontCollect(savePath);
+	fontCollect(currentProjPath);
 	
-	openFolder(savePath);
+	openFolder(currentProjPath);
 };
 
 saveBtn.onClick = function () {
@@ -206,9 +199,6 @@ saveBtn.onClick = function () {
 	setXMPdata('creator', system.userName);
 	setXMPdata('date', dateStr);
 
-	// if (app.project.numItems == 0) return;
-
-	// var escape = false;
 	var selectedFolder = Folder.selectDialog();
 	// var selectedFolder = new Folder(servidorRJ).selectDlg();
 
