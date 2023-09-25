@@ -35,7 +35,7 @@ function getXMPdata(XMPfield) {
 	return XMPVal;
 }
 
-function setXMPdata(XMPfield, XMPval) {
+function setXMPData(XMPfield, XMPval) {
 	var metaData = new XMPMeta(app.project.xmpPacket);
 	var XMPSet = XMPConst.NS_DC;
 	var XMPProp = metaData.doesPropertyExist(XMPSet, XMPfield);

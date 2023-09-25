@@ -60,7 +60,7 @@ projIdTxt.onChange = projIdTxt.onEnterKey = function () {
 		.replaceSpecialCharacters()
 		.toUpperCase();
 
-	if (projIdTxt.text != projIdContent) setXMPdata('identifier', projId);
+	if (projIdTxt.text != projIdContent) setXMPData('identifier', projId);
 	if (this.text.trim() == '') this.text = projIdContent;
 };
 
@@ -87,8 +87,8 @@ renameItemBtn.addEventListener('click', function (c) {
 			.callSystem('cmd.exe /c date /t')
 			.trim();
 
-		setXMPdata('creator', system.userName);
-		setXMPdata('date', dateStr);
+		setXMPData('creator', system.userName);
+		setXMPData('date', dateStr);
 
 		var compArray = getCompsAndTemplates();
 		renamePromoComps(compArray);
@@ -109,8 +109,8 @@ renameItemBtn.onClick = function () {
 		.callSystem('cmd.exe /c date /t')
 		.trim();
 
-	setXMPdata('creator', system.userName);
-	setXMPdata('date', dateStr);
+	setXMPData('creator', system.userName);
+	setXMPData('date', dateStr);
 
 	var compArray = app.project.selection;
 
@@ -134,7 +134,7 @@ projOrgBtn.onClick = function () {
 
 	projectTemplateFolders(projectMode); // project folder structure...
 	app.endUndoGroup();
-}
+};
 
 projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
@@ -178,8 +178,8 @@ collectFontsBtn.onClick = function () {
 		.callSystem('cmd.exe /c date /t')
 		.trim();
 
-	setXMPdata('creator', system.userName);
-	setXMPdata('date', dateStr);
+	setXMPData('creator', system.userName);
+	setXMPData('date', dateStr);
 
 	if (app.project.numItems == 0) return;
 
@@ -196,8 +196,8 @@ saveBtn.onClick = function () {
 		.callSystem('cmd.exe /c date /t')
 		.trim();
 
-	setXMPdata('creator', system.userName);
-	setXMPdata('date', dateStr);
+	setXMPData('creator', system.userName);
+	setXMPData('date', dateStr);
 
 	var selectedFolder = Folder.selectDialog();
 	// var selectedFolder = new Folder(servidorRJ).selectDlg();
