@@ -19,8 +19,8 @@ projIdTxt.maximumSize.width = 100;
 projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
-var saveBtn = projSubGrp1.add('iconbutton', iconSize, saveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = '◖ → save project with _DEFAULT folder structure';
+var saveBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+saveBtn.helpTip = '◖ → create project with _DEFAULT folder structure';
 
 //---------------------------------------------------------
 
@@ -29,10 +29,10 @@ currentGrp.add('panel');
 var projSubGrp2 = currentGrp.add('group');
 
 
-var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projOrgBtn.helpTip = '◖ → create AE project folders\n◗ → auto organize project';
 
-var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 renameItemBtn.helpTip = '◖ → rename selected comps\n\nALL CAPS and removes special characters';
 
 //---------------------------------------------------------
@@ -41,7 +41,7 @@ currentGrp.add('panel');
  
 var projSubGrp3 = currentGrp.add('group');
 
-var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 collectFontsBtn.helpTip = '◖ → collect project fonts';
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
@@ -74,28 +74,28 @@ projIdTxt.addEventListener('blur', function () {
 
 //---------------------------------------------------------
 
-renameItemBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
-		// error...
-		if (app.project.numItems == 0) {
-			showTabErr('empty project');
-			return;
-		}
-		app.beginUndoGroup('rename all comps');
+// renameItemBtn.addEventListener('click', function (c) {
+// 	if (c.button == 2) {
+// 		// error...
+// 		if (app.project.numItems == 0) {
+// 			showTabErr('empty project');
+// 			return;
+// 		}
+// 		app.beginUndoGroup('rename all comps');
 
-		var dateStr = system
-			.callSystem('cmd.exe /c date /t')
-			.trim();
+// 		var dateStr = system
+// 			.callSystem('cmd.exe /c date /t')
+// 			.trim();
 
-		setXMPData('creator', system.userName);
-		setXMPData('date', dateStr);
+// 		setXMPData('creator', system.userName);
+// 		setXMPData('date', dateStr);
 
-		var compArray = getCompsAndTemplates();
-		renamePromoComps(compArray);
+// 		var compArray = getCompsAndTemplates();
+// 		renamePromoComps(compArray);
 
-		app.endUndoGroup();
-	}
-});
+// 		app.endUndoGroup();
+// 	}
+// });
 
 renameItemBtn.onClick = function () {
 	// error...
