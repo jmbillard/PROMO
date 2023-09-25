@@ -37,6 +37,9 @@ createColorButtons(mainColors, colorSubGrp2);
 var shpPalletBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 shpPalletBtn.helpTip = '◖ → color pallet as shape layer';
 
+var LOGO_GLOBOBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+LOGO_GLOBOBtn.helpTip = '◖ → logo GLOBO as shape layer';
+
 /*
 
   ---------------------------------------------------------------
@@ -80,6 +83,22 @@ shpPalletBtn.onClick = function () {
 	palletLayer.property('ADBE Transform Group')
 		.property('ADBE Position')
 		.expression('[0,0]');
+
+	app.endUndoGroup();
+};
+
+//---------------------------------------------------------
+
+LOGO_GLOBOBtn.onClick = function () {
+	var aItem = app.project.activeItem;
+	// error...
+	if (!(aItem instanceof CompItem)) {
+		showTabErr('comp not selected');
+		return;
+	}
+	app.beginUndoGroup('logo GLOBO');
+
+	LOGO_GLOBO();
 
 	app.endUndoGroup();
 };

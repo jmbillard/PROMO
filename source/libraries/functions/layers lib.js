@@ -212,6 +212,96 @@ function shpArrow(body, head) {
 	return shpLayer;
 }
 
+function LOGO_GLOBO() {
+
+	// keyframe ease objects variable...
+	var easeIn1;
+	var easeIn2;
+	var easeOut1;
+	var easeOut2;
+
+	// shape object variable...
+	var shp;
+
+	// shape layer creation...
+	var layer = app.project.activeItem.layers.addShape();
+
+	// vector content...
+	var contents = layer.property('ADBE Root Vectors Group');
+	logo_contents1 = contents.addProperty('ADBE Vector Group');
+	logo_contents1.name = 'logo';
+	contents_logo2 = logo_contents1.addProperty('ADBE Vectors Group');
+	bolinha_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+	bolinha_contents3.name = 'bolinha';
+
+	shp = new Shape();
+	shp.closed= true;
+	shp.inTangents= [[56.82,-0.01],[0.00,56.61],[-56.82,0.01],[-0.00,-56.61]];
+	shp.outTangents= [[-56.81,0.01],[-0.00,-56.61],[56.81,-0.01],[0.00,56.61]];
+	shp.vertices= [[0.01,102.57],[-102.95,0.01],[-0.01,-102.57],[102.95,-0.01]];
+
+	bolinha_contents3.property('ADBE Vector Shape').setValue(shp);
+	janela_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+	janela_contents3.name = 'janela';
+
+	shp = new Shape();
+	shp.closed= true;
+	shp.inTangents= [[0.00,-0.04],[10.12,-1.43],[97.91,-0.10],[0.00,0.00],[0.21,0.00],[0.21,0.00],[0.00,0.00],[0.07,0.00],[1.42,9.63],[0.00,55.22],[-0.00,0.92],[0.00,0.94],[-0.01,0.04],[-10.12,1.43],[-97.91,0.10],[0.00,0.00],[0.00,0.00],[-0.21,0.00],[-0.21,0.00],[0.00,0.00],[0.00,0.00],[-0.07,-0.01],[-1.42,-9.63],[-0.00,-55.21],[0.00,0.00],[0.00,-0.92],[-0.00,-0.93]];
+	shp.outTangents= [[-1.41,9.62],[-0.02,0.00],[0.00,0.00],[-0.21,0.00],[-0.21,0.00],[0.00,0.00],[-97.91,-0.10],[-10.06,-1.42],[0.00,-0.03],[0.00,-0.93],[-0.00,-0.93],[0.00,-55.21],[1.41,-9.62],[0.02,0.00],[0.00,0.00],[0.00,0.00],[0.21,0.00],[0.21,0.00],[0.00,0.00],[0.00,0.00],[97.91,0.10],[10.06,1.42],[0.00,0.03],[0.00,0.00],[0.00,0.94],[0.00,0.93],[-0.00,55.22]];
+	shp.vertices= [[198.66,102.38],[180.80,120.20],[1.57,126.83],[0.63,126.83],[-0.00,126.83],[-0.63,126.83],[-1.58,126.83],[-180.86,120.20],[-198.66,102.37],[-204.84,2.79],[-204.84,0.00],[-204.84,-2.79],[-198.66,-102.38],[-180.80,-120.21],[-1.58,-126.83],[-1.58,-126.83],[-0.63,-126.83],[-0.00,-126.83],[0.63,-126.83],[1.57,-126.83],[1.57,-126.83],[180.86,-120.20],[198.66,-102.37],[204.84,-2.79],[204.84,-2.79],[204.83,-0.01],[204.84,2.79]];
+
+	janela_contents3.property('ADBE Vector Shape').setValue(shp);
+	corpo_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+	corpo_contents3.name = 'corpo';
+	corpo_contents3.property('ADBE Vector Shape Direction').setValue(3);
+
+	shp = new Shape();
+	shp.closed= true;
+	shp.inTangents= [[-140.00,0.00],[0.00,-140.00],[140.00,0.00],[0.00,140.00]];
+	shp.outTangents= [[140.00,0.00],[0.00,140.00],[-140.00,0.00],[0.00,-140.00]];
+	shp.vertices= [[0.00,-253.50],[253.50,0.00],[0.00,253.50],[-253.50,0.00]];
+
+	corpo_contents3.property('ADBE Vector Shape').setValue(shp);
+	transform_logo2 = logo_contents1.addProperty('ADBE Vector Transform Group');
+
+	// transform scale animation...
+	// key 1...
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.03336670003337, [739.423856502241,739.423856502242]);
+
+	easeIn1 = new KeyframeEase(0.00, 33.33);
+	easeOut1 = new KeyframeEase(-12197.16, 4.32);
+	easeIn2 = new KeyframeEase(0.00, 33.33);
+	easeOut2 = new KeyframeEase(-12197.16, 4.32);
+	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(1, [easeIn1, easeIn2], [easeOut1, easeOut2]);
+	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(1, 6613, 6613);
+	// key 2...
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.56723390056723, [115.828077928665,115.828077928666]);
+
+	easeIn1 = new KeyframeEase(-78.77, 79.21);
+	easeOut1 = new KeyframeEase(-78.77, 9.04);
+	easeIn2 = new KeyframeEase(-78.77, 79.21);
+	easeOut2 = new KeyframeEase(-78.77, 9.04);
+	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(2, [easeIn1, easeIn2], [easeOut1, easeOut2]);
+	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(2, 6613, 6613);
+	// key 3...
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(5.43877210543877, [80.4238565022422,80.4238565022422]);
+
+	easeIn1 = new KeyframeEase(0.00, 30.70);
+	easeOut1 = new KeyframeEase(0.00, 33.33);
+	easeIn2 = new KeyframeEase(-0.00, 30.70);
+	easeOut2 = new KeyframeEase(0.00, 33.33);
+	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(3, [easeIn1, easeIn2], [easeOut1, easeOut2]);
+	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(3, 6613, 6613);
+	materialOptions_logo2 = logo_contents1.addProperty('ADBE Vector Materials Group');
+	color_contents1 = contents.addProperty('ADBE Vector Graphic - Fill');
+	color_contents1.name = 'color';
+	color_contents1.property('ADBE Vector Fill Color').setValue([1,1,1,1]);
+
+	// layer attributes...
+	layer.name = 'LOGO GLOBO';
+
+	return layer;
+}
 /*
 
 ---------------------------------------------------------------
