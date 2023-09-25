@@ -30,10 +30,10 @@ var projSubGrp2 = currentGrp.add('group');
 
 
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → organize project';
+projOrgBtn.helpTip = '◖ → create AE project folders\n◗ → auto organize project';
 
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, applyIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename all comps\n\nALL CAPS and removes special characters';
+renameItemBtn.helpTip = '◖ → rename selected comps\n\nALL CAPS and removes special characters';
 
 //---------------------------------------------------------
 
@@ -122,12 +122,12 @@ renameItemBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-projOrgBtn.addEventListener('click', function (c) {
-	if (c.button == 1) {
-		if (app.project.numItems == 0) return;
-		tagDialog();
-	}
-});
+// projOrgBtn.addEventListener('click', function (c) {
+// 	if (c.button == 1) {
+// 		if (app.project.numItems == 0) return;
+// 		tagDialog();
+// 	}
+// });
 
 projOrgBtn.onClick = function () {
 	app.beginUndoGroup('create project folders');
@@ -199,8 +199,7 @@ saveBtn.onClick = function () {
 	setXMPData('creator', system.userName);
 	setXMPData('date', dateStr);
 
-	var selectedFolder = Folder.selectDialog();
-	// var selectedFolder = new Folder(servidorRJ).selectDlg();
+	var selectedFolder = homeOffice ? Folder.selectDialog() : new Folder(projRJ).selectDlg();
 
 	if (selectedFolder == null) return;
 
@@ -210,28 +209,31 @@ saveBtn.onClick = function () {
 	var savePath = decodeURI(saveFolder.fullName);
 
 	var pathArray = [
-		savePath + '/01 PROJETOS',
-		savePath + '/02 ARQUIVOS/FONT',
-		savePath + '/02 ARQUIVOS/IMAGENS',
-		savePath + '/02 ARQUIVOS/VIDEOS',
-		savePath + '/03 BOARDS',
-		savePath + '/04 REFs',
-		savePath + '/05 SAIDA',
-		savePath + '/06 EXTERNOS'
+		savePath + '/01 PROJETOS/',
+		savePath + '/02 ARQUIVOS/',
+		savePath + '/02 ARQUIVOS/FONT/',
+		savePath + '/02 ARQUIVOS/IMAGENS/',
+		savePath + '/02 ARQUIVOS/VIDEOS/',
+		savePath + '/03 BOARDS/',
+		savePath + '/04 REFs/',
+		savePath + '/05 SAIDA/',
+		savePath + '/06 EXTERNOS/'
 	];
 	for (var i = 0; i < pathArray.length; i++) {
 		var path = pathArray[i];
-		createPathFolders(path);
+		// createPathFolders(path);
+		var nFolder = new Folder(path);
+		if (!nFolder.exists) nFolder.create();
 	}
 
-	var projFolder = new Folder(savePath + '/01 PROJETOS/');
-	if (!projFolder.exists) projFolder.create();
+	// var projFolder = new Folder(savePath + '/01 PROJETOS/');
+	// if (!projFolder.exists) projFolder.create();
 
 	projFile = new File(savePath + '/01 PROJETOS/' + projId);
 	app.project.save(projFile);
 	
 	openFolder(savePath);
-	setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
+	// setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
 
 	if (appV > 22 && saveAsV22) {
 		executeCommandID('Save a Copy As 22.x...');
