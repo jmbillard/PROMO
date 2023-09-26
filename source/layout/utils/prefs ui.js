@@ -137,18 +137,18 @@ function prefsDialog() {
 
 	//
 
-	var projFldGrp = projectGrp.add('group');
-	projFldGrp.spacing = btnGrpSpacing;
+	// var projFldGrp = projectGrp.add('group');
+	// projFldGrp.spacing = btnGrpSpacing;
 
-	var fldProjTxt = projFldGrp.add('statictext', undefined, 'proj. folder');
-	fldProjTxt.helpTip = '\'save project\' button default folder\n(\'PRODUCAO DIA-A-DIA\' on \'hard news\' mode)';
-	fldProjTxt.preferredSize = txtSize;
+	// var fldProjTxt = projFldGrp.add('statictext', undefined, 'proj. folder');
+	// fldProjTxt.helpTip = '\'save project\' button default folder\n(\'PRODUCAO DIA-A-DIA\' on \'hard news\' mode)';
+	// fldProjTxt.preferredSize = txtSize;
 
-	var fldProjBtn = projFldGrp.add('iconbutton', iconSize, projFolderIcon.light, { style: 'toolbutton' });
-	fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
+	// var fldProjBtn = projFldGrp.add('iconbutton', iconSize, projFolderIcon.light, { style: 'toolbutton' });
+	// fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
 
-	var resetFldProjBtn = projFldGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
-	resetFldProjBtn.helpTip = 'reset \'save project\' default folder';
+	// var resetFldProjBtn = projFldGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
+	// resetFldProjBtn.helpTip = 'reset \'save project\' default folder';
 
 	//---------------------------------------------------------
 
@@ -383,34 +383,34 @@ on the script preferences folder\n\
 
 	//---------------------------------------------------------
 
-	// configure 'MAM - para arte' path...
-	fldProjBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		var saveFolder = Folder.selectDialog();
+	// // configure 'MAM - para arte' path...
+	// fldProjBtn.onClick = function () {
+	// 	// error...
+	// 	if (!netAccess()) {
+	// 		alert(netConfigName + ' not checked');
+	// 		return;
+	// 	}
+	// 	var saveFolder = Folder.selectDialog();
 
-		if (saveFolder != null) {
-			projPath = decodeURI(saveFolder).toString();
-			JSONPrefsObj.folders.projPath = projPath;
-			savePrefs();
-			fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
-		}
-	};
+	// 	if (saveFolder != null) {
+	// 		projPath = decodeURI(saveFolder).toString();
+	// 		JSONPrefsObj.folders.projPath = projPath;
+	// 		savePrefs();
+	// 		fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
+	// 	}
+	// };
 
-	resetFldProjBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		projPath = defPrefsObj.folders.projPath;
-		JSONPrefsObj.folders.projPath = projPath;
-		fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
-		savePrefs();
-	};
+	// resetFldProjBtn.onClick = function () {
+	// 	// error...
+	// 	if (!netAccess()) {
+	// 		alert(netConfigName + ' not checked');
+	// 		return;
+	// 	}
+	// 	projPath = defPrefsObj.folders.projPath;
+	// 	JSONPrefsObj.folders.projPath = projPath;
+	// 	fldProjBtn.helpTip = 'map folder\n\n' + '> \'' + projPath + '\'';
+	// 	savePrefs();
+	// };
 
 	//---------------------------------------------------------
 
@@ -483,10 +483,11 @@ on the script preferences folder\n\
 	hoCkb.onClick = function () {
 		homeOffice = this.value;
 		JSONPrefsObj.homeOffice = homeOffice;
-		// nUtilsBtn.enabled = !homeOffice;
-		// mamHardNewsBtn.enabled = !homeOffice;
-		// dayBtn.enabled = !homeOffice;
-		// baseJorBtn.enabled = !homeOffice;
+		inFtgBtn = !homeOffice;
+		outSPBtn = !homeOffice;
+		projSPBtn = !homeOffice;
+		outRJBtn = !homeOffice;
+		projRJBtn = !homeOffice;
 
 		savePrefs(); // → save preferences.json
 		updateFolderPaths(); // → update templates and fonts folder

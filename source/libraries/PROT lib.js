@@ -51,10 +51,32 @@ String.prototype.replaceSpecialCharacters = function () {
 		.replace(/Ç|\u00C7/g, 'C')
 		.replace(/ç|\u00E7/g, 'c')
 		.replace(/\n|\r/g, ' ') // replaces line breaks...
-		.replace(/\|/g, ' ')
+		.replace(/\||-|\_|:/g, ' ')
 		.replace(/\s{2,}/g, ' ') // replaces 2 or more spaces...
 		.replace(/[^\w\s—]/ig, '') // replaces any non-word character except space...
 		.trim();
+};
+String.prototype.formatPromoTime = function () {
+
+	var promoTime;
+	var promoH;
+	var promoM;
+	var timeVal;
+	var timePattern = new RegExp(/[\s_-]+\d{1,2}[-:]\d{2,}h*[\s_-]*/gi);
+
+	if (!this.match(timePattern)) return this;
+
+	promoTime = this.match(timePattern).toString();
+	
+	promoH = promoTime.match(/^[\s_-]+\d{1,2}/).toString() + 'H';
+	
+	promoM = promoTime.match(/\d{2,}h*[\s_-]*$/).toString();
+	promoM = promoM.match(/^\d{2,}/).toString();
+	promoM = promoM == '00' ? '' : promoM;
+	
+	timeVal = ' ' + promoH + promoM + ' ';
+	
+	return this.replace(promoTime, timeVal);
 };
 
 // date shortener...

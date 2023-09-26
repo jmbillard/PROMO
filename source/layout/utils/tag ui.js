@@ -63,56 +63,10 @@ function tagDialog() {
 				}
 			};
 
-			// //---------------------------------------------------------
-
-			// tagBtn.addEventListener('click', function (c) {
-			// 	if (c.button == 2) {
-
-			// 		if (app.project.selection.length == 0) return;
-
-			// 		for (var i = 0; i < app.project.selection.length; i++) {
-			// 			app.project.selection[i].comment = '';
-			// 		}
-			// 	}
-			// });
-
-			// //---------------------------------------------------------
+			//---------------------------------------------------------
 
 			if (tagGrpName == 'promoTags') setTxtColor(tagTxt, mainColors[4]);
 			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, mainColors[9]);
-
-			// //---------------------------------------------------------
-
-			// if (tagGrpName == 'promoTags') {
-			// 	setTxtColor(tagTxt, mainColors[10]);
-
-			// 	tagBtn.onClick = function () {
-
-			// 		if (app.project.selection.length == 0) return;
-
-			// 		for (var i = 0; i < app.project.selection.length; i++) {
-			// 			if (!(app.project.selection[i] instanceof CompItem)) continue;
-			// 			app.project.selection[i].comment = this.properties.name;
-			// 		}
-			// 	};
-			// }
-
-			// //---------------------------------------------------------
-
-			// if (tagGrpName == 'promoTags') {
-			// 	setTxtColor(tagTxt, mainColors[10]);
-
-			// 	tagBtn.onClick = function () {
-
-			// 		if (app.project.selection.length == 0) return;
-
-			// 		for (var i = 0; i < app.project.selection.length; i++) {
-			// 			if (!(app.project.selection[i] instanceof CompItem)) continue;
-
-			// 			app.project.selection[i].comment = this.properties.name;
-			// 		}
-			// 	};
-			// }
 		}
 	}
 
@@ -128,6 +82,7 @@ function tagDialog() {
 			}
 		}
 	};
+
 	tagCustomBtn.onClick = function () {
 		if (app.project.selection.length == 0) return;
 

@@ -39,27 +39,27 @@ linkTxt2.maximumSize.width = 40;
 
 var projRJBtn = linksSubGrp2.add('iconbutton', iconSize, projRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projRJBtn.helpTip = 'projects RJ';
-// projRJBtn.enabled = false;
+projRJBtn.enabled = !homeOffice;
 
 var outRJBtn = linksSubGrp2.add('iconbutton', iconSize, outRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 outRJBtn.helpTip = 'output RJ';
-// outRJBtn.enabled = false;
+outRJBtn.enabled = !homeOffice;
 
 //---------------------------------------------------------
 
 var projSPBtn = linksSubGrp2.add('iconbutton', iconSize, projSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projSPBtn.helpTip = 'projects SP';
-// projSPBtn.enabled = false;
+projSPBtn.enabled = !homeOffice;
 
 var outSPBtn = linksSubGrp2.add('iconbutton', iconSize, outSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 outSPBtn.helpTip = 'output SP';
-// outSPBtn.enabled = false;
+outSPBtn.enabled = !homeOffice;
 
 //---------------------------------------------------------
 
 var inFtgBtn = linksSubGrp2.add('iconbutton', iconSize, inFtgFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 inFtgBtn.helpTip = 'editors export folder';
-// outSPBtn.enabled = false;
+outSPBtn.enabled = !homeOffice;
 
 
 /*
