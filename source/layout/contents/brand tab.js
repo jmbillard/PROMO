@@ -37,7 +37,7 @@ createColorButtons(mainColors, colorSubGrp2);
 var shpPalletBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 shpPalletBtn.helpTip = '◖ → color pallet as shape layer';
 
-var LOGO_GLOBOBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+var LOGO_GLOBOBtn = currentGrp.add('iconbutton', iconSize, logoGloboIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 LOGO_GLOBOBtn.helpTip = '◖ → logo GLOBO as shape layer';
 
 /*
