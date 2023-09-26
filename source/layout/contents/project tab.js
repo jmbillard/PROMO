@@ -29,10 +29,10 @@ currentGrp.add('panel');
 var projSubGrp2 = currentGrp.add('group');
 
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename selected comps\n\nALL CAPS and removes special characters';
+renameItemBtn.helpTip = '◖ → rename selected comps\nALL CAPS and removes special characters';
 
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create AE project folders\n◗ → auto organize project';
+projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → auto organize project';
 
 //---------------------------------------------------------
 
@@ -121,12 +121,12 @@ renameItemBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-// projOrgBtn.addEventListener('click', function (c) {
-// 	if (c.button == 1) {
-// 		if (app.project.numItems == 0) return;
-// 		tagDialog();
-// 	}
-// });
+projOrgBtn.addEventListener('click', function (c) {
+	if (c.button == 1) {
+		if (app.project.numItems == 0) return;
+		tagDialog();
+	}
+});
 
 projOrgBtn.onClick = function () {
 	app.beginUndoGroup('create project folders');
@@ -139,7 +139,7 @@ projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		if (app.project.numItems == 0) return;
 
-		var progressWindow = progressDialog('are you sure? all existing folders will be deleted...');
+		var progressWindow = progressDialog('');
 		var enterBtn = progressWindow.children[2].children[0];
 		var cancelBtn = progressWindow.children[2].children[1];
 		app.beginUndoGroup('organize project');
@@ -220,13 +220,9 @@ saveBtn.onClick = function () {
 	];
 	for (var i = 0; i < pathArray.length; i++) {
 		var path = pathArray[i];
-		// createPathFolders(path);
 		var nFolder = new Folder(path);
 		if (!nFolder.exists) nFolder.create();
 	}
-
-	// var projFolder = new Folder(savePath + '/01 PROJETOS/');
-	// if (!projFolder.exists) projFolder.create();
 
 	projFile = new File(savePath + '/01 PROJETOS/' + projId);
 	app.project.save(projFile);

@@ -57,79 +57,84 @@ function tagDialog() {
 				if (app.project.selection.length == 0) return;
 
 				for (var i = 0; i < app.project.selection.length; i++) {
-					if (app.project.selection[i] instanceof CompItem) {
-						app.project.selection[i].motionGraphicsTemplateName = this.properties.name;
-					}
-					if (app.project.selection[i] instanceof FootageItem) {
+					if (app.project.selection[i] instanceof CompItem || app.project.selection[i] instanceof FootageItem) {
 						app.project.selection[i].comment = this.properties.name;
 					}
 				}
 			};
 
-			//---------------------------------------------------------
+			// //---------------------------------------------------------
 
-			tagBtn.addEventListener('click', function (c) {
-				if (c.button == 2) {
+			// tagBtn.addEventListener('click', function (c) {
+			// 	if (c.button == 2) {
 
-					if (app.project.selection.length == 0) return;
+			// 		if (app.project.selection.length == 0) return;
 
-					for (var i = 0; i < app.project.selection.length; i++) {
-						app.project.selection[i].comment = '';
-					}
-				}
-			});
+			// 		for (var i = 0; i < app.project.selection.length; i++) {
+			// 			app.project.selection[i].comment = '';
+			// 		}
+			// 	}
+			// });
 
-			//---------------------------------------------------------
+			// //---------------------------------------------------------
 
-			if (tagGrpName == 'MovieTags') setTxtColor(tagTxt, mainColors[1]);
+			if (tagGrpName == 'promoTags') setTxtColor(tagTxt, mainColors[4]);
 			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, mainColors[9]);
 
-			//---------------------------------------------------------
+			// //---------------------------------------------------------
 
-			if (tagGrpName == 'compCommentTags') {
-				setTxtColor(tagTxt, mainColors[10]);
+			// if (tagGrpName == 'promoTags') {
+			// 	setTxtColor(tagTxt, mainColors[10]);
 
-				tagBtn.onClick = function () {
+			// 	tagBtn.onClick = function () {
 
-					if (app.project.selection.length == 0) return;
+			// 		if (app.project.selection.length == 0) return;
 
-					for (var i = 0; i < app.project.selection.length; i++) {
-						if (!(app.project.selection[i] instanceof CompItem)) continue;
-						app.project.selection[i].comment = this.properties.name;
-					}
-				};
-			}
+			// 		for (var i = 0; i < app.project.selection.length; i++) {
+			// 			if (!(app.project.selection[i] instanceof CompItem)) continue;
+			// 			app.project.selection[i].comment = this.properties.name;
+			// 		}
+			// 	};
+			// }
 
-			//---------------------------------------------------------
+			// //---------------------------------------------------------
 
-			if (tagGrpName == 'compCommentTags') {
-				setTxtColor(tagTxt, mainColors[10]);
+			// if (tagGrpName == 'promoTags') {
+			// 	setTxtColor(tagTxt, mainColors[10]);
 
-				tagBtn.onClick = function () {
+			// 	tagBtn.onClick = function () {
 
-					if (app.project.selection.length == 0) return;
+			// 		if (app.project.selection.length == 0) return;
 
-					for (var i = 0; i < app.project.selection.length; i++) {
-						if (!(app.project.selection[i] instanceof CompItem)) continue;
+			// 		for (var i = 0; i < app.project.selection.length; i++) {
+			// 			if (!(app.project.selection[i] instanceof CompItem)) continue;
 
-						app.project.selection[i].comment = this.properties.name;
-					}
-				};
-			}
+			// 			app.project.selection[i].comment = this.properties.name;
+			// 		}
+			// 	};
+			// }
 		}
 	}
 
 	//---------------------------------------------------------
 
-	tagCustomTxt.onEnterKey = tagCustomBtn.onClick = function () {
+	tagCustomTxt.onEnterKey = function () {
 		if (app.project.selection.length == 0) return;
 
 		for (var i = 0; i < app.project.selection.length; i++) {
-			if (app.project.selection[i] instanceof CompItem) {
-				app.project.selection[i].motionGraphicsTemplateName = this.text;
+			if (app.project.selection[i] instanceof CompItem || app.project.selection[i] instanceof FootageItem) {
+				app.project.selection[i].comment = this.text.toUpperCase();
+				this.text = this.text.toUpperCase();
 			}
-			if (app.project.selection[i] instanceof FootageItem) {
-				app.project.selection[i].comment = this.text;
+		}
+	};
+	tagCustomBtn.onClick = function () {
+		if (app.project.selection.length == 0) return;
+
+		for (var i = 0; i < app.project.selection.length; i++) {
+			if (app.project.selection[i] instanceof CompItem || app.project.selection[i] instanceof FootageItem) {
+				app.project.selection[i].comment = tagCustomTxt.text.toUpperCase();
+				tagCustomTxt.text = tagCustomTxt.text.toUpperCase();
 			}
 		}
 	};
