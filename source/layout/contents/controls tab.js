@@ -16,15 +16,15 @@ var ctrlSubGrp1 = currentGrp.add('group');
 
 // copy animation toggle... 
 var aniTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, aniTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-aniTogBtn.helpTip = '⦿ → copy animation';
+aniTogBtn.helpTip = '⦿ → copiar animação';
 
 // copy expressions toggle... 
 var exprTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, exprTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-exprTogBtn.helpTip = '⦿ → copy expressions';
+exprTogBtn.helpTip = '⦿ → copiar expressões';
 
 // create parent null... 
 var nullShpBtn = currentGrp.add('iconbutton', iconSize, nullIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullShpBtn.helpTip = '\n◗ → create parent null';
+nullShpBtn.helpTip = '\n◗ → criar null pai';
 
 //---------------------------------------------------------
 
@@ -34,7 +34,7 @@ var ctrlSubGrp2 = currentGrp.add('group');
 
 // create centered null
 var nullCShpBtn = ctrlSubGrp2.add('iconbutton', iconSize, nullCenterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullCShpBtn.helpTip = '◖ → centered null';
+nullCShpBtn.helpTip = '◖ → criar null central';
 
 //---------------------------------------------------------
 

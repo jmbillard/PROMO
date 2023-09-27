@@ -38,27 +38,27 @@ var linkTxt2 = linksSubGrp2.add('statictext', undefined, 'folders:', { name: 'la
 linkTxt2.maximumSize.width = 40;
 
 var projRJBtn = linksSubGrp2.add('iconbutton', iconSize, projRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projRJBtn.helpTip = 'projects RJ';
+projRJBtn.helpTip = 'pasta de projetos RJ';
 projRJBtn.enabled = !homeOffice;
 
 var outRJBtn = linksSubGrp2.add('iconbutton', iconSize, outRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-outRJBtn.helpTip = 'output RJ';
+outRJBtn.helpTip = 'pasta de output RJ';
 outRJBtn.enabled = !homeOffice;
 
 //---------------------------------------------------------
 
 var projSPBtn = linksSubGrp2.add('iconbutton', iconSize, projSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projSPBtn.helpTip = 'projects SP';
+projSPBtn.helpTip = 'pasta de projetos SP';
 projSPBtn.enabled = !homeOffice;
 
 var outSPBtn = linksSubGrp2.add('iconbutton', iconSize, outSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-outSPBtn.helpTip = 'output SP';
+outSPBtn.helpTip = 'pasta de output SP';
 outSPBtn.enabled = !homeOffice;
 
 //---------------------------------------------------------
 
 var inFtgBtn = linksSubGrp2.add('iconbutton', iconSize, inFtgFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-inFtgBtn.helpTip = 'editors export folder';
+inFtgBtn.helpTip = 'pasta de export dos editores';
 outSPBtn.enabled = !homeOffice;
 
 

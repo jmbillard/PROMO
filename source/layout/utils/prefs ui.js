@@ -98,16 +98,16 @@ function prefsDialog() {
 
 	//
 
-	var v22Grp = projectGrp.add('group');
-	v22Grp.spacing = ckbGrpSpacing;
+// 	var v22Grp = projectGrp.add('group');
+// 	v22Grp.spacing = ckbGrpSpacing;
 
-	var v22Txt = v22Grp.add('statictext', undefined, 'save as v22.x');
-	v22Txt.helpTip = 'save as v22.x window\n\
-> opens the save as window if the AE version is higher than v22';
-	v22Txt.preferredSize = txtSize;
+// 	var v22Txt = v22Grp.add('statictext', undefined, 'save as v22.x');
+// 	v22Txt.helpTip = 'save as v22.x window\n\
+// > opens the save as window if the AE version is higher than v22';
+// 	v22Txt.preferredSize = txtSize;
 
-	var v22Ckb = v22Grp.add('checkbox', [8, 4, 24, 18]);
-	v22Ckb.value = saveAsV22;
+// 	var v22Ckb = v22Grp.add('checkbox', [8, 4, 24, 18]);
+// 	v22Ckb.value = saveAsV22;
 
 	//
 
@@ -115,8 +115,7 @@ function prefsDialog() {
 	missGrp.spacing = ckbGrpSpacing;
 
 	var missTxt = missGrp.add('statictext', undefined, 'ignore missing files');
-	missTxt.helpTip = 'ignore missing footage files\n\
-> no missing footage alerts during project organization';
+	missTxt.helpTip = 'ignorar alerta de arquivos faltando';
 	missTxt.preferredSize = txtSize;
 
 	var missCkb = missGrp.add('checkbox', [8, 4, 24, 18]);
@@ -128,7 +127,7 @@ function prefsDialog() {
 	projOrgGrp.spacing = drpGrpSpacing;
 
 	var projModelTxt = projOrgGrp.add('statictext', undefined, 'org. model');
-	projModelTxt.helpTip = 'project organization model';
+	projModelTxt.helpTip = 'modelo de organização';
 	projModelTxt.preferredSize = txtSize;
 
 	var projectModeDrop = projOrgGrp.add('dropdownlist', undefined, projectModeDropArray);
@@ -170,11 +169,11 @@ function prefsDialog() {
 	iconThemeGrp.margins = [0, 8, 0, 4];
 
 	var lightRdo = iconThemeGrp.add('radiobutton', undefined, 'light icons');
-	lightRdo.helpTip = 'icon theme';
+	lightRdo.helpTip = 'tema dos ícones';
 	lightRdo.value = lightRdo.text.split(' ')[0] == iconTheme;
 
 	var darkRdo = iconThemeGrp.add('radiobutton', undefined, 'dark icons');
-	darkRdo.helpTip = 'icon theme';
+	darkRdo.helpTip = 'tema dos ícones';
 	darkRdo.value = darkRdo.text.split(' ')[0] == iconTheme;
 
 	//
@@ -183,7 +182,7 @@ function prefsDialog() {
 	tabColorsGrp.spacing = 2;
 
 	var tabTxt = tabColorsGrp.add('statictext', undefined, 'tab colors');
-	tabTxt.helpTip = 'tab colors';
+	tabTxt.helpTip = 'cores das abas';
 	tabTxt.preferredSize = txtSize;
 
 	var colorDrop = tabColorsGrp.add('dropdownlist', undefined, grpNames);
@@ -201,75 +200,75 @@ function prefsDialog() {
 	slGrp.spacing = ckbGrpSpacing;
 
 	var slTxt = slGrp.add('statictext', undefined, 'show labels');
-	slTxt.helpTip = 'show labels on large screens';
+	slTxt.helpTip = 'mostrar rótulos nos botões';
 	slTxt.preferredSize = txtSize;
 
 	var slCkb = slGrp.add('checkbox', [8, 4, 24, 18]);
 	slCkb.value = showLabels;
 
-	//---------------------------------------------------------
+// 	//---------------------------------------------------------
 
-	var divider3 = wPref.add('panel');
-	divider3.alignment = 'fill';
+// 	var divider3 = wPref.add('panel');
+// 	divider3.alignment = 'fill';
 
-	var modeGrp = wPref.add('group');
-	modeGrp.orientation = 'column';
-	modeGrp.alignChildren = ['left', 'center'];
-	modeGrp.spacing = 2;
+// 	var modeGrp = wPref.add('group');
+// 	modeGrp.orientation = 'column';
+// 	modeGrp.alignChildren = ['left', 'center'];
+// 	modeGrp.spacing = 2;
 
-	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
-	setTxtColor(modeGrpTxt, sTxtColor.light);
+// 	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
+// 	setTxtColor(modeGrpTxt, sTxtColor.light);
 
-	//
+// 	//
 
-	var hoGrp = modeGrp.add('group');
-	hoGrp.spacing = ckbGrpSpacing;
+// 	var hoGrp = modeGrp.add('group');
+// 	hoGrp.spacing = ckbGrpSpacing;
 
-	var hoTxt = hoGrp.add('statictext', undefined, 'home office');
-	hoTxt.helpTip = 'home office mode\n\
-> uses yor local machine... all files and\
-templates will be downloaded and stored \
-on the script preferences folder\n\
-> disables most of the links tab folder shortcuts\
-(\'MAM - magazine\' and \'MAM - para arte\' can be mapped)';
-	hoTxt.preferredSize = txtSize;
+// 	var hoTxt = hoGrp.add('statictext', undefined, 'home office');
+// 	hoTxt.helpTip = 'home office mode\n\
+// > uses yor local machine... all files and\
+// templates will be downloaded and stored \
+// on the script preferences folder\n\
+// > disables most of the links tab folder shortcuts\
+// (\'MAM - magazine\' and \'MAM - para arte\' can be mapped)';
+// 	hoTxt.preferredSize = txtSize;
 
-	var hoCkb = hoGrp.add('checkbox', [8, 4, 24, 18]);
-	hoCkb.value = homeOffice;
+// 	var hoCkb = hoGrp.add('checkbox', [8, 4, 24, 18]);
+// 	hoCkb.value = homeOffice;
 
-	//---------------------------------------------------------
+// 	//---------------------------------------------------------
 
-	var divider5 = wPref.add('panel');
-	divider5.alignment = 'fill';
+// 	var divider5 = wPref.add('panel');
+// 	divider5.alignment = 'fill';
 
-	var btnGrp = wPref.add('group');
-	btnGrp.orientation = 'stack';
-	btnGrp.alignment = 'fill';
-	// left buttons group...
-	var bGrp1 = btnGrp.add('group');
-	bGrp1.alignment = 'left';
-	bGrp1.spacing = 2;
-	// right buttons group...
-	var bGrp2 = btnGrp.add('group');
-	bGrp2.alignment = 'right';
-	bGrp2.spacing = 2;
+// 	var btnGrp = wPref.add('group');
+// 	btnGrp.orientation = 'stack';
+// 	btnGrp.alignment = 'fill';
+// 	// left buttons group...
+// 	var bGrp1 = btnGrp.add('group');
+// 	bGrp1.alignment = 'left';
+// 	bGrp1.spacing = 2;
+// 	// right buttons group...
+// 	var bGrp2 = btnGrp.add('group');
+// 	bGrp2.alignment = 'right';
+// 	bGrp2.spacing = 2;
 
-	//
+// 	//
 
-	var devTogBtn = bGrp1.add('iconbutton', iconTogSize, exprTogIcon.light, { style: 'toolbutton', toggle: 1 });
-	devTogBtn.helpTip = 'dev tools';
-	devTogBtn.value = devMode;
+// 	var devTogBtn = bGrp1.add('iconbutton', iconTogSize, exprTogIcon.light, { style: 'toolbutton', toggle: 1 });
+// 	devTogBtn.helpTip = 'dev tools';
+// 	devTogBtn.value = devMode;
 
-	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
-	openFldBtn.helpTip = 'open script preferences folder';
+// 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
+// 	openFldBtn.helpTip = 'open script preferences folder';
 
-	//
+// 	//
 
-	var resetBtn = bGrp2.add('iconbutton', iconSize, resetIcon.light, { style: 'toolbutton' });
-	resetBtn.helpTip = 'reset script preferences';
+// 	var resetBtn = bGrp2.add('iconbutton', iconSize, resetIcon.light, { style: 'toolbutton' });
+// 	resetBtn.helpTip = 'reset script preferences';
 
-	var updateBtn = bGrp2.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-	updateBtn.helpTip = 'download the latest script version from github';
+// 	var updateBtn = bGrp2.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
+// 	updateBtn.helpTip = 'download the latest script version from github';
 
 	/*
 
@@ -290,35 +289,35 @@ on the script preferences folder\n\
 
 	//---------------------------------------------------------
 
-	devTogBtn.onClick = function () {
-		devMode = this.value;
-		JSONPrefsObj.devMode = devMode;
-		menuSubGrp5.enabled = menuSubGrp5.visible = devMode;
-		setLayout();
-		savePrefs(); // → save preferences.json
-	};
+	// devTogBtn.onClick = function () {
+	// 	devMode = this.value;
+	// 	JSONPrefsObj.devMode = devMode;
+	// 	menuSubGrp5.enabled = menuSubGrp5.visible = devMode;
+	// 	setLayout();
+	// 	savePrefs(); // → save preferences.json
+	// };
 
 	//---------------------------------------------------------
 
-	resetBtn.onClick = function () {
-		JSONPrefsObj = defPrefsObj;
-		savePrefs(); // → save preferences.json
-		showTabProg('restart the script  ヽ(✿ﾟ▽ﾟ)ノ');
-		wPref.close();
-	};
+	// resetBtn.onClick = function () {
+	// 	JSONPrefsObj = defPrefsObj;
+	// 	savePrefs(); // → save preferences.json
+	// 	showTabProg('restart the script  ヽ(✿ﾟ▽ﾟ)ノ');
+	// 	wPref.close();
+	// };
 
 	//---------------------------------------------------------
 
-	openFldBtn.onClick = function () {
-		// alert...
-		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
-			return;
-		}
-		if (!fontsFolder.exists) fontsFolder.create();
+	// openFldBtn.onClick = function () {
+	// 	// alert...
+	// 	if (!netAccess()) {
+	// 		alert('no access...  Σ(っ °Д °;)っ');
+	// 		return;
+	// 	}
+	// 	if (!fontsFolder.exists) fontsFolder.create();
 
-		openFolder(scriptPreferencesPath);
-	};
+	// 	openFolder(scriptPreferencesPath);
+	// };
 
 	//---------------------------------------------------------
 
@@ -415,83 +414,83 @@ on the script preferences folder\n\
 	//---------------------------------------------------------
 
 	// right click -> opens the git repo...
-	updateBtn.addEventListener('click', function (c) {
-		if (c.button == 2) {
-			// error...
-			if (!netAccess()) {
-				alert(netConfigName + ' not checked');
-				return;
-			}
-			openWebSite(repoURL); // → launch internet browser
-		}
-	});
+	// updateBtn.addEventListener('click', function (c) {
+	// 	if (c.button == 2) {
+	// 		// error...
+	// 		if (!netAccess()) {
+	// 			alert(netConfigName + ' not checked');
+	// 			return;
+	// 		}
+	// 		openWebSite(repoURL); // → launch internet browser
+	// 	}
+	// });
 
 	//---------------------------------------------------------
 
-	updateBtn.onClick = function () {
-		// error...
-		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
-			return;
-		}
-		var uiPath = scriptPreferencesPath + '/ScriptUI Panels';
-		var pathArray = [];
+	// updateBtn.onClick = function () {
+	// 	// error...
+	// 	if (!netAccess()) {
+	// 		alert(netConfigName + ' not checked');
+	// 		return;
+	// 	}
+	// 	var uiPath = scriptPreferencesPath + '/ScriptUI Panels';
+	// 	var pathArray = [];
 
-		for (var i = 0; i < codeURLArray.length; i++) {
-			pathArray.push(uiPath);
-		}
-		var uiFolder = new Folder(uiPath);
-		var scriptUIPath = new File($.fileName).path.toString();
-		var destPathArray = [
-			scriptUIPath, // → Scripts/Script UiPanels
-			promoArcPath + '/scripts', // → /arquivamento/GLOBONEWS/On Air 2022/Promo/scripts
-			promoInsPath + '/BARRA UTILIDADES PROMO PARA SCRIPT', // → UTILIDADES//FERRAMENTAS/SCRIPTS/SCRIPTS AFX/BARRA UTILIDADES PROMO PARA INSTALAR
-		];
-		removeFolder(uiFolder); // → delete previous download folder
-		uiFolder.create(); // → create new download folder
+	// 	for (var i = 0; i < codeURLArray.length; i++) {
+	// 		pathArray.push(uiPath);
+	// 	}
+	// 	var uiFolder = new Folder(uiPath);
+	// 	var scriptUIPath = new File($.fileName).path.toString();
+	// 	var destPathArray = [
+	// 		scriptUIPath, // → Scripts/Script UiPanels
+	// 		promoArcPath + '/scripts', // → /arquivamento/GLOBONEWS/On Air 2022/Promo/scripts
+	// 		promoInsPath + '/BARRA UTILIDADES PROMO PARA SCRIPT', // → UTILIDADES//FERRAMENTAS/SCRIPTS/SCRIPTS AFX/BARRA UTILIDADES PROMO PARA INSTALAR
+	// 	];
+	// 	removeFolder(uiFolder); // → delete previous download folder
+	// 	uiFolder.create(); // → create new download folder
 
-		getURLContent(codeURLArray, pathArray); // → download files on codeURLArray
+	// 	getURLContent(codeURLArray, pathArray); // → download files on codeURLArray
 
-		// copy downloaded files...
+	// 	// copy downloaded files...
 
-		if (homeOffice) copyFolderContentContent(uiPath, destPathArray[0]);
+	// 	if (homeOffice) copyFolderContentContent(uiPath, destPathArray[0]);
 
-		if (!homeOffice) {
-			try {
-				copyFolderContentContent(uiPath, destPathArray[1]);
+	// 	if (!homeOffice) {
+	// 		try {
+	// 			copyFolderContentContent(uiPath, destPathArray[1]);
 
-			} catch (err) {
-				alert('nope... (っ °Д °;)っ \n\n' + err.message);
-				copyFolderContentContent(uiPath, destPathArray[0]);
-			}
-		}
-		showTabProg('restart the script  ヽ(✿ﾟ▽ﾟ)ノ');
-		wPref.close();
-	};
+	// 		} catch (err) {
+	// 			alert('nope... (っ °Д °;)っ \n\n' + err.message);
+	// 			copyFolderContentContent(uiPath, destPathArray[0]);
+	// 		}
+	// 	}
+	// 	showTabProg('restart the script  ヽ(✿ﾟ▽ﾟ)ノ');
+	// 	wPref.close();
+	// };
 
 	//---------------------------------------------------------
 
-	v22Ckb.onClick = function () {
-		saveAsV22 = this.value;
-		JSONPrefsObj.saveAsV22 = saveAsV22;
+	// v22Ckb.onClick = function () {
+	// 	saveAsV22 = this.value;
+	// 	JSONPrefsObj.saveAsV22 = saveAsV22;
 		
-		savePrefs(); // → save preferences.json
-	};
+	// 	savePrefs(); // → save preferences.json
+	// };
 
 	//---------------------------------------------------------
 
-	hoCkb.onClick = function () {
-		homeOffice = this.value;
-		JSONPrefsObj.homeOffice = homeOffice;
-		inFtgBtn = !homeOffice;
-		outSPBtn = !homeOffice;
-		projSPBtn = !homeOffice;
-		outRJBtn = !homeOffice;
-		projRJBtn = !homeOffice;
+	// hoCkb.onClick = function () {
+	// 	homeOffice = this.value;
+	// 	JSONPrefsObj.homeOffice = homeOffice;
+	// 	inFtgBtn = !homeOffice;
+	// 	outSPBtn = !homeOffice;
+	// 	projSPBtn = !homeOffice;
+	// 	outRJBtn = !homeOffice;
+	// 	projRJBtn = !homeOffice;
 
-		savePrefs(); // → save preferences.json
-		updateFolderPaths(); // → update templates and fonts folder
-	};
+	// 	savePrefs(); // → save preferences.json
+	// 	updateFolderPaths(); // → update templates and fonts folder
+	// };
 
 	//---------------------------------------------------------
 

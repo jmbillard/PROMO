@@ -10,13 +10,13 @@ currentGrp = tabsGrp.text;
 var textSubGrp1 = currentGrp.add('group');
 
 var txtUpperBtn = textSubGrp1.add('iconbutton', iconSize, txtUpperIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtUpperBtn.helpTip = '◖ → set text layer to upper case';
+txtUpperBtn.helpTip = '◖ → texto em caixa alta';
 
 var txtLowerBtn = textSubGrp1.add('iconbutton', iconSize, txtLowerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtLowerBtn.helpTip = '◖ → set text layer to lower case';
+txtLowerBtn.helpTip = '◖ → texto em caixa baixa';
 
 var txtTitleBtn = textSubGrp1.add('iconbutton', iconSize, txtTitleIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtTitleBtn.helpTip = '◖ → set text layer to title case';
+txtTitleBtn.helpTip = '◖ → texto como titulo';
 
 // //---------------------------------------------------------
 
@@ -26,7 +26,7 @@ currentGrp.add('panel');
 var textSubGrp2 = currentGrp.add('group');
 
 var txtCleanerBtn = textSubGrp2.add('iconbutton', iconSize, txtCleanerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtCleanerBtn.helpTip = '◖ → deletes consecutive spaces and line breaks';
+txtCleanerBtn.helpTip = '◖ → remover múltiplos espaços e quebras de linhas';
 
 // var txtColumnBtn = textSubGrp2.add('iconbutton', iconSize, txtColumnsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 // txtColumnBtn.helpTip = '◖ → divides consecutive spaces in columns';
@@ -41,6 +41,7 @@ var textSubGrp3 = currentGrp.add('group');
 var limitSld = textSubGrp3.add('slider', undefined, 60, 5, 100);
 limitSld.maximumSize.width = 100;
 limitSld.minimumSize.width = vMin;
+limitSld.helpTip = 'quebrar linha apos';
 
 var limitTxt = textSubGrp3.add('statictext', undefined, limitSld.value + ' characters', { name: 'label' , truncate: 'end'});
 limitTxt.maximumSize.width = 70;

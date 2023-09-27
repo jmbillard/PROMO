@@ -20,7 +20,7 @@ projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
 var saveBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = '◖ → create project with _DEFAULT system folders';
+saveBtn.helpTip = '◖ → criar estrutura _DEFAULT de pastas no sistema';
 
 //---------------------------------------------------------
 
@@ -30,12 +30,12 @@ var projSubGrp2 = currentGrp.add('group');
 
 // var renameItemSubGrp = projSubGrp2.add('group');
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename ALL comps\n\nALL CAPS and removes special characters';
+renameItemBtn.helpTip = '◖ → renomear comps selecionadas\n◗ → renomear TODAS as comps';
 // var renameItemLab = renameItemSubGrp.add('statictext', undefined, 'rename comps', { name: 'label' , truncate: 'end'});
 
 // var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create AE _DEFAULT project folders\n⦶ → organization tags\n◗ → auto organize project';
+projOrgBtn.helpTip = '◖ → criar estrutura _DEFAULT de pastas no AE\n⦶ → tags de organização\n◗ → organização automática de projetos';
 // var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------
@@ -45,10 +45,10 @@ currentGrp.add('panel');
 var projSubGrp3 = currentGrp.add('group');
 
 var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-collectFontsBtn.helpTip = '◖ → collect project fonts';
+collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto';
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-fldProjBtn2.helpTip = '◖ → open current project folder';
+fldProjBtn2.helpTip = '◖ → abir pasta do projeto';
 
 
 getStaticTextLabels(tabsGrp.menu, []);
