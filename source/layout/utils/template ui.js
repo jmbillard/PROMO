@@ -79,7 +79,7 @@ function templateDialog() {
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];
 	var updateTxt = vGrp2.add('statictext', undefined, '...');
 	updateTxt.characters = 40;
-	setTxtColor(updateTxt, mainColors[10]);
+	setTxtColor(updateTxt, mainColors[5]);
 
 	//---------------------------------------------------------
 

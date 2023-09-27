@@ -15,7 +15,7 @@
   to 'ScriptUI Panels' folder
 
   author:  Jean-Marc Billard
-  version: 2.1
+  version: 0.1-b
   date:    xx-xx-2023
 
 --------------------------------------------------------------

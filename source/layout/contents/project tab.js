@@ -20,7 +20,7 @@ projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
 var saveBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = '◖ → create project with _DEFAULT folder structure';
+saveBtn.helpTip = '◖ → create project with _DEFAULT system folders';
 
 //---------------------------------------------------------
 
@@ -35,7 +35,7 @@ renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename ALL comps
 
 // var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → auto organize project';
+projOrgBtn.helpTip = '◖ → create AE _DEFAULT project folders\n⦶ → organization tags\n◗ → auto organize project';
 // var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------

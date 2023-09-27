@@ -18,7 +18,7 @@ txtLowerBtn.helpTip = '◖ → set text layer to lower case';
 var txtTitleBtn = textSubGrp1.add('iconbutton', iconSize, txtTitleIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 txtTitleBtn.helpTip = '◖ → set text layer to title case';
 
-//---------------------------------------------------------
+// //---------------------------------------------------------
 
 currentGrp.add('panel');
  
@@ -28,8 +28,8 @@ var textSubGrp2 = currentGrp.add('group');
 var txtCleanerBtn = textSubGrp2.add('iconbutton', iconSize, txtCleanerIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 txtCleanerBtn.helpTip = '◖ → deletes consecutive spaces and line breaks';
 
-var txtColumnBtn = textSubGrp2.add('iconbutton', iconSize, txtColumnsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-txtColumnBtn.helpTip = '◖ → divides consecutive spaces in columns';
+// var txtColumnBtn = textSubGrp2.add('iconbutton', iconSize, txtColumnsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// txtColumnBtn.helpTip = '◖ → divides consecutive spaces in columns';
 
 //---------------------------------------------------------
 
@@ -144,39 +144,39 @@ txtCleanerBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-txtColumnBtn.onClick = function () {
-  var aItem = app.project.activeItem;
-  var selLayers = aItem != null ? aItem.selectedLayers : [];
-  // error...
-  if (selLayers.length == 0) {
-    showTabErr('no text layer is selected');
-    return;
-  }
-  app.beginUndoGroup('break text columns');
+// txtColumnBtn.onClick = function () {
+//   var aItem = app.project.activeItem;
+//   var selLayers = aItem != null ? aItem.selectedLayers : [];
+//   // error...
+//   if (selLayers.length == 0) {
+//     showTabErr('no text layer is selected');
+//     return;
+//   }
+//   app.beginUndoGroup('break text columns');
 
-  for (var i = 0; i < selLayers.length; i++) {
-    var selLayer = selLayers[i];
-    var colN = 2;
-    var colPos = selLayer.position.value;
-    var col = columnText(selLayer);
+//   for (var i = 0; i < selLayers.length; i++) {
+//     var selLayer = selLayers[i];
+//     var colN = 2;
+//     var colPos = selLayer.position.value;
+//     var col = columnText(selLayer);
 
-    if (col.length < 2) return;
-    selLayer.enabled = false;
-    col[0].position.setValue(colPos);
+//     if (col.length < 2) return;
+//     selLayer.enabled = false;
+//     col[0].position.setValue(colPos);
 
-    for (c = 1; c < col.length; c++) {
-      var exp = '[parent.sourceRectAtTime().width / 2 + 50 + sourceRectAtTime().width / 2, 0];';
+//     for (c = 1; c < col.length; c++) {
+//       var exp = '[parent.sourceRectAtTime().width / 2 + 50 + sourceRectAtTime().width / 2, 0];';
 
-      col[c].parent = col[c - 1];
-      col[c].position.expression = exp;
-      var cPos = col[c].position.value;
-      col[c].position.expression = '';
-      col[c].position.setValue(cPos);
-      col[c].parent = null;
-    }
-  }
-  app.endUndoGroup();
-};
+//       col[c].parent = col[c - 1];
+//       col[c].position.expression = exp;
+//       var cPos = col[c].position.value;
+//       col[c].position.expression = '';
+//       col[c].position.setValue(cPos);
+//       col[c].parent = null;
+//     }
+//   }
+//   app.endUndoGroup();
+// };
 
 //---------------------------------------------------------
 

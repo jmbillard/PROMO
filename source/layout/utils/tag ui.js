@@ -65,8 +65,8 @@ function tagDialog() {
 
 			//---------------------------------------------------------
 
-			if (tagGrpName == 'promoTags') setTxtColor(tagTxt, mainColors[4]);
-			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, mainColors[9]);
+			if (tagGrpName == 'promoTags') setTxtColor(tagTxt, mainColors[1]);
+			if (tagGrpName == 'multiTags') setTxtColor(tagTxt, mainColors[5]);
 		}
 	}
 
