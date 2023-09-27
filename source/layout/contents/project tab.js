@@ -35,7 +35,7 @@ renameItemBtn.helpTip = '◖ → renomear comps selecionadas\n◗ → renomear T
 
 // var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → criar estrutura _DEFAULT de pastas no AE\n⦶ → tags de organização\n◗ → organização automática de projetos';
+projOrgBtn.helpTip = '◖ → organização automática de projetos\n⦶ → tags de organização\n◗ → criar estrutura _DEFAULT de pastas no AE';
 // var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------
@@ -136,8 +136,12 @@ projOrgBtn.addEventListener('click', function (c) {
 
 projOrgBtn.onClick = function () {
 	app.beginUndoGroup('create project folders');
+	
+	deleteProjectFolders();
+	populateProjectFolders();
+	deleteEmptyProjectFolders();
 
-	projectTemplateFolders(projectMode); // project folder structure...
+	// projectTemplateFolders(projectMode); // project folder structure...
 	app.endUndoGroup();
 };
 
@@ -151,9 +155,10 @@ projOrgBtn.addEventListener('click', function (c) {
 		// app.beginUndoGroup('organize project');
 
 		// enterBtn.onClick = progressWindow.onEnterKey = progressWindow.onShow = function () {
-			deleteProjectFolders();
-			populateProjectFolders();
-			deleteEmptyProjectFolders();
+			// deleteProjectFolders();
+			// populateProjectFolders();
+			// deleteEmptyProjectFolders();
+		projectTemplateFolders(projectMode); // project folder structure...
 
 		// 	app.endUndoGroup();
 		// 	progressWindow.close();
