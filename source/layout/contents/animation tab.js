@@ -35,28 +35,28 @@ pasteInfBtn.helpTip = '◖ → paste keyframe influence';
 
 //---------------------------------------------------------
 
-currentGrp.add('panel');
+// currentGrp.add('panel');
  
-var animSubGrp2 = currentGrp.add('group');
+// var animSubGrp2 = currentGrp.add('group');
 
-var easeSld1Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
-easeSld1Txt.maximumSize.width = 30;
+// var easeSld1Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
+// easeSld1Txt.maximumSize.width = 30;
 
-var easeSld1 = animSubGrp2.add('slider', undefined, 1, 1, 99);
-easeSld1.helpTip = 'ease out influence';
-easeSld1.maximumSize.width = 80;
-easeSld1.minimumSize.width = vMin;
+// var easeSld1 = animSubGrp2.add('slider', undefined, 1, 1, 99);
+// easeSld1.helpTip = 'ease out influence';
+// easeSld1.maximumSize.width = 80;
+// easeSld1.minimumSize.width = vMin;
 
-var easePrevGrp = animSubGrp2.add('group');
-easePrevGrp.add('image', undefined, easePrev['img00' + iconTheme]);
+// var easePrevGrp = animSubGrp2.add('group');
+// easePrevGrp.add('image', undefined, easePrev['img00' + iconTheme]);
 
-var easeSld2 = animSubGrp2.add('slider', undefined, 99, 1, 99);
-easeSld2.helpTip = 'ease in influence';
-easeSld2.maximumSize.width = 80;
-easeSld2.minimumSize.width = vMin;
+// var easeSld2 = animSubGrp2.add('slider', undefined, 99, 1, 99);
+// easeSld2.helpTip = 'ease in influence';
+// easeSld2.maximumSize.width = 80;
+// easeSld2.minimumSize.width = vMin;
 
-var easeSld2Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
-easeSld2Txt.maximumSize.width = 30;
+// var easeSld2Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
+// easeSld2Txt.maximumSize.width = 30;
 
 //---------------------------------------------------------
 
@@ -84,12 +84,12 @@ layerSeqBtn.helpTip = '◖ → sequence layers';
 
 //---------------------------------------------------------
 
-currentGrp.add('panel');
+// currentGrp.add('panel');
  
 
-// tools button...
-var toolBtn = currentGrp.add('iconbutton', iconSize, rigToolsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-toolBtn.helpTip = 'rigs and tools';
+// // tools button...
+// var toolBtn = currentGrp.add('iconbutton', iconSize, rigToolsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// toolBtn.helpTip = 'rigs and tools';
 
 /*
 
@@ -131,11 +131,11 @@ copyInfBtn.onClick = function () {
 	easeInInfluence = kIn.influence;
 	easeOutInfluence = kOut.influence;
 
-	easeSld1.value = easeInInfluence;
-	easeSld1Txt.text = easeSld1Txt.helpTip = easeInInfluence.toFixed(0) + '%';
+	// easeSld1.value = easeInInfluence;
+	// easeSld1Txt.text = easeSld1Txt.helpTip = easeInInfluence.toFixed(0) + '%';
 	
-	easeSld2.value = 100 - easeOutInfluence;
-	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - easeOutInfluence).toFixed(0) + '%';
+	// easeSld2.value = 100 - easeOutInfluence;
+	// easeSld2Txt.text = easeSld2Txt.helpTip = (100 - easeOutInfluence).toFixed(0) + '%';
 
 	// hide all keyframe images...
 	for (var kf = 0; kf < keyStatsGrp.children.length; kf++) {
@@ -211,55 +211,55 @@ copyInfBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-easeSld1.onChanging = function () {
-	this.value = Math.floor(this.value);
+// easeSld1.onChanging = function () {
+// 	this.value = Math.floor(this.value);
 
-	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
-};
+// 	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
+// };
 
-easeSld1.onChange = function () {
-	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
+// easeSld1.onChange = function () {
+// 	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
 
-	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
+// 	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
+// 	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
 
-	easePrevGrp.remove(0);
-	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-	easePrevGrp.layout.layout(true);
+// 	easePrevGrp.remove(0);
+// 	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
+// 	easePrevGrp.layout.layout(true);
 
-	var aItem = app.project.activeItem;
-	var selLayers = aItem != null ? aItem.selectedLayers : [];
-	easeOutInfluence = this.value;
+// 	var aItem = app.project.activeItem;
+// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 	easeOutInfluence = this.value;
 
-	for (var l = 0; l < selLayers.length; l++) {
-		applyEase(selLayers[l]);
-	}
-};
+// 	for (var l = 0; l < selLayers.length; l++) {
+// 		applyEase(selLayers[l]);
+// 	}
+// };
 
-easeSld2.onChange = function () {
-	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
+// easeSld2.onChange = function () {
+// 	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
 
-	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
+// 	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
+// 	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
 
-	easePrevGrp.remove(0);
-	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-	easePrevGrp.layout.layout(true);
+// 	easePrevGrp.remove(0);
+// 	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
+// 	easePrevGrp.layout.layout(true);
 
-	var aItem = app.project.activeItem;
-	var selLayers = aItem != null ? aItem.selectedLayers : [];
-	easeInInfluence = 100 - this.value;
+// 	var aItem = app.project.activeItem;
+// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 	easeInInfluence = 100 - this.value;
 
-	for (var l = 0; l < selLayers.length; l++) {
-		applyEase(selLayers[l]);
-	}
-};
+// 	for (var l = 0; l < selLayers.length; l++) {
+// 		applyEase(selLayers[l]);
+// 	}
+// };
 
-easeSld2.onChanging = function () {
-	this.value = Math.floor(this.value);
+// easeSld2.onChanging = function () {
+// 	this.value = Math.floor(this.value);
 
-	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
-};
+// 	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
+// };
 
 //---------------------------------------------------------
 
@@ -279,81 +279,81 @@ pasteInfBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-easeSld1Txt.addEventListener('click', function (c) {
+// easeSld1Txt.addEventListener('click', function (c) {
 
-	if (c.detail == 2) {
+// 	if (c.detail == 2) {
 
-		var pos = [
-			c.screenX + 16,
-			c.screenY - 16
-		];
+// 		var pos = [
+// 			c.screenX + 16,
+// 			c.screenY - 16
+// 		];
 
-		var input = inputDialog(parseInt(this.text).toString(), pos)
-			.toString()
-			.replace(/\D/g, '');
+// 		var input = inputDialog(parseInt(this.text).toString(), pos)
+// 			.toString()
+// 			.replace(/\D/g, '');
 
-		input = parseInt(input);
-		input = input > 0 ? input : 1;
-		input = input < 99 ? input : 99;
-		this.text = this.helpTip = input + '%';
-		easeSld1.value = input;
+// 		input = parseInt(input);
+// 		input = input > 0 ? input : 1;
+// 		input = input < 99 ? input : 99;
+// 		this.text = this.helpTip = input + '%';
+// 		easeSld1.value = input;
 
-		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
+// 		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
+// 		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
 
-		easePrevGrp.remove(0);
-		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-		easePrevGrp.layout.layout(true);
+// 		easePrevGrp.remove(0);
+// 		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
+// 		easePrevGrp.layout.layout(true);
 
-		var aItem = app.project.activeItem;
-		var selLayers = aItem != null ? aItem.selectedLayers : [];
-		easeOutInfluence = easeSld1.value;
-		easeInInfluence = 100 - easeSld2.value;
+// 		var aItem = app.project.activeItem;
+// 		var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 		easeOutInfluence = easeSld1.value;
+// 		easeInInfluence = 100 - easeSld2.value;
 
-		for (var l = 0; l < selLayers.length; l++) {
-			applyEase(selLayers[l]);
-		}
-	}
-});
+// 		for (var l = 0; l < selLayers.length; l++) {
+// 			applyEase(selLayers[l]);
+// 		}
+// 	}
+// });
 
 //---------------------------------------------------------
 
-easeSld2Txt.addEventListener('click', function (c) {
+// easeSld2Txt.addEventListener('click', function (c) {
 
-	if (c.detail == 2) {
+// 	if (c.detail == 2) {
 
-		var pos = [
-			c.screenX + 16,
-			c.screenY - 16
-		];
+// 		var pos = [
+// 			c.screenX + 16,
+// 			c.screenY - 16
+// 		];
 
-		var input = inputDialog(parseInt(this.text).toString(), pos)
-			.toString()
-			.replace(/\D/g, '');
+// 		var input = inputDialog(parseInt(this.text).toString(), pos)
+// 			.toString()
+// 			.replace(/\D/g, '');
 
-		input = parseInt(input);
-		input = input > 0 ? input : 1;
-		input = input < 99 ? input : 99;
-		this.text = this.helpTip = input + '%';
-		easeSld2.value = 100 - input;
+// 		input = parseInt(input);
+// 		input = input > 0 ? input : 1;
+// 		input = input < 99 ? input : 99;
+// 		this.text = this.helpTip = input + '%';
+// 		easeSld2.value = 100 - input;
 
-		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
+// 		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
+// 		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
 
-		easePrevGrp.remove(0);
-		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-		easePrevGrp.layout.layout(true);
+// 		easePrevGrp.remove(0);
+// 		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
+// 		easePrevGrp.layout.layout(true);
 
-		var aItem = app.project.activeItem;
-		var selLayers = aItem != null ? aItem.selectedLayers : [];
-		easeOutInfluence = easeSld1.value;
-		easeInInfluence = 100 - easeSld2.value;
+// 		var aItem = app.project.activeItem;
+// 		var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 		easeOutInfluence = easeSld1.value;
+// 		easeInInfluence = 100 - easeSld2.value;
 
-		for (var l = 0; l < selLayers.length; l++) {
-			applyEase(selLayers[l]);
-		}
-	}
-});
+// 		for (var l = 0; l < selLayers.length; l++) {
+// 			applyEase(selLayers[l]);
+// 		}
+// 	}
+// });
 
 //---------------------------------------------------------
 
@@ -447,12 +447,12 @@ layerSeqBtn.onClick = function () {
 
 //---------------------------------------------------------
 
-toolBtn.onClick = function () {
-	currentGrp.visible = false;
-	currentGrp = tabsGrp.tools;
-	readme = '#--subseção-ferramentas-';
-	openTab();
-};
+// toolBtn.onClick = function () {
+// 	currentGrp.visible = false;
+// 	currentGrp = tabsGrp.tools;
+// 	readme = '#--subseção-ferramentas-';
+// 	openTab();
+// };
 
 
 /*

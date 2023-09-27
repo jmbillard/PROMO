@@ -18,7 +18,7 @@
 
 function prefsDialog() {
 	var layerTypeArray = ['shape layer', 'solid layer'];
-	var projectModeDropArray = ['PROMO', 'custom'];
+	var projectModeDropArray = ['PROMO'];//, 'custom'];
 	var ckbGrpSpacing = 20;
 	var btnGrpSpacing = 10;
 	var drpGrpSpacing = 2;

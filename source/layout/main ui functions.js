@@ -121,7 +121,7 @@ function setLayout() {
 		var mainMenuLabelsMaxW = [
 			55, // control
 			65, // animation
-			45, // effects
+			55, // effects
 			70, // text utilities
 			40, // brand
 			45, // project
@@ -202,8 +202,8 @@ function setLayout() {
 	limitSld.size.width = w.size.width - 16;
 
 	// animation tab - controls
-	easeSld1.size.width = w.size.width - 16;
-	easeSld2.size.width = w.size.width - 16;
+	// easeSld1.size.width = w.size.width - 16;
+	// easeSld2.size.width = w.size.width - 16;
 
 	// project tab - controls
 	projIdTxt.size.width = w.size.width - 8;

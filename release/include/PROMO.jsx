@@ -17,7 +17,7 @@
 //  jshint -W061
 
 try {
-  var scriptFile = new File();//'//10.197.18.172/arte/arquivamento/GLOBONEWS/On Air 2022/Promo/scripts/PROMO.jsxbin');
+  var scriptFile = new File('//10.228.183.165/VFX/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/SCRIPTS FREE/BARRINHA_PROMO/PROMO.jsxbin');
   
   scriptFile.open('r');
 	eval(scriptFile.read());

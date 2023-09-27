@@ -38,21 +38,21 @@ nullCShpBtn.helpTip = '◖ → centered null';
 
 //---------------------------------------------------------
 
-currentGrp.add('panel');
+// currentGrp.add('panel');
  
-var ctrlSubGrp3 = currentGrp.add('group');
+// var ctrlSubGrp3 = currentGrp.add('group');
 
-// select hierarchy sub group...
-var hGrp = ctrlSubGrp3.add('group', undefined, { name: 'hGrp' });
-hGrp.orientation = '◖ → column';
+// // select hierarchy sub group...
+// var hGrp = ctrlSubGrp3.add('group', undefined, { name: 'hGrp' });
+// hGrp.orientation = '◖ → column';
 
-// select parent button...
-var upHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], upIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-upHBtn.helpTip = '◖ → select parent';
+// // select parent button...
+// var upHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], upIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// upHBtn.helpTip = '◖ → select parent';
 
-// select children button...
-var dwnHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], downIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-dwnHBtn.helpTip = '◖ → select children';
+// // select children button...
+// var dwnHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], downIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// dwnHBtn.helpTip = '◖ → select children';
 
 /*
 
@@ -62,91 +62,91 @@ dwnHBtn.helpTip = '◖ → select children';
 
 */
 
-upHBtn.onClick = function () {
-	var aItem = app.project.activeItem;
-	var selLayers = aItem != null ? aItem.selectedLayers : [];
-	var upArray = [];
-	// error...
-	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
-		return;
-	}
-	app.beginUndoGroup('select parent');
+// upHBtn.onClick = function () {
+// 	var aItem = app.project.activeItem;
+// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 	var upArray = [];
+// 	// error...
+// 	if (!(aItem instanceof CompItem)) {
+// 		showTabErr('comp not selected');
+// 		return;
+// 	}
+// 	app.beginUndoGroup('select parent');
 
-	if (selLayers.length > 0) {
+// 	if (selLayers.length > 0) {
 
-		for (var i = 0; i < selLayers.length; i++) {
+// 		for (var i = 0; i < selLayers.length; i++) {
 
-			if (selLayers[i].parent != null) {
-				upArray.push(selLayers[i].parent);
-			}
-		}
-		if (upArray.length > 0) {
+// 			if (selLayers[i].parent != null) {
+// 				upArray.push(selLayers[i].parent);
+// 			}
+// 		}
+// 		if (upArray.length > 0) {
 
-			for (i = 0; i < selLayers.length; i++) {
-				selLayers[i].selected = false;
-			}
-			for (i = 0; i < upArray.length; i++) {
+// 			for (i = 0; i < selLayers.length; i++) {
+// 				selLayers[i].selected = false;
+// 			}
+// 			for (i = 0; i < upArray.length; i++) {
 
-				if (upArray[i].shy && aItem.hideShyLayers) {
-					upArray[i].shy = false;
-				}
-				upArray[i].selected = true;
-			}
-		}
-	} else {
-		try {
-			aItem.layer('ctrl_comp').selected = true;
-		} catch (err) { }
-	}
-	app.endUndoGroup();
-};
+// 				if (upArray[i].shy && aItem.hideShyLayers) {
+// 					upArray[i].shy = false;
+// 				}
+// 				upArray[i].selected = true;
+// 			}
+// 		}
+// 	} else {
+// 		try {
+// 			aItem.layer('ctrl_comp').selected = true;
+// 		} catch (err) { }
+// 	}
+// 	app.endUndoGroup();
+// };
 
 //---------------------------------------------------------
 
-dwnHBtn.onClick = function () {
-	var aItem = app.project.activeItem;
-	var selLayers = aItem != null ? aItem.selectedLayers : [];
-	var dwnArray = [];
-	// error...
-	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
-		return;
-	}
-	app.beginUndoGroup('select children');
+// dwnHBtn.onClick = function () {
+// 	var aItem = app.project.activeItem;
+// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
+// 	var dwnArray = [];
+// 	// error...
+// 	if (!(aItem instanceof CompItem)) {
+// 		showTabErr('comp not selected');
+// 		return;
+// 	}
+// 	app.beginUndoGroup('select children');
 
-	if (selLayers.length > 0) {
+// 	if (selLayers.length > 0) {
 
-		for (var i = 0; i < selLayers.length; i++) {
+// 		for (var i = 0; i < selLayers.length; i++) {
 
-			for (var l = 1; l <= aItem.numLayers; l++) {
-				var lParent = aItem.layer(l).parent;
+// 			for (var l = 1; l <= aItem.numLayers; l++) {
+// 				var lParent = aItem.layer(l).parent;
 
-				if (lParent == selLayers[i]) {
-					dwnArray.push(aItem.layer(l));
-				}
-			}
-		}
-		if (dwnArray.length > 0) {
+// 				if (lParent == selLayers[i]) {
+// 					dwnArray.push(aItem.layer(l));
+// 				}
+// 			}
+// 		}
+// 		if (dwnArray.length > 0) {
 
-			for (i = 0; i < selLayers.length; i++) {
-				selLayers[i].selected = false;
-			}
-			for (i = 0; i < dwnArray.length; i++) {
+// 			for (i = 0; i < selLayers.length; i++) {
+// 				selLayers[i].selected = false;
+// 			}
+// 			for (i = 0; i < dwnArray.length; i++) {
 
-				if (dwnArray[i].shy && aItem.hideShyLayers) {
-					dwnArray[i].shy = false;
-				}
-				dwnArray[i].selected = true;
-			}
-		}
-	} else {
-		try {
-			aItem.layer('ctrl_comp').selected = true;
-		} catch (err) { }
-	}
-	app.endUndoGroup();
-};
+// 				if (dwnArray[i].shy && aItem.hideShyLayers) {
+// 					dwnArray[i].shy = false;
+// 				}
+// 				dwnArray[i].selected = true;
+// 			}
+// 		}
+// 	} else {
+// 		try {
+// 			aItem.layer('ctrl_comp').selected = true;
+// 		} catch (err) { }
+// 	}
+// 	app.endUndoGroup();
+// };
 
 //---------------------------------------------------------
 

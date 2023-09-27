@@ -28,11 +28,15 @@ currentGrp.add('panel');
 
 var projSubGrp2 = currentGrp.add('group');
 
+// var renameItemSubGrp = projSubGrp2.add('group');
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 renameItemBtn.helpTip = '◖ → rename selected comps\n◗ → rename ALL comps\n\nALL CAPS and removes special characters';
+// var renameItemLab = renameItemSubGrp.add('statictext', undefined, 'rename comps', { name: 'label' , truncate: 'end'});
 
+// var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projOrgBtn.helpTip = '◖ → create AE project folders\n⦶ → organization tags\n◗ → auto organize project';
+// var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------
 
@@ -46,6 +50,8 @@ collectFontsBtn.helpTip = '◖ → collect project fonts';
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → open current project folder';
 
+
+getStaticTextLabels(tabsGrp.menu, []);
 /*
 
 ---------------------------------------------------------------
