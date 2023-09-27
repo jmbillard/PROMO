@@ -240,9 +240,9 @@ function LOGO_GLOBO() {
 
 	shp = new Shape();
 	shp.closed= true;
-	shp.inTangents= [[0,-0.0400],[10.1200,-1.4300],[97.9100,-0.1000],[0,0],[0.2100,0],[0.2100,0],[0,0],[0.0700,0],[1.4200,9.6300],[0,55.2200],[0,0.9200],[0,0.9400],[-0.0100,0.0400],[-10.1200,1.4300],[-97.9100,0.1000],[0,0],[0,0],[-0.2100,0],[-0.2100,0],[0,0],[0,0],[-0.0700,-0.0100],[-1.4200,-9.6300],[0,-55.2100],[0,0],[0,-0.9200],[0,-0.9300]];
-	shp.outTangents= [[-1.4100,9.6200],[-0.0200,0],[0,0],[-0.2100,0],[-0.2100,0],[0,0],[-97.9100,-0.1000],[-10.0600,-1.4200],[0,-0.0300],[0,-0.9300],[0,-0.9300],[0,-55.2100],[1.4100,-9.6200],[0.0200,0],[0,0],[0,0],[0.2100,0],[0.2100,0],[0,0],[0,0],[97.9100,0.1000],[10.0600,1.4200],[0,0.0300],[0,0],[0,0.9400],[0,0.9300],[0,55.2200]];
-	shp.vertices= [[198.6600,102.3800],[180.8000,120.2000],[1.5700,126.8300],[0.6300,126.8300],[0,126.8300],[-0.6300,126.8300],[-1.5800,126.8300],[-180.8600,120.2000],[-198.6600,102.3700],[-204.8400,2.7900],[-204.8400,0],[-204.8400,-2.7900],[-198.6600,-102.3800],[-180.8000,-120.2100],[-1.5800,-126.8300],[-1.5800,-126.8300],[-0.6300,-126.8300],[0,-126.8300],[0.6300,-126.8300],[1.5700,-126.8300],[1.5700,-126.8300],[180.8600,-120.2000],[198.6600,-102.3700],[204.8400,-2.7900],[204.8400,-2.7900],[204.8300,-0.0100],[204.8400,2.7900]];
+	shp.inTangents= [[0,0],[10,0],[100,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,10],[0,55],[0,0],[0,0],[0,0],[-10,0],[-100,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,-10],[0,-55],[0,0],[0,0],[0,0]];
+	shp.outTangents= [[0,10],[0,0],[0,0],[0,0],[0,0],[0,0],[-100,0],[-10,0],[0,0],[0,0],[0,0],[0,-55],[0,-10],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[100,0],[10,0],[0,0],[0,0],[0,0],[0,0],[0,55]];
+	shp.vertices= [[198.66,102.38],[180.8,120.2],[1.57,126.83],[0.63,126.83],[0,126.83],[-0.63,126.83],[-1.58,126.83],[-180.86,120.2],[-198.66,102.37],[-204.84,2.79],[-204.84,0],[-204.84,-2.79],[-198.66,-102.38],[-180.8,-120.21],[-1.58,-126.83],[-1.58,-126.83],[-0.63,-126.83],[0,-126.83],[0.63,-126.83],[1.57,-126.83],[1.57,-126.83],[180.86,-120.2],[198.66,-102.37],[204.84,-2.79],[204.84,-2.79],[204.83,-0.01],[204.84,2.79]];
 
 	janela_contents3.property('ADBE Vector Shape').setValue(shp);
 	corpo_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
@@ -253,7 +253,7 @@ function LOGO_GLOBO() {
 	shp.closed= true;
 	shp.inTangents= [[-140,0],[0,-140],[140,0],[0,140]];
 	shp.outTangents= [[140,0],[0,140],[-140,0],[0,-140]];
-	shp.vertices= [[0,-253.5],[253.5,0],[0,253.5],[-253.5,0]];
+	shp.vertices= [[0,-254],[254,0],[0,254],[-254,0]];
 
 	corpo_contents3.property('ADBE Vector Shape').setValue(shp);
 	transform_logo2 = logo_contents1.addProperty('ADBE Vector Transform Group');
@@ -266,21 +266,23 @@ function LOGO_GLOBO() {
 	// key 3...
 	transform_logo2.property('ADBE Vector Scale').setValueAtTime(5.4637971304638, [80,80]);
 
+	// key 1 ease...
 	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(1, 6613, 6613);
 	var easeIn1 = new KeyframeEase(0, 16.6667);
 	var easeOut1 = new KeyframeEase(-14330, 2);
 	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(1, [easeIn1, easeIn1], [easeOut1, easeOut1]);
-
+	// key 2 ease...
 	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(2, 6613, 6613);
 	var easeIn2 = new KeyframeEase(-130, 55);
 	var easeOut2 = new KeyframeEase(-130, 5);
 	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(2, [easeIn2, easeIn2], [easeOut2, easeOut2]);
-
+	// key 3 ease...
 	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(3, 6613, 6613);
 	var easeIn3 = new KeyframeEase(0, 30);
 	var easeOut3 = new KeyframeEase(0, 16.6667);
 	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(3, [easeIn3, easeIn3], [easeOut3, easeOut3]);
-	
+
+	// fill color...
 	color_contents1 = contents.addProperty('ADBE Vector Graphic - Fill');
 	color_contents1.name = 'color';
 	color_contents1.property('ADBE Vector Fill Color').setValue([1,1,1,1]);
