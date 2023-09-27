@@ -470,17 +470,17 @@ function filesCollectPROMO(projId, progressWindow) {
 	return savePath;
 }
 
-function createDefaultProjFolders(pathArray, progressWindow) {
-	var progressLabel = progressWindow.children[0];
-	var progressBar = progressWindow.children[1];
+// function createDefaultProjFolders(pathArray) {
+// 	var progressLabel = progressWindow.children[0];
+// 	var progressBar = progressWindow.children[1];
 
-	progressBar.maxvalue = pathArray.length;
+// 	progressBar.maxvalue = pathArray.length;
 
-	for (var i = 0; i < pathArray.length; i++) {
+// 	for (var i = 0; i < pathArray.length; i++) {
 		
-		var path = pathArray[i];
-		createPathFolders(path);
-		progressLabel.text = '...' + path.match(/\/.+$/);
-		progressBar.value = i;
-	}
-}
+// 		var path = pathArray[i];
+// 		createPathFolders(path);
+// 		progressLabel.text = '...' + path.match(/\/.+$/);
+// 		progressBar.value = i;
+// 	}
+// }

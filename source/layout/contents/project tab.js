@@ -145,28 +145,28 @@ projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		if (app.project.numItems == 0) return;
 
-		var progressWindow = progressDialog('');
-		var enterBtn = progressWindow.children[2].children[0];
-		var cancelBtn = progressWindow.children[2].children[1];
-		app.beginUndoGroup('organize project');
+		// var progressWindow = progressDialog('');
+		// var enterBtn = progressWindow.children[2].children[0];
+		// var cancelBtn = progressWindow.children[2].children[1];
+		// app.beginUndoGroup('organize project');
 
-		enterBtn.onClick = progressWindow.onEnterKey = progressWindow.onShow = function () {
+		// enterBtn.onClick = progressWindow.onEnterKey = progressWindow.onShow = function () {
 			deleteProjectFolders();
-			populateProjectFolders(progressWindow);
+			populateProjectFolders();
 			deleteEmptyProjectFolders();
 
-			app.endUndoGroup();
-			progressWindow.close();
-		};
+		// 	app.endUndoGroup();
+		// 	progressWindow.close();
+		// };
 
-		cancelBtn.onClick = function () {
-			progressWindow.close();
-			app.endUndoGroup();
+		// cancelBtn.onClick = function () {
+		// 	progressWindow.close();
+		// 	app.endUndoGroup();
 
-			executeCommandID('Undo organize project');
-		};
+		// 	executeCommandID('Undo organize project');
+		// };
 
-		progressWindow.show();
+		// progressWindow.show();
 	}
 });
 
