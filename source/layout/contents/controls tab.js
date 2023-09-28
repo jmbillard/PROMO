@@ -16,15 +16,27 @@ var ctrlSubGrp1 = currentGrp.add('group');
 
 // copy animation toggle... 
 var aniTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, aniTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-aniTogBtn.helpTip = '⦿ → copiar animação';
+aniTogBtn.helpTip = '⦿ → copiar animação\n\
+> modificador\
+transfere a animação das propriedades\
+de transformação do layer selecionado\
+durante a criação do null pai.';
 
 // copy expressions toggle... 
 var exprTogBtn = ctrlSubGrp1.add('iconbutton', iconTogSize, exprTogIcon[iconTheme], { name: 'btn', style: 'toolbutton', toggle: 1 });
-exprTogBtn.helpTip = '⦿ → copiar expressões';
+exprTogBtn.helpTip = '⦿ → copiar expressões\n\
+> modificador\
+transfere as expressões das propriedades\
+de transformação do layer selecionado\
+durante a criação do null pai.';
 
 // create parent null... 
 var nullShpBtn = currentGrp.add('iconbutton', iconSize, nullIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullShpBtn.helpTip = '\n◗ → criar null pai';
+nullShpBtn.helpTip = '\n◗ → criar null pai\n\
+cria um null pai na posição de cada layer selecionado.\
+caso não exista um layer selecionado, o null será criado no centro da tela.\
+\
+seu comportamento será alterado pelos modificadores acima.';
 
 //---------------------------------------------------------
 
@@ -34,25 +46,29 @@ var ctrlSubGrp2 = currentGrp.add('group');
 
 // create centered null
 var nullCShpBtn = ctrlSubGrp2.add('iconbutton', iconSize, nullCenterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullCShpBtn.helpTip = '◖ → criar null central';
+nullCShpBtn.helpTip = '◖ → criar null central\n\
+cria um único null pai no centro geométrico entre os layers selecionados.\
+pelo menos dois layers precisam estar selecionados.';
 
 //---------------------------------------------------------
 
-// currentGrp.add('panel');
+currentGrp.add('panel');
  
-// var ctrlSubGrp3 = currentGrp.add('group');
+var ctrlSubGrp3 = currentGrp.add('group');
 
-// // select hierarchy sub group...
+// select hierarchy sub group...
 // var hGrp = ctrlSubGrp3.add('group', undefined, { name: 'hGrp' });
 // hGrp.orientation = '◖ → column';
 
-// // select parent button...
-// var upHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], upIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// upHBtn.helpTip = '◖ → select parent';
+// select parent button...
+var upHBtn = ctrlSubGrp3.add('iconbutton', iconSize, upIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+upHBtn.helpTip = '◖ → selecionar pai\n\
+navega pela hierarquia subindo um nível.';
 
-// // select children button...
-// var dwnHBtn = hGrp.add('iconbutton', [0, 0, 36, 16], downIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-// dwnHBtn.helpTip = '◖ → select children';
+// select children button...
+var dwnHBtn = ctrlSubGrp3.add('iconbutton', iconSize, downIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+dwnHBtn.helpTip = '◖ → select children\n\
+navega pela hierarquia descendo um nível.';
 
 /*
 

@@ -19,8 +19,8 @@ projIdTxt.maximumSize.width = 100;
 projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
-var saveBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-saveBtn.helpTip = '◖ → criar estrutura _DEFAULT de pastas no sistema';
+var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+projFoldersBtn.helpTip = '◖ → criar estrutura de pastas no sistema\n◗ → criar estrutura de pastas no AE';
 
 //---------------------------------------------------------
 
@@ -35,13 +35,13 @@ renameItemBtn.helpTip = '◖ → renomear comps selecionadas\n◗ → renomear T
 
 // var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → organização automática de projetos\n⦶ → tags de organização\n◗ → criar estrutura _DEFAULT de pastas no AE';
+projOrgBtn.helpTip = '◖ → organização automática de projetos\n◗ → tags de organização';
 // var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 var projSubGrp3 = currentGrp.add('group');
 
 var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
@@ -119,7 +119,6 @@ renameItemBtn.onClick = function () {
 
 	var compArray = app.project.selection;
 
-	// compArray = compArray.length > 0 ? compArray : getCompsAndTemplates();
 	renamePromoComps(compArray);
 
 	app.endUndoGroup();
@@ -128,58 +127,27 @@ renameItemBtn.onClick = function () {
 //---------------------------------------------------------
 
 projOrgBtn.addEventListener('click', function (c) {
-	if (c.button == 1) {
+	if (c.button == 2) {
 		if (app.project.numItems == 0) return;
+
 		tagDialog();
 	}
 });
 
 projOrgBtn.onClick = function () {
 	app.beginUndoGroup('create project folders');
-	
+
 	deleteProjectFolders();
 	populateProjectFolders();
 	deleteEmptyProjectFolders();
 
-	// projectTemplateFolders(projectMode); // project folder structure...
 	app.endUndoGroup();
 };
 
-projOrgBtn.addEventListener('click', function (c) {
+projFoldersBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
-		if (app.project.numItems == 0) return;
 
-		// var progressWindow = progressDialog('');
-		// var enterBtn = progressWindow.children[2].children[0];
-		// var cancelBtn = progressWindow.children[2].children[1];
-		// app.beginUndoGroup('organize project');
-
-		// enterBtn.onClick = progressWindow.onEnterKey = progressWindow.onShow = function () {
-			// deleteProjectFolders();
-			// populateProjectFolders();
-			// deleteEmptyProjectFolders();
 		projectTemplateFolders(projectMode); // project folder structure...
-
-		// 	app.endUndoGroup();
-		// 	progressWindow.close();
-		// };
-
-		// cancelBtn.onClick = function () {
-		// 	progressWindow.close();
-		// 	app.endUndoGroup();
-
-		// 	executeCommandID('Undo organize project');
-		// };
-
-		// progressWindow.show();
-	}
-});
-
-//---------------------------------------------------------
-
-saveBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
-		alert(wip);
 	}
 });
 
@@ -197,11 +165,11 @@ collectFontsBtn.onClick = function () {
 	var currentProjPath = new Folder(decodeURI(currentProj.path)).path;
 
 	fontCollect(currentProjPath);
-	
+
 	openFolder(currentProjPath);
 };
 
-saveBtn.onClick = function () {
+projFoldersBtn.onClick = function () {
 	var dateStr = system
 		.callSystem('cmd.exe /c date /t')
 		.trim();
@@ -237,7 +205,7 @@ saveBtn.onClick = function () {
 
 	projFile = new File(savePath + '/01 PROJETOS/' + projId);
 	app.project.save(projFile);
-	
+
 	openFolder(savePath);
 	// setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
 
@@ -256,7 +224,7 @@ fldProjBtn2.onClick = function () {
 	}
 	var currentProj = app.project.file;
 	var currentProjPath = decodeURI(currentProj.path);
-	var fld =  new Folder(currentProjPath);
+	var fld = new Folder(currentProjPath);
 
 	if (!fld.exists) {
 		showTabErr('this folder is not accessible...');

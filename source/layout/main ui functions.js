@@ -120,16 +120,16 @@ function setLayout() {
 
 		var mainMenuLabelsMaxW = [
 			55, // control
-			65, // animation
+			55, // animation
 			55, // effects
-			70, // text utilities
+			35, // text utilities
 			40, // brand
 			45, // project
 			55, // shortcuts
-			60, // templates
-			65, // text search
-			50, // preview
-			65, // app utilities
+			//60, // templates
+			40, // text search
+			60, // preview
+			//65, // app utilities
 			50  // dev tools
 		];
 
@@ -137,15 +137,15 @@ function setLayout() {
 			mainMenuLabels[mlh].maximumSize.width = mainMenuLabelsMaxW[mlh];
 			mainMenuLabels[mlh].size.width = mainMenuLabelsMaxW[mlh];
 
-			if (w.size.width < 1380 || !showLabels) {
+			if (w.size.width < 1100 || !showLabels) {
 				mainMenuLabels[mlh].size.width = 0;
 				mainMenuLabels[mlh].parent.spacing = 0;
 			}
 		}
-		if (w.size.width > 1380) {
+		if (w.size.width > 1100) {
 			tabsGrp.menu.margins = [0, 0, 0, 0];
 		}
-		if (w.size.width > 1380 && showLabels) devLab.size.width = devMode ? 50 : 0;
+		if (w.size.width > 1100 && showLabels) devLab.size.width = devMode ? 50 : 0;
 
 	} else {
 		// vertical layout
