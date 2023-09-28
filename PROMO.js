@@ -41,14 +41,14 @@ function PROMO_UTL(thisObj) {
 	// checks network access...
 	if (!netAccess()) {
 		// no network access...
-		alert('please check the ' + netConfigName + ' preference');
+		alert('por favor, marque a opção ' + netConfigName + ' nas preferencias');
 
 		// opens AE preferences...
 		app.executeCommand(3131); // → scripting preferences
 
 		if (!netAccess()) {
 			// no network access...
-			alert('no network...  Σ(っ °Д °;)っ\nlimited functionality mode');
+			alert('sem acesso a rede...  Σ(っ °Д °;)っ\na funcionalidade será limitada');
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...

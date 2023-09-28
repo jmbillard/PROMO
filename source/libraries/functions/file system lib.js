@@ -386,6 +386,8 @@ function fontCollect(savePath) {
 	if (saveFolder.getFiles().length == 0) saveFolder.remove();
 
 	if (failArray.length > 0) alert(failArray.toString() + ' cant be copied');
+
+	return savePath;
 }
 
 // copy all local files used in the project to PRODUCAO DIA-A-DIA...

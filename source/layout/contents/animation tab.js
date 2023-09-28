@@ -15,7 +15,9 @@ var animSubGrp1 = currentGrp.add('group');
 
 // copy keyframe influences...
 var copyInfBtn = animSubGrp1.add('iconbutton', iconSize, copyInfluenceIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-copyInfBtn.helpTip = '◖ → copiar influencia do keyframe';
+copyInfBtn.helpTip = '◖ → copiar influencia do keyframe\n\
+copia a influencia e velocidade\
+de UM keyframe selecionado';
 
 var keyStatsGrp = animSubGrp1.add('group', undefined, { name: 'keyStatsGrp' });
 keyStatsGrp.orientation = 'stack';
@@ -31,7 +33,9 @@ for (var kf = 0; kf < keyImgs.length; kf++) {
 
 // paste keyframe influences...
 var pasteInfBtn = animSubGrp1.add('iconbutton', iconSize, pasteInfluenceIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-pasteInfBtn.helpTip = '◖ → colar influencia no keyframe';
+pasteInfBtn.helpTip = '◖ → colar influencia no keyframe\n\
+cola a influencia e velocidade\
+em todos os keyframe selecionados';
 
 //---------------------------------------------------------
 
@@ -64,7 +68,10 @@ currentGrp.add('panel');
  
 
 var lockTrmBtn = currentGrp.add('iconbutton', iconSize, lockPropIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-lockTrmBtn.helpTip = '◖ → bloquear propriedades de transformação';
+lockTrmBtn.helpTip = '◖ → bloquear propriedades de transformação\n\
+bloqueia todas as propriedades de transformação\
+não animadas e sem expressões';
+
 
 //---------------------------------------------------------
 
@@ -74,13 +81,20 @@ currentGrp.add('panel');
 var animSubGrp3 = currentGrp.add('group');
 
 var layerRandBtn = animSubGrp3.add('iconbutton', iconSize, randomizeLayerTimesIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-layerRandBtn.helpTip = '◖ → randomizar layers na timeline';
+layerRandBtn.helpTip = '◖ → randomizar layers na timeline\n\
+move os layers selecionados um número\
+aleatório de frames na time line.\n\
+seu comportamento será alterado pelo valor abaixo.';
+
 
 var layerRandTxt = animSubGrp3.add('edittext', undefined, '30');
 layerRandTxt.minimumSize.width = vMin;
 
 var layerSeqBtn = animSubGrp3.add('iconbutton', iconSize, sequenceLayerTimesIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-layerSeqBtn.helpTip = '◖ → sequenciar layers na timeline';
+layerSeqBtn.helpTip = '◖ → sequenciar layers na timeline\n\
+sequencia os layers selecionados usando\
+um valor  na time line.\n\
+seu comportamento será alterado pelo valor acima.';
 
 //---------------------------------------------------------
 

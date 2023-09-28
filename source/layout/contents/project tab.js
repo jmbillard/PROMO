@@ -20,7 +20,11 @@ projIdTxt.minimumSize.width = vMin;
 projIdTxt.helpTip = projIdContent;
 
 var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projFoldersBtn.helpTip = '◖ → criar estrutura de pastas no sistema\n◗ → criar estrutura de pastas no AE';
+projFoldersBtn.helpTip = '◖ → criar estrutura de pastas no sistema\n\
+abre a janela de seleção de pastas no\
+drive L para escolher onde criar a\
+estrutura do projeto no sistema.\n\
+◗ → criar estrutura de pastas no AE';
 
 //---------------------------------------------------------
 
@@ -30,12 +34,21 @@ var projSubGrp2 = currentGrp.add('group');
 
 // var renameItemSubGrp = projSubGrp2.add('group');
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → renomear comps selecionadas\n◗ → renomear TODAS as comps';
+renameItemBtn.helpTip = '◖ → renomear comps selecionadas\
+◗ → renomear TODAS as comps\n\
+remove caracteres especiais,\
+formata horários e transforma\
+tudo para caixa alta.\
+usa o nome da comp para aplicar\
+tags de organização predeterminadas.';
 // var renameItemLab = renameItemSubGrp.add('statictext', undefined, 'rename comps', { name: 'label' , truncate: 'end'});
 
 // var projOrgSubGrp = projSubGrp2.add('group');
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → organização automática de projetos\n◗ → tags de organização';
+projOrgBtn.helpTip = '◖ → organização automática de projetos\n\
+organiza o projeto usando as tags de organização.\n\
+◗ → tags de organização\
+abre a janela de tags para aplicar';
 // var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
 
 //---------------------------------------------------------
@@ -45,7 +58,9 @@ currentGrp.add('panel');
 var projSubGrp3 = currentGrp.add('group');
 
 var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto';
+collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n\
+copia todas as fontes usadas no projeto\
+para a pasta de fontes';
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → abir pasta do projeto';
@@ -164,9 +179,9 @@ collectFontsBtn.onClick = function () {
 	var currentProj = app.project.file;
 	var currentProjPath = new Folder(decodeURI(currentProj.path)).path;
 
-	fontCollect(currentProjPath);
+	var fontsPath = fontCollect(currentProjPath);
 
-	openFolder(currentProjPath);
+	openFolder(fontsPath);
 };
 
 projFoldersBtn.onClick = function () {

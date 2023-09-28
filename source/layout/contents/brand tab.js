@@ -38,7 +38,9 @@ var shpPalletBtn = currentGrp.add('iconbutton', iconSize, palletIcon[iconTheme],
 shpPalletBtn.helpTip = '◖ → criar layer guia de cores';
 
 var LOGO_GLOBOBtn = currentGrp.add('iconbutton', iconSize, logoGloboIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-LOGO_GLOBOBtn.helpTip = '◖ → logo GLOBO animado';
+LOGO_GLOBOBtn.helpTip = '◖ → logo GLOBO animado\n\
+cria a animação de zoom out\
+do LOGO GLOBO como shape layer.';
 
 /*
 

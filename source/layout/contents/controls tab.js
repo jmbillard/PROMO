@@ -32,7 +32,7 @@ durante a criação do null pai.';
 
 // create parent null... 
 var nullShpBtn = currentGrp.add('iconbutton', iconSize, nullIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-nullShpBtn.helpTip = '\n◗ → criar null pai\n\
+nullShpBtn.helpTip = '◖ → criar null pai\n\
 cria um null pai na posição de cada layer selecionado.\
 caso não exista um layer selecionado, o null será criado no centro da tela.\
 \
