@@ -298,7 +298,7 @@ function readFileContent(file) {
 	fileContent = file.read();
 	file.close();
 
-	return fileContent;
+	return fileContent.toString();
 }
 
 function saveTextFile(fileContent, filePath) {
