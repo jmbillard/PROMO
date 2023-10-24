@@ -13,9 +13,9 @@
 # 📌 funcionamento básico
 
 1. abra a **comp** '_CONFRONTO_'.
-1. renomeie os layers 1 e 2 com o nome dos times.
-1. use a _janela de controle de efeitos_ para alterar as cores de cada time.
-1. adicione ao nome da **comp** '_CONFRONTO_' os nomes dos respectivos times.
+2. renomeie os layers 1 e 2 com o nome dos times.
+3. use a _janela de controle de efeitos_ para alterar as cores de cada time.
+4. adicione ao nome da **comp** '_CONFRONTO_' os nomes dos respectivos times.
    > 📋 _exemplo:_ "_CONFRONTO - FLAMENGO X CORINTHIANS_".
 
    > 🚩 _obs:_ Sempre use **CAIXA ALTA** sem acentuação e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
@@ -103,14 +103,14 @@ os controles dos presets de cor estão em cada **layer** da **comp** '_ESCUDOS_'
 
   > 🚩 _obs:_ Maiúsculas e minúsculas assim como acentos e caracteres especiais são ignorados na busca dos nomes dos times, assim, "_fla_", "_FLA_" e "_fLÁ_" sempre mostrarão o nome do primeiro time que possuir "_FLA_" em seu nome.
 
-  ***
+  ---
 
 - para inverter a ordem dos times em um confronto basta alterar a ordem dos 2 primeiros **layers** da **com** '_CONFRONTOS_'.
 
   > 📋 _exemplo:_\
   > ![inverter](templateBrasileirao2023/03-inverter.gif)
 
-  ***
+  ---
 
 - para agilizar a produção de múltiplos confrontos use a função de **renomear comps** na barra de **PROMO v0.3** ou superior.
   > 📋 _exemplo:_\
