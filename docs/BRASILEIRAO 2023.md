@@ -1,54 +1,63 @@
 # ⚽ CONFRONTO - BRASILEIRÃO 2023
-📂 *L:\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2023\BRASILEIRÃO\01PROJETOS*\
-📑 **_CONFRONTO.aep**
 
-> 📋 *exemplo:*\
->![exemplo](templateBrasileirao2023/exemplo.gif)
+📂 _L:\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2023\BRASILEIRÃO\01PROJETOS_\
+📑 **\_CONFRONTO.aep**
 
-# 📌 funcionamento básico
-1. abra a **comp** '*CONFRONTO*'.
-1. renomeie os layers 1 e 2 com o nome dos times.
-2. use a *janela de controle de efeitos* para alterar as cores de cada time.
-3. adicione ao nome da **comp** '*CONFRONTO*' os nomes dos respectivos times.
-   
-> 📋 *exemplo:* "*CONFRONTO - FLAMENGO X CORINTHIANS*".
-
-> 🚩 *obs:* Sempre use **CAIXA ALTA** sem acentuação e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
+> 📋 _exemplo:_\
+> ![exemplo](templateBrasileirao2023/exemplo.gif)
 
 ---
+
+<br><br>
+
+# 📌 funcionamento básico
+
+1. abra a **comp** '_CONFRONTO_'.
+1. renomeie os layers 1 e 2 com o nome dos times.
+1. use a _janela de controle de efeitos_ para alterar as cores de cada time.
+1. adicione ao nome da **comp** '_CONFRONTO_' os nomes dos respectivos times.
+   > 📋 _exemplo:_ "_CONFRONTO - FLAMENGO X CORINTHIANS_".
+
+   > 🚩 _obs:_ Sempre use **CAIXA ALTA** sem acentuação e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
+
+---
+
 <br><br>
 
 # 🚨 Atenção!
+
 - para adicionar um novo escudo:
-  1. abra a **comp** '*ESCUDOS*'.
+
+  1. abra a **comp** '_ESCUDOS_'.
   2. duplique um **layer** de escudo existente.
   3. substitua o **layer** duplicado pelo novo escudo.
   4. renomeie o **layer** duplicado com o nome do novo time seguido da sigla do estado.
-  5. altere os presets de cor do novo time na *janela de controle de efeitos*.
+  5. altere os presets de cor do novo time na _janela de controle de efeitos_.
+     > 📋 _exemplos de nome do **layer** de escudo:_ "_cuiabá MT_", "_são paulo SP_".
 
-  > 📋 *exemplos de nome do **layer** de escudo:* "*cuiabá MT*", "*são paulo SP*".
-
-  > 🚩 *obs:* O nome do **layer** será sempre o nome exibido na **comp** '*CONFRONTO*'.
+     > 🚩 _obs:_ O nome do **layer** será sempre o nome exibido na **comp** '_CONFRONTO_'.
 
 - para alterar as cores de um escudo existente:
-  1. abra a **comp** '*ESCUDOS*'.
+  1. abra a **comp** '_ESCUDOS_'.
   2. selecione o **layer** do escudo desejado.
-  3. altere os presets de cor do time na *janela de controle de efeitos*.
-
-	> 📋 *exemplo:*\
-  >![escudos](templateBrasileirao2023/04-alterar-ou-adicionar-escudos.gif)
+  3. altere os presets de cor do time na _janela de controle de efeitos_.
+     > 📋 _exemplo:_\
+     > ![escudos](templateBrasileirao2023/04-alterar-ou-adicionar-escudos.gif)
 
 ---
+
 <br><br>
 
 # 📣 parâmetros
 
-os controles dos times estão nos 2 primeiros **layers** da **comp** '*CONFRONTO*', são eles:
+os controles dos times estão nos 2 primeiros **layers** da **comp** '_CONFRONTO_', são eles:
 
 ### opções do time
+
 ![fx1](<templateBrasileirao2023/ocoes do time.png>)
 
 - esquema de cores:
+
   - principal → cores principais do preset time.
   - alternativo → cores alternativas do preset time.
   - livre → todas as cores do time poderão ser alteradas.
@@ -59,12 +68,14 @@ os controles dos times estão nos 2 primeiros **layers** da **comp** '*CONFRONTO
 - nome bg → controla a cor do nome exibido no bg.
 - bg → controla a cor do bg.
 
-os controles dos presets de cor estão em cada **layer** da **comp** '*ESCUDOS*', são eles:
+os controles dos presets de cor estão em cada **layer** da **comp** '_ESCUDOS_', são eles:
 
 ### esquema de cores
+
 ![fx2](<templateBrasileirao2023/esquema de cores.png>)
 
 - cores principais:
+
   - nome → controla a cor do nome no esquema principal.
   - base → controla a cor da base atrás nome no esquema principal.
   - noise → controla a cor do ruído do bg no esquema principal.
@@ -77,31 +88,30 @@ os controles dos presets de cor estão em cada **layer** da **comp** '*ESCUDOS*'
   - alt. noise → controla a cor do ruído do bg no esquema alternativo.
   - alt. nome bg → controla a cor do nome exibido no bg no esquema alternativo.
   - alt. bg → controla a cor do bg no esquema alternativo.
+
 ---
+
 <br><br>
 
 # ✨ dicas
 
 - não é preciso digitar o nome completo dos times na maioria das vezes, caso existam 2 times com o mesmo nome, basta digitar o nome completo incluindo a sigla do estado.
 
-  > 📋 *exemplo:* "*fla*" x "*flu*", "*fluminense de feira de santana*" x "*fluminense RJ*"
+  > 📋 _exemplo:_ "_fla_" x "_flu_", "_fluminense de feira de santana_" x "_fluminense RJ_"
 
-	>![busca](<templateBrasileirao2023/01-renomear times.gif>)
+  > ![busca](<templateBrasileirao2023/01-renomear times.gif>)
 
-  > 🚩 *obs:* Maiúsculas e minúsculas assim como acentos e caracteres especiais são ignorados na busca dos nomes dos times, assim, "*fla*", "*FLA*" e "*fLÁ*" sempre mostrarão o nome do primeiro time que possuir "*FLA*" em seu nome.
+  > 🚩 _obs:_ Maiúsculas e minúsculas assim como acentos e caracteres especiais são ignorados na busca dos nomes dos times, assim, "_fla_", "_FLA_" e "_fLÁ_" sempre mostrarão o nome do primeiro time que possuir "_FLA_" em seu nome.
 
+  ***
 
-	---
+- para inverter a ordem dos times em um confronto basta alterar a ordem dos 2 primeiros **layers** da **com** '_CONFRONTOS_'.
 
-- para inverter a ordem dos times em um confronto basta alterar a ordem dos 2 primeiros **layers** da **com** '*CONFRONTOS*'.
+  > 📋 _exemplo:_\
+  > ![inverter](templateBrasileirao2023/03-inverter.gif)
 
-	> 📋 *exemplo:*\
-	>![inverter](templateBrasileirao2023/03-inverter.gif)
-
-	---
+  ***
 
 - para agilizar a produção de múltiplos confrontos use a função de **renomear comps** na barra de **PROMO v0.3** ou superior.
-
-	> 📋 *exemplo:*\
-	>![renomear](templateBrasileirao2023/05-renomear-confronto.gif)
-
+  > 📋 _exemplo:_\
+  > ![renomear](templateBrasileirao2023/05-renomear-confronto.gif)
