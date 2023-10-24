@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BRASILEIRAO 2023.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E2%9A%BD-confronto---brasileir%C3%A3o-2023">⚽ CONFRONTO - BRASILEIRÃO 2023</h1>
+<p>📂 <em>L:\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2023\BRASILEIRÃO\01PROJETOS</em><br>
+📑 <strong>_CONFRONTO.aep</strong></p>
+<blockquote>
+<p>📋 <em>exemplo:</em><br>
+<img src="templateBrasileirao2023/exemplo.gif" alt="exemplo"></p>
+</blockquote>
+<h1 id="%F0%9F%93%8C-funcionamento-b%C3%A1sico">📌 funcionamento básico</h1>
+<ol>
+<li>abra a <strong>comp</strong> '<em>CONFRONTO</em>'.</li>
+<li>renomeie os layers 1 e 2 com o nome dos times.</li>
+<li>use a janela de controle de efeitos para alterar as cores de cada time.</li>
+<li>adicione ao nome da <strong>comp</strong> '<em>CONFRONTO</em>' os nomes dos respectivos times.</li>
+</ol>
+<blockquote>
+<p>📋 <em>exemplo:</em> &quot;<em>CONFRONTO - FLAMENGO X CORINTHIANS</em>&quot;.</p>
+</blockquote>
+<blockquote>
+<p>🚩 <em>obs:</em> Sempre use <strong>CAIXA ALTA</strong> sem acentuação e <strong>SEM CARACTERES ESPECIAIS</strong> para nomear <strong>comps</strong>.</p>
+</blockquote>
+<hr>
+<p><br><br></p>
+<h1 id="%F0%9F%9A%A8-aten%C3%A7%C3%A3o">🚨 Atenção!</h1>
+<ul>
+<li>
+<p>para adicionar um novo escudo:</p>
+<ol>
+<li>abra a <strong>comp</strong> '<em>ESCUDOS</em>'.</li>
+<li>duplique um <strong>layer</strong> de escudo existente.</li>
+<li>substitua o <strong>layer</strong> duplicado pelo novo escudo.</li>
+<li>renomeie o <strong>layer</strong> duplicado com o nome do novo time seguido da sigla do estado.</li>
+<li>altere os presets de cor do novo time na <em>janela de controle de efeitos</em>.</li>
+</ol>
+<blockquote>
+<p>📋 <em>exemplos de nome do <strong>layer</strong> de escudo:</em> &quot;<em>cuiabá MT</em>&quot;, &quot;<em>são paulo SP</em>&quot;.</p>
+</blockquote>
+<blockquote>
+<p>🚩 <em>obs:</em> O nome do <strong>layer</strong> será sempre o nome exibido na <strong>comp</strong> '<em>CONFRONTO</em>'.</p>
+</blockquote>
+</li>
+<li>
+<p>para alterar as cores de um escudo existente:</p>
+<ol>
+<li>abra a <strong>comp</strong> '<em>ESCUDOS</em>'.</li>
+<li>selecione o <strong>layer</strong> do escudo desejado.</li>
+<li>altere os presets de cor do time na <em>janela de controle de efeitos</em>.</li>
+</ol>
+<blockquote>
+<p>📋 <em>exemplo:</em><br>
+<img src="templateBrasileirao2023/04-alterar-ou-adicionar-escudos.gif" alt="escudos"></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p><br><br></p>
+<h1 id="%F0%9F%93%A3-par%C3%A2metros">📣 parâmetros</h1>
+<p>os controles dos times estão nos 2 primeiros <strong>layers</strong> da <strong>comp</strong> '<em>CONFRONTO</em>', são eles:</p>
+<h3 id="op%C3%A7%C3%B5es-do-time">opções do time</h3>
+<p><img src="templateBrasileirao2023/ocoes do time.png" alt="fx1"></p>
+<ul>
+<li>
+<p>esquema de cores:</p>
+<ul>
+<li>principal → cores principais do preset time.</li>
+<li>alternativo → cores alternativas do preset time.</li>
+<li>livre → todas as cores do time poderão ser alteradas.</li>
+</ul>
+</li>
+<li>
+<p>nome → controla a cor do nome.</p>
+</li>
+<li>
+<p>base → controla a cor da base atrás nome.</p>
+</li>
+<li>
+<p>noise → controla a cor do ruído do bg.</p>
+</li>
+<li>
+<p>nome bg → controla a cor do nome exibido no bg.</p>
+</li>
+<li>
+<p>bg → controla a cor do bg.</p>
+</li>
+</ul>
+<p>os controles dos presets de cor estão em cada <strong>layer</strong> da <strong>comp</strong> '<em>ESCUDOS</em>', são eles:</p>
+<h3 id="esquema-de-cores">esquema de cores</h3>
+<p><img src="templateBrasileirao2023/esquema de cores.png" alt="fx2"></p>
+<ul>
+<li>
+<p>cores principais:</p>
+<ul>
+<li>nome → controla a cor do nome no esquema principal.</li>
+<li>base → controla a cor da base atrás nome no esquema principal.</li>
+<li>noise → controla a cor do ruído do bg no esquema principal.</li>
+<li>nome bg → controla a cor do nome exibido no bg no esquema principal.</li>
+<li>bg → controla a cor do bg no esquema principal.</li>
+</ul>
+</li>
+<li>
+<p>cores alternativas:</p>
+<ul>
+<li>alt. nome → controla a cor do nome no esquema alternativo.</li>
+<li>alt. base → controla a cor da base atrás nome no esquema alternativo.</li>
+<li>alt. noise → controla a cor do ruído do bg no esquema alternativo.</li>
+<li>alt. nome bg → controla a cor do nome exibido no bg no esquema alternativo.</li>
+<li>alt. bg → controla a cor do bg no esquema alternativo.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><br><br></p>
+<h1 id="%E2%9C%A8-dicas">✨ dicas</h1>
+<ul>
+<li>
+<p>não é preciso digitar o nome completo dos times na maioria das vezes, caso existam 2 times com o mesmo nome, basta digitar o nome completo incluindo a sigla do estado.</p>
+<blockquote>
+<p>📋 <em>exemplo:</em> &quot;<em>fla</em>&quot; x &quot;<em>flu</em>&quot;, &quot;<em>fluminense de feira de santana</em>&quot; x &quot;<em>fluminense RJ</em>&quot;</p>
+</blockquote>
+<blockquote>
+<p><img src="templateBrasileirao2023/01-renomear times.gif" alt="busca"></p>
+</blockquote>
+<blockquote>
+<p>🚩 <em>obs:</em> Maiúsculas e minúsculas assim como acentos e caracteres especiais são ignorados na busca dos nomes dos times, assim, &quot;<em>fla</em>&quot;, &quot;<em>FLA</em>&quot; e &quot;<em>fLÁ</em>&quot; sempre mostrarão o nome do primeiro time que possuir &quot;<em>FLA</em>&quot; em seu nome.</p>
+</blockquote>
+<hr>
+</li>
+<li>
+<p>para inverter a ordem dos times em um confronto basta alterar a ordem dos 2 primeiros <strong>layers</strong> da <strong>com</strong> '<em>CONFRONTOS</em>'.</p>
+<blockquote>
+<p>📋 <em>exemplo:</em><br>
+<img src="templateBrasileirao2023/03-inverter.gif" alt="inverter"></p>
+</blockquote>
+<hr>
+</li>
+<li>
+<p>para agilizar a produção de múltiplos confrontos use a função de <strong>renomear comps</strong> na barra de <strong>PROMO v0.3</strong> ou superior.</p>
+<blockquote>
+<p>📋 <em>exemplo:</em><br>
+<img src="templateBrasileirao2023/05-renomear-confronto.gif" alt="renomear"></p>
+</blockquote>
+</li>
+</ul>
+
+</body>
+</html>
