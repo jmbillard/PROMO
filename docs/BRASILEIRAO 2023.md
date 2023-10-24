@@ -8,7 +8,7 @@
 # 📌 funcionamento básico
 1. abra a **comp** '*CONFRONTO*'.
 1. renomeie os layers 1 e 2 com o nome dos times.
-2. use a janela de controle de efeitos para alterar as cores de cada time.
+2. use a *janela de controle de efeitos* para alterar as cores de cada time.
 3. adicione ao nome da **comp** '*CONFRONTO*' os nomes dos respectivos times.
    
 > 📋 *exemplo:* "*CONFRONTO - FLAMENGO X CORINTHIANS*".
