@@ -209,11 +209,11 @@ retorne para a tela '_Variação Assinatura_'.
 > ![exemplo](templateGuiaDeMarca/2_VETOR_LOGO_PREVIEW.png)
 
 ### modo de uso
-abra a **comp** '_LOGO_',\
-adicione a imagem do logo principal,\
+abra a **comp** '_LOGO_'.\
+adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.\
 
-retorne para a tela '_Vetor Logo_'.
+retorne para a tela '_Vetor Logo_'.\
 edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
@@ -232,12 +232,12 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/2_1_AREJAMENTO_MINIMO_PREVIEW.png)
 
 ### modo de uso
-abra a **comp** '_LOGO_',\
-adicione a imagem do logo principal,\
+abra a **comp** '_LOGO_'.\
+adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
 
-retorne para a tela '_Arejamento Mínimo_',\
-mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida X,\
+retorne para a tela '_Arejamento Mínimo_'.\
+mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida X.\
 use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
 
 edite o texto do **layer** '_txt_info_', se necessário.
@@ -262,15 +262,15 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/2_2_REDUCAO_MINIMA_EM_TELA__PREVIEW.png)
 
 ### modo de uso
-abra a **comp** '_LOGO_',\
-adicione a imagem do logo principal,\
+abra a **comp** '_LOGO_'.\
+adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
 
-retorne para a tela '_Redução Mínima em Tela_',\
+retorne para a tela '_Redução Mínima em Tela_'.\
 mova o **layer** '_shp_target zoom_' para deslocar a área do zoom.\
 use o controle nos efeitos do **layer** '_shp_target zoom_' para alterar o zoom.
 
-mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida 1px,\
+mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida 1px.\
 use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
 
 edite o texto do **layer** '_txt_info_', se necessário.
@@ -299,7 +299,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/2_3_USOS_INCORRETOS_PREVIEW.png)
 
 ### modo de uso
-desabilite / reordene os layers dos exemplos,\
+desabilite / reordene os layers dos exemplos.\
 renomeie os mesmos para editar as respectivas legendas.
 
 para adicionar um novo exemplo:
@@ -344,8 +344,8 @@ todas as cores são controladas nos efeitos do **layer** '_shp_paleta principal_
 > ![exemplo](templateGuiaDeMarca/4_TIPOGRAFIA_LOGO_PREVIEW.png)
 
 ### modo de uso
-altere a fonte do **layer** '_txt_fonte_'.
-use o controle nos efeitos para habilitar a edição do nome da fonte.
+altere a fonte do **layer** '_txt_fonte_'.\
+use o controle nos efeitos para habilitar a edição do nome da fonte.\
 use os controles nos efeitos do **layer** '_txt_peso_' para habilitar a edição do nome do peso\
 e os elementos do texto de amostra.
 
@@ -420,7 +420,7 @@ abra a **comp** '_ASSETS APOIO EX_'.\
 adicione as imagens.\
 renomeie as mesmas para editar as respectivas legendas.
 
-retorne para a tela '_Assets de Apoio_'.
+retorne para a tela '_Assets de Apoio_'.\
 edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
@@ -470,7 +470,7 @@ retorne para a tela '_KEY VISUALS_'.
 > ![exemplo](templateGuiaDeMarca/7_LINKS_PREVIEW.png)
 
 ### modo de uso
-edite o texto do **layer** '_txt_link assets_'.
+edite o texto do **layer** '_txt_link assets_'.\
 edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
