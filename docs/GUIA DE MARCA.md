@@ -1,9 +1,12 @@
 # 📓 TEMPLATES DO GUIA DE MARCA
-📑 **guia de marca - template va1.aet**
+📑 **guia de marca - template vb1.aet**
 
 ---
 
 <br><br>
+
+> 🎬 _preview:_\
+> ![preview](templateGuiaDeMarca/OVERVIEW_PREVIEW.png)
 
 # 📍 funcionamento básico
 
@@ -24,13 +27,40 @@ e em suas respectivas telas:
 10. adicione os kvs.
 11. edite a lista de links.
 
-> 🚩 _obs:_
-> - habilite / desabilite e reordene as telas para organizar o guia da marca.
-> - habilite / desabilite e reordene os controles de cor para montar a paleta principal.
-> - o preview das telas é dinâmico, a ordem da paginação e índice serão atualizados automaticamente.
+### controles
+> ![fx](templateGuiaDeMarca/controles/PROJETO_DATA.png)
 
-> 🎬 _preview:_\
-> ![preview](templateGuiaDeMarca/OVERVIEW_PREVIEW.png)
+- mes:
+  - janeiro
+  - fevereiro
+  - março
+  - abril
+  - maio
+  - junho
+  - julho
+  - agosto
+  - setembro
+  - outubro
+  - novembro
+  - dezembro
+- ano:
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - 2026
+
+> ![fx](templateGuiaDeMarca/controles/PROJETO_CORES.png)
+
+- cor 1 - 7 → controlam as cores da paleta principal.
+- percentagem de brilho 1 → controla o brilho do primeiro grupo de cores secundárias.
+- percentagem de brilho 2 → controla o brilho do segundo grupo de cores secundárias.
+
+> 🚩 _obs:_\
+> • habilite / desabilite e reordene as telas para organizar o guia da marca.
+> • habilite / desabilite e reordene os controles de cor para montar a paleta.
+> • a primeira cor é sempre a cor principal e será usada nos BGs.
+> • o preview das telas é dinâmico, a ordem da paginação e índice serão atualizados automaticamente.
 
 ---
 
@@ -55,20 +85,20 @@ e em suas respectivas telas:
 - Informações
 - Conteúdo
 - Assinatura
-- Variação Assinatura
+- Variação Assinatura (1 e 2 variações)
 - Vetor Logo
 - Arejamento Mínimo
 - Redução Mínima em Tela
-- Usos Incorretos
-- Cores
+- Usos Incorretos (até 8 exemplos)
+- Cores (até 10 cores principais)
 - Tipografia Logo
-- Tipografia Auxiliar
+- Tipografia Auxiliar (1 e 2 fontes)
 - Assets de Apoio
-- Key Visuals
+- Key Visuals (intro e exemplos)
 - Links
 
-> 🚩 _obs:_
-> - alguns templates possuem variação de layout dependendo do conteúdo a ser exibido.
+> 🚩 _obs:_\
+> • algumas telas irão variar de layout dependendo do conteúdo a ser exibido.
 
 ---
 
@@ -77,7 +107,7 @@ e em suas respectivas telas:
 ### 📍 Capa
 
 > 🎬 _preview:_\
-> capa frente_\
+> _capa frente_\
 > ![exemplo](templateGuiaDeMarca/0_CAPA_PREVIEW.png)
 
 > _capa verso_\
@@ -85,6 +115,12 @@ e em suas respectivas telas:
 
 ### modo de uso
 a cor do fundo é controlada pela primeira cor da paleta na **comp** '_OVERVIEW_'.
+
+_capa frente_\
+o nome do projeto e a data devem ser editados na **comp** '_OVERVIEW_'.\
+
+_capa verso_\
+edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nestas telas.
 
@@ -98,7 +134,7 @@ a cor do fundo é controlada pela primeira cor da paleta na **comp** '_OVERVIEW_
 > ![exemplo](templateGuiaDeMarca/0_1_INFORMACOES_PREVIEW.png)
 
 ### modo de uso
-edite o texto do **layer** '_txt_info_'.
+edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
 
@@ -130,11 +166,12 @@ abra a **comp** '_ASSINATURA_'.\
 adicione a imagem da assinatura principal.
 
 retorne para a tela '_Assinatura_'.
+edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_
-> - o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_ASSINATURA_'.
+> 🚩 _obs:_\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_ASSINATURA_'.
 
 ---
 
@@ -155,11 +192,11 @@ adicione as imagens das assinaturas alternativas nas respectivas comps.
 
 retorne para a tela '_Variação Assinatura_'.
 
-> não existem controles nesta tela.
+> não existem controles nestas telas.
 
-> 🚩 _obs:_
-> - o layout também se adaptara ao habilitar / desabilitar os **layers** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.\
-> - o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem nas **comps** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.
+> 🚩 _obs:_\
+> • o layout também se adaptara ao habilitar / desabilitar os **layers** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem nas **comps** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.
 
 ---
 
@@ -176,13 +213,14 @@ adicione a imagem do logo principal,\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.\
 
 retorne para a tela '_Vetor Logo_'.
+edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_
-> - as versões positiva e negativa são geradas automaticamente quando uma imagem é adicionada na **comp** '_LOGO_',\
-> para sobrescrever as versões automáticas adicione uma imagem nas **comps** '_LOGO VETOR POSITIVO_' e '_LOGO VETOR NEGATIVO_'.
-> - o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
+> 🚩 _obs:_\
+> • as versões positiva e negativa são geradas automaticamente quando uma imagem é adicionada na **comp** '_LOGO_',\
+> para sobrescrever as versões automáticas adicione uma imagem nas **comps** '_LOGO VETOR POSITIVO_' e '_LOGO VETOR NEGATIVO_'.\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
 ---
 
 <br><br>
@@ -201,13 +239,17 @@ retorne para a tela '_Arejamento Mínimo_',\
 mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida X,\
 use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
 
+edite o texto do **layer** '_txt_info_', se necessário.
+
 ### controles
 > ![fx](templateGuiaDeMarca/controles/ORIENTACAO_X.png)
 
 - orientacao medida x:
-
   - vertical → torna a medida X vertical.
   - horizontal → torna a medida X horizontal.
+
+> 🚩 _obs:_\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
 
 ---
 
@@ -230,6 +272,8 @@ use o controle nos efeitos do **layer** '_shp_target zoom_' para alterar o zoom.
 mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida 1px,\
 use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
 
+edite o texto do **layer** '_txt_info_', se necessário.
+
 ### controles
 > ![fx](templateGuiaDeMarca/controles/ZOOM.png)
 
@@ -242,6 +286,8 @@ use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orienta
   - vertical → torna a medida X vertical.
   - horizontal → torna a medida X horizontal.
 
+> 🚩 _obs:_\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
 ---
 
 <br><br>
@@ -264,8 +310,9 @@ para adicionar um novo exemplo:
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_
-> - digite '_' no nome do exemplo para adicionar uma quebra de linha.
+> 🚩 _obs:_\
+> • digite '_' no nome do exemplo para adicionar uma quebra de linha.\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
 
 ---
 
@@ -277,15 +324,15 @@ para adicionar um novo exemplo:
 > ![exemplo](templateGuiaDeMarca/3_CORES_PREVIEW.png)
 
 ### modo de uso
-as cores principais são controladas nos efeitos do **layer** '_shp_paleta principal_' na **comp** '_OVERVIEW_'.\
-use os controles nos efeitos do **layer** '_ctrl_' para alterar o brilho das cores secundárias.
 
-### controles
-> ![fx](templateGuiaDeMarca/controles/BRILHO_CORES.png)
+edite o texto do **layer** '_txt_info_', se necessário.
 
-- percentagem de brilho 1 → aumenta e reduz o brilho do primeiro grupo de cores secundárias.
-- percentagem de brilho 2 → aumenta e reduz o brilho do segundo grupo de cores secundárias.
+todas as cores são controladas nos efeitos do **layer** '_shp_paleta principal_' na **comp** '_OVERVIEW_'.
 
+> não existem controles nesta tela.
+
+> 🚩 _obs:_\
+> • a primeira cor é sempre a cor principal e será usada nos BGs.
 ---
 
 <br><br>
@@ -300,6 +347,8 @@ altere a fonte do **layer** '_txt_fonte_'.
 use o controle nos efeitos para habilitar a edição do nome da fonte.
 use os controles nos efeitos do **layer** '_txt_peso_' para habilitar a edição do nome do peso\
 e os elementos do texto de amostra.
+
+edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
 > ![fx](templateGuiaDeMarca/controles/NOME_FONTE.png)
@@ -320,9 +369,40 @@ e os elementos do texto de amostra.
 ### 📍 Tipografia Auxiliar
 
 > 🎬 _preview:_\
-> ![exemplo](templateGuiaDeMarca/4_1_TIPOGRAFIA_AUXILIAR_PREVIEW.png)
+> _1 fonte_\
+> ![exemplo](templateGuiaDeMarca/4_1_TIPOGRAFIA_AUXILIAR_1_PREVIEW.png)
+
+> _2 fontes_\
+> ![exemplo](templateGuiaDeMarca/4_1_TIPOGRAFIA_AUXILIAR_2_PREVIEW.png)
 
 ### modo de uso
+
+alterne o layout habilitando o **layer** '_txt_fonte 2_'.
+
+altere as fontes dos **layer** '_txt_fonte 1_' e '_txt_fonte 2_', se habilitado.\
+use o controle nos efeitos para habilitar a edição dos nomes das fontes.
+
+altere as fontes dos **layer** '_txt_peso 2_' e '_txt_peso 3_', se habilitados.\
+use o controle nos efeitos para habilitar a edição dos nomes dos pesos\
+e os elementos do texto de amostra.
+
+edite o texto do **layer** '_txt_info_', se necessário.
+
+### controles
+> ![fx](templateGuiaDeMarca/controles/NOME_FONTE_AUX_1.png)\
+> ![fx](templateGuiaDeMarca/controles/NOME_FONTE_AUX_2.png)
+
+- nome automatico → habilita a edição do nome da fonte.
+
+> ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_1.png)\
+> ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_2.png)\
+> ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_3.png)\
+
+- peso automatico → habilita a edição do nome do peso da fonte.
+- minusculas → habilita a exibição da letras minúsculas no texto de amostra.
+- maiusculas → habilita a exibição da letras maiúsculas no texto de amostra.
+- numeros → habilita a exibição dos números no texto de amostra.
+
 
 ---
 
@@ -334,6 +414,19 @@ e os elementos do texto de amostra.
 > ![exemplo](templateGuiaDeMarca/5_ASSETS_DE_APOIO_PREVIEW.png)
 
 ### modo de uso
+
+abra a **comp** '_ASSETS APOIO EX_'.\
+adicione as imagens.\
+renomeie as mesmas para editar as respectivas legendas.
+
+retorne para a tela '_Assets de Apoio_'.
+edite o texto do **layer** '_txt_info_', se necessário.
+
+> não existem controles nesta tela.
+
+> 🚩 _obs:_\
+> • digite '_' no nome das imagens para adicionar uma quebra de linha.\
+> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não existam imagens na **comp** '_ASSETS APOIO EX_'.
 
 ---
 
@@ -350,6 +443,22 @@ e os elementos do texto de amostra.
 
 ### modo de uso
 
+_kv intro_\
+edite o texto do **layer** '_txt_info_', se necessário.
+
+_kv exemplos_\
+abra a **comp** '_KEY VISUALS EX_'.\
+adicione as imagens.\
+renomeie as mesmas para editar as respectivas legendas.
+
+retorne para a tela '_KEY VISUALS_'.
+
+> não existem controles nesta tela.
+
+> 🚩 _obs:_\
+> • digite '_' no nome das imagens para adicionar uma quebra de linha.\
+> • o preview destas telas na **comp** '_OVERVIEW_' é desabilitado caso não existam imagens na **comp** '_KEY VISUALS EX_'.
+
 ---
 
 <br><br>
@@ -360,4 +469,7 @@ e os elementos do texto de amostra.
 > ![exemplo](templateGuiaDeMarca/7_LINKS_PREVIEW.png)
 
 ### modo de uso
+edite o texto do **layer** '_txt_link assets_'.
+edite o texto do **layer** '_txt_info_', se necessário.
 
+> não existem controles nesta tela.
