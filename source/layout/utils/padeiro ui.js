@@ -31,10 +31,10 @@ function readFileContent(file) {
 	return fileContent.toString();
 }
 
-var exJSON = {
-	exemplo: 'nome sobrenome',
-
+var templateData = {
 	name: 'ALTAS HORAS',
+	exemplo: 'nome 1 linha\n\nnome sobrenome\nduas linhas',
+
 	comp: 'RDP - TARJA TEMPLATE',
 	type: 'RDP',
 	inputs: [
@@ -89,17 +89,17 @@ function padeiro_ui() {
 	evalBtn.onClick = function () {
 		app.beginUndoGroup('padeiro...');
 
-		var JSONfile = new File('O:/REDE - PROMO/templates/TEMPLATES PADEIRO/ALTAS HORAS/ALTAS HORAS.json');
-		var JSONContent = readFileContent(JSONfile); // → JSON string
-		var templateData;
-		try {
-			// evaluate JSON content...
-			templateData = JSON.parse(JSONContent); // → preferencesObject
-		} catch (err) {
-			// error: invalid JSON content...
-			alert('template data failed to load... Σ(っ °Д °;)っ\n' + err.message);
-			return;
-		}
+		// var JSONfile = new File('O:/REDE - PROMO/templates/TEMPLATES PADEIRO/ALTAS HORAS/ALTAS HORAS.json');
+		// var JSONContent = readFileContent(JSONfile); // → JSON string
+		// var templateData;
+		// try {
+		// 	// evaluate JSON content...
+		// 	templateData = JSON.parse(JSONContent); // → preferencesObject
+		// } catch (err) {
+		// 	// error: invalid JSON content...
+		// 	alert('template data failed to load... Σ(っ °Д °;)っ\n' + err.message);
+		// 	return;
+		// }
 
 		if (edtText.text.trim() == '') return;
 
@@ -121,28 +121,31 @@ function padeiro_ui() {
 
 			if (!(comp instanceof CompItem)) continue;
 			if (!comp.comment.match(/^TEMPLATE/)) continue;
-			if (comp.name != templateData.template.comp) continue;
+			if (comp.name != templateData.comp) continue;
 
 			for (var n = 0; n < inputList.length; n++) {
-				var templateName = templateData.template.type + ' - ' + inputList[n].replaceSpecialCharacters();
+				var templateName = templateData.type + ' - ' + inputList[n].replaceSpecialCharacters();
 
 				var template = comp.duplicate();
 				template.name = templateName
 					.toUpperCase();
-				var inputIndexList = templateData.template.input;
+				var inputLayerList = templateData.inputs;
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
 
-				for (var l = 0; l < inputIndexList.length; l++) {
-					var inputLayer = template.layer(inputIndexList[l]);
+				for (var l = 0; l < inputLayerList.length; l++) {
+					var inputLayer = template.layer(inputLayerList[l].layerIndex);
 
-					if (!(inputLayer instanceof TextLayer)) continue;
+					if (inputLayerList[l].method == 'textContent') {
 
-					var txt = txtList[l];
-					var text = inputLayer.property('ADBE Text Properties');
-					var textDoc = text.property('ADBE Text Document').value;
-
-					textDoc.text = txt;
-					text.property('ADBE Text Document').setValue(textDoc);
+						if (!(inputLayer instanceof TextLayer)) continue;
+	
+						var txt = txtList[l];
+						var text = inputLayer.property('ADBE Text Properties');
+						var textDoc = text.property('ADBE Text Document').value;
+	
+						textDoc.text = txt;
+						text.property('ADBE Text Document').setValue(textDoc);
+					}
 				}
 				template.openInViewer();
 				template.time = 2;
