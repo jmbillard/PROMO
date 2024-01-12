@@ -67,6 +67,13 @@ if (!Array.prototype.indexOf) {
 	};
 }
 
+// string to camel case...
+String.prototype.toTitleCase = function () {
+	return this.toLowerCase()
+		.replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })
+		.replace(/^(.)/, function ($1) { return $1.toUpperCase(); });
+};
+
 //-------------------------------------------------------------
 
 // remove empty tree folders...
@@ -206,6 +213,17 @@ function openFolder(folderPath) {
 	} else {
 		system.callSystem('open "' + Folder.decode(folder.fsName) + '"');
 	}
+}
+
+//
+function readFileContent(file) {
+	var fileContent;
+
+	file.open('r');
+	fileContent = file.read();
+	file.close();
+
+	return fileContent.toString();
 }
 
 //------------------------------------------------------------
@@ -377,9 +395,9 @@ function padeiroTemplateDialog() {
 			templateName = s.toString().replace(' / ', '/') + '/' + templateName; // → 'current parent/.../template name'
 		}
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png'); // → template preview.png
-		var infoName = templateName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
+		// var infoName = templateName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
 
-		var templateFile = new File(templatesPath + '/' + templateName); // → template file object
+		// var templateFile = new File(templatesPath + '/' + templateName); // → template file object
 		var previewImgFile = new File(templatesPath + '/' + imgName); // → preview image object
 		// var infoFile = new File(templatesPath + '/' + infoName); // → info file object
 
@@ -393,10 +411,8 @@ function padeiroTemplateDialog() {
 		wPadeiroTemplates.size.width = oWidth; // → resize window
 	};
 
-
 	//---------------------------------------------------------
 
-	
 	edtText.onChanging = function () {
 
 		hasData = (edtText.text.trim() != '');
@@ -409,9 +425,6 @@ function padeiroTemplateDialog() {
 		app.beginUndoGroup('padeiro...');
 
 		if (edtText.text.trim() == '') return;
-
-		var inputList = edtText.text
-			.split(/[\n\r]{2,}/);
 
 		var s = templateTree.selection; // → current selection
 		var fileName = s.toString().replace(' / ', '/');
@@ -434,6 +447,12 @@ function padeiroTemplateDialog() {
 		
 			app.project.importFile(IO); // → import template project
 		
+			if (templateData.case == 'upperCASE') edtText.text = edtText.text.toUpperCase();
+			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
+			if (templateData.case == 'tItleCase') edtText.text = edtText.text.toTitleCase();
+			
+			var inputList = edtText.text.split(/[\n\r]{2,}/);
+
 		} catch (err) {
 			alert(err.message);
 			return;
@@ -455,7 +474,11 @@ function padeiroTemplateDialog() {
 				template.name = templateName
 					.toUpperCase();
 				var inputLayerList = templateData.inputs;
+				
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
+
+				if  (templateData.separator != "") txtList = inputList[n].split(templateData.separator);
+
 
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
@@ -471,9 +494,16 @@ function padeiroTemplateDialog() {
 						textDoc.text = txt;
 						text.property('ADBE Text Document').setValue(textDoc);
 					}
+
+					if (inputLayerList[l].method == 'layerName') {
+	
+						var txt = txtList[l];
+						inputLayer.name = txt;
+					}
 				}
 				template.openInViewer();
 				template.time = 2;
+				template.comment = 'EXPORTAR';
 			}
 			comp.remove();
 			break;
