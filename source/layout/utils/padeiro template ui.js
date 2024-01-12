@@ -297,10 +297,11 @@ function padeiroTemplateDialog() {
 	var previewScale = 0.2; // preview image scale factor...
 	var fileFilter = ['.aep', '.aet']; // template files extensions...
 	var hasData = false;
+	var exemple = '';
 
 	//---------------------------------------------------------
 
-	var wPadeiroTemplates = new Window('dialog', 'o padeiro...');
+	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO...');
 	// main group...
 	var mainGrp = wPadeiroTemplates.add('group');
 	// left vertical group...
@@ -335,27 +336,26 @@ function padeiroTemplateDialog() {
 	bGrp2.alignment = 'right';
 	// left buttons...
 	var importBtn = bGrp1.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-	importBtn.helpTip = '◖ → import selected template';
+	importBtn.helpTip = '◖ → importar template selecionado';
 	var refreshBtn = bGrp1.add('iconbutton', iconSize, refreshIcon.light, { style: 'toolbutton' });
-	refreshBtn.helpTip = '◖ → refresh list content';
+	refreshBtn.helpTip = '◖ → atualizar lista';
 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
-	openFldBtn.helpTip = '◖ → open template folder';
+	openFldBtn.helpTip = '◖ → abrir a pasta de templates';
 	// right buttons...
-	var makeBtn = bGrp2.add('button', undefined, 'make');
-	makeBtn.helpTip = '◖ → make selected template';
+	var makeBtn = bGrp2.add('button', undefined, 'criar');
+	makeBtn.helpTip = '◖ → criar o template selecionado';
 	makeBtn.enabled = false;
 
 	//---------------------------------------------------------
 
 	// preview...
 	var previewLabTxt = vGrp2.add('statictext', undefined, 'preview:');
-	setTxtColor(previewLabTxt, monoColors[3]);
+	setTxtColor(previewLabTxt, monoColors[2]);
 	var previewImg = vGrp2.add('image', undefined, no_preview);
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];
 	var inputLabTxt = vGrp2.add('statictext', undefined, 'input:');
-	setTxtColor(inputLabTxt, monoColors[3]);
+	setTxtColor(inputLabTxt, monoColors[2]);
 	var edtText = vGrp2.add('edittext', [0, 0, 385, 180], '', { multiline: true });
-
 
 	//---------------------------------------------------------
 
@@ -395,11 +395,23 @@ function padeiroTemplateDialog() {
 			templateName = s.toString().replace(' / ', '/') + '/' + templateName; // → 'current parent/.../template name'
 		}
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png'); // → template preview.png
-		// var infoName = templateName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
+		var infoName = templateName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
 
 		// var templateFile = new File(templatesPath + '/' + templateName); // → template file object
 		var previewImgFile = new File(templatesPath + '/' + imgName); // → preview image object
-		// var infoFile = new File(templatesPath + '/' + infoName); // → info file object
+		var infoFile = new File(templatesPath + '/' + infoName); // → info file object
+
+		try {
+			var JSONContent = readFileContent(infoFile); // → JSON string
+			var templateData = JSON.parse(JSONContent); // → preferencesObject
+			exemple = templateData.exemplo;
+
+			if (!hasData) edtText.text = exemple;
+
+		} catch (err) {
+			alert(err.message);
+			return;
+		}
 
 		if (previewImgFile.exists) {
 			previewImg.image = previewImgFile; // → set preview image file
@@ -411,6 +423,12 @@ function padeiroTemplateDialog() {
 		wPadeiroTemplates.size.width = oWidth; // → resize window
 	};
 
+	templateTree.onActivate = function () {
+
+		hasData = (edtText.text.trim() != '');
+		makeBtn.enabled = (templateTree.selection != null && hasData);
+		if (!hasData) edtText.text = exemple;
+	}
 	//---------------------------------------------------------
 
 	edtText.onChanging = function () {
@@ -418,6 +436,15 @@ function padeiroTemplateDialog() {
 		hasData = (edtText.text.trim() != '');
 		makeBtn.enabled = (templateTree.selection != null && hasData);
 	};
+
+	//---------------------------------------------------------
+
+	// edtText.blur = function () {
+
+	// 	hasData = (edtText.text.trim() != '');
+	// 	makeBtn.enabled = (templateTree.selection != null && hasData);
+	// 	if (!hasData) edtText.text = exemple;
+	// };
 
 	//---------------------------------------------------------
 
@@ -553,7 +580,6 @@ function padeiroTemplateDialog() {
     
 		openFolder(templatesPath); // → open template folder
 	};
-	//*/  
   
 	wPadeiroTemplates.show();
 }
