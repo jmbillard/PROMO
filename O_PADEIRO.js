@@ -16,6 +16,7 @@
 //  jshint -W043
 
 var vStr = '0.1';
+
 var templatesPath = 'O:/REDE - PROMO/templates/TEMPLATES PADEIRO';
 var templatesFolder = new Folder(templatesPath);
 
@@ -27,6 +28,31 @@ var templatesFolder = new Folder(templatesPath);
 #include 'source/libraries/EXPS lib.js'; // expressions library...
 #include 'source/libraries/ICON lib.js'; // images encoded as binary...
 
+function renderTemplateDialog (array) {
+
+	var renderTemplate = '';
+
+	var wPref = new Window('dialog', 'render setup...');
+	wPref.alignChildren = ['left', 'top'];
+	wPref.spacing = 10;
+
+	var helpTxt = wPref.add('statictext', undefined, 'selecione o template do render...');
+	setTxtColor(helpTxt, monoColors[2]);
+
+	var renderGrp = wPref.add('group');
+	
+	var renderDrop = renderGrp.add('dropdownlist', undefined, array);
+	renderDrop.preferredSize = [250, 24];
+
+	renderDrop.onChange = function () {
+		renderTemplate = renderDrop.selection.toString();
+		wPref.close();
+	}
+
+	wPref.show();
+	return renderTemplate;
+}
+
 // import templates UI...
 function padeiroTemplateDialog() {
 	var wWidth; // window width without image preview...
@@ -35,6 +61,7 @@ function padeiroTemplateDialog() {
 	var fileFilter = ['.aep', '.aet']; // template files extensions...
 	var hasData = false;
 	var exemple = '';
+	var padeiroOutputModuleTemplate;
 
 	//---------------------------------------------------------
 
@@ -202,9 +229,9 @@ function padeiroTemplateDialog() {
 
 			app.project.importFile(IO); // → import template project
 
-			if (templateData.case == 'upperCASE') edtText.text = edtText.text.toUpperCase();
-			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
-			if (templateData.case == 'tItleCase') edtText.text = edtText.text.toTitleCase();
+			if (templateData.case == 'upperCASE') edtText.text = edtText.text.trim().toUpperCase();
+			if (templateData.case == 'lowerCase') edtText.text = edtText.text.trim().toLowerCase();
+			if (templateData.case == 'tItleCase') edtText.text = edtText.text.trim().toTitleCase();
 
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 
@@ -256,23 +283,30 @@ function padeiroTemplateDialog() {
 						inputLayer.name = layerName;
 					}
 				}
-				template.openInViewer();
-				template.time = 2;
-				template.comment = 'EXPORTAR';
-
 				item = app.project.renderQueue.items.add(template);
 				outputModule = item.outputModule(1);
 				
-				var outputModuleTemplate = templateData.alpha ? 'Quick Time Animation RGBA' : 'Quick Time Animation RGB';
-				var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
-				
-				outputModule.file = outputFile;
-				outputModule.applyTemplate(outputModuleTemplate);
-				item.applyTemplate('Best Settings');
-
-				if (outputModule.templates.indexOf('PADEIRO') < 0) {
-					alert(JSON.stringify(outputModule.getSettings( GetSettingsFormat.STRING ), null, '\t'));
+				if (padeiroOutputModuleTemplate == undefined) {
+					padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates);
 				}
+
+				alert(padeiroOutputModuleTemplate);
+				if (padeiroOutputModuleTemplate != '') {
+
+					try {
+						var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
+						
+						outputModule.file = outputFile;
+						outputModule.applyTemplate(padeiroOutputModuleTemplate);
+						item.applyTemplate('Best Settings');
+					
+					} catch (err) { alert(err.message);}
+				
+				} else {item.remove();}
+
+				template.openInViewer();
+				template.time = 2;
+				template.comment = 'EXPORTAR';
 			}
 			comp.remove();
 			break;
