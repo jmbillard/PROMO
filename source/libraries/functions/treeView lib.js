@@ -77,11 +77,14 @@ function createHierarchy(array, node, fileTypes) {
 			createHierarchy(subArray, nodeItem, fileTypes);
     
 		} else {
-			// filter file extensions...
-			if (fileTypes.indexOf(getFileExt(nodeName)) < 0) continue;
-      
-			var templateItem = node.add('item', nodeName); // item...
-			templateItem.image = templateListIcon.light; // item icon...
+			try {
+				// filter file extensions...
+				if (fileTypes.indexOf(getFileExt(nodeName)) < 0) continue;
+	
+				var templateItem = node.add('item', nodeName); // item...
+				templateItem.image = templateListIcon.light; // item icon...
+			
+			} catch (err) {}
 		}
 	}
 }
