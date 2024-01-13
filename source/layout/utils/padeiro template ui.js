@@ -123,7 +123,7 @@ function optimizeHierarchy(nodeTree) {
 	var branches = nodeTree.items; // all current tree item subitems...
 
 	for (var i = branches.length - 1; i >= 0; i--) {
-    
+
 		if (branches[i].type != 'node') continue; // ignore item...
 
 		if (branches[i].items.length > 1) {
@@ -135,9 +135,9 @@ function optimizeHierarchy(nodeTree) {
 				branches[i].text += ' / ' + branches[i].items[0].text;
 
 				for (var it = branches[i].items[0].items.length - 1; it >= 0; it--) {
-						var nItem = branches[i].add(branches[i].items[0].items[it].type, branches[i].items[0].items[it].text);
-						nItem.image = branches[i].items[0].items[it].image;
-						branches[i].remove(0);
+					var nItem = branches[i].add(branches[i].items[0].items[it].type, branches[i].items[0].items[it].text);
+					nItem.image = branches[i].items[0].items[it].image;
+					branches[i].remove(0);
 				}
 			}
 		}
@@ -146,7 +146,7 @@ function optimizeHierarchy(nodeTree) {
 
 // populates the 'tree view' node hierarchy...
 function createHierarchy(array, node, fileTypes) {
-  
+
 	for (var n = 0; n < array.length; n++) {
 		var nodeName = array[n].displayName; // current item name...
 		var subArray = []; // folder content array...
@@ -160,13 +160,17 @@ function createHierarchy(array, node, fileTypes) {
 			nodeItem.image = fldTogIcon.light; // folder icon...
 
 			createHierarchy(subArray, nodeItem, fileTypes);
-    
+
 		} else {
-			// filter file extensions...
-			if (fileTypes.indexOf(getFileExt(nodeName)) < 0) continue;
-      
-			var templateItem = node.add('item', nodeName); // item...
-			templateItem.image = templateListIcon.light; // item icon...
+
+			try {
+				// filter file extensions...
+				if (fileTypes.indexOf(getFileExt(nodeName)) < 0) continue;
+	
+				var templateItem = node.add('item', nodeName); // item...
+				templateItem.image = templateListIcon.light; // item icon...
+			
+			} catch (err) {}
 		}
 	}
 }
@@ -185,7 +189,7 @@ function buildTree(folder, tree, fileTypes) {
 	// starts the recursive population...
 	createHierarchy(folderContentArray, folderNode, fileTypes);
 	cleanHierarchy(tree);
-	// optimizeHierarchy(tree);
+	optimizeHierarchy(tree);
 }
 
 // expands all 'tree view' nodes...
@@ -304,7 +308,7 @@ var folderIcon = {
 
 var fldTogIcon = {
 	light: '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x10\b\x06\x00\x00\x00\x1F\u00F3\u00FFa\x00\x00\x00\tpHYs\x00\x00\x0B\x13\x00\x00\x0B\x13\x01\x00\u009A\u009C\x18\x00\x00\x05\x1CiTXtXML:com.adobe.xmp\x00\x00\x00\x00\x00<?xpacket begin="\u00EF\u00BB\u00BF" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        "> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#" xmp:CreatorTool="Adobe Photoshop CC 2018 (Windows)" xmp:CreateDate="2019-02-27T19:49:56-03:00" xmp:ModifyDate="2019-02-28T16:06:30-03:00" xmp:MetadataDate="2019-02-28T16:06:30-03:00" dc:format="image/png" photoshop:ColorMode="3" photoshop:ICCProfile="sRGB IEC61966-2.1" xmpMM:InstanceID="xmp.iid:cb3c09fc-a45e-de4f-8f18-602df8643585" xmpMM:DocumentID="xmp.did:cb3c09fc-a45e-de4f-8f18-602df8643585" xmpMM:OriginalDocumentID="xmp.did:cb3c09fc-a45e-de4f-8f18-602df8643585"> <xmpMM:History> <rdf:Seq> <rdf:li stEvt:action="created" stEvt:instanceID="xmp.iid:cb3c09fc-a45e-de4f-8f18-602df8643585" stEvt:when="2019-02-27T19:49:56-03:00" stEvt:softwareAgent="Adobe Photoshop CC 2018 (Windows)"/> </rdf:Seq> </xmpMM:History> </rdf:Description> </rdf:RDF> </x:xmpmeta> <?xpacket end="r"?>\u00D7X\u00B0\u00A9\x00\x00\x00@IDAT8\u008Dc\u00FC\u00FF\u00FF?\x03%\u0080\u0089"\u00DD\u00D40\u0080\x05\u00C6x\u00F3\u00E6\u00CDL4\u00B9\u00E3"""\x0B\b\x19\u00C0\b\x0B\x03,\x06\u00E0\x05"""\u00E9\f\f\u0083!\fF\r\x18\f\x060\x0E\u00FD\u00CC\x04\x00\u00D3\x1D\x12\x17w\u00F2\u00E9\u00C5\x00\x00\x00\x00IEND\u00AEB`\u0082',
-	dark:  '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x10\b\x06\x00\x00\x00\x1F\u00F3\u00FFa\x00\x00\x00CIDAT8\u008Dc`\x18\u00F2\u0080\x11\u00C6\u0090\u0096\u0096\u009E\u0089,\u00F1\u00ED\u00DB\u00B7\u00E3\u00EF\u00DF\u00BF_@\u00C8\x00\x16\\\x12\\\\\\\u0096\\\\\\\u0096\u00B8\u00E4\u009F>}\u009A\u00CE\u00C0\u00C0\u00C0\u00C0D\u0094;\u00F1\u0080Q\x03\u0086\u0085\x01\u00C3\x00\x00\x00z\u0087\x0B\u00DA\u00CB/\u00D5\u00D2\x00\x00\x00\x00IEND\u00AEB`\u0082'
+	dark: '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x10\b\x06\x00\x00\x00\x1F\u00F3\u00FFa\x00\x00\x00CIDAT8\u008Dc`\x18\u00F2\u0080\x11\u00C6\u0090\u0096\u0096\u009E\u0089,\u00F1\u00ED\u00DB\u00B7\u00E3\u00EF\u00DF\u00BF_@\u00C8\x00\x16\\\x12\\\\\\\u0096\\\\\\\u0096\u00B8\u00E4\u009F>}\u009A\u00CE\u00C0\u00C0\u00C0\u00C0D\u0094;\u00F1\u0080Q\x03\u0086\u0085\x01\u00C3\x00\x00\x00z\u0087\x0B\u00DA\u00CB/\u00D5\u00D2\x00\x00\x00\x00IEND\u00AEB`\u0082'
 };
 
 var templateListIcon = {
@@ -470,7 +474,7 @@ function padeiroTemplateDialog() {
 
 		var s = templateTree.selection; // → current selection
 		var fileName = s.toString().replace(' / ', '/');
-	
+
 		// iterate selection parent + parent + parent... to form selected template file path...
 		while (s.parent.toString() != templatesFolder.displayName) {
 			s = s.parent; // current parent...
@@ -486,20 +490,20 @@ function padeiroTemplateDialog() {
 
 			var templateFile = new File(templatesPath + '/' + fileName); // → template file object
 			var IO = new ImportOptions(templateFile); // import options...
-		
+
 			app.project.importFile(IO); // → import template project
-		
+
 			if (templateData.case == 'upperCASE') edtText.text = edtText.text.toUpperCase();
 			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
 			if (templateData.case == 'tItleCase') edtText.text = edtText.text.toTitleCase();
-			
+
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 
 		} catch (err) {
 			alert(err.message);
 			return;
 		}
-	
+
 		var iNum = app.project.numItems;
 
 		for (var i = 1; i <= iNum; i++) {
@@ -516,10 +520,10 @@ function padeiroTemplateDialog() {
 				template.name = templateName
 					.toUpperCase();
 				var inputLayerList = templateData.inputs;
-				
+
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
 
-				if  (templateData.separator != "") txtList = inputList[n].split(templateData.separator);
+				if (templateData.separator != "") txtList = inputList[n].split(templateData.separator);
 
 
 				for (var l = 0; l < inputLayerList.length; l++) {
@@ -528,31 +532,44 @@ function padeiroTemplateDialog() {
 					if (inputLayerList[l].method == 'textContent') {
 
 						if (!(inputLayer instanceof TextLayer)) continue;
-	
-						var txt = txtList[l];
+
+						var textContent = txtList[l];
 						var text = inputLayer.property('ADBE Text Properties');
 						var textDoc = text.property('ADBE Text Document').value;
-	
-						textDoc.text = txt;
+
+						textDoc.text = textContent;
 						text.property('ADBE Text Document').setValue(textDoc);
 					}
 
 					if (inputLayerList[l].method == 'layerName') {
-	
-						var txt = txtList[l];
-						inputLayer.name = txt;
+
+						var layerName = txtList[l];
+						inputLayer.name = layerName;
 					}
 				}
 				template.openInViewer();
 				template.time = 2;
 				template.comment = 'EXPORTAR';
+
+				item = app.project.renderQueue.items.add(template);
+				outputModule = item.outputModule(1);
+				
+				var outputModuleTemplate = templateData.alpha ? 'Quick Time Animation RGBA' : 'Quick Time Animation RGB';
+				var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
+				
+				outputModule.file = outputFile;
+				outputModule.applyTemplate(outputModuleTemplate);
+				item.applyTemplate('Best Settings');
+
+				if (outputModule.templates.indexOf('PADEIRO') < 0) {
+					alert(JSON.stringify(outputModule.getSettings( GetSettingsFormat.STRING ), null, '\t'));
+				}
 			}
 			comp.remove();
 			break;
 		}
 
 		app.endUndoGroup();
-
 		wPadeiroTemplates.close(); // → close window
 	};
 
@@ -561,19 +578,19 @@ function padeiroTemplateDialog() {
 	importBtn.onClick = templateTree.onDoubleClick = function () {
 		var s = templateTree.selection; // → current selection
 		var fileName = s.toString().replace(' / ', '/');
-    
+
 		// iterate selection parent + parent + parent... to form selected template file path...
 		while (s.parent.toString() != templatesFolder.displayName) {
 			s = s.parent; // current parent...
 			fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
 		}
-    
+
 		try {
 			var templateFile = new File(templatesPath + '/' + fileName); // → template file object
 			var IO = new ImportOptions(templateFile); // import options...
-      
+
 			app.project.importFile(IO); // → import template project
-      
+
 		} catch (err) {
 			alert(err.message);
 			return;
@@ -592,10 +609,10 @@ function padeiroTemplateDialog() {
 
 	openFldBtn.onClick = function () {
 		if (!templatesFolder.exists) templatesFolder.create(); // → create template folder
-    
+
 		openFolder(templatesPath); // → open template folder
 	};
-  
+
 	wPadeiroTemplates.show();
 }
 
