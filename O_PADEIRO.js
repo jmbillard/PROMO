@@ -28,21 +28,27 @@ var templatesFolder = new Folder(templatesPath);
 #include 'source/libraries/EXPS lib.js'; // expressions library...
 #include 'source/libraries/ICON lib.js'; // images encoded as binary...
 
-function renderTemplateDialog (array) {
-
+function renderTemplateDialog (array, alphaChannel) {
 	var renderTemplate = '';
+	var txtHelp2Content = alphaChannel ? 'requer canal alpha!' : 'não requer canal alpha';
 
 	var wPref = new Window('dialog', 'render setup...');
 	wPref.alignChildren = ['left', 'top'];
 	wPref.spacing = 10;
 
-	var helpTxt = wPref.add('statictext', undefined, 'selecione o template do render...');
-	setTxtColor(helpTxt, monoColors[2]);
+	var helpTxt1 = wPref.add('statictext', undefined, 'selecione o template do render...');
+	setTxtColor(helpTxt1, monoColors[2]);
 
 	var renderGrp = wPref.add('group');
 	
 	var renderDrop = renderGrp.add('dropdownlist', undefined, array);
 	renderDrop.preferredSize = [250, 24];
+
+	var divider1 = wPref.add('panel');
+	divider1.alignment = 'fill';
+
+	var helpTxt2 = wPref.add('statictext', undefined, 'obs: ' + txtHelp2Content);
+	setTxtColor(helpTxt2, mainColors[1]);
 
 	renderDrop.onChange = function () {
 		renderTemplate = renderDrop.selection.toString();
@@ -229,9 +235,9 @@ function padeiroTemplateDialog() {
 
 			app.project.importFile(IO); // → import template project
 
-			if (templateData.case == 'upperCASE') edtText.text = edtText.text.trim().toUpperCase();
-			if (templateData.case == 'lowerCase') edtText.text = edtText.text.trim().toLowerCase();
-			if (templateData.case == 'tItleCase') edtText.text = edtText.text.trim().toTitleCase();
+			if (templateData.case == 'upperCASE') edtText.text = edtText.text.toUpperCase();
+			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
+			if (templateData.case == 'tItleCase') edtText.text = edtText.text.toTitleCase();
 
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 
@@ -264,12 +270,14 @@ function padeiroTemplateDialog() {
 
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
+					
+					if (txtList[l] == '') continue;
 
 					if (inputLayerList[l].method == 'textContent') {
 
 						if (!(inputLayer instanceof TextLayer)) continue;
 
-						var textContent = txtList[l];
+						var textContent = txtList[l].trim();
 						var text = inputLayer.property('ADBE Text Properties');
 						var textDoc = text.property('ADBE Text Document').value;
 
@@ -279,7 +287,7 @@ function padeiroTemplateDialog() {
 
 					if (inputLayerList[l].method == 'layerName') {
 
-						var layerName = txtList[l];
+						var layerName = txtList[l].trim();
 						inputLayer.name = layerName;
 					}
 				}
@@ -287,10 +295,9 @@ function padeiroTemplateDialog() {
 				outputModule = item.outputModule(1);
 				
 				if (padeiroOutputModuleTemplate == undefined) {
-					padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates);
+					padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
 				}
 
-				alert(padeiroOutputModuleTemplate);
 				if (padeiroOutputModuleTemplate != '') {
 
 					try {
@@ -300,7 +307,7 @@ function padeiroTemplateDialog() {
 						outputModule.applyTemplate(padeiroOutputModuleTemplate);
 						item.applyTemplate('Best Settings');
 					
-					} catch (err) { alert(err.message);}
+					} catch (err) {alert(err.message);}
 				
 				} else {item.remove();}
 
@@ -309,8 +316,11 @@ function padeiroTemplateDialog() {
 				template.comment = 'EXPORTAR';
 			}
 			comp.remove();
-			break;
 		}
+
+		deleteProjectFolders();
+		populateProjectFolders();
+		deleteEmptyProjectFolders();		
 
 		app.endUndoGroup();
 		wPadeiroTemplates.close(); // → close window
