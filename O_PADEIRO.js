@@ -28,7 +28,7 @@ var templatesFolder = new Folder(templatesPath);
 #include 'source/libraries/EXPS lib.js'; // expressions library...
 #include 'source/libraries/ICON lib.js'; // images encoded as binary...
 
-function renderTemplateDialog (array, alphaChannel) {
+function renderTemplateDialog(array, alphaChannel) {
 	var renderTemplate = '';
 	var txtHelp2Content = alphaChannel ? 'requer canal alpha!' : 'não requer canal alpha';
 
@@ -40,7 +40,7 @@ function renderTemplateDialog (array, alphaChannel) {
 	setTxtColor(helpTxt1, monoColors[2]);
 
 	var renderGrp = wPref.add('group');
-	
+
 	var renderDrop = renderGrp.add('dropdownlist', undefined, array);
 	renderDrop.preferredSize = [250, 24];
 
@@ -199,6 +199,7 @@ function padeiroTemplateDialog() {
 		makeBtn.enabled = (templateTree.selection != null && hasData);
 		if (!hasData) edtText.text = exemple;
 	}
+
 	//---------------------------------------------------------
 
 	edtText.onChanging = function () {
@@ -270,7 +271,7 @@ function padeiroTemplateDialog() {
 
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
-					
+
 					if (txtList[l] == '') continue;
 
 					if (inputLayerList[l].method == 'textContent') {
@@ -293,7 +294,7 @@ function padeiroTemplateDialog() {
 				}
 				item = app.project.renderQueue.items.add(template);
 				outputModule = item.outputModule(1);
-				
+
 				if (padeiroOutputModuleTemplate == undefined) {
 					padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
 				}
@@ -302,14 +303,14 @@ function padeiroTemplateDialog() {
 
 					try {
 						var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
-						
+
 						outputModule.file = outputFile;
 						outputModule.applyTemplate(padeiroOutputModuleTemplate);
 						item.applyTemplate('Best Settings');
-					
-					} catch (err) {alert(err.message);}
-				
-				} else {item.remove();}
+
+					} catch (err) { alert(err.message); }
+
+				} else { item.remove(); }
 
 				template.openInViewer();
 				template.time = 2;
@@ -320,7 +321,7 @@ function padeiroTemplateDialog() {
 
 		deleteProjectFolders();
 		populateProjectFolders();
-		deleteEmptyProjectFolders();		
+		deleteEmptyProjectFolders();
 
 		app.endUndoGroup();
 		wPadeiroTemplates.close(); // → close window
