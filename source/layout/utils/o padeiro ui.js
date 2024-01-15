@@ -10,6 +10,7 @@
 ---------------------------------------------------------------
 
 */
+// alert('carregou o script');
 
 function renderTemplateDialog(array, alphaChannel) {
 	var renderTemplate = '';
@@ -44,6 +45,8 @@ function renderTemplateDialog(array, alphaChannel) {
 
 // import templates UI...
 function padeiroTemplateDialog() {
+	// alert('iniciou');
+
 	var wWidth; // window width without image preview...
 	var oWidth; // window width with image preview...
 	var previewScale = 0.2; // preview image scale factor...
@@ -110,6 +113,9 @@ function padeiroTemplateDialog() {
 	setTxtColor(inputLabTxt, monoColors[2]);
 	var edtText = vGrp2.add('edittext', [0, 0, 385, 180], '', { multiline: true });
 
+
+	// alert('finalizou a ui');
+
 	//---------------------------------------------------------
 
 	wPadeiroTemplates.onShow = function () {
@@ -120,6 +126,8 @@ function padeiroTemplateDialog() {
 		divider.visible = false; // → hide preview
 		wPadeiroTemplates.size.width = wWidth; // → resize window
 	};
+
+	// alert('exibiu a ui');
 
 	//---------------------------------------------------------
 
@@ -357,5 +365,3 @@ function padeiroTemplateDialog() {
 
 	wPadeiroTemplates.show();
 }
-
-padeiroTemplateDialog();

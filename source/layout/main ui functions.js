@@ -126,7 +126,7 @@ function setLayout() {
 			40, // brand
 			45, // project
 			55, // shortcuts
-			//60, // templates
+			60, // templates
 			40, // text search
 			60, // preview
 			//65, // app utilities
