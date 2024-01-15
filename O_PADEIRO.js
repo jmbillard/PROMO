@@ -272,6 +272,11 @@ function padeiroTemplateDialog() {
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
 
+					if (l >= txtList.length) {
+						inputLayer.enabled = false;
+						continue;
+					}
+
 					if (txtList[l] == '') continue;
 
 					if (inputLayerList[l].method == 'textContent') {
