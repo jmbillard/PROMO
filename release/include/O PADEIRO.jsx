@@ -4,12 +4,11 @@
 
   title:   PROMO utilities script
 
-  notes:   a collection of tools designed to
-  speedup the motion graphics team workflow
+  notes:   a collection of templates and companion script
 
   author:  Jean-Marc Billard
   version: xxx
-  date:    xx-xx-2023
+  date:    xx-xx-2024
 
 --------------------------------------------------------------
 
