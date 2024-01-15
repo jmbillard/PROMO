@@ -17,7 +17,7 @@
 
 var vStr = '0.1';
 
-var templatesPath = 'O:/REDE - PROMO/templates/TEMPLATES PADEIRO';
+var templatesPath = '//10.228.183.165/VFX/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES PADEIRO';
 var templatesFolder = new Folder(templatesPath);
 
 #include 'source/globals.js'; // global variables...
