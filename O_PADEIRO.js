@@ -165,14 +165,14 @@ function padeiroTemplateDialog() {
 			templateName = s.toString().replace(' / ', '/') + '/' + templateName; // → 'current parent/.../template name'
 		}
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png'); // → template preview.png
-		var infoName = templateName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
+		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // → template info.png
 
 		// var templateFile = new File(templatesPath + '/' + templateName); // → template file object
 		var previewImgFile = new File(templatesPath + '/' + imgName); // → preview image object
-		var infoFile = new File(templatesPath + '/' + infoName); // → info file object
+		var configFile = new File(templatesPath + '/' + configName); // → info file object
 
 		try {
-			var JSONContent = readFileContent(infoFile); // → JSON string
+			var JSONContent = readFileContent(configFile); // → JSON string
 			var templateData = JSON.parse(JSONContent); // → preferencesObject
 			exemple = templateData.exemplo;
 
@@ -223,12 +223,12 @@ function padeiroTemplateDialog() {
 			s = s.parent; // current parent...
 			fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
 		}
-		var infoName = fileName.replace(/\.[\w]+$/i, '_info.json'); // → template info.png
+		var configName = fileName.replace(/\.[\w]+$/i, '_config.json'); // → template info.png
 
 		try {
-			var infoFile = new File(templatesPath + '/' + infoName); // → info file object
+			var configFile = new File(templatesPath + '/' + configName); // → info file object
 
-			var JSONContent = readFileContent(infoFile); // → JSON string
+			var JSONContent = readFileContent(configFile); // → JSON string
 			var templateData = JSON.parse(JSONContent); // → preferencesObject
 
 			var templateFile = new File(templatesPath + '/' + fileName); // → template file object
