@@ -1,4 +1,4 @@
-# find *script*
+# O PADEIRO *script*
 
 **pt-BR** ⚡ Ferramenta de busca em layers de texto do After Effects ⚡
 
