@@ -1,0 +1,16 @@
+{
+	"name": "FOTO ENCONTRO",
+	"exemplo": "Nome\n\nNome e\nSobrenome",
+
+	"comp": "FOTO - CONVIDADO TEMPLATE",
+	"type": "FOTO",
+	"separator": "\n",
+	"case": "toTitleCase",
+	"inputs": [
+		{"layerIndex": 2, "method": "textContent"},
+		{"layerIndex": 3, "method": "textContent"}
+	],
+
+	"outputPath": "//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/PROGRAMAS/DIVERSOS/ENCONTRO/ID NOVA _2022/CONVIDADOS",
+	"alpha": true
+}

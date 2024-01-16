@@ -1,0 +1,16 @@
+{
+	"name": "TARJA INFO MANHA",
+	"exemplo": "INFO DE 1 LINHA\n\nINFO MAIOR\nCOM 2 LINHAS",
+
+	"comp": "RDP - INFO MANHA TEMPLATE",
+	"type": "RDP",
+	"separator": "\n",
+	"case": "upperCASE",
+	"inputs": [
+		{"layerIndex": 3, "method": "textContent"},
+		{"layerIndex": 5, "method": "textContent"}
+	],
+
+	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/JORNALISMO LOCAL/pacote local 2020-2024",
+	"alpha": true
+}
