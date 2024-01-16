@@ -1,16 +1,16 @@
 # O PADEIRO *script*
 
-**pt-BR** ⚡ Ferramenta de busca em layers de texto do After Effects ⚡
+**pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
 
 <br/>
 
 # 📟 Interface
-![busca](/images/busca.png)
+![busca](oPadeiro/images/o_padeiro_ui.png)
 
 ---
   
   <br/>
-
+<!-- 
 ## 🔎 Busca
 Basta digitar o termo a ser buscado e pressionar *'ENTER'* ou clicar no ícone da lupa 🔎.
 > A busca varrerá todas as composições do projeto retornando os layers de texto que testam positivo para os parâmetros selecionados.\
@@ -52,4 +52,4 @@ A seção dos resultados contém:
 - A **'composição'** em que o layer de texto está contido.
 - Os layers de texto.
 
-> Ao selecionar um item do resultado, ele será aberto e selecionado no *'Composition Viewer'*.
+> Ao selecionar um item do resultado, ele será aberto e selecionado no *'Composition Viewer'*. -->

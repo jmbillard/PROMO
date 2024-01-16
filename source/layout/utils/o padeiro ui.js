@@ -137,12 +137,12 @@ function padeiroTemplateDialog() {
 	var renderGrp = vGrp2.add('group');
 	renderGrp.spacing = 15;
 
-	var slTxt = renderGrp.add('statictext', undefined, 'adicionar a fila de render:');
-	setTxtColor(slTxt, monoColors[2]);
-	slTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.';
+	var renderLabTxt = renderGrp.add('statictext', undefined, 'adicionar a fila de render:');
+	setTxtColor(renderLabTxt, monoColors[2]);
+	renderLabTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.';
 
-	var slCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);
-	slCkb.value = showLabels;
+	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);
+	renderCkb.value = true;
 
 	//---------------------------------------------------------
 
@@ -244,6 +244,11 @@ function padeiroTemplateDialog() {
 
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 
+			app.project.bitsPerChannel = 8;
+			app.project.expressionEngine = 'javascript-1.0';
+			app.project.linearBlending = true;
+			app.project.timeDisplayType = TimeDisplayType.TIMECODE;		
+
 		} catch (err) {
 			alert(err.message);
 			return;
@@ -299,29 +304,32 @@ function padeiroTemplateDialog() {
 						inputLayer.name = layerName;
 					}
 				}
-				item = app.project.renderQueue.items.add(template);
-				outputModule = item.outputModule(1);
 
-				if (padeiroOutputModuleTemplate == undefined) {
-					padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
+				if (renderCkb.value) {
+					var item = app.project.renderQueue.items.add(template);
+					var outputModule = item.outputModule(1);
+	
+					if (padeiroOutputModuleTemplate == undefined) {
+						padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
+					}
+	
+					if (padeiroOutputModuleTemplate != '') {
+	
+						var outputFolder = new Folder(templateData.outputPath);
+	
+						if (!outputFolder.exists) templateData.outputPath = '~/Desktop';
+	
+						try {
+							var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
+	
+							outputModule.file = outputFile;
+							outputModule.applyTemplate(padeiroOutputModuleTemplate);
+							item.applyTemplate('Best Settings');
+	
+						} catch (err) { alert(err.message); }
+	
+					} else { item.remove(); }
 				}
-
-				if (padeiroOutputModuleTemplate != '') {
-
-					var outputFolder = new Folder(templateData.outputPath);
-
-					if (!outputFolder.exists) templateData.outputPath = '~/Desktop';
-
-					try {
-						var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
-
-						outputModule.file = outputFile;
-						outputModule.applyTemplate(padeiroOutputModuleTemplate);
-						item.applyTemplate('Best Settings');
-
-					} catch (err) { alert(err.message); }
-
-				} else { item.remove(); }
 
 				template.openInViewer();
 				template.time = 2;
