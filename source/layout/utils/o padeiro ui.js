@@ -349,17 +349,17 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	importBtn.onClick = templateTree.onDoubleClick = function () {
-		var s = templateTree.selection; // → current selection
-		var fileName = s.toString().replace(' / ', '/');
+		// var s = templateTree.selection; // → current selection
+		// var fileName = s.toString().replace(' / ', '/');
 
-		// iterate selection parent + parent + parent... to form selected template file path...
-		while (s.parent.toString() != templatesFolder.displayName) {
-			s = s.parent; // current parent...
-			fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
-		}
+		// // iterate selection parent + parent + parent... to form selected template file path...
+		// while (s.parent.toString() != templatesFolder.displayName) {
+		// 	s = s.parent; // current parent...
+		// 	fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
+		// }
 
 		try {
-			var templateFile = new File(templatesPath + '/' + fileName); // → template file object
+			// var templateFile = new File(templatesPath + '/' + fileName); // → template file object
 			var IO = new ImportOptions(templateFile); // import options...
 
 			app.project.importFile(IO); // → import template project
