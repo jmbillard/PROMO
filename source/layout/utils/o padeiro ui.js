@@ -57,7 +57,8 @@ function padeiroTemplateDialog() {
 	var previewImgFile; // → preview image object
 	var configFile; // → info file object
 	var templateData;
-
+	var tipContent = '...';
+ 
 	//---------------------------------------------------------
 
 	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO...');
@@ -69,7 +70,6 @@ function padeiroTemplateDialog() {
 	vGrp1.alignment = ['center', 'top'];
 	vGrp1.alignChildren = 'left';
 
-
 	//---------------------------------------------------------
 
 	var divider = mainGrp.add('panel');
@@ -80,7 +80,11 @@ function padeiroTemplateDialog() {
 	vGrp2.alignChildren = 'left';
 	vGrp2.visible = false;
 	
-	var headerGrp = vGrp1.add('group');
+	var treeGrp = vGrp1.add('group');
+	treeGrp.orientation = 'column';
+	treeGrp.spacing = 5;
+
+	var headerGrp = treeGrp.add('group');
 	headerGrp.alignment = 'fill';
 	headerGrp.orientation = 'stack';
 
@@ -92,10 +96,11 @@ function padeiroTemplateDialog() {
 
 	var templateLabTxt = templatesGrp.add('statictext', undefined, 'templates:');
 	setTxtColor(templateLabTxt, monoColors[2]);
+
 	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS';
 
-	var templateTree = vGrp1.add('treeview', [0, 0, 250, 460]);
+	var templateTree = treeGrp.add('treeview', [0, 0, 250, 460]);
 	buildTree(templatesFolder, templateTree, fileFilter);
 
 	//---------------------------------------------------------
@@ -126,15 +131,37 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// preview...
-	var previewLabTxt = vGrp2.add('statictext', undefined, 'preview:');
-	setTxtColor(previewLabTxt, monoColors[2]);
-	var previewImg = vGrp2.add('image', undefined, no_preview);
-	previewImg.size = [1920 * previewScale, 1080 * previewScale];
-	var inputLabTxt = vGrp2.add('statictext', undefined, 'input:');
-	setTxtColor(inputLabTxt, monoColors[2]);
-	var edtText = vGrp2.add('edittext', [0, 0, 385, 180], '', { multiline: true });
+	var previewGrp = vGrp2.add('group');
+	previewGrp.orientation = 'column';
+	previewGrp.alignChildren = 'left';
 
-	var renderGrp = vGrp2.add('group');
+	var previewLabTxt = previewGrp.add('statictext', undefined, 'preview:');
+	setTxtColor(previewLabTxt, monoColors[2]);
+
+	var previewImg = previewGrp.add('image', undefined, no_preview);
+	previewImg.size = [1920 * previewScale, 1080 * previewScale];
+
+	var divider = vGrp2.add('panel');
+	divider.alignment = 'fill';
+
+	var inputGrp = vGrp2.add('group');
+	inputGrp.alignment = ['left', 'top'];
+
+	var txtGrp = inputGrp.add('group');
+	txtGrp.orientation = 'column';
+	txtGrp.alignment = ['left', 'top'];
+	txtGrp.alignChildren = 'left';
+
+	var tipGrp = inputGrp.add('group');
+	tipGrp.orientation = 'column';
+	tipGrp.alignment = ['left', 'top'];
+	tipGrp.alignChildren = 'left';
+
+	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:');
+	setTxtColor(inputLabTxt, monoColors[2]);
+	var edtText = txtGrp.add('edittext', [0, 0, 185, 170], '', { multiline: true });
+
+	var renderGrp = txtGrp.add('group');
 	renderGrp.spacing = 15;
 
 	var renderLabTxt = renderGrp.add('statictext', undefined, 'adicionar a fila de render:');
@@ -143,6 +170,11 @@ function padeiroTemplateDialog() {
 
 	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);
 	renderCkb.value = true;
+
+	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:');
+	setTxtColor(tipLabTxt, monoColors[2]);
+	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 190], tipContent, {multiline: true});
+	setTxtColor(tipContentTxt, mainColors[1]);
 
 	//---------------------------------------------------------
 
@@ -192,8 +224,10 @@ function padeiroTemplateDialog() {
 			var JSONContent = readFileContent(configFile); // → JSON string
 			templateData = JSON.parse(JSONContent); // → preferencesObject
 			exemple = templateData.exemplo;
+			tipContent = templateData.tip;
 
 			if (!hasData) edtText.text = exemple;
+			tipContentTxt.text = tipContent;
 
 		} catch (err) {
 			alert('esse template não tem um arquivo de configuração válido!\n\nerro: ' + err.message);

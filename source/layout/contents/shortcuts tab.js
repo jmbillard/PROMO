@@ -89,7 +89,7 @@ trelloBtn.onClick = function () {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
-	var site = 'https://trello.com/b/wGakrIDP/board-de-teste';
+	var site = 'https://trello.com/b/pV4FOa2J/fluxo-design-promo';
 
 	openWebSite(site);
 };
