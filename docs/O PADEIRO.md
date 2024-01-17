@@ -10,6 +10,8 @@
 ---
   
   <br/>
+
+## documentação em andamento!
 <!-- 
 ## 🔎 Busca
 Basta digitar o termo a ser buscado e pressionar *'ENTER'* ou clicar no ícone da lupa 🔎.
