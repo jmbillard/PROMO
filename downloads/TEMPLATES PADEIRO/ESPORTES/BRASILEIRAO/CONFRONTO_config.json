@@ -1,6 +1,7 @@
 {
 	"name": "BRASILEIRAO CONFRONTO",
 	"exemplo": "TIME 1 X TIME 2",
+	"tip": "digite o texto em 1 linha.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos dos layers de cada time.",
 
 	"comp": "CONFRONTO TEMPLATE",
 	"type": "CONFRONTO",
