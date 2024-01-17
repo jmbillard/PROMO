@@ -281,7 +281,7 @@ function padeiroTemplateDialog() {
 			app.project.bitsPerChannel = 8;
 			app.project.expressionEngine = 'javascript-1.0';
 			app.project.linearBlending = true;
-			app.project.timeDisplayType = TimeDisplayType.TIMECODE;		
+			app.project.timeDisplayType = TimeDisplayType.TIMECODE;
 
 		} catch (err) {
 			alert(err.message);
@@ -298,17 +298,16 @@ function padeiroTemplateDialog() {
 			if (comp.name != templateData.comp) continue;
 
 			for (var n = 0; n < inputList.length; n++) {
-				var templateName = templateData.type + ' - ' + inputList[n].replaceSpecialCharacters();
+				var prefix = templateData.type != '' ? templateData.type + ' - ' : '';
+				var templateName = prefix + inputList[n].replaceSpecialCharacters();
+				var t = prefix != '' ? 2 : 0;
 
 				var template = comp.duplicate();
-				template.name = templateName
-					.toUpperCase();
 				var inputLayerList = templateData.inputs;
 
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
 
 				if (templateData.separator != "") txtList = inputList[n].split(templateData.separator);
-
 
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
@@ -324,7 +323,8 @@ function padeiroTemplateDialog() {
 
 						if (!(inputLayer instanceof TextLayer)) continue;
 
-						var textContent = txtList[l].trim();
+						txtList[l] = txtList[l].trim();
+						var textContent = txtList[l];
 						var text = inputLayer.property('ADBE Text Properties');
 						var textDoc = text.property('ADBE Text Document').value;
 
@@ -337,7 +337,12 @@ function padeiroTemplateDialog() {
 						var layerName = txtList[l].trim();
 						inputLayer.name = layerName;
 					}
+
 				}
+				if (prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
+
+				template.name = templateName
+					.toUpperCase();
 
 				if (renderCkb.value) {
 					var item = app.project.renderQueue.items.add(template);
@@ -366,7 +371,7 @@ function padeiroTemplateDialog() {
 				}
 
 				template.openInViewer();
-				template.time = 2;
+				template.time = t;
 				template.comment = 'EXPORTAR';
 			}
 			comp.remove();
