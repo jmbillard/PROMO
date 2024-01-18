@@ -53,7 +53,7 @@ function renderTemplateDialog(array, alphaChannel) {
 	renderDrop.onChange = function () {
 		renderTemplate = renderDrop.selection.toString();
 		wPref.close();
-	}
+	};
 
 	wPref.show();
 	return renderTemplate;
@@ -75,7 +75,7 @@ function padeiroTemplateDialog() {
 	var configFile; // → info file object
 	var templateData;
 	var tipContent = '...';
- 
+
 	//---------------------------------------------------------
 
 	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO...');
@@ -89,14 +89,15 @@ function padeiroTemplateDialog() {
 
 	//---------------------------------------------------------
 
-	var divider = mainGrp.add('panel');
+	divider = mainGrp.add('panel');
+
 	// preview vertical group...
 	var vGrp2 = mainGrp.add('group');
 	vGrp2.orientation = 'column';
 	vGrp2.alignment = ['center', 'top'];
 	vGrp2.alignChildren = 'left';
 	vGrp2.visible = false;
-	
+
 	var treeGrp = vGrp1.add('group');
 	treeGrp.orientation = 'column';
 	treeGrp.spacing = 5;
@@ -158,7 +159,7 @@ function padeiroTemplateDialog() {
 	var previewImg = previewGrp.add('image', undefined, no_preview);
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];
 
-	var divider = vGrp2.add('panel');
+	divider = vGrp2.add('panel');
 	divider.alignment = 'fill';
 
 	var inputGrp = vGrp2.add('group');
@@ -190,7 +191,7 @@ function padeiroTemplateDialog() {
 
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:');
 	setTxtColor(tipLabTxt, monoColors[2]);
-	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 190], tipContent, {multiline: true});
+	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 190], tipContent, { multiline: true });
 	setTxtColor(tipContentTxt, mainColors[1]);
 
 	//---------------------------------------------------------
@@ -275,11 +276,10 @@ function padeiroTemplateDialog() {
 		hasData = (edtText.text.trim() != '' && edtText.text.trim() != templateData.exemplo);
 		makeBtn.enabled = (templateTree.selection != null && hasData);
 	};
-	
+
 	//---------------------------------------------------------
 
 	makeBtn.onClick = templateTree.onDoubleClick = function () {
-		app.beginUndoGroup('padeiro...');
 
 		if (edtText.text.trim() == '') return;
 		if (!templateFile.exists) return;
@@ -315,16 +315,18 @@ function padeiroTemplateDialog() {
 			if (comp.name != templateData.comp) continue;
 
 			for (var n = 0; n < inputList.length; n++) {
-				var prefix = templateData.type != '' ? templateData.type + ' - ' : '';
+
+				var isStill = templateData.type == '';
+				var prefix = !isStill ? templateData.type + ' - ' : '';
 				var templateName = prefix + inputList[n].replaceSpecialCharacters();
-				var t = prefix != '' ? 2 : 0;
+				var t = !isStill ? 2 : 0;
 
 				var template = comp.duplicate();
 				var inputLayerList = templateData.inputs;
 
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
 
-				if (templateData.separator != "") txtList = inputList[n].split(templateData.separator);
+				if (templateData.separator != '') txtList = inputList[n].split(templateData.separator);
 
 				for (var l = 0; l < inputLayerList.length; l++) {
 					var inputLayer = template.layer(inputLayerList[l].layerIndex);
@@ -347,6 +349,8 @@ function padeiroTemplateDialog() {
 
 						textDoc.text = textContent;
 						text.property('ADBE Text Document').setValue(textDoc);
+
+						txtList[l] = txtList[l].replaceSpecialCharacters();
 					}
 
 					if (inputLayerList[l].method == 'layerName') {
@@ -356,7 +360,7 @@ function padeiroTemplateDialog() {
 					}
 
 				}
-				if (prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
+				if (isStill) templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
 
 				template.name = templateName
 					.toUpperCase();
@@ -364,26 +368,26 @@ function padeiroTemplateDialog() {
 				if (renderCkb.value) {
 					var item = app.project.renderQueue.items.add(template);
 					var outputModule = item.outputModule(1);
-	
+
 					if (padeiroOutputModuleTemplate == undefined) {
 						padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
 					}
-	
+
 					if (padeiroOutputModuleTemplate != '') {
-	
+
 						var outputFolder = new Folder(templateData.outputPath);
-	
+
 						if (!outputFolder.exists) templateData.outputPath = '~/Desktop';
-	
+
 						try {
 							var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
-	
+
 							outputModule.file = outputFile;
 							outputModule.applyTemplate(padeiroOutputModuleTemplate);
 							item.applyTemplate('Best Settings');
-	
+
 						} catch (err) { alert(err.message); }
-	
+
 					} else { item.remove(); }
 				}
 
@@ -398,27 +402,21 @@ function padeiroTemplateDialog() {
 		populateProjectFolders();
 		deleteEmptyProjectFolders();
 
-		app.endUndoGroup();
 		wPadeiroTemplates.close(); // → close window
 	};
 
 	//---------------------------------------------------------
 
 	importBtn.onClick = templateTree.onDoubleClick = function () {
-		// var s = templateTree.selection; // → current selection
-		// var fileName = s.toString().replace(' / ', '/');
-
-		// // iterate selection parent + parent + parent... to form selected template file path...
-		// while (s.parent.toString() != templatesFolder.displayName) {
-		// 	s = s.parent; // current parent...
-		// 	fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
-		// }
 
 		try {
-			// var templateFile = new File(templatesPath + '/' + fileName); // → template file object
 			var IO = new ImportOptions(templateFile); // import options...
 
 			app.project.importFile(IO); // → import template project
+
+			deleteProjectFolders();
+			populateProjectFolders();
+			deleteEmptyProjectFolders();
 
 		} catch (err) {
 			alert(err.message);
