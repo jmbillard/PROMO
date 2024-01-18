@@ -12,46 +12,31 @@
   <br/>
 
 ## documentação em andamento!
+> idealmente cada template deve possuir uma imagem *'_preview.png'* e um arquivo de configuração *'_config.json'*
 
-## 🔎 Busca
-Basta digitar o termo a ser buscado e pressionar *'ENTER'* ou clicar no ícone da lupa 🔎.
-> A busca varrerá todas as composições do projeto retornando os layers de texto que testam positivo para os parâmetros selecionados.\
-A busca suporta múltiplos *'keyframes'* no *'Source Text'* e leva em consideração se a propriedade possui ou não uma expressão.\
-Caso precise, utilize as opções a baixo para refinar a busca.
+## 📑 templates:
+árvore com uma lista de todos os templates disponíveis na pasta de templates do script.\
+ao selecionar um template da lista, a interface se ajustará para exibir um preview, o campo de input e dicas.
+> apenas os templates podem ser selecionados na lista.\
+> apenas os arquivos com extensão '.aep', '.aet' e seus diretórios são exibidos na lista.
 
-1. ### ![visibilidade](/images/checkBoxIcon.png)  **`visibilidade`**
+## 🖼️ preview:
+Exibe uma imagem de exemplo mostrando como o template.
+> caso a imagem de preview não esteja disponível, um place holder será exibido em seu lugar.
 
-    Inclui apenas layers visíveis no resultado da busca.
+## 📝 input:
+campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
+> todo template deve possuir um arquivo de configuração, sem ele, não é possível preencher o template selecionado pelo input. (você ainda poderá importar e preencher manualmente o template no After Effects)
 
-2. ### ![caixa de texto](/images/checkBoxIcon.png)  **`Tt`**
+## ✨ dicas:
+tópicos curtos explicando o preenchimento do template selecionado.
 
-    Força a busca a respeitar letras maiúsculas e minúsculas.
-    > Por padrão, buscar por **'UVA'**, **'Uva'** ou **'uva'** retornam o mesmo resultado.
+## botão importar
 
-3. ### ![acentuação](/images/checkBoxIcon.png)  **`àê`**
+## botão atualizar lista
 
-    Força a busca a respeitar acentuação.
-    > por padrão, buscar por **'você'** ou **'voce'** retornam o mesmo resultado.
+## botão abrir pasta
 
-4. ### ![inverter](/images/checkBoxIcon.png)  **`!=`**
+## botão criar
 
-    Retorna todos os resultados que **NÃO CONTÉM** o termo buscado.
-
-5. ### ![regExp](/images/checkBoxIcon.png)  **`RegExp`**
-
-    Habilita o uso de [Regular Expressions](https://www.w3schools.com/jsref/jsref_obj_regexp.asp).
-    > ex: **'[0-9]'** retorna todos os textos que contém números.\
-    > ex: **'\n|\r'** retorna todos os textos que contém mais de 1 linha.\
-    > ex: **'\s{2,}'** retorna todos os textos que contém 2 ou mais espaços consecutivos.\
-
-## 📑 Resultados
-
-Os resultados são exibidos na seção inferior da janela.
-
-![busca](/images/resultados.png)
-
-A seção dos resultados contém:
-- A **'composição'** em que o layer de texto está contido.
-- Os layers de texto.
-
-> Ao selecionar um item do resultado, ele será aberto e selecionado no *'Composition Viewer'*.
+## checkbox adicionar a fila de render
