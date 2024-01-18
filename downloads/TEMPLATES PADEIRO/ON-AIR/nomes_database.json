@@ -1,0 +1,61 @@
+{
+	"titulos":{
+		"manha": [
+			"AUTO ESPORTE",
+			"BOM DIA",
+			"E DE CASA",
+			"ENCONTRO",
+			"ESPORTE",
+			"GLOBO COMUNIDADE",
+			"GLOBO RURAL",
+			"MAIS VOCÊ",
+			"RJ 1",
+			"SP 1",
+			"SÃO SILVESTRE",
+			"SUPER LIGA"
+		],
+		"tarde": [
+			"A RODA",
+			"APURAÇÃO",
+			"BRASILEIRÃO",
+			"CALDEIRÃO",
+			"CALDEIROLA",
+			"CAMPEÕES DE BILHETERIA",
+			"CINEMAÇO",
+			"COMPACTO",
+			"CONVOCAÇÃO",
+			"DOMINGÃO",
+			"GLOBELEZA",
+			"PIPOCA DA IVETE",
+			"SESSÃO DA TARDE",
+			"SESSÃO DE SÁBADO",
+			"TEMPERATURA MÁXIMA",
+			"THE VOICE",
+			"VALE A PENA VER DE NOVO"
+		],
+		"noite": [
+			"ALTAS HORAS",
+			"BBB",
+			"BIG BROTHER",
+			"CINEMA DO LÍDER",
+			"CINEMA ESPECIAL",
+			"CIRCUITO SERTANEJO",
+			"DESFILE DAS ESCOLAS",
+			"DOMINGO MAIOR",
+			"ESPECIAL",
+			"FANTÁSTICO",
+			"LOLLA",
+			"NO LIMITE",
+			"RETROSPECTIVA",
+			"ROCK IN RIO",
+			"SESSÃO DE NATAL",
+			"SESSÃO GLOBOPLAY",
+			"SESSÃO PLIM PLIM",
+			"SHOW",
+			"SOM BRASIL",
+			"SUPER CINE",
+			"TELA QUENTE",
+			"THE TOWN"
+		]
+	}
+}
