@@ -5,6 +5,7 @@
 
 	"comp": "CONFRONTO TEMPLATE",
 	"type": "CONFRONTO",
+	"refTime": 2,
 	"separator": " X ",
 	"case": "upperCASE",
 	"inputs": [

@@ -5,6 +5,7 @@
 
 	"comp": "TARJA - NOME TEMPLATE",
 	"type": "",
+	"refTime": 0,
 	"separator": "---",
 	"case": "upperCASE",
 	"inputs": [

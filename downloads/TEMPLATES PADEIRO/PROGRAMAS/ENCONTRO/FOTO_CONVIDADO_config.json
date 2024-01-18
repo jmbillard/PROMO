@@ -5,6 +5,7 @@
 
 	"comp": "FOTO - CONVIDADO TEMPLATE",
 	"type": "FOTO",
+	"refTime": 2,
 	"separator": "\n",
 	"case": "toTitleCase",
 	"inputs": [

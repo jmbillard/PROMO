@@ -5,6 +5,7 @@
 
 	"comp": "RDP - INFO MANHA TEMPLATE",
 	"type": "RDP",
+	"refTime": 2,
 	"separator": "\n",
 	"case": "upperCASE",
 	"inputs": [

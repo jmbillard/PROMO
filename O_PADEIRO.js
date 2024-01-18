@@ -316,10 +316,9 @@ function padeiroTemplateDialog() {
 
 			for (var n = 0; n < inputList.length; n++) {
 
-				var isStill = templateData.type == '';
-				var prefix = !isStill ? templateData.type + ' - ' : '';
+				var prefix = templateData.type != '' ? templateData.type + ' - ' : '';
 				var templateName = prefix + inputList[n].replaceSpecialCharacters();
-				var t = !isStill ? 2 : 0;
+				var t = templateData.refTime;
 
 				var template = comp.duplicate();
 				var inputLayerList = templateData.inputs;
@@ -360,7 +359,7 @@ function padeiroTemplateDialog() {
 					}
 
 				}
-				if (isStill) templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
+				if (templateData.type == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
 
 				template.name = templateName
 					.toUpperCase();

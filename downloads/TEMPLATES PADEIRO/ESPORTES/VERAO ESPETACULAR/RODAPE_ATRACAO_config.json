@@ -5,6 +5,7 @@
 
 	"comp": "RDP - ATRACAO TEMPLATE",
 	"type": "RDP",
+	"refTime": 2,
 	"separator": "",
 	"case": "upperCASE",
 	"inputs": [

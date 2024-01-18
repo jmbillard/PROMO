@@ -5,6 +5,7 @@
 
 	"comp": "RDP - TARJA TEMPLATE",
 	"type": "RDP",
+	"refTime": 2,
 	"separator": "",
 	"case": "upperCASE",
 	"inputs": [
