@@ -5,7 +5,7 @@
 <br/>
 
 # 📟 Interface
-![busca](oPadeiro/images/o_padeiro_ui.png)
+![ui](images/o_padeiro_ui.png)
 
 ---
   
@@ -18,7 +18,7 @@
 árvore com uma lista de todos os templates disponíveis na pasta de templates do script.\
 ao selecionar um template da lista, a interface se ajustará para exibir um preview, o campo de input e dicas.
 > apenas os templates podem ser selecionados na lista.\
-> apenas os arquivos com extensão '.aep', '.aet' e seus diretórios são exibidos na lista.
+> apenas os arquivos com extensão *'.aep'*, *'.aet'* e seus diretórios são exibidos na lista.
 
 ## 🖼️ preview:
 Exibe uma imagem de exemplo mostrando como o template.
@@ -26,7 +26,7 @@ Exibe uma imagem de exemplo mostrando como o template.
 
 ## 📝 input:
 campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
-> todo template deve possuir um arquivo de configuração, sem ele, não é possível preencher o template selecionado pelo input. (você ainda poderá importar e preencher manualmente o template no After Effects)
+> todo template deve possuir um arquivo de configuração, sem ele, não é possível preencher o template selecionado pelo input. (*você ainda poderá importar e preencher manualmente o template no After Effects!*).
 
 ## ✨ dicas:
 tópicos curtos explicando o preenchimento do template selecionado.
