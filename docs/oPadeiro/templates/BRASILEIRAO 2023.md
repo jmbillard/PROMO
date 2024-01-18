@@ -1,7 +1,6 @@
 # ⚽ CONFRONTO - BRASILEIRÃO 2023
 
-📂 _L:\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2023\BRASILEIRÃO\01PROJETOS_\
-📑 **\_CONFRONTO.aep**
+📑 **\CONFRONTO.aet**
 
 > 📋 _exemplo:_\
 > ![exemplo](templateBrasileirao2023/exemplo.gif)
