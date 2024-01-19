@@ -344,8 +344,7 @@ function padeiroTemplateDialog() {
 				}
 				if (templateData.type == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
 
-				template.name = templateName
-					.toUpperCase();
+				template.name = templateName.toUpperCase();
 
 				if (renderCkb.value) {
 					var item = app.project.renderQueue.items.add(template);
