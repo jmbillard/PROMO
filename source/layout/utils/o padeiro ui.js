@@ -10,6 +10,23 @@
 ---------------------------------------------------------------
 
 */
+var vPad = '0.3 b';
+
+var defPadObj = {
+	configName: 'default config',
+	exemple: '',
+	tip: '',
+
+	compName: '',
+	prefix: '',
+	refTime: 0,
+	separator: '---',
+	textCase: 'upperCASE',
+	inputLayers: null,
+
+	outputPath: '~/Desktop',
+	alpha: true
+};
 
 function renderTemplateDialog(array, alphaChannel) {
 	var renderTemplate = '';
@@ -61,7 +78,7 @@ function padeiroTemplateDialog() {
 
 	//---------------------------------------------------------
 
-	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO...');
+	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO ' + vPad);
 	// main group...
 	var mainGrp = wPadeiroTemplates.add('group');
 	// left vertical group...
@@ -161,6 +178,7 @@ function padeiroTemplateDialog() {
 	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:');
 	setTxtColor(inputLabTxt, monoColors[2]);
 	var edtText = txtGrp.add('edittext', [0, 0, 185, 170], '', { multiline: true });
+	edtText.enabled = false;
 
 	var renderGrp = txtGrp.add('group');
 	renderGrp.spacing = 15;
@@ -171,6 +189,7 @@ function padeiroTemplateDialog() {
 
 	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);
 	renderCkb.value = true;
+	renderCkb.enabled = false;
 
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:');
 	setTxtColor(tipLabTxt, monoColors[2]);
@@ -195,8 +214,6 @@ function padeiroTemplateDialog() {
 		if (templateTree.selection != null && templateTree.selection.type == 'node') {
 			templateTree.selection = null; // → clear selection
 		}
-		importBtn.enabled = templateTree.selection != null; // → enable | disable import button
-		makeBtn.enabled = (templateTree.selection != null && hasData);
 
 		if (templateTree.selection == null) {
 			// nothing selected...
@@ -221,11 +238,38 @@ function padeiroTemplateDialog() {
 		previewImgFile = new File(templatesPath + '/' + imgName); // → preview image object
 		configFile = new File(templatesPath + '/' + configName); // → info file object
 
+		importBtn.enabled = templateTree.selection != null; // → enable | disable import button
+
+		if (previewImgFile.exists) {
+			previewImg.image = previewImgFile; // → set preview image file
+		} else {
+			previewImg.image = no_preview; // → set image 'no preview available'
+		}
+
+		vGrp2.visible = true; // → show preview
+		divider.visible = true; // → show preview
+		wPadeiroTemplates.size.width = oWidth; // → resize window
+
 		try {
-			var JSONContent = readFileContent(configFile); // → JSON string
-			templateData = JSON.parse(JSONContent); // → preferencesObject
-			exemple = templateData.exemplo;
-			tipContent = templateData.tip;
+			exemple = lol + '\n\nesse template não pode ser editado pelo padeiro.';
+			var tipContent = 'clique no botão importar e edite o template manualmente.';
+
+			if (configFile.exists) {
+				exemple = lol + '\n\nesse template não possui inputs.';
+				var JSONContent = readFileContent(configFile); // → JSON string
+				templateData = JSON.parse(JSONContent); // → preferencesObject
+
+				for (var o in defPadObj) {
+					// check saved preferences...
+					if (templateData.hasOwnProperty(o)) continue; // main property exists...
+					templateData[o] = defPadObj[o]; // use default main property value...
+				}
+
+				if (templateData.inputLayers != null) {
+					exemple = templateData.exemple;
+					tipContent = templateData.tip;
+				}
+			}
 
 			if (!hasData) edtText.text = exemple;
 			tipContentTxt.text = tipContent;
@@ -235,28 +279,25 @@ function padeiroTemplateDialog() {
 			return;
 		}
 
-		if (previewImgFile.exists) {
-			previewImg.image = previewImgFile; // → set preview image file
-		} else {
-			previewImg.image = no_preview; // → set image 'no preview available'
-		}
-		vGrp2.visible = true; // → show preview
-		divider.visible = true; // → show preview
-		wPadeiroTemplates.size.width = oWidth; // → resize window
+		makeBtn.enabled = (templateTree.selection != null && hasData && templateData.inputLayers != null);
+		inputLabTxt.enabled = templateData.inputLayers != null; // → set preview image file
+		edtText.enabled = templateData.inputLayers != null; // → set preview image file
+		renderCkb.enabled = templateData.inputLayers != null; // → set preview image file
+		renderLabTxt.enabled = templateData.inputLayers != null; // → set preview image file
 	};
 
 	templateTree.onActivate = function () {
 
 		hasData = (edtText.text.trim() != '');
-		makeBtn.enabled = (templateTree.selection != null && hasData);
+		makeBtn.enabled = (templateTree.selection != null && hasData && templateData.inputLayers != null);
 		if (!hasData) edtText.text = exemple;
-	}
+	};
 
 	//---------------------------------------------------------
 
 	edtText.onChanging = function () {
 
-		hasData = (edtText.text.trim() != '' && edtText.text.trim() != templateData.exemplo);
+		hasData = (edtText.text.trim() != '' && edtText.text.trim() != templateData.exemple);
 		makeBtn.enabled = (templateTree.selection != null && hasData);
 	};
 
@@ -266,6 +307,7 @@ function padeiroTemplateDialog() {
 
 		if (edtText.text.trim() == '') return;
 		if (!templateFile.exists) return;
+		if (!configFile.exists) return;
 
 		try {
 			var IO = new ImportOptions(templateFile); // import options...
@@ -295,16 +337,16 @@ function padeiroTemplateDialog() {
 
 			if (!(comp instanceof CompItem)) continue;
 			if (!comp.comment.match(/^TEMPLATE/)) continue;
-			if (comp.name != templateData.comp) continue;
+			if (comp.name != templateData.compName) continue;
 
 			for (var n = 0; n < inputList.length; n++) {
 
-				var prefix = templateData.type != '' ? templateData.type + ' - ' : '';
+				var prefix = templateData.prefix != '' ? templateData.prefix + ' - ' : '';
 				var templateName = prefix + inputList[n].replaceSpecialCharacters();
 				var t = templateData.refTime;
 
 				var template = comp.duplicate();
-				var inputLayerList = templateData.inputs;
+				var inputLayerList = templateData.inputLayers;
 
 				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
 
@@ -342,7 +384,7 @@ function padeiroTemplateDialog() {
 					}
 
 				}
-				if (templateData.type == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
+				if (templateData.prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
 
 				template.name = templateName.toUpperCase();
 
@@ -358,7 +400,7 @@ function padeiroTemplateDialog() {
 
 						var outputFolder = new Folder(templateData.outputPath);
 
-						if (!outputFolder.exists) templateData.outputPath = '~/Desktop';
+						if (!outputFolder.exists) templateData.outputPath = defPadObj.outputPath;
 
 						try {
 							var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');

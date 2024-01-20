@@ -1,14 +1,14 @@
 {
-	"name": "VERAO ESPETACULAR RODAPE ATRACAO",
-	"exemplo": "NOME DA ATRAÇÃO\n\nNOME LONGO DA ATRAÇÃO\nCOM DUAS LINHAS",
+	"configName": "VERAO ESPETACULAR RODAPE ATRACAO",
+	"exemple": "NOME DA ATRAÇÃO\n\nNOME LONGO DA ATRAÇÃO\nCOM DUAS LINHAS",
 	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
-	"comp": "RDP - ATRACAO TEMPLATE",
-	"type": "RDP",
+	"compName": "RDP - ATRACAO TEMPLATE",
+	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "",
-	"case": "upperCASE",
-	"inputs": [
+	"textCase": "upperCASE",
+	"inputLayers": [
 		{"layerIndex": 1, "method": "textContent"}
 	],
 

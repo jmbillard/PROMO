@@ -57,10 +57,10 @@ e em suas respectivas telas:
 - percentagem de brilho 2 → controla o brilho do segundo grupo de cores secundárias.
 
 > 🚩 _obs:_\
-> • habilite / desabilite e reordene as telas para organizar o guia da marca.
-> • habilite / desabilite e reordene os controles de cor para montar a paleta.
-> • o template irá suportar até 10 cores.
-> • a primeira cor é sempre a cor principal e será usada nos BGs.
+> • habilite / desabilite e reordene as telas para organizar o guia da marca.\
+> • habilite / desabilite e reordene os controles de cor para montar a paleta.\
+> • o template irá suportar até 10 cores.\
+> • a primeira cor é sempre a cor principal e será usada nos BGs.\
 > • o preview das telas é dinâmico, a ordem da paginação e índice serão atualizados automaticamente.
 
 ---

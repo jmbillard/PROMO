@@ -1,14 +1,14 @@
 {
-	"name": "BRASILEIRAO CONFRONTO",
-	"exemplo": "TIME 1 X TIME 2",
+	"configName": "BRASILEIRAO CONFRONTO",
+	"exemple": "TIME 1 X TIME 2",
 	"tip": "digite o texto em 1 linha.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos dos layers de cada time.",
 
-	"comp": "CONFRONTO TEMPLATE",
-	"type": "CONFRONTO",
+	"compName": "CONFRONTO TEMPLATE",
+	"prefix": "CONFRONTO",
 	"refTime": 2,
 	"separator": " X ",
-	"case": "upperCASE",
-	"inputs": [
+	"textCase": "upperCASE",
+	"inputLayers": [
 		{"layerIndex": 1, "method": "layerName"},
 		{"layerIndex": 2, "method": "layerName"}
 	],

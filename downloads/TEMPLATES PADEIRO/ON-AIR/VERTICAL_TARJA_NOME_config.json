@@ -1,14 +1,14 @@
 {
-	"name": "VERTICAL TARJA NOME",
-	"exemplo": "SÓ TÍTULO\nCOM ATÉ 2 LINHAS\n\nTÍTULO\n---\nSUBTÍTULOS\nCOM ATÉ 2 LINHAS\n\nTÍTULO\n---\nSUBTÍTULO\n---\nTEXTO DE APOIO",
+	"configName": "VERTICAL TARJA NOME",
+	"exemple": "SÓ TÍTULO\nCOM ATÉ 2 LINHAS\n\nTÍTULO\n---\nSUBTÍTULOS\nCOM ATÉ 2 LINHAS\n\nTÍTULO\n---\nSUBTÍTULO\n---\nTEXTO DE APOIO",
 	"tip": "digite o texto em 1 ou 2 linhas para o título e subtítulo.\n\nuse 1 linha com '---' para separar título, subtítulo e apoio.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"comp": "TARJA - NOME TEMPLATE",
-	"type": "",
+	"compName": "TARJA - NOME TEMPLATE",
+	"prefix": "",
 	"refTime": 0,
 	"separator": "---",
-	"case": "upperCASE",
-	"inputs": [
+	"textCase": "upperCASE",
+	"inputLayers": [
 		{"layerIndex": 2, "method": "textContent"},
 		{"layerIndex": 4, "method": "textContent"},
 		{"layerIndex": 5, "method": "textContent"}

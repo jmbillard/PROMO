@@ -1,14 +1,14 @@
 {
-	"name": "ENCONTRO FOTO CONVIDADO",
-	"exemplo": "Nome curto\n\nNome maior\ncom Sobrenome",
+	"configName": "ENCONTRO FOTO CONVIDADO",
+	"exemple": "Nome curto\n\nNome maior\ncom Sobrenome",
 	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\ndepois de criar, importe e adicione a imagem de cada convidado em sua respectiva comp.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"comp": "FOTO - CONVIDADO TEMPLATE",
-	"type": "FOTO",
+	"compName": "FOTO - CONVIDADO TEMPLATE",
+	"prefix": "FOTO",
 	"refTime": 2,
 	"separator": "\n",
-	"case": "toTitleCase",
-	"inputs": [
+	"textCase": "toTitleCase",
+	"inputLayers": [
 		{"layerIndex": 3, "method": "textContent"},
 		{"layerIndex": 4, "method": "textContent"}
 	],

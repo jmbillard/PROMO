@@ -1,14 +1,14 @@
 {
-	"name": "ALTAS HORAS TARJA CONVIDADO",
-	"exemplo": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME",
+	"configName": "ALTAS HORAS TARJA CONVIDADO",
+	"exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME",
 	"tip": "digite o texto em 1, 2 ou 3 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"comp": "RDP - TARJA TEMPLATE",
-	"type": "RDP",
+	"compName": "RDP - TARJA TEMPLATE",
+	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "",
-	"case": "upperCASE",
-	"inputs": [
+	"textCase": "upperCASE",
+	"inputLayers": [
 		{"layerIndex": 4, "method": "textContent"}
 	],
 

@@ -1,14 +1,14 @@
 {
-	"name": "JORNALISMO SP TARJA INFO MANHA",
-	"exemplo": "INFO CURTA 1 LINHA\n\nINFO MAIOR\nCOM 2 LINHAS",
+	"configName": "JORNALISMO SP TARJA INFO MANHA",
+	"exemple": "INFO CURTA 1 LINHA\n\nINFO MAIOR\nCOM 2 LINHAS",
 	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"comp": "RDP - INFO MANHA TEMPLATE",
-	"type": "RDP",
+	"compName": "RDP - INFO MANHA TEMPLATE",
+	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "\n",
-	"case": "upperCASE",
-	"inputs": [
+	"textCase": "upperCASE",
+	"inputLayers": [
 		{"layerIndex": 3, "method": "textContent"},
 		{"layerIndex": 5, "method": "textContent"}
 	],

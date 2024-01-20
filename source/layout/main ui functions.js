@@ -269,7 +269,6 @@ function openTab() {
 
 // show error message...
 function showTabErr(msg) {
-	var lol = 'Σ(っ °Д °;)っ        ';
 	errTxt.text = lol + msg;
 	closeGrp.visible = true;
 	errTabGrp.visible = true;
