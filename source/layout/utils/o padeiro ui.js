@@ -67,6 +67,7 @@ function padeiroTemplateDialog() {
 	var previewScale = 0.2; // preview image scale factor...
 	var fileFilter = ['.aep', '.aet']; // template files extensions...
 	var hasData = false;
+	var hasInput = false;
 	var exemple = '';
 	var padeiroOutputModuleTemplate;
 
@@ -251,11 +252,12 @@ function padeiroTemplateDialog() {
 		wPadeiroTemplates.size.width = oWidth; // → resize window
 
 		try {
+			hasInput = false;
 			exemple = lol + '\n\nesse template não pode ser editado pelo padeiro.';
 			var tipContent = 'clique no botão importar e edite o template manualmente.';
 
 			if (configFile.exists) {
-				exemple = lol + '\n\nesse template não possui inputs.';
+				exemple = relax + '\n\nesse template não possui inputs.';
 				var JSONContent = readFileContent(configFile); // → JSON string
 				templateData = JSON.parse(JSONContent); // → preferencesObject
 
@@ -265,7 +267,9 @@ function padeiroTemplateDialog() {
 					templateData[o] = defPadObj[o]; // use default main property value...
 				}
 
-				if (templateData.inputLayers != null) {
+				hasInput = templateData.inputLayers != null;
+
+				if (hasInput) {
 					exemple = templateData.exemple;
 					tipContent = templateData.tip;
 				}
@@ -279,26 +283,32 @@ function padeiroTemplateDialog() {
 			return;
 		}
 
-		makeBtn.enabled = (templateTree.selection != null && hasData && templateData.inputLayers != null);
-		inputLabTxt.enabled = templateData.inputLayers != null; // → set preview image file
-		edtText.enabled = templateData.inputLayers != null; // → set preview image file
-		renderCkb.enabled = templateData.inputLayers != null; // → set preview image file
-		renderLabTxt.enabled = templateData.inputLayers != null; // → set preview image file
+		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
+		inputLabTxt.enabled = hasInput; // → set preview image file
+		edtText.enabled = hasInput; // → set preview image file
+		renderCkb.enabled = hasInput; // → set preview image file
+		renderLabTxt.enabled = hasInput; // → set preview image file
 	};
 
 	templateTree.onActivate = function () {
 
-		hasData = (edtText.text.trim() != '');
-		makeBtn.enabled = (templateTree.selection != null && hasData && templateData.inputLayers != null);
+		hasData = (edtText.text.trim() != '' && edtText.text != exemple);
 		if (!hasData) edtText.text = exemple;
+		
+		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
+		inputLabTxt.enabled = hasInput; // → set preview image file
+		edtText.enabled = hasInput; // → set preview image file
+		renderCkb.enabled = hasInput; // → set preview image file
+		renderLabTxt.enabled = hasInput; // → set preview image file
+
 	};
 
 	//---------------------------------------------------------
 
 	edtText.onChanging = function () {
 
-		hasData = (edtText.text.trim() != '' && edtText.text.trim() != templateData.exemple);
-		makeBtn.enabled = (templateTree.selection != null && hasData);
+		hasData = (edtText.text.trim() != '' && edtText.text.trim() != exemple);
+		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
 	};
 
 	//---------------------------------------------------------
