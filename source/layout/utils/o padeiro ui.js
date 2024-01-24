@@ -475,7 +475,7 @@ function padeiroTemplateDialog() {
 
 	infoBtn.onClick = function () {
 
-		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O%20PADEIRO.md#O-PADEIRO-script');
+		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/oPadeiro/O%20PADEIRO.md#O-PADEIRO-script');
 	};
 
 	wPadeiroTemplates.show();
