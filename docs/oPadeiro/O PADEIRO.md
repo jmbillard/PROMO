@@ -2,6 +2,12 @@
 
 **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
 
+> 📂 *pastas:*
+> - templates: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*\
+> - script: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
+
+> 📑 **O PADEIRO.jsx**
+
 <br/>
 
 # 📟 Interface
