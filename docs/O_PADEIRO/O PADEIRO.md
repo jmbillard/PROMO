@@ -49,7 +49,7 @@ o script executará as seguintes tarefas em ordem:
 - **lista de templates** → árvore com todos os templates disponíveis na pasta de templates do script.
 - **ajuda | DOCS** → acessa a documentação completa do script e seus templates disponíveis.
 
-> 🚩\
+> 🚩 *obs:*\
 > • ao selecionar um template da lista, a interface do script se ajustará para exibir um preview, o campo de input e dicas, se disponíveis.\
 > • apenas os templates podem ser selecionados na lista.\
 > • apenas os arquivos com extensão '*.aep*', '*.aet*' e seus diretórios são exibidos na lista.\
@@ -60,7 +60,7 @@ o script executará as seguintes tarefas em ordem:
 
 - **imagem de preview** → exibe uma imagem de exemplo do template selecionado.
 
-> 🚩\
+> 🚩 *obs:*\
 > • caso não exista uma imagem de preview, será exibido um aviso "PREVIEW NÃO DISPONÍVEL".
 
 ### input
@@ -95,7 +95,7 @@ o script executará as seguintes tarefas em ordem:
 > }
 > ```
 
-> 🚩\
+> 🚩 *obs:*\
 > • o '**input**' é pré preenchido com dados genéricos disponíveis no arquivo de configuração do template selecionado apenas para exemplificar **ALGUMAS** possibilidades de preenchimento.\
 > • sem um arquivo de configuração, não é possível preencher o template selecionado usando a janela de texto do '**input**'.\
 > • você ainda poderá **IMPORTAR** e **PREENCHER MANUALMENTE** o template no After Effects!!!
@@ -115,8 +115,8 @@ o script executará as seguintes tarefas em ordem:
 
 - **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
-> 🚩\
-> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**).\
+> 🚩 *obs:*\
+> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**).
 
 ---
 
