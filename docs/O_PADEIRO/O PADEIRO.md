@@ -47,7 +47,7 @@ o script executará as seguintes tarefas em ordem:
 ![ui](images/templates_ui.png)
 
 - **lista de templates** → árvore com todos os templates disponíveis na pasta de templates do script.
-- **botão ajuda | DOCS** → acessa a documentação completa do script e seus templates disponíveis.
+- **ajuda | DOCS** → acessa a documentação completa do script e seus templates disponíveis.
 
 > 🚩\
 > • ao selecionar um template da lista, a interface do script se ajustará para exibir um preview, o campo de input e dicas, se disponíveis.\
@@ -61,7 +61,7 @@ o script executará as seguintes tarefas em ordem:
 - **imagem de preview** → exibe uma imagem de exemplo do template selecionado.
 
 > 🚩\
-> • caso não exista uma imagem de preview, será exibido um aviso "PREVIEW NÃO DISPONÍVEL".\
+> • caso não exista uma imagem de preview, será exibido um aviso "PREVIEW NÃO DISPONÍVEL".
 
 ### input
 
@@ -104,10 +104,10 @@ o script executará as seguintes tarefas em ordem:
 
 ![ui](images/botoes_ui.png)
 
-- **botão importar** → importa o arquivo '*.aet*' ou '*.aep*' para o projeto.
-- **botão atualizar lista** → verifica e atualiza a lista de templates disponíveis.
-- **botão abrir pasta** → abre a pasta raiz de templates.
-- **botão criar** → inicia a execução do preenchimento automático.
+- **importar** → importa o arquivo '*.aet*' ou '*.aep*' do template selecionado para o projeto.
+- **atualizar lista** → verifica e atualiza a lista de templates disponíveis.
+- **abrir pasta** → abre a pasta raiz de templates.
+- **criar** → inicia a execução do preenchimento automático.
 
 ### render setup
 
@@ -124,11 +124,11 @@ o script executará as seguintes tarefas em ordem:
 
 ## 🚨 Atenção!
 
-CONFIRA SEMPRE AS COMPOSIÇÕES CRIADAS, SEU CONTEÚDO E O CAMINHO DO OUTPUT!
+`CONFIRA SEMPRE AS COMPOSIÇÕES CRIADAS, SEU CONTEÚDO E O CAMINHO DO OUTPUT!`
 
 os layouts dos templates podem variar para exibir ou omitir diferentes tipos de informação, assim, é possível que o resultado final fique diferente do preview.
 > 📋 *exemplo:*\
-> as comps criadas podem ter layers omitidos por falta de conteúdo inserido ou elementos com cores diferentes.
+> as comps criadas podem ter layers omitidos por falta de conteúdo inserido ou elementos com cores diferentes das exibidas no preview.
 
 idealmente cada template deve possuir uma imagem com o mesmo **nome exato** do template seguida de '*_preview.png*' e um arquivo de configuração '*_config.json*' com as informações necessárias para o preenchimento correto do template selecionado.
 > 📋 *exemplo:*\
