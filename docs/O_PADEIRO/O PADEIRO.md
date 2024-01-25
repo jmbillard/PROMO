@@ -42,10 +42,6 @@ o script executará as seguintes tarefas em ordem:
 > ![ui](gifs/ui_2.gif)\
 > ![ui](gifs/ui_3.gif)
 
-> 🚩\
-> • confira sempre as composições criadas, seu conteúdo e o caminho do output.\
-> • idealmente cada template deve possuir uma imagem com o mesmo **nome exato** do template e seguida de '*_preview.png*' e um arquivo de configuração '*_config.json*' com as informações necessárias para o preenchimento correto do template selecionado.
-
 ### templates
 
 ![ui](images/templates_ui.png)
@@ -62,19 +58,18 @@ o script executará as seguintes tarefas em ordem:
 
 ![ui](images/preview_ui.png)
 
-- imagem de preview → exibe uma imagem de exemplo do template selecionado.
+- **imagem de preview** → exibe uma imagem de exemplo do template selecionado.
 
 > 🚩\
-> • caso a imagem de preview não esteja disponível, um place holder será exibido em seu lugar.\
-> • muitos templates conseguem exibir mais de um tipo de informação e o seu layout irá se adaptar para acomodar as mesmas.
+> • caso não exista uma imagem de preview, será exibido um aviso "PREVIEW NÃO DISPONÍVEL".\
 
 ### input
 
 ![ui](images/input_ui.png)
 
-- texto → campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
-- adicionar a fila de render → se habilitado, adiciona as comps criadas e o seus caminhos corretos no output automaticamente.
-- dicas → tópicos curtos explicando o preenchimento do template selecionado.
+- **texto** → campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
+- **adicionar a fila de render** → se habilitado, adiciona as comps criadas e o seus caminhos corretos no output automaticamente.
+- **dicas** → tópicos curtos explicando o preenchimento do template selecionado.
 
 > 📋 *exemplo de arquivo de configuração:* *"RODAPE CONVIDADO_config.json"*
 >
@@ -129,15 +124,26 @@ o script executará as seguintes tarefas em ordem:
 
 ## 🚨 Atenção!
 
+CONFIRA SEMPRE AS COMPOSIÇÕES CRIADAS, SEU CONTEÚDO E O CAMINHO DO OUTPUT!
+
+os layouts dos templates podem variar para exibir ou omitir diferentes tipos de informação, assim, é possível que o resultado final fique diferente do preview.
+> 📋 *exemplo:*\
+> as comps criadas podem ter layers omitidos por falta de conteúdo inserido ou elementos com cores diferentes.
+
+idealmente cada template deve possuir uma imagem com o mesmo **nome exato** do template seguida de '*_preview.png*' e um arquivo de configuração '*_config.json*' com as informações necessárias para o preenchimento correto do template selecionado.
+> 📋 *exemplo:*\
+> um template chamado *"FOTO_CONVIDADO.aet"* deve estar acompanhado por uma imagem de preview *"FOTO_CONVIDADO_preview.png"* e um arquivo de configuração *"FOTO_CONVIDADO_config.json"*.
+
 o script possui padrões internos caso não seja especificado um caminho de output ou a pasta de destino não exista, o mesmo ocorre para o texto separador de informações diferentes.
 
-- **caminho do output padrão:** '*\Desktop*'.
-- **separador de informação padrão:** '*---*'.
+> 📋 *padrões internos:*\
+> • **caminho do output padrão** → '*\Desktop*'.\
+> • **separador de informação padrão** → '*---*'.
 
 é possível usar a quebra de linha '*\n*' como separador no arquivo de configuração. muito útil para separar a mesma informação em layers de texto com formatação distintas.
 
 > 📋 *exemplo:*\
-> input com o nome *"Lima\nDuarte"*, em duas linhas, com o primeiro nome *"Lima"* em uma fonte light e o sobrenome "Duarte" em uma fonte bold.
+> um input com o nome *"Lima\nDuarte"*, em duas linhas, com o primeiro nome *"Lima"* em uma fonte light e o sobrenome "Duarte" em uma fonte bold.
 
 ---
 
@@ -156,7 +162,7 @@ não é preciso se preocupar com a caixa do texto, o script e/ou o próprio temp
 > 📋 *exemplo:*\
 > os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.
 
-ao executar um clique duplo em qualquer template da lista, o respectivo '*.aet*' ou '*.aep*' será importado para o projeto.
+é possível importar rapidamente qualquer template da lista executando um clique duplo no mesmo.
 
 para agilizar a execução do script use o botão **o padeiro** na barra de **PROMO v0.7b** ou superior.
 
