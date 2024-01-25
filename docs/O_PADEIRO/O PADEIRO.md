@@ -8,7 +8,7 @@
 
 > 📑 **O PADEIRO.jsx**
 
-<br/><br/>
+<br/>
 
 # 📟 Interface
 ![ui](images/o_padeiro_ui.png)
@@ -115,9 +115,9 @@ o script executará as seguintes tarefas em ordem:
 > 🚩\
 > • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**).\
 
-<br/><br/>
 
 # 🧾 templates disponíveis (work in progress):
+
 
 <br><br>
 
