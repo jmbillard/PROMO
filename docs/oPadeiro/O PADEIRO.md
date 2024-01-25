@@ -2,9 +2,9 @@
 
 **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
 
-> 📂 *pastas:*
-> - templates: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*\
-> - script: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
+> 📂 *pastas:*\
+> • templates: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*\
+> • script: *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
 
 > 📑 **O PADEIRO.jsx**
 
@@ -14,7 +14,6 @@
 ![ui](images/o_padeiro_ui.png)
 
 # 📌 funcionamento básico
-
 após executar o script '**O PADEIRO.jsx**':
 1. selecione o template desejado da lista '**templates**'.
 2. preencha o campo '**input**' seguindo as '**dicas**'.
@@ -77,9 +76,9 @@ o script executará as seguintes tarefas em ordem:
 ```json
 // "\n" representa uma quebra de linha. :)
 {
-	"configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração
-	"exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME\n\nNOME MAIOR\nCOM SOBRENOME\n---\nINFORMAÇÃO", // → texto preenchido de exemplo na janela de texto do input
-	"tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento
+	"configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração.
+	"exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME\n\nNOME MAIOR\nCOM SOBRENOME\n---\nINFORMAÇÃO", // → texto de exemplo do input.
+	"tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento.
 
 	"compName": "RDP - CONVIDADO TEMPLATE", // → nome da comp a ser editada.
 	"prefix": "RDP", // → prefixo que o nome da comp editada receberá.
@@ -98,7 +97,7 @@ o script executará as seguintes tarefas em ordem:
 > 🚩\
 > • o '**input**' é pré preenchido com dados genéricos disponíveis no arquivo de configuração do template selecionado apenas para exemplificar **ALGUMAS** possibilidades de preenchimento.\
 > • sem um arquivo de configuração, não é possível preencher o template selecionado usando a janela de texto do '**input**'.\
-> • você ainda poderá **IMPORTAR** e **PREENCHER MANUALMENTE** o template no After Effects!.
+> • você ainda poderá **IMPORTAR** e **PREENCHER MANUALMENTE** o template no After Effects!!!
 
 ## botões
 ![ui](images/botoes_ui.png)
@@ -120,11 +119,9 @@ o script executará as seguintes tarefas em ordem:
 # 🧾 templates disponíveis (work in progress):
 
 
-
 <br><br>
 
 # ✨ dicas
-
 - não é preciso se preocupar com a caixa do texto, o script e/ou o próprio template são responsáveis pela conversão do texto de letras minúsculas para maiúsculas e vice-versa.
 
 > 📋 *exemplo:*\
