@@ -3,7 +3,7 @@
 **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
 
 > 📂 **pastas:**\
-> • **templates** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*\
+> • **templates** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*
 >
 > • **script** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
 
@@ -52,7 +52,7 @@ o script executará as seguintes tarefas em ordem:
 > 🚩 *obs:*\
 > • ao selecionar um template da lista, a interface do script se ajustará para exibir um preview, o campo de input e dicas, se disponíveis.\
 > • apenas os templates podem ser selecionados na lista.\
-> • apenas os arquivos com extensão '*.aep*', '*.aet*' e seus diretórios são exibidos na lista.\
+> • apenas os arquivos com extensão '*.aep*', '*.aet*' e seus diretórios são exibidos na lista.
 
 ### preview
 
@@ -164,7 +164,7 @@ não é preciso se preocupar com a caixa do texto, o script e/ou o próprio temp
 
 é possível importar rapidamente qualquer template da lista executando um clique duplo no mesmo.
 
-para agilizar a execução do script use o botão **o padeiro** na barra de **PROMO v0.7b** ou superior.
+para agilizar a execução do script use o botão '*o padeiro*' na barra de **PROMO v0.7b** ou superior.
 
 > 📋 *exemplo:*\
 > ![dicas](gifs/dica_1.gif)
