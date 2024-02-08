@@ -119,7 +119,7 @@ function padeiroTemplateDialog() {
 	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS';
 
-	var templateTree = treeGrp.add('treeview', [0, 0, 250, 460]);
+	var templateTree = treeGrp.add('treeview', [0, 0, 250, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter);
 
 	//---------------------------------------------------------
