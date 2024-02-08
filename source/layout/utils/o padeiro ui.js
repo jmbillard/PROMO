@@ -10,7 +10,7 @@
 ---------------------------------------------------------------
 
 */
-var vPad = '0.3 b';
+var vPad = '0.31 b';
 
 var defPadObj = {
 	configName: 'default config',

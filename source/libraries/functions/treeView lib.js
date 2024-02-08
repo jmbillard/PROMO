@@ -49,10 +49,12 @@ function optimizeHierarchy(nodeTree) {
 			if (branches[i].items.length == 1 && branches[i].items[0].type == 'node') {
 				branches[i].text += ' / ' + branches[i].items[0].text;
 
-				for (var it = branches[i].items[0].items.length - 1; it >= 0; it--) {
-					var nItem = branches[i].add(branches[i].items[0].items[it].type, branches[i].items[0].items[it].text);
-					nItem.image = branches[i].items[0].items[it].image;
-					branches[i].remove(0);
+				for (var it = branches[i].items[0].items.length; it > 0; it--) {
+					try {
+						var nItem = branches[i].add(branches[i].items[0].items[it].type, branches[i].items[0].items[it].text);
+						nItem.image = branches[i].items[0].items[it].image;
+						branches[i].remove(0);
+					} catch (error) {}
 				}
 			}
 		}
@@ -84,7 +86,7 @@ function createHierarchy(array, node, fileTypes) {
 				var templateItem = node.add('item', nodeName); // item...
 				templateItem.image = templateListIcon.light; // item icon...
 			
-			} catch (err) {}
+			} catch (error) {}
 		}
 	}
 }
@@ -103,7 +105,7 @@ function buildTree(folder, tree, fileTypes) {
 	// starts the recursive population...
 	createHierarchy(folderContentArray, folderNode, fileTypes);
 	cleanHierarchy(tree);
-	optimizeHierarchy(tree);
+	// optimizeHierarchy(tree);
 }
 
 // [ ] comment - buildFontTree

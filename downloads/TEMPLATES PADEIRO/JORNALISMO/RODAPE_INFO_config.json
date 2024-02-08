@@ -1,9 +1,9 @@
 {
-	"configName": "JORNALISMO SP TARJA INFO MANHA",
+	"configName": "JORNALISMO SP TARJA INFO",
 	"exemple": "INFO CURTA 1 LINHA\n\nINFO MAIOR\nCOM 2 LINHAS",
 	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"compName": "RDP - INFO MANHA TEMPLATE",
+	"compName": "RDP - INFO TEMPLATE",
 	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "\n",
