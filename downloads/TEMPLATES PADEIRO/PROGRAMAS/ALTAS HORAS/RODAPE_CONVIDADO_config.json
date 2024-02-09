@@ -3,7 +3,7 @@
 	"exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME",
 	"tip": "digite o texto em 1, 2 ou 3 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
-	"compName": "RDP - TARJA TEMPLATE",
+	"compName": "RDP - CONVIDADO TEMPLATE",
 	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "",

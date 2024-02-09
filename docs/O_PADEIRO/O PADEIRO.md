@@ -153,7 +153,10 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 - ESPORTES
   - BRASILEIRAO
-    - [BRASILEIRAO_CONFRONTO](templates_disponiveis/BRASILEIRAO_CONFRONTO.md)
+    - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO_CONFRONTO.md)
+- PROGRAMAS
+  - ALTAS HORAS
+    - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
 
 ---
 
