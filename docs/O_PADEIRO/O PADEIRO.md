@@ -15,7 +15,7 @@
 
 ![ui](images/o_padeiro_ui.png)
 
-## 📌 funcionamento básico
+## 📍 funcionamento básico
 
 após executar o script '**O PADEIRO.jsx**':
 
@@ -150,6 +150,10 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 <br/>
 
 ## 📄 templates disponíveis (work in progress)
+
+- ESPORTES
+  - BRASILEIRAO
+    - [BRASILEIRAO_CONFRONTO](templates_disponiveis/BRASILEIRAO_CONFRONTO.md)
 
 ---
 

@@ -1,4 +1,5 @@
 # 📓 TEMPLATES DO GUIA DE MARCA
+
 📑 **guia de marca - template vb2.aet**
 
 ---
@@ -8,7 +9,7 @@
 > 🎬 _preview:_\
 > ![preview](templateGuiaDeMarca/OVERVIEW_PREVIEW.png)
 
-# 📍 funcionamento básico
+## 📍 funcionamento básico
 
 na **comp** '_OVERVIEW_':
 
@@ -28,9 +29,10 @@ e em suas respectivas telas:
 11. edite a lista de links.
 
 ### controles
+>
 > ![fx](templateGuiaDeMarca/controles/PROJETO_DATA.png)
 
-- mes:
+- **mes**:
   - janeiro
   - fevereiro
   - março
@@ -43,7 +45,7 @@ e em suas respectivas telas:
   - outubro
   - novembro
   - dezembro
-- ano:
+- **ano**:
   - 2022
   - 2023
   - 2024
@@ -67,7 +69,7 @@ e em suas respectivas telas:
 
 <br><br>
 
-# 🚨 Atenção!
+## 🚨 Atenção!
 
 - a cor principal será sempre a primeira cor da paleta.
 - algumas telas só serão exibidas no preview caso tenham algum conteúdo.
@@ -80,7 +82,7 @@ e em suas respectivas telas:
 
 <br><br>
 
-# 📑 Templates de tela disponíveis
+## 📑 Templates de tela disponíveis
 
 - Capa (frente e verso)
 - Informações
@@ -115,6 +117,7 @@ e em suas respectivas telas:
 > ![exemplo](templateGuiaDeMarca/0_6_CAPA_VERSO_PREVIEW.png)
 
 ### modo de uso
+
 a cor do fundo é controlada pela primeira cor da paleta na **comp** '_OVERVIEW_'.
 
 _capa frente_\
@@ -135,6 +138,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/0_1_INFORMACOES_PREVIEW.png)
 
 ### modo de uso
+
 edite o texto do **layer** '_txt_info_', se necessário.
 
 > não existem controles nesta tela.
@@ -149,6 +153,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/0_2_CONTEUDO_PREVIEW.png)
 
 ### modo de uso
+
 a lista do índice é controlada pela ordem e visibilidade das telas na **comp** '_OVERVIEW_'.
 
 > não existem controles nesta tela.
@@ -163,6 +168,7 @@ a lista do índice é controlada pela ordem e visibilidade das telas na **comp**
 > ![exemplo](templateGuiaDeMarca/1_ASSINATURA_PREVIEW.png)
 
 ### modo de uso
+
 abra a **comp** '_ASSINATURA_'.\
 adicione a imagem da assinatura principal.
 
@@ -188,6 +194,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/1_2_VARIACAO_ASSINATURA_2_PREVIEW.png)
 
 ### modo de uso
+
 abra as **comps** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.\
 adicione as imagens das assinaturas alternativas nas respectivas comps.
 
@@ -209,6 +216,7 @@ retorne para a tela '_Variação Assinatura_'.
 > ![exemplo](templateGuiaDeMarca/2_VETOR_LOGO_PREVIEW.png)
 
 ### modo de uso
+
 abra a **comp** '_LOGO_'.\
 adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.\
@@ -233,6 +241,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > *alterado na versão b2*
 
 ### modo de uso
+
 abra a **comp** '_LOGO_'.\
 adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
@@ -244,12 +253,14 @@ use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orienta�
 edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
+
 > ![fx](templateGuiaDeMarca/controles/ORIENTACAO_X_2.png)\
 *alterado na versão b2*
-- orientacao medida x:
+
+- **orientacao medida x**:
   - vertical → torna a medida X vertical.
   - horizontal → torna a medida X horizontal.
-- cor de destaque → controla da medida X.
+- **cor de destaque** → controla da medida X.
 
 > 🚩 _obs:_\
 > • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
@@ -265,6 +276,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > *alterado na versão b2*
 
 ### modo de uso
+
 abra a **comp** '_LOGO_'.\
 adicione a imagem do logo principal.\
 ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
@@ -279,17 +291,18 @@ use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orienta�
 edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
+
 > ![fx](templateGuiaDeMarca/controles/ZOOM.png)
 
-- zoom → aumenta e reduz a ampliação da área selecionada.
+- **zoom** → aumenta e reduz a ampliação da área selecionada.
 
 > ![fx](templateGuiaDeMarca/controles/ORIENTACAO_1PX_2.png)\
 > *alterado na versão b2*
 
-- orientacao medida 1px:
+- **orientacao medida 1px**:
 
-  - vertical → torna a medida X vertical.
-  - horizontal → torna a medida X horizontal.
+  - **vertical** → torna a medida X vertical.
+  - **horizontal** → torna a medida X horizontal.
 
 - cor de destaque → controla da medida 1px e a seta indicativa.
 
@@ -305,10 +318,12 @@ edite o texto do **layer** '_txt_info_', se necessário.
 > ![exemplo](templateGuiaDeMarca/2_3_USOS_INCORRETOS_PREVIEW.png)
 
 ### modo de uso
+
 desabilite / reordene os layers dos exemplos.\
 renomeie os mesmos para editar as respectivas legendas.
 
 para adicionar um novo exemplo:
+
   1. duplique a **comp** '_LOGO_' no projeto.
   2. nomeie a copia com a descrição do exemplo.
   3. substitua qualquer exemplo pela copia.
@@ -350,6 +365,7 @@ todas as cores são controladas nos efeitos do **layer** '_shp_paleta principal_
 > ![exemplo](templateGuiaDeMarca/4_TIPOGRAFIA_LOGO_PREVIEW.png)
 
 ### modo de uso
+
 altere a fonte do **layer** '_txt_fonte_'.\
 use o controle nos efeitos para habilitar a edição do nome da fonte.\
 use os controles nos efeitos do **layer** '_txt_peso_' para habilitar a edição do nome do peso\
@@ -358,16 +374,17 @@ e os elementos do texto de amostra.
 edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
+
 > ![fx](templateGuiaDeMarca/controles/NOME_FONTE.png)
 
-- nome automatico → habilita a edição do nome da fonte.
+- **nome automatico** → habilita a edição do nome da fonte.
 
 > ![fx](templateGuiaDeMarca/controles/PESO_FONTE.png)
 
-- peso automatico → habilita a edição do nome do peso da fonte.
-- minusculas → habilita a exibição da letras minúsculas no texto de amostra.
-- maiusculas → habilita a exibição da letras maiúsculas no texto de amostra.
-- numeros → habilita a exibição dos números no texto de amostra.
+- **peso automatico** → habilita a edição do nome do peso da fonte.
+- **minusculas** → habilita a exibição da letras minúsculas no texto de amostra.
+- **maiusculas** → habilita a exibição da letras maiúsculas no texto de amostra.
+- **numeros** → habilita a exibição dos números no texto de amostra.
 
 ---
 
@@ -396,20 +413,20 @@ e os elementos do texto de amostra.
 edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
+
 > ![fx](templateGuiaDeMarca/controles/NOME_FONTE_AUX_1.png)\
 > ![fx](templateGuiaDeMarca/controles/NOME_FONTE_AUX_2.png)
 
-- nome automatico → habilita a edição do nome da fonte.
+- **nome automatico** → habilita a edição do nome da fonte.
 
 > ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_1.png)\
 > ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_2.png)\
 > ![fx](templateGuiaDeMarca/controles/PESO_FONTE_AUX_3.png)\
 
-- peso automatico → habilita a edição do nome do peso da fonte.
-- minusculas → habilita a exibição da letras minúsculas no texto de amostra.
-- maiusculas → habilita a exibição da letras maiúsculas no texto de amostra.
-- numeros → habilita a exibição dos números no texto de amostra.
-
+- **peso automatico** → habilita a edição do nome do peso da fonte.
+- **minusculas** → habilita a exibição da letras minúsculas no texto de amostra.
+- **maiusculas** → habilita a exibição da letras maiúsculas no texto de amostra.
+- **numeros** → habilita a exibição dos números no texto de amostra.
 
 ---
 
@@ -476,6 +493,7 @@ retorne para a tela '_KEY VISUALS_'.
 > ![exemplo](templateGuiaDeMarca/7_LINKS_PREVIEW.png)
 
 ### modo de uso
+
 edite o texto do **layer** '_txt_link assets_'.\
 edite o texto do **layer** '_txt_info_', se necessário.
 
