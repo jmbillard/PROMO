@@ -1,5 +1,5 @@
 # 📓 TEMPLATES DO GUIA DE MARCA
-📑 **guia de marca - template vb1.aet**
+📑 **guia de marca - template vb2.aet**
 
 ---
 
@@ -229,7 +229,8 @@ edite o texto do **layer** '_txt_info_', se necessário.
 ### 📍 Arejamento Mínimo
 
 > 🎬 _preview:_\
-> ![exemplo](templateGuiaDeMarca/2_1_AREJAMENTO_MINIMO_PREVIEW.png)
+> ![exemplo](templateGuiaDeMarca/2_1_AREJAMENTO_MINIMO_PREVIEW.png)\
+> *alterado na versão b2*
 
 ### modo de uso
 abra a **comp** '_LOGO_'.\
@@ -238,16 +239,17 @@ ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_sh
 
 retorne para a tela '_Arejamento Mínimo_'.\
 mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida X.\
-use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
+use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orientação e cor.
 
 edite o texto do **layer** '_txt_info_', se necessário.
 
 ### controles
-> ![fx](templateGuiaDeMarca/controles/ORIENTACAO_X.png)
-
+> ![fx](templateGuiaDeMarca/controles/ORIENTACAO_X_2.png)\
+*alterado na versão b2*
 - orientacao medida x:
   - vertical → torna a medida X vertical.
   - horizontal → torna a medida X horizontal.
+- cor de destaque → controla da medida X.
 
 > 🚩 _obs:_\
 > • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
@@ -259,7 +261,8 @@ edite o texto do **layer** '_txt_info_', se necessário.
 ### 📍 Redução Mínima em Tela
 
 > 🎬 _preview:_\
-> ![exemplo](templateGuiaDeMarca/2_2_REDUCAO_MINIMA_EM_TELA__PREVIEW.png)
+> ![exemplo](templateGuiaDeMarca/2_2_REDUCAO_MINIMA_EM_TELA__PREVIEW.png)\
+> *alterado na versão b2*
 
 ### modo de uso
 abra a **comp** '_LOGO_'.\
@@ -271,7 +274,7 @@ mova o **layer** '_shp_target zoom_' para deslocar a área do zoom.\
 use o controle nos efeitos do **layer** '_shp_target zoom_' para alterar o zoom.
 
 mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida 1px.\
-use o controle nos efeitos do **layer** '_shp_target 1_' para alternar a orientação sua orientação.
+use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orientação e cor.
 
 edite o texto do **layer** '_txt_info_', se necessário.
 
@@ -280,12 +283,15 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 - zoom → aumenta e reduz a ampliação da área selecionada.
 
-> ![fx](templateGuiaDeMarca/controles/ORIENTACAO_1PX.png)
+> ![fx](templateGuiaDeMarca/controles/ORIENTACAO_1PX_2.png)\
+> *alterado na versão b2*
 
 - orientacao medida 1px:
 
   - vertical → torna a medida X vertical.
   - horizontal → torna a medida X horizontal.
+
+- cor de destaque → controla da medida 1px e a seta indicativa.
 
 > 🚩 _obs:_\
 > • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
