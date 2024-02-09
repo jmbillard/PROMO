@@ -1,17 +1,17 @@
 # 📓 TEMPLATES DO GUIA DE MARCA
 
-📑 **guia de marca - template vb2.aet**
+> 📑 ***guia de marca - template vb2.aet***
 
 ---
 
 <br><br>
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![preview](templateGuiaDeMarca/OVERVIEW_PREVIEW.png)
 
 ## 📍 funcionamento básico
 
-na **comp** '_OVERVIEW_':
+na **comp** '*OVERVIEW*':
 
 1. edite o nome e a data do projeto.
 2. adicione as logos e assinaturas nas respectivas comps.
@@ -58,7 +58,7 @@ e em suas respectivas telas:
 - percentagem de brilho 1 → controla o brilho do primeiro grupo de cores secundárias.
 - percentagem de brilho 2 → controla o brilho do segundo grupo de cores secundárias.
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • habilite / desabilite e reordene as telas para organizar o guia da marca.\
 > • habilite / desabilite e reordene os controles de cor para montar a paleta.\
 > • o template irá suportar até 10 cores.\
@@ -100,7 +100,7 @@ e em suas respectivas telas:
 - Key Visuals (intro e exemplos)
 - Links
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • algumas telas irão variar de layout dependendo do conteúdo a ser exibido.
 
 ---
@@ -109,22 +109,22 @@ e em suas respectivas telas:
 
 ### 📍 Capa
 
-> 🎬 _preview:_\
-> _capa frente_\
+> 🎬 *preview:*\
+> *capa frente*\
 > ![exemplo](templateGuiaDeMarca/0_CAPA_PREVIEW.png)
 
-> _capa verso_\
+> *capa verso*\
 > ![exemplo](templateGuiaDeMarca/0_6_CAPA_VERSO_PREVIEW.png)
 
 ### modo de uso
 
-a cor do fundo é controlada pela primeira cor da paleta na **comp** '_OVERVIEW_'.
+a cor do fundo é controlada pela primeira cor da paleta na **comp** '*OVERVIEW*'.
 
-_capa frente_\
-o nome do projeto e a data devem ser editados na **comp** '_OVERVIEW_'.\
+*capa frente*\
+o nome do projeto e a data devem ser editados na **comp** '*OVERVIEW*'.\
 
-_capa verso_\
-edite o texto do **layer** '_txt_info_', se necessário.
+*capa verso*\
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nestas telas.
 
@@ -134,12 +134,12 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Informações
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/0_1_INFORMACOES_PREVIEW.png)
 
 ### modo de uso
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nesta tela.
 
@@ -149,12 +149,12 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Conteúdo
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/0_2_CONTEUDO_PREVIEW.png)
 
 ### modo de uso
 
-a lista do índice é controlada pela ordem e visibilidade das telas na **comp** '_OVERVIEW_'.
+a lista do índice é controlada pela ordem e visibilidade das telas na **comp** '*OVERVIEW*'.
 
 > não existem controles nesta tela.
 
@@ -164,21 +164,21 @@ a lista do índice é controlada pela ordem e visibilidade das telas na **comp**
 
 ### 📍 Assinatura
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/1_ASSINATURA_PREVIEW.png)
 
 ### modo de uso
 
-abra a **comp** '_ASSINATURA_'.\
+abra a **comp** '*ASSINATURA*'.\
 adicione a imagem da assinatura principal.
 
-retorne para a tela '_Assinatura_'.
-edite o texto do **layer** '_txt_info_', se necessário.
+retorne para a tela '*Assinatura*'.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_ASSINATURA_'.
+> 🚩 *obs:*\
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem na **comp** '*ASSINATURA*'.
 
 ---
 
@@ -186,25 +186,25 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Variação Assinatura
 
-> 🎬 _preview:_\
-> _1 variação_\
+> 🎬 *preview:*\
+> *1 variação*\
 > ![exemplo](templateGuiaDeMarca/1_2_VARIACAO_ASSINATURA_1_PREVIEW.png)
 
-> _2 variações_\
+> *2 variações*\
 > ![exemplo](templateGuiaDeMarca/1_2_VARIACAO_ASSINATURA_2_PREVIEW.png)
 
 ### modo de uso
 
-abra as **comps** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.\
+abra as **comps** '*ASSINATURA ALT 1*' e '*ASSINATURA ALT 2*'.\
 adicione as imagens das assinaturas alternativas nas respectivas comps.
 
-retorne para a tela '_Variação Assinatura_'.
+retorne para a tela '*Variação Assinatura*'.
 
 > não existem controles nestas telas.
 
-> 🚩 _obs:_\
-> • o layout também se adaptara ao habilitar / desabilitar os **layers** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem nas **comps** '_ASSINATURA ALT 1_' e '_ASSINATURA ALT 2_'.
+> 🚩 *obs:*\
+> • o layout também se adaptara ao habilitar / desabilitar os **layers** '*ASSINATURA ALT 1*' e '*ASSINATURA ALT 2*'.\
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem nas **comps** '*ASSINATURA ALT 1*' e '*ASSINATURA ALT 2*'.
 
 ---
 
@@ -212,45 +212,45 @@ retorne para a tela '_Variação Assinatura_'.
 
 ### 📍 Vetor Logo
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/2_VETOR_LOGO_PREVIEW.png)
 
 ### modo de uso
 
-abra a **comp** '_LOGO_'.\
+abra a **comp** '*LOGO*'.\
 adicione a imagem do logo principal.\
-ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.\
+ajuste o seu crop movendo os **layers** '*shp_target S*', '*shp_target E*', '*shp_target D*', '*shp_target I*'.\
 
-retorne para a tela '_Vetor Logo_'.\
-edite o texto do **layer** '_txt_info_', se necessário.
+retorne para a tela '*Vetor Logo*'.\
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
-> • as versões positiva e negativa são geradas automaticamente quando uma imagem é adicionada na **comp** '_LOGO_',\
-> para sobrescrever as versões automáticas adicione uma imagem nas **comps** '_LOGO VETOR POSITIVO_' e '_LOGO VETOR NEGATIVO_'.\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
+> 🚩 *obs:*\
+> • as versões positiva e negativa são geradas automaticamente quando uma imagem é adicionada na **comp** '*LOGO*',\
+> para sobrescrever as versões automáticas adicione uma imagem nas **comps** '*LOGO VETOR POSITIVO*' e '*LOGO VETOR NEGATIVO*'.\
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem na **comp** '*LOGO*'.
 ---
 
 <br><br>
 
 ### 📍 Arejamento Mínimo
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/2_1_AREJAMENTO_MINIMO_PREVIEW.png)\
 > *alterado na versão b2*
 
 ### modo de uso
 
-abra a **comp** '_LOGO_'.\
+abra a **comp** '*LOGO*'.\
 adicione a imagem do logo principal.\
-ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
+ajuste o seu crop movendo os **layers** '*shp_target S*', '*shp_target E*', '*shp_target D*', '*shp_target I*'.
 
-retorne para a tela '_Arejamento Mínimo_'.\
-mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida X.\
-use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orientação e cor.
+retorne para a tela '*Arejamento Mínimo*'.\
+mova os **layers** '*shp_target 1*', '*shp_target 2*' para ajustar a medida X.\
+use o controle nos efeitos do **layer** '*shp_target 1*' para alterar a orientação e cor.
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 ### controles
 
@@ -262,8 +262,8 @@ edite o texto do **layer** '_txt_info_', se necessário.
   - horizontal → torna a medida X horizontal.
 - **cor de destaque** → controla da medida X.
 
-> 🚩 _obs:_\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
+> 🚩 *obs:*\
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem na **comp** '*LOGO*'.
 
 ---
 
@@ -271,24 +271,24 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Redução Mínima em Tela
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/2_2_REDUCAO_MINIMA_EM_TELA__PREVIEW.png)\
 > *alterado na versão b2*
 
 ### modo de uso
 
-abra a **comp** '_LOGO_'.\
+abra a **comp** '*LOGO*'.\
 adicione a imagem do logo principal.\
-ajuste o seu crop movendo os **layers** '_shp_target S_', '_shp_target E_', '_shp_target D_', '_shp_target I_'.
+ajuste o seu crop movendo os **layers** '*shp_target S*', '*shp_target E*', '*shp_target D*', '*shp_target I*'.
 
-retorne para a tela '_Redução Mínima em Tela_'.\
-mova o **layer** '_shp_target zoom_' para deslocar a área do zoom.\
-use o controle nos efeitos do **layer** '_shp_target zoom_' para alterar o zoom.
+retorne para a tela '*Redução Mínima em Tela*'.\
+mova o **layer** '*shp_target zoom*' para deslocar a área do zoom.\
+use o controle nos efeitos do **layer** '*shp_target zoom*' para alterar o zoom.
 
-mova os **layers** '_shp_target 1_', '_shp_target 2_' para ajustar a medida 1px.\
-use o controle nos efeitos do **layer** '_shp_target 1_' para alterar a orientação e cor.
+mova os **layers** '*shp_target 1*', '*shp_target 2*' para ajustar a medida 1px.\
+use o controle nos efeitos do **layer** '*shp_target 1*' para alterar a orientação e cor.
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 ### controles
 
@@ -306,15 +306,15 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 - cor de destaque → controla da medida 1px e a seta indicativa.
 
-> 🚩 _obs:_\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
+> 🚩 *obs:*\
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem na **comp** '*LOGO*'.
 ---
 
 <br><br>
 
 ### 📍 Usos Incorretos
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/2_3_USOS_INCORRETOS_PREVIEW.png)
 
 ### modo de uso
@@ -324,7 +324,7 @@ renomeie os mesmos para editar as respectivas legendas.
 
 para adicionar um novo exemplo:
 
-  1. duplique a **comp** '_LOGO_' no projeto.
+  1. duplique a **comp** '*LOGO*' no projeto.
   2. nomeie a copia com a descrição do exemplo.
   3. substitua qualquer exemplo pela copia.
   4. reordene o layer da copia para a posição desejada.
@@ -332,9 +332,9 @@ para adicionar um novo exemplo:
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • digite '_' no nome do exemplo para adicionar uma quebra de linha.\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não exista uma imagem na **comp** '_LOGO_'.
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não exista uma imagem na **comp** '*LOGO*'.
 
 ---
 
@@ -342,18 +342,18 @@ para adicionar um novo exemplo:
 
 ### 📍 Cores
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/3_CORES_PREVIEW.png)
 
 ### modo de uso
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
-todas as cores são controladas nos efeitos do **layer** '_shp_paleta principal_' na **comp** '_OVERVIEW_'.
+todas as cores são controladas nos efeitos do **layer** '*shp_paleta principal*' na **comp** '*OVERVIEW*'.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • a primeira cor é sempre a cor principal e será usada nos BGs.
 ---
 
@@ -361,17 +361,17 @@ todas as cores são controladas nos efeitos do **layer** '_shp_paleta principal_
 
 ### 📍 Tipografia Logo
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/4_TIPOGRAFIA_LOGO_PREVIEW.png)
 
 ### modo de uso
 
-altere a fonte do **layer** '_txt_fonte_'.\
+altere a fonte do **layer** '*txt_fonte*'.\
 use o controle nos efeitos para habilitar a edição do nome da fonte.\
-use os controles nos efeitos do **layer** '_txt_peso_' para habilitar a edição do nome do peso\
+use os controles nos efeitos do **layer** '*txt_peso*' para habilitar a edição do nome do peso\
 e os elementos do texto de amostra.
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 ### controles
 
@@ -392,25 +392,25 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Tipografia Auxiliar
 
-> 🎬 _preview:_\
-> _1 fonte_\
+> 🎬 *preview:*\
+> *1 fonte*\
 > ![exemplo](templateGuiaDeMarca/4_1_TIPOGRAFIA_AUXILIAR_1_PREVIEW.png)
 
-> _2 fontes_\
+> *2 fontes*\
 > ![exemplo](templateGuiaDeMarca/4_1_TIPOGRAFIA_AUXILIAR_2_PREVIEW.png)
 
 ### modo de uso
 
-alterne o layout habilitando o **layer** '_txt_fonte 2_'.
+alterne o layout habilitando o **layer** '*txt_fonte 2*'.
 
-altere as fontes dos **layer** '_txt_fonte 1_' e '_txt_fonte 2_', se habilitado.\
+altere as fontes dos **layer** '*txt_fonte 1*' e '*txt_fonte 2*', se habilitado.\
 use o controle nos efeitos para habilitar a edição dos nomes das fontes.
 
-altere as fontes dos **layer** '_txt_peso 2_' e '_txt_peso 3_', se habilitados.\
+altere as fontes dos **layer** '*txt_peso 2*' e '*txt_peso 3*', se habilitados.\
 use o controle nos efeitos para habilitar a edição dos nomes dos pesos\
 e os elementos do texto de amostra.
 
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_info*', se necessário.
 
 ### controles
 
@@ -434,23 +434,23 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Assets de Apoio
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/5_ASSETS_DE_APOIO_PREVIEW.png)
 
 ### modo de uso
 
-abra a **comp** '_ASSETS APOIO EX_'.\
+abra a **comp** '*ASSETS APOIO EX*'.\
 adicione as imagens.\
 renomeie as mesmas para editar as respectivas legendas.
 
-retorne para a tela '_Assets de Apoio_'.\
-edite o texto do **layer** '_txt_info_', se necessário.
+retorne para a tela '*Assets de Apoio*'.\
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • digite '_' no nome das imagens para adicionar uma quebra de linha.\
-> • o preview desta tela na **comp** '_OVERVIEW_' é desabilitado caso não existam imagens na **comp** '_ASSETS APOIO EX_'.
+> • o preview desta tela na **comp** '*OVERVIEW*' é desabilitado caso não existam imagens na **comp** '*ASSETS APOIO EX*'.
 
 ---
 
@@ -458,30 +458,30 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ### 📍 Key Visuals
 
-> 🎬 _preview:_\
-> _kv intro_\
+> 🎬 *preview:*\
+> *kv intro*\
 > ![exemplo](templateGuiaDeMarca/6_KEY_VISUALS_PREVIEW.png)
 
-> _kv exemplos_\
+> *kv exemplos*\
 > ![exemplo](templateGuiaDeMarca/6_1_KEY_VISUALS_PREVIEW.png)
 
 ### modo de uso
 
-_kv intro_\
-edite o texto do **layer** '_txt_info_', se necessário.
+*kv intro*\
+edite o texto do **layer** '*txt_info*', se necessário.
 
-_kv exemplos_\
-abra a **comp** '_KEY VISUALS EX_'.\
+*kv exemplos*\
+abra a **comp** '*KEY VISUALS EX*'.\
 adicione as imagens.\
 renomeie as mesmas para editar as respectivas legendas.
 
-retorne para a tela '_KEY VISUALS_'.
+retorne para a tela '*KEY VISUALS*'.
 
 > não existem controles nesta tela.
 
-> 🚩 _obs:_\
+> 🚩 *obs:*\
 > • digite '_' no nome das imagens para adicionar uma quebra de linha.\
-> • o preview destas telas na **comp** '_OVERVIEW_' é desabilitado caso não existam imagens na **comp** '_KEY VISUALS EX_'.
+> • o preview destas telas na **comp** '*OVERVIEW*' é desabilitado caso não existam imagens na **comp** '*KEY VISUALS EX*'.
 
 ---
 
@@ -489,12 +489,12 @@ retorne para a tela '_KEY VISUALS_'.
 
 ### 📍 Links
 
-> 🎬 _preview:_\
+> 🎬 *preview:*\
 > ![exemplo](templateGuiaDeMarca/7_LINKS_PREVIEW.png)
 
 ### modo de uso
 
-edite o texto do **layer** '_txt_link assets_'.\
-edite o texto do **layer** '_txt_info_', se necessário.
+edite o texto do **layer** '*txt_link assets*'.\
+edite o texto do **layer** '*txt_info*', se necessário.
 
 > não existem controles nesta tela.

@@ -7,7 +7,7 @@
 >
 > • **script** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
 
-> 📑 **O PADEIRO.jsx**
+> 📑 ***O PADEIRO.jsx***
 
 <br>
 
