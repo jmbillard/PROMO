@@ -9,7 +9,7 @@
 
 > 📑 **O PADEIRO.jsx**
 
-<br/>
+<br>
 
 ## 📟 Interface
 
@@ -25,7 +25,7 @@ após executar o script '**O PADEIRO.jsx**':
 4. clique no botão '**criar**'.
 5. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
-<br/>
+<br>
 
 o script executará as seguintes tarefas em ordem:
 
@@ -120,7 +120,7 @@ o script executará as seguintes tarefas em ordem:
 
 ---
 
-<br/>
+<br>
 
 ## 🚨 Atenção!
 
@@ -147,7 +147,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ---
 
-<br/>
+<br>
 
 ## 📄 templates disponíveis (work in progress)
 
@@ -157,7 +157,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ---
 
-<br/>
+<br>
 
 ## ✨ dicas
 

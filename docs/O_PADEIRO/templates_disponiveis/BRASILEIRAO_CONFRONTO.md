@@ -4,14 +4,14 @@
 
 ---
 
-<br><br>
+<br>
 
 > 🎬 _preview:_\
 > ![exemplo](BRASILEIRAO_CONFRONTO/exemplo.gif)
 
 ---
 
-<br><br>
+<br>
 
 ## 📍 funcionamento básico
 
@@ -25,7 +25,7 @@
 
 ---
 
-<br><br>
+<br>
 
 ## 🚨 Atenção!
 
@@ -52,7 +52,7 @@ para alterar as cores de um escudo existente:
 
 ---
 
-<br><br>
+<br>
 
 ## 📍 parâmetros
 
@@ -97,7 +97,7 @@ os controles dos presets de cor estão em cada **layer** da **comp** '_ESCUDOS_'
 
 ---
 
-<br><br>
+<br>
 
 ## ✨ dicas
 

@@ -388,7 +388,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ---
 
-<br><br>
+<br>
 
 ### 📍 Tipografia Auxiliar
 
@@ -430,7 +430,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ---
 
-<br><br>
+<br>
 
 ### 📍 Assets de Apoio
 
@@ -454,7 +454,7 @@ edite o texto do **layer** '_txt_info_', se necessário.
 
 ---
 
-<br><br>
+<br>
 
 ### 📍 Key Visuals
 
@@ -485,7 +485,7 @@ retorne para a tela '_KEY VISUALS_'.
 
 ---
 
-<br><br>
+<br>
 
 ### 📍 Links
 
