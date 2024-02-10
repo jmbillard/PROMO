@@ -151,12 +151,25 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ## 📄 templates disponíveis (work in progress)
 
-- ESPORTES
-  - BRASILEIRAO
-    - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO_CONFRONTO.md)
-- PROGRAMAS
-  - ALTAS HORAS
-    - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
+### ESPORTES:
+
+- BRASILEIRAO
+  - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO_CONFRONTO.md)
+
+### PROGRAMAS:
+
+- ALTAS HORAS
+  - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
+- CONVERSA COM BIAL
+  - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/CONVERSA_COM_BIAL/RODAPE_CONVIDADO.md)
+- ENCONTRO
+  - [FOTO_CONVIDADO](templates_disponiveis/PROGRAMAS/ENCONTRO/FOTO_CONVIDADO.md)
+
+### NOVELAS:
+
+- RENASCER
+  - [LETTERING_INFO](templates_disponiveis/NOVELAS/RENASCER/LETTERING_INFO.md)
+  - [RODAPE_PROLOGO](templates_disponiveis/NOVELAS/RENASCER/RODAPE_PROLOGO.md)
 
 ---
 
