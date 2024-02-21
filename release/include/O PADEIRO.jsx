@@ -2,7 +2,7 @@
 
 ---------------------------- info ----------------------------
 
-  title:   PROMO utilities script
+  title:   O PADEIRO script
 
   notes:   a collection of templates and companion script
 
