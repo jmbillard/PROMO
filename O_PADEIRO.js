@@ -38,15 +38,15 @@ function O_PADEIRO_UTL(thisObj) {
 		}
 	
 		PAD_w.spacing = 0;
-		PAD_w.margins = 0;
+		PAD_w.margins = 10;
 		PAD_w.orientation = 'fill';
 
 		var PAD_menuSubGrp1 = PAD_w.add('group');
 
 		// import templates UI button...
 		var PAD_importAetSubGrp = PAD_menuSubGrp1.add('group');
-		var PAD_importAetBtn = PAD_importAetSubGrp.add('iconbutton', iconSize, templatesIcon['light'], { name: 'btn', style: 'toolbutton' });
-		var PAD_importAetLab = PAD_importAetSubGrp.add('statictext', undefined, 'o padeiro', { name: 'label' , truncate: 'end'});
+		var PAD_importAetBtn = PAD_importAetSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
+		var PAD_importAetLab = PAD_importAetSubGrp.add('statictext', undefined, 'v' + vPad, { name: 'label' , truncate: 'end'});
 		PAD_importAetBtn.helpTip = 'o padeiro launcher';
 		PAD_w.layout.layout(true);
 
