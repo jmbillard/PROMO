@@ -10,7 +10,7 @@
 ---------------------------------------------------------------
 
 */
-var vPad = '0.31 b';
+var vPad = '0.32 b';
 
 var defPadObj = {
 	configName: 'default config',
@@ -341,6 +341,7 @@ function padeiroTemplateDialog() {
 		}
 
 		var iNum = app.project.numItems;
+		var folderNotAvailable = false;
 
 		for (var i = 1; i <= iNum; i++) {
 			var comp = app.project.item(i);
@@ -410,7 +411,10 @@ function padeiroTemplateDialog() {
 
 						var outputFolder = new Folder(templateData.outputPath);
 
-						if (!outputFolder.exists) templateData.outputPath = defPadObj.outputPath;
+						if (folderNotAvailable || !outputFolder.exists) {
+							templateData.outputPath = defPadObj.outputPath;
+							folderNotAvailable = true;
+						}
 
 						try {
 							var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
@@ -436,6 +440,7 @@ function padeiroTemplateDialog() {
 		deleteEmptyProjectFolders();
 
 		wPadeiroTemplates.close(); // → close window
+		if (folderNotAvailable) alert("Σ(っ °Д °;)っ\n\no caminho pré-definido para\no output do render não pode ser acessado!");
 	};
 
 	//---------------------------------------------------------
