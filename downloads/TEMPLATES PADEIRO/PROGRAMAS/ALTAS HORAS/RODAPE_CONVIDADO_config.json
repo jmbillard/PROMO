@@ -1,6 +1,6 @@
 {
 	"configName": "ALTAS HORAS TARJA CONVIDADO",
-	"exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME",
+	"exemple": "SÉRGIO\nMALANDRO",
 	"tip": "digite o texto em 1, 2 ou 3 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
 	"compName": "RDP - CONVIDADO TEMPLATE",

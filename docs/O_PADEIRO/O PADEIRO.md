@@ -77,7 +77,7 @@ o script executará as seguintes tarefas em ordem:
 > // "\n" representa uma quebra de linha. :)
 > {
 >  "configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração.
->  "exemple": "NOME CURTO\n\nNOME MAIOR\nCOM SOBRENOME\n\nNOME MAIOR\nCOM SOBRENOME\n---\nINFORMAÇÃO", // → texto de exemplo do input.
+>  "exemple": "CÁSSIO\nGABUS MENDES\n---\nATOR", // → texto de exemplo do input.
 >  "tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento.
 >
 >  "compName": "RDP - CONVIDADO TEMPLATE", // → nome da comp a ser editada.
