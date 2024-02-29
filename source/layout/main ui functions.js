@@ -82,7 +82,7 @@ function setLayout() {
 	var hMargin = 90 + hOffset;
 	var vMargin = 40 + hOffset;
 
-	aboutTxt.text = vStr ;
+	aboutTxt.text = vStr;
 
 	for (var lab = 0; lab < tabLabels.length; lab++) {
 		tabLabels[lab].size.width = w.size.width - 24;
@@ -273,7 +273,7 @@ function showTabErr(msg) {
 	closeGrp.visible = true;
 	errTabGrp.visible = true;
 	closeErrBtn.visible = true;
-	
+
 	infoBtn.visible = false;
 	prefGrp.visible = false;
 	currentGrp.visible = false;
@@ -289,14 +289,14 @@ function showTabErr(msg) {
 
 // show progress blocking user interaction...
 function showTabProg(msg) {
-	alert('ヽ(✿ﾟ▽ﾟ)ノ     reinicie o script!\nbasta fechar e abrir novamente a barrinha...');
+	alert(relax + '     reinicie o script!\nbasta fechar e abrir novamente a barrinha...');
 
 	progTxt1.text = 'KEEP CALM';
 	progTxt2.text = msg;
 	progressGrp.visible = true;
 	progImgGrp.visible = true;
 	progImgGrp.helpTip = msg;
-	
+
 	infoBtn.visible = false;
 	closeGrp.visible = false;
 	prefGrp.visible = false;

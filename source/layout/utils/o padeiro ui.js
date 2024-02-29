@@ -295,7 +295,7 @@ function padeiroTemplateDialog() {
 
 		hasData = (edtText.text.trim() != '' && edtText.text != exemple);
 		if (!hasData) edtText.text = exemple;
-		
+
 		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
 		inputLabTxt.enabled = hasInput; // → set preview image file
 		edtText.enabled = hasInput; // → set preview image file
@@ -362,14 +362,14 @@ function padeiroTemplateDialog() {
 				for (var f = 0; f < optionsList.length; f++) {
 					var template = comp.duplicate();
 					var inputLayerList = templateData.inputLayers;
-					
+
 					var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
-					
+
 					if (templateData.separator != '') txtList = inputList[n].split(templateData.separator);
 
 					if (templateData.inputFx != null) {
 						var ctrlLayer = template.layer(templateData.inputFx.layerIndex);
-	
+
 						ctrlLayer.property('ADBE Effect Parade')
 							.property(templateData.inputFx.fxName)
 							.property(templateData.inputFx.optionIndex)
@@ -379,7 +379,7 @@ function padeiroTemplateDialog() {
 					for (var l = 0; l < inputLayerList.length; l++) {
 						var inputLayer = template.layer(inputLayerList[l].layerIndex);
 
-						
+
 						if (l >= txtList.length) {
 							inputLayer.enabled = false;
 							continue;
@@ -409,7 +409,7 @@ function padeiroTemplateDialog() {
 						}
 					}
 					if (templateData.prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
-					
+
 					template.name = [templateName.toUpperCase(), optionsList[f]].join(' ').trim();
 
 					if (renderCkb.value) {

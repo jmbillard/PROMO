@@ -15,7 +15,7 @@
   to 'ScriptUI Panels' folder
 
   author:  Jean-Marc Billard
-  version: 0.7-b
+  version: 0.7-bnpm init @eslint/confignpm init @eslint/config
   date:    xx-xx-2024
 
 --------------------------------------------------------------
@@ -27,10 +27,8 @@ function PROMO_UTL(thisObj) {
 	// current script version...
 	var vStr = 'v0.7-b';
 
-	/* jshint ignore:start */
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui.js'; // → UI definition file
-	/* jshint ignore:end */
 
 	// writes on the 'info' window panel...
 	clearOutput();
