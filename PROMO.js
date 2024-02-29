@@ -48,7 +48,7 @@ function PROMO_UTL(thisObj) {
 
 		if (!netAccess()) {
 			// no network access...
-			alert('sem acesso a rede...  Σ(っ °Д °;)っ\na funcionalidade será limitada');
+			alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...

@@ -455,7 +455,7 @@ function padeiroTemplateDialog() {
 		deleteEmptyProjectFolders();
 
 		wPadeiroTemplates.close(); // → close window
-		if (folderNotAvailable) alert("Σ(っ °Д °;)っ\n\no caminho pré-definido para\no output do render não pode ser acessado!");
+		if (folderNotAvailable) alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
 	};
 
 	//---------------------------------------------------------

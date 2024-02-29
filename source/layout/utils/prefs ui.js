@@ -311,7 +311,7 @@ function prefsDialog() {
 	// openFldBtn.onClick = function () {
 	// 	// alert...
 	// 	if (!netAccess()) {
-	// 		alert('no access...  Σ(っ °Д °;)っ');
+	// 		alert('no access...  ' + lol;);
 	// 		return;
 	// 	}
 	// 	if (!fontsFolder.exists) fontsFolder.create();

@@ -165,7 +165,7 @@ function templateDialog() {
 	downloadBtn.onClick = function () {
 		//alert...
 		if (!netAccess()) {
-			alert('no network...  Σ(っ °Д °;)っ');
+			alert('no network...  ' + lol);
 			return;
 		}
 		var url = repoURL + '/raw/main/downloads/templates.zip';
@@ -199,7 +199,7 @@ function templateDialog() {
 	refreshBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
@@ -211,7 +211,7 @@ function templateDialog() {
 	openFldBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		if (!templatesFolder.exists) templatesFolder.create(); // → create template folder

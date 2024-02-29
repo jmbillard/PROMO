@@ -47,7 +47,6 @@ function O_PADEIRO_UTL(thisObj) {
 
 		PAD_w.layout.layout(true);
 
-		// setTxtColor(PAD_launchLab, rgb(255, 255, 255));
 		setBgColor(PAD_w, rgb(81, 93, 158));
 
 		setTxtHighlight(PAD_launchLab, rgb(255, 255, 255), rgb(255, 123, 121));
@@ -80,7 +79,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 		if (!netAccess()) {
 			// no network access...
-			alert('sem acesso a rede...  Σ(っ °Д °;)っ\na funcionalidade será limitada');
+			alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...
