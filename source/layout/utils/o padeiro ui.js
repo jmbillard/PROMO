@@ -10,7 +10,7 @@
 ---------------------------------------------------------------
 
 */
-var vPad = '0.32 b';
+var PAD_v = '0.4 b';
 
 var defPadObj = {
 	configName: 'default config',
@@ -23,6 +23,7 @@ var defPadObj = {
 	separator: '---',
 	textCase: 'upperCASE',
 	inputLayers: null,
+	layoutFx: null,
 
 	outputPath: '~/Desktop',
 	alpha: true
@@ -79,7 +80,7 @@ function padeiroTemplateDialog() {
 
 	//---------------------------------------------------------
 
-	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO ' + vPad);
+	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO ' + PAD_v);
 	// main group...
 	var mainGrp = wPadeiroTemplates.add('group');
 	// left vertical group...
@@ -184,7 +185,7 @@ function padeiroTemplateDialog() {
 	var renderGrp = txtGrp.add('group');
 	renderGrp.spacing = 15;
 
-	var renderLabTxt = renderGrp.add('statictext', undefined, 'adicionar a fila de render:');
+	var renderLabTxt = renderGrp.add('statictext', [0, 0, 150, 18], 'adicionar a fila de render:');
 	setTxtColor(renderLabTxt, monoColors[2]);
 	renderLabTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.';
 
@@ -356,83 +357,97 @@ function padeiroTemplateDialog() {
 				var templateName = prefix + inputList[n].replaceSpecialCharacters();
 				var t = templateData.refTime;
 
-				var template = comp.duplicate();
-				var inputLayerList = templateData.inputLayers;
+				var optionsList = templateData.layoutFx != null ? templateData.layoutFx.options : [''];
 
-				var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
+				for (var f = 0; f < optionsList.length; f++) {
+					var template = comp.duplicate();
+					var inputLayerList = templateData.inputLayers;
+					
+					var txtList = inputList[n].split(/[\n\r]-+[\n\r]/);
+					
+					if (templateData.separator != '') txtList = inputList[n].split(templateData.separator);
 
-				if (templateData.separator != '') txtList = inputList[n].split(templateData.separator);
-
-				for (var l = 0; l < inputLayerList.length; l++) {
-					var inputLayer = template.layer(inputLayerList[l].layerIndex);
-
-					if (l >= txtList.length) {
-						inputLayer.enabled = false;
-						continue;
+					if (templateData.layoutFx != null) {
+						var ctrlLayer = template.layer(templateData.layoutFx.layerIndex);
+	
+						ctrlLayer.property('ADBE Effect Parade')
+							.property(templateData.layoutFx.fxName)
+							.property(templateData.layoutFx.optionsIndex)
+							.setValue(f + 1);
 					}
 
-					if (txtList[l] == '') continue;
+					for (var l = 0; l < inputLayerList.length; l++) {
+						var inputLayer = template.layer(inputLayerList[l].layerIndex);
 
-					if (inputLayerList[l].method == 'textContent') {
-
-						if (!(inputLayer instanceof TextLayer)) continue;
-
-						txtList[l] = txtList[l].trim();
-						var textContent = txtList[l];
-						var text = inputLayer.property('ADBE Text Properties');
-						var textDoc = text.property('ADBE Text Document').value;
-
-						textDoc.text = textContent;
-						text.property('ADBE Text Document').setValue(textDoc);
-
-						txtList[l] = txtList[l].replaceSpecialCharacters();
-					}
-
-					if (inputLayerList[l].method == 'layerName') {
-
-						var layerName = txtList[l].trim();
-						inputLayer.name = layerName;
-					}
-
-				}
-				if (templateData.prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
-
-				template.name = templateName.toUpperCase();
-
-				if (renderCkb.value) {
-					var item = app.project.renderQueue.items.add(template);
-					var outputModule = item.outputModule(1);
-
-					if (padeiroOutputModuleTemplate == undefined) {
-						padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
-					}
-
-					if (padeiroOutputModuleTemplate != '') {
-
-						var outputFolder = new Folder(templateData.outputPath);
-
-						if (folderNotAvailable || !outputFolder.exists) {
-							templateData.outputPath = defPadObj.outputPath;
-							folderNotAvailable = true;
+						
+						if (l >= txtList.length) {
+							inputLayer.enabled = false;
+							continue;
 						}
 
-						try {
-							var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
+						if (txtList[l] == '') continue;
 
-							outputModule.file = outputFile;
-							outputModule.applyTemplate(padeiroOutputModuleTemplate);
-							item.applyTemplate('Best Settings');
+						if (inputLayerList[l].method == 'textContent') {
 
-						} catch (err) { alert(err.message); }
+							if (!(inputLayer instanceof TextLayer)) continue;
 
-					} else { item.remove(); }
+							txtList[l] = txtList[l].trim();
+							var textContent = txtList[l];
+							var text = inputLayer.property('ADBE Text Properties');
+							var textDoc = text.property('ADBE Text Document').value;
+
+							textDoc.text = textContent;
+							text.property('ADBE Text Document').setValue(textDoc);
+
+							txtList[l] = txtList[l].replaceSpecialCharacters();
+						}
+
+						if (inputLayerList[l].method == 'layerName') {
+
+							var layerName = txtList[l].trim();
+							inputLayer.name = layerName;
+						}
+					}
+					if (templateData.prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
+					
+					template.name = [templateName.toUpperCase(), optionsList[f]].join(' ').trim();
+
+					if (renderCkb.value) {
+						var item = app.project.renderQueue.items.add(template);
+						var outputModule = item.outputModule(1);
+
+						if (padeiroOutputModuleTemplate == undefined) {
+							padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
+						}
+
+						if (padeiroOutputModuleTemplate != '') {
+
+							var outputFolder = new Folder(templateData.outputPath);
+
+							if (folderNotAvailable || !outputFolder.exists) {
+								templateData.outputPath = defPadObj.outputPath;
+								folderNotAvailable = true;
+							}
+
+							try {
+								var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
+
+								outputModule.file = outputFile;
+								outputModule.applyTemplate(padeiroOutputModuleTemplate);
+								item.applyTemplate('Best Settings');
+
+							} catch (err) { alert(err.message); }
+
+						} else { item.remove(); }
+					}
+
+					template.openInViewer();
+					template.time = t;
+					template.comment = 'EXPORTAR';
 				}
-
-				template.openInViewer();
-				template.time = t;
-				template.comment = 'EXPORTAR';
 			}
 			comp.remove();
+			break;
 		}
 
 		deleteProjectFolders();

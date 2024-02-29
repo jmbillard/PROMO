@@ -11,6 +11,7 @@
 	"inputLayers": [
 		{"layerIndex": 4, "method": "textContent"}
 	],
+	"layoutFx": {"layerIndex": 1, "fxName": "layout", "optionsIndex": 1, "options": ["E","D"]},
 
 	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024",
 	"alpha": true

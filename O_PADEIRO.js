@@ -36,25 +36,21 @@ function O_PADEIRO_UTL(thisObj) {
 		} else {
 			PAD_w = new Window('palette', 'O PADEIRO', undefined);
 		}
-	
-		PAD_w.spacing = 0;
 		PAD_w.margins = 10;
-		PAD_w.orientation = 'fill';
-
-		var PAD_menuSubGrp1 = PAD_w.add('group');
-
+		
+		var PAD_launchSubGrp = PAD_w.add('group');
+		
 		// import templates UI button...
-		var PAD_importAetSubGrp = PAD_menuSubGrp1.add('group');
-		var PAD_importAetBtn = PAD_importAetSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
-		var PAD_importAetLab = PAD_importAetSubGrp.add('statictext', undefined, 'v' + vPad, { name: 'label' , truncate: 'end'});
-		PAD_importAetBtn.helpTip = 'o padeiro launcher';
+		var PAD_launchBtn = PAD_launchSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
+		var PAD_launchLab = PAD_launchSubGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label' , truncate: 'end'});
+		PAD_launchBtn.helpTip = 'o padeiro launcher';
+		
 		PAD_w.layout.layout(true);
 
-
-		setTxtColor(PAD_importAetLab, rgb(255, 255, 255));
+		setTxtColor(PAD_launchLab, rgb(255, 255, 255));
 		setBgColor(PAD_w, rgb(81, 93, 158));
 
-		PAD_importAetBtn.onClick = function () {
+		PAD_launchBtn.onClick = function () {
 			// error...
 			if (!netAccess()) {
 			  showTabErr(netConfigName + ' not checked');
