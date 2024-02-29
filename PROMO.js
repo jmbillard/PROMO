@@ -25,7 +25,7 @@
 function PROMO_UTL(thisObj) {
 
 	// current script version...
-	var vStr = 'v0.7-b';
+	var vStr = 'v0.72-b';
 
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui.js'; // → UI definition file

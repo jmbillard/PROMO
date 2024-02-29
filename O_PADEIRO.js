@@ -47,12 +47,12 @@ function O_PADEIRO_UTL(thisObj) {
 
 		PAD_w.layout.layout(true);
 
-		setBgColor(PAD_w, rgb(81, 93, 158));
+		setBgColor(PAD_w, hexToRGB('#515D9E'));
 
-		setTxtHighlight(PAD_launchLab, rgb(255, 255, 255), rgb(255, 123, 121));
+		setTxtHighlight(PAD_launchLab, hexToRGB('#FFFFFF'), hexToRGB('#FF7B79'));
 
 		PAD_launchLab.addEventListener('mousedown', function () {
-			openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#o-padeiro-script');
+			openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script');
 		});
 
 		PAD_launchBtn.onClick = function () {
