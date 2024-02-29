@@ -56,14 +56,14 @@ function setTxtColor(sTxt, color) {
 	sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1);
 }
 
-function setTxtHighlight(sTxt, color) {
-	setTxtColor(sTxt, color);
+function setTxtHighlight(sTxt, normalColor, highlightColor) {
+	setTxtColor(sTxt, normalColor);
 
 	sTxt.addEventListener('mouseover', function () {
-		setTxtColor(sTxt, ([138 / 255, 138 / 255, 138 / 255, 1]));
+		setTxtColor(sTxt, highlightColor);
 	});
 	sTxt.addEventListener('mouseout', function () {
-		setTxtColor(sTxt, color);
+		setTxtColor(sTxt, normalColor);
 	});
 }
 
@@ -379,7 +379,7 @@ function highlighMenuLabels() {
 
 	for (var l = 0; l < uiLabels.length; l++) {
 		var lab = uiLabels[l];
-		setTxtHighlight(lab, sTxtColor[iconTheme]);
+		setTxtHighlight(lab, sTxtColor[iconTheme], rgb(138, 138, 138));
 		setTxtBtnLink(lab, lab.parent.children[0]);
 	}
 }

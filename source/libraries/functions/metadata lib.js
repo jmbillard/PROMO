@@ -22,7 +22,7 @@ if (ExternalObject.AdobeXMPScript == undefined) {
 	);
 }
 
-function getXMPdata(XMPfield) {
+function getXMPData(XMPfield) {
 	var metaData = new XMPMeta(app.project.xmpPacket);
 	var XMPSet = XMPConst.NS_DC;
 	var XMPVal = '';
