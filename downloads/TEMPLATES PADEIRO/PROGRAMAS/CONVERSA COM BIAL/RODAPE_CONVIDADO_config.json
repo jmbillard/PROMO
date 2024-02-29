@@ -12,7 +12,7 @@
 		{"layerIndex": 4, "method": "textContent"},
 		{"layerIndex": 5, "method": "textContent"}
 	],
-	"layoutFx": {"layerIndex": 1, "fxName": "layout", "optionsIndex": 1, "options": ["E","D"]},
+	"inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]},
 
 	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS",
 	"alpha": true

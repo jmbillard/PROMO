@@ -11,9 +11,8 @@
 
 */
 
-var vStr = '';
-
 function O_PADEIRO_UTL(thisObj) {
+	var vStr = '';
 
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui functions.js'; // ui and layout functions...
@@ -53,7 +52,7 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_launchBtn.onClick = function () {
 			// error...
 			if (!netAccess()) {
-			  showTabErr(netConfigName + ' not checked');
+			  showTabErr(netConfigName + ' não está habilite');
 			  return;
 			}
 		
@@ -67,7 +66,7 @@ function O_PADEIRO_UTL(thisObj) {
 	// checks network access...
 	if (!netAccess()) {
 		// no network access...
-		alert('por favor, marque a opção ' + netConfigName + ' nas preferencias');
+		alert('por favor, habilite a opção ' + netConfigName + ' nas preferencias');
 
 		// opens AE preferences...
 		app.executeCommand(3131); // → scripting preferences

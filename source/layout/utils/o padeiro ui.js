@@ -23,7 +23,7 @@ var defPadObj = {
 	separator: '---',
 	textCase: 'upperCASE',
 	inputLayers: null,
-	layoutFx: null,
+	inputFx: null,
 
 	outputPath: '~/Desktop',
 	alpha: true
@@ -357,7 +357,7 @@ function padeiroTemplateDialog() {
 				var templateName = prefix + inputList[n].replaceSpecialCharacters();
 				var t = templateData.refTime;
 
-				var optionsList = templateData.layoutFx != null ? templateData.layoutFx.options : [''];
+				var optionsList = templateData.inputFx != null ? templateData.inputFx.options : [''];
 
 				for (var f = 0; f < optionsList.length; f++) {
 					var template = comp.duplicate();
@@ -367,12 +367,12 @@ function padeiroTemplateDialog() {
 					
 					if (templateData.separator != '') txtList = inputList[n].split(templateData.separator);
 
-					if (templateData.layoutFx != null) {
-						var ctrlLayer = template.layer(templateData.layoutFx.layerIndex);
+					if (templateData.inputFx != null) {
+						var ctrlLayer = template.layer(templateData.inputFx.layerIndex);
 	
 						ctrlLayer.property('ADBE Effect Parade')
-							.property(templateData.layoutFx.fxName)
-							.property(templateData.layoutFx.optionsIndex)
+							.property(templateData.inputFx.fxName)
+							.property(templateData.inputFx.optionIndex)
 							.setValue(f + 1);
 					}
 
