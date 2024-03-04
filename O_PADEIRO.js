@@ -11,9 +11,8 @@
 
 */
 
-var vStr = '';
-
 function O_PADEIRO_UTL(thisObj) {
+	var vStr = '';
 
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui functions.js'; // ui and layout functions...
@@ -32,37 +31,68 @@ function O_PADEIRO_UTL(thisObj) {
 
 		if (thisObj instanceof Panel) {
 			PAD_w = thisObj;
-	
+
 		} else {
 			PAD_w = new Window('palette', 'O PADEIRO', undefined);
 		}
-	
-		PAD_w.spacing = 0;
-		PAD_w.margins = 10;
-		PAD_w.orientation = 'fill';
+		PAD_w.margins = 5;
 
-		var PAD_menuSubGrp1 = PAD_w.add('group');
+		var PAD_launchSubGrp = PAD_w.add('group');
 
 		// import templates UI button...
-		var PAD_importAetSubGrp = PAD_menuSubGrp1.add('group');
-		var PAD_importAetBtn = PAD_importAetSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
-		var PAD_importAetLab = PAD_importAetSubGrp.add('statictext', undefined, 'v' + vPad, { name: 'label' , truncate: 'end'});
-		PAD_importAetBtn.helpTip = 'o padeiro launcher';
+		var PAD_launchBtn = PAD_launchSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
+		// PAD_launchBtn.helpTip = 'abrir O PADEIRO';
+		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n◗ → abrir a pasta de templates';
+
+		// var PAD_fldBtn = PAD_launchSubGrp.add('iconbutton', undefined, O_PADEIRO_FOLDER_ICON, { name: 'btn', style: 'toolbutton' });
+		// PAD_fldBtn.helpTip = 'abrir a pasta de templates';
+
+		// var divider1 = PAD_launchSubGrp.add('panel', undefined, undefined, { name: 'divider1' });
+		// divider1.alignment = 'fill';
+
+		var PAD_vLab = PAD_launchSubGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
+		// PAD_vLab.size = [50, 24];
+		// PAD_vLab.justify = 'center';
+		PAD_vLab.helpTip = 'ajuda | DOCS';
+
 		PAD_w.layout.layout(true);
 
+		setBgColor(PAD_w, hexToRGB('#515D9E'));
 
-		setTxtColor(PAD_importAetLab, rgb(255, 255, 255));
-		setBgColor(PAD_w, rgb(81, 93, 158));
+		setTxtHighlight(PAD_vLab, hexToRGB('#FFFFFF'), hexToRGB('#FF7B79'));
 
-		PAD_importAetBtn.onClick = function () {
+		PAD_vLab.addEventListener('mousedown', function () {
+			openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script');
+		});
+
+		PAD_launchBtn.onClick = function () {
 			// error...
 			if (!netAccess()) {
-			  showTabErr(netConfigName + ' not checked');
-			  return;
+				showTabErr(netConfigName + ' não está habilitado');
+				return;
 			}
-		
+
 			padeiroTemplateDialog(); // → templates ui
 		};
+
+		PAD_launchBtn.addEventListener('click', function (c) {
+			if (c.button == 2) {
+				if (templatesFolder.exists) {
+					openFolder(templatesPath); // → open template folder
+				} else {
+					alert(lol + '\na pasta de templates não foi localizada...');
+				}
+			}
+		});
+
+		// PAD_fldBtn.onClick = function () {
+		// 	if (templatesFolder.exists) {
+		// 		openFolder(templatesPath); // → open template folder
+		// 	} else {
+		// 		alert(lol + '\na pasta de templates não foi localizada...');
+		// 	}
+		// };
+
 		return PAD_w;
 	}
 
@@ -71,14 +101,14 @@ function O_PADEIRO_UTL(thisObj) {
 	// checks network access...
 	if (!netAccess()) {
 		// no network access...
-		alert('por favor, marque a opção ' + netConfigName + ' nas preferencias');
+		alert('por favor, habilite a opção ' + netConfigName + ' nas preferencias');
 
 		// opens AE preferences...
 		app.executeCommand(3131); // → scripting preferences
 
 		if (!netAccess()) {
 			// no network access...
-			alert('sem acesso a rede...  Σ(っ °Д °;)っ\na funcionalidade será limitada');
+			alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...

@@ -15,7 +15,7 @@
   to 'ScriptUI Panels' folder
 
   author:  Jean-Marc Billard
-  version: 0.7-b
+  version: 0.7-bnpm init @eslint/confignpm init @eslint/config
   date:    xx-xx-2024
 
 --------------------------------------------------------------
@@ -25,12 +25,10 @@
 function PROMO_UTL(thisObj) {
 
 	// current script version...
-	var vStr = 'v0.7-b';
+	var vStr = 'v0.72-b';
 
-	/* jshint ignore:start */
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui.js'; // → UI definition file
-	/* jshint ignore:end */
 
 	// writes on the 'info' window panel...
 	clearOutput();
@@ -48,7 +46,7 @@ function PROMO_UTL(thisObj) {
 
 		if (!netAccess()) {
 			// no network access...
-			alert('sem acesso a rede...  Σ(っ °Д °;)っ\na funcionalidade será limitada');
+			alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
 		}
 	}
 	// checks if the ui is running as floating window or as a panel...

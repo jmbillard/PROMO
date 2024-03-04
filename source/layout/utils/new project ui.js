@@ -11,11 +11,6 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W043
-//  jscs:disable maximumLineLength
-
 function prefsDialog() {
 	var layerTypeArray = ['shape layer', 'solid layer'];
 	var projectModeDropArray = ['PROMO'];//, 'custom'];
@@ -312,7 +307,7 @@ on the script preferences folder\n\
 	openFldBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		if (!fontsFolder.exists) fontsFolder.create();
@@ -474,7 +469,7 @@ on the script preferences folder\n\
 	v22Ckb.onClick = function () {
 		saveAsV22 = this.value;
 		JSONPrefsObj.saveAsV22 = saveAsV22;
-		
+
 		savePrefs(); // → save preferences.json
 	};
 
@@ -520,87 +515,87 @@ on the script preferences folder\n\
 /*
 Code for Import https://scriptui.joonas.me — (Triple click to select): 
 {"activeId":0,"items":{"item-0":{"id":0,"type":"Dialog","parentId":false,"style":{"enabled":true,"varName":null,"windowType":"Dialog","creationProps":{"su1PanelCoordinates":false,"maximizeButton":false,"minimizeButton":false,"independent":false,"closeButton":true,"borderless":false,"resizeable":false},"text":"project flow...","preferredSize":[0,0],"margins":16,"orientation":"column","spacing":10,"alignChildren":["left","top"]}},"item-1":{"id":1,"type":"DropDownList","parentId":3,"style":{"enabled":true,"varName":null,"text":"DropDownList","listItems":"Demanda para SP,  Demanda para RJ, Filme, VT","preferredSize":[0,0],"alignment":null,"selection":3,"helpTip":null}},"item-2":{"id":2,"type":"StaticText","parentId":3,"style":{"enabled":true,"varName":null,"creationProps":{"truncate":"none","multiline":false,"scrolling":false},"softWrap":false,"text":"project presets:","justify":"left","preferredSize":[0,0],"alignment":null,"helpTip":null}},"item-3":{"id":3,"type":"Group","parentId":0,"style":{"enabled":true,"varName":null,"preferredSize":[0,0],"margins":0,"orientation":"column","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-4":{"id":4,"type":"Divider","parentId":0,"style":{"enabled":true,"varName":null}},"item-5":{"id":5,"type":"Button","parentId":6,"style":{"enabled":true,"varName":null,"text":"next","justify":"center","preferredSize":[0,0],"alignment":null,"helpTip":null}},"item-6":{"id":6,"type":"Group","parentId":0,"style":{"enabled":true,"varName":null,"preferredSize":[0,0],"margins":0,"orientation":"row","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-7":{"id":7,"type":"Button","parentId":6,"style":{"enabled":true,"varName":null,"text":"back","justify":"center","preferredSize":[0,0],"alignment":null,"helpTip":null}},"item-8":{"id":8,"type":"Group","parentId":0,"style":{"enabled":true,"varName":null,"preferredSize":[0,0],"margins":0,"orientation":"row","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-9":{"id":9,"type":"StaticText","parentId":8,"style":{"enabled":true,"varName":null,"creationProps":{"truncate":"none","multiline":true,"scrolling":false},"softWrap":false,"text":"full project path...","justify":"left","preferredSize":[0,0],"alignment":null,"helpTip":null}},"item-10":{"id":10,"type":"Divider","parentId":0,"style":{"enabled":true,"varName":null}},"item-11":{"id":11,"type":"Group","parentId":0,"style":{"enabled":true,"varName":null,"preferredSize":[0,0],"margins":0,"orientation":"column","spacing":10,"alignChildren":["left","center"],"alignment":"fill"}},"item-12":{"id":12,"type":"StaticText","parentId":11,"style":{"enabled":true,"varName":null,"creationProps":{"truncate":"none","multiline":false,"scrolling":false},"softWrap":false,"text":"project name:","justify":"left","preferredSize":[0,0],"alignment":null,"helpTip":null}},"item-13":{"id":13,"type":"EditText","parentId":11,"style":{"enabled":true,"varName":null,"creationProps":{"noecho":false,"readonly":false,"multiline":false,"scrollable":false,"borderless":false,"enterKeySignalsOnChange":false},"softWrap":false,"text":"EditText","justify":"left","preferredSize":[0,0],"alignment":"fill","helpTip":null}},"item-14":{"id":14,"type":"Divider","parentId":0,"style":{"enabled":true,"varName":null}}},"order":[0,11,12,13,10,3,2,1,14,8,9,4,6,7,5],"settings":{"importJSON":true,"indentSize":false,"cepExport":false,"includeCSSJS":true,"showDialog":true,"functionWrapper":false,"afterEffectsDockable":false,"itemReferenceList":"None"}}
-*/ 
+*/
 
 // DIALOG
 // ======
-var dialog = new Window("dialog"); 
-    dialog.text = "project flow..."; 
-    dialog.orientation = "column"; 
-    dialog.alignChildren = ["left","top"]; 
-    dialog.spacing = 10; 
-    dialog.margins = 16; 
+var dialog = new Window('dialog');
+dialog.text = 'project flow...';
+dialog.orientation = 'column';
+dialog.alignChildren = ['left', 'top'];
+dialog.spacing = 10;
+dialog.margins = 16;
 
 // GROUP1
 // ======
-var group1 = dialog.add("group", undefined, {name: "group1"}); 
-    group1.orientation = "column"; 
-    group1.alignChildren = ["left","center"]; 
-    group1.spacing = 10; 
-    group1.margins = 0; 
-    group1.alignment = ["fill","top"]; 
+var group1 = dialog.add('group', undefined, { name: 'group1' });
+group1.orientation = 'column';
+group1.alignChildren = ['left', 'center'];
+group1.spacing = 10;
+group1.margins = 0;
+group1.alignment = ['fill', 'top'];
 
-var statictext1 = group1.add("statictext", undefined, undefined, {name: "statictext1"}); 
-    statictext1.text = "project name:"; 
+var statictext1 = group1.add('statictext', undefined, undefined, { name: 'statictext1' });
+statictext1.text = 'project name:';
 
-var edittext1 = group1.add('edittext {properties: {name: "edittext1"}}'); 
-    edittext1.text = "EditText"; 
-    edittext1.alignment = ["fill","center"]; 
+var edittext1 = group1.add('edittext {properties: {name: "edittext1"}}');
+edittext1.text = 'EditText';
+edittext1.alignment = ['fill', 'center'];
 
 // DIALOG
 // ======
-var divider1 = dialog.add("panel", undefined, undefined, {name: "divider1"}); 
-    divider1.alignment = "fill"; 
+var divider1 = dialog.add('panel', undefined, undefined, { name: 'divider1' });
+divider1.alignment = 'fill';
 
 // GROUP2
 // ======
-var group2 = dialog.add("group", undefined, {name: "group2"}); 
-    group2.orientation = "column"; 
-    group2.alignChildren = ["left","center"]; 
-    group2.spacing = 10; 
-    group2.margins = 0; 
+var group2 = dialog.add('group', undefined, { name: 'group2' });
+group2.orientation = 'column';
+group2.alignChildren = ['left', 'center'];
+group2.spacing = 10;
+group2.margins = 0;
 
-var statictext2 = group2.add("statictext", undefined, undefined, {name: "statictext2"}); 
-    statictext2.text = "project presets:"; 
+var statictext2 = group2.add('statictext', undefined, undefined, { name: 'statictext2' });
+statictext2.text = 'project presets:';
 
-var dropdown1_array = ["Demanda para SP","Demanda para RJ","Filme","VT"]; 
-var dropdown1 = group2.add("dropdownlist", undefined, undefined, {name: "dropdown1", items: dropdown1_array}); 
-    dropdown1.selection = 3; 
+var dropdown1_array = ['Demanda para SP', 'Demanda para RJ', 'Filme', 'VT'];
+var dropdown1 = group2.add('dropdownlist', undefined, undefined, { name: 'dropdown1', items: dropdown1_array });
+dropdown1.selection = 3;
 
 // DIALOG
 // ======
-var divider2 = dialog.add("panel", undefined, undefined, {name: "divider2"}); 
-    divider2.alignment = "fill"; 
+var divider2 = dialog.add('panel', undefined, undefined, { name: 'divider2' });
+divider2.alignment = 'fill';
 
 // GROUP3
 // ======
-var group3 = dialog.add("group", undefined, {name: "group3"}); 
-    group3.orientation = "row"; 
-    group3.alignChildren = ["left","center"]; 
-    group3.spacing = 10; 
-    group3.margins = 0; 
+var group3 = dialog.add('group', undefined, { name: 'group3' });
+group3.orientation = 'row';
+group3.alignChildren = ['left', 'center'];
+group3.spacing = 10;
+group3.margins = 0;
 
-var statictext3 = group3.add("statictext", undefined, undefined, {name: "statictext3", multiline: true}); 
-    statictext3.text = "full project path..."; 
+var statictext3 = group3.add('statictext', undefined, undefined, { name: 'statictext3', multiline: true });
+statictext3.text = 'full project path...';
 
 // DIALOG
 // ======
-var divider3 = dialog.add("panel", undefined, undefined, {name: "divider3"}); 
-    divider3.alignment = "fill"; 
+var divider3 = dialog.add('panel', undefined, undefined, { name: 'divider3' });
+divider3.alignment = 'fill';
 
 // GROUP4
 // ======
-var group4 = dialog.add("group", undefined, {name: "group4"}); 
-    group4.orientation = "row"; 
-    group4.alignChildren = ["left","center"]; 
-    group4.spacing = 10; 
-    group4.margins = 0; 
+var group4 = dialog.add('group', undefined, { name: 'group4' });
+group4.orientation = 'row';
+group4.alignChildren = ['left', 'center'];
+group4.spacing = 10;
+group4.margins = 0;
 
-var button1 = group4.add("button", undefined, undefined, {name: "button1"}); 
-    button1.text = "back"; 
+var button1 = group4.add('button', undefined, undefined, { name: 'button1' });
+button1.text = 'back';
 
-var button2 = group4.add("button", undefined, undefined, {name: "button2"}); 
-    button2.text = "next"; 
+var button2 = group4.add('button', undefined, undefined, { name: 'button2' });
+button2.text = 'next';
 
 dialog.show();
 

@@ -56,14 +56,14 @@ function setTxtColor(sTxt, color) {
 	sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1);
 }
 
-function setTxtHighlight(sTxt, color) {
-	setTxtColor(sTxt, color);
+function setTxtHighlight(sTxt, normalColor, highlightColor) {
+	setTxtColor(sTxt, normalColor);
 
 	sTxt.addEventListener('mouseover', function () {
-		setTxtColor(sTxt, ([138 / 255, 138 / 255, 138 / 255, 1]));
+		setTxtColor(sTxt, highlightColor);
 	});
 	sTxt.addEventListener('mouseout', function () {
-		setTxtColor(sTxt, color);
+		setTxtColor(sTxt, normalColor);
 	});
 }
 
@@ -82,7 +82,7 @@ function setLayout() {
 	var hMargin = 90 + hOffset;
 	var vMargin = 40 + hOffset;
 
-	aboutTxt.text = vStr ;
+	aboutTxt.text = vStr;
 
 	for (var lab = 0; lab < tabLabels.length; lab++) {
 		tabLabels[lab].size.width = w.size.width - 24;
@@ -273,7 +273,7 @@ function showTabErr(msg) {
 	closeGrp.visible = true;
 	errTabGrp.visible = true;
 	closeErrBtn.visible = true;
-	
+
 	infoBtn.visible = false;
 	prefGrp.visible = false;
 	currentGrp.visible = false;
@@ -289,14 +289,14 @@ function showTabErr(msg) {
 
 // show progress blocking user interaction...
 function showTabProg(msg) {
-	alert('ヽ(✿ﾟ▽ﾟ)ノ     reinicie o script!\nbasta fechar e abrir novamente a barrinha...');
+	alert(relax + '     reinicie o script!\nbasta fechar e abrir novamente a barrinha...');
 
 	progTxt1.text = 'KEEP CALM';
 	progTxt2.text = msg;
 	progressGrp.visible = true;
 	progImgGrp.visible = true;
 	progImgGrp.helpTip = msg;
-	
+
 	infoBtn.visible = false;
 	closeGrp.visible = false;
 	prefGrp.visible = false;
@@ -379,7 +379,7 @@ function highlighMenuLabels() {
 
 	for (var l = 0; l < uiLabels.length; l++) {
 		var lab = uiLabels[l];
-		setTxtHighlight(lab, sTxtColor[iconTheme]);
+		setTxtHighlight(lab, sTxtColor[iconTheme], rgb(138, 138, 138));
 		setTxtBtnLink(lab, lab.parent.children[0]);
 	}
 }

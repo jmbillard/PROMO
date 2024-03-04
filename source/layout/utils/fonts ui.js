@@ -90,7 +90,7 @@ function fontsDialog() {
 	downloadBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no network...  Σ(っ °Д °;)っ');
+			alert('no network...  ' + lol);
 			return;
 		}
 		var url = repoURL + '/raw/main/downloads/fonts.zip';
@@ -121,7 +121,7 @@ function fontsDialog() {
 	refreshBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		buildFontTree(fontsFolder, tree);
@@ -133,7 +133,7 @@ function fontsDialog() {
 	openFldBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		if (!fontsFolder.exists) {

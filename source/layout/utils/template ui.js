@@ -140,19 +140,19 @@ function templateDialog() {
 	importBtn.onClick = templateTree.onDoubleClick = function () {
 		var s = templateTree.selection; // → current selection
 		var fileName = s.toString().replace(' / ', '/');
-    
+
 		// iterate selection parent + parent + parent... to form selected template file path...
 		while (s.parent.toString() != templatesFolder.displayName) {
 			s = s.parent; // current parent...
 			fileName = s.toString().replace(' / ', '/') + '/' + fileName; // → current parent/.../template name
 		}
-    
+
 		try {
 			var templateFile = new File(templatesPath + '/' + fileName); // → template file object
 			var IO = new ImportOptions(templateFile); // import options...
-      
+
 			app.project.importFile(IO); // → import template project
-      
+
 		} catch (err) {
 			alert(err.message);
 			return;
@@ -165,16 +165,16 @@ function templateDialog() {
 	downloadBtn.onClick = function () {
 		//alert...
 		if (!netAccess()) {
-			alert('no network...  Σ(っ °Д °;)っ');
+			alert('no network...  ' + lol);
 			return;
 		}
 		var url = repoURL + '/raw/main/downloads/templates.zip';
 		var zipPath = tempPath + '/templates.zip'; // → ~AppData\Roaming\PROMO\temp\templates.zip
 		var templatesLocalFolder = new Folder(templatesLocalPath);
-    
+
 		removeFolder(templatesLocalFolder); // → delete previous templates folder
 		templatesLocalFolder.create(); // → delete previous templates folder
-    
+
 		if (!tempFolder.exists) {
 			// downloads folder does not exist...
 			tempFolder.create(); // → create temp folder
@@ -183,7 +183,7 @@ function templateDialog() {
 
 		unzipContent(zipPath, templatesLocalPath); // → unzip file    
 		removeFolder(tempFolder); // → delete temp folder
-    
+
 		// HO preference...
 		if (!homeOffice) {
 			removeFolder(templatesFolder); // → delete previous templates folder
@@ -199,7 +199,7 @@ function templateDialog() {
 	refreshBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
@@ -211,15 +211,15 @@ function templateDialog() {
 	openFldBtn.onClick = function () {
 		// alert...
 		if (!netAccess()) {
-			alert('no access...  Σ(っ °Д °;)っ');
+			alert('no access...  ' + lol);
 			return;
 		}
 		if (!templatesFolder.exists) templatesFolder.create(); // → create template folder
-    
+
 		openFolder(templatesPath); // → open template folder
 	};
 	//*/  
-  
+
 	wTemplates.show();
 }
 

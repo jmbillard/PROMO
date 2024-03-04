@@ -98,16 +98,16 @@ function prefsDialog() {
 
 	//
 
-// 	var v22Grp = projectGrp.add('group');
-// 	v22Grp.spacing = ckbGrpSpacing;
+	// 	var v22Grp = projectGrp.add('group');
+	// 	v22Grp.spacing = ckbGrpSpacing;
 
-// 	var v22Txt = v22Grp.add('statictext', undefined, 'save as v22.x');
-// 	v22Txt.helpTip = 'save as v22.x window\n\
-// > opens the save as window if the AE version is higher than v22';
-// 	v22Txt.preferredSize = txtSize;
+	// 	var v22Txt = v22Grp.add('statictext', undefined, 'save as v22.x');
+	// 	v22Txt.helpTip = 'save as v22.x window\n\
+	// > opens the save as window if the AE version is higher than v22';
+	// 	v22Txt.preferredSize = txtSize;
 
-// 	var v22Ckb = v22Grp.add('checkbox', [8, 4, 24, 18]);
-// 	v22Ckb.value = saveAsV22;
+	// 	var v22Ckb = v22Grp.add('checkbox', [8, 4, 24, 18]);
+	// 	v22Ckb.value = saveAsV22;
 
 	//
 
@@ -206,69 +206,69 @@ function prefsDialog() {
 	var slCkb = slGrp.add('checkbox', [8, 4, 24, 18]);
 	slCkb.value = showLabels;
 
-// 	//---------------------------------------------------------
+	// 	//---------------------------------------------------------
 
-// 	var divider3 = wPref.add('panel');
-// 	divider3.alignment = 'fill';
+	// 	var divider3 = wPref.add('panel');
+	// 	divider3.alignment = 'fill';
 
-// 	var modeGrp = wPref.add('group');
-// 	modeGrp.orientation = 'column';
-// 	modeGrp.alignChildren = ['left', 'center'];
-// 	modeGrp.spacing = 2;
+	// 	var modeGrp = wPref.add('group');
+	// 	modeGrp.orientation = 'column';
+	// 	modeGrp.alignChildren = ['left', 'center'];
+	// 	modeGrp.spacing = 2;
 
-// 	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
-// 	setTxtColor(modeGrpTxt, sTxtColor.light);
+	// 	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
+	// 	setTxtColor(modeGrpTxt, sTxtColor.light);
 
-// 	//
+	// 	//
 
-// 	var hoGrp = modeGrp.add('group');
-// 	hoGrp.spacing = ckbGrpSpacing;
+	// 	var hoGrp = modeGrp.add('group');
+	// 	hoGrp.spacing = ckbGrpSpacing;
 
-// 	var hoTxt = hoGrp.add('statictext', undefined, 'home office');
-// 	hoTxt.helpTip = 'home office mode\n\
-// > uses yor local machine... all files and\
-// templates will be downloaded and stored \
-// on the script preferences folder\n\
-// > disables most of the links tab folder shortcuts\
-// (\'MAM - magazine\' and \'MAM - para arte\' can be mapped)';
-// 	hoTxt.preferredSize = txtSize;
+	// 	var hoTxt = hoGrp.add('statictext', undefined, 'home office');
+	// 	hoTxt.helpTip = 'home office mode\n\
+	// > uses yor local machine... all files and\
+	// templates will be downloaded and stored \
+	// on the script preferences folder\n\
+	// > disables most of the links tab folder shortcuts\
+	// (\'MAM - magazine\' and \'MAM - para arte\' can be mapped)';
+	// 	hoTxt.preferredSize = txtSize;
 
-// 	var hoCkb = hoGrp.add('checkbox', [8, 4, 24, 18]);
-// 	hoCkb.value = homeOffice;
+	// 	var hoCkb = hoGrp.add('checkbox', [8, 4, 24, 18]);
+	// 	hoCkb.value = homeOffice;
 
-// 	//---------------------------------------------------------
+	// 	//---------------------------------------------------------
 
-// 	var divider5 = wPref.add('panel');
-// 	divider5.alignment = 'fill';
+	// 	var divider5 = wPref.add('panel');
+	// 	divider5.alignment = 'fill';
 
-// 	var btnGrp = wPref.add('group');
-// 	btnGrp.orientation = 'stack';
-// 	btnGrp.alignment = 'fill';
-// 	// left buttons group...
-// 	var bGrp1 = btnGrp.add('group');
-// 	bGrp1.alignment = 'left';
-// 	bGrp1.spacing = 2;
-// 	// right buttons group...
-// 	var bGrp2 = btnGrp.add('group');
-// 	bGrp2.alignment = 'right';
-// 	bGrp2.spacing = 2;
+	// 	var btnGrp = wPref.add('group');
+	// 	btnGrp.orientation = 'stack';
+	// 	btnGrp.alignment = 'fill';
+	// 	// left buttons group...
+	// 	var bGrp1 = btnGrp.add('group');
+	// 	bGrp1.alignment = 'left';
+	// 	bGrp1.spacing = 2;
+	// 	// right buttons group...
+	// 	var bGrp2 = btnGrp.add('group');
+	// 	bGrp2.alignment = 'right';
+	// 	bGrp2.spacing = 2;
 
-// 	//
+	// 	//
 
-// 	var devTogBtn = bGrp1.add('iconbutton', iconTogSize, exprTogIcon.light, { style: 'toolbutton', toggle: 1 });
-// 	devTogBtn.helpTip = 'dev tools';
-// 	devTogBtn.value = devMode;
+	// 	var devTogBtn = bGrp1.add('iconbutton', iconTogSize, exprTogIcon.light, { style: 'toolbutton', toggle: 1 });
+	// 	devTogBtn.helpTip = 'dev tools';
+	// 	devTogBtn.value = devMode;
 
-// 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
-// 	openFldBtn.helpTip = 'open script preferences folder';
+	// 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
+	// 	openFldBtn.helpTip = 'open script preferences folder';
 
-// 	//
+	// 	//
 
-// 	var resetBtn = bGrp2.add('iconbutton', iconSize, resetIcon.light, { style: 'toolbutton' });
-// 	resetBtn.helpTip = 'reset script preferences';
+	// 	var resetBtn = bGrp2.add('iconbutton', iconSize, resetIcon.light, { style: 'toolbutton' });
+	// 	resetBtn.helpTip = 'reset script preferences';
 
-// 	var updateBtn = bGrp2.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-// 	updateBtn.helpTip = 'download the latest script version from github';
+	// 	var updateBtn = bGrp2.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
+	// 	updateBtn.helpTip = 'download the latest script version from github';
 
 	/*
 
@@ -311,7 +311,7 @@ function prefsDialog() {
 	// openFldBtn.onClick = function () {
 	// 	// alert...
 	// 	if (!netAccess()) {
-	// 		alert('no access...  Σ(っ °Д °;)っ');
+	// 		alert('no access...  ' + lol;);
 	// 		return;
 	// 	}
 	// 	if (!fontsFolder.exists) fontsFolder.create();
@@ -473,7 +473,7 @@ function prefsDialog() {
 	// v22Ckb.onClick = function () {
 	// 	saveAsV22 = this.value;
 	// 	JSONPrefsObj.saveAsV22 = saveAsV22;
-		
+
 	// 	savePrefs(); // → save preferences.json
 	// };
 

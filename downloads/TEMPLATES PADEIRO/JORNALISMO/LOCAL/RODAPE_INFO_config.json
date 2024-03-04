@@ -12,6 +12,7 @@
 		{"layerIndex": 3, "method": "textContent"},
 		{"layerIndex": 5, "method": "textContent"}
 	],
+	"inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]},
 
 	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/JORNALISMO LOCAL/pacote local 2020-2024",
 	"alpha": true
