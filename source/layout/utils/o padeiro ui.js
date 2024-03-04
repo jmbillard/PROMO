@@ -21,7 +21,7 @@ var defPadObj = {
 	prefix: '',
 	refTime: 0,
 	separator: '---',
-	textCase: 'upperCASE',
+	textCase: 'upperCase',
 	inputLayers: null,
 
 	outputPath: '~/Desktop',
@@ -324,9 +324,9 @@ function padeiroTemplateDialog() {
 
 			app.project.importFile(IO); // → import template project
 
-			if (templateData.case == 'upperCASE') edtText.text = edtText.text.toUpperCase();
+			if (templateData.case == 'upperCase') edtText.text = edtText.text.toUpperCase();
 			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
-			if (templateData.case == 'toTitleCase') edtText.text = edtText.text.toTitleCase();
+			if (templateData.case == 'titleCase') edtText.text = edtText.text.toTitleCase();
 
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 

@@ -7,7 +7,7 @@
 	"prefix": "CONFRONTO",
 	"refTime": 2,
 	"separator": " X ",
-	"textCase": "upperCASE",
+	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "layerName"},
 		{"layerIndex": 2, "method": "layerName"}

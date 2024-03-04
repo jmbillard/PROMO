@@ -84,7 +84,7 @@ o script executará as seguintes tarefas em ordem:
 >  "prefix": "RDP", // → prefixo que o nome da comp editada receberá.
 >  "refTime": 2, // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
 >  "separator": "---", // → texto usado para separar as informações de tipos diferentes.
->  "textCase": "upperCASE", // → o tipo de caixa de texto que o template deve receber: "upperCASE", "lowerCase" ou "titleCase".
+>  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase" ou "titleCase".
 >  "inputLayers": [ // → lista com os layers editáveis da comp.
 >   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
 >   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.

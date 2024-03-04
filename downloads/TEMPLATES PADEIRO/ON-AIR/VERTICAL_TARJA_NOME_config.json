@@ -7,7 +7,7 @@
 	"prefix": "",
 	"refTime": 0,
 	"separator": "---",
-	"textCase": "upperCASE",
+	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 2, "method": "textContent"},
 		{"layerIndex": 4, "method": "textContent"},
