@@ -6,7 +6,7 @@
 	"compName": "FOTO - CONVIDADO TEMPLATE",
 	"prefix": "FOTO",
 	"refTime": 2,
-	"separator": "\n",
+	"separator": "",
 	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "textContent"},
