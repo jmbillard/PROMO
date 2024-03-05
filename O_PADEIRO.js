@@ -36,23 +36,20 @@ function O_PADEIRO_UTL(thisObj) {
 			PAD_w = new Window('palette', 'O PADEIRO', undefined);
 		}
 		PAD_w.margins = 5;
+		PAD_w.orientation = 'fill';
 
-		var PAD_launchSubGrp = PAD_w.add('group');
+		var mainGrp = PAD_w.add('group');
+		mainGrp.alignment = 'center';
+		mainGrp.orientation = 'stack';
+
+		var btnGrp = mainGrp.add('group');
+		btnGrp.alignment = 'center';
 
 		// import templates UI button...
-		var PAD_launchBtn = PAD_launchSubGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
-		// PAD_launchBtn.helpTip = 'abrir O PADEIRO';
+		var PAD_launchBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
 		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n◗ → abrir a pasta de templates';
 
-		// var PAD_fldBtn = PAD_launchSubGrp.add('iconbutton', undefined, O_PADEIRO_FOLDER_ICON, { name: 'btn', style: 'toolbutton' });
-		// PAD_fldBtn.helpTip = 'abrir a pasta de templates';
-
-		// var divider1 = PAD_launchSubGrp.add('panel', undefined, undefined, { name: 'divider1' });
-		// divider1.alignment = 'fill';
-
-		var PAD_vLab = PAD_launchSubGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
-		// PAD_vLab.size = [50, 24];
-		// PAD_vLab.justify = 'center';
+		var PAD_vLab = btnGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
 		PAD_w.layout.layout(true);
@@ -61,6 +58,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 		setTxtHighlight(PAD_vLab, hexToRGB('#FFFFFF'), hexToRGB('#FF7B79'));
 
+		PAD_w.onShow = PAD_w.onResizing = function () {
+			PAD_w.layout.layout(true);
+			PAD_w.layout.resize();
+		};
 		PAD_vLab.addEventListener('mousedown', function () {
 			openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script');
 		});
@@ -84,14 +85,6 @@ function O_PADEIRO_UTL(thisObj) {
 				}
 			}
 		});
-
-		// PAD_fldBtn.onClick = function () {
-		// 	if (templatesFolder.exists) {
-		// 		openFolder(templatesPath); // → open template folder
-		// 	} else {
-		// 		alert(lol + '\na pasta de templates não foi localizada...');
-		// 	}
-		// };
 
 		return PAD_w;
 	}
