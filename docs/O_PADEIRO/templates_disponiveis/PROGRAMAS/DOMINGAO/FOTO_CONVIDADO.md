@@ -1,14 +1,14 @@
 # 📓 ENCONTRO FOTO CONVIDADO
 
 > 📑 *projeto:* ***FOTO_CONVIDADO.aet***\
-> 📂 *export:* caminho do export aqui
+> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\PROGRAMAS\AUDITORIO\DOMINGAO COM HUCK\2024\FOTOS
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](preview.gif)
+> ![preview](FOTO_CONVIDADO/FOTO_CONVIDADO_exemplo.gif)
 
 ---
 
@@ -18,11 +18,9 @@
 
 1. abra a **comp** '*FOTO - CONVIDADO TEMPLATE*'.
 2. edite o texto dos **layers** '*txt_nome*' e '*txt_sobrenome*' com o nome e sobrenome do convidado respectivamente.
-3. selecione o **layer** '*ctrl*'.
-4. use a *janela de controle de efeitos* para acessar os controles disponíveis.
-5. renomeie a **comp** '*FOTO - CONVIDADO TEMPLATE*' substituindo as palavras '*CONVIDADO TEMPLATE*' pelo nome do convidado.
+3. renomeie a **comp** '*FOTO - CONVIDADO TEMPLATE*' substituindo as palavras '*CONVIDADO TEMPLATE*' pelo nome e sobrenome do convidado.
 
-> 📋 *exemplo:* "*FOTO - VITOR E LEO*".
+> 📋 *exemplo:* "*FOTO - REGINA CASE*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 

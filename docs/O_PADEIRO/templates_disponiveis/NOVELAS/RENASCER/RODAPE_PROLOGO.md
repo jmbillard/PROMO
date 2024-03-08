@@ -1,14 +1,14 @@
 # 📓 RENASCER RODAPÉ PRÓLOGO
 
 > 📑 *projeto:* ***RODAPE_PROLOGO.aet***\
-> 📂 *export:* caminho do export aqui
+> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\NOVELAS\RENASCER\\_LETTERINGS\PROLOGO
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](RODAPE_CONVIDADO/RODAPE_CONVIDADO_exemplo.gif)
+> ![preview](RODAPE_PROLOGO/RODAPE_PROLOGO_exemplo.gif)
 
 ---
 
@@ -19,11 +19,9 @@
 1. abra a **comp** '*RDP - PROLOGO TEMPLATE*'.
 2. edite o texto do **layer** '*txt_linha 1*' com texto inicial do prólogo.
 3. se necessário, habilite e edite o texto do **layer** '*txt_linha 2*' com a restante do texto.
-4. selecione o **layer** '*ctrl*'.
-5. use a *janela de controle de efeitos* para acessar os controles disponíveis.
-6. renomeie a **comp** '*RDP - PROLOGO TEMPLATE*' substituindo as palavras '*PROLOGO TEMPLATE*' pelo texto completo do prólogo.
+4. renomeie a **comp** '*RDP - PROLOGO TEMPLATE*' substituindo as palavras '*PROLOGO TEMPLATE*' pelo texto completo do prólogo.
 
-> 📋 *exemplo:* "*RDP - NO ULTIMO CAPITULO*", "*RDP - FIQUE AGORA COM O CAPITULO DE HOJE*".
+> 📋 *exemplo:* "*RDP - FIQUE AGORA COM O SEGUNDO EPISÓDIO*", "*RDP - ULTIMAS SEMANAS*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 

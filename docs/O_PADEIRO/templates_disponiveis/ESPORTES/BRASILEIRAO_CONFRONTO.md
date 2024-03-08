@@ -1,7 +1,7 @@
 # 📓 BRASILEIRAO CONFRONTO 2023
 
-> 📑 ***BRASILEIRAO_CONFRONTO.aet***
-
+> 📑 *projeto:* ***CONFRONTO.aet***\
+> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\FUTEBOL\BRASILEIRAO\2024\CONFRONTOS
 ---
 
 <br>
