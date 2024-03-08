@@ -1,6 +1,6 @@
 {
 	"configName": "ENCONTRO FOTO CONVIDADO",
-	"exemple": "Inez\nViana",
+	"exemple": "Talita\nYounan",
 	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\ndepois de criar, importe e adicione a imagem de cada convidado em sua respectiva comp.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
 	"compName": "FOTO - CONVIDADO TEMPLATE",
