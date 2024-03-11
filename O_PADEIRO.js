@@ -54,9 +54,9 @@ function O_PADEIRO_UTL(thisObj) {
 
 		PAD_w.layout.layout(true);
 
-		setBgColor(PAD_w, hexToRGB('#515D9E'));
+		setBgColor(PAD_w, '#515D9E');
 
-		setTxtHighlight(PAD_vLab, hexToRGB('#FFFFFF'), hexToRGB('#FF7B79'));
+		setTxtHighlight(PAD_vLab, '#FFFFFF', '#FF7B79');
 
 		PAD_w.onShow = PAD_w.onResizing = function () {
 			PAD_w.layout.layout(true);

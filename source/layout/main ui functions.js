@@ -11,21 +11,15 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
-//  jshint -W083
-
 //
 function createColorButtons(colorArray, colorGrp) {
 	for (var c = 0; c < colorArray.length; c++) {
-		var hex = rgbToHEX(colorArray[c]); // -> '#FFFFFF'
-		var rgb = colorArray[c] * 255; // -> [255,255,255,255]
+		var hex = colorArray[c]; // -> '#FFFFFF'
+		var rgb = hexToRGB(hex) * 255; // -> [255,255,255,255]
 		var colorBtn = colorGrp.add('iconbutton', undefined, undefined, { name: hex, style: 'toolbutton' });
 
 		colorBtn.size = [20, 20];
-		setBtnColor(colorBtn, colorArray[c]);
+		setBtnColor(colorBtn, hex);
 		colorBtn.onDraw = customDraw;
 		colorBtn.helpTip = 'R: ' + rgb[0] + '\nG: ' + rgb[1] + '\nB: ' + rgb[2] + '\nHEX: ' + hex;
 	}
@@ -40,23 +34,30 @@ function customDraw() {
 }
 
 // changes the window background color...
-function setBgColor(w, color) {
+function setBgColor(w, hex) {
+
+	var color = hexToRGB(hex);
 	var bType = w.graphics.BrushType.SOLID_COLOR;
 	w.graphics.backgroundColor = w.graphics.newBrush(bType, color);
 }
 
-function setBtnColor(btn, color) {
+function setBtnColor(btn, hex) {
+
+	var color = hexToRGB(hex);
 	var bType = w.graphics.BrushType.SOLID_COLOR;
 	btn.fillBrush = btn.graphics.newBrush(bType, color);
 }
 
 // changes static text color...
-function setTxtColor(sTxt, color) {
+function setTxtColor(sTxt, hex) {
+
+	var color = hexToRGB(hex);
 	var pType = sTxt.graphics.PenType.SOLID_COLOR;
 	sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1);
 }
 
 function setTxtHighlight(sTxt, normalColor, highlightColor) {
+
 	setTxtColor(sTxt, normalColor);
 
 	sTxt.addEventListener('mouseover', function () {
@@ -379,7 +380,7 @@ function highlighMenuLabels() {
 
 	for (var l = 0; l < uiLabels.length; l++) {
 		var lab = uiLabels[l];
-		setTxtHighlight(lab, sTxtColor[iconTheme], rgb(138, 138, 138));
+		setTxtHighlight(lab, sTxtColor[iconTheme], '#8A8A8A');
 		setTxtBtnLink(lab, lab.parent.children[0]);
 	}
 }

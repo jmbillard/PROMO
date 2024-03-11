@@ -34,7 +34,7 @@ function progressDialog (text) {
 	var cancelBtn = btnGrp.add('button', [0, 0, 0, 0], '', { name: 'cancel' });
 	var keyLabelTxt = progW.add('statictext', undefined, '"ENTER" to proceed                                                                                   "ESC" to cancel');
 
-	setBgColor(progW, rgb(255, 255, 255));
+	setBgColor(progW, '#FFFFFF');
 	setTxtColor(progLabelTxt, rgb(20, 20, 20));
 	return progW;
 }
