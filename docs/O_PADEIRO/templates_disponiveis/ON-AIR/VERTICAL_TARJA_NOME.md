@@ -16,12 +16,12 @@
 
 ## 📍 funcionamento básico
 
-1. abra a **comp** '*TARJA - NOME TEMPLATE*'.
+1. abra a **comp** '*LETT - NOME TEMPLATE*'.
 2. edite o texto dos **layers** '*txt_titulo*', '*txt_subtitulo*' e '*txt_apoio*' com o título, subtítulo e texto de apoio do programa, filme ou produto.
 3. desabilite os **layers** '*txt_subtitulo*' e '*txt_apoio*' caso não exista um subtítulo ou texto de apoio.
-4. renomeie a **comp** '*TARJA - NOME TEMPLATE*' substituindo tudo pelo título junto com o subtítulo e texto de apoio.
+4. renomeie a **comp** '*LETT - NOME TEMPLATE*' substituindo tudo pelo título - subtítulo e texto de apoio.
 
-> 📋 *exemplos:* "*THE GOOD DOCTOR O BOM DOUTOR*", "*TEMPERATURA MAXIMA XMEN FENIX NEGRA*".
+> 📋 *exemplos:* "*THE GOOD DOCTOR - O BOM DOUTOR*", "*TEMPERATURA MAXIMA - XMEN FENIX NEGRA*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 

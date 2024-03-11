@@ -7,7 +7,7 @@
 	"prefix": "RDP",
 	"refTime": 2,
 	"separator": "",
-	"textCase": "upperCase",
+	"textCase": "upperCASE",
 	"inputLayers": [
 		{"layerIndex": 4, "method": "textContent"}
 	],

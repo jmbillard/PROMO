@@ -16,12 +16,12 @@
 
 ## 📍 funcionamento básico
 
-1. abra a **comp** '*LETTERING - FILME SESSAO DA TARDE TEMPLATE*'.
+1. abra a **comp** '*LETT - FILME SESSAO DA TARDE TEMPLATE*'.
 2. edite o texto dos **layers** '*txt_titulo*' e '*txt_subtitulo*' com o título e subtítulo do filme.
 3. desabilite o **layer** '*txt_subtitulo*' caso não exista um subtítulo.
-4. renomeie a **comp** '*LETTERING - FILME SESSAO DA TARDE TEMPLATE*' substituindo tudo pelo título junto com o subtítulo.
+4. renomeie a **comp** '*LETT - FILME SESSAO DA TARDE TEMPLATE*' substituindo tudo pelo título - subtítulo.
 
-> 📋 *exemplos:* "*ANIMAIS FANTASTICOS OS CRIMES DE GRINDELWALD*", "*AXL O CAO ROBO*".
+> 📋 *exemplos:* "*ANIMAIS FANTASTICOS - OS CRIMES DE GRINDELWALD*", "*AXL - O CAO ROBO*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
