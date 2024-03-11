@@ -167,22 +167,37 @@ projFoldersBtn.addEventListener('click', function (c) {
 });
 
 collectFontsBtn.onClick = function () {
-	var dateStr = system
-		.callSystem('cmd.exe /c date /t')
-		.trim();
-
-	setXMPData('creator', system.userName);
-	setXMPData('date', dateStr);
 
 	if (app.project.numItems == 0) return;
 
 	var currentProj = app.project.file;
 	var currentProjPath = new Folder(decodeURI(currentProj.path)).path;
+	var assetsFolder = new Folder(currentProjPath + '/02 ARQUIVOS/');
+	if (!assetsFolder.exists) assetsFolder.create();
+
+	currentProjPath += '/02 ARQUIVOS/FONTS'; // collect folder path...
 
 	var fontsPath = fontCollect(currentProjPath);
 
 	openFolder(fontsPath);
 };
+
+collectFontsBtn.addEventListener('click', function (c) {
+	if (c.button == 2) {
+		// error...
+		if (app.project.numItems == 0) {
+			showTabErr('empty project');
+			return;
+		}
+
+		var currentProj = app.project.file;
+		var currentProjPath = decodeURI(currentProj.path) + '/FONTS'; // collect folder path...
+
+		var fontsPath = fontCollect(currentProjPath);
+
+		openFolder(fontsPath);
+	}
+});
 
 projFoldersBtn.onClick = function () {
 	var dateStr = system
