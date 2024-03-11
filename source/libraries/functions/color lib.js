@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /*
 
 ---------------------------------------------------------------
@@ -7,11 +5,6 @@
 ---------------------------------------------------------------
 
 */
-
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
 
 // returns a random color from de color preferences...
 function randomColor(colorArray) {
