@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------- info ----------------------------
@@ -15,7 +11,7 @@
   to 'ScriptUI Panels' folder
 
   author:  Jean-Marc Billard
-  version: 0.7-bnpm init @eslint/confignpm init @eslint/config
+  version: 0.8-b
   date:    xx-xx-2024
 
 --------------------------------------------------------------
@@ -25,7 +21,7 @@
 function PROMO_UTL(thisObj) {
 
 	// current script version...
-	var vStr = 'v0.72-b';
+	var vStr = 'v0.8-b';
 
 	#include 'source/globals.js'; // global variables...
 	#include 'source/layout/main ui.js'; // → UI definition file

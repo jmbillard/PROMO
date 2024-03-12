@@ -1,17 +1,25 @@
-/* eslint-disable no-with */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
----------------------------------------------------------------
-> 🪟 UI dialogs
----------------------------------------------------------------
+---------------------------- info ----------------------------
+
+  title:   O PADEIRO script
+
+  notes:   a collection of tools designed to
+  speedup the motion graphics team workflow
+
+  copy the .jsxbin file ('release' folder)
+  to 'ScriptUI Panels' folder
+
+  author:  Jean-Marc Billard
+  version: 0.8-b
+  date:    xx-xx-2024
+
+--------------------------------------------------------------
 
 */
 
 function O_PADEIRO_UTL(thisObj) {
+	// current script version...
 	var vStr = '';
 
 	#include 'source/globals.js'; // global variables...
@@ -47,28 +55,30 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// import templates UI button...
 		var PAD_launchBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
-		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n◗ → abrir a pasta de templates';
+		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates';
 
 		var PAD_vLab = btnGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
 		PAD_w.layout.layout(true);
 
-		setTxtHighlight(PAD_vLab, '#FFFFFF','#FF7B79');
+		setTxtHighlight(PAD_vLab, '#FFFFFF', '#FF7B79');
 		setBgColor(PAD_w, '#515D9E');
 
 		PAD_w.onShow = PAD_w.onResizing = function () {
 			PAD_w.layout.layout(true);
 			PAD_w.layout.resize();
 		};
+
 		PAD_vLab.addEventListener('mousedown', function () {
-			openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script');
+			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script';
+			openWebSite(siteUrl);
 		});
 
 		PAD_launchBtn.onClick = function () {
 			// error...
 			if (!netAccess()) {
-				showTabErr(netConfigName + ' não está habilitado');
+				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
 				return;
 			}
 
