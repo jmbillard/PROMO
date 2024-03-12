@@ -1,8 +1,3 @@
-/* eslint-disable no-with */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,11 +5,6 @@
 ---------------------------------------------------------------
 
 */
-
-//  linter settings:
-//  jshint -W061
-//  jshint -W043
-//  jshint -W083
 
 // organization tags UI...
 function tagDialog() {
