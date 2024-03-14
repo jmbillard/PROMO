@@ -1,0 +1,17 @@
+{
+	"configName": "BBB RODAPE INFO",
+	"exemple": "DEPOIS DE\nRENASCER",
+	"tip": "digite o texto em 1 ou 2 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+
+	"compName": "RDP - INFO TEMPLATE",
+	"prefix": "RDP",
+	"refTime": 2,
+	"separator": "",
+	"textCase": "upperCASE",
+	"inputLayers": [
+		{"layerIndex": 1, "method": "textContent"}
+	],
+
+	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024",
+	"alpha": true
+}
