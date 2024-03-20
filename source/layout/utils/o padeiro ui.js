@@ -1,8 +1,3 @@
-/* eslint-disable no-with */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,7 +5,8 @@
 ---------------------------------------------------------------
 
 */
-var PAD_v = '0.41 b';
+
+var PAD_v = '0.5 b';
 
 var defPadObj = {
 	configName: 'default config',
@@ -114,11 +110,13 @@ function padeiroTemplateDialog() {
 	var infoGrp = headerGrp.add('group');
 	infoGrp.alignment = 'right';
 
-	var templateLabTxt = templatesGrp.add('statictext', undefined, 'templates:');
+	var templateLabTxt = templatesGrp.add('statictext', undefined, 'busca:');
 	setTxtColor(templateLabTxt, monoColors[2]);
 
 	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS';
+
+	var searchBox = treeGrp.add('edittext', [0, 0, 250, 24], '');
 
 	var templateTree = treeGrp.add('treeview', [0, 0, 250, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter);
@@ -179,7 +177,7 @@ function padeiroTemplateDialog() {
 
 	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:');
 	setTxtColor(inputLabTxt, monoColors[2]);
-	var edtText = txtGrp.add('edittext', [0, 0, 185, 170], '', { multiline: true });
+	var edtText = txtGrp.add('edittext', [0, 0, 185, 200], '', { multiline: true });
 	edtText.enabled = false;
 
 	var renderGrp = txtGrp.add('group');
@@ -195,19 +193,51 @@ function padeiroTemplateDialog() {
 
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:');
 	setTxtColor(tipLabTxt, monoColors[2]);
-	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 190], tipContent, { multiline: true });
+	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 210], tipContent, { multiline: true });
 	setTxtColor(tipContentTxt, mainColors[1]);
 
 	//---------------------------------------------------------
 
 	wPadeiroTemplates.onShow = function () {
-		expandNodes(templateTree); // expand all tree folder nodes...
+		// expandNodes(templateTree); // expand all tree folder nodes...
+		templateTree.expanded = true;
+		var branches = templateTree.items;
+
+		for (var i = 0; i < branches.length; i++) {
+			if (branches[i].type == 'node') {
+				branches[i].expanded = true;
+			}
+		}
+
 		oWidth = wPadeiroTemplates.size.width; // window width with image preview...
 		wWidth = oWidth - 405; // window width without image preview...
 		vGrp2.visible = false; // → hide preview
 		divider.visible = false; // → hide preview
 		wPadeiroTemplates.size.width = wWidth; // → resize window
 	};
+
+	//---------------------------------------------------------
+
+	searchBox.onEnterKey = searchBox.onChange = function () {
+		this.active = false;
+		templateTree.active = true;
+
+		var items = findItem(templateTree, [], this.text.trim().toUpperCase().replaceSpecialCharacters());
+
+		if (items.length == 0) { // Nothing found
+			templateTree.selection = null;
+			return;
+		}
+		for (var n = 0; n < items.length; n++) {
+			var item = items[n];
+			if (item.type == 'node') item.expanded = true;
+
+			while (item.parent.constructor.name != 'TreeView') {
+				item.parent.expanded = true;
+				item = item.parent;
+			}
+		}
+	}
 
 	//---------------------------------------------------------
 
@@ -482,7 +512,15 @@ function padeiroTemplateDialog() {
 
 	refreshBtn.onClick = function () {
 		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
-		expandNodes(templateTree); // expand all tree folder nodes...
+
+		templateTree.expanded = true;
+		var branches = templateTree.items;
+
+		for (var i = 0; i < branches.length; i++) {
+			if (branches[i].type == 'node') {
+				branches[i].expanded = true;
+			}
+		}
 	};
 
 	//---------------------------------------------------------

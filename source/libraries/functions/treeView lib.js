@@ -38,7 +38,7 @@ function optimizeHierarchy(nodeTree) {
 	var branches = nodeTree.items; // all current tree item subitems...
 
 	for (var i = branches.length - 1; i >= 0; i--) {
-    
+
 		if (branches[i].type != 'node') continue; // ignore item...
 
 		if (branches[i].items.length > 1) {
@@ -54,7 +54,7 @@ function optimizeHierarchy(nodeTree) {
 						var nItem = branches[i].add(branches[i].items[0].items[it].type, branches[i].items[0].items[it].text);
 						nItem.image = branches[i].items[0].items[it].image;
 						branches[i].remove(0);
-					} catch (error) {}
+					} catch (error) { }
 				}
 			}
 		}
@@ -63,7 +63,7 @@ function optimizeHierarchy(nodeTree) {
 
 // populates the 'tree view' node hierarchy...
 function createHierarchy(array, node, fileTypes) {
-  
+
 	for (var n = 0; n < array.length; n++) {
 		var nodeName = array[n].displayName; // current item name...
 		var subArray = []; // folder content array...
@@ -77,16 +77,16 @@ function createHierarchy(array, node, fileTypes) {
 			//nodeItem.image = fldTogIcon.light; // folder icon...
 
 			createHierarchy(subArray, nodeItem, fileTypes);
-    
+
 		} else {
 			try {
 				// filter file extensions...
 				if (fileTypes.indexOf(getFileExt(nodeName)) < 0) continue;
-	
+
 				var templateItem = node.add('item', nodeName); // item...
 				templateItem.image = templateListIcon.light; // item icon...
-			
-			} catch (error) {}
+
+			} catch (error) { }
 		}
 	}
 }
@@ -199,7 +199,7 @@ function buildFindTree(tree, obj, compArray, progBar) {
 
 			for (var f = 0; f < txtArray.length; f++) {
 				var r = txtArray[f].match(sKey) == null ? false : true; // current match result...
-        
+
 				if (r != invert) continue; // ignore match if invert is checked...
 
 				if (resultArray.indexOf(compArray[i]) < 0) { // check for duplicate entries...
@@ -223,7 +223,7 @@ function buildFindTree(tree, obj, compArray, progBar) {
 		progBar.value += progInc; // increment current progress...
 	}
 	progBar.value = 100; // end progress...
-	return {'resultArray': resultArray, 'count': count}; 
+	return { 'resultArray': resultArray, 'count': count };
 }
 
 // expands all 'tree view' nodes...
@@ -236,4 +236,17 @@ function expandNodes(nodeTree) {
 			expandNodes(branches[i]);
 		}
 	}
+}
+
+function findItem(tree, list, item) {
+	var branches = tree.items;
+
+	for (var i = 0; i < branches.length; i++) {
+
+		if (branches[i].type == 'node') {
+			findItem(branches[i], list, item);
+		}
+		if (branches[i].text.trim().toUpperCase().replaceSpecialCharacters().match(item)) list.push(branches[i]);
+	}
+	return list;
 }
