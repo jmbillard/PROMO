@@ -6,7 +6,7 @@
 
 */
 
-var PAD_v = '0.5 b';
+var PAD_v = '0.5-b';
 
 var defPadObj = {
 	configName: 'default config',
@@ -208,7 +208,6 @@ function padeiroTemplateDialog() {
 				branches[i].expanded = true;
 			}
 		}
-
 		oWidth = wPadeiroTemplates.size.width; // window width with image preview...
 		wWidth = oWidth - 405; // window width without image preview...
 		vGrp2.visible = false; // → hide preview
@@ -228,6 +227,7 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	searchBox.onChange = function () {
+
 		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
 
 		var txt = searchBox.text
@@ -247,7 +247,6 @@ function padeiroTemplateDialog() {
 				s = s.parent;
 			}
 		}
-
 		searchBox.text = txt;
 		templateLabTxt.active = true;
 		templateTree.active = true;
@@ -260,7 +259,6 @@ function padeiroTemplateDialog() {
 		if (templateTree.selection != null && templateTree.selection.type == 'node') {
 			templateTree.selection = null; // → clear selection
 		}
-
 		if (templateTree.selection == null) {
 			// nothing selected...
 			wPadeiroTemplates.size.width = wWidth; // → resize window
@@ -291,7 +289,6 @@ function padeiroTemplateDialog() {
 		} else {
 			previewImg.image = no_preview; // → set image 'no preview available'
 		}
-
 		vGrp2.visible = true; // → show preview
 		divider.visible = true; // → show preview
 		wPadeiroTemplates.size.width = oWidth; // → resize window
@@ -345,7 +342,6 @@ function padeiroTemplateDialog() {
 		edtText.enabled = hasInput; // → set preview image file
 		renderCkb.enabled = hasInput; // → set preview image file
 		renderLabTxt.enabled = hasInput; // → set preview image file
-
 	};
 
 	//---------------------------------------------------------
@@ -359,6 +355,9 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	makeBtn.onClick = templateTree.onDoubleClick = function () {
+
+		wPadeiroTemplates.size.height = 10; // → close window
+		mainGrp.visible = false;
 
 		if (edtText.text.trim() == '') return;
 		if (!templateFile.exists) return;
@@ -497,9 +496,10 @@ function padeiroTemplateDialog() {
 		deleteProjectFolders();
 		populateProjectFolders();
 		deleteEmptyProjectFolders();
-
 		wPadeiroTemplates.close(); // → close window
+
 		if (folderNotAvailable) alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
+		setXMPData('source', decodeURI(templateFile.path).toString());
 	};
 
 	//---------------------------------------------------------
