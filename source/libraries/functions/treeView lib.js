@@ -232,21 +232,18 @@ function expandNodes(nodeTree) {
 	var branches = nodeTree.items;
 
 	for (var i = 0; i < branches.length; i++) {
-		if (branches[i].type == 'node') {
-			expandNodes(branches[i]);
-		}
+		if (branches[i].type == 'node') expandNodes(branches[i]);
 	}
 }
 
-function findItem(tree, list, item) {
-	var branches = tree.items;
+function findItem(nodeTree, list, searchTxt) {
+	var branches = nodeTree.items;
 
 	for (var i = 0; i < branches.length; i++) {
 
-		if (branches[i].type == 'node') {
-			findItem(branches[i], list, item);
-		}
-		if (branches[i].text.trim().toUpperCase().replaceSpecialCharacters().match(item)) list.push(branches[i]);
+		if (branches[i].type == 'node') findItem(branches[i], list, searchTxt);
+
+		if (branches[i].text.trim().toUpperCase().replaceSpecialCharacters().match(searchTxt)) list.push(branches[i]);
 	}
 	return list;
 }

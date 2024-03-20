@@ -214,30 +214,44 @@ function padeiroTemplateDialog() {
 		vGrp2.visible = false; // → hide preview
 		divider.visible = false; // → hide preview
 		wPadeiroTemplates.size.width = wWidth; // → resize window
+
+		searchBox.active = true;
 	};
 
 	//---------------------------------------------------------
 
-	searchBox.onEnterKey = searchBox.onChange = function () {
-		this.active = false;
+	searchBox.onEnterKey = function () {
+		templateLabTxt.active = true;
 		templateTree.active = true;
+	};
 
-		var items = findItem(templateTree, [], this.text.trim().toUpperCase().replaceSpecialCharacters());
+	//---------------------------------------------------------
 
-		if (items.length == 0) { // Nothing found
-			templateTree.selection = null;
-			return;
-		}
+	searchBox.onChange = function () {
+		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
+
+		var txt = searchBox.text
+			.trim()
+			.toUpperCase()
+			.replaceSpecialCharacters();
+		var items = findItem(templateTree, [], txt);
+
+		if (items.length == 0) return;
+
 		for (var n = 0; n < items.length; n++) {
-			var item = items[n];
-			if (item.type == 'node') item.expanded = true;
+			var s = items[n];
+			if (s.type == 'node') s.expanded = true;
 
-			while (item.parent.constructor.name != 'TreeView') {
-				item.parent.expanded = true;
-				item = item.parent;
+			while (s.text != templatesFolder.displayName) {
+				s.parent.expanded = true;
+				s = s.parent;
 			}
 		}
-	}
+
+		searchBox.text = txt;
+		templateLabTxt.active = true;
+		templateTree.active = true;
+	};
 
 	//---------------------------------------------------------
 
@@ -256,12 +270,12 @@ function padeiroTemplateDialog() {
 		}
 		// template selected...
 		var s = templateTree.selection; // → selected template
-		var templateName = s.toString().replace(' / ', '/');
+		var templateName = s.text;
 
 		// iterate selection parent + parent + parent... to form selected template file path...
-		while (s.parent.toString() != templatesFolder.displayName) {
+		while (s.parent.text != templatesFolder.displayName) {
 			s = s.parent; // current parent...
-			templateName = s.toString().replace(' / ', '/') + '/' + templateName; // → 'current parent/.../template name'
+			templateName = s.text + '/' + templateName; // → 'current parent/.../template name'
 		}
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png'); // → template preview.png
 		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // → template info.png
