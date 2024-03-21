@@ -143,7 +143,7 @@ function padeiroTemplateDialog() {
 	openFldBtn.helpTip = '◖ → abrir a pasta de templates';
 	// right buttons...
 	var makeBtn = bGrp2.add('button', undefined, 'criar');
-	makeBtn.helpTip = '◖ → criar o template selecionado';
+	makeBtn.helpTip = '◖ → criar e preencher o template selecionado';
 	makeBtn.enabled = false;
 
 	//---------------------------------------------------------
@@ -227,14 +227,16 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	searchBox.onChange = function () {
+		if (this.text.trim() == '') return;
 
-		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
-
-		var txt = searchBox.text
+		searchBox.text = searchBox.text
 			.trim()
 			.toUpperCase()
 			.replaceSpecialCharacters();
-		var items = findItem(templateTree, [], txt);
+
+		buildTree(templatesFolder, templateTree, fileFilter); // → update tree
+
+		var items = findItem(templateTree, [], searchBox.text);
 
 		if (items.length == 0) return;
 
@@ -242,12 +244,11 @@ function padeiroTemplateDialog() {
 			var s = items[n];
 			if (s.type == 'node') s.expanded = true;
 
-			while (s.text != templatesFolder.displayName) {
+			while (s.parent.constructor.name != 'TreeView') {
 				s.parent.expanded = true;
 				s = s.parent;
 			}
 		}
-		searchBox.text = txt;
 		templateLabTxt.active = true;
 		templateTree.active = true;
 	};
@@ -271,7 +272,7 @@ function padeiroTemplateDialog() {
 		var templateName = s.text;
 
 		// iterate selection parent + parent + parent... to form selected template file path...
-		while (s.parent.text != templatesFolder.displayName) {
+		while (s.parent.parent.constructor.name != 'TreeView') {
 			s = s.parent; // current parent...
 			templateName = s.text + '/' + templateName; // → 'current parent/.../template name'
 		}
