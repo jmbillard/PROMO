@@ -57,6 +57,10 @@ function O_PADEIRO_UTL(thisObj) {
 		var PAD_launchBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
 		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates';
 
+		// import templates UI button...
+		var PAD_fontBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' });
+		PAD_fontBtn.helpTip = '◖ → abrir a pasta de fontes usadas no template\n\n◗ → instalar as fontes usadas no template';
+
 		var PAD_vLab = btnGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
@@ -92,6 +96,52 @@ function O_PADEIRO_UTL(thisObj) {
 				} else {
 					alert(lol + '\na pasta de templates não foi localizada...');
 				}
+			}
+		});
+
+		PAD_fontBtn.onClick = function () {
+			// error...
+			if (!netAccess()) {
+				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+				return;
+			}
+
+			var folderPath = getXMPData('source');
+			var templateFontsPath = folderPath + '/FONTS';
+			if (folderPath == '') return;
+
+			try {
+				openFolder(templateFontsPath); // → open template folder
+			} catch (error) {
+				alert(lol + '\n' + error);
+			}
+		};
+
+		PAD_fontBtn.addEventListener('click', function (c) {
+			if (c.button == 2) {
+				// error...
+				if (!netAccess()) {
+					alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+					return;
+				}
+
+				var folderPath = getXMPData('source');
+				var templateFontsPath = folderPath + '/FONTS';
+				if (folderPath == '') return;
+	
+				var templateFontsFolder = new Folder(templateFontsPath);
+				// checks if there is a system folder correspondent to the selection...
+				if (!templateFontsFolder.exists) return;
+				// install the selected font family on Windows...
+				if (appOs == 'Win') {
+					var driveLetter = templateFontsPath.split(/\//)[1];
+					var driveStr = driveLetter.match(/\w{1}/) && driveLetter.length == 1 ? driveLetter + ':/' : null;
+
+					if (driveLetter != null) templateFontsPath = templateFontsPath.replace(/^\/\w\//i, driveStr)
+
+					installFonts(templateFontsPath);
+				}
+		
 			}
 		});
 
