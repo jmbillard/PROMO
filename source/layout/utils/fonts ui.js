@@ -80,7 +80,7 @@ function fontsDialog() {
 		}
 		// install the selected font family on Windows...
 		if (appOs == 'Win') {
-			installFonts(fontFamilyPath.toString());
+			installWinFonts(fontFamilyPath.toString());
 		}
 	};
 

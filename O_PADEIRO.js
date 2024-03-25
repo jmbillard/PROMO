@@ -134,12 +134,8 @@ function O_PADEIRO_UTL(thisObj) {
 				if (!templateFontsFolder.exists) return;
 				// install the selected font family on Windows...
 				if (appOs == 'Win') {
-					var driveLetter = templateFontsPath.split(/\//)[1];
-					var driveStr = driveLetter.match(/\w{1}/) && driveLetter.length == 1 ? driveLetter + ':/' : null;
 
-					if (driveLetter != null) templateFontsPath = templateFontsPath.replace(/^\/\w\//i, driveStr)
-
-					installFonts(templateFontsPath);
+					installWinFonts(templateFontsPath);
 				}
 		
 			}

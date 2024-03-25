@@ -124,7 +124,7 @@ function zipContent(path, zipPath) {
 	}
 }
 
-function installFonts(fontsPath) {
+function installWinFonts(fontsPath) {
 	var srcFolder = new Folder(fontsPath);
 	var filesArray = [];
 	var filter = ['.ttf', '.otf'];
@@ -156,7 +156,12 @@ function installFonts(fontsPath) {
 		} else {
 
 			if (filter.indexOf(getFileExt(aFileName)) >= 0) {
-				var aFontPath = fontsPath.replace(/~/, 'C:/Users/' + system.userName.toString());
+				var driveLetter = fontsPath.split(/\//)[1];
+				var driveStr = driveLetter.match(/\w{1}/) && driveLetter.length == 1 ? driveLetter + ':/' : null;
+			
+				if (driveLetter != null) fontsPath = fontsPath.replace(/^\/\w\//i, driveStr)
+			
+				var aFontPath = fontsPath.replace(/^~/, 'C:/Users/' + system.userName.toString());
 				aFontPath = aFontPath.replace(/\//g, '\\');
 				installFontsPS += '$Destination.CopyHere(\'' + aFontPath + '\\' + aFileName + '\');';
 				installFontsPS += 'Write-Host \'> installing ' + aFileName + '...\';';
