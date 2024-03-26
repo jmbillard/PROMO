@@ -358,6 +358,7 @@ function padeiroTemplateDialog() {
 	makeBtn.onClick = templateTree.onDoubleClick = function () {
 
 		wPadeiroTemplates.size.height = 10; // → close window
+		wPadeiroTemplates.text = 'processando os templates...'; // → close window
 		mainGrp.visible = false;
 
 		if (edtText.text.trim() == '') return;

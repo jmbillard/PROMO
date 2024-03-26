@@ -44,14 +44,16 @@ function O_PADEIRO_UTL(thisObj) {
 			PAD_w = new Window('palette', 'O PADEIRO', undefined);
 		}
 		PAD_w.margins = 5;
-		PAD_w.orientation = 'fill';
+		PAD_w.orientation = 'stack';
 
 		var mainGrp = PAD_w.add('group');
 		mainGrp.alignment = 'center';
-		mainGrp.orientation = 'stack';
+		mainGrp.orientation = 'fill';
 
 		var btnGrp = mainGrp.add('group');
 		btnGrp.alignment = 'center';
+		btnGrp.margins = [0, 0, 40, 0]; // [left, top, right, bottom]
+		btnGrp.spacing = 2;
 
 		// import templates UI button...
 		var PAD_launchBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
@@ -59,9 +61,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// import templates UI button...
 		var PAD_fontBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' });
-		PAD_fontBtn.helpTip = '◖ → abrir a pasta de fontes usadas no template\n\n◗ → instalar as fontes usadas no template';
+		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → abrir a pasta de fontes usadas no template';
 
-		var PAD_vLab = btnGrp.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
+		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
+		PAD_vLab.alignment = 'right';
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
 		PAD_w.layout.layout(true);
@@ -70,6 +73,15 @@ function O_PADEIRO_UTL(thisObj) {
 		setBgColor(PAD_w, '#515D9E');
 
 		PAD_w.onShow = PAD_w.onResizing = function () {
+			var wLayout1 = PAD_w.size.width > PAD_w.size.height ? 'row' : 'column';
+			var wLayout2 = PAD_w.size.width > PAD_w.size.height ? 'right' : 'bottom';
+			var btnMargins = PAD_w.size.width > PAD_w.size.height ? [0, 0, 40, 0] : [0, 0, 0, 20];
+
+			btnGrp.orientation = wLayout1;
+			PAD_vLab.alignment = wLayout2;
+			btnGrp.margins = btnMargins;
+
+			btnGrp.layout.layout(true);
 			PAD_w.layout.layout(true);
 			PAD_w.layout.resize();
 		};
@@ -110,11 +122,12 @@ function O_PADEIRO_UTL(thisObj) {
 			var templateFontsPath = folderPath + '/FONTS';
 			if (folderPath == '') return;
 
-			try {
-				openFolder(templateFontsPath); // → open template folder
-			} catch (error) {
-				alert(lol + '\n' + error);
-			}
+			var templateFontsFolder = new Folder(templateFontsPath);
+			// checks if there is a system folder correspondent to the selection...
+			if (!templateFontsFolder.exists) return;
+			// install the selected font family on Windows...
+			if (appOs == 'Win') installWinFonts(templateFontsPath);
+
 		};
 
 		PAD_fontBtn.addEventListener('click', function (c) {
@@ -128,16 +141,12 @@ function O_PADEIRO_UTL(thisObj) {
 				var folderPath = getXMPData('source');
 				var templateFontsPath = folderPath + '/FONTS';
 				if (folderPath == '') return;
-	
-				var templateFontsFolder = new Folder(templateFontsPath);
-				// checks if there is a system folder correspondent to the selection...
-				if (!templateFontsFolder.exists) return;
-				// install the selected font family on Windows...
-				if (appOs == 'Win') {
 
-					installWinFonts(templateFontsPath);
+				try {
+					openFolder(templateFontsPath); // → open template folder
+				} catch (error) {
+					alert(lol + '\n' + error);
 				}
-		
 			}
 		});
 
