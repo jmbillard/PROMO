@@ -19,7 +19,6 @@
 */
 
 function O_PADEIRO_UTL(thisObj) {
-	// current script version...
 	var vStr = '';
 
 	#include 'source/globals.js'; // global variables...
