@@ -1,14 +1,16 @@
 # 📓 RENASCER RODAPÉ PRÓLOGO
 
-> 📑 *projeto:* ***RODAPE_PROLOGO.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\NOVELAS\RENASCER\\_LETTERINGS\PROLOGO
+> 📑 ***RODAPE_PROLOGO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\NOVELAS\RENASCER\_LETTERINGS\PROLOGO`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](RODAPE_PROLOGO/RODAPE_PROLOGO_exemplo.gif)
+> ![preview](RODAPE_PROLOGO/preview.gif)
 
 ---
 

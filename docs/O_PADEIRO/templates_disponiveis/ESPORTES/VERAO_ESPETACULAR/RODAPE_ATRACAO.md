@@ -1,16 +1,15 @@
-# 📓 RENASCER LETTERING INFO
+# 📓 VERAO ESPETACULAR RODAPE ATRACAO
 
-> 📑 ***LETTERING_INFO.aet***
+> 📑 ***RODAPE_ATRACAO.aet***
 
 > 📂 **pastas:**\
-> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\NOVELAS\RENASCER\_LETTERINGS`
-
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\...`
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](LETTERING_INFO/preview.gif)
+> ![preview](RODAPE_ATRACAO/preview.gif)
 
 ---
 
@@ -22,7 +21,7 @@
 2. edite o texto do **layer** '*txt_info*' com a informação desejada.
 3. renomeie a **comp** '*LETT - INFO TEMPLATE*' substituindo as palavras '*INFO TEMPLATE*' pela respectiva informação.
 
-> 📋 *exemplos:* "*LETT - AMANHA*", "*LETT - EM JANEIRO*", "*LETT - ULTIMO CAPITULO*".
+> 📋 *exemplos:* "*LETT - SIRIA*", "*LETT - PLANETA GELADO*", "*LETT - MEGA ONDAS*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
@@ -61,7 +60,7 @@ aviso importante.
 dica 1
 
 > 📋 *exemplo:*\
-> ![exemplo](pasta/arquivo.png)
+> ![exemplo](RODAPE_ATRACAO/arquivo.png)
 
 > 🚩 *obs:*
 

@@ -178,7 +178,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
   - [LETTERING_INFO](templates_disponiveis/JORNALISMO/GLOBO_REPORTER/LETTERING_INFO.md)
 - FANTASTICO
   - [LETTERING_INFO](templates_disponiveis/JORNALISMO/FANTASTICO/LETTERING_INFO.md)
-  - [RODAPE_INFO](templates_disponiveis/JORNALISMO/FANTASTICO/RODAPE_INFO.md)
+  - [RODAPE_SERVICO](templates_disponiveis/JORNALISMO/FANTASTICO/RODAPE_SERVICO.md)
 
 ### ESPORTES:
 

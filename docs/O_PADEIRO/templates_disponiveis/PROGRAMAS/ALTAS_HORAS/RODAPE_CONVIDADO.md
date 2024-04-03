@@ -1,14 +1,16 @@
-# 📓 ALTAS HORAS RODAPÉ CONVIDADO
+# 📓 ALTAS HORAS RODAPE CONVIDADO
 
-> 📑 *projeto:* ***RODAPE_CONVIDADO.aet***\
-> 📂 *export:* caminho do export aqui
+> 📑 ***RODAPE_CONVIDADO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.193.48.13\promo_ber\BACKUP\artes\ARTES PARA EDICAO\ALTAS HORAS\2020-2024`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](RODAPE_CONVIDADO/RODAPE_CONVIDADO_exemplo.gif)
+> ![preview](RODAPE_CONVIDADO/preview.gif)
 
 ---
 

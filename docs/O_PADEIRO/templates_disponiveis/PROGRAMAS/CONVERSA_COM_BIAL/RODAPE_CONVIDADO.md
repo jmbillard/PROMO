@@ -1,14 +1,16 @@
 # 📓 CONVERSA COM BIAL RODAPÉ CONVIDADO
 
-> 📑 *projeto:* ***RODAPE_CONVIDADO.aet***\
-> 📂 *export:* caminho do export aqui
+> 📑 ***RODAPE_CONVIDADO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.193.48.13\promo_ber\BACKUP\artes\ARTES PARA EDICAO\CONVERSA COM BIAL\CONVIDADOS`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](preview.gif)
+> ![preview](RODAPE_CONVIDADO/preview.gif)
 
 ---
 

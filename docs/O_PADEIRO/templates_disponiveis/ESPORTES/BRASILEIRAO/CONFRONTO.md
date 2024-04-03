@@ -10,7 +10,7 @@
 <br>
 
 > 🎬 *preview:*\
-> ![exemplo](CONFRONTO/exemplo.gif)
+> ![preview](CONFRONTO/preview.gif)
 
 ---
 

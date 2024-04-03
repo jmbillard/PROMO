@@ -1,14 +1,16 @@
 # 📓 RENASCER LETTERING INFO
 
-> 📑 *projeto:* ***LETTERING_INFO.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\JORNALISMO\GLOBO REPORTER\2024\LETTERINGS
+> 📑 ***LETTERING_INFO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\JORNALISMO\GLOBO REPORTER\2024\LETTERINGS`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](LETTERING_INFO/LETTERING_INFO_exemplo.gif)
+> ![preview](LETTERING_INFO/preview.gif)
 
 ---
 

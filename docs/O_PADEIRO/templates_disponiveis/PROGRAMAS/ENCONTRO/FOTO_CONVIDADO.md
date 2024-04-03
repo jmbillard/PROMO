@@ -1,14 +1,16 @@
 # 📓 ENCONTRO FOTO CONVIDADO
 
-> 📑 *projeto:* ***FOTO_CONVIDADO.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\PROGRAMAS\DIVERSOS\ENCONTRO\ID 2024\CONVIDADOS
+> 📑 ***FOTO_CONVIDADO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\PROGRAMAS\DIVERSOS\ENCONTRO\ID 2024\CONVIDADOS`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](FOTO_CONVIDADO/FOTO_CONVIDADO_exemplo.gif)
+> ![preview](FOTO_CONVIDADO/preview.gif)
 
 ---
 

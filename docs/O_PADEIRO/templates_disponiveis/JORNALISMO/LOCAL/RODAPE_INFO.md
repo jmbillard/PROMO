@@ -1,14 +1,15 @@
 # 📓 RENASCER LETTERING INFO
 
-> 📑 *projeto:* ***LETTERING_INFO.aet***\
-> 📂 *export:* \\\\10.193.48.13\promo_ber\BACKUP\artes\ARTES PARA EDICAO\JORNALISMO LOCAL\pacote local 2020-2024
+> 📑 ***LETTERING_INFO.aet***\
+> 📂 **pastas:**\
+> • **output** → `\\10.193.48.13\promo_ber\BACKUP\artes\ARTES PARA EDICAO\JORNALISMO LOCAL\pacote local 2020-2024`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](RODAPE_INFO/RODAPE_INFO_exemplo.gif)
+> ![preview](RODAPE_INFO/preview.gif)
 
 ---
 
