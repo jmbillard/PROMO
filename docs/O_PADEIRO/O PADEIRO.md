@@ -3,9 +3,9 @@
 🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
 
 > 📂 **pastas:**\
-> • **templates** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\TEMPLATES\TEMPLATES PADEIRO*
+> • **templates** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\TEMPLATES\TEMPLATES PADEIRO`
 >
-> • **script** → *\\\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO*
+> • **script** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO`
 
 > 📑 ***O PADEIRO.jsx***
 
@@ -13,17 +13,33 @@
 
 ## 📟 Interface
 
-![ui](images/o_padeiro_ui.png)
+> launcher:\
+>![ui](images/ui1.png)
+
+>janela:\
+>![ui](images/o_padeiro_ui.png)
+
+## 📍 instalação
+
+instale o script pelo menu:\
+`File > Scrips > Install ScriptUI Panel...`
+
+após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
+
+> 📋 *exemplo:*\
+> ![ui](gifs/ui1.gif)
+
 
 ## 📍 funcionamento básico
 
-após executar o script '**O PADEIRO.jsx**':
+acesse o menu `Window`, clique em '**O PADEIRO**' e em seguida no primeiro botão ('*abrir O PADEIRO*'):
 
-1. selecione o template desejado da lista '**templates**'.
-2. preencha o campo '**input**' seguindo as '**dicas**'.
-3. habilite ou não a opção '**adicionar a fila de render**'.
-4. clique no botão '**criar**'.
-5. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
+1. faca uma busca ou navegue pela estrutura da lista.
+2. selecione o template desejado.
+3. preencha o campo '**input**' seguindo as '**dicas**'.
+4. habilite ou não a opção '**adicionar a fila de render**'.
+5. clique no botão '**criar**'.
+6. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
 <br>
 
@@ -38,7 +54,8 @@ o script executará as seguintes tarefas em ordem:
 7. setar os caminhos para o output.
 
 > 📋 *exemplo de uso:*\
-> ![ui](gifs/ui_1.gif)\
+> ![ui](gifs/ui2.gif)\
+> ![ui](gifs/ui3.gif)\
 > ![ui](gifs/ui_2.gif)\
 > ![ui](gifs/ui_3.gif)
 
@@ -46,8 +63,9 @@ o script executará as seguintes tarefas em ordem:
 
 ![ui](images/templates_ui.png)
 
+- **busca** → retorna os templates ou pastas com o termo buscado.
 - **lista de templates** → árvore com todos os templates disponíveis na pasta de templates do script.
-- **ajuda | DOCS** → acessa a documentação completa do script e seus templates disponíveis.
+- **ajuda | DOCS** → acessa a documentação provisória do script e seus templates disponíveis.
 
 > 🚩 *obs:*\
 > • ao selecionar um template da lista, a interface do script se ajustará para exibir um preview, o campo de input e dicas, se disponíveis.\
@@ -89,7 +107,7 @@ o script executará as seguintes tarefas em ordem:
 >   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
 >   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
 >  ],
->  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opçÕes de layout possíveis: "E" e "D". (opcional)
+>  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D". (opcional)
 >
 >  "outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS", // → caminho padrão do output.
 >  "alpha": true  // → aviso que o canal alpha é necessário.
@@ -97,8 +115,8 @@ o script executará as seguintes tarefas em ordem:
 > ```
 
 > 🚩 *obs:*\
-> • o '**input**' é pré preenchido com dados genéricos disponíveis no arquivo de configuração do template selecionado apenas para exemplificar **ALGUMAS** possibilidades de preenchimento.\
-> • sem um arquivo de configuração, não é possível preencher o template selecionado usando a janela de texto do '**input**'.\
+> • o '**input**' é pré preenchido com dados genéricos disponíveis no arquivo de configuração do template selecionado e usados para gerar a imagem do preview apenas para exemplificar.\
+> • sem um arquivo de configuração, não é possível preencher o template selecionado usando o campo de texto do '**input**'.\
 > • você ainda poderá **IMPORTAR** e **PREENCHER MANUALMENTE** o template no After Effects!!!
 
 ### botões
@@ -152,12 +170,47 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ## 📄 templates disponíveis (work in progress)
 
+### JORNALISMO:
+
+- LOCAL
+  - [RODAPE_INFO](templates_disponiveis/JORNALISMO/LOCAL/RODAPE_INFO.md)
+- GLOBO REPORTER
+  - [LETTERING_INFO](templates_disponiveis/JORNALISMO/GLOBO_REPORTER/LETTERING_INFO.md)
+- FANTASTICO
+  - [LETTERING_INFO](templates_disponiveis/JORNALISMO/FANTASTICO/LETTERING_INFO.md)
+  - [RODAPE_INFO](templates_disponiveis/JORNALISMO/FANTASTICO/RODAPE_INFO.md)
+
 ### ESPORTES:
 
 - BRASILEIRAO
-  - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO_CONFRONTO.md)
+  - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO/CONFRONTO.md)
+- VERAO ESPETACULAR
+  - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/VERAO_ESPETACULAR/RODAPE_ATRACAO.md)
+
+### NOVELAS:
+
+- RENASCER
+  - [LETTERING_INFO](templates_disponiveis/NOVELAS/RENASCER/LETTERING_INFO.md)
+  - [RODRAPE_PROLOGO](templates_disponiveis/NOVELAS/RENASCER/RODRAPE_PROLOGO.md)
+
+### ON-AIR:
+
+- TARDES DE SABADO
+  - [LETTERING_ATRACAO](templates_disponiveis/ON-AIR/TARDES_DE_SABADO/LETTERING_ATRACAO.md)
+  - [RODRAPE_SERVICO](templates_disponiveis/ON-AIR/TARDES_DE_SABADO/RODRAPE_SERVICO.md)
+
+- VERTICAL
+  - [FILME_SESSAO_DA_TARDE](templates_disponiveis/ON-AIR/VERTICAL/FILME_SESSAO_DA_TARDE.md)
+  - [LETTERING_ATRACAO](templates_disponiveis/ON-AIR/VERTICAL/LETTERING_ATRACAO.md)
 
 ### PROGRAMAS:
+
+- DOMINGAO
+  - [FOTO_CONVIDADO](templates_disponiveis/PROGRAMAS/DOMINGAO/FOTO_CONVIDADO.md)
+
+- BBB
+  - [CARTAO_SERVICO](templates_disponiveis/PROGRAMAS/BBB/CARTAO_SERVICO.md)
+  - [RODAPE_INFO](templates_disponiveis/PROGRAMAS/BBB/RODAPE_INFO.md)
 
 - ALTAS HORAS
   - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
@@ -165,12 +218,9 @@ o script possui padrões internos caso não seja especificado um caminho de outp
   - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/CONVERSA_COM_BIAL/RODAPE_CONVIDADO.md)
 - ENCONTRO
   - [FOTO_CONVIDADO](templates_disponiveis/PROGRAMAS/ENCONTRO/FOTO_CONVIDADO.md)
-
-### NOVELAS:
-
-- RENASCER
-  - [LETTERING_INFO](templates_disponiveis/NOVELAS/RENASCER/LETTERING_INFO.md)
-  - [RODAPE_PROLOGO](templates_disponiveis/NOVELAS/RENASCER/RODAPE_PROLOGO.md)
+- CALDEIRAO
+  - [CARTAO_SERVICO](templates_disponiveis/PROGRAMAS/CALDEIRAO/CARTAO_SERVICO.md)
+  - [RODAPE_SERVICO](templates_disponiveis/PROGRAMAS/CALDEIRAO/RODAPE_SERVICO.md)
 
 ---
 

@@ -355,7 +355,7 @@ function padeiroTemplateDialog() {
 
 	//---------------------------------------------------------
 
-	makeBtn.onClick = templateTree.onDoubleClick = function () {
+	makeBtn.onClick = function () {
 
 		wPadeiroTemplates.size.height = 10; // → close window
 		wPadeiroTemplates.text = 'processando os templates...'; // → close window

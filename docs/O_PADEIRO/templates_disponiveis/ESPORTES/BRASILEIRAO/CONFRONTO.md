@@ -1,13 +1,16 @@
 # 📓 BRASILEIRAO CONFRONTO 2023
 
-> 📑 *projeto:* ***CONFRONTO.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\FUTEBOL\BRASILEIRAO\2024\CONFRONTOS
+> 📑 ***CONFRONTO.aet***
+
+> 📂 **pastas:**\
+> • **escudos** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2023\ESCUDOS TIMES\ESCUDOS BRASIL`\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\FUTEBOL\BRASILEIRAO\2024\CONFRONTOS`
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![exemplo](BRASILEIRAO_CONFRONTO/exemplo.gif)
+> ![exemplo](CONFRONTO/exemplo.gif)
 
 ---
 
@@ -34,7 +37,7 @@ os controles dos times estão nos 2 primeiros **layers** da **comp** '*CONFRONTO
 
 ### opções do time
 
-![fx1](<BRASILEIRAO_CONFRONTO/ocoes do time.png>)
+![fx1](<CONFRONTO/ocoes do time.png>)
 
 - **esquema de cores**:
 
@@ -52,7 +55,7 @@ os controles dos presets de cor estão em cada **layer** da **comp** '*ESCUDOS*'
 
 ### esquema de cores
 
-![fx2](<BRASILEIRAO_CONFRONTO/esquema de cores.png>)
+![fx2](<CONFRONTO/esquema de cores.png>)
 
 - **cores principais**:
 
@@ -94,7 +97,7 @@ para alterar as cores de um escudo existente:
   3. altere os presets de cor do time na *janela de controle de efeitos*.
 
 > 📋 *exemplo:*\
-> ![escudos](BRASILEIRAO_CONFRONTO/04-alterar-ou-adicionar-escudos.gif)
+> ![escudos](CONFRONTO/04-alterar-ou-adicionar-escudos.gif)
 
 ---
 
@@ -106,7 +109,7 @@ não é preciso digitar o nome completo dos times na maioria das vezes, caso exi
 
 > 📋 *exemplo:* "*fla*" x "*flu*", "*fluminense de feira de santana*" x "*fluminense RJ*"
 
-> ![busca](<BRASILEIRAO_CONFRONTO/01-renomear times.gif>)
+> ![busca](<CONFRONTO/01-renomear times.gif>)
 
 > 🚩 *obs:* Maiúsculas e minúsculas assim como acentos e caracteres especiais são ignorados na busca dos nomes dos times, assim, "*fla*", "*FLA*" e "*fLÁ*" sempre mostrarão o nome do primeiro time que possuir "*FLA*" em seu nome.
 
@@ -115,11 +118,11 @@ não é preciso digitar o nome completo dos times na maioria das vezes, caso exi
 para inverter a ordem dos times em um confronto basta alterar a ordem dos 2 primeiros **layers** da **com** '*CONFRONTOS*'.
 
 > 📋 *exemplo:*\
-> ![inverter](BRASILEIRAO_CONFRONTO/03-inverter.gif)
+> ![inverter](CONFRONTO/03-inverter.gif)
 
 ---
 
 para agilizar a produção de múltiplos confrontos use a função de **renomear comps** na barra de **PROMO v0.3** ou superior.
 
 > 📋 *exemplo:*\
-> ![renomear](BRASILEIRAO_CONFRONTO/05-renomear-confronto.gif)
+> ![renomear](CONFRONTO/05-renomear-confronto.gif)
