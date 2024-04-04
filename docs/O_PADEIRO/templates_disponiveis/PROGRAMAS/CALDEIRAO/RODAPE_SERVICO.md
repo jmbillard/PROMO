@@ -1,9 +1,9 @@
-# 📓 FANTASTICO RODAPE SERVICO
+# 📓 CALDEIRAO RODAPE SERVICO
 
 > 📑 ***RODAPE_SERVICO.aet***
 
 > 📂 **pastas:**\
-> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\JORNALISMO\FANTASTICO\2024\_SERVICO`
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\PROGRAMAS\...`
 
 ---
 

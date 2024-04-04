@@ -1,14 +1,16 @@
-# 📓 RENASCER LETTERING INFO
+# 📓 VERTICAL FILME SESSAO DA TARDE
 
-> 📑 *projeto:* ***VERTICAL_SESSAO_DA_TARDE.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\FILMES\SESSOES DE CINEMA\S TARDE ONAIR\FILMES
+> 📑 ***FILME_SESSAO_DA_TARDE.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\FILMES\SESSOES DE CINEMA\S TARDE ONAIR\FILMES`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](VERTICAL_SESSAO_DA_TARDE/VERTICAL_SESSAO_DA_TARDE_exemplo.gif)
+> ![preview](FILME_SESSAO_DA_TARDE/preview.gif)
 
 ---
 

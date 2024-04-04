@@ -10,7 +10,7 @@
 <br>
 
 > 🎬 *preview:*\
-> ![preview](RODAPE_SERVICO/preview.gif)
+> ![preview](LETTERING_ATRACAO/preview.gif)
 
 ---
 

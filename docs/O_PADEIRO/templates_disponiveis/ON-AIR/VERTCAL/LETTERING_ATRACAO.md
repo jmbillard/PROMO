@@ -1,14 +1,16 @@
-# 📓 RENASCER LETTERING INFO
+# 📓 VERTICAL LETTERING ATRACAO
 
-> 📑 *projeto:* ***VERTICAL_TARJA_NOME.aet***\
-> 📂 *export:* \\\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\INSTITUCIONAL\VERTICAIS\VERTICAL_ONAIR
+> 📑 ****LETTERING_ATRACAO.aet***
+
+> 📂 **pastas:**\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\INSTITUCIONAL\VERTICAIS\VERTICAL_ONAIR`
 
 ---
 
 <br>
 
 > 🎬 *preview:*\
-> ![preview](VERTICAL_TARJA_NOME/VERTICAL_TARJA_NOME_exemplo.png)
+> ![preview](LETTERING_ATRACAO/preview.png)
 
 ---
 

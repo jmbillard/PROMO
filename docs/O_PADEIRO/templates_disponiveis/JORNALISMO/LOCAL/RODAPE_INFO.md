@@ -1,4 +1,4 @@
-# 📓 RENASCER LETTERING INFO
+# 📓 JORNALISMO LOCAL LETTERING INFO
 
 > 📑 ***LETTERING_INFO.aet***\
 > 📂 **pastas:**\
