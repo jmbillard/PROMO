@@ -205,7 +205,6 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 - TARDES DE SABADO
   - [LETTERING_ATRACAO](templates_disponiveis/ON-AIR/TARDES_DE_SABADO/LETTERING_ATRACAO.md)
   - [RODRAPE_SERVICO](templates_disponiveis/ON-AIR/TARDES_DE_SABADO/RODRAPE_SERVICO.md)
-
 - VERTICAL
   - [FILME_SESSAO_DA_TARDE](templates_disponiveis/ON-AIR/VERTICAL/FILME_SESSAO_DA_TARDE.md)
   - [LETTERING_ATRACAO](templates_disponiveis/ON-AIR/VERTICAL/LETTERING_ATRACAO.md)
@@ -214,11 +213,9 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 - DOMINGAO
   - [FOTO_CONVIDADO](templates_disponiveis/PROGRAMAS/DOMINGAO/FOTO_CONVIDADO.md)
-
 - BBB
   - [CARTAO_SERVICO](templates_disponiveis/PROGRAMAS/BBB/CARTAO_SERVICO.md)
   - [RODAPE_INFO](templates_disponiveis/PROGRAMAS/BBB/RODAPE_INFO.md)
-
 - ALTAS HORAS
   - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
 - CONVERSA COM BIAL
@@ -241,8 +238,3 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 > os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.
 
 é possível importar rapidamente qualquer template da lista executando um clique duplo no mesmo.
-
-para agilizar a execução do script use o botão '*o padeiro*' na barra de **PROMO v0.7b** ou superior.
-
-> 📋 *exemplo:*\
-> ![dicas](gifs/dica_1.gif)
