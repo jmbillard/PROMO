@@ -5,7 +5,9 @@
 > 📂 **pastas:**\
 > • **templates** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\TEMPLATES\TEMPLATES PADEIRO`
 >
-> • **script** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\\_adm-designers\SCRIPTS FREE\O_PADEIRO`
+> • **fontes** → `pasta do template\FONTS`
+>
+> • **script** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\SCRIPTS FREE\O_PADEIRO`
 
 > 📑 ***O PADEIRO.jsx***
 
@@ -19,16 +21,21 @@
 >janela:\
 >![ui](images/o_padeiro_ui.png)
 
+<br>
+
 ## 📍 instalação
 
 instale o script pelo menu:\
 `File > Scrips > Install ScriptUI Panel...`
+
+![ui](images/instalacao.png)
 
 após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
 
 > 📋 *exemplo:*\
 > ![ui](gifs/ui1.gif)
 
+<br>
 
 ## 📍 funcionamento básico
 
@@ -228,7 +235,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ## ✨ dicas
 
-não é preciso se preocupar com a caixa do texto, o script e/ou o próprio template são responsáveis pela conversão do texto de letras minúsculas para maiúsculas e vice-versa.
+não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúsculas**, o script e/ou o próprio template farão a conversão do texto.
 
 > 📋 *exemplo:*\
 > os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.

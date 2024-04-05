@@ -1,0 +1,17 @@
+{
+	"configName": "TARDES DE SABADO LETTERING NOME",
+	"exemple": "CHEIAS DE\nCHARME\n---\nSESSÃO DE\nSÁBADO\n---\nCALDEIRÃO\nCOM MION",
+	"tip": "digite o texto em 1, 2 ou 3 linhas para o título e subtítulo.\n\nuse 1 linha com '---' para separar cada título.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+
+	"compName": "LETT - NOME TEMPLATE",
+	"prefix": "LETT",
+	"refTime": 2,
+	"separator": "xxxxxxxxxxxxxxxxx",
+	"textCase": "upperCASE",
+	"inputLayers": [
+		{"layerIndex": 1, "method": "textContent"}
+	],
+
+	"outputPath": "//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/INSTITUCIONAL/TARDES DE SABADO/LETTERINGS",
+	"alpha": true
+}
