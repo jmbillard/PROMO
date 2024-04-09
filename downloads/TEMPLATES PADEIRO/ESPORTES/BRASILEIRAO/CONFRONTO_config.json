@@ -1,7 +1,7 @@
 {
-	"configName": "BRASILEIRAO 2023 CONFRONTO",
+	"configName": "BRASILEIRAO CONFRONTO",
 	"exemple": "FLAMENGO X FLUMINENSE",
-	"tip": "digite o texto em 1 linha.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos dos layers de cada time.",
+	"tip": "digite o texto em 1 linha.\n\nuse um \" X \" entre o nome dos 2 times.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos dos layers de cada time.",
 
 	"compName": "CONFRONTO TEMPLATE",
 	"prefix": "CONFRONTO",
