@@ -370,9 +370,9 @@ function padeiroTemplateDialog() {
 
 			app.project.importFile(IO); // → import template project
 
-			if (templateData.case == 'upperCase') edtText.text = edtText.text.toUpperCase();
-			if (templateData.case == 'lowerCase') edtText.text = edtText.text.toLowerCase();
-			if (templateData.case == 'titleCase') edtText.text = edtText.text.toTitleCase();
+			if (templateData.textCase == 'upperCase') edtText.text = edtText.text.toUpperCase();
+			if (templateData.textCase == 'lowerCase') edtText.text = edtText.text.toLowerCase();
+			if (templateData.textCase == 'titleCase') edtText.text = edtText.text.toTitleCase();
 
 			var inputList = edtText.text.split(/[\n\r]{2,}/);
 
