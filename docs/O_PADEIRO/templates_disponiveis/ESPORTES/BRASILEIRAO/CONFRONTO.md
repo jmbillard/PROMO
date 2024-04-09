@@ -1,4 +1,4 @@
-# 📓 BRASILEIRAO CONFRONTO 2023
+# 📓 CONFRONTO
 
 > 📑 ***CONFRONTO.aet***
 
@@ -26,6 +26,33 @@
 > 📋 *exemplo:* "*CONFRONTO - FLAMENGO X CORINTHIANS*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
+
+---
+
+<br>
+
+## 📍 equipes disponíveis (2024)
+
+- Palmeiras SP
+- Atlético Mineiro MG
+- Flamengo RJ
+- Grêmio RS
+- Botafogo RJ
+- Red Bull Bragantino SP
+- Fluminense RJ
+- Athletico Paranaense PR
+- Internacional RS
+- Fortaleza CE
+- São Paulo SP
+- Cuiabá MT
+- Corinthians SP
+- Cruzeiro MG
+- Vasco RJ
+- Bahia BA
+- Vitória ES
+- Juventude RS
+- Criciúma SC
+- Atlético Goianiense GO
 
 ---
 
