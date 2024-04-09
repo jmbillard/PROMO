@@ -7,7 +7,7 @@
 	"prefix": "CRT",
 	"refTime": 2,
 	"separator": "",
-	"textCase": "toLowerCase",
+	"textCase": "lowerCase",
 	"inputLayers": [
 		{"layerIndex": 2, "method": "textContent"}
 	],

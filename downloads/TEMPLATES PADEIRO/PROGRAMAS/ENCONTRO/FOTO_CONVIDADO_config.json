@@ -7,7 +7,7 @@
 	"prefix": "FOTO",
 	"refTime": 2,
 	"separator": "\n",
-	"textCase": "toTitleCase",
+	"textCase": "titleCase",
 	"inputLayers": [
 		{"layerIndex": 3, "method": "textContent"},
 		{"layerIndex": 4, "method": "textContent"}

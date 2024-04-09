@@ -7,7 +7,7 @@
 	"prefix": "LETT",
 	"refTime": 2,
 	"separator": "",
-	"textCase": "upperCASE",
+	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "textContent"}
 	],
