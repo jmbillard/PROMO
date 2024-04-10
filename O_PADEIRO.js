@@ -46,21 +46,36 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_w.orientation = 'stack';
 
 		var mainGrp = PAD_w.add('group');
-		mainGrp.alignment = 'center';
-		mainGrp.orientation = 'fill';
+		mainGrp.spacing = 10;
 
-		var btnGrp = mainGrp.add('group');
-		btnGrp.alignment = 'center';
-		btnGrp.margins = [0, 0, 40, 0]; // [left, top, right, bottom]
-		btnGrp.spacing = 2;
+		var btnGrp1 = mainGrp.add('group');
+		btnGrp1.alignment = 'center';
+		btnGrp1.spacing = 2;
 
-		// import templates UI button...
-		var PAD_launchBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
+		// UI button...
+		var PAD_launchBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' });
 		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates';
 
-		// import templates UI button...
-		var PAD_fontBtn = btnGrp.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' });
+		// UI button...
+		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' });
 		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → abrir a pasta de fontes usadas no template';
+
+		var div1 = mainGrp.add("panel"); 
+		div1.alignment = "fill"; 
+
+		var btnGrp2 = mainGrp.add('group');
+		btnGrp2.alignment = 'center';
+		btnGrp2.spacing = 2;
+
+		// UI button...
+		var PAD_outputFolderBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_OUTPUTFOLDER_ICON, { name: 'btn', style: 'toolbutton' });
+		PAD_outputFolderBtn.helpTip = '◖ → abir pasta do último item da fila de render.\n\n◗ → abir pasta do penúltimo item da fila de render.';
+
+		btnGrp2.add("panel"); 
+
+		// UI button...
+		var PAD_renameBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' });
+		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas';
 
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
 		PAD_vLab.alignment = 'right';
@@ -72,15 +87,20 @@ function O_PADEIRO_UTL(thisObj) {
 		setBgColor(PAD_w, '#515D9E');
 
 		PAD_w.onShow = PAD_w.onResizing = function () {
-			var wLayout1 = PAD_w.size.width > PAD_w.size.height ? 'row' : 'column';
-			var wLayout2 = PAD_w.size.width > PAD_w.size.height ? 'right' : 'bottom';
-			var btnMargins = PAD_w.size.width > PAD_w.size.height ? [0, 0, 40, 0] : [0, 0, 0, 20];
+			var grpLayout = PAD_w.size.width > PAD_w.size.height ? 'row' : 'column';
+			var labLayout = PAD_w.size.width > PAD_w.size.height ? 'right' : 'bottom';
+			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [0, 0, 40, 0] : [0, 0, 0, 20];
 
-			btnGrp.orientation = wLayout1;
-			PAD_vLab.alignment = wLayout2;
-			btnGrp.margins = btnMargins;
+			mainGrp.orientation = grpLayout;
+			btnGrp1.orientation = grpLayout;
+			btnGrp2.orientation = grpLayout;
 
-			btnGrp.layout.layout(true);
+			PAD_vLab.alignment = labLayout;
+
+			mainGrp.margins = mainMargins;
+
+			btnGrp1.layout.layout(true);
+			btnGrp2.layout.layout(true);
 			PAD_w.layout.layout(true);
 			PAD_w.layout.resize();
 		};
@@ -148,6 +168,60 @@ function O_PADEIRO_UTL(thisObj) {
 				}
 			}
 		});
+
+		PAD_outputFolderBtn.onClick = function () {
+			// error...
+			if (!netAccess()) {
+				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+				return;
+			}
+			if (app.project.renderQueue.numItems < 1) return;
+
+			var item = app.project.renderQueue.item(app.project.renderQueue.numItems);
+			var outputModule = item.outputModule(1);
+			var outputPath = decodeURI(outputModule.file.path);
+			var fld = new Folder(outputPath);
+
+			if (!fld.exists) {
+				showTabErr('this folder is not accessible...');
+				return;
+			}
+
+			openFolder(outputPath);
+		};
+
+		PAD_outputFolderBtn.addEventListener('click', function (c) {
+			if (c.button == 2) {
+				// error...
+				if (!netAccess()) {
+					alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+					return;
+				}
+				if (app.project.renderQueue.numItems < 2) return;
+
+				var item = app.project.renderQueue.item(app.project.renderQueue.numItems - 1);
+				var outputModule = item.outputModule(1);
+				var outputPath = decodeURI(outputModule.file.path);
+				var fld = new Folder(outputPath);
+
+				if (!fld.exists) {
+					showTabErr('this folder is not accessible...');
+					return;
+				}
+
+				openFolder(outputPath);
+			}
+		});
+
+		PAD_renameBtn.onClick = function () {
+			// error...
+			if (app.project.numItems == 0) return;
+			app.beginUndoGroup('rename comps');
+		
+			renamePromoComps(app.project.selection);
+		
+			app.endUndoGroup();
+		};		
 
 		return PAD_w;
 	}
