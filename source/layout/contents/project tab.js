@@ -57,11 +57,14 @@ collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n\
 copia todas as fontes usadas no projeto\
 para a pasta de fontes';
 
-var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, projFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+currentGrp.add('panel');
+
+var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, aepFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → abir pasta do projeto';
 
-var fldProjBtn3 = projSubGrp3.add('iconbutton', iconSize, solTogIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-fldProjBtn2.helpTip = '◖ → abir pasta do output';
+var fldProjBtn3 = projSubGrp3.add('iconbutton', iconSize, outFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+fldProjBtn2.helpTip = '◖ → abir pasta do último item da fila de render.\n\
+◗ → abir pasta do penúltimo item da fila de render.';
 
 
 getStaticTextLabels(tabsGrp.menu, []);
@@ -268,6 +271,8 @@ fldProjBtn3.onClick = function () {
 		showTabErr(netConfigName + ' not checked');
 		return;
 	}
+	if (app.project.renderQueue.numItems < 1) return;
+
 	var item = app.project.renderQueue.item(app.project.renderQueue.numItems);
 	var outputModule = item.outputModule(1);
 	var outputPath = decodeURI(outputModule.file.path);
@@ -280,3 +285,26 @@ fldProjBtn3.onClick = function () {
 
 	openFolder(outputPath);
 };
+
+fldProjBtn3.addEventListener('click', function (c) {
+	if (c.button == 2) {
+		// error...
+		if (!netAccess()) {
+			showTabErr(netConfigName + ' not checked');
+			return;
+		}
+		if (app.project.renderQueue.numItems < 2) return;
+
+		var item = app.project.renderQueue.item(app.project.renderQueue.numItems - 1);
+		var outputModule = item.outputModule(1);
+		var outputPath = decodeURI(outputModule.file.path);
+		var fld = new Folder(outputPath);
+
+		if (!fld.exists) {
+			showTabErr('this folder is not accessible...');
+			return;
+		}
+
+		openFolder(outputPath);
+	}
+});

@@ -103,12 +103,12 @@ dBtn.onClick = function () {
 			var compH = icon.height;
   
 			var comp = app.project.items.addComp(compN, compW, compH, 1, 1, 1);
-			comp.bgColor = sTxtColor.dark;
+			comp.bgColor = hexToRGB(sTxtColor.dark);
 			var aLayer = comp.layers.add(icon);
 			var effects = aLayer.property('ADBE Effect Parade');
 			// fill effect...
 			var fill = effects.addProperty('ADBE Fill');
-			fill.property('ADBE Fill-0002').setValue(sTxtColor.dark);
+			fill.property('ADBE Fill-0002').setValue(hexToRGB(sTxtColor.dark));
 			var dIconFile = new File(folderPath + '/' + compN + ' dark.png');
   
 			comp.saveFrameToPng(0, dIconFile);
