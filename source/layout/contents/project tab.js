@@ -57,7 +57,7 @@ collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n\
 copia todas as fontes usadas no projeto\
 para a pasta de fontes';
 
-currentGrp.add('panel');
+projSubGrp3.add('panel');
 
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, aepFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → abir pasta do projeto';
