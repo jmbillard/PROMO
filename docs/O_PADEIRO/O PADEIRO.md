@@ -18,9 +18,12 @@
 > launcher:\
 >![ui](images/ui1.png)
 
->janela:\
->![ui](images/o_padeiro_ui.png)
+ferramentas disponíveis em ordem:
 
+- **O PADEIRO** → abre a janela de templates.
+- **RESOLVER FONTES** → instala as fontes necessárias para o template criado
+- **ABRIR PASTA DE OUTPUT** → abre a pasta de output do último ou penúltimo item da fila de render.
+- **RENOMEAR COMPS** → renomeia comps selecionadas removendo caracteres especiais, colocando tudo em *CAIXA ALTA* e acrescenta os prefixos para rodapés, cartões, letterings, etc. para comps em suas respectivas pastas
 <br>
 
 ## 📍 instalação
