@@ -6,7 +6,7 @@
 
 */
 
-var PAD_v = '0.6-b';
+var PAD_v = '0.7-b';
 
 var defPadObj = {
 	configName: 'default config',
@@ -22,6 +22,7 @@ var defPadObj = {
 	inputFx: null,
 
 	outputPath: '~/Desktop',
+	importPath: '~/Desktop',
 	alpha: true
 };
 
@@ -494,6 +495,8 @@ function padeiroTemplateDialog() {
 			comp.remove();
 			break;
 		}
+		var importFolder = new Folder(templateData.importPath);
+		app.project.setDefaultImportFolder(importFolder)
 
 		deleteProjectFolders();
 		populateProjectFolders();

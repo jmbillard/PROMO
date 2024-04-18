@@ -1,0 +1,16 @@
+{
+	"configName": "ALTAS HORAS CHROMA VOLTA JA",
+	"exemple": "1\n\n2\n\n3\n\n4",
+	"tip": "digite um número para cada CHROMA desejado.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+
+	"compName": "VOLTA JA - TEMPLATE",
+	"prefix": "VOLTA JA",
+	"refTime": 1,
+	"separator": "",
+	"textCase": "upperCase",
+	"inputLayers": [
+		{"layerIndex": 1, "method": "textContent"}
+	],
+	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024",
+	"alpha": false
+}
