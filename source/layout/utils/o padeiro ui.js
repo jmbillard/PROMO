@@ -358,6 +358,7 @@ function padeiroTemplateDialog() {
 
 	makeBtn.onClick = function () {
 
+		var logCount = 0;
 		wPadeiroTemplates.size.height = 10; // → close window
 		wPadeiroTemplates.text = 'processando os templates...'; // → close window
 		mainGrp.visible = false;
@@ -458,6 +459,8 @@ function padeiroTemplateDialog() {
 
 					template.name = [templateName.toUpperCase(), optionsList[f]].join(' ').trim();
 
+					logCount ++;
+
 					if (renderCkb.value) {
 						var item = app.project.renderQueue.items.add(template);
 						var outputModule = item.outputModule(1);
@@ -501,7 +504,24 @@ function padeiroTemplateDialog() {
 		deleteProjectFolders();
 		populateProjectFolders();
 		deleteEmptyProjectFolders();
+		
 		wPadeiroTemplates.close(); // → close window
+		
+		// data log...
+		try {
+			var dateStr = system
+			.callSystem('cmd.exe /c date /t')
+			.trim();
+			var timeStr = system
+			.callSystem('cmd.exe /c time /t')
+			.trim();
+
+			var logFile = new File(templatesPath + '/log padeiro.csv');
+			var logData = [templateData.configName, logCount, system.userName, dateStr, timeStr].join(',');
+			
+			saveLogData(logFile, logData);
+		
+		} catch (err) {}
 
 		if (folderNotAvailable) alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
 		setXMPData('source', decodeURI(templateFile.path).toString());

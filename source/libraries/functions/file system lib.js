@@ -473,6 +473,16 @@ function filesCollectPROMO(projId, progressWindow) {
 	return savePath;
 }
 
+// -------------------------------------------------------
+
+function saveLogData (aFile, dataStr) {
+	var data = readFileContent(aFile);
+
+	data += '\n' + dataStr;
+
+	saveTextFile(data, decodeURI(aFile.fullName));
+}
+
 // function createDefaultProjFolders(pathArray) {
 // 	var progressLabel = progressWindow.children[0];
 // 	var progressBar = progressWindow.children[1];
