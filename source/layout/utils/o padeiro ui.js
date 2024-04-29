@@ -511,10 +511,19 @@ function padeiroTemplateDialog() {
 		try {
 			var dateStr = system
 			.callSystem('cmd.exe /c date /t')
+			.replace(/[a-z]/gi, '')
 			.trim();
 			var timeStr = system
 			.callSystem('cmd.exe /c time /t')
+			.replace(/\sAM/i, '')
 			.trim();
+
+			if (timeStr.match(/PM/i)) {
+				var timeArray = timeStr.split(/\s/)[0].split(':');
+				var hStr = parseInt(timeArray[0]) + 12;
+
+				timeStr = hStr + ':' + timeArray[1];
+			}
 
 			var logFile = new File(templatesPath + '/log padeiro.csv');
 			var logData = [templateData.configName, logCount, system.userName, dateStr, timeStr].join(',');
