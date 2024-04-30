@@ -1,0 +1,17 @@
+{
+	"configName": "ALTAS HORAS CARTAO INFO",
+	"exemple": "ESPECIAL\nALCIONE",
+	"tip": "digite o texto em 1, 2 ou 3 linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
+
+	"compName": "CRT - INFO TEMPLATE",
+	"prefix": "CRT",
+	"refTime": 2,
+	"separator": "",
+	"textCase": "upperCase",
+	"inputLayers": [
+		{"layerIndex": 5, "method": "textContent"}
+	],
+
+	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024",
+	"alpha": false
+}
