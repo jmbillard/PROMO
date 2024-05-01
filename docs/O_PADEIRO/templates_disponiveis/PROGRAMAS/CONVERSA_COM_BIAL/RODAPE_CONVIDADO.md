@@ -37,7 +37,7 @@
 
 todos os controles estão no **layer** '*ctrl*', são eles:
 
-![fx](fx.png)
+![fx](RODAPE_CONVIDADO/ctrl.png)
 
 - **fx1**:
 

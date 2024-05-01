@@ -3,7 +3,7 @@
 > 📑 ***RODAPE_ATRACAO.aet***
 
 > 📂 **pastas:**\
-> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\...`
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\ESPORTE ESPETACULAR\2024\QUADROS\VERAO ESPETACULAR 2024\QUADROS`
 ---
 
 <br>
@@ -17,56 +17,18 @@
 
 ## 📍 funcionamento básico
 
-1. abra a **comp** '*LETT - INFO TEMPLATE*'.
-2. edite o texto do **layer** '*txt_info*' com a informação desejada.
-3. renomeie a **comp** '*LETT - INFO TEMPLATE*' substituindo as palavras '*INFO TEMPLATE*' pela respectiva informação.
+1. abra a **comp** '*RDP - ATRACAO TEMPLATE*'.
+2. edite o texto do **layer** '*txt_atracao*' com o nome da atração.
+3. renomeie a **comp** '*RDP - ATRACAO TEMPLATE*' substituindo as palavras '*ATRACAO TEMPLATE*' pelo nome da atração.
 
-> 📋 *exemplos:* "*LETT - SIRIA*", "*LETT - PLANETA GELADO*", "*LETT - MEGA ONDAS*".
+> 📋 *exemplos:* "*RDP - BMX ESTILO LIVRE*", "*RDP - RAINHA DO MAR*", "*RDP - MEGA ONDAS*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
-<!-- ---
+---
 
 <br>
 
 ## 📍 parâmetros
 
-todos os controles estão no **layer** '*ctrl*', são eles:
-
-![fx](fx.png)
-
-- **fx1**:
-
-  - **opcao 1** → descrição. -->
-
----
-
-<br>
-
-## 🚨 Atenção!
-
-aviso importante.
-
-> 📋 *exemplo:*
-
-> 🚩 *obs:*
-
----
-
-<br>
-
-## ✨ dicas
-
-dica 1
-
-> 📋 *exemplo:*\
-> ![exemplo](RODAPE_ATRACAO/arquivo.png)
-
-> 🚩 *obs:*
-
----
-
-dica 2
-
-> 📋 *exemplo:*\
-> texto do exemplo.
+este template não possui controles.

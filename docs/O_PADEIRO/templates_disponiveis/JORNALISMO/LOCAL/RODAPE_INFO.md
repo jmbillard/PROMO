@@ -27,7 +27,7 @@
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
-<!-- ---
+---
 
 <br>
 
@@ -35,11 +35,11 @@
 
 todos os controles estão no **layer** '*ctrl*', são eles:
 
-![fx](fx.png)
+![fx](RODAPE_INFO/ctrl.png)
 
 - **fx1**:
 
-  - **opcao 1** → descrição. -->
+  - **opcao 1** → descrição.
 
 ---
 

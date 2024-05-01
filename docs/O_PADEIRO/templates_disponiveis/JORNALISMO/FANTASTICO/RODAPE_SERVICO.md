@@ -18,56 +18,18 @@
 
 ## 📍 funcionamento básico
 
-1. abra a **comp** '*LETT - INFO TEMPLATE*'.
+1. abra a **comp** '*RDP - INFO TEMPLATE*'.
 2. edite o texto do **layer** '*txt_info*' com a informação desejada.
-3. renomeie a **comp** '*LETT - INFO TEMPLATE*' substituindo as palavras '*INFO TEMPLATE*' pela respectiva informação.
+3. renomeie a **comp** '*RDP - INFO TEMPLATE*' substituindo as palavras '*INFO TEMPLATE*' pela respectiva informação.
 
-> 📋 *exemplos:* "*LETT - SIRIA*", "*LETT - PLANETA GELADO*", "*LETT - MEGA ONDAS*".
+> 📋 *exemplos:* "*RDP - 7 30*", "*RDP - MAIS CEDO*", "*RDP - PROXIMO DOMINGO*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
-<!-- ---
+---
 
 <br>
 
 ## 📍 parâmetros
 
-todos os controles estão no **layer** '*ctrl*', são eles:
-
-![fx](fx.png)
-
-- **fx1**:
-
-  - **opcao 1** → descrição. -->
-
----
-
-<br>
-
-## 🚨 Atenção!
-
-aviso importante.
-
-> 📋 *exemplo:*
-
-> 🚩 *obs:*
-
----
-
-<br>
-
-## ✨ dicas
-
-dica 1
-
-> 📋 *exemplo:*\
-> ![exemplo](pasta/arquivo.png)
-
-> 🚩 *obs:*
-
----
-
-dica 2
-
-> 📋 *exemplo:*\
-> texto do exemplo.
+este template não possui controles.

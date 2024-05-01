@@ -26,48 +26,10 @@
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
-<!-- ---
+---
 
 <br>
 
 ## 📍 parâmetros
 
-todos os controles estão no **layer** '*ctrl*', são eles:
-
-![fx](fx.png)
-
-- **fx1**:
-
-  - **opcao 1** → descrição. -->
-
----
-
-<br>
-
-## 🚨 Atenção!
-
-aviso importante.
-
-> 📋 *exemplo:*
-
-> 🚩 *obs:*
-
----
-
-<br>
-
-## ✨ dicas
-
-dica 1
-
-> 📋 *exemplo:*\
-> ![exemplo](pasta/arquivo.png)
-
-> 🚩 *obs:*
-
----
-
-dica 2
-
-> 📋 *exemplo:*\
-> texto do exemplo.
+este template não possui controles.

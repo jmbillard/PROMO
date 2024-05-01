@@ -23,7 +23,7 @@
 3. se necessário, habilite e edite o texto do **layer** '*txt_linha 2*' com a restante do texto.
 4. renomeie a **comp** '*RDP - PROLOGO TEMPLATE*' substituindo as palavras '*PROLOGO TEMPLATE*' pelo texto completo do prólogo.
 
-> 📋 *exemplo:* "*RDP - FIQUE AGORA COM O SEGUNDO EPISÓDIO*", "*RDP - ULTIMAS SEMANAS*".
+> 📋 *exemplo:* "*RDP - FIQUE AGORA COM O SEGUNDO EPISODIO*", "*RDP - ULTIMAS SEMANAS*".
 
 > 🚩 *obs:* Sempre use **CAIXA ALTA SEM ACENTUAÇÃO** e **SEM CARACTERES ESPECIAIS** para nomear **comps**.
 
@@ -33,43 +33,4 @@
 
 ## 📍 parâmetros
 
-todos os controles estão no **layer** '*ctrl*', são eles:
-
-![fx](RODAPE_CONVIDADO/ctrl.png)
-
-- **layout**:
-
-  - **esquerda** → posiciona o texto no lado esquerdo.
-  - **direita** → posiciona o texto no lado esquerdo.
-
----
-
-<br>
-
-## 🚨 Atenção!
-
-aviso importante.
-
-> 📋 *exemplo:*
-
-> 🚩 *obs:*
-
----
-
-<br>
-
-## ✨ dicas
-
-dica 1
-
-> 📋 *exemplo:*\
-> ![exemplo](pasta/arquivo.png)
-
-> 🚩 *obs:*
-
----
-
-dica 2
-
-> 📋 *exemplo:*\
-> texto do exemplo.
+este template não possui controles.

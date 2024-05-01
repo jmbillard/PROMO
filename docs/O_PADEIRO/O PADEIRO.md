@@ -220,14 +220,26 @@ o script possui padrões internos caso não seja especificado um caminho de outp
   - [CARTAO_SERVICO](templates_disponiveis/PROGRAMAS/BBB/CARTAO_SERVICO.md)
   - [RODAPE_INFO](templates_disponiveis/PROGRAMAS/BBB/RODAPE_INFO.md)
 - ALTAS HORAS
+  - [CARTAO_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/CARTAO_CONVIDADO.md)
   - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/ALTAS_HORAS/RODAPE_CONVIDADO.md)
 - CONVERSA COM BIAL
   - [RODAPE_CONVIDADO](templates_disponiveis/PROGRAMAS/CONVERSA_COM_BIAL/RODAPE_CONVIDADO.md)
+  - [CARTAO_CONVIDADO](templates_disponiveis/PROGRAMAS/CONVERSA_COM_BIAL/CARTAO_CONVIDADO.md)
 - ENCONTRO
   - [FOTO_CONVIDADO](templates_disponiveis/PROGRAMAS/ENCONTRO/FOTO_CONVIDADO.md)
 - CALDEIRAO
   - [CARTAO_SERVICO](templates_disponiveis/PROGRAMAS/CALDEIRAO/CARTAO_SERVICO.md)
   - [RODAPE_SERVICO](templates_disponiveis/PROGRAMAS/CALDEIRAO/RODAPE_SERVICO.md)
+
+### SÉRIES:
+
+- OS OUTROS
+  - [RODAPE_PROLOGO](templates_disponiveis/SERIES/OS_OUTROS/RODAPE_PROLOGO.md)
+
+### SHOWS:
+
+- CIRCUITO SERTANEJO
+  - [RODAPE_ATRACAO](templates_disponiveis/SHOWS/CIRCUITO_SERTANEJO/RODAPE_ATRACAO.md)
 
 ---
 
