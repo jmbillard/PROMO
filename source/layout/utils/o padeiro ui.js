@@ -459,13 +459,21 @@ function padeiroTemplateDialog() {
 
 					template.name = [templateName.toUpperCase(), optionsList[f]].join(' ').trim();
 
-					logCount ++;
+					logCount++;
+					// wPadeiroTemplates.text = template.name;
 
 					if (renderCkb.value) {
 						var item = app.project.renderQueue.items.add(template);
 						var outputModule = item.outputModule(1);
 
 						if (padeiroOutputModuleTemplate == undefined) {
+							var tIndex = outputModule.templates.length - 1;
+
+							alert(outputModule.templates[0]);
+							// while (outputModule.templates[tIndex].toString.match(/^_HIDDEN\s/)) {
+							// 	outputModule.templates.pop();
+							// 	tIndex--;
+							// }
 							padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
 						}
 
@@ -504,19 +512,19 @@ function padeiroTemplateDialog() {
 		deleteProjectFolders();
 		populateProjectFolders();
 		deleteEmptyProjectFolders();
-		
+
 		wPadeiroTemplates.close(); // → close window
-		
+
 		// data log...
 		try {
 			var dateStr = system
-			.callSystem('cmd.exe /c date /t')
-			.replace(/[a-z]/gi, '')
-			.trim();
+				.callSystem('cmd.exe /c date /t')
+				.replace(/[a-z]/gi, '')
+				.trim();
 			var timeStr = system
-			.callSystem('cmd.exe /c time /t')
-			.replace(/\sAM/i, '')
-			.trim();
+				.callSystem('cmd.exe /c time /t')
+				.replace(/\sAM/i, '')
+				.trim();
 
 			if (timeStr.match(/PM/i)) {
 				var timeArray = timeStr.split(/\s/)[0].split(':');
@@ -527,10 +535,10 @@ function padeiroTemplateDialog() {
 
 			var logFile = new File(templatesPath + '/log padeiro.csv');
 			var logData = [templateData.configName, logCount, system.userName, dateStr, timeStr].join(',');
-			
+
 			saveLogData(logFile, logData);
-		
-		} catch (err) {}
+
+		} catch (err) { }
 
 		if (folderNotAvailable) alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
 		setXMPData('source', decodeURI(templateFile.path).toString());
