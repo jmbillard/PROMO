@@ -72,6 +72,7 @@ function padeiroTemplateDialog() {
 	var templateFile; // → template file object
 	var previewImgFile; // → preview image object
 	var configFile; // → info file object
+	var scriptFile; // → info file object
 	var templateData;
 	var tipContent = '...';
 
@@ -279,10 +280,12 @@ function padeiroTemplateDialog() {
 		}
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png'); // → template preview.png
 		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // → template info.png
+		var scriptName = templateName.replace(/\.[\w]+$/i, '_script.js'); // → template info.png
 
 		templateFile = new File(templatesPath + '/' + templateName); // → template file object
 		previewImgFile = new File(templatesPath + '/' + imgName); // → preview image object
 		configFile = new File(templatesPath + '/' + configName); // → info file object
+		scriptFile = new File(templatesPath + '/' + scriptName); // → info file object
 
 		importBtn.enabled = templateTree.selection != null; // → enable | disable import button
 
@@ -359,6 +362,8 @@ function padeiroTemplateDialog() {
 	makeBtn.onClick = function () {
 
 		var logCount = 0;
+		var createdTemplatesArray = [];
+
 		wPadeiroTemplates.size.height = 10; // → close window
 		wPadeiroTemplates.text = 'processando os templates...'; // → close window
 		mainGrp.visible = false;
@@ -458,23 +463,23 @@ function padeiroTemplateDialog() {
 					if (templateData.prefix == '') templateName = txtList.join(' - ').replace(/[\n\r]/g, ' ');
 
 					template.name = [templateName.toUpperCase(), optionsList[f]].join(' ').trim();
+					createdTemplatesArray.push(template);
 
 					logCount++;
-					// wPadeiroTemplates.text = template.name;
 
 					if (renderCkb.value) {
 						var item = app.project.renderQueue.items.add(template);
 						var outputModule = item.outputModule(1);
 
 						if (padeiroOutputModuleTemplate == undefined) {
-							var tIndex = outputModule.templates.length - 1;
+							var tArray = outputModule.templates;
+							var tIndex = tArray.length - 1;
 
-							alert(outputModule.templates[0]);
-							// while (outputModule.templates[tIndex].toString.match(/^_HIDDEN\s/)) {
-							// 	outputModule.templates.pop();
-							// 	tIndex--;
-							// }
-							padeiroOutputModuleTemplate = renderTemplateDialog(outputModule.templates, templateData.alpha);
+							while (tArray[tIndex].toString().match(/^_HIDDEN\s/)) {
+								tArray.pop();
+								tIndex--;
+							}
+							padeiroOutputModuleTemplate = renderTemplateDialog(tArray, templateData.alpha);
 						}
 
 						if (padeiroOutputModuleTemplate != '') {
@@ -542,6 +547,19 @@ function padeiroTemplateDialog() {
 
 		if (folderNotAvailable) alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
 		setXMPData('source', decodeURI(templateFile.path).toString());
+
+		if (scriptFile.exists) {
+			try {
+				scriptFile.open('r');
+				eval(scriptFile.read());
+
+				scriptFile.close();
+
+			} catch (err) {
+				alert('nope... (っ °Д °;)っ\n\n' + err.message);
+			}
+		}
+
 	};
 
 	//---------------------------------------------------------
