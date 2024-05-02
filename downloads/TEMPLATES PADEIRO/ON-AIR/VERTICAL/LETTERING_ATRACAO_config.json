@@ -1,5 +1,5 @@
 {
-	"configName": "VERTICAL LETTERING NOME",
+	"configName": "VERTICAL LETTERING ATRACAO",
 	"exemple": "THE GOOD\nDOCTOR\n---\nO BOM DOUTOR",
 	"tip": "digite o texto em 1 ou 2 linhas para o título e subtítulo.\n\nuse 1 linha com '---' para separar título, subtítulo e apoio.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
