@@ -6,7 +6,7 @@
 
 */
 
-var PAD_v = '0.7-b';
+var PAD_v = '0.8-b';
 
 var defPadObj = {
 	configName: 'default config',
