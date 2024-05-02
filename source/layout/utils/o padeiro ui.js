@@ -363,6 +363,7 @@ function padeiroTemplateDialog() {
 
 		var logCount = 0;
 		var createdTemplatesArray = [];
+		var createdOutputModuleArray = [];
 
 		wPadeiroTemplates.size.height = 10; // → close window
 		wPadeiroTemplates.text = 'processando os templates...'; // → close window
@@ -497,6 +498,8 @@ function padeiroTemplateDialog() {
 								outputModule.file = outputFile;
 								outputModule.applyTemplate(padeiroOutputModuleTemplate);
 								item.applyTemplate('Best Settings');
+
+								createdOutputModuleArray.push(outputModule);
 
 							} catch (err) { alert(err.message); }
 
