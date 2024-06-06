@@ -1,7 +1,7 @@
 
 # PROMO *script*
 
-**pt-BR** ⚡ algumas ferramentas para melhorar o workflow da equipe de PROMO!
+**pt-BR** ⚡ algumas ferramentas para melhorar o workflow da equipe de PROMO
 
 ## 📟 layout e interface
 
@@ -87,4 +87,3 @@ avança pela `hierarquia` dos layers selecionados... seleciona o pai ou todos os
 ---
 
 <br /><br />
-
