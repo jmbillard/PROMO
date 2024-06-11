@@ -1,0 +1,16 @@
+{
+	"configName": "10",
+	"exemple": "08/06 a 14/06",
+	"tip": "digite o período de vigência da chamada.\n\napos clicar no botão 'criar' selecione as imagens dos patrocinadores.\n\nuse os controles nos efeitos dos layers de cada patrocinador.",
+
+	"compName": "PATROCINADORES FUT 2024",
+	"prefix": "",
+	"refTime": 2,
+	"separator": "---",
+	"textCase": "upperCase",
+	"inputLayers": [],
+
+	"outputPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024/SAIDAS",
+	"importPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024/02 ARQUIVOS",
+	"alpha": true
+}
