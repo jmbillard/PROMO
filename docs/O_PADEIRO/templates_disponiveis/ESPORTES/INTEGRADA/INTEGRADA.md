@@ -5,6 +5,9 @@
 > 📂 **pastas:**\
 > • **marcas** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2024\CHAMADA PATROCINADORES 2024\02 ARQUIVOS`\
 > • **output** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\FUTEBOL\FUTEBOL 2024\CHAMADA PATROCINADORES 2024\SAIDAS`
+
+> 🚩 *obs:* a entrega é feita por *link de download*!
+
 ---
 
 <br>
@@ -42,13 +45,13 @@ os controles das marcas estão nos em seus respectivos **layers** na **comp** '*
 
 ![fx1](<INTEGRADA/opcoes da marca.png>)
 
-- **cores automaticas** → extrai as cores das marcas automaticamente (cor do primeiro pixel de cada imagem e branco).
-- **arte lateral**:
+- **cores livres** → habilita a alteração das cores das artes laterais.
+- **cores da arte lateral**:
 
-  - **map black to** → cor do tint para o preto.
-  - **map white to** → cor do tint para o branco.
+  - **cor 1** → cor do tint para o preto.
+  - **cor 2** → cor do tint para o branco.
 
-- **escala da marca** → controla a escala da marca.
+- **escala** → controla a escala da marca.
 
 ---
 
@@ -63,3 +66,19 @@ para adicionar uma nova marca:
   3. substitua o **layer** duplicado pela nova marca.
   4. reordene o layer para alterar a ordem em que a nova marca aparece na chamada.
   5. altere as cores e a escala da nova marca na *janela de controle de efeitos*.
+
+> 🚩 *obs:* não edite os efeitos a baixo!.
+
+---
+
+<br>
+
+## ✨ dicas
+
+ao usar o script **O PADEIRO**:
+
+- após preencher a data de vigência da chamada no campo de **input** e clicar no botão **criar**, o script irá abrir automaticamente a janela de importação de arquivos. basta navegar até o local onde os arquivos de imagem de cada marca estão armazenados.
+- renomeie os arquivos de imagens das marcas acrescentando o seu respectivo índice no inicio para ordenar automaticamente as marcas na chamada.
+
+> 📋 *exemplo:*\
+> ![busca](<INTEGRADA/importar-marcas.gif>)
