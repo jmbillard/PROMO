@@ -4,7 +4,7 @@
 	"tip": "digite o período de vigência da chamada.\n\napos clicar no botão 'criar' selecione as imagens dos patrocinadores.\n\nuse os controles nos efeitos dos layers de cada patrocinador.",
 
 	"compName": "PATROCINADORES FUT 2024",
-	"prefix": "",
+	"prefix": "ignore",
 	"refTime": 2,
 	"separator": "---",
 	"textCase": "upperCase",

@@ -19,11 +19,12 @@
 ## 📍 funcionamento básico
 
 1. abra a **comp** '*LOGOS*'.
-2. substitua os **layers 1**, **2**, **3**, **4**, **5**, **6**, **7** e **8** com as imagens das marcas dos patrocinadores.
+2. substitua os **layers logo 1**, **2**, **3**, **4**, **5**, **6**, **7** e **8** com as imagens das marcas dos patrocinadores.
 3. reordene os layers para alterar a ordem em que as marcas aparecem na chamada.
 4. desabilite os layers das marcas que não serão usadas (caso necessário).
-5. use a *janela de controle de efeitos* para alterar as cores de cada marca e sua escala.
-6. renomeie a **comp** '*PATROCINADORES FUT 2024*' adicionando '*_*', mais a data com o período de vigência da chamada.
+5. use a *janela de controle de efeitos* para alterar a escala da marca e as cores das artes laterais.
+6. ajuste a work area da **comp** '*PATROCINADORES FUT 2024*' usando os marcadores da **comp** como referência (o template suporta de 6 a 8 marcas habilitadas).
+7. renomeie a **comp** '*PATROCINADORES FUT 2024*' adicionando '*_*', mais a data com o período de vigência da chamada.
 
 > 📋 *exemplo:* "*PATROCINADORES FUT 2024_08-06 A 14-06*".
 
