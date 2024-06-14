@@ -10,7 +10,7 @@ var PAD_v = '0.8-b';
 
 // Objeto que armazena as configurações padrão (default) do Padeiro
 var defPadObj = {
-	configName: 'default config',          // Nome da configuração (usado para identificação no log)
+	configName: 'default config',           // Nome da configuração (usado para identificação no log)
 	exemple: '',                            // Exemplo de texto de entrada (será mostrado na interface se o template não tiver um exemplo próprio)
 	tip: '',                                // Dicas para o usuário sobre como usar o template
 
@@ -24,7 +24,7 @@ var defPadObj = {
 
 	outputPath: '~/Desktop',                // Caminho padrão para salvar os renders dos templates gerados
 	importPath: '~/Desktop',                // Caminho padrão para importar novos templates para a pasta do Padeiro
-	alpha: true                              // Indica se o template precisa de canal alpha (transparência) para o render
+	alpha: true                             // Indica se o template precisa de canal alpha (transparência) para o render
 };
 
 // Função para criar a janela de diálogo de configuração do render
@@ -34,9 +34,9 @@ function renderTemplateDialog(array, alphaChannel) {
 	var txtHelp2Content = alphaChannel ? 'requer canal alpha!' : 'não requer canal alpha'; // Mensagem de ajuda, indicando se o template precisa ou não de canal alpha (transparência)
 
 	// Criação da Janela de Diálogo
-	var wPref = new Window('dialog', 'render setup...');      // Cria uma nova janela de diálogo com o título 'render setup...'
+	var wPref = new Window('dialog', 'render setup...');   // Cria uma nova janela de diálogo com o título 'render setup...'
 	wPref.alignChildren = ['left', 'top'];                 // Alinha todos os elementos da janela à esquerda e ao topo.
-	wPref.spacing = 10;                                     // Define um espaçamento de 10 pixels entre os elementos da janela.
+	wPref.spacing = 10;                                    // Define um espaçamento de 10 pixels entre os elementos da janela.
 
 	// Primeiro Texto de Ajuda
 	var helpTxt1 = wPref.add('statictext', undefined, 'selecione o template do render...'); // Adiciona um texto estático à janela com a instrução para o usuário.
@@ -58,26 +58,26 @@ function renderTemplateDialog(array, alphaChannel) {
 	setTxtColor(helpTxt2, mainColors[1]);                // Define a cor do texto.
 
 	// Função para Lidar com a Mudança de Seleção
-	renderDrop.onChange = function () {              // Define uma função que será executada quando o usuário alterar a seleção na lista suspensa.
+	renderDrop.onChange = function () {                   // Define uma função que será executada quando o usuário alterar a seleção na lista suspensa.
 		renderTemplate = renderDrop.selection.toString(); // Obtém o nome do template selecionado e o converte para uma string.
-		wPref.close();                                  // Fecha a janela de diálogo após a seleção.
+		wPref.close();                                    // Fecha a janela de diálogo após a seleção.
 	};
 
 	// Exibir a Janela e Retornar o Template Selecionado
-	wPref.show();                                        // Exibe a janela de diálogo para o usuário.
-	return renderTemplate;                                // Retorna o nome do template de renderização selecionado pelo usuário.
+	wPref.show();          // Exibe a janela de diálogo para o usuário.
+	return renderTemplate; // Retorna o nome do template de renderização selecionado pelo usuário.
 }
 
 // Função para criar a interface de usuário do "O Padeiro"
 function padeiroTemplateDialog() {
-	var wWidth;                      // Largura da janela sem a pré-visualização
-	var oWidth;                      // Largura da janela com a pré-visualização
-	var previewScale = 0.2;          // Fator de escala da pré-visualização da imagem
+	var wWidth;                        // Largura da janela sem a pré-visualização
+	var oWidth;                        // Largura da janela com a pré-visualização
+	var previewScale = 0.2;            // Fator de escala da pré-visualização da imagem
 	var fileFilter = ['.aep', '.aet']; // Extensões de arquivo de template permitidas
-	var hasData = false;             // Indica se há dados de entrada
-	var hasInput = false;            // Indica se o template possui campos de entrada
-	var exemple = '';                // Exemplo de texto de entrada
-	var padeiroOutputModuleTemplate; // Variável para armazenar o template do módulo de saída
+	var hasData = false;               // Indica se há dados de entrada
+	var hasInput = false;              // Indica se o template possui campos de entrada
+	var exemple = '';                  // Exemplo de texto de entrada
+	var padeiroOutputModuleTemplate;   // Variável para armazenar o template do módulo de saída
 
 	// Variáveis para armazenar os arquivos do template
 	var templateFile;
@@ -97,7 +97,7 @@ function padeiroTemplateDialog() {
 	var vGrp1 = mainGrp.add('group');
 	vGrp1.orientation = 'column';        // Orientação vertical
 	vGrp1.alignment = ['center', 'top']; // Alinhamento no centro e no topo
-	vGrp1.alignChildren = 'left';       // Alinhamento dos elementos filhos à esquerda
+	vGrp1.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
 
 	// Cria um divisor (linha horizontal)
 	divider = mainGrp.add('panel');
@@ -106,8 +106,8 @@ function padeiroTemplateDialog() {
 	var vGrp2 = mainGrp.add('group');
 	vGrp2.orientation = 'column';        // Orientação vertical
 	vGrp2.alignment = ['center', 'top']; // Alinhamento no centro e no topo
-	vGrp2.alignChildren = 'left';       // Alinhamento dos elementos filhos à esquerda
-	vGrp2.visible = false;             // Inicialmente oculta a pré-visualização
+	vGrp2.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
+	vGrp2.visible = false;               // Inicialmente oculta a pré-visualização
 
 	// Cria um grupo para a árvore de templates
 	var treeGrp = vGrp1.add('group');
@@ -145,14 +145,14 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// Criação do grupo de botões principal
-	var bGrp = vGrp1.add('group');             // Cria um grupo (container) para organizar os botões dentro do grupo vertical à esquerda (vGrp1).
-	bGrp.orientation = 'stack';                // Define a orientação do grupo como 'stack' (empilhamento), o que significa que os botões serão dispostos verticalmente.
-	bGrp.alignment = 'fill';                   // Faz o grupo ocupar toda a largura disponível.
+	var bGrp = vGrp1.add('group');      // Cria um grupo (container) para organizar os botões dentro do grupo vertical à esquerda (vGrp1).
+	bGrp.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento), o que significa que os botões serão dispostos verticalmente.
+	bGrp.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível.
 
 	// Grupo dos botões à esquerda
-	var bGrp1 = bGrp.add('group');              // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda.
-	bGrp1.alignment = 'left';                 // Alinha o subgrupo à esquerda.
-	bGrp1.spacing = 2;                         // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo.
+	var bGrp1 = bGrp.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda.
+	bGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda.
+	bGrp1.spacing = 2;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo.
 
 	// Grupo do botão à direita
 	var bGrp2 = bGrp.add('group');              // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita.
@@ -180,61 +180,61 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// Criação do Grupo da Pré-visualização
-	var previewGrp = vGrp2.add('group');             // Cria um grupo (container) para organizar os elementos relacionados à pré-visualização do template.
-	previewGrp.orientation = 'column';              // Define a orientação do grupo como 'column' (coluna), ou seja, os elementos serão dispostos verticalmente.
+	var previewGrp = vGrp2.add('group');           // Cria um grupo (container) para organizar os elementos relacionados à pré-visualização do template.
+	previewGrp.orientation = 'column';             // Define a orientação do grupo como 'column' (coluna), ou seja, os elementos serão dispostos verticalmente.
 	previewGrp.alignChildren = 'left';             // Alinha os elementos filhos do grupo à esquerda.
 
 
 	// Rótulo da Pré-visualização
-	var previewLabTxt = previewGrp.add('statictext', undefined, 'preview:');  // Adiciona um texto estático "preview:" ao grupo da pré-visualização.
+	var previewLabTxt = previewGrp.add('statictext', undefined, 'preview:'); // Adiciona um texto estático "preview:" ao grupo da pré-visualização.
 	setTxtColor(previewLabTxt, monoColors[2]);   // Define a cor do texto "preview:" usando uma função externa `setTxtColor`.
 
 	// Imagem de Pré-visualização
-	var previewImg = previewGrp.add('image', undefined, no_preview);     // Adiciona um elemento de imagem ao grupo da pré-visualização. 'no_preview' é provavelmente uma imagem padrão indicando que não há pré-visualização disponível.
-	previewImg.size = [1920 * previewScale, 1080 * previewScale];      // Define o tamanho da imagem de pré-visualização, aplicando um fator de escala (`previewScale`).
+	var previewImg = previewGrp.add('image', undefined, no_preview); // Adiciona um elemento de imagem ao grupo da pré-visualização. 'no_preview' é provavelmente uma imagem padrão indicando que não há pré-visualização disponível.
+	previewImg.size = [1920 * previewScale, 1080 * previewScale];    // Define o tamanho da imagem de pré-visualização, aplicando um fator de escala (`previewScale`).
 
 	// Divisor da Pré-visualização
-	divider = vGrp2.add('panel');                                      // Adiciona um painel (panel) para criar um divisor visual na interface, separando a pré-visualização dos outros elementos.
-	divider.alignment = 'fill';                                        // Faz o divisor ocupar toda a largura disponível.
+	divider = vGrp2.add('panel');                                    // Adiciona um painel (panel) para criar um divisor visual na interface, separando a pré-visualização dos outros elementos.
+	divider.alignment = 'fill';                                      // Faz o divisor ocupar toda a largura disponível.
 
 
 	// Criação do Grupo de Entrada de Dados (inputGrp)
-	var inputGrp = vGrp2.add('group');                                 // Cria um grupo para conter os elementos relacionados à entrada de dados e dicas.
-	inputGrp.alignment = ['left', 'top'];                             // Alinha o grupo à esquerda e ao topo.
+	var inputGrp = vGrp2.add('group');                              // Cria um grupo para conter os elementos relacionados à entrada de dados e dicas.
+	inputGrp.alignment = ['left', 'top'];                           // Alinha o grupo à esquerda e ao topo.
 
 	// Criação de Subgrupos para Organização
 
 	// Subgrupo para a caixa de texto e opções de render
-	var txtGrp = inputGrp.add('group');             // Cria um subgrupo para conter a caixa de texto e as opções de renderização.
-	txtGrp.orientation = 'column';                  // Define a orientação como coluna (elementos dispostos verticalmente).
-	txtGrp.alignment = ['left', 'top'];             // Alinha o subgrupo à esquerda e ao topo.
+	var txtGrp = inputGrp.add('group');            // Cria um subgrupo para conter a caixa de texto e as opções de renderização.
+	txtGrp.orientation = 'column';                 // Define a orientação como coluna (elementos dispostos verticalmente).
+	txtGrp.alignment = ['left', 'top'];            // Alinha o subgrupo à esquerda e ao topo.
 	txtGrp.alignChildren = 'left';                 // Alinha os elementos filhos à esquerda.
 
 	// Subgrupo para as dicas
-	var tipGrp = inputGrp.add('group');             // Cria um subgrupo para conter as dicas.
-	tipGrp.orientation = 'column';                  // Define a orientação como coluna (elementos dispostos verticalmente).
-	tipGrp.alignment = ['left', 'top'];             // Alinha o subgrupo à esquerda e ao topo.
+	var tipGrp = inputGrp.add('group');            // Cria um subgrupo para conter as dicas.
+	tipGrp.orientation = 'column';                 // Define a orientação como coluna (elementos dispostos verticalmente).
+	tipGrp.alignment = ['left', 'top'];            // Alinha o subgrupo à esquerda e ao topo.
 	tipGrp.alignChildren = 'left';                 // Alinha os elementos filhos à esquerda.
 
 	// Elementos da Caixa de Texto
-	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:');  // Adiciona um texto estático "input:" para identificar a caixa de texto.
-	setTxtColor(inputLabTxt, monoColors[2]);                       // Define a cor do texto "input:" usando a função externa 'setTxtColor'.
+	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:'); // Adiciona um texto estático "input:" para identificar a caixa de texto.
+	setTxtColor(inputLabTxt, monoColors[2]);                         // Define a cor do texto "input:" usando a função externa 'setTxtColor'.
 
 	// Criação da caixa de texto
 	var edtText = txtGrp.add('edittext', [0, 0, 185, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) com as dimensões especificadas e inicialmente vazia.
 	edtText.enabled = false;                                         // A caixa de texto começa desabilitada, provavelmente será habilitada após a seleção de um template.
 
 	// Opções de Renderização
-	var renderGrp = txtGrp.add('group');                              // Cria um grupo para as opções de renderização (checkbox).
+	var renderGrp = txtGrp.add('group');                             // Cria um grupo para as opções de renderização (checkbox).
 	renderGrp.spacing = 15;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo.
 
 	var renderLabTxt = renderGrp.add('statictext', [0, 0, 150, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização.
 	setTxtColor(renderLabTxt, monoColors[2]);                       // Define a cor do rótulo.
 	renderLabTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.'; // Define a dica de ferramenta, explicando a função da caixa de seleção.
 
-	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);        // Cria a caixa de seleção (checkbox) para a opção de renderização.
+	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);      // Cria a caixa de seleção (checkbox) para a opção de renderização.
 	renderCkb.value = true;                                         // Marca a caixa de seleção por padrão.
-	renderCkb.enabled = false;                                       // Desabilita a caixa de seleção inicialmente.
+	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
 
 	// Dicas
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:');    // Adiciona o rótulo "dicas:" ao grupo de dicas.
@@ -246,10 +246,8 @@ function padeiroTemplateDialog() {
 
 	// Função executada quando a janela "O Padeiro" é exibida
 	wPadeiroTemplates.onShow = function () {
-		// expandNodes(templateTree);  // <-- Linha comentada: Expandiria todos os nós (pastas) da árvore, mas não está sendo usada aqui.
-
 		// Expandir a raiz da árvore de templates
-		templateTree.expanded = true; // Expande o nível principal da árvore de templates (a raiz).
+		templateTree.expanded = true;      // Expande o nível principal da árvore de templates (a raiz).
 		var branches = templateTree.items; // Obtém todos os itens (nós e folhas) da árvore de templates.
 
 		// Expandir todas as pastas na árvore de templates
@@ -260,7 +258,7 @@ function padeiroTemplateDialog() {
 		}
 
 		// Calcula e armazena as dimensões da janela
-		oWidth = wPadeiroTemplates.size.width;  // Armazena a largura original da janela (com a área de pré-visualização).
+		oWidth = wPadeiroTemplates.size.width; // Armazena a largura original da janela (com a área de pré-visualização).
 		wWidth = oWidth - 405;                 // Calcula a largura da janela sem a área de pré-visualização (405 pixels parece ser a largura da área de pré-visualização).
 
 		// Oculta elementos da interface
@@ -288,8 +286,8 @@ function padeiroTemplateDialog() {
 
 		// Formatação do texto de pesquisa
 		searchBox.text = searchBox.text
-			.trim()                 // Remove espaços em branco do início e do fim do texto
-			.toUpperCase()          // Converte todo o texto para maiúsculas
+			.trim()                      // Remove espaços em branco do início e do fim do texto
+			.toUpperCase()               // Converte todo o texto para maiúsculas
 			.replaceSpecialCharacters(); // Remove caracteres especiais (provavelmente uma função externa)
 
 		buildTree(templatesFolder, templateTree, fileFilter); // Atualiza a árvore de templates (função externa)
@@ -300,12 +298,12 @@ function padeiroTemplateDialog() {
 
 		// Expande os nós da árvore para mostrar os resultados da pesquisa
 		for (var n = 0; n < items.length; n++) {
-			var s = items[n];                   // Obtém o item atual da pesquisa
+			var s = items[n];                        // Obtém o item atual da pesquisa
 			if (s.type == 'node') s.expanded = true; // Se o item for um nó (pasta), expande-o
 
 			// Expande os pais do item até chegar à raiz da árvore
 			while (s.parent.constructor.name != 'TreeView') {
-				s.parent.expanded = true;  // Expande o nó pai
+				s.parent.expanded = true; // Expande o nó pai
 				s = s.parent;             // Sobe um nível na árvore
 			}
 		}
@@ -325,29 +323,29 @@ function padeiroTemplateDialog() {
 
 		// Caso nenhum template seja selecionado
 		if (templateTree.selection == null) {
-			wPadeiroTemplates.size.width = wWidth;  // Redimensiona a janela para o tamanho menor (sem a pré-visualização)
+			wPadeiroTemplates.size.width = wWidth; // Redimensiona a janela para o tamanho menor (sem a pré-visualização)
 			vGrp2.visible = false;                 // Oculta a área da pré-visualização (vGrp2)
 			divider.visible = false;               // Oculta o divisor da pré-visualização
-			return;                               // Encerra a função, pois não há mais nada a fazer
+			return;                                // Encerra a função, pois não há mais nada a fazer
 		}
 
 		// Caso um template seja selecionado
 		var s = templateTree.selection;     // Obtém o item selecionado na árvore (o template)
-		var templateName = s.text;         // Obtém o nome do template a partir do texto do item
+		var templateName = s.text;          // Obtém o nome do template a partir do texto do item
 
 		// Constrói o caminho completo do arquivo do template
 		while (s.parent.parent.constructor.name != 'TreeView') { // Enquanto o pai do pai do item não for a raiz da árvore...
-			s = s.parent;                                // Sobe um nível na hierarquia da árvore (vai para o pai do item atual)
-			templateName = s.text + '/' + templateName;  // Adiciona o nome do pai ao início do caminho do template
+			s = s.parent;                                        // Sobe um nível na hierarquia da árvore (vai para o pai do item atual)
+			templateName = s.text + '/' + templateName;          // Adiciona o nome do pai ao início do caminho do template
 		}
 
 		// Nomes dos arquivos relacionados ao template
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png');    // Substitui a extensão do template por "_preview.png" para obter o nome do arquivo da pré-visualização
-		var configName = templateName.replace(/\.[\w]+$/i, '_config.json');  // Substitui a extensão do template por "_config.json" para obter o nome do arquivo de configuração
-		var scriptName = templateName.replace(/\.[\w]+$/i, '_script.js');    // Substitui a extensão do template por "_script.js" para obter o nome do arquivo de script (se houver)
+		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // Substitui a extensão do template por "_config.json" para obter o nome do arquivo de configuração
+		var scriptName = templateName.replace(/\.[\w]+$/i, '_script.js');   // Substitui a extensão do template por "_script.js" para obter o nome do arquivo de script (se houver)
 
 		// Criação dos objetos File para os arquivos do template
-		templateFile = new File(templatesPath + '/' + templateName);        // Cria um objeto File para o arquivo do template
+		templateFile = new File(templatesPath + '/' + templateName);     // Cria um objeto File para o arquivo do template
 		previewImgFile = new File(templatesPath + '/' + imgName);        // Cria um objeto File para o arquivo de pré-visualização
 		configFile = new File(templatesPath + '/' + configName);         // Cria um objeto File para o arquivo de configuração
 		scriptFile = new File(templatesPath + '/' + scriptName);         // Cria um objeto File para o arquivo de script (se houver)
@@ -356,7 +354,7 @@ function padeiroTemplateDialog() {
 		importBtn.enabled = templateTree.selection != null;
 
 		// Define a imagem de pré-visualização (Preview)
-		if (previewImgFile.exists) {                           // Verifica se o arquivo de pré-visualização existe
+		if (previewImgFile.exists) {                          // Verifica se o arquivo de pré-visualização existe
 			previewImg.image = previewImgFile;                // Se existir, define a imagem da pré-visualização para o arquivo encontrado
 		} else {
 			previewImg.image = no_preview;                    // Se não existir, define a imagem da pré-visualização para a imagem padrão 'no_preview' (que provavelmente indica que não há pré-visualização disponível)
@@ -376,14 +374,14 @@ function padeiroTemplateDialog() {
 			// Verificação se o arquivo de configuração existe
 			if (configFile.exists) {
 				exemple = relax + '\n\nesse template não possui inputs.'; // Mensagem padrão para o usuário caso o template não possua inputs
-				var JSONContent = readFileContent(configFile);         // Lê o conteúdo do arquivo de configuração JSON (função externa não mostrada aqui)
-				templateData = JSON.parse(JSONContent);             // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+				var JSONContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON (função externa não mostrada aqui)
+				templateData = JSON.parse(JSONContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 
 				// Verifica se todas as configurações padrão estão presentes no arquivo de configuração
-				for (var o in defPadObj) {                         // Itera sobre as propriedades do objeto de configurações padrão (defPadObj)
+				for (var o in defPadObj) {                        // Itera sobre as propriedades do objeto de configurações padrão (defPadObj)
 					// check saved preferences...
 					if (templateData.hasOwnProperty(o)) continue; // Se a propriedade já existe no templateData, pula para a próxima
-					templateData[o] = defPadObj[o];             // Se a propriedade não existe, usa o valor padrão
+					templateData[o] = defPadObj[o];               // Se a propriedade não existe, usa o valor padrão
 				}
 
 				// Verifica se o template possui camadas de entrada (inputs)
@@ -406,10 +404,10 @@ function padeiroTemplateDialog() {
 		}
 
 		// Atualiza o estado dos elementos da interface com base na presença de campos de entrada (inputs) e dados
-		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);   // Habilita o botão "Criar" apenas se um template for selecionado, houver dados de entrada e o template tiver campos de entrada
-		inputLabTxt.enabled = hasInput;   // Habilita ou desabilita o rótulo "input:"
-		edtText.enabled = hasInput;       // Habilita ou desabilita a caixa de texto de entrada
-		renderCkb.enabled = hasInput;     // Habilita ou desabilita a caixa de seleção "adicionar à fila de render"
+		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput); // Habilita o botão "Criar" apenas se um template for selecionado, houver dados de entrada e o template tiver campos de entrada
+		inputLabTxt.enabled = hasInput;  // Habilita ou desabilita o rótulo "input:"
+		edtText.enabled = hasInput;      // Habilita ou desabilita a caixa de texto de entrada
+		renderCkb.enabled = hasInput;    // Habilita ou desabilita a caixa de seleção "adicionar à fila de render"
 		renderLabTxt.enabled = hasInput; // Habilita ou desabilita o rótulo da caixa de seleção de renderização
 	};
 
@@ -418,7 +416,7 @@ function padeiroTemplateDialog() {
 	// Função executada quando um template na árvore é ativado (clicado)
 	templateTree.onActivate = function () {
 		// Verifica se há dados de entrada válidos
-		hasData = (edtText.text.trim() != '' && edtText.text != exemple);  // Verifica se o texto de entrada (edtText) não está vazio e se é diferente do exemplo padrão (exemple)
+		hasData = (edtText.text.trim() != '' && edtText.text != exemple); // Verifica se o texto de entrada (edtText) não está vazio e se é diferente do exemplo padrão (exemple)
 		if (!hasData) edtText.text = exemple;                             // Se não houver dados, define o texto de entrada como o exemplo
 
 		// Habilita o botão "Criar" se um template for selecionado, houver dados de entrada e o template tiver inputs
@@ -428,7 +426,7 @@ function padeiroTemplateDialog() {
 		inputLabTxt.enabled = hasInput;     // Rótulo "input:"
 		edtText.enabled = hasInput;         // Caixa de texto de entrada
 		renderCkb.enabled = hasInput;       // Caixa de seleção "adicionar à fila de render"
-		renderLabTxt.enabled = hasInput;   // Rótulo da caixa de seleção de renderização
+		renderLabTxt.enabled = hasInput;    // Rótulo da caixa de seleção de renderização
 	};
 
 	//---------------------------------------------------------
@@ -458,7 +456,7 @@ function padeiroTemplateDialog() {
 		mainGrp.visible = false;               // Oculta o grupo principal da interface para não distrair o usuário durante o processamento
 
 		// Verificações Iniciais
-		if (edtText.text.trim() == '') return;    // Sai da função se a caixa de texto de entrada estiver vazia (após remover espaços)
+		if (edtText.text.trim() == '') return;   // Sai da função se a caixa de texto de entrada estiver vazia (após remover espaços)
 		if (!templateFile.exists) return;        // Sai da função se o arquivo do template não existir
 		if (!configFile.exists) return;          // Sai da função se o arquivo de configuração não existir
 
@@ -486,7 +484,7 @@ function padeiroTemplateDialog() {
 			return;
 		}
 
-		var iNum = app.project.numItems;       // Obtém o número total de itens no projeto
+		var iNum = app.project.numItems;      // Obtém o número total de itens no projeto
 		var folderNotAvailable = false;       // Variável de controle para verificar se a pasta de saída está disponível
 
 		// Loop principal para processar todas as composições (comps) no projeto do After Effects
@@ -502,8 +500,8 @@ function padeiroTemplateDialog() {
 			// Loop para cada linha de texto de entrada (cada item no array inputList)
 			for (var n = 0; n < inputList.length; n++) {
 				var prefix = templateData.prefix != '' ? templateData.prefix + ' - ' : ''; // Define um prefixo para o nome do template, se houver um prefixo definido em templateData
-				var templateName = prefix + inputList[n].replaceSpecialCharacters();  // Gera o nome do template combinando o prefixo (se existir) e o texto da linha atual, removendo caracteres especiais
-				var t = templateData.refTime;                                        // Obtém o tempo de referência do template (em segundos)
+				var templateName = prefix + inputList[n].replaceSpecialCharacters();       // Gera o nome do template combinando o prefixo (se existir) e o texto da linha atual, removendo caracteres especiais
+				var t = templateData.refTime;                                              // Obtém o tempo de referência do template (em segundos)
 
 				var optionsList = templateData.inputFx != null ? templateData.inputFx.options : ['']; // Obtém a lista de opções do efeito de entrada (inputFx), se definido; caso contrário, usa um array vazio
 
@@ -527,10 +525,10 @@ function padeiroTemplateDialog() {
 							var ctrlLayer = template.layer(templateData.inputFx.layerIndex); // Obtém a camada que controla o efeito de entrada
 
 							// Aplica a opção do efeito de entrada à camada de controle
-							ctrlLayer.property('ADBE Effect Parade')       // Acessa o grupo de efeitos da camada
-								.property(templateData.inputFx.fxName)    // Acessa o efeito específico
+							ctrlLayer.property('ADBE Effect Parade')        // Acessa o grupo de efeitos da camada
+								.property(templateData.inputFx.fxName)      // Acessa o efeito específico
 								.property(templateData.inputFx.optionIndex) // Acessa a propriedade que controla as opções do efeito
-								.setValue(f + 1);                          // Define o valor da opção do efeito (f + 1 para começar em 1 em vez de 0)
+								.setValue(f + 1);                           // Define o valor da opção do efeito (f + 1 para começar em 1 em vez de 0)
 						}
 
 						// Loop para cada camada de entrada (inputLayerList)
@@ -540,7 +538,7 @@ function padeiroTemplateDialog() {
 							// Verifica se há texto suficiente para preencher todas as camadas de entrada
 							if (l >= txtList.length) {
 								inputLayer.enabled = false; // Desabilita a camada se não houver texto suficiente
-								continue; // Pula para a próxima iteração do loop
+								continue;                   // Pula para a próxima iteração do loop
 							}
 
 							if (txtList[l] == '') continue; // Pula para a próxima iteração se o texto estiver vazio
@@ -551,18 +549,18 @@ function padeiroTemplateDialog() {
 
 								txtList[l] = txtList[l].trim(); // Remove espaços em branco do texto
 								var textContent = txtList[l];   // Obtém o conteúdo do texto
-								var text = inputLayer.property('ADBE Text Properties'); // Obtém a propriedade de texto da camada
+								var text = inputLayer.property('ADBE Text Properties');  // Obtém a propriedade de texto da camada
 								var textDoc = text.property('ADBE Text Document').value; // Obtém o documento de texto da camada
 
 								textDoc.text = textContent;                                   // Define o novo conteúdo do texto
-								text.property('ADBE Text Document').setValue(textDoc);         // Aplica o novo conteúdo
-								txtList[l] = txtList[l].replaceSpecialCharacters();            // Remove caracteres especiais do texto
+								text.property('ADBE Text Document').setValue(textDoc);        // Aplica o novo conteúdo
+								txtList[l] = txtList[l].replaceSpecialCharacters();           // Remove caracteres especiais do texto
 							}
 
 							// Se o método de entrada for "layerName" (nome da camada)
 							if (inputLayerList[l].method == 'layerName') {
 								var layerName = txtList[l].trim(); // Remove espaços em branco do nome da camada
-								inputLayer.name = layerName;      // Define o novo nome da camada
+								inputLayer.name = layerName;       // Define o novo nome da camada
 							}
 						}
 						// Ajusta o nome do template se não houver prefixo
@@ -586,7 +584,7 @@ function padeiroTemplateDialog() {
 						// Verifica se o template do módulo de saída já foi definido
 						if (padeiroOutputModuleTemplate == undefined) {
 							var tArray = outputModule.templates; // Array com os templates disponíveis para o módulo de saída
-							var tIndex = tArray.length - 1;       // Índice do último template do array
+							var tIndex = tArray.length - 1;      // Índice do último template do array
 
 							// Remove templates ocultos do array (provavelmente templates internos do After Effects)
 							while (tArray[tIndex].toString().match(/^_HIDDEN\s/)) {
@@ -611,11 +609,11 @@ function padeiroTemplateDialog() {
 							try {
 								var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov'); // Cria um objeto File para o arquivo de saída do render (nome do template + '.mov')
 
-								outputModule.file = outputFile;                         // Define o arquivo de saída no módulo de render
+								outputModule.file = outputFile;                          // Define o arquivo de saída no módulo de render
 								outputModule.applyTemplate(padeiroOutputModuleTemplate); // Aplica o template de saída selecionado ao módulo de render
-								item.applyTemplate('Best Settings');                   // Aplica as melhores configurações de renderização ao item na fila
+								item.applyTemplate('Best Settings');                     // Aplica as melhores configurações de renderização ao item na fila
 
-								createdOutputModuleArray.push(outputModule);          // Adiciona o módulo de saída ao array
+								createdOutputModuleArray.push(outputModule);             // Adiciona o módulo de saída ao array
 							} catch (err) {
 								alert(err.message); // Em caso de erro (por exemplo, problema ao acessar a pasta), exibe um alerta com a mensagem de erro
 							}
@@ -624,8 +622,8 @@ function padeiroTemplateDialog() {
 						}
 					}
 
-					template.openInViewer(); // Abre o template criado no visualizador do After Effects
-					template.time = t;       // Define o tempo (time) do template para o tempo de referência (t)
+					template.openInViewer();       // Abre o template criado no visualizador do After Effects
+					template.time = t;             // Define o tempo (time) do template para o tempo de referência (t)
 					template.comment = 'EXPORTAR'; // Adiciona um comentário "EXPORTAR" ao template, possivelmente para indicar que ele está pronto para exportação
 				}
 			}
@@ -634,14 +632,14 @@ function padeiroTemplateDialog() {
 
 		}
 		// Configuração da Pasta de Importação e Limpeza de Pastas do Projeto
-		var importFolder = new Folder(templateData.importPath);   // Cria um objeto "Folder" para a pasta de importação definida nas configurações do template.
-		app.project.setDefaultImportFolder(importFolder);        // Define a pasta de importação padrão do After Effects para a pasta especificada no template.
+		var importFolder = new Folder(templateData.importPath); // Cria um objeto "Folder" para a pasta de importação definida nas configurações do template.
+		app.project.setDefaultImportFolder(importFolder);       // Define a pasta de importação padrão do After Effects para a pasta especificada no template.
 
-		deleteProjectFolders();    // Chama uma função externa (não mostrada aqui) para excluir as pastas do projeto.
-		populateProjectFolders();  // Chama uma função externa (não mostrada aqui) para preencher as pastas do projeto com os templates criados.
+		deleteProjectFolders();      // Chama uma função externa (não mostrada aqui) para excluir as pastas do projeto.
+		populateProjectFolders();    // Chama uma função externa (não mostrada aqui) para preencher as pastas do projeto com os templates criados.
 		deleteEmptyProjectFolders(); // Chama uma função externa (não mostrada aqui) para excluir pastas vazias do projeto.
 
-		wPadeiroTemplates.close(); // Fecha a janela da interface do "O Padeiro".
+		wPadeiroTemplates.close();   // Fecha a janela da interface do "O Padeiro".
 
 		// Registro de Dados (Log)
 		try {
@@ -651,8 +649,8 @@ function padeiroTemplateDialog() {
 
 			// Conversão da hora para formato de 24 horas
 			if (timeStr.match(/PM/i)) { // Se a hora for PM (tarde/noite)...
-				var timeArray = timeStr.split(/\s/)[0].split(':');  // Divide a hora em horas, minutos e segundos
-				var hStr = parseInt(timeArray[0]) + 12;             // Adiciona 12 horas ao valor das horas
+				var timeArray = timeStr.split(/\s/)[0].split(':'); // Divide a hora em horas, minutos e segundos
+				var hStr = parseInt(timeArray[0]) + 12;            // Adiciona 12 horas ao valor das horas
 				timeStr = hStr + ':' + timeArray[1];               // Reconstrói a string da hora no formato 24 horas
 			}
 
@@ -674,7 +672,7 @@ function padeiroTemplateDialog() {
 		// Execução de Script Personalizado (se houver)
 		if (scriptFile.exists) { // Verifica se existe um arquivo de script associado ao template
 			try {
-				scriptFile.open('r');  // Abre o arquivo de script para leitura
+				scriptFile.open('r');    // Abre o arquivo de script para leitura
 				eval(scriptFile.read()); // Executa o código JavaScript contido no arquivo
 
 				scriptFile.close();   // Fecha o arquivo de script
@@ -695,8 +693,8 @@ function padeiroTemplateDialog() {
 			app.project.importFile(IO); // Importa o template selecionado para o projeto atual do After Effects
 
 			// Organização das Pastas do Projeto
-			deleteProjectFolders();    // Chama uma função externa para excluir as pastas do projeto
-			populateProjectFolders();  // Chama uma função externa para recriar as pastas do projeto populando-as com os itens do projeto
+			deleteProjectFolders();      // Chama uma função externa para excluir as pastas do projeto
+			populateProjectFolders();    // Chama uma função externa para recriar as pastas do projeto populando-as com os itens do projeto
 			deleteEmptyProjectFolders(); // Chama uma função externa para excluir pastas vazias do projeto
 
 		} catch (err) { // Captura e trata qualquer erro que ocorra durante a importação
@@ -714,7 +712,7 @@ function padeiroTemplateDialog() {
 		buildTree(templatesFolder, templateTree, fileFilter); // Atualiza a árvore de templates chamando a função `buildTree`. Esta função (que não está presente neste trecho de código) provavelmente lê os templates da pasta `templatesFolder`, filtra-os usando `fileFilter` e os insere na estrutura da árvore `templateTree`.
 
 		// Expande todos os nós da árvore após a atualização
-		templateTree.expanded = true; // Expande o nível principal da árvore.
+		templateTree.expanded = true;      // Expande o nível principal da árvore.
 		var branches = templateTree.items; // Obtém todos os itens da árvore (nós, que representam pastas, e folhas, que representam os templates).
 
 		// Loop para percorrer cada item da árvore
@@ -730,9 +728,9 @@ function padeiroTemplateDialog() {
 	// Função para abrir a pasta de templates quando o botão "Abrir Pasta" é clicado
 	openFldBtn.onClick = function () {
 		if (!templatesFolder.exists) {           // Verifica se a pasta de templates ainda não existe
-			templatesFolder.create();             // Se não existir, cria a pasta de templates
+			templatesFolder.create();            // Se não existir, cria a pasta de templates
 		}
-		openFolder(templatesPath);                // Abre a pasta de templates no sistema operacional do usuário (usando uma função externa `openFolder`)
+		openFolder(templatesPath);               // Abre a pasta de templates no sistema operacional do usuário (usando uma função externa `openFolder`)
 	};
 
 	// Função para abrir a página de documentação quando o botão "Informações" é clicado
