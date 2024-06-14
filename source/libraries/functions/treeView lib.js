@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,27 +6,32 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
-
-// remove empty tree folders...
+// Função para remover pastas vazias da árvore de diretórios (recursivamente)
 function cleanHierarchy(nodeTree) {
-	var branches = nodeTree.items; // all current tree item subitems...
 
-	for (var i = branches.length - 1; i >= 0; i--) {
-		if (branches[i].type != 'node') continue; // ignore item...
+    // Obtém todos os subitens (arquivos ou pastas) do nó atual
+    var branches = nodeTree.items; 
 
-		if (branches[i].items.length > 0) {
-			cleanHierarchy(branches[i]); // current item is folder item...
-		} else {
-			nodeTree.remove(branches[i]); // remove current folder item...
-		}
-		if (nodeTree.items.length == 0 && nodeTree.type == 'node') { // empty folder item...
-			nodeTree.parent.remove(nodeTree); // remove current folder item...
-		}
-	}
+    // Percorre os subitens de trás para frente para evitar problemas com a remoção
+    for (var i = branches.length - 1; i >= 0; i--) {
+
+        // Se o subitem não for uma pasta ("node"), ignora e passa para o próximo
+        if (branches[i].type != 'node') continue; 
+
+        // Se o subitem for uma pasta e tiver subitens dentro dela, chama a função recursivamente
+        if (branches[i].items.length > 0) {
+            cleanHierarchy(branches[i]); 
+        } else {
+            // Se o subitem for uma pasta vazia, remove-o da árvore
+            nodeTree.remove(branches[i]); 
+        }
+
+        // Verifica se o nó atual ficou vazio após a remoção do subitem
+        if (nodeTree.items.length == 0 && nodeTree.type == 'node') {
+            // Se o nó atual for uma pasta vazia, remove-o da árvore
+            nodeTree.parent.remove(nodeTree); 
+        }
+    }
 }
 
 // remove empty tree folders...
