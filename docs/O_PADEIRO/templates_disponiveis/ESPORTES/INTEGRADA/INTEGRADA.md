@@ -21,13 +21,20 @@
 
 ## 📍 funcionamento básico
 
-1. abra a **comp** '*LOGOS*'.
-2. substitua os **layers logo 1**, **2**, **3**, **4**, **5**, **6**, **7** e **8** com as imagens das marcas dos patrocinadores.
-3. reordene os layers para alterar a ordem em que as marcas aparecem na chamada.
-4. desabilite os layers das marcas que não serão usadas (caso necessário).
-5. use a *janela de controle de efeitos* para alterar a escala da marca e as cores das artes laterais.
-6. ajuste a work area da **comp** '*PATROCINADORES FUT 2024*' usando os marcadores da **comp** como referência (o template suporta de 6 a 8 marcas habilitadas).
-7. renomeie a **comp** '*PATROCINADORES FUT 2024*' adicionando '*_*', mais a data com o período de vigência da chamada.
+1. Abra a **comp** '*LOGOS*': Nesta seção, você personalizará as marcas dos patrocinadores.
+2. Substitua as imagens: Troque as imagens nos layers 'logo 1' a 'logo 8' pelas logos dos patrocinadores.
+3. Ajuste a ordem: Arraste os layers para cima ou para baixo para mudar a ordem em que as marcas aparecem na animação.
+4. Desabilite logos não usados: Se você tiver menos de 8 patrocinadores, desative os layers de logo que não serão utilizados.
+5. Edite os controles disponíveis na janela de **Controle de Efeitos** de cada marca:\
+  Cores: Se a opção '*Cores Livres*' estiver habilitada, você poderá personalizar as cores das artes laterais da marca.
+  Escala: Ajuste o tamanho de cada marca na chamada.
+1. Ajuste a duração da animação:\
+  Abra a **comp** '*PATROCINADORES FUT 2024*'.
+  Utilize os marcadores na **timeline** como guia para definir o fim da animação.
+  O template acomoda de 6 a 8 marcas.
+1. Renomeie a **comp** principal:
+  Dê um novo nome para a **comp** '*PATROCINADORES FUT 2024*'.
+  Adicionando um '_' (underline) seguido da data de início e fim do período de vigência da chamada.
 
 > 📋 *exemplo:* "*PATROCINADORES FUT 2024_08-06 A 14-06*".
 
@@ -39,19 +46,19 @@
 
 ## 📍 parâmetros
 
-os controles das marcas estão nos em seus respectivos **layers** na **comp** '*LOGOS*', são eles:
+Os controles para personalizar as marcas estão localizados nos respectivos **layers** dentro da **comp** '*LOGOS*'. São eles:
 
 ### opções da marca
 
 ![fx1](<INTEGRADA/opcoes da marca.png>)
 
-- **cores livres** → habilita a alteração das cores das artes laterais.
+- **cores livres** → Ativa a personalização das cores das artes laterais da marca.
 - **cores da arte lateral**:
 
-  - **cor 1** → cor do tint para o preto.
-  - **cor 2** → cor do tint para o branco.
+  - **cor 1** → Define a cor que substituirá o preto na arte lateral.
+  - **cor 2** → Define a cor que substituirá o branco na arte lateral.
 
-- **escala** → controla a escala da marca.
+- **escala** → Controla o tamanho da marca.
 
 ---
 
@@ -77,8 +84,13 @@ para adicionar uma nova marca:
 
 ao usar o script **O PADEIRO**:
 
-- após preencher a data de vigência da chamada no campo de **input** e clicar no botão **criar**, o script irá abrir automaticamente a janela de importação de arquivos. basta navegar até o local onde os arquivos de imagem de cada marca estão armazenados.
-- renomeie os arquivos de imagens das marcas acrescentando o seu respectivo índice no inicio para ordenar automaticamente as marcas na chamada.
+- após preencher a data de vigência da chamada no campo de **input** e clicar no botão **criar**, o script irá abrir automaticamente a janela de importação de arquivos.
+- navegue até o local dos arquivos de imagem de cada marca estão armazenados.
+- renomeie os arquivos das marcas acrescentando a sua posição no inicio do nome para ordenar automaticamente as marcas na chamada.
+
+- Informe a data: Insira a data de vigência da chamada no campo de **input** e clique em **criar**. O script abrirá automaticamente a janela de importação de arquivos.
+- Encontre as imagens: Navegue até a pasta onde estão as logos das marcas.
+- Renomeie os arquivos: Para garantir a ordem correta das marcas na animação, adicione um número no início do nome de cada arquivo, indicando a posição desejada.
 
 > 📋 *exemplo:*\
 > ![busca](<INTEGRADA/importar-marcas.gif>)
