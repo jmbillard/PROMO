@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,38 +6,30 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
-
-// load the XMP library...
+// Carrega a biblioteca XMP (se ainda não estiver carregada).
 if (ExternalObject.AdobeXMPScript == undefined) {
-	ExternalObject.AdobeXMPScript = new ExternalObject(
-		'lib:AdobeXMPScript'
-	);
-}
-
-function getXMPData(XMPfield) {
-	var metaData = new XMPMeta(app.project.xmpPacket);
-	var XMPSet = XMPConst.NS_DC;
-	var XMPVal = '';
-	var XMPProp = metaData.getProperty(XMPSet, XMPfield);
-
-	if (XMPProp != undefined) {
-		XMPVal = XMPProp.value;
-	}
-
-	return XMPVal;
-}
-
-function setXMPData(XMPfield, XMPval) {
-	var metaData = new XMPMeta(app.project.xmpPacket);
-	var XMPSet = XMPConst.NS_DC;
-	var XMPProp = metaData.doesPropertyExist(XMPSet, XMPfield);
-
+	ExternalObject.AdobeXMPScript = new ExternalObject('lib:AdobeXMPScript');
+  }
+  
+  // Obtém um valor de metadado XMP do projeto atual.
+  function getXMPData(XMPfield) {
+	var metaData = new XMPMeta(app.project.xmpPacket);  // Cria um objeto XMPMeta a partir dos metadados do projeto
+	var XMPSet = XMPConst.NS_DC;                        // Define o namespace XMP a ser usado (Dublin Core, neste caso)
+	
+	// Verifica se a propriedade XMP existe e retorna seu valor, ou uma string vazia se não existir
+	return metaData.doesPropertyExist(XMPSet, XMPfield) ? metaData.getProperty(XMPSet, XMPfield).value : '';
+  }
+  
+  // Define um valor de metadado XMP no projeto atual.
+  function setXMPData(XMPfield, XMPval) {
+	var metaData = new XMPMeta(app.project.xmpPacket);  // Cria um objeto XMPMeta a partir dos metadados do projeto
+	var XMPSet = XMPConst.NS_DC;                        // Define o namespace XMP a ser usado
+  
+	// Remove a propriedade existente (se houver) e define o novo valor
 	metaData.deleteProperty(XMPSet, XMPfield);
-	metaData.setProperty(XMPSet, XMPfield, XMPval);
-
-	app.project.xmpPacket = metaData.serialize();
-}
+	metaData.setProperty(XMPSet, XMPfield, XMPval); 
+  
+	// Atualiza os metadados do projeto
+	app.project.xmpPacket = metaData.serialize(); 
+  }
+  

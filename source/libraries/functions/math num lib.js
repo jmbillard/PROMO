@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,28 +6,22 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
-
-// returns a random integer...
+// Retorna um número inteiro aleatório entre 'min' (inclusivo) e 'max' (exclusivo).
 function randomInteger(min, max) {
-	return Math.floor(Math.random() * (max - min)) + min; // → 17
+	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// returns a random gauss number...
+// Retorna um número aleatório com distribuição gaussiana (normal) entre 0 e 1.
 function gaussRnd(samples) {
 	var r = 0;
-
+	// Soma várias amostras de números aleatórios uniformes (0 a 1)
 	for (var i = 0; i < samples; i++) {
 		r += Math.random();
 	}
-
-	return r / samples; // → 0 - 1
+	return r / samples; // Média das amostras, resultando em um valor próximo de 0.5, com distribuição gaussiana
 }
 
-// simple timer...
+// Retorna o tempo decorrido em segundos desde o início do script (com duas casas decimais).
 function timer() {
-	return ($.hiresTimer / 1000000).toFixed(2); // → 1.27 (in seconds)
+	return ($.hiresTimer / 1000000).toFixed(2);
 }
