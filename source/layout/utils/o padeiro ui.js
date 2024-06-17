@@ -70,6 +70,7 @@ function renderTemplateDialog(array, alphaChannel) {
 
 // Função para criar a interface de usuário do "O Padeiro"
 function padeiroTemplateDialog() {
+
 	var wWidth;                        // Largura da janela sem a pré-visualização
 	var oWidth;                        // Largura da janela com a pré-visualização
 	var previewScale = 0.2;            // Fator de escala da pré-visualização da imagem
@@ -338,8 +339,8 @@ function padeiroTemplateDialog() {
 			s = s.parent;                                        // Sobe um nível na hierarquia da árvore (vai para o pai do item atual)
 			templateName = s.text + '/' + templateName;          // Adiciona o nome do pai ao início do caminho do template
 		}
-
 		// Nomes dos arquivos relacionados ao template
+		templateName = templateName.replace(/\s+\/\s+/g, '/');
 		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png');    // Substitui a extensão do template por "_preview.png" para obter o nome do arquivo da pré-visualização
 		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // Substitui a extensão do template por "_config.json" para obter o nome do arquivo de configuração
 		var scriptName = templateName.replace(/\.[\w]+$/i, '_script.js');   // Substitui a extensão do template por "_script.js" para obter o nome do arquivo de script (se houver)

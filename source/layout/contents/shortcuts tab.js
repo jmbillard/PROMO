@@ -1,8 +1,4 @@
-/* eslint-disable no-with */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
+
 /*
  
 ---------------------------------------------------------------
@@ -13,54 +9,55 @@
 
 currentGrp = tabsGrp.shortcuts;
 
+// Grupo para os links de sites
 var linksSubGrp1 = currentGrp.add('group');
 
+// Texto para o grupo de links de sites
 var linkTxt1 = linksSubGrp1.add('statictext', undefined, 'sites:', { name: 'label' , truncate: 'end'});
 linkTxt1.maximumSize.width = 30;
 
+// Botão para abrir o OneDrive Globo
 var oneDriveBtn = linksSubGrp1.add('iconbutton', iconSize, oneDriveIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 oneDriveBtn.helpTip = 'OneDrive globo';
 
-//---------------------------------------------------------
-
-// var linksSubGrp3 = currentGrp.add('group');
+// Botão para abrir o Trello de testes
 var trelloBtn = linksSubGrp1.add('iconbutton', iconSize, trelloIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 trelloBtn.helpTip = 'trello teste board';
-// trelloBtn.enabled = false;
 
-//---------------------------------------------------------
-
+// Painel para separar os grupos
 currentGrp.add('panel');
  
+// Grupo para os links de pastas
 var linksSubGrp2 = currentGrp.add('group');
 
+// Texto para o grupo de links de pastas
 var linkTxt2 = linksSubGrp2.add('statictext', undefined, 'folders:', { name: 'label' , truncate: 'end'});
 linkTxt2.maximumSize.width = 40;
 
+// Botão para abrir a pasta de projetos RJ
 var projRJBtn = linksSubGrp2.add('iconbutton', iconSize, projRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projRJBtn.helpTip = 'pasta de projetos RJ';
 projRJBtn.enabled = !homeOffice;
 
+// Botão para abrir a pasta de output RJ
 var outRJBtn = linksSubGrp2.add('iconbutton', iconSize, outRJFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 outRJBtn.helpTip = 'pasta de output RJ';
 outRJBtn.enabled = !homeOffice;
 
-//---------------------------------------------------------
-
+// Botão para abrir a pasta de projetos SP
 var projSPBtn = linksSubGrp2.add('iconbutton', iconSize, projSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projSPBtn.helpTip = 'pasta de projetos SP';
 projSPBtn.enabled = !homeOffice;
 
+// Botão para abrir a pasta de output SP
 var outSPBtn = linksSubGrp2.add('iconbutton', iconSize, outSPFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 outSPBtn.helpTip = 'pasta de output SP';
 outSPBtn.enabled = !homeOffice;
 
-//---------------------------------------------------------
-
+// Botão para abrir a pasta de export dos editores
 var inFtgBtn = linksSubGrp2.add('iconbutton', iconSize, inFtgFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 inFtgBtn.helpTip = 'pasta de export dos editores';
 outSPBtn.enabled = !homeOffice;
-
 
 /*
   
