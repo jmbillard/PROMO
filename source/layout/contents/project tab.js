@@ -6,68 +6,74 @@
 
 */
 
+// Grupo de subgrupos do projeto
 currentGrp = tabsGrp.project;
+
+// Subgrupo para o nome do projeto
 var projSubGrp1 = currentGrp.add('group');
 
+// Campo de texto para nome do projeto
 var projIdContent = 'PROJ ID';
 var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
-projIdTxt.maximumSize.width = 100;
-projIdTxt.minimumSize.width = vMin;
-projIdTxt.helpTip = projIdContent;
+projIdTxt.maximumSize.width = 100; // Largura máxima do campo de texto
+projIdTxt.minimumSize.width = vMin; // Largura mínima do campo de texto
+projIdTxt.helpTip = projIdContent; // Dica de ajuda para o campo de texto
 
+// Botão para criar a estrutura de pastas no AE e no sistema
 var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projFoldersBtn.helpTip = '◗ → criar estrutura de pastas no AE\
-◖ → criar estrutura de pastas no sistema\n\
-abre a janela de seleção de pastas no\
-drive L para escolher onde criar a\
-estrutura do projeto no sistema.';
+projFoldersBtn.helpTip = '◗ → criar estrutura de pastas no AE\n' +
+  '◖ → criar estrutura de pastas no sistema\n' +
+  'abre a janela de seleção de pastas no drive L para escolher onde criar a estrutura do projeto no sistema.';
 
-//---------------------------------------------------------
-
+// Separador
 currentGrp.add('panel');
 
+// Subgrupo para renomear composições
 var projSubGrp2 = currentGrp.add('group');
 
-// var renameItemSubGrp = projSubGrp2.add('group');
+// Botão para renomear composições selecionadas
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-renameItemBtn.helpTip = '◖ → renomear comps selecionadas\
-◗ → renomear TODAS as comps\n\
-remove caracteres especiais,\
-transforma tudo para caixa alta.\
-usa o nome da comp para aplicar\
-tags de organização predeterminadas.';
-// var renameItemLab = renameItemSubGrp.add('statictext', undefined, 'rename comps', { name: 'label' , truncate: 'end'});
+renameItemBtn.helpTip = '◖ → renomear composições selecionadas\n' +
+  '◗ → renomear TODAS as composições\n' +
+  'remove caracteres especiais,\n' +
+  'transforma tudo para maiúsculas\n' +
+  'usa o nome da composição para aplicar tags de organização predeterminadas.';
 
-// var projOrgSubGrp = projSubGrp2.add('group');
+// Botão para organizar projeto
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projOrgBtn.helpTip = '◖ → organização automática de projetos\n\
-organiza o projeto usando as tags de organização.\n\
-◗ → tags de organização\
-abre a janela de tags para aplicar';
-// var renameItemLab = projOrgSubGrp.add('statictext', undefined, 'organize proj.', { name: 'label' , truncate: 'end'});
+projOrgBtn.helpTip = '◖ → organização automática de projetos\n' +
+  'organiza o projeto usando as tags de organização.\n' +
+  '◗ → tags de organização\n' +
+  'abre a janela de tags para aplicar';
 
-//---------------------------------------------------------
-
+// Separador
 currentGrp.add('panel');
 
+// Subgrupo para coletar fontes
 var projSubGrp3 = currentGrp.add('group');
 
+// Botão para coletar fontes usadas no projeto
 var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n\
-copia todas as fontes usadas no projeto\
-para a pasta de fontes';
+collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n' +
+  'copia todas as fontes usadas no projeto\n' +
+  'para a pasta de fontes';
 
+// Separador
 projSubGrp3.add('panel');
 
+// Botão para abrir a pasta do projeto
 var fldProjBtn2 = projSubGrp3.add('iconbutton', iconSize, aepFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-fldProjBtn2.helpTip = '◖ → abir pasta do projeto';
+fldProjBtn2.helpTip = '◖ → abrir pasta do projeto';
 
+// Botão para abrir a pasta do último item da fila de render
 var fldProjBtn3 = projSubGrp3.add('iconbutton', iconSize, outFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-fldProjBtn2.helpTip = '◖ → abir pasta do último item da fila de render.\n\
-◗ → abir pasta do penúltimo item da fila de render.';
+fldProjBtn2.helpTip = '◖ → abrir pasta do último item da fila de render.\n' +
+  '◗ → abrir pasta do penúltimo item da fila de render.';
 
 
+// Obtém os rótulos estáticos dos elementos da guia menu
 getStaticTextLabels(tabsGrp.menu, []);
+
 /*
 
 ---------------------------------------------------------------

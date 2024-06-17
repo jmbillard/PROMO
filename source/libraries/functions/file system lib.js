@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,11 +6,6 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
-
 /*
 
 ---------------------------------------------------------------
@@ -22,84 +13,122 @@
 ---------------------------------------------------------------
 
 */
-
+// Define o conteúdo da área de transferência no Windows ou macOS.
 function setClipboard(str) {
-	if (appOs == 'Win') {
-		var setClipboard = 'Set-Clipboard -Value \'' + str + '\'';
-		var cmd = 'cmd.exe /c powershell.exe -c "' + setClipboard + '"';
-		system.callSystem(cmd);  
-	}
-}
+	if (appOs === 'Win') {
+	  // Comando PowerShell para Windows
+	  var setClipboard = 'Set-Clipboard -Value \'' + str + '\'';
+	  var cmd = 'cmd.exe /c powershell.exe -c "' + setClipboard + '"';
+	  system.callSystem(cmd);
+	
+	} else if (appOs === 'Mac') {
+	  // Comando pbcopy para macOS
+	  var cmd = 'echo "' + str + '" | pbcopy';
+	  system.callSystem(cmd);
+	} 
+  }
 
-// open system folder...
+// Abre uma pasta no sistema operacional (Windows ou macOS).
 function openFolder(folderPath) {
-	var folder = Folder(folderPath);
-
-	if (appOs == 'Win') {
-		system.callSystem('explorer ' + Folder.decode(folder.fsName));
-	} else {
-		system.callSystem('open "' + Folder.decode(folder.fsName) + '"');
+	var folder = Folder(folderPath); // Obtém um objeto Folder representando o caminho da pasta
+  
+	if (appOs === 'Win') {
+	  // Comando para abrir a pasta no Windows Explorer
+	  system.callSystem('explorer ' + Folder.decode(folder.fsName));  
+  
+	} else if (appOs === 'Mac') {
+	  // Comando para abrir a pasta no Finder (macOS)
+	  system.callSystem('open "' + Folder.decode(folder.fsName) + '"');  
 	}
-}
-
-// open url...
-function openWebSite(url) {
-	if (appOs == 'Win') {
-		system.callSystem('explorer ' + url);
-	} else {
-		system.callSystem('open ' + url);
+  }
+  
+  // Abre um URL no navegador padrão do sistema operacional (Windows ou macOS).
+  function openWebSite(url) {
+	if (appOs === 'Win') {
+	  // Comando para abrir o URL no Windows Explorer (que também pode abrir URLs)
+	  system.callSystem('explorer ' + url);     
+  
+	} else if (appOs === 'Mac') {
+	  // Comando para abrir o URL no navegador padrão do macOS
+	  system.callSystem('open ' + url);        
 	}
-}
-
+  }
+  
+// Faz o download de conteúdo de URLs em um array para arquivos em um array de destinos (Windows e macOS).
 function getURLContent(urlArray, dstArray) {
-	if (appOs == 'Win') {
-		// powershell command string...
-		// header...
-		var cmd =
-			'Write-Host \'------------- PROMO script -------------\'';
-		cmd += ' -ForegroundColor white -BackgroundColor DarkRed;';
-
-		for (var i = 0; i < urlArray.length; i++) {
-			// get only the NOT '\' OR '/' at the end...
-			// eslint-disable-next-line no-useless-escape
-			var fileName = decodeURI(urlArray[i].match(/[^\\|\/]*$/i));
-			// removes any character after the '?' at the end...
-			fileName = fileName.replace(/[?].*$/, '');
-			// current action description...
-			cmd += 'Write-Host \'> downloading ' + fileName + '...\';';
-			// downloads file...
-			cmd += 'curl \'' + urlArray[i] + '\' -OutFile \'' + dstArray[i] + '/' + fileName + '\';';
-		}
-		// pass the powershell command → cmd...
-		var cmdStr = 'cmd.exe /c powershell.exe -c "' + cmd + '"';
-		// →  cmd.exe /c powershell.exe -c "curl 'https://site.com/file.jsx' -OutFile '~/Desktop/file.jsx'"
-		system.callSystem(cmdStr);
+	// Verifica se os arrays têm o mesmo tamanho
+	if (urlArray.length !== dstArray.length) {
+	  alert('Os arrays de URLs e destinos devem ter o mesmo tamanho.');
+	  return;
 	}
-}
-
+  
+	var cmd = ''; // Comando a ser executado
+  
+	if (appOs === 'Win') {
+	  // PowerShell (Windows)
+	  
+	  // Cabeçalho em destaque
+	  cmd += 'Write-Host \'------------- PROMO script -------------\' -ForegroundColor white -BackgroundColor DarkRed;';
+  
+	  // Itera sobre as URLs e prepara os comandos de download
+	  for (var i = 0; i < urlArray.length; i++) {
+		var fileName = decodeURI(urlArray[i].match(/[^\\|\/]*$/i)[0]).replace(/[?].*$/, ''); // Extrai o nome do arquivo da URL
+		cmd += 'Write-Host \'> baixando ' + fileName + '...\';'; // Mensagem de download
+		cmd += 'curl \'' + urlArray[i] + '\' -OutFile \'' + dstArray[i] + '/' + fileName + '\';'; // Comando curl
+	  }
+  
+	  // Executa o comando PowerShell no cmd.exe
+	  var cmdStr = 'cmd.exe /c powershell.exe -c "' + cmd + '"';
+	  system.callSystem(cmdStr);
+  
+	} else if (appOs === 'Mac') {
+	  // Terminal (macOS)
+  
+	  // Itera sobre as URLs e prepara os comandos de download
+	  for (var i = 0; i < urlArray.length; i++) {
+		var fileName = decodeURI(urlArray[i].match(/[^\\|\/]*$/i)[0]).replace(/[?].*$/, ''); // Extrai o nome do arquivo da URL
+		cmd += 'curl -o \'' + dstArray[i] + '/' + fileName + '\' \'' + urlArray[i] + '\';'; // Comando curl
+	  }
+  
+	  // Executa o comando no terminal
+	  system.callSystem(cmd);
+	}
+  }
+  
+// Descompacta um arquivo ZIP em um diretório de destino (Windows e macOS).
 function unzipContent(zipPath, dstPath) {
-	if (appOs == 'Win') {
-		// get only the NOT '\' OR '/' at the end...
-		// eslint-disable-next-line no-useless-escape
-		var fileName = decodeURI(zipPath.match(/[^\\|\/]*$/i));
-		// removes any character after the '?' at the end...
-		fileName = fileName.replace(/[?].*$/, '');
-
-		// powershell command string...
-		// header...
-		var cmd = 'Write-Host \'------------- PROMO script -------------\'';
-		cmd += ' -ForegroundColor white -BackgroundColor DarkRed;';
-		// current action description...
-		cmd += 'Write-Host \'> extracting ' + fileName + '...\';';
-		// unzip file...
-		cmd += 'Expand-Archive -Path \'' + zipPath + '\' -DestinationPath \'' + dstPath + '\'  -Force;';
-		// pass the powershell command thru cmd...
-		var cmdStr = 'cmd.exe /c powershell.exe -c "' + cmd + '"';
-
-		system.callSystem(cmdStr);
+	// Extrai o nome do arquivo ZIP
+	var fileName = decodeURI(zipPath.match(/[^\\|\/]*$/i)[0]).replace(/[?].*$/, '');
+  
+	var cmd = ''; // Comando a ser executado
+  
+	if (appOs === 'Win') {
+	  // PowerShell (Windows)
+  
+	  // Cabeçalho em destaque
+	  cmd += 'Write-Host \'------------- PROMO script -------------\' -ForegroundColor white -BackgroundColor DarkRed;';
+  
+	  // Mensagem de extração
+	  cmd += 'Write-Host \'> extraindo ' + fileName + '...\';';
+  
+	  // Descompacta o arquivo ZIP usando Expand-Archive
+	  cmd += 'Expand-Archive -Path \'' + zipPath + '\' -DestinationPath \'' + dstPath + '\' -Force;';
+  
+	  // Executa o comando PowerShell no cmd.exe
+	  var cmdStr = 'cmd.exe /c powershell.exe -c "' + cmd + '"';
+	  system.callSystem(cmdStr);
+  
+	} else if (appOs === 'Mac') {
+	  // Terminal (macOS)
+  
+	  // Descompacta o arquivo ZIP usando unzip
+	  cmd = 'unzip -o \'' + zipPath + '\' -d \'' + dstPath + '\''; 
+  
+	  // Executa o comando no terminal
+	  system.callSystem(cmd);
 	}
 }
-
+  
 function zipContent(path, zipPath) {
 	if (appOs == 'Win') {
 		// get only the NOT '\' OR '/' at the end...
