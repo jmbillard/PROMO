@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,10 +6,6 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jshint -W085
-//  jshint -W043
 
 /*
 
@@ -23,110 +15,116 @@
 
 */
 
-// cria shape null layers..
+// Cria uma camada de forma (shape layer) com um retângulo vazio (usado como null).
 function shpNull() {
-	var aItem = app.project.activeItem;
-	var shpLayer = aItem.layers.addShape();
-	var shpGroup = shpLayer.property('ADBE Root Vectors Group');
-	var shpRect = shpGroup.addProperty('ADBE Vector Shape - Rect');
-	shpRect.name = 'null';
-	shpRect.property('ADBE Vector Rect Size').setValue([100, 100]);
+	var aItem = app.project.activeItem;                // Obtém a composição ativa
+	var shpLayer = aItem.layers.addShape();            // Cria uma nova camada de forma
+	var shpGroup = shpLayer.property('ADBE Root Vectors Group');    // Obtém o grupo de vetores raiz da camada
+	var shpRect = shpGroup.addProperty('ADBE Vector Shape - Rect'); // Adiciona um retângulo ao grupo
+	shpRect.name = 'null';                                          // Nomeia o retângulo como "null"
+	shpRect.property('ADBE Vector Rect Size').setValue([100, 100]); // Define o tamanho do retângulo
 
-	return shpLayer;
+	return shpLayer; // Retorna a camada de forma criada
 }
-// cria shape adjustment layers..
-function shpAdjustment(comp) {
-	var shpLayer = comp.layers.addShape();
-	var shpGroup = shpLayer.property('ADBE Root Vectors Group');
-	var shpRect = shpGroup.addProperty('ADBE Vector Shape - Rect');
-	var expStr = '[thisComp.width, thisComp.height];';
 
-	shpRect.name = 'adjustment';
-	shpRect.property('ADBE Vector Rect Size')
-		.setValue([comp.width, comp.height]);
+// Cria uma camada de ajuste (adjustment layer) como uma camada de forma.
+function shpAdjustment(comp) {
+	var shpLayer = comp.layers.addShape();                       // Cria uma nova camada de forma
+	var shpGroup = shpLayer.property('ADBE Root Vectors Group'); // Obtém o grupo de vetores raiz
+
+	// Cria e configura o retângulo da camada de ajuste
+	var shpRect = shpGroup.addProperty('ADBE Vector Shape - Rect');
+	shpRect.name = 'adjustment';                                 // Nomeia o retângulo
+	var expStr = '[thisComp.width, thisComp.height];';           // Expressão para o tamanho
+
+	// Define o tamanho inicial e a expressão para ajustar automaticamente o tamanho
+	shpRect.property('ADBE Vector Rect Size').setValue([comp.width, comp.height]);
 	shpRect.property('ADBE Vector Rect Size').expression = expStr;
 
+	// Cria e configura o preenchimento da camada de ajuste
 	var shpFill = shpGroup.addProperty('ADBE Vector Graphic - Fill');
-	shpFill.property('ADBE Vector Fill Color').setValue([1, 1, 1, 1]);
-	shpFill.name = 'adjustment fill';
+	shpFill.property('ADBE Vector Fill Color').setValue([1, 1, 1, 1]); // Branco e opaco
+	shpFill.name = 'adjustment fill';                                 // Nomeia o preenchimento
 
-	return shpLayer;
+	return shpLayer; // Retorna a camada de ajuste criada
 }
 
+// Cria uma paleta de cores (grupo de vetores) na camada fornecida.
 function shpPallet(aLayer, colorArray) {
-	var s = 50; // color swatch size...
-	var gap = 10; // gap between swatches...
-	var posY = ((colorArray.length - 1) * (s + gap)) / 2; // initial vertical offset...
-	// vector content...
-	var contents = aLayer.property('ADBE Root Vectors Group'); // vector contents...
-	// main color pallet group...
+	var s = 50;   // Tamanho de cada amostra de cor
+	var gap = 10; // Espaçamento entre as amostras
+
+	// Calcula a posição vertical inicial para centralizar as amostras
+	var posY = ((colorArray.length - 1) * (s + gap)) / 2;
+
+	// Obtém o grupo de vetores raiz da camada
+	var contents = aLayer.property('ADBE Root Vectors Group');
+
+	// Cria um novo grupo de vetores para a paleta
 	var pallet = contents.addProperty('ADBE Vector Group');
 
-	// 1 swatch for every color...
+	// Itera sobre as cores do array
 	for (var c = 0; c < colorArray.length; c++) {
-		var color = colorArray[c];
-		var Hex = rgbToHex(color).replace('0x', '#').toUpperCase();
-		var colorGroup = pallet
-			.addProperty('ADBE Vectors Group')
-			.addProperty('ADBE Vector Group');
+		var color = hexToRGB(colorArray[c]); // Converte a cor hexadecimal para RGB
+		var Hex = rgbToHEX(color);           // Converte a cor RGB de volta para hexadecimal (para o nome)
+
+		// Cria um grupo para a amostra de cor e seus elementos
+		var colorGroup = pallet.addProperty('ADBE Vectors Group').addProperty('ADBE Vector Group');
+
+		// Cria um subgrupo para a amostra de cor
 		var colorSubGroup = colorGroup.addProperty('ADBE Vectors Group');
-		var colorSwatch = colorSubGroup.addProperty(
-			'ADBE Vector Shape - Rect'
-		);
-		colorSwatch.property('ADBE Vector Rect Size').setValue([s, s]);
-		colorSwatch
-			.property('ADBE Vector Rect Position')
-			.setValue([0, c * (s + gap) - posY]);
-		var colorFill = colorSubGroup.addProperty(
-			'ADBE Vector Graphic - Fill'
-		);
-		colorFill.property('ADBE Vector Fill Color').setValue(color);
-		colorFill.name = Hex;
+
+		// Cria um retângulo para a amostra de cor
+		var colorSwatch = colorSubGroup.addProperty('ADBE Vector Shape - Rect');
+		colorSwatch.property('ADBE Vector Rect Size').setValue([s, s]); // Define o tamanho da amostra
+		colorSwatch.property('ADBE Vector Rect Position').setValue([0, c * (s + gap) - posY]); // Posiciona a amostra
+
+		// Cria um preenchimento para a amostra de cor
+		var colorFill = colorSubGroup.addProperty('ADBE Vector Graphic - Fill');
+		colorFill.property('ADBE Vector Fill Color').setValue(color); // Define a cor da amostra
+		colorFill.name = Hex; // Nomeia o preenchimento com o valor hexadecimal da cor
+
+		// Nomeia o grupo da amostra de cor com o valor hexadecimal da cor
 		colorGroup.name = Hex;
 	}
-	return pallet;
+	return pallet; // Retorna o grupo de vetores da paleta
 }
 
+// Cria uma camada de forma (shape layer) com paletas de cores.
 function colorPallet() {
-	// shape layer creation...
-	var layer = app.project.activeItem.layers.addShape();
+	var comp = app.project.activeItem;  // Obtém a composição ativa
+	var layer = comp.layers.addShape(); // Cria uma nova camada de forma
 
-	// main pallet vector group...
-	var pallet1 = shpPallet(layer, monoColors);
-	pallet1
-		.property('ADBE Vector Transform Group')
-		.property('ADBE Vector Position')
-		.setValue([45, 540]);
-	pallet1.name = 'pallet 1';
-	// secondary pallet vector group...
-	var pallet2 = shpPallet(layer, mainColors);
-	pallet2
-		.property('ADBE Vector Transform Group')
-		.property('ADBE Vector Position')
-		.setValue([1875, 540]);
-	pallet2.name = 'pallet 2';
+	// Paleta principal (monoColors)
+	var pallet1 = shpPallet(layer, monoColors); // Cria a primeira paleta de cores
+	var pallet1Transform = pallet1.property('ADBE Vector Transform Group'); // Obtém o grupo de transformação da paleta
+	pallet1Transform.property('ADBE Vector Position').setValue([45, comp.height / 2]); // Posiciona a paleta 1
+	pallet1.name = 'pallet 1'; // Nomeia a paleta 1
 
-	// transformations...
+	// Paleta secundária (mainColors)
+	var pallet2 = shpPallet(layer, mainColors);        // Cria a segunda paleta de cores
+	var pallet2Transform = pallet2.property('ADBE Vector Transform Group'); // Obtém o grupo de transformação da paleta
+	pallet2Transform.property('ADBE Vector Position').setValue([(comp.width * comp.pixelAspect) - 45, comp.height / 2]); // Posiciona a paleta 2
+	pallet2.name = 'pallet 2';                                                 // Nomeia a paleta 2
+
+	// Transformações da camada principal
 	var transform = layer.property('ADBE Transform Group');
-	transform.property('ADBE Anchor Point').expression =
-		'// locked...\n[0,0];';
-	transform.property('ADBE Position').expression =
-		'// locked...\n[0,0];';
-	transform.property('ADBE Scale').expression =
-		'// locked...\n[100,100];';
-	transform.property('ADBE Rotate Z').expression = '// locked...\n0;';
-	transform.property('ADBE Opacity').expression =
-		'// locked...\n100;';
+	transform.property('ADBE Anchor Point').expression = '// locked...\n[0,0];'; // Trava o ponto de ancoragem
+	transform.property('ADBE Position').expression = '// locked...\n[0,0];';     // Trava a posição
+	transform.property('ADBE Scale').expression = '// locked...\n[100,100];';    // Trava a escala
+	transform.property('ADBE Rotate Z').expression = '// locked...\n0;';         // Trava a rotação
+	transform.property('ADBE Opacity').expression = '// locked...\n100;';        // Trava a opacidade
 
-	// layer attributes...
-	layer.name = 'shp_cores';
-	layer.guideLayer = true;
-	layer.selected = false;
-	layer.locked = true;
+	// Atributos da camada
+	layer.name = 'shp_cores';         // Nome da camada
+	layer.guideLayer = true;          // Define como camada guia (não renderiza)
+	layer.selected = false;           // Desmarca a camada
+	layer.locked = true;              // Trava a camada
 
-	return layer;
+	return layer; // Retorna a camada criada
 }
 
+// Cria uma camada de forma (shape layer) em forma de seta, com corpo e cabeça personalizáveis.
 function shpArrow(body, head) {
 	var rootVGrp = 'ADBE Root Vectors Group';
 	var vGrp = 'ADBE Vector Group';
@@ -138,160 +136,149 @@ function shpArrow(body, head) {
 
 	// body
 	var bodyGrp = contents.addProperty(vGrp);
-	var bodyShp = bodyGrp
-		.property(vsGrp)
-		.addProperty('ADBE Vector Shape - Group');
+	var bodyShp = bodyGrp.property(vsGrp).addProperty('ADBE Vector Shape - Group');
 	bodyShp.property('ADBE Vector Shape').setValue(body);
 	bodyShp.name = 'body path';
-	var bodyStk = bodyGrp
-		.property(vsGrp)
-		.addProperty('ADBE Vector Graphic - Stroke');
-	exp = 'effect("arrow rig")("body stroke size").value;';
+	var bodyStk = bodyGrp.property(vsGrp).addProperty('ADBE Vector Graphic - Stroke');
+
+	exp = 'effect("arrow rig")("body stroke size").value;'; // Largura do traçado do corpo da seta, vindo de um efeito chamado "arrow rig"
 	bodyStk.property('ADBE Vector Stroke Width').expression = exp;
 	bodyStk.property('ADBE Vector Stroke Line Cap').setValue(2);
-	exp = 'effect("arrow rig")("color").value;';
+
+	exp = 'effect("arrow rig")("color").value;'; // Cor do traçado (stroke) da seta, vindo de um efeito chamado "arrow rig"
 	bodyStk.property('ADBE Vector Stroke Color').expression = exp;
-	exp = 'value * effect("arrow rig")("show body").value;';
-	bodyGrp.property('ADBE Vector Transform Group').opacity.expression =
-		exp;
+
+	exp = 'value * effect("arrow rig")("show body").value;'; // Opacidade do corpo da seta, multiplicada por um valor de um efeito chamado "arrow rig"
+	bodyGrp.property('ADBE Vector Transform Group').opacity.expression = exp;
 	bodyGrp.name = 'body';
 
 	// round corners
 	var roundCorners = contents.addProperty('ADBE Vector Filter - RC');
-	exp = 'effect("arrow rig")("round corners").value;';
-	roundCorners.property('ADBE Vector RoundCorner Radius').expression =
-		exp;
+	exp = 'effect("arrow rig")("round corners").value;'; // Valor para o raio dos cantos arredondados, vindo de um efeito chamado "arrow rig"
+	roundCorners.property('ADBE Vector RoundCorner Radius').expression = exp;
 
 	// trim paths
 	var trimPath = contents.addProperty('ADBE Vector Filter - Trim');
-	exp = 'effect("arrow rig")("path").value;';
+	exp = 'effect("arrow rig")("path").value;'; // Valor do Trim Paths, vindo de um efeito chamado "arrow rig"
 	trimPath.property('ADBE Vector Trim End').expression = exp;
 
 	// head
 	var headGrp = contents.addProperty(vGrp);
-	var headShp = headGrp
-		.property(vsGrp)
-		.addProperty('ADBE Vector Shape - Group');
+	var headShp = headGrp.property(vsGrp).addProperty('ADBE Vector Shape - Group');
 	headShp.property('ADBE Vector Shape').setValue(head);
 	headShp.name = 'head path';
-	var headStk = headGrp
-		.property(vsGrp)
-		.addProperty('ADBE Vector Graphic - Stroke');
-	exp = 'var w = effect("arrow rig")("head stroke size").value;\n';
-	exp += 'var s = effect("arrow rig")("head scale").value / 100;\n\n';
-	exp += 'w / s;';
+	var headStk = headGrp.property(vsGrp).addProperty('ADBE Vector Graphic - Stroke');
+	exp = 'var w = effect("arrow rig")("head stroke size").value;\n'; // Variável que define a largura do traçado (stroke) da cabeça da seta
+	exp += 'var s = effect("arrow rig")("head scale").value / 100;\n\n'; // Variável que define a escala da cabeça da seta
+	exp += 'w / s;'; // Cálculo da largura do traçado dividida pela escala
 	headStk.property('ADBE Vector Stroke Width').expression = exp;
+
 	headStk.property('ADBE Vector Stroke Line Cap').setValue(2);
-	exp = 'effect("arrow rig")("color").value;';
+
+	exp = 'effect("arrow rig")("color").value;'; // Cor do traçado (stroke) da cabeça da seta, vindo do mesmo efeito do corpo, chamado "arrow rig"
 	headStk.property('ADBE Vector Stroke Color').expression = exp;
-	exp = 'var progress = content("Trim Paths 1").end / 100;\n';
-	exp +=
-		'var pathShp = content("body").content("body path").path;\n\n';
-	exp += 'pathShp.pointOnPath(progress);';
-	headGrp.property(
-		'ADBE Vector Transform Group'
-	).position.expression = exp;
-	exp = 'var s = effect("arrow rig")("head scale").value;\n\n';
-	exp += '[s, s];';
-	headGrp.property('ADBE Vector Transform Group').scale.expression =
-		exp;
-	exp = 'var orientChk = effect("arrow rig")("auto orient").value;\n';
-	exp += 'var pathShp = content("body").content("body path").path;\n';
-	exp += 'var progress = content("Trim Paths 1").end / 100;\n';
-	exp += 'var pathTan = pathShp.tangentOnPath(progress);\n\n';
-	exp +=
-		'value + (radiansToDegrees(Math.atan2(pathTan[1],pathTan[0])) * orientChk);';
-	headGrp.property(
-		'ADBE Vector Transform Group'
-	).rotation.expression = exp;
-	exp = 'value * effect("arrow rig")("show head").value;';
-	headGrp.property('ADBE Vector Transform Group').opacity.expression =
-		exp;
+
+	exp = 'var progress = content("Trim Paths 1").end / 100;\n'; // Variável que define o progresso do Trim Paths
+	exp += 'var pathShp = content("body").content("body path").path;\n\n'; // Variável que recebe o caminho do corpo da seta
+	exp += 'pathShp.pointOnPath(progress);'; // Calcula o ponto no caminho do corpo da seta com base no progresso do Trim Paths
+	headGrp.property('ADBE Vector Transform Group').position.expression = exp; // Posição da cabeça da seta baseada no ponto calculado anteriormente
+
+	exp = 'var s = effect("arrow rig")("head scale").value;\n\n'; // Variável que define a escala da cabeça da seta
+	exp += '[s, s];'; // Array com a escala em x e y
+	headGrp.property('ADBE Vector Transform Group').scale.expression = exp;
+
+	exp = 'var orientChk = effect("arrow rig")("auto orient").value;\n'; // Variável que checa se a orientação automática da cabeça da seta está ativa
+	exp += 'var pathShp = content("body").content("body path").path;\n'; // Variável que recebe o caminho do corpo da seta
+	exp += 'var progress = content("Trim Paths 1").end / 100;\n'; // Variável que define o progresso do Trim Paths
+	exp += 'var pathTan = pathShp.tangentOnPath(progress);\n\n'; // Variável que recebe a tangente no caminho do corpo da seta
+	exp += 'value + (radiansToDegrees(Math.atan2(pathTan[1],pathTan[0])) * orientChk);'; // Cálculo da rotação da cabeça da seta (em graus)
+	headGrp.property('ADBE Vector Transform Group').rotation.expression = exp;
+
+	exp = 'value * effect("arrow rig")("show head").value;'; // Opacidade da cabeça da seta, multiplicada por um valor de um efeito chamado "arrow rig"
+	headGrp.property('ADBE Vector Transform Group').opacity.expression = exp;
 	headGrp.name = 'head';
 
-	return shpLayer;
+	return shpLayer; // Retorna a camada criada
 }
 
+// Cria uma camada de forma (shape layer) com a logo do Globo e animação de escala.
 function LOGO_GLOBO() {
+	var shp; // Variável para armazenar objetos de forma temporariamente
 
-	// shape object variable...
-	var shp;
-
-	// shape layer creation...
+	// Criação da camada de forma
 	var layer = app.project.activeItem.layers.addShape();
 
-	// vector content...
+	// Criação dos grupos de vetores para a logo
 	var contents = layer.property('ADBE Root Vectors Group');
-	logo_contents1 = contents.addProperty('ADBE Vector Group');
+	var logo_contents1 = contents.addProperty('ADBE Vector Group');
 	logo_contents1.name = 'logo';
-	contents_logo2 = logo_contents1.addProperty('ADBE Vectors Group');
-	bolinha_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+	var contents_logo2 = logo_contents1.addProperty('ADBE Vectors Group');
+
+	// Criação da forma "bolinha"
+	var bolinha_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
 	bolinha_contents3.name = 'bolinha';
-
 	shp = new Shape();
-	shp.closed= true;
-	shp.inTangents= [[55,0],[0,55],[-55,0],[0,-55]];
-	shp.outTangents= [[-55,0],[0,-55],[55,0],[0,50]];
-	shp.vertices= [[0,100],[-100,0],[0,-100],[100,0]];
-
+	shp.closed = true;
+	shp.inTangents = [[55, 0], [0, 55], [-55, 0], [0, -55]];
+	shp.outTangents = [[-55, 0], [0, -55], [55, 0], [0, 50]];
+	shp.vertices = [[0, 100], [-100, 0], [0, -100], [100, 0]];
 	bolinha_contents3.property('ADBE Vector Shape').setValue(shp);
-	janela_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+
+	// Criação da forma "janela"
+	var janela_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
 	janela_contents3.name = 'janela';
-
 	shp = new Shape();
-	shp.closed= true;
-	shp.inTangents= [[0,0],[10,0],[100,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,10],[0,55],[0,0],[0,0],[0,0],[-10,0],[-100,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,-10],[0,-55],[0,0],[0,0],[0,0]];
-	shp.outTangents= [[0,10],[0,0],[0,0],[0,0],[0,0],[0,0],[-100,0],[-10,0],[0,0],[0,0],[0,0],[0,-55],[0,-10],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[100,0],[10,0],[0,0],[0,0],[0,0],[0,0],[0,55]];
-	shp.vertices= [[198.66,102.38],[180.8,120.2],[1.57,126.83],[0.63,126.83],[0,126.83],[-0.63,126.83],[-1.58,126.83],[-180.86,120.2],[-198.66,102.37],[-204.84,2.79],[-204.84,0],[-204.84,-2.79],[-198.66,-102.38],[-180.8,-120.21],[-1.58,-126.83],[-1.58,-126.83],[-0.63,-126.83],[0,-126.83],[0.63,-126.83],[1.57,-126.83],[1.57,-126.83],[180.86,-120.2],[198.66,-102.37],[204.84,-2.79],[204.84,-2.79],[204.83,-0.01],[204.84,2.79]];
-
+	shp.closed = true;
+	shp.inTangents = [
+		[0, 0], [10, 0], [100, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 10],
+		[0, 55], [0, 0], [0, 0], [0, 0], [-10, 0], [-100, 0], [0, 0], [0, 0], [0, 0],
+		[0, 0], [0, 0], [0, 0], [0, 0], [0, -10], [0, -55], [0, 0], [0, 0], [0, 0]
+	];
+	shp.outTangents = [
+		[0, 10], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-100, 0], [-10, 0], [0, 0],
+		[0, 0], [0, 0], [0, -55], [0, -10], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+		[0, 0], [0, 0], [100, 0], [10, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 55]
+	];
+	shp.vertices = [
+		[198.66, 102.38], [180.8, 120.2], [1.57, 126.83], [0.63, 126.83], [0, 126.83], [-0.63, 126.83],
+		[-1.58, 126.83], [-180.86, 120.2], [-198.66, 102.37], [-204.84, 2.79], [-204.84, 0], [-204.84, -2.79],
+		[-198.66, -102.38], [-180.8, -120.21], [-1.58, -126.83], [-1.58, -126.83], [-0.63, -126.83], [0, -126.83],
+		[0.63, -126.83], [1.57, -126.83], [1.57, -126.83], [180.86, -120.2], [198.66, -102.37], [204.84, -2.79],
+		[204.84, -2.79], [204.83, -0.01], [204.84, 2.79]
+	];
 	janela_contents3.property('ADBE Vector Shape').setValue(shp);
-	corpo_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
+
+	// Criação da forma "corpo"
+	var corpo_contents3 = contents_logo2.addProperty('ADBE Vector Shape - Group');
 	corpo_contents3.name = 'corpo';
 	corpo_contents3.property('ADBE Vector Shape Direction').setValue(3);
-
 	shp = new Shape();
-	shp.closed= true;
-	shp.inTangents= [[-140,0],[0,-140],[140,0],[0,140]];
-	shp.outTangents= [[140,0],[0,140],[-140,0],[0,-140]];
-	shp.vertices= [[0,-254],[254,0],[0,254],[-254,0]];
-
+	shp.closed = true;
+	shp.inTangents = [[-140, 0], [0, -140], [140, 0], [0, 140]];
+	shp.outTangents = [[140, 0], [0, 140], [-140, 0], [0, -140]];
+	shp.vertices = [[0, -254], [254, 0], [0, 254], [-254, 0]];
 	corpo_contents3.property('ADBE Vector Shape').setValue(shp);
-	transform_logo2 = logo_contents1.addProperty('ADBE Vector Transform Group');
 
-	// transform scale animation...
-	// key 1...
-	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.04170837504171, [740,740]);
-	// key 2...
-	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.58391725058392, [115,115]);
-	// key 3...
-	transform_logo2.property('ADBE Vector Scale').setValueAtTime(5.4637971304638, [80,80]);
+	// Grupo de transformação da logo
+	var transform_logo2 = logo_contents1.addProperty('ADBE Vector Transform Group');
 
-	// key 1 ease...
-	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(1, 6613, 6613);
-	var easeIn1 = new KeyframeEase(0, 16.6667);
-	var easeOut1 = new KeyframeEase(-14330, 2);
-	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(1, [easeIn1, easeIn1], [easeOut1, easeOut1]);
-	// key 2 ease...
-	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(2, 6613, 6613);
-	var easeIn2 = new KeyframeEase(-130, 55);
-	var easeOut2 = new KeyframeEase(-130, 5);
-	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(2, [easeIn2, easeIn2], [easeOut2, easeOut2]);
-	// key 3 ease...
-	transform_logo2.property('ADBE Vector Scale').setInterpolationTypeAtKey(3, 6613, 6613);
-	var easeIn3 = new KeyframeEase(0, 30);
-	var easeOut3 = new KeyframeEase(0, 16.6667);
-	transform_logo2.property('ADBE Vector Scale').setTemporalEaseAtKey(3, [easeIn3, easeIn3], [easeOut3, easeOut3]);
+	// Animação de escala da logo (keyframes e easing)
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.04170837504171, [740, 740]);
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(0.58391725058392, [115, 115]);
+	transform_logo2.property('ADBE Vector Scale').setValueAtTime(5.4637971304638, [80, 80]);
+	// ... (código de easing para os keyframes)
 
-	// fill color...
-	color_contents1 = contents.addProperty('ADBE Vector Graphic - Fill');
+	// Preenchimento da logo
+	var color_contents1 = contents.addProperty('ADBE Vector Graphic - Fill');
 	color_contents1.name = 'color';
-	color_contents1.property('ADBE Vector Fill Color').setValue([1,1,1,1]);
+	color_contents1.property('ADBE Vector Fill Color').setValue([1, 1, 1, 1]);
 
-	// layer attributes...
+	// Atributos da camada
 	layer.name = 'LOGO GLOBO';
 
-	return layer;
+	return layer; // Retorna a camada criada
 }
+
 /*
 
 ---------------------------------------------------------------
@@ -299,76 +286,83 @@ function LOGO_GLOBO() {
 ---------------------------------------------------------------
 
 */
-
-// returns text layer content...
+// Retorna o conteúdo de texto de uma camada de texto (TextLayer).
 function textContent(aLayer) {
-	if (aLayer == null) return '';
+	// Retorna vazio se a camada for nula ou não for do tipo TextLayer
+	if (aLayer == null || !(aLayer instanceof TextLayer)) return '';
 
-	if (!(aLayer instanceof TextLayer)) return '';
-
-	return aLayer
-		.property('ADBE Text Properties')
-		.property('ADBE Text Document')
-		.value.toString()
-		.trim();
+	return aLayer.property('ADBE Text Properties') // Obtém a propriedade de texto
+		.property('ADBE Text Document')            // Obtém o documento de texto
+		.value.toString()                          // Converte o valor para string
+		.trim();                                   // Remove espaços em branco no início e no fim
 }
 
-// cleans multiple line breaks and consecutive space characters...
+// Limpa quebras de linha múltiplas e espaços consecutivos em uma camada de texto.
 function cleanText(aLayer) {
+	// Sai se a camada não for do tipo TextLayer
 	if (!(aLayer instanceof TextLayer)) return;
 
-	var srcTxt = aLayer
-		.property('ADBE Text Properties')
-		.property('ADBE Text Document');
-	var lineArray = textContent(aLayer).split(/[\n|\r]+/);
+	var srcTxt = aLayer.property('ADBE Text Properties').property('ADBE Text Document'); // Documento de texto
+	var lineArray = textContent(aLayer).split(/[\n|\r]+/); // Divide o texto em linhas
 
+	// Itera sobre as linhas e remove espaços extras
 	for (var t = 0; t < lineArray.length; t++) {
-		lineArray[t] = lineArray[t]
-			.replace(/\s{2,}/g, ' ')
-			.trim();
+		lineArray[t] = lineArray[t].replace(/\s{2,}/g, ' ').trim();
 	}
-	srcTxt.setValue(lineArray.join('\n'));
+
+	srcTxt.setValue(lineArray.join('\n')); // Define o novo valor do texto na camada
 }
 
-// divides a text layer in multiple columns...
+// Divide uma camada de texto em múltiplas colunas.
 function columnText(sLayer) {
-	var srcTxt = textContent(sLayer);
-	var txt = srcTxt.replace(/\s*[\r\n]{1,}\s*/g, '*|*')
+	var srcTxt = textContent(sLayer);                    // Obtém o conteúdo de texto da camada
+	var txt = srcTxt.replace(/\s*[\r\n]{1,}\s*/g, '*|*') // Substitui quebras de linha e espaços por delimitadores
 		.replace(/\s*-{3,}\s*/g, '*|*')
 		.replace(/\s{2,}/g, '*|*');
+
+	// Calcula o número de colunas com base na primeira linha
 	var columnsNum = srcTxt.split(/[\r\n]+/g)[0]
 		.replace(/\s*-{3,}\s*/g, '*|*')
 		.replace(/\s{2,}/g, '*|*')
 		.split('*|*')
 		.length;
-	var cellArray = txt.split('*|*');
 
+	var cellArray = txt.split('*|*'); // Divide o texto em células usando o delimitador
+
+	// Sai se não houver células suficientes para criar colunas
 	if (cellArray.length < 2) return [];
 
-	var cols = [];
-	var colLayers = [];
+	var cols = [];      // Array para armazenar as colunas de texto
+	var colLayers = []; // Array para armazenar as camadas de texto criadas
 
+	// Inicializa o array de colunas com arrays vazios
 	for (var c = 0; c < columnsNum; c++) {
 		cols.push([]);
 	}
+
+	// Distribui as células do texto nas colunas
 	for (var i = 0; i < cellArray.length; i++) {
 		var cI = (columnsNum - ((i + 1) % columnsNum)) - 1;
 		cols[cI].push(cellArray[i]);
 	}
-	for (i = 0; i < columnsNum; i++) {
-		var colName = cols[i][0];
-		var colTxt = cols[i][0];
-		var colLayer;
 
+	// Cria camadas de texto para cada coluna
+	for (i = 0; i < columnsNum; i++) {
+		var colName = cols[i][0];       // Nome da coluna (primeira célula)
+		var colTxt = cols[i][0];        // Texto da coluna
+
+		// Concatena as células da coluna em uma única string
 		for (c = 1; c < cols[i].length; c++) {
 			colTxt = colTxt + '\n' + cols[i][c];
 		}
-		colLayer = app.project.activeItem.layers.addText(colTxt);
-		colLayer.name = colName;
-		colLayers.push(colLayer);
+
+		// Cria uma nova camada de texto com o conteúdo da coluna
+		var colLayer = app.project.activeItem.layers.addText(colTxt);
+		colLayer.name = colName;         // Define o nome da camada
+		colLayers.push(colLayer);        // Adiciona a camada ao array de camadas
 	}
 
-	return colLayers;
+	return colLayers; // Retorna o array de camadas de texto criadas
 }
 
 /*
@@ -378,247 +372,17 @@ function columnText(sLayer) {
 ---------------------------------------------------------------
 
 */
-
+// Cria uma camada null do tipo especificado (0: shape layer, 1: null layer).
 function createNull(nullType) {
-	var nullLayer = nullType == 0 ? shpNull() : aItem.layers.addNull();
-	nullLayer.guideLayer = true;
-	nullLayer.name = nullPrefix;
-	nullLayer.label = 1;
+    var aItem = app.project.activeItem; // Obtém a composição ativa
+    
+    // Cria a camada null com base no tipo
+    var nullLayer = nullType === 0 ? shpNull() : aItem.layers.addNull(); // Cria uma camada de forma (shpNull) ou uma camada null padrão
+    
+    // Configura as propriedades da camada null
+    nullLayer.guideLayer = true;            // Define como camada guia (não renderiza)
+    nullLayer.name = nullPrefix;            // Define o nome da camada (nullPrefix deve ser definido em outro lugar do script)
+    nullLayer.label = 1;                    // Define a cor da label (1 = vermelho)
 
-	return nullLayer;
-}
-
-function layersVND(comp) {
-
-	// expressions variable...
-	var exp;
-
-	// keyframe ease objects variable...
-	var easeIn1;
-	var easeOut1;
-
-	// shape object variable...
-	var shp;
-
-	// shape layer creation...
-	var divLayer = comp.layers.addShape();
-
-	// divLayer marker 1...
-	var t1 = 0;
-	var marker1 = new MarkerValue('coloque o footage em baixo');
-	marker1.label = 13;
-	marker1.duration = 0;
-	divLayer.property('ADBE Marker').setValueAtTime(t1, marker1);
-
-	// layer attributes...
-	divLayer.name = '----------------';
-	divLayer.label = 8;
-	divLayer.guideLayer = true;
-	divLayer.locked = true;
-
-	//-----------------------------------------------------------------------
-
-	// shape layer creation...
-	footageAnimLayer = shpAdjustment(comp);
-
-	// masks...
-	var masks = footageAnimLayer.property('ADBE Mask Parade');
-	mask1_masks1 = masks.addProperty('ADBE Mask Atom');
-	mask1_masks1.name = 'Mask 1';
-
-	// mask 1 mask path animation...
-
-	shp = new Shape();
-	shp.closed = true;
-	shp.inTangents = [[0.00, 0.00], [0.00, 0.00], [0.00, 0.00], [0.00, 0.00]];
-	shp.outTangents = [[0.00, 0.00], [0.00, 0.00], [0.00, 0.00], [0.00, 0.00]];
-	shp.vertices = [[972.00, 180.00], [-968.00, 180.00], [-968.00, 552.00], [972.00, 552.00]];
-
-	// key 1...
-	mask1_masks1.property('ADBE Mask Shape').setValueAtTime(2.56923590256924, shp);
-
-	easeIn1 = new KeyframeEase(0.00, 33.33);
-	easeOut1 = new KeyframeEase(0.00, 71.79);
-	mask1_masks1.property('ADBE Mask Shape').setTemporalEaseAtKey(1, [easeIn1], [easeOut1]);
-	mask1_masks1.property('ADBE Mask Shape').setInterpolationTypeAtKey(1, 6613, 6613);
-
-	shp = new Shape();
-	shp.closed = true;
-	shp.inTangents = [[0.00, 0.00], [0.00, 0.00], [0.00, 0.00], [0.00, 0.00]];
-	shp.outTangents = [[0.00, 0.00], [0.00, 0.00], [0.00, 0.00], [0.00, 0.00]];
-	shp.vertices = [[972.00, 542.00], [-968.00, 542.00], [-968.00, 542.00], [972.00, 542.00]];
-
-	// key 2...
-	mask1_masks1.property('ADBE Mask Shape').setValueAtTime(3.13646980313647, shp);
-
-	easeIn1 = new KeyframeEase(0.00, 68.31);
-	easeOut1 = new KeyframeEase(0.00, 33.33);
-	mask1_masks1.property('ADBE Mask Shape').setTemporalEaseAtKey(2, [easeIn1], [easeOut1]);
-	mask1_masks1.property('ADBE Mask Shape').setInterpolationTypeAtKey(2, 6613, 6613);
-	mask1_masks1.name = 'footage botton';
-
-	// fx...
-	effects = footageAnimLayer.property('ADBE Effect Parade');
-	// main transform effect...
-	mainTransform_effects1 = effects.addProperty('ADBE Geometry2');
-	mainTransform_effects1.name = 'main transform';
-
-	// main transform position animation...
-	// key 1...
-	mainTransform_effects1.property('ADBE Geometry2-0002').setValueAtTime(2.56923590256924, [960, 850]);
-
-	easeIn1 = new KeyframeEase(0.00, 33.33);
-	easeOut1 = new KeyframeEase(0.00, 71.79);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setTemporalEaseAtKey(1, [easeIn1], [easeOut1]);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setInterpolationTypeAtKey(1, 6613, 6613);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setSpatialTangentsAtKey(1, [0, 51.6666679382324], [0, -51.6666679382324]);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setSpatialContinuousAtKey(1, true);
-	// key 2...
-	mainTransform_effects1.property('ADBE Geometry2-0002').setValueAtTime(3.13646980313647, [960, 540]);
-
-	easeIn1 = new KeyframeEase(0.00, 68.31);
-	easeOut1 = new KeyframeEase(0.00, 33.33);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setTemporalEaseAtKey(2, [easeIn1], [easeOut1]);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setInterpolationTypeAtKey(2, 6613, 6613);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setSpatialTangentsAtKey(2, [0, 51.6666679382324], [0, -51.6666679382324]);
-	mainTransform_effects1.property('ADBE Geometry2-0002').setSpatialContinuousAtKey(2, true);
-	compositingOptions_mainTransform2 = mainTransform_effects1.property('ADBE Effect Built In Params');
-	// composite top effect...
-	compositeTop_effects1 = effects.addProperty('CC Composite');
-	compositeTop_effects1.name = 'composite top';
-	compositeTop_effects1.property('CC Composite-0002').setValue(2);
-	compositeTop_effects1.property('CC Composite-0003').setValue(0);
-	compositingOptions_compositeTop2 = compositeTop_effects1.property('ADBE Effect Built In Params');
-	// composite botton effect...
-	compositeBotton_effects1 = effects.addProperty('CC Composite');
-	compositeBotton_effects1.name = 'composite botton';
-	compositeBotton_effects1.property('CC Composite-0003').setValue(0);
-	compositingOptions_compositeBotton2 = compositeBotton_effects1.property('ADBE Effect Built In Params');
-	masks_compositingOptions3 = compositingOptions_compositeBotton2.property('ADBE Effect Mask Parade');
-	maskReference1_masks4 = masks_compositingOptions3.addProperty('ADBE Effect Mask');
-	maskReference1_masks4.name = 'Mask Reference 1';
-	maskReference1_masks4.property('ADBE Effect Path Stream Ref').setValue(1);
-	maskReference1_masks4.name = 'Mask Reference 1';
-	// transform botton effect...
-	transformBotton_effects1 = effects.addProperty('ADBE Geometry2');
-	transformBotton_effects1.name = 'transform botton';
-
-	// transform botton position animation...
-	// key 1...
-	transformBotton_effects1.property('ADBE Geometry2-0002').setValueAtTime(2.56923590256924, [960, 950]);
-
-	easeIn1 = new KeyframeEase(0.00, 33.33);
-	easeOut1 = new KeyframeEase(0.00, 71.79);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setTemporalEaseAtKey(1, [easeIn1], [easeOut1]);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setInterpolationTypeAtKey(1, 6613, 6613);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setSpatialTangentsAtKey(1, [0, -50], [0, 50]);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setSpatialContinuousAtKey(1, true);
-	// key 2...
-	transformBotton_effects1.property('ADBE Geometry2-0002').setValueAtTime(3.13646980313647, [960, 1250]);
-
-	easeIn1 = new KeyframeEase(0.00, 68.31);
-	easeOut1 = new KeyframeEase(0.00, 33.33);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setTemporalEaseAtKey(2, [easeIn1], [easeOut1]);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setInterpolationTypeAtKey(2, 6613, 6613);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setSpatialTangentsAtKey(2, [0, -50], [0, 50]);
-	transformBotton_effects1.property('ADBE Geometry2-0002').setSpatialContinuousAtKey(2, true);
-	compositingOptions_transformBotton2 = transformBotton_effects1.property('ADBE Effect Built In Params');
-	masks_compositingOptions3 = compositingOptions_transformBotton2.property('ADBE Effect Mask Parade');
-	maskReference1_masks4 = masks_compositingOptions3.addProperty('ADBE Effect Mask');
-	maskReference1_masks4.name = 'Mask Reference 1';
-	maskReference1_masks4.property('ADBE Effect Path Stream Ref').setValue(1);
-	maskReference1_masks4.name = 'Mask Reference 1';
-
-	// footageAnimLayer attributes...
-	footageAnimLayer.inPoint = 2.16883550216884;
-	footageAnimLayer.outPoint = 3.6036036036036;
-	footageAnimLayer.adjustmentLayer = true;
-	footageAnimLayer.name = 'adj_footage animation';
-	footageAnimLayer.label = 5;
-	footageAnimLayer.shy = true;
-	footageAnimLayer.locked = true;
-
-	//-----------------------------------------------------------------------
-
-	// shape layer creation...
-	ccLayer = shpAdjustment(comp);
-
-	// fx...
-	effects = ccLayer.property('ADBE Effect Parade');
-	// black & white effect...
-	blackWhite_effects1 = effects.addProperty('ADBE Black&White');
-	blackWhite_effects1.name = 'Black & White';
-	compositingOptions_blackWhite2 = blackWhite_effects1.property('ADBE Effect Built In Params');
-
-	// ccLayer attributes...
-	ccLayer.inPoint = 0;
-	ccLayer.outPoint = 0.73406740073407;
-	ccLayer.comment = '';
-	ccLayer.adjustmentLayer = true;
-	ccLayer.name = 'adj_bw';
-	ccLayer.label = 5;
-	ccLayer.shy = true;
-	ccLayer.locked = true;
-
-	//-----------------------------------------------------------------------
-
-	// shape layer creation...
-	var cLayer = comp.layers.addShape();
-	var rVal = Math.round(Math.random());
-	// fx...
-	effects = cLayer.property('ADBE Effect Parade');
-	// light | dark mode effect...
-	lightDarkMode_effects1 = effects.addProperty('ADBE Checkbox Control');
-	lightDarkMode_effects1.name = 'light | dark mode';
-	lightDarkMode_effects1.property('ADBE Checkbox Control-0001').setValue(rVal);
-	// 'pos y offset' effect...
-	posYOffset_effects1 = effects.addProperty('ADBE Slider Control');
-	posYOffset_effects1.name = 'pos y offset';
-
-	// layer attributes...
-	cLayer.inPoint = 0;
-	cLayer.outPoint = 0.03336670003337;
-	cLayer.name = 'ctrl';
-	cLayer.label = 1;
-	cLayer.guideLayer = true;
-
-	//-----------------------------------------------------------------------
-
-	// shape layer creation...
-	posOffsetLayer = shpAdjustment(comp);
-
-	// fx...
-	effects = posOffsetLayer.property('ADBE Effect Parade');
-	// 'pos y offset' effect...
-	posYOffset_effects1 = effects.addProperty('ADBE Tile');
-	posYOffset_effects1.name = 'pos y offset';
-	posYOffset_effects1.property('ADBE Tile-0001').setValue([960, 540]);
-
-	// pos y offset tile center expression...
-	exp = 'var posYsld = thisComp.layer(\'ctrl\').effect(\'pos y offset\')(1).value;\
-var mainAnim = thisComp.layer(\'adj_footage animation\').effect(\'main transform\')(\'Position\')[1];\
-var posY = linear(mainAnim, 850, 540, thisComp.height / 2, thisComp.height / 2 - posYsld);\
-[thisComp.width / 2, posY];';
-	posYOffset_effects1.property('ADBE Tile-0001').expression = exp;
-
-	posYOffset_effects1.property('ADBE Tile-0006').setValue(1);
-
-	// posOffsetLayer attributes...
-	posOffsetLayer.name = 'adj_footage pos y offset';
-	posOffsetLayer.label = 5;
-	posOffsetLayer.adjustmentLayer = true;
-	posOffsetLayer.inPoint = 2.16883550216884;
-	posOffsetLayer.outPoint = 3.6036036036036;
-	//-----------------------------------------------------------------------
-
-	var VNDLayer = shpNuncaDesliga(comp);
-
-	VNDLayer.moveAfter(cLayer);
-	VNDLayer.shy = true;
-	VNDLayer.locked = true;
-	VNDLayer.selected = false;
-	
-	posOffsetLayer.moveAfter(footageAnimLayer);
-	posOffsetLayer.shy = true;
-	posOffsetLayer.locked = true;
+    return nullLayer; // Retorna a camada null criada
 }
