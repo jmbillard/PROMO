@@ -1,3 +1,7 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -6,37 +10,34 @@
 
 */
 
-// Adiciona um método à classe String para remover o último caractere.
 String.prototype.popLastCharacter = function () {
-	return this.replace(/.$/, '');  // Substitui o último caractere (.) por uma string vazia
+	return this.replace(/.$/, '');
 };
 
-// Adiciona um método à classe String para converter para camelCase.
+// string to camel case...
 String.prototype.toCamelCase = function () {
-	return this.toLowerCase()          // Converte para minúsculas
-		.replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); }) // Coloca a primeira letra de cada palavra em maiúscula
-		.replace(/\s/g, '')               // Remove espaços em branco
-		.replace(/^(.)/, function ($1) { return $1.toLowerCase(); });  // Converte a primeira letra para minúscula
+	return this.toLowerCase()
+		.replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })
+		.replace(/\s/g, '')
+		.replace(/^(.)/, function ($1) { return $1.toLowerCase(); });
 };
-
-// Adiciona um método à classe String para converter para Title Case.
+// string to camel case...
 String.prototype.toTitleCase = function () {
-	return this.toLowerCase()          // Converte para minúsculas
-		.replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); }) // Coloca a primeira letra de cada palavra em maiúscula
-		.replace(/^(.)/, function ($1) { return $1.toUpperCase(); });  // Mantém a primeira letra em maiúscula
+	return this.toLowerCase()
+		.replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })
+		.replace(/^(.)/, function ($1) { return $1.toUpperCase(); });
 };
 
-// Adiciona um método à classe String para remover espaços em branco no início e no fim (trim).
-if (!String.prototype.trim) { // Verifica se o método trim já existe
+// trim...
+if (!String.prototype.trim) {
 	String.prototype.trim = function () {
-		return this.replace(/^\s+|\s+$/gm, ''); // Remove espaços em branco no início e no fim (globalmente e em múltiplas linhas)
+		return this.replace(/^\s+|\s+$/gm, '');
 	};
 }
 
-// Remove ou substitui a maioria dos caracteres especiais em uma string
+// replaces most of the special characters...
 String.prototype.replaceSpecialCharacters = function () {
 
-	// Substitui caracteres acentuados por seus equivalentes sem acento
 	return this.replace(/À|Á|Â|Ã|Ä|\u00C0|\u00C1|\u00C2|\u00C3|\u00C4/g, 'A')
 		.replace(/à|á|â|ã|ä|\u00E0|\u00E1|\u00E2|\u00E3|\u00E4/g, 'a')
 		.replace(/È|É|Ê|Ë|\u00C8|\u00C9|\u00CA|\u00CB/g, 'E')
@@ -49,117 +50,105 @@ String.prototype.replaceSpecialCharacters = function () {
 		.replace(/ù|ú|û|ü|\u00F9|\u00FA|\u00FB|\u00FC/g, 'u')
 		.replace(/Ç|\u00C7/g, 'C')
 		.replace(/ç|\u00E7/g, 'c')
-		.replace(/\n|\r/g, ' ') // Substitui quebras de linha
+		.replace(/\n|\r/g, ' ') // replaces line breaks...
 		.replace(/\||-|\_|:/g, ' ')
-		.replace(/[^\w\s—]/ig, '') // Remove todos os caracteres que não são letras, números, espaços, hífens ou travessões
-		.replace(/\s{2,}/g, ' ') // Substitui múltiplos espaços em branco por um único espaço
-		.trim(); // Remove espaços em branco no início e no fim da string
+		.replace(/[^\w\s—]/ig, '') // replaces any non-word character except space...
+		.replace(/\s{2,}/g, ' ') // replaces 2 or more spaces...
+		.trim();
 };
 
-// Adiciona um método à classe String para abreviar datas em português.
+// date shortener...
 String.prototype.toShortDate = function () {
-	return this
-		// Remove caracteres especiais (acentos, etc.)
-		.replaceSpecialCharacters()
 
-
-		.replace(/SEGUNDA/g, 'SEG') // Abrevia os dias da semana
-		.replace(/TERCA/g, 'TER')
-		.replace(/QUARTA/g, 'QUA')
-		.replace(/QUINTA/g, 'QUI')
-		.replace(/SEXTA/g, 'SEX')
-		.replace(/SABADO/g, 'SAB')
-		.replace(/DOMINGO/g, 'DOM')
-		.replace(/DE /g, '') // Remove a preposição "DE"
-		.replace(/JANEIRO/g, 'JAN') // Abrevia os meses do ano
-		.replace(/FEVEREIRO/g, 'FEV')
-		.replace(/MARCO/g, 'MAR')
-		.replace(/ABRIL/g, 'ABR')
-		.replace(/MAIO/g, 'MAI')
-		.replace(/JUNHO/g, 'JUN')
-		.replace(/JULHO/g, 'JUL')
-		.replace(/AGOSTO/g, 'AGO')
-		.replace(/SETEMBRO/g, 'SET')
-		.replace(/OUTUBRO/g, 'OUT')
-		.replace(/NOVEMBRO/g, 'NOV')
-		.replace(/DEZEMBRO/g, 'DEZ');
+	return this.replaceSpecialCharacters()
+		.replace(/SEGUNDA/, 'SEG')
+		.replace(/TERCA/, 'TER')
+		.replace(/QUARTA/, 'QUA')
+		.replace(/QUINTA/, 'QUI')
+		.replace(/SEXTA/, 'SEX')
+		.replace(/SABADO/, 'SAB')
+		.replace(/DOMINGO/, 'DOM')
+		.replace(/DE /, '')
+		.replace(/JANEIRO/, 'JAN')
+		.replace(/FEVEREIRO/, 'FEV')
+		.replace(/MARCO/, 'MAR')
+		.replace(/ABRIL/, 'ABR')
+		.replace(/MAIO/, 'MAI')
+		.replace(/JUNHO/, 'JUN')
+		.replace(/JULHO/, 'JUL')
+		.replace(/AGOSTO/, 'AGO')
+		.replace(/SETEMBRO/, 'SET')
+		.replace(/OUTUBRO/, 'OUT')
+		.replace(/NOVEMBRO/, 'NOV')
+		.replace(/DEZEMBRO/, 'DEZ');
 };
 
-// Redimensiona uma imagem para caber nas dimensões do seu container, mantendo a proporção.
+// image resize to fit dimensions...
 Image.prototype.onDraw = function () {
-	// Verifica se a imagem existe
+
+	// 'this' is the container and 'this.image' is the graphic
 	if (!this.image) return;
-
-	// Obtém o tamanho do container (this) e da imagem (this.image)
-	var WH = this.size;
-	var wh = this.image.size;
-
-	// Calcula o fator de escala (k) para ajustar a imagem proporcionalmente
-	var k = Math.min(WH[0] / wh[0], WH[1] / wh[1]);
-
-	// Redimensiona a imagem proporcionalmente
+	var WH = this.size,
+		wh = this.image.size,
+		k = Math.min(WH[0] / wh[0], WH[1] / wh[1]),
+		xy;
+	// Resize proportionally...
 	wh = [k * wh[0], k * wh[1]];
-
-	// Calcula a posição (x, y) para centralizar a imagem no container
-	var xy = [(WH[0] - wh[0]) / 2, (WH[1] - wh[1]) / 2];
-
-	// Desenha a imagem redimensionada e centralizada no container
+	// Center...
+	xy = [(WH[0] - wh[0]) / 2, (WH[1] - wh[1]) / 2];
 	this.graphics.drawImage(this.image, xy[0], xy[1], wh[0], wh[1]);
-
-	// Libera as variáveis para evitar vazamento de memória (opcional)
 	WH = wh = xy = null;
 };
 
-// Polyfill para Array.isArray (verifica se um objeto é um array)
+// Array.isArray(obj) definition...
 if (typeof Array.isArray === 'undefined') {
 	Array.isArray = function (obj) {
 		return Object.prototype.toString.call(obj) === '[object Array]';
 	};
 }
 
-// Polyfill para Array.prototype.indexOf (encontra o índice de um elemento em um array)
+// indexOf() definition...
 if (!Array.prototype.indexOf) {
-	Array.prototype.indexOf = function (element, startPoint = 0) {
+	Array.prototype.indexOf = function (element, startPoint) {
+
+		var k;
+
 		if (this == null) {
-			throw new TypeError('"this" é nulo ou não definido'); // Lança um erro se o contexto (this) for inválido
+			throw new TypeError('"this" é nulo (null) ou não foi definido (undefined)');
 		}
+		var O = Object(this);
+		var aSize = O.length >>> 0;
 
-		var length = this.length >>> 0; // Converte o comprimento do array para um número inteiro sem sinal
-
-		if (length === 0) {
-			return -1; // Retorna -1 se o array estiver vazio
+		if (aSize === 0) {
+			return -1;
 		}
+		var n = + startPoint || 0;
 
-		var n = startPoint | 0; // Converte o ponto de início para um número inteiro
-
-		if (n >= length) {
-			return -1; // Retorna -1 se o ponto de início for maior ou igual ao comprimento do array
+		if (Math.abs(n) === Infinity) {
+			n = 0;
 		}
+		if (n >= aSize) {
+			return -1;
+		}
+		k = Math.max(n >= 0 ? n : aSize - Math.abs(n), 0);
 
-		// Ajusta o ponto de início se for negativo
-		n = Math.max(n >= 0 ? n : length - Math.abs(n), 0);
-
-		// Procura pelo elemento a partir do ponto de início
-		for (; n < length; n++) {
-			if (n in this && this[n] === element) {
-				return n; // Retorna o índice do elemento se for encontrado
+		while (k < aSize) {
+			if (k in O && O[k] === element) {
+				return k;
 			}
+			k++;
 		}
-
-		return -1; // Retorna -1 se o elemento não for encontrado
+		return -1;
 	};
 }
 
-// Polyfill para Array.prototype.pop (remove e retorna o último elemento de um array)
 if (!Array.prototype.pop) {
 	Array.prototype.pop = function () {
-		if (this.length === 0) { // Se o array estiver vazio
-			return undefined;      // Retorna undefined
+		if (this.length === 0) {
+			return undefined;
 		}
-
-		var lastIndex = this.length - 1;   // Índice do último elemento
-		var lastElement = this[lastIndex]; // Obtém o último elemento
-		this.length = lastIndex;           // Reduz o comprimento do array (remove o último elemento)
-		return lastElement;                // Retorna o último elemento removido
+		const lastElement = this[this.length - 1];
+		this.length--; // Reduz o tamanho do array
+		return lastElement;
 	};
 }

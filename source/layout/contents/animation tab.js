@@ -39,33 +39,8 @@ em todos os keyframe selecionados';
 
 //---------------------------------------------------------
 
-// currentGrp.add('panel');
- 
-// var animSubGrp2 = currentGrp.add('group');
-
-// var easeSld1Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
-// easeSld1Txt.maximumSize.width = 30;
-
-// var easeSld1 = animSubGrp2.add('slider', undefined, 1, 1, 99);
-// easeSld1.helpTip = 'ease out influence';
-// easeSld1.maximumSize.width = 80;
-// easeSld1.minimumSize.width = vMin;
-
-// var easePrevGrp = animSubGrp2.add('group');
-// easePrevGrp.add('image', undefined, easePrev['img00' + iconTheme]);
-
-// var easeSld2 = animSubGrp2.add('slider', undefined, 99, 1, 99);
-// easeSld2.helpTip = 'ease in influence';
-// easeSld2.maximumSize.width = 80;
-// easeSld2.minimumSize.width = vMin;
-
-// var easeSld2Txt = animSubGrp2.add('statictext', undefined, '1%', { name: 'label' , truncate: 'end'});
-// easeSld2Txt.maximumSize.width = 30;
-
-//---------------------------------------------------------
-
 currentGrp.add('panel');
- 
+
 
 var lockTrmBtn = currentGrp.add('iconbutton', iconSize, lockPropIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 lockTrmBtn.helpTip = '◖ → bloquear propriedades de transformação\n\
@@ -76,7 +51,7 @@ não animadas e sem expressões';
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 
 var animSubGrp3 = currentGrp.add('group');
 
@@ -99,7 +74,7 @@ seu comportamento será alterado pelo valor acima.';
 //---------------------------------------------------------
 
 // currentGrp.add('panel');
- 
+
 
 // // tools button...
 // var toolBtn = currentGrp.add('iconbutton', iconSize, rigToolsIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
@@ -113,45 +88,38 @@ seu comportamento será alterado pelo valor acima.';
 
 */
 
+// Função executada quando o botão "copyInfBtn" é clicado.
 copyInfBtn.onClick = function () {
-	var aItem = app.project.activeItem;
-	var selLayer = aItem != null ? aItem.selectedLayers[0] : null;
-	var aProp = selLayer != null ? selLayer.selectedProperties[0] : null;
+	var aItem = app.project.activeItem;                  // Obtém o item ativo (composição)
+	var selLayer = aItem ? aItem.selectedLayers[0] : null;    // Obtém a primeira camada selecionada (ou null se não houver)
+	var aProp = selLayer ? selLayer.selectedProperties[0] : null; // Obtém a primeira propriedade selecionada da camada (ou null se não houver)
+	var keyPreview = keyStatsGrp.keyImg0;
 
-	if (aProp == null) return;
+	// Se não houver propriedade selecionada, sai da função
+	if (!aProp) return;
 
-	// error...
-	if (aProp.selectedKeys.length != 1) {
-		showTabErr('select 1 keyframe');
+	// Verifica se apenas um keyframe está selecionado
+	if (aProp.selectedKeys.length !== 1) {
+		showTabErr('Selecione apenas 1 keyframe'); // Mostra um alerta de erro
 		return;
 	}
-	var k = aProp.selectedKeys[0];
-	var kIn = aProp.keyInTemporalEase(k)[0];
-	var kOut = aProp.keyOutTemporalEase(k)[0];
-	// keyframe data formatted as tooltip...
-	var kHelp = selLayer.name + ' ' + aProp.name + ' key ' + k + ':\n\n';
-	kHelp +=
-		'<< in\nspeed: ' + kIn.speed.toFixed(1) +
-		'\ninfluence: ' + kIn.influence.toFixed(1) +
-		'\n\n>> out\nspeed: ' + kOut.speed.toFixed(1) +
-		'\ninfluence: ' + kOut.influence.toFixed(1);
 
+	var k = aProp.selectedKeys[0];             // Índice do keyframe selecionado
+	var kIn = aProp.keyInTemporalEase(k)[0];   // Suavização de entrada do keyframe
+	var kOut = aProp.keyOutTemporalEase(k)[0]; // Suavização de saída do keyframe
+
+	// Armazena os dados do keyframe em um objeto global 'keyData'
 	keyData.value = true;
 	keyData.inType = aProp.keyInInterpolationType(k);
 	keyData.outType = aProp.keyOutInterpolationType(k);
 	keyData.inEase = aProp.keyInTemporalEase(k);
 	keyData.outEase = aProp.keyOutTemporalEase(k);
 
+	// Define as variáveis de influência de suavização
 	easeInInfluence = kIn.influence;
 	easeOutInfluence = kOut.influence;
 
-	// easeSld1.value = easeInInfluence;
-	// easeSld1Txt.text = easeSld1Txt.helpTip = easeInInfluence.toFixed(0) + '%';
-	
-	// easeSld2.value = 100 - easeOutInfluence;
-	// easeSld2Txt.text = easeSld2Txt.helpTip = (100 - easeOutInfluence).toFixed(0) + '%';
-
-	// hide all keyframe images...
+	// Esconde todas as imagens de keyframe no grupo 'keyStatsGrp'
 	for (var kf = 0; kf < keyStatsGrp.children.length; kf++) {
 		keyStatsGrp.children[kf].visible = false;
 	}
@@ -159,121 +127,58 @@ copyInfBtn.onClick = function () {
 	// 6614 - hold
 	// 6613 - ease
 	// 6612 - linear
-	// shows the keyframe image based on the in|out interpolation type....
+	// define a imagem de keyframe correta com base nos tipos de interpolação (in/out) do keyframe
 	switch (true) {
-	// ease - linear
-	case keyData.inType == 6613 && keyData.outType == 6612:
-		keyStatsGrp.keyImg1.visible = true;
-		keyStatsGrp.keyImg1.helpTip = kHelp;
-		break;
+		// ease - linear
+		case keyData.inType == 6613 && keyData.outType == 6612:
+			keyPreview = keyStatsGrp.keyImg1;
+			break;
 
 		// linear - ease
-	case keyData.inType == 6612 && keyData.outType == 6613:
-		keyStatsGrp.keyImg2.visible = true;
-		keyStatsGrp.keyImg2.helpTip = kHelp;
-		break;
+		case keyData.inType == 6612 && keyData.outType == 6613:
+			keyPreview = keyStatsGrp.keyImg2;
+			break;
 
 		// ease - ease
-	case keyData.inType == 6613 && keyData.outType == 6613:
-		keyStatsGrp.keyImg3.visible = true;
-		keyStatsGrp.keyImg3.helpTip = kHelp;
-		break;
+		case keyData.inType == 6613 && keyData.outType == 6613:
+			keyPreview = keyStatsGrp.keyImg3;
+			break;
 
 		// hold - linear
-	case keyData.inType == 6614 && keyData.outType == 6612:
-		keyStatsGrp.keyImg6.visible = true;
-		keyStatsGrp.keyImg6.helpTip = kHelp;
-		break;
+		case keyData.inType == 6614 && keyData.outType == 6612:
+			keyPreview = keyStatsGrp.keyImg6;
+			break;
 
 		// hold - ease
-	case keyData.inType == 6614 && keyData.outType == 6613:
-		keyStatsGrp.keyImg9.visible = true;
-		keyStatsGrp.keyImg9.helpTip = kHelp;
-		break;
+		case keyData.inType == 6614 && keyData.outType == 6613:
+			keyPreview = keyStatsGrp.keyImg9;
+			break;
 
 		// linear - hold
-	case keyData.inType == 6612 && keyData.outType == 6614:
-		keyStatsGrp.keyImg7.visible = true;
-		keyStatsGrp.keyImg7.helpTip = kHelp;
-		break;
+		case keyData.inType == 6612 && keyData.outType == 6614:
+			keyPreview = keyStatsGrp.keyImg7;
+			break;
 
 		// ease - hold
-	case keyData.inType == 6613 && keyData.outType == 6614:
-		keyStatsGrp.keyImg8.visible = true;
-		keyStatsGrp.keyImg8.helpTip = kHelp;
-		break;
+		case keyData.inType == 6613 && keyData.outType == 6614:
+			keyPreview = keyStatsGrp.keyImg8;
+			break;
 
 		// hold - hold
-	case keyData.inType == 6614 && keyData.outType == 6614:
-		keyStatsGrp.keyImg5.visible = true;
-		keyStatsGrp.keyImg5.helpTip = kHelp;
-		break;
+		case keyData.inType == 6614 && keyData.outType == 6614:
+			keyPreview = keyStatsGrp.keyImg5;
+			break;
 
 		// linear - linear
-	default:
-		keyStatsGrp.keyImg4.visible = true;
-		keyStatsGrp.keyImg4.helpTip = kHelp;
-		break;
+		default:
+			keyPreview = keyStatsGrp.keyImg4;
+			break;
 	}
-	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
 
-	easePrevGrp.remove(0);
-	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-	easePrevGrp.layout.layout(true);
+	// Exibe a imagem de keyframe correta
+	keyPreview.visible = true;
+	keyPreview.helpTip = '';
 };
-
-//---------------------------------------------------------
-
-// easeSld1.onChanging = function () {
-// 	this.value = Math.floor(this.value);
-
-// 	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
-// };
-
-// easeSld1.onChange = function () {
-// 	easeSld1Txt.text = easeSld1Txt.helpTip = this.value + '%';
-
-// 	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-// 	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
-
-// 	easePrevGrp.remove(0);
-// 	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-// 	easePrevGrp.layout.layout(true);
-
-// 	var aItem = app.project.activeItem;
-// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
-// 	easeOutInfluence = this.value;
-
-// 	for (var l = 0; l < selLayers.length; l++) {
-// 		applyEase(selLayers[l]);
-// 	}
-// };
-
-// easeSld2.onChange = function () {
-// 	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
-
-// 	var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-// 	var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
-
-// 	easePrevGrp.remove(0);
-// 	easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-// 	easePrevGrp.layout.layout(true);
-
-// 	var aItem = app.project.activeItem;
-// 	var selLayers = aItem != null ? aItem.selectedLayers : [];
-// 	easeInInfluence = 100 - this.value;
-
-// 	for (var l = 0; l < selLayers.length; l++) {
-// 		applyEase(selLayers[l]);
-// 	}
-// };
-
-// easeSld2.onChanging = function () {
-// 	this.value = Math.floor(this.value);
-
-// 	easeSld2Txt.text = easeSld2Txt.helpTip = (100 - this.value) + '%';
-// };
 
 //---------------------------------------------------------
 
@@ -290,84 +195,6 @@ pasteInfBtn.onClick = function () {
 		applyEase(selLayers[l]);
 	}
 };
-
-//---------------------------------------------------------
-
-// easeSld1Txt.addEventListener('click', function (c) {
-
-// 	if (c.detail == 2) {
-
-// 		var pos = [
-// 			c.screenX + 16,
-// 			c.screenY - 16
-// 		];
-
-// 		var input = inputDialog(parseInt(this.text).toString(), pos)
-// 			.toString()
-// 			.replace(/\D/g, '');
-
-// 		input = parseInt(input);
-// 		input = input > 0 ? input : 1;
-// 		input = input < 99 ? input : 99;
-// 		this.text = this.helpTip = input + '%';
-// 		easeSld1.value = input;
-
-// 		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-// 		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
-
-// 		easePrevGrp.remove(0);
-// 		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-// 		easePrevGrp.layout.layout(true);
-
-// 		var aItem = app.project.activeItem;
-// 		var selLayers = aItem != null ? aItem.selectedLayers : [];
-// 		easeOutInfluence = easeSld1.value;
-// 		easeInInfluence = 100 - easeSld2.value;
-
-// 		for (var l = 0; l < selLayers.length; l++) {
-// 			applyEase(selLayers[l]);
-// 		}
-// 	}
-// });
-
-//---------------------------------------------------------
-
-// easeSld2Txt.addEventListener('click', function (c) {
-
-// 	if (c.detail == 2) {
-
-// 		var pos = [
-// 			c.screenX + 16,
-// 			c.screenY - 16
-// 		];
-
-// 		var input = inputDialog(parseInt(this.text).toString(), pos)
-// 			.toString()
-// 			.replace(/\D/g, '');
-
-// 		input = parseInt(input);
-// 		input = input > 0 ? input : 1;
-// 		input = input < 99 ? input : 99;
-// 		this.text = this.helpTip = input + '%';
-// 		easeSld2.value = 100 - input;
-
-// 		var suf1 = Math.floor(parseInt(easeSld1Txt.text) / 10) * 10;
-// 		var suf2 = Math.floor(parseInt(easeSld2Txt.text) / 10) * 10;
-
-// 		easePrevGrp.remove(0);
-// 		easePrevGrp.add('image', undefined, easePrev['img' + suf1 + suf2 + iconTheme]);
-// 		easePrevGrp.layout.layout(true);
-
-// 		var aItem = app.project.activeItem;
-// 		var selLayers = aItem != null ? aItem.selectedLayers : [];
-// 		easeOutInfluence = easeSld1.value;
-// 		easeInInfluence = 100 - easeSld2.value;
-
-// 		for (var l = 0; l < selLayers.length; l++) {
-// 			applyEase(selLayers[l]);
-// 		}
-// 	}
-// });
 
 //---------------------------------------------------------
 
@@ -412,14 +239,14 @@ layerRandBtn.onClick = function () {
 	var rArray = [];
 	var rMax = 0;
 	var rMin = 1;
-	
+
 	app.beginUndoGroup('randomize layers');
-		
+
 	for (var j = 0; j < selLayers.length; j++) {
 		// generates a random integer between 0 and 1...
 		var r = gaussRnd(3);
 		rArray.push(r);
-		
+
 		// update the highest and lowest values so far...
 		rMax = Math.max(r, rMax);
 		rMin = Math.min(r, rMin);
@@ -490,7 +317,7 @@ arrowBtn.helpTip = '◖ → simple arrow rig';
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 
 // simple counter rig...
 var counterBtn = currentGrp.add('iconbutton', iconSize, counterIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
@@ -513,7 +340,7 @@ simpleBoxBtn.helpTip = '◖ → simple box bg base';
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 
 // wiggle position rig...
 var wigBtn = currentGrp.add('iconbutton', iconSize, wigIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
@@ -522,7 +349,7 @@ wigBtn.helpTip = '◖ → wig rig';
 //---------------------------------------------------------
 
 currentGrp.add('panel');
- 
+
 
 // simple ik rig...
 var ikBtn = currentGrp.add('iconbutton', iconSize, ikIcon[iconTheme], { name: 'btn', style: 'toolbutton' });

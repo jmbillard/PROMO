@@ -6,7 +6,7 @@
 
 */
 // Declaração da versão do script "O Padeiro"
-var PAD_v = '0.8-b';
+var PAD_v = '0.9-b';
 
 // Objeto que armazena as configurações padrão (default) do Padeiro
 var defPadObj = {
@@ -355,10 +355,16 @@ function padeiroTemplateDialog() {
 		importBtn.enabled = templateTree.selection != null;
 
 		// Define a imagem de pré-visualização (Preview)
-		if (previewImgFile.exists) {                          // Verifica se o arquivo de pré-visualização existe
-			previewImg.image = previewImgFile;                // Se existir, define a imagem da pré-visualização para o arquivo encontrado
+		// Verifica se o arquivo de pré-visualização existe
+		// Se existir...
+		if (previewImgFile.exists) {
+			//define a imagem da pré-visualização para o arquivo encontrado
+			previewImg.image = previewImgFile;
+
+			// Se não existir...
 		} else {
-			previewImg.image = no_preview;                    // Se não existir, define a imagem da pré-visualização para a imagem padrão 'no_preview' (que provavelmente indica que não há pré-visualização disponível)
+			//define a imagem da pré-visualização para a imagem padrão 'no_preview'
+			previewImg.image = no_preview;
 		}
 
 		// Mostra a área de pré-visualização e ajusta a janela

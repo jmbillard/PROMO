@@ -246,6 +246,7 @@ function applyEase(sLayer) {
 			// Tenta aplicar a suavização ao keyframe
 			try {
 				aProp.setTemporalEaseAtKey(aKey, easeInArray, easeOutArray);
+
 			} catch (err) {
 				// Se a propriedade for multidimensional (ex: Posição), ajusta os arrays de suavização
 				if (Array.isArray(aProp.value)) {
@@ -258,6 +259,8 @@ function applyEase(sLayer) {
 				// Aplica a suavização com os arrays ajustados
 				aProp.setTemporalEaseAtKey(aKey, easeInArray, easeOutArray);
 			}
+			// Define o tipo de interpolação do keyframe na propriedade de destino
+			aProp.setInterpolationTypeAtKey(aKey, keyData.inType, keyData.outType);
 		}
 	}
 }

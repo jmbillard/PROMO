@@ -1,4 +1,4 @@
-// Script: O PADEIRO
+// Script: O PADEIRO script de utilidades
 
 function O_PADEIRO_UTL(thisObj) {
 	var vStr = '';
