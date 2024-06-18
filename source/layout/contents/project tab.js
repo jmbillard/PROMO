@@ -15,15 +15,15 @@ var projSubGrp1 = currentGrp.add('group');
 // Campo de texto para nome do projeto
 var projIdContent = 'PROJ ID';
 var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
-projIdTxt.maximumSize.width = 100; // Largura máxima do campo de texto
+projIdTxt.maximumSize.width = 100;  // Largura máxima do campo de texto
 projIdTxt.minimumSize.width = vMin; // Largura mínima do campo de texto
-projIdTxt.helpTip = projIdContent; // Dica de ajuda para o campo de texto
+projIdTxt.helpTip = projIdContent;  // Dica de ajuda para o campo de texto
 
 // Botão para criar a estrutura de pastas no AE e no sistema
 var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projFoldersBtn.helpTip = '◗ → criar estrutura de pastas no AE\n' +
-  '◖ → criar estrutura de pastas no sistema\n' +
-  'abre a janela de seleção de pastas no drive L para escolher onde criar a estrutura do projeto no sistema.';
+	'◖ → criar estrutura de pastas no sistema\n' +
+	'abre a janela de seleção de pastas no drive L para escolher onde criar a estrutura do projeto no sistema.';
 
 // Separador
 currentGrp.add('panel');
@@ -34,17 +34,16 @@ var projSubGrp2 = currentGrp.add('group');
 // Botão para renomear composições selecionadas
 var renameItemBtn = projSubGrp2.add('iconbutton', iconSize, renameIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 renameItemBtn.helpTip = '◖ → renomear composições selecionadas\n' +
-  '◗ → renomear TODAS as composições\n' +
-  'remove caracteres especiais,\n' +
-  'transforma tudo para maiúsculas\n' +
-  'usa o nome da composição para aplicar tags de organização predeterminadas.';
+	'◗ → renomear TODAS as saídas\n' +
+	'remove caracteres especiais,\n' +
+	'transforma tudo para maiúsculas.';
 
 // Botão para organizar projeto
 var projOrgBtn = projSubGrp2.add('iconbutton', iconSize, AEFoldersIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 projOrgBtn.helpTip = '◖ → organização automática de projetos\n' +
-  'organiza o projeto usando as tags de organização.\n' +
-  '◗ → tags de organização\n' +
-  'abre a janela de tags para aplicar';
+	'organiza o projeto usando as tags de organização.\n' +
+	'◗ → tags de organização\n' +
+	'abre a janela de tags para aplicar';
 
 // Separador
 currentGrp.add('panel');
@@ -55,8 +54,8 @@ var projSubGrp3 = currentGrp.add('group');
 // Botão para coletar fontes usadas no projeto
 var collectFontsBtn = projSubGrp3.add('iconbutton', iconSize, fontCollectIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 collectFontsBtn.helpTip = '◖ → coletar fontes usadas no projeto\n' +
-  'copia todas as fontes usadas no projeto\n' +
-  'para a pasta de fontes';
+	'copia todas as fontes usadas no projeto\n' +
+	'para a pasta de fontes';
 
 // Separador
 projSubGrp3.add('panel');
@@ -68,7 +67,7 @@ fldProjBtn2.helpTip = '◖ → abrir pasta do projeto';
 // Botão para abrir a pasta do último item da fila de render
 var fldProjBtn3 = projSubGrp3.add('iconbutton', iconSize, outFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 fldProjBtn2.helpTip = '◖ → abrir pasta do último item da fila de render.\n' +
-  '◗ → abrir pasta do penúltimo item da fila de render.';
+	'◗ → abrir pasta do penúltimo item da fila de render.';
 
 
 // Obtém os rótulos estáticos dos elementos da guia menu
@@ -103,23 +102,27 @@ projIdTxt.addEventListener('blur', function () {
 
 renameItemBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
+		var numItems = app.project.renderQueue.numItems;
 		// error...
-		if (app.project.numItems == 0) {
-			showTabErr('empty project');
+		if (numItems == 0) {
+			showTabErr('fila de render vazia');
 			return;
 		}
-		app.beginUndoGroup('rename all comps');
 
-		var dateStr = system
-			.callSystem('cmd.exe /c date /t')
-			.trim();
+		app.beginUndoGroup('renomear outputs');
 
-		setXMPData('creator', system.userName);
-		setXMPData('date', dateStr);
+		for (var i = 1; i <= numItems; i++) {
+			var outputItem = app.project.renderQueue.item(i);
+			var outputModule = outputItem.outputModule(1); // Obtém o módulo de saída do item na fila de renderização
+			var outputFile = outputModule.file;
+			var outputPath = decodeURI(outputFile.parent.path);
 
-		var compArray = getCompsAndTemplates();
-		renamePromoComps(compArray);
+			var fileExt = getFileExt(outputFile.displayName);
+			var fileName = deleteFileExt(outputFile.displayName).toUpperCase().replaceSpecialCharacters();
+			var newOutputFile = new File(outputPath + '/' + fileName + fileExt);
 
+			outputModule.file = newOutputFile;
+		}
 		app.endUndoGroup();
 	}
 });
