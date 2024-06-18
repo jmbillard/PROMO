@@ -303,26 +303,29 @@ function createPathFolders(path) {
 ---------------------------------------------------------------
 
 */
-
+// Copia um arquivo para um novo caminho.
 function copyFile(fullPath, newPath) {
 	try {
-		var file = new File(fullPath);
-		var folder = new File(newPath);
-
+		var file = new File(fullPath); // Cria um objeto File para o arquivo de origem
+		// Verifica se o caminho original é uma pasta (length < 0 indica que é um diretório)
 		if (file.length < 0) {
-			if (!createPath(newPath + '/' + file.name)) return false;
-			if (!copyFolderContent(fullPath, newPath + '/' + file.name)) return false;
+		// Se for uma pasta, cria o caminho de destino e copia o conteúdo recursivamente
+			if (!createPath(newPath + '/' + file.name)) return false; // Cria a pasta de destino
+			if (!copyFolderContent(fullPath, newPath + '/' + file.name)) return false; // Copia o conteúdo da pasta
 
-			return true;
+		} else { // Se o caminho original for um arquivo
+			// Cria o caminho de destino e copia o arquivo
+			if (!createPath(newPath)) return false;  // Cria a pasta de destino
+			if (!file.copy(newPath + '/' + file.name)) return false; // Copia o arquivo
 		}
-		else {
-			if (!createPath(newPath)) return false;
-			if (!file.copy(newPath + '/' + file.name)) return false;
 
-			return true;
-		}
+		return true; // Retorna true se a cópia for bem-sucedida
+
+	// Lidar com erros
+	} catch (err) { 
+
+		return false; // Retorna false em caso de erro
 	}
-	catch (err) { }
 }
 
 function readFileContent(file) {

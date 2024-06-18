@@ -17,7 +17,7 @@
 //  jscs:disable maximumLineLength
 
 function prefsDialog() {
-	var layerTypeArray = ['shape layer', 'solid layer'];
+	var layerTypeArray = ['shape layer', 'sólido'];
 	var projectModeDropArray = ['PROMO'];//, 'custom'];
 	var ckbGrpSpacing = 20;
 	var btnGrpSpacing = 10;
@@ -27,7 +27,7 @@ function prefsDialog() {
 
 	//---------------------------------------------------------
 
-	var wPref = new Window('dialog', 'script preferences...');
+	var wPref = new Window('dialog', 'preferencias do script...');
 	wPref.alignChildren = ['left', 'top'];
 	wPref.spacing = 10;
 
@@ -54,7 +54,7 @@ function prefsDialog() {
 	layerGrp.alignChildren = ['left', 'center'];
 	layerGrp.spacing = 2;
 
-	var layerGrpTxt = layerGrp.add('statictext', undefined, 'layer types:');
+	var layerGrpTxt = layerGrp.add('statictext', undefined, 'novos layers:');
 	setTxtColor(layerGrpTxt, sTxtColor.light);
 
 	//
@@ -62,7 +62,7 @@ function prefsDialog() {
 	var nullGrp = layerGrp.add('group');
 	nullGrp.spacing = drpGrpSpacing;
 
-	var nullTypeTxt = nullGrp.add('statictext', undefined, 'new null');
+	var nullTypeTxt = nullGrp.add('statictext', undefined, 'novo null');
 	nullTypeTxt.helpTip = 'null type';
 	nullTypeTxt.preferredSize = txtSize;
 
@@ -93,7 +93,7 @@ function prefsDialog() {
 	projectGrp.alignChildren = ['left', 'center'];
 	projectGrp.spacing = 2;
 
-	var projectGrpTxt = projectGrp.add('statictext', undefined, 'project:');
+	var projectGrpTxt = projectGrp.add('statictext', undefined, 'projeto:');
 	setTxtColor(projectGrpTxt, sTxtColor.light);
 
 	//
@@ -114,7 +114,7 @@ function prefsDialog() {
 	var missGrp = projectGrp.add('group');
 	missGrp.spacing = ckbGrpSpacing;
 
-	var missTxt = missGrp.add('statictext', undefined, 'ignore missing files');
+	var missTxt = missGrp.add('statictext', undefined, 'ignorar missing files');
 	missTxt.helpTip = 'ignorar alerta de arquivos faltando';
 	missTxt.preferredSize = txtSize;
 
@@ -126,7 +126,7 @@ function prefsDialog() {
 	var projOrgGrp = projectGrp.add('group');
 	projOrgGrp.spacing = drpGrpSpacing;
 
-	var projModelTxt = projOrgGrp.add('statictext', undefined, 'org. model');
+	var projModelTxt = projOrgGrp.add('statictext', undefined, 'organização');
 	projModelTxt.helpTip = 'modelo de organização';
 	projModelTxt.preferredSize = txtSize;
 
@@ -159,7 +159,7 @@ function prefsDialog() {
 	themeGrp.alignChildren = ['left', 'center'];
 	themeGrp.spacing = 2;
 
-	var themeGrpTxt = themeGrp.add('statictext', undefined, 'theme:');
+	var themeGrpTxt = themeGrp.add('statictext', undefined, 'ícones:');
 	setTxtColor(themeGrpTxt, sTxtColor.light);
 
 	//
@@ -168,20 +168,20 @@ function prefsDialog() {
 	iconThemeGrp.spacing = 60;
 	iconThemeGrp.margins = [0, 8, 0, 4];
 
-	var lightRdo = iconThemeGrp.add('radiobutton', undefined, 'light icons');
-	lightRdo.helpTip = 'tema dos ícones';
-	lightRdo.value = lightRdo.text.split(' ')[0] == iconTheme;
-
-	var darkRdo = iconThemeGrp.add('radiobutton', undefined, 'dark icons');
+	var darkRdo = iconThemeGrp.add('radiobutton', undefined, 'tema dark');
 	darkRdo.helpTip = 'tema dos ícones';
-	darkRdo.value = darkRdo.text.split(' ')[0] == iconTheme;
+	darkRdo.value = darkRdo.text.split(' ')[1] == iconTheme;
+
+	var lightRdo = iconThemeGrp.add('radiobutton', undefined, 'tema light');
+	lightRdo.helpTip = 'tema dos ícones';
+	lightRdo.value = lightRdo.text.split(' ')[1] == iconTheme;
 
 	//
 
 	var tabColorsGrp = themeGrp.add('group');
 	tabColorsGrp.spacing = 2;
 
-	var tabTxt = tabColorsGrp.add('statictext', undefined, 'tab colors');
+	var tabTxt = tabColorsGrp.add('statictext', undefined, 'cores das abas');
 	tabTxt.helpTip = 'cores das abas';
 	tabTxt.preferredSize = txtSize;
 
@@ -199,8 +199,8 @@ function prefsDialog() {
 	var slGrp = wPref.add('group');
 	slGrp.spacing = ckbGrpSpacing;
 
-	var slTxt = slGrp.add('statictext', undefined, 'show labels');
-	slTxt.helpTip = 'mostrar rótulos nos botões';
+	var slTxt = slGrp.add('statictext', undefined, 'mostrar rótulos');
+	slTxt.helpTip = 'mostrar rótulos nos botões do menu principal';
 	slTxt.preferredSize = txtSize;
 
 	var slCkb = slGrp.add('checkbox', [8, 4, 24, 18]);
@@ -270,6 +270,58 @@ function prefsDialog() {
 	// 	var updateBtn = bGrp2.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
 	// 	updateBtn.helpTip = 'download the latest script version from github';
 
+	var divider3 = wPref.add('panel');
+	divider3.alignment = 'fill';
+
+	var setupGrp = wPref.add('group');
+	setupGrp.orientation = 'column';
+	setupGrp.alignChildren = ['left', 'center'];
+	setupGrp.spacing = 2;
+
+	var setupGrpTxt = setupGrp.add('statictext', undefined, 'setup do AE:');
+	setTxtColor(setupGrpTxt, sTxtColor.light);
+
+	var setupColorLabelsGrp = setupGrp.add('group');
+	setupColorLabelsGrp.spacing = btnGrpSpacing;
+
+	var setupColorLabelsTxt = setupColorLabelsGrp.add('statictext', undefined, 'cores dos labels');
+	setupColorLabelsTxt.helpTip = '';
+	setupColorLabelsTxt.preferredSize = txtSize;
+
+	var setupColorLabelsBtn = setupColorLabelsGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
+	setupColorLabelsBtn.helpTip = '';
+
+	var resetSetupColorLabelsBtn = setupColorLabelsGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
+	resetSetupColorLabelsBtn.helpTip = '';
+
+
+	var setupCacheGrp = setupGrp.add('group');
+	setupCacheGrp.spacing = btnGrpSpacing;
+
+	var setupCacheTxt = setupCacheGrp.add('statictext', undefined, 'pasta de caches');
+	setupCacheTxt.helpTip = '';
+	setupCacheTxt.preferredSize = txtSize;
+
+	var setupCacheBtn = setupCacheGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
+	setupCacheBtn.helpTip = '';
+
+	var resetSetupCacheBtn = setupCacheGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
+	resetSetupCacheBtn.helpTip = '';
+
+
+	var setupExportGrp = setupGrp.add('group');
+	setupExportGrp.spacing = btnGrpSpacing;
+
+	var setupExportTxt = setupExportGrp.add('statictext', undefined, 'templates de saída');
+	setupExportTxt.helpTip = '';
+	setupExportTxt.preferredSize = txtSize;
+
+	var setupExportBtn = setupExportGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
+	setupExportBtn.helpTip = '';
+
+	var resetSetupExportBtn = setupExportGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
+	resetSetupExportBtn.helpTip = '';
+
 	/*
 
 	---------------------------------------------------------------
@@ -279,12 +331,11 @@ function prefsDialog() {
 	*/
 
 	lightRdo.onClick = darkRdo.onClick = function () {
-		iconTheme = this.text.split(' ')[0];
+		iconTheme = this.text.split(' ')[1];
 		JSONPrefsObj.iconTheme = iconTheme;
 		savePrefs(); // → save preferences.json
 		showTabProg('restart the script  ヽ(✿ﾟ▽ﾟ)ノ');
 		wPref.close();
-
 	};
 
 	//---------------------------------------------------------
@@ -512,6 +563,102 @@ function prefsDialog() {
 	};
 
 	//---------------------------------------------------------
+
+	// Configura as cores e nomes dos rótulos das camadas nas preferências do After Effects.
+	setupColorLabelsBtn.onClick = function () {
+		var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;  // Tipo de arquivo de preferências
+
+		app.beginUndoGroup('Configuração de Rótulos de Camadas'); // Inicia um grupo de desfazer (undo)
+
+		// Itera sobre os 16 rótulos
+		for (var i = 1; i <= 16; i++) {
+			var color = labelsObj['l' + i].color; // Obtém a cor do rótulo
+			var name = labelsObj['l' + i].name;   // Obtém o nome do rótulo
+
+			// Salva a cor do rótulo nas preferências
+			var sectionName = 'Label Preference Color Section 5';
+			var keyName = 'Label Color ID 2 # ' + i;
+			app.preferences.savePrefAsString(sectionName, keyName, color, prefFile);
+
+			// Salva o nome do rótulo nas preferências
+			sectionName = 'Label Preference Text Section 7';
+			keyName = 'Label Text ID 2 # ' + i;
+			app.preferences.savePrefAsString(sectionName, keyName, name, prefFile);
+		}
+
+		app.preferences.saveToDisk(); // Salva as preferências no disco
+		app.preferences.reload();     // Recarrega as preferências do After Effects
+
+		app.endUndoGroup();  // Finaliza o grupo de desfazer
+
+		// Atualiza a visualização dos rótulos na composição ativa (se houver)
+		var aItem = app.project.activeItem;
+		if (aItem instanceof CompItem) {
+			var st = aItem.workAreaStart;      // Obtém o início da área de trabalho
+			aItem.workAreaStart = st;          // Redefine o início da área de trabalho (força a atualização)
+
+			// Itera pelas camadas e as (des)seleciona para forçar a atualização dos rótulos
+			for (var l = 1; l <= aItem.numLayers; l++) {
+				var aLayer = aItem.layer(l);      // Obtém a camada atual
+				var sl = aLayer.selected;         // Obtém o estado de seleção da camada
+				aLayer.selected = sl;             // Redefine o estado de seleção (força a atualização)
+			}
+		}
+	};
+
+	// Função executada quando o botão "setupDiskCacheBtn" é clicado.
+	setupCacheBtn.onClick = function () {
+		// Abre uma caixa de diálogo para o usuário selecionar a pasta de cache
+		var newDiskCacheFolder = Folder.selectDialog("Selecione a pasta para o cache de disco:");
+
+		// Verifica se o usuário selecionou uma pasta
+		if (newDiskCacheFolder.exists) {
+			var prefFile = PREFType.PREF_Type_MACHINE_SPECIFIC;  // Tipo de arquivo de preferências
+			var sectionName = 'Disk Cache Controls';
+			var keyName = 'Folder 7';
+			var cachePath = newDiskCacheFolder.fsName;
+
+			// Salva a pasta de cache nas preferências
+			app.preferences.savePrefAsString(sectionName, keyName, cachePath, prefFile);
+
+			app.preferences.saveToDisk(); // Salva as preferências no disco
+			app.preferences.reload();     // Recarrega as preferências do After Effects
+		}
+	};
+
+	setupExportBtn.onClick = function () {
+		// var renderPrefsFilePath = '~/desktop/' + 'Adobe After Effects ' + appFullV + ' Prefs-indep-output.txt';
+
+		// // copyFile(renderPrefsFilePath, AEPreferencesPath);
+
+		// // var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;  // Tipo de arquivo de preferências
+
+		// // var new_data = {
+		// // 	"Format": 12,
+		// // 	"Channels": 1,
+		// // 	"Color": 0,
+		// // 	"Include Project Link": true,
+		// // 	"Output Audio": 2,
+		// // 	"Video Output": true
+		// // };
+
+		// var omItem1_settable_str = app.project.renderQueue.item(1).outputModule(1).getSettings( GetSettingsFormat.NUMBER_SETTABLE );
+
+		// saveTextFile(JSON.stringify(omItem1_settable_str, null, "\t"), '~/desktop/output2.txt');
+		// // app.project.renderQueue.item(1).outputModule(1).setSettings(new_data);
+		// // app.beginUndoGroup('Configuração de Rótulos de Camadas'); // Inicia um grupo de desfazer (undo)
+
+		// // Get object that contains all possible values of all render settings of
+		// // render queue item 1 and convert to JSON format.
+
+		// // var rqItem1_spec_str = app.project.renderQueue.item(1).outputModule(1).getSettings(GetSettingsFormat.SPEC);
+		// // var rqItem1_spec_str_json = rqItem1_spec_str.toSource();
+
+		// // app.preferences.saveToDisk(); // Salva as preferências no disco
+		// // app.preferences.reload();     // Recarrega as preferências do After Effects
+
+		// app.endUndoGroup();  // Finaliza o grupo de desfazer
+	};
 
 	wPref.show();
 }
