@@ -409,6 +409,7 @@ function padeiroTemplateDialog() {
 			alert('esse template não tem um arquivo de configuração válido!\n\nerro: ' + err.message);
 			return;
 		}
+		alert(3);
 
 		// Atualiza o estado dos elementos da interface com base na presença de campos de entrada (inputs) e dados
 		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput); // Habilita o botão "Criar" apenas se um template for selecionado, houver dados de entrada e o template tiver campos de entrada
