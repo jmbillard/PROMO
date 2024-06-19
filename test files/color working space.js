@@ -1,0 +1,1 @@
+alert(app.project.workingSpace);

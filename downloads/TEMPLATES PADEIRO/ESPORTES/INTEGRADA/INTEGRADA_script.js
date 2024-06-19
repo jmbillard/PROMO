@@ -1,4 +1,7 @@
 // esse script só pode ser executado pelo padeiro... 
+app.project.linearizeWorkingSpace = false;
+app.project.compensateForSceneReferredProfiles = false;
+app.project.workingSpace = 'sRGB IEC61966-2.1';
 
 var exportComp = createdTemplatesArray[0]; // Obtém a primeira composição criada a partir de um array de templates.
 var logoArray = app.project.importFileWithDialog(); // Abre uma caixa de diálogo para o usuário selecionar os arquivos de logo.
