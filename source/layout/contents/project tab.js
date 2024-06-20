@@ -10,23 +10,23 @@
 currentGrp = tabsGrp.project;
 
 // Subgrupo para o nome do projeto
-var projSubGrp1 = currentGrp.add('group');
+// var projSubGrp1 = currentGrp.add('group');
 
-// Campo de texto para nome do projeto
-var projIdContent = 'PROJ ID';
-var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
-projIdTxt.maximumSize.width = 100;  // Largura máxima do campo de texto
-projIdTxt.minimumSize.width = vMin; // Largura mínima do campo de texto
-projIdTxt.helpTip = projIdContent;  // Dica de ajuda para o campo de texto
+// // Campo de texto para nome do projeto
+// var projIdContent = 'PROJ ID';
+// var projIdTxt = projSubGrp1.add('edittext', undefined, projIdContent);
+// projIdTxt.maximumSize.width = 100;  // Largura máxima do campo de texto
+// projIdTxt.minimumSize.width = vMin; // Largura mínima do campo de texto
+// projIdTxt.helpTip = projIdContent;  // Dica de ajuda para o campo de texto
 
-// Botão para criar a estrutura de pastas no AE e no sistema
-var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
-projFoldersBtn.helpTip = '◗ → criar estrutura de pastas no AE\n' +
-	'◖ → criar estrutura de pastas no sistema\n' +
-	'abre a janela de seleção de pastas no drive L para escolher onde criar a estrutura do projeto no sistema.';
+// // Botão para criar a estrutura de pastas no AE e no sistema
+// var projFoldersBtn = projSubGrp1.add('iconbutton', iconSize, projOrgIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
+// projFoldersBtn.helpTip = '◗ → criar estrutura de pastas no AE\n' +
+// 	'◖ → criar estrutura de pastas no sistema\n' +
+// 	'abre a janela de seleção de pastas no drive L para escolher onde criar a estrutura do projeto no sistema.';
 
-// Separador
-currentGrp.add('panel');
+// // Separador
+// currentGrp.add('panel');
 
 // Subgrupo para renomear composições
 var projSubGrp2 = currentGrp.add('group');
@@ -81,22 +81,22 @@ getStaticTextLabels(tabsGrp.menu, []);
 
 */
 
-projIdTxt.onChange = projIdTxt.onEnterKey = function () {
-	this.text = projId = this.text
-		.replaceSpecialCharacters()
-		.toUpperCase();
+// projIdTxt.onChange = projIdTxt.onEnterKey = function () {
+// 	this.text = projId = this.text
+// 		.replaceSpecialCharacters()
+// 		.toUpperCase();
 
-	if (projIdTxt.text != projIdContent) setXMPData('identifier', projId);
-	if (this.text.trim() == '') this.text = projIdContent;
-};
+// 	if (projIdTxt.text != projIdContent) setXMPData('identifier', projId);
+// 	if (this.text.trim() == '') this.text = projIdContent;
+// };
 
-projIdTxt.addEventListener('focus', function () {
-	this.text = this.text == projIdContent ? '' : this.text;
-});
+// projIdTxt.addEventListener('focus', function () {
+// 	this.text = this.text == projIdContent ? '' : this.text;
+// });
 
-projIdTxt.addEventListener('blur', function () {
-	this.text = this.text == '' ? projIdContent : this.text;
-});
+// projIdTxt.addEventListener('blur', function () {
+// 	this.text = this.text == '' ? projIdContent : this.text;
+// });
 
 //---------------------------------------------------------
 
@@ -150,65 +150,80 @@ projOrgBtn.addEventListener('click', function (c) {
 });
 
 projOrgBtn.onClick = function () {
+	// grupo de desfazer
 	app.beginUndoGroup('create project folders');
 
-	deleteProjectFolders();
-	populateProjectFolders();
-	deleteEmptyProjectFolders();
+	// Se houver itens selecionados na janela projeto
+	if (app.project.selection.length > 0) {
+
+		// Itera sobre os itens selecionados
+		for (var i = 0; i < app.project.selection.length; i++) {
+			var aItem = app.project.selection[i]; // item selecionado
+
+			// Se o item selecionado for uma composição
+			if (aItem instanceof CompItem) {
+				aItem.comment = 'EXPORTAR'; // Adiciona a tag 'EXPORTAR' como comentário
+			}
+		}
+	}
+
+	deleteProjectFolders(); // Deleta as pastas existentes
+	populateProjectFolders(); // Cria as pastas novas e organiza os itens
+	deleteEmptyProjectFolders(); // Deleta as pastas vazias
 
 	app.endUndoGroup();
 };
 
-projFoldersBtn.addEventListener('click', function (c) {
-	if (c.button == 2) {
-		var dateStr = system
-			.callSystem('cmd.exe /c date /t')
-			.trim();
+// projFoldersBtn.addEventListener('click', function (c) {
+// 	if (c.button == 2) {
+// 		var dateStr = system
+// 			.callSystem('cmd.exe /c date /t')
+// 			.trim();
 
-		setXMPData('creator', system.userName);
-		setXMPData('date', dateStr);
+// 		setXMPData('creator', system.userName);
+// 		setXMPData('date', dateStr);
 
-		var selectedFolder = homeOffice ? Folder.selectDialog() : new Folder(projRJ).selectDlg();
+// 		var selectedFolder = homeOffice ? Folder.selectDialog() : new Folder(projRJ).selectDlg();
 
-		if (selectedFolder == null) return;
+// 		if (selectedFolder == null) return;
 
-		var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
-		if (!saveFolder.exists) saveFolder.create();
+// 		var saveFolder = new Folder(decodeURI(selectedFolder.fullName) + '/' + projId);
+// 		if (!saveFolder.exists) saveFolder.create();
 
-		var savePath = decodeURI(saveFolder.fullName);
+// 		var savePath = decodeURI(saveFolder.fullName);
 
-		var pathArray = [
-			savePath + '/01 PROJETOS/',
-			savePath + '/02 ARQUIVOS/',
-			savePath + '/02 ARQUIVOS/FONT/',
-			savePath + '/02 ARQUIVOS/IMAGENS/',
-			savePath + '/02 ARQUIVOS/VIDEOS/',
-			savePath + '/03 BOARDS/',
-			savePath + '/04 REFs/',
-			savePath + '/05 SAIDA/',
-			savePath + '/06 EXTERNOS/'
-		];
-		for (var i = 0; i < pathArray.length; i++) {
-			var path = pathArray[i];
-			var nFolder = new Folder(path);
-			if (!nFolder.exists) nFolder.create();
-		}
+// 		var pathArray = [
+// 			savePath + '/01 PROJETOS/',
+// 			savePath + '/02 ARQUIVOS/',
+// 			savePath + '/02 ARQUIVOS/FONT/',
+// 			savePath + '/02 ARQUIVOS/IMAGENS/',
+// 			savePath + '/02 ARQUIVOS/VIDEOS/',
+// 			savePath + '/03 BOARDS/',
+// 			savePath + '/04 REFs/',
+// 			savePath + '/05 SAIDA/',
+// 			savePath + '/06 EXTERNOS/'
+// 		];
+// 		for (var i = 0; i < pathArray.length; i++) {
+// 			var path = pathArray[i];
+// 			var nFolder = new Folder(path);
+// 			if (!nFolder.exists) nFolder.create();
+// 		}
 
-		projFile = new File(savePath + '/01 PROJETOS/' + projId);
-		app.project.save(projFile);
+// 		projFile = new File(savePath + '/01 PROJETOS/' + projId);
+// 		app.project.save(projFile);
 
-		openFolder(savePath);
-		// setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
+// 		openFolder(savePath);
+// 		// setClipboard(savePath.replace(/^~\//, '').replace(/\//g, '\\'));
 
-		// if (appV > 22 && saveAsV22) {
-		// 	executeCommandID('Save a Copy As 22.x...');
-		// }
-	}
-});
+// 		// if (appV > 22 && saveAsV22) {
+// 		// 	executeCommandID('Save a Copy As 22.x...');
+// 		// }
+// 	}
+// });
 
-projFoldersBtn.onClick = function () {
-	projectTemplateFolders(projectMode); // project folder structure...
-};
+// projFoldersBtn.onClick = function () {
+// 	projectTemplateFolders(projectMode); // project folder structure...
+// };
 
 collectFontsBtn.onClick = function () {
 

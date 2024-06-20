@@ -233,7 +233,7 @@ function setLayout() {
 	limitSld.size.width = w.size.width - 16;     // Define a largura do controle deslizante 'limitSld'.
 
 	// Configura controles na aba de projeto.
-	projIdTxt.size.width = w.size.width - 8;      // Define a largura do campo de texto 'projIdTxt'.
+	// projIdTxt.size.width = w.size.width - 8;      // Define a largura do campo de texto 'projIdTxt'.
 	// projNameTxt.size.width = w.size.width - 8; // Define a largura do campo de texto 'projNameTxt' (comentado).
 
 	// Configura todos os subgrupos de abas.
@@ -327,7 +327,7 @@ function showTabErr(msg) {
 
 // Exibe uma mensagem de progresso e bloqueia a interação do usuário.
 function showTabProg(msg) {
-	alert(relax + '     reinicie o script!\nbasta fechar e abrir novamente a barrinha...'); // Exibe um alerta (não bloqueia a interface).
+	alert(relax + '   reinicie o script!\nbasta fechar e abrir novamente a barrinha...'); // Exibe um alerta (não bloqueia a interface).
 
 	progTxt1.text = 'AGUARDE';          // Define o primeiro texto de progresso.
 	progTxt2.text = msg;                // Define o segundo texto de progresso com a mensagem.

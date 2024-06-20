@@ -460,50 +460,50 @@ function fontCollect(savePath) {
 // }
 
 // copy all files used in the project to the project folder...
-function filesCollectPROMO(projId, progressWindow) {
-	var progressLabel = progressWindow.children[0];
-	var progressBar = progressWindow.children[1];
+// function filesCollectPROMO(projId, progressWindow) {
+// 	var progressLabel = progressWindow.children[0];
+// 	var progressBar = progressWindow.children[1];
 
-	progressBar.maxvalue = app.project.numItems;
+// 	progressBar.maxvalue = app.project.numItems;
 
-	// if (orgFolders) {
-	// 	var objId = projId.substring(0, 3);
+// 	// if (orgFolders) {
+// 	// 	var objId = projId.substring(0, 3);
 
-	// 	if (promoSubPath.hasOwnProperty(objId)) projId = promoSubPath[objId] + '/' + projId;
-	// }
-	var savePath = projPath + '/' + projId; // collect folder path...
-	var saveFolder = createPathFolders(savePath);
+// 	// 	if (promoSubPath.hasOwnProperty(objId)) projId = promoSubPath[objId] + '/' + projId;
+// 	// }
+// 	var savePath = projPath + '/' + projId; // collect folder path...
+// 	var saveFolder = createPathFolders(savePath);
 
-	for (var i = 1; i <= app.project.numItems; i++) {
-		var aItem = app.project.item(i);
-		progressBar.value = i;
+// 	for (var i = 1; i <= app.project.numItems; i++) {
+// 		var aItem = app.project.item(i);
+// 		progressBar.value = i;
 
-		if (!(aItem instanceof FootageItem)) continue;
-		if (aItem.file == null) continue;
-		if (!aItem.file.exists) continue;
+// 		if (!(aItem instanceof FootageItem)) continue;
+// 		if (aItem.file == null) continue;
+// 		if (!aItem.file.exists) continue;
 
-		progressLabel.text = 'collecting: ' + aItem.name;
-		progressWindow.update();
+// 		progressLabel.text = 'collecting: ' + aItem.name;
+// 		progressWindow.update();
 
-		var itemPath = '';
-		var itemFolder = aItem.parentFolder;
+// 		var itemPath = '';
+// 		var itemFolder = aItem.parentFolder;
 
-		while (itemFolder != app.project.rootFolder || itemFolder.parentFolder != '03 ARQUIVOS') {
-			itemPath = itemFolder.name + '/' + itemPath;
-			itemFolder = itemFolder.parentFolder;
-		}
-		var fileName = decodeURI(aItem.file.name);
-		var filePath = decodeURI(aItem.file.fullName);
-		var newFilePath = [savePath, '02 ARQUIVOS', itemPath].join('/');
+// 		while (itemFolder != app.project.rootFolder || itemFolder.parentFolder != '03 ARQUIVOS') {
+// 			itemPath = itemFolder.name + '/' + itemPath;
+// 			itemFolder = itemFolder.parentFolder;
+// 		}
+// 		var fileName = decodeURI(aItem.file.name);
+// 		var filePath = decodeURI(aItem.file.fullName);
+// 		var newFilePath = [savePath, '02 ARQUIVOS', itemPath].join('/');
 
-		if (filePath.match(savePath)) continue;
+// 		if (filePath.match(savePath)) continue;
 
-		copyFile(filePath, newFilePath);
-		var newFile = new File([newFilePath, fileName].join('/'));
-		aItem.replace(newFile);
-	}
-	return savePath;
-}
+// 		copyFile(filePath, newFilePath);
+// 		var newFile = new File([newFilePath, fileName].join('/'));
+// 		aItem.replace(newFile);
+// 	}
+// 	return savePath;
+// }
 
 // -------------------------------------------------------
 
