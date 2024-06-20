@@ -211,6 +211,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
   `◖ clique esquerdo` → Abre a pasta onde o último vídeo da fila de render será / foi salvo.
 
   > O script olha na fila de render o último caminho de pasta disponível e abre a pasta.
+
   `◗ clique direito` → Abre a pasta onde o projeto atual está guardado (se ele já tiver sido salvo antes).
 
   > O script verifica se você já salvou o projeto.
