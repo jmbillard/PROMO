@@ -56,6 +56,9 @@ function O_PADEIRO_UTL(thisObj) {
 		var PAD_renameBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
 		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
+		var PAD_OrgBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_ORG_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
+		PAD_OrgBtn.helpTip = '◖ → organizar o projeto\n\nselecione as comps que serão renderizadas primeiro!';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+
 		// Rótulo da versão
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
 		PAD_vLab.alignment = 'right';
@@ -278,7 +281,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		PAD_renameBtn.addEventListener('click', function (c) {
-			
+
 			if (c.button == 2) {
 				app.beginUndoGroup('renomear outputs');
 
@@ -287,6 +290,35 @@ function O_PADEIRO_UTL(thisObj) {
 				app.endUndoGroup();
 			}
 		});
+
+		PAD_OrgBtn.onClick = function () {
+
+			// Verifica se há itens no projeto.
+			if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
+
+			// grupo de desfazer
+			app.beginUndoGroup('organização automática do projeto');
+
+			// Se houver itens selecionados na janela projeto
+			if (app.project.selection.length > 0) {
+
+				// Itera sobre os itens selecionados
+				for (var i = 0; i < app.project.selection.length; i++) {
+					var aItem = app.project.selection[i]; // item selecionado
+
+					// Se o item selecionado for uma composição
+					if (aItem instanceof CompItem) {
+						aItem.comment = 'EXPORTAR'; // Adiciona a tag 'EXPORTAR' como comentário
+					}
+				}
+			}
+
+			deleteProjectFolders(); // Deleta as pastas existentes
+			populateProjectFolders(); // Cria as pastas novas e organiza os itens
+			deleteEmptyProjectFolders(); // Deleta as pastas vazias
+
+			app.endUndoGroup();
+		};
 
 
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.

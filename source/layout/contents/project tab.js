@@ -143,15 +143,19 @@ renameItemBtn.onClick = function () {
 
 projOrgBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
-		if (app.project.numItems == 0) return;
+		// Verifica se há itens no projeto.
+		if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
 
 		tagDialog();
 	}
 });
 
 projOrgBtn.onClick = function () {
+	// Verifica se há itens no projeto.
+	if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
+
 	// grupo de desfazer
-	app.beginUndoGroup('create project folders');
+	app.beginUndoGroup('organização automática do projeto');
 
 	// Se houver itens selecionados na janela projeto
 	if (app.project.selection.length > 0) {
