@@ -1,6 +1,6 @@
 # 🧾 O PADEIRO *script*
 
-🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates no After Effects ⚡
+🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates e outras utilidades no After Effects ⚡
 
 > 📂 **pastas:**\
 > • **templates** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\TEMPLATES\TEMPLATES PADEIRO`
