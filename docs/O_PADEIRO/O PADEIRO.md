@@ -196,6 +196,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 ## outras utilidades...
 
 - **resolver fontes**:
+
   `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
 
   > Apenas nos templates do padeiro!
