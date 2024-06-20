@@ -285,42 +285,44 @@ function prefsDialog() {
 	setupColorLabelsGrp.spacing = btnGrpSpacing;
 
 	var setupColorLabelsTxt = setupColorLabelsGrp.add('statictext', undefined, 'cores dos labels');
-	setupColorLabelsTxt.helpTip = '';
+	setupColorLabelsTxt.helpTip = 'configura as as preferências de\ncores dos labels e seus nomes';
 	setupColorLabelsTxt.preferredSize = txtSize;
 
 	var setupColorLabelsBtn = setupColorLabelsGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
-	setupColorLabelsBtn.helpTip = '';
+	setupColorLabelsBtn.helpTip = 'configurar labels';
 
 	var resetSetupColorLabelsBtn = setupColorLabelsGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
 	resetSetupColorLabelsBtn.helpTip = '';
+	resetSetupColorLabelsBtn.enabled = false;
 
 
 	var setupCacheGrp = setupGrp.add('group');
 	setupCacheGrp.spacing = btnGrpSpacing;
 
 	var setupCacheTxt = setupCacheGrp.add('statictext', undefined, 'pasta de caches');
-	setupCacheTxt.helpTip = '';
+	setupCacheTxt.helpTip = 'configura a preferência ddo\ncaminho da pasta de caches';
 	setupCacheTxt.preferredSize = txtSize;
 
 	var setupCacheBtn = setupCacheGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
-	setupCacheBtn.helpTip = '';
+	setupCacheBtn.helpTip = 'configurar pasta de caches';
 
 	var resetSetupCacheBtn = setupCacheGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
 	resetSetupCacheBtn.helpTip = '';
+	resetSetupCacheBtn.enabled = false;
 
 
-	var setupExportGrp = setupGrp.add('group');
-	setupExportGrp.spacing = btnGrpSpacing;
+	// var setupExportGrp = setupGrp.add('group');
+	// setupExportGrp.spacing = btnGrpSpacing;
 
-	var setupExportTxt = setupExportGrp.add('statictext', undefined, 'templates de saída');
-	setupExportTxt.helpTip = '';
-	setupExportTxt.preferredSize = txtSize;
+	// var setupExportTxt = setupExportGrp.add('statictext', undefined, 'templates de saída');
+	// setupExportTxt.helpTip = '';
+	// setupExportTxt.preferredSize = txtSize;
 
-	var setupExportBtn = setupExportGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
-	setupExportBtn.helpTip = '';
+	// var setupExportBtn = setupExportGrp.add('iconbutton', iconSize, solTogIcon.light, { style: 'toolbutton' });
+	// setupExportBtn.helpTip = '';
 
-	var resetSetupExportBtn = setupExportGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
-	resetSetupExportBtn.helpTip = '';
+	// var resetSetupExportBtn = setupExportGrp.add('iconbutton', iconTogSize, resetIcon.light, { style: 'toolbutton' });
+	// resetSetupExportBtn.helpTip = '';
 
 	/*
 
@@ -626,39 +628,39 @@ function prefsDialog() {
 		}
 	};
 
-	setupExportBtn.onClick = function () {
-		// var renderPrefsFilePath = '~/desktop/' + 'Adobe After Effects ' + appFullV + ' Prefs-indep-output.txt';
+	// setupExportBtn.onClick = function () {
+	// 	// var renderPrefsFilePath = '~/desktop/' + 'Adobe After Effects ' + appFullV + ' Prefs-indep-output.txt';
 
-		// // copyFile(renderPrefsFilePath, AEPreferencesPath);
+	// 	// // copyFile(renderPrefsFilePath, AEPreferencesPath);
 
-		// // var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;  // Tipo de arquivo de preferências
+	// 	// // var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;  // Tipo de arquivo de preferências
 
-		// // var new_data = {
-		// // 	"Format": 12,
-		// // 	"Channels": 1,
-		// // 	"Color": 0,
-		// // 	"Include Project Link": true,
-		// // 	"Output Audio": 2,
-		// // 	"Video Output": true
-		// // };
+	// 	// // var new_data = {
+	// 	// // 	"Format": 12,
+	// 	// // 	"Channels": 1,
+	// 	// // 	"Color": 0,
+	// 	// // 	"Include Project Link": true,
+	// 	// // 	"Output Audio": 2,
+	// 	// // 	"Video Output": true
+	// 	// // };
 
-		// var omItem1_settable_str = app.project.renderQueue.item(1).outputModule(1).getSettings( GetSettingsFormat.NUMBER_SETTABLE );
+	// 	// var omItem1_settable_str = app.project.renderQueue.item(1).outputModule(1).getSettings( GetSettingsFormat.NUMBER_SETTABLE );
 
-		// saveTextFile(JSON.stringify(omItem1_settable_str, null, "\t"), '~/desktop/output2.txt');
-		// // app.project.renderQueue.item(1).outputModule(1).setSettings(new_data);
-		// // app.beginUndoGroup('Configuração de Rótulos de Camadas'); // Inicia um grupo de desfazer (undo)
+	// 	// saveTextFile(JSON.stringify(omItem1_settable_str, null, "\t"), '~/desktop/output2.txt');
+	// 	// // app.project.renderQueue.item(1).outputModule(1).setSettings(new_data);
+	// 	// // app.beginUndoGroup('Configuração de Rótulos de Camadas'); // Inicia um grupo de desfazer (undo)
 
-		// // Get object that contains all possible values of all render settings of
-		// // render queue item 1 and convert to JSON format.
+	// 	// // Get object that contains all possible values of all render settings of
+	// 	// // render queue item 1 and convert to JSON format.
 
-		// // var rqItem1_spec_str = app.project.renderQueue.item(1).outputModule(1).getSettings(GetSettingsFormat.SPEC);
-		// // var rqItem1_spec_str_json = rqItem1_spec_str.toSource();
+	// 	// // var rqItem1_spec_str = app.project.renderQueue.item(1).outputModule(1).getSettings(GetSettingsFormat.SPEC);
+	// 	// // var rqItem1_spec_str_json = rqItem1_spec_str.toSource();
 
-		// // app.preferences.saveToDisk(); // Salva as preferências no disco
-		// // app.preferences.reload();     // Recarrega as preferências do After Effects
+	// 	// // app.preferences.saveToDisk(); // Salva as preferências no disco
+	// 	// // app.preferences.reload();     // Recarrega as preferências do After Effects
 
-		// app.endUndoGroup();  // Finaliza o grupo de desfazer
-	};
+	// 	// app.endUndoGroup();  // Finaliza o grupo de desfazer
+	// };
 
 	wPref.show();
 }

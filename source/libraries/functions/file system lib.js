@@ -323,7 +323,6 @@ function copyFile(fullPath, newPath) {
 
 	// Lidar com erros
 	} catch (err) { 
-
 		return false; // Retorna false em caso de erro
 	}
 }
@@ -409,14 +408,17 @@ function fontCollect(savePath) {
 			}
 			if (fontArray.indexOf(fontName) > 0) continue; // already copied...
 
-			var fontCopyFile = new File(savePath + '/' + fontSrcFile.displayName);
+			var fontFileName = fontSrcFile.displayName;
+
+			if (!fontFileName.match(/(\.ttf|\.otf)$/i)) fontFileName = 'cc_' + fontName + '.ttf';
+			
+			var fontCopyFile = new File(savePath + '/' + fontFileName);
 
 			fontArray.push(fontName);
-
 			fontSrcFile.copy(fontCopyFile);
 		}
 	}
-	if (saveFolder.getFiles().length == 0) saveFolder.remove();
+	if (saveFolder.getFiles().length === 0) saveFolder.remove();
 
 	if (failArray.length > 0) alert(failArray.toString() + ' cant be copied');
 

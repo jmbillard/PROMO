@@ -253,11 +253,11 @@ collectFontsBtn.addEventListener('click', function (c) {
 			return;
 		}
 
-		var currentProj = app.project.file;
+		var savePath = Folder.selectDialog(); // Abre a janela de seleção de pastas
 
-		if (currentProj == null) return; // O arquivo do projeto não existe
+		if (savePath == null) return; // Se a janela foi cancelada, não faz nada
 
-		var currentProjPath = decodeURI(currentProj.path) + '/FONTS'; // collect folder path...
+		var currentProjPath = decodeURI(savePath.fullName) + '/FONTS'; // caminho final do collect
 		var fontsPath = fontCollect(currentProjPath);
 
 		openFolder(fontsPath);
@@ -277,7 +277,7 @@ fldProjBtn2.onClick = function () {
 	var fld = new Folder(currentProjPath);
 
 	if (!fld.exists) {
-		showTabErr('esta pasta não foi encontrada...');
+		showTabErr('a pasta não foi encontrada...');
 		return;
 	}
 	openFolder(decodeURI(fld.fullName));

@@ -20,10 +20,26 @@
 
 ferramentas disponíveis em ordem:
 
-- **O PADEIRO** → abre a janela de templates.
-- **RESOLVER FONTES** → instala as fontes necessárias para o template criado
-- **ABRIR PASTA DE OUTPUT** → abre a pasta de output do último ou penúltimo item da fila de render.
-- **RENOMEAR COMPS** → renomeia comps selecionadas removendo caracteres especiais, colocando tudo em *CAIXA ALTA* e acrescenta os prefixos para rodapés, cartões, letterings, etc. para comps em suas respectivas pastas
+- **O PADEIRO**:
+`◖ botão esquerdo` → abre a janela de templates.
+`◖ botão direito` → abre a pasta de templates no servidor de arquivos.
+  >
+- **RESOLVER FONTES**:
+`◖ botão esquerdo` → instala as fontes necessárias para o template criado.
+`◖ botão direito` → faz o collect dos arquivos de fonte usados no projeto.
+  >
+- **ABRIR PASTA DE OUTPUT**:
+`◖ botão esquerdo` → abre a pasta de output do último item da fila de render.
+`◖ botão direito` → abre a pasta do projeto atual.
+  > *se o projeto já foi salvo.*
+- **RENOMEAR COMPS**:
+`◖ botão esquerdo` → renomeia comps selecionadas.
+`◖ botão direito` → renomeia todos os itens da fila de render.
+  > *remove caracteres especiais, colocando tudo em CAIXA ALTA e acrescenta os prefixos para rodapés, cartões, letterings, etc.*
+- **ORGANIZAR PROJETO**:
+`◖ botão esquerdo` → renomeia comps selecionadas.
+`◖ botão direito` → renomeia todos os itens da fila de render.
+
 <br>
 
 ## 📍 instalação
@@ -31,7 +47,8 @@ ferramentas disponíveis em ordem:
 instale o script pelo menu:\
 `File > Scrips > Install ScriptUI Panel...`
 
-![ui](images/instalacao.png)
+> 📋 *exemplo:*\
+> ![ui](images/instalacao.png)
 
 após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
 
@@ -194,6 +211,8 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 - BRASILEIRAO
   - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO/CONFRONTO.md)
+- INTEGRADA
+  - [INTEGRADA](templates_disponiveis/ESPORTES/INTEGRADA/INTEGRADA.md)
 - VERAO ESPETACULAR
   - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/VERAO_ESPETACULAR/RODAPE_ATRACAO.md)
 

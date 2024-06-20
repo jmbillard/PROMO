@@ -40,7 +40,7 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates'; // Dica de ajuda
 
 		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Instalar Fontes"
-		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → abrir a pasta de fontes usadas no template'; // Dica de ajuda
+		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → fazer o collect das fontes usadas no projeto'; // Dica de ajuda
 
 		mainGrp.add("panel"); // Separador visual
 
@@ -172,24 +172,17 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
 
-				// Verifica se há acesso à internet, necessário para baixar fontes.
-				if (!netAccess()) {
-					alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
-					return; // Encerra a função se não houver acesso à internet.
-				}
+				// Verifica se há itens no projeto.
+				if (app.project.numItems == 0) return;
 
-				var folderPath = getXMPData('source');  // Obtém o caminho da pasta do template a partir dos metadados XMP.
-				var templateFontsPath = folderPath + '/FONTS'; // Adiciona "/FONTS" para obter o caminho da pasta de fontes.
-				if (folderPath == '') return; // Encerra se o caminho da pasta não for encontrado.
+				var savePath = Folder.selectDialog(); // Abre a janela de seleção de pastas
 
-				// Tenta abrir a pasta de fontes no sistema operacional.
-				try {
-					openFolder(templateFontsPath);
+				if (savePath == null) return; // Se a janela foi cancelada, não faz nada
 
-					// Exibe um alerta se ocorrer algum erro ao abrir a pasta.
-				} catch (error) {
-					alert(lol + '\n' + error + '...');
-				}
+				var currentProjPath = decodeURI(savePath.fullName) + '/FONTS'; // caminho final do collect
+				var fontsPath = fontCollect(currentProjPath);
+
+				openFolder(fontsPath);
 			}
 		});
 
@@ -232,35 +225,25 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
 
-				// Verifica se há acesso à internet (necessário para alguns logs ou relatórios?).
+				// error...
 				if (!netAccess()) {
-					alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
-					return; // Encerra a função se não houver acesso à internet.
+					alert(netConfigName + ' não habilitada');
+					return;
 				}
+				var currentProj = app.project.file;
 
-				// Verifica se há pelo menos dois itens na fila de renderização (para acessar o penúltimo).
-				if (app.project.renderQueue.numItems < 2) return;
+				if (currentProj == null) {
+					alert(lol + '\no projeto atual ainda não foi salvo...')
+				}
+				
+				var currentProjPath = decodeURI(currentProj.path);
+				var fld = new Folder(currentProjPath);
 
-				// Obtém o PENÚLTIMO item da fila de renderização (índice é numItems - 1).
-				var item = app.project.renderQueue.item(app.project.renderQueue.numItems - 1);
-
-				// Obtém o módulo de saída do item (onde o arquivo renderizado será salvo).
-				var outputModule = item.outputModule(1);
-
-				// Obtém o caminho completo da pasta de saída, decodificando caracteres especiais.
-				var outputPath = decodeURI(outputModule.file.path);
-
-				// Cria um objeto "Folder" para representar a pasta de saída.
-				var fld = new Folder(outputPath);
-
-				// Verifica se a pasta de saída existe no sistema de arquivos.
 				if (!fld.exists) {
-					alert(lol + '\na pasta não foi encontrada...'); // Exibe um erro se a pasta não for acessível.
-					return; // Encerra a função se a pasta não existir.
+					alert('a pasta não foi encontrada...');
+					return;
 				}
-
-				// Abre a pasta de saída no sistema operacional do usuário.
-				openFolder(outputPath);
+				openFolder(decodeURI(fld.fullName));
 			}
 		});
 
