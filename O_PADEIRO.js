@@ -57,7 +57,7 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
 		var PAD_OrgBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_ORG_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_OrgBtn.helpTip = '◖ → organizar o projeto\n\nselecione as comps que serão renderizadas primeiro!';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+		PAD_OrgBtn.helpTip = 'selecione as comps que serão\nRENDERIZADAS primeiro!\n\n◖ → organizar o projeto';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
 		// Rótulo da versão
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
