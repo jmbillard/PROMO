@@ -165,7 +165,7 @@ projOrgBtn.onClick = function () {
 			var aItem = app.project.selection[i]; // item selecionado
 
 			// Se o item selecionado for uma composição
-			if (aItem instanceof CompItem) {
+			if (aItem instanceof CompItem && aItem.comment === '') {
 				aItem.comment = 'EXPORTAR'; // Adiciona a tag 'EXPORTAR' como comentário
 			}
 		}
