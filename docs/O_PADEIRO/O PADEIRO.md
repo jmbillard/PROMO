@@ -21,25 +21,24 @@
 ferramentas disponíveis em ordem:
 
 - **O PADEIRO**:
-`◖ botão esquerdo` → abre a janela de templates.
-`◖ botão direito` → abre a pasta de templates no servidor de arquivos.
+`◖ clique esquerdo` → abre a janela de templates.
+`◗ clique direito` → abre a pasta de templates no servidor de arquivos.
   >
 - **RESOLVER FONTES**:
-`◖ botão esquerdo` → instala as fontes necessárias para o template criado.
-`◖ botão direito` → faz o collect dos arquivos de fonte usados no projeto.
+`◖ clique esquerdo` → instala as fontes necessárias para o template criado.
+`◗ clique direito` → faz o collect dos arquivos de fonte usados no projeto.
   >
-- **ABRIR PASTA DE OUTPUT**:
-`◖ botão esquerdo` → abre a pasta de output do último item da fila de render.
-`◖ botão direito` → abre a pasta do projeto atual.
+- **ABRIR PASTAS**:
+`◖ clique esquerdo` → abre a pasta de output do último item da fila de render.
+`◗ clique direito` → abre a pasta do projeto atual.
   > *se o projeto já foi salvo.*
-- **RENOMEAR COMPS**:
-`◖ botão esquerdo` → renomeia comps selecionadas.
-`◖ botão direito` → renomeia todos os itens da fila de render.
+- **RENOMEAR ITENS**:
+`◖ clique esquerdo` → renomeia comps selecionadas.
+`◗ clique direito` → renomeia todos os itens da fila de render.
   > *remove caracteres especiais, colocando tudo em CAIXA ALTA e acrescenta os prefixos para rodapés, cartões, letterings, etc.*
 - **ORGANIZAR PROJETO**:
-`◖ botão esquerdo` → renomeia comps selecionadas.
-`◖ botão direito` → renomeia todos os itens da fila de render.
-
+`◖ clique esquerdo` → organiza o projeto usando o modelo de organização da PROMO.
+  > *antes de clicar,selecione as comps principais (as que devem ser renderizadas) para que elas sejam adicionadas a pasta '01 COMPS'*
 <br>
 
 ## 📍 instalação
@@ -192,6 +191,62 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 > um input com o nome *"Lima\nDuarte"*, em duas linhas, com o primeiro nome *"Lima"* em uma fonte light e o sobrenome "Duarte" em uma fonte bold.
 
 ---
+<br>
+
+## outras utilidades...
+
+- **resolver fontes**:
+  `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
+
+  > Apenas nos templates do padeiro!
+  > O script analisa o modelo e descobre quais fontes são necessárias.
+
+  `◗ clique direito` → Reúne cópias de todos os arquivos de fontes usadas no projeto em um só lugar.
+
+  > O script encontra todas as fontes que você usou no projeto e copia os seus arquivos para uma pasta a sua escolha.
+
+- **abrir pastas**:
+
+  `◖ clique esquerdo` → Abre a pasta onde o último vídeo da fila de render será / foi salvo.
+
+  > O script olha na fila de render o último caminho de pasta disponível e abre a pasta.
+  `◗ clique direito` → Abre a pasta onde o projeto atual está guardado (se ele já tiver sido salvo antes).
+
+  > O script verifica se você já salvou o projeto.
+  > Se sim, ele abre a pasta do projeto no seu computador.
+
+- RENOMEAR COMPS
+
+  `◖ clique esquerdo` → Altera o nome das comps selecionadas na janela do projeto.
+
+  > O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.
+  > Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.
+  > Caso você selecione uma pasta no projeto, o script renomeia todas as comps da pasta.
+
+  `◗ clique direito` → Altera o nome de todos os itens na fila de render.
+
+  > O nome das comps não será alterado!
+  > O script pega os nomes das comps de todos os itens da fila de render.
+  > Ele faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.
+  - RDP → *RODAPE*
+  - CRT → *CARTAO, CARTOES, CARTELA, CTO, CTL, CRT*
+  - LETT → *LETTERING*
+  - CONFRONTO → *CONFRONTO*
+  - TRJ → *TARJA, TAR*
+  - VHT → *VINHETA*
+  - ASSINA → *ASSINATURA, ASS*
+  - PASSAGEM → *PASSAGEM, PASSAGENS, TRANSICAO, LAPADA*
+  - REF → *REFERENCIA, PREVIEW*
+
+<br>
+
+- ORGANIZAR PROJETO
+
+  `◖ clique esquerdo` → Organiza o projeto de acordo com o modelo de projeto da PROMO.
+  > Você deve escolher as comps principais (as que serão renderizadas) antes de clicar.
+  > O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.
+  > As comps selecionadas inicialmente serão organizadas na pasta '01 COMPS'.
+  > O script separa outros arquivos (imagens, sons, etc.) nas pastas certas.
 
 <br>
 
