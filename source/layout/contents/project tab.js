@@ -111,18 +111,8 @@ renameItemBtn.addEventListener('click', function (c) {
 
 		app.beginUndoGroup('renomear outputs');
 
-		for (var i = 1; i <= numItems; i++) {
-			var outputItem = app.project.renderQueue.item(i);
-			var outputModule = outputItem.outputModule(1); // Obtém o módulo de saída do item na fila de renderização
-			var outputFile = outputModule.file;
-			var outputPath = decodeURI(outputFile.parent.path);
+		renameOutputs(); // renomeia todas as saídas
 
-			var fileExt = getFileExt(outputFile.displayName);
-			var fileName = deleteFileExt(outputFile.displayName).toUpperCase().replaceSpecialCharacters();
-			var newOutputFile = new File(outputPath + '/' + fileName + fileExt);
-
-			outputModule.file = newOutputFile;
-		}
 		app.endUndoGroup();
 	}
 });

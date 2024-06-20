@@ -37,10 +37,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// Botões da interface
 		var PAD_launchBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir O Padeiro"
-		PAD_launchBtn.helpTip = '...'; // Dica de ajuda
+		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates'; // Dica de ajuda
 
 		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Instalar Fontes"
-		PAD_fontBtn.helpTip = '...'; // Dica de ajuda
+		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → abrir a pasta de fontes usadas no template'; // Dica de ajuda
 
 		mainGrp.add("panel"); // Separador visual
 
@@ -49,12 +49,12 @@ function O_PADEIRO_UTL(thisObj) {
 		btnGrp2.spacing = 2;
 
 		var PAD_outputFolderBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_OUTPUTFOLDER_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir Pasta de Saída"
-		PAD_outputFolderBtn.helpTip = '...'; // Dica de ajuda
+		PAD_outputFolderBtn.helpTip = '◖ → abir pasta do último item da fila de render\n\n◗ → abir pasta do penúltimo item da fila de render'; // Dica de ajuda
 
 		btnGrp2.add("panel"); // Separador visual
 
 		var PAD_renameBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_renameBtn.helpTip = '...'; // Dica de ajuda
+		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
 		// Rótulo da versão
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
@@ -185,7 +185,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 					// Exibe um alerta se ocorrer algum erro ao abrir a pasta.
 				} catch (error) {
-					alert(lol + '\n' + error);
+					alert(lol + '\n' + error + '...');
 				}
 			}
 		});
@@ -216,8 +216,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se a pasta de saída existe.
 			if (!fld.exists) {
-				// Exibe um erro se a pasta não for acessível.
-				showTabErr('this folder is not accessible...');
+				alert(lol + '\na pasta não foi encontrada...'); // Exibe um erro se a pasta não for acessível.
 				return; // Encerra a função se a pasta não existir.
 			}
 
@@ -253,7 +252,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 				// Verifica se a pasta de saída existe no sistema de arquivos.
 				if (!fld.exists) {
-					showTabErr('this folder is not accessible...'); // Exibe um erro se a pasta não for acessível.
+					alert(lol + '\na pasta não foi encontrada...'); // Exibe um erro se a pasta não for acessível.
 					return; // Encerra a função se a pasta não existir.
 				}
 
@@ -277,6 +276,18 @@ function O_PADEIRO_UTL(thisObj) {
 			// Finaliza o grupo de desfazer.
 			app.endUndoGroup();
 		};
+
+		PAD_renameBtn.addEventListener('click', function (c) {
+			
+			if (c.button == 2) {
+				app.beginUndoGroup('renomear outputs');
+
+				renameOutputs(); // renomeia todas as saídas
+
+				app.endUndoGroup();
+			}
+		});
+
 
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.
 		return PAD_w;
