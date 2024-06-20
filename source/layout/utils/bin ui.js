@@ -646,7 +646,7 @@ function bin_ui() {
 	};
 
 	evalBtn.onClick = function () {
-		app.beginUndoGroup('run...');
+		app.beginUndoGroup('executar...');
 
 		if (expRad02.value) {
 

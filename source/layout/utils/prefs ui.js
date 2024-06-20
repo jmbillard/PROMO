@@ -437,7 +437,7 @@ function prefsDialog() {
 	// fldProjBtn.onClick = function () {
 	// 	// error...
 	// 	if (!netAccess()) {
-	// 		alert(netConfigName + ' not checked');
+	// 		alert(netConfigName + ' não habilitada');
 	// 		return;
 	// 	}
 	// 	var saveFolder = Folder.selectDialog();
@@ -453,7 +453,7 @@ function prefsDialog() {
 	// resetFldProjBtn.onClick = function () {
 	// 	// error...
 	// 	if (!netAccess()) {
-	// 		alert(netConfigName + ' not checked');
+	// 		alert(netConfigName + ' não habilitada');
 	// 		return;
 	// 	}
 	// 	projPath = defPrefsObj.folders.projPath;
@@ -469,7 +469,7 @@ function prefsDialog() {
 	// 	if (c.button == 2) {
 	// 		// error...
 	// 		if (!netAccess()) {
-	// 			alert(netConfigName + ' not checked');
+	// 			alert(netConfigName + ' não habilitada');
 	// 			return;
 	// 		}
 	// 		openWebSite(repoURL); // → launch internet browser
@@ -481,7 +481,7 @@ function prefsDialog() {
 	// updateBtn.onClick = function () {
 	// 	// error...
 	// 	if (!netAccess()) {
-	// 		alert(netConfigName + ' not checked');
+	// 		alert(netConfigName + ' não habilitada');
 	// 		return;
 	// 	}
 	// 	var uiPath = scriptPreferencesPath + '/ScriptUI Panels';
@@ -568,7 +568,7 @@ function prefsDialog() {
 	setupColorLabelsBtn.onClick = function () {
 		var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;  // Tipo de arquivo de preferências
 
-		app.beginUndoGroup('Configuração de Rótulos de Camadas'); // Inicia um grupo de desfazer (undo)
+		app.beginUndoGroup('configurar layer labels'); // Inicia um grupo de desfazer (undo)
 
 		// Itera sobre os 16 rótulos
 		for (var i = 1; i <= 16; i++) {

@@ -67,10 +67,10 @@ shpPalletBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('pallet');
+	app.beginUndoGroup('paleta de cores');
 
 	var palletLayer = colorPallet();
 
@@ -90,7 +90,7 @@ LOGO_GLOBOBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	app.beginUndoGroup('logo GLOBO');

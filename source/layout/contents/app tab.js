@@ -102,7 +102,7 @@ copyAMEPresetsBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		// error...
 		if (!netAccess()) {
-			showTabErr(netConfigName + ' not checked');
+			showTabErr(netConfigName + ' não habilitada');
 			return;
 		}
 		var templatesAMEPath = scriptPreferencesPath + '/AME presets';
@@ -120,7 +120,7 @@ copyAMEPresetsBtn.addEventListener('click', function (c) {
 copyAMEPresetsBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var url = repoURL + '/raw/main/downloads/AME.zip';
@@ -158,7 +158,7 @@ copyAMEPresetsBtn.onClick = function () {
 // installFontsBtn.onClick = function () {
 // 	// error...
 // 	if (!netAccess()) {
-// 		showTabErr(netConfigName + ' not checked');
+// 		showTabErr(netConfigName + ' não habilitada');
 // 		return;
 // 	}
 // 	// github main repo...
@@ -193,10 +193,10 @@ setupCompBtn.addEventListener('click', function (c) {
 		var aItem = app.project.activeItem;
 		// error...
 		if (!(aItem instanceof CompItem)) {
-			showTabErr('comp not selected');
+			showTabErr('selecione a comp');
 			return;
 		}
-		app.beginUndoGroup('setup comp');
+		app.beginUndoGroup('configurar comp');
 
 		aItem.height = 1080;
 		aItem.width = 606;
@@ -216,7 +216,7 @@ setupCompBtn.addEventListener('click', function (c) {
 
 setupProjBtn.onClick = function () {
   
-	app.beginUndoGroup('setup project');
+	app.beginUndoGroup('configurar project');
   
 	app.project.bitsPerChannel = 8;
 	app.project.expressionEngine = 'javascript-1.0';
@@ -232,7 +232,7 @@ setupProjBtn.onClick = function () {
 setupLabsBtn.onClick = function () {
 	var prefFile = PREFType.PREF_Type_MACHINE_INDEPENDENT;
 
-	app.beginUndoGroup('setup layer labels');
+	app.beginUndoGroup('configurar layer labels');
 
 	for (var i = 1; i < 17; i++) {
 		var color = labelsObj['l' + i].color;
@@ -271,10 +271,10 @@ setupCompBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('setup comp');
+	app.beginUndoGroup('configurar comp');
 
 	aItem.height = 1080;
 	aItem.width = 1920;

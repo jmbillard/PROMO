@@ -84,10 +84,10 @@ upHBtn.onClick = function () {
 	var upArray = [];
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('select parent');
+	app.beginUndoGroup('selecionar pai');
 
 	if (selLayers.length > 0) {
 
@@ -126,10 +126,10 @@ dwnHBtn.onClick = function () {
 	var dwnArray = [];
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('select children');
+	app.beginUndoGroup('selecionar filhos');
 
 	if (selLayers.length > 0) {
 
@@ -171,10 +171,10 @@ nullShpBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('create null');
+	app.beginUndoGroup('criar null');
 
 	if (selLayers.length == 0) {
 		createNull(nullType);
@@ -211,7 +211,7 @@ nullCShpBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length < 2) {
-		showTabErr('select more than one layer');
+		showTabErr('selecione mais de um layer');
 		return;
 	}
 	var lIndex = aItem != null ? aItem.numLayers : 0;
@@ -221,7 +221,7 @@ nullCShpBtn.onClick = function () {
 
 		if (selLayers[i].index < lIndex) lIndex = i;
 	}
-	app.beginUndoGroup('create centered null');
+	app.beginUndoGroup('criar null central');
 
 	var nullLayer = createNull(nullType);
 

@@ -70,7 +70,7 @@ outSPBtn.enabled = !homeOffice;
 oneDriveBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var site = 'https://tvglobocorp-my.sharepoint.com/';
@@ -83,7 +83,7 @@ oneDriveBtn.onClick = function () {
 trelloBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var site = 'https://trello.com/b/pV4FOa2J/fluxo-design-promo';
@@ -98,12 +98,12 @@ trelloBtn.onClick = function () {
 outRJBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var fld = new Folder(outRJ);
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(outRJ);
@@ -114,12 +114,12 @@ outRJBtn.onClick = function () {
 projRJBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var fld = new Folder(projRJ);
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(projRJ);
@@ -130,12 +130,12 @@ projRJBtn.onClick = function () {
 outSPBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var fld = new Folder(outSP);
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(outSP);
@@ -146,12 +146,12 @@ outSPBtn.onClick = function () {
 projSPBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var fld = new Folder(projSP);
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(projSP);
@@ -160,12 +160,12 @@ projSPBtn.onClick = function () {
 inFtgBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var fld = new Folder(inFtg);
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(inFtg);

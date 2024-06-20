@@ -59,10 +59,10 @@ txtUpperBtn.onClick = function () {
   var selLayers = aItem != null ? aItem.selectedLayers : [];
   // error...
   if (selLayers.length == 0) {
-    showTabErr('no text layer is selected');
+    showTabErr('selecione um layer de texto');
     return;
   }
-  app.beginUndoGroup('text to upper case');
+  app.beginUndoGroup('mudar texto para caixa alta');
 
   for (var i = 0; i < selLayers.length; i++) {
     var txt = textContent(selLayers[i]);
@@ -83,10 +83,10 @@ txtLowerBtn.onClick = function () {
   var selLayers = aItem != null ? aItem.selectedLayers : [];
   // error...
   if (selLayers.length == 0) {
-    showTabErr('no text layer is selected');
+    showTabErr('selecione um layer de texto');
     return;
   }
-  app.beginUndoGroup('text to lower case');
+  app.beginUndoGroup('mudar texto para caixa baixa');
 
   for (i = 0; i < selLayers.length; i++) {
     var txt = textContent(selLayers[i]);
@@ -107,10 +107,10 @@ txtTitleBtn.onClick = function () {
   var selLayers = aItem != null ? aItem.selectedLayers : [];
   // error...
   if (selLayers.length == 0) {
-    showTabErr('no text layer is selected');
+    showTabErr('selecione um layer de texto');
     return;
   }
-  app.beginUndoGroup('text to title case');
+  app.beginUndoGroup('mudar texto para caixa de título');
 
   for (i = 0; i < selLayers.length; i++) {
     var txt = textContent(selLayers[i]);
@@ -132,10 +132,10 @@ txtCleanerBtn.onClick = function () {
   var selLayers = aItem != null ? aItem.selectedLayers : [];
   // error...
   if (selLayers.length == 0) {
-    showTabErr('no text layer is selected');
+    showTabErr('selecione um layer de texto');
     return;
   }
-  app.beginUndoGroup('text to title case');
+  app.beginUndoGroup('limpar texto');
 
   for (i = 0; i < selLayers.length; i++) {
     cleanText(selLayers[i]);
@@ -150,7 +150,7 @@ txtCleanerBtn.onClick = function () {
 //   var selLayers = aItem != null ? aItem.selectedLayers : [];
 //   // error...
 //   if (selLayers.length == 0) {
-//     showTabErr('no text layer is selected');
+//     showTabErr('selecione um layer de texto');
 //     return;
 //   }
 //   app.beginUndoGroup('break text columns');
@@ -197,7 +197,7 @@ limitSld.onChange = function () {
   var selLayers = aItem != null ? aItem.selectedLayers : [];
 
   if (aItem != null) {
-    app.beginUndoGroup('break text');
+    app.beginUndoGroup('quebrar linhas de texto');
 
     for (i = 0; i < selLayers.length; i++) {
       lineBreak(selLayers[i], this.value);
@@ -229,7 +229,7 @@ limitTxt.addEventListener('click', function (c) {
     var selLayers = aItem != null ? aItem.selectedLayers : [];
 
     if (aItem != null) {
-      app.beginUndoGroup('break text');
+      app.beginUndoGroup('quebrar linhas de texto');
 
       for (i = 0; i < selLayers.length; i++) {
         lineBreak(selLayers[i], parseInt(input));

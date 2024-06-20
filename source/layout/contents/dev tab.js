@@ -64,7 +64,7 @@ binBtn.onClick = function () {
 zipTemplatesBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	// dev folder path '[user name]/PROMO'...
@@ -127,7 +127,7 @@ dBtn.onClick = function () {
 zipFontsBtn.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	// dev folder path '[user name]/PROMO'...

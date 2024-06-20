@@ -271,7 +271,7 @@ function O_PADEIRO_UTL(thisObj) {
 			if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
 
 			// Inicia um grupo de desfazer para que a operação de renomeação possa ser desfeita.
-			app.beginUndoGroup('rename comps');
+			app.beginUndoGroup('renomear comps');
 
 			// Chama a função renamePromoComps para renomear as composições selecionadas.
 			renamePromoComps(app.project.selection);
@@ -306,8 +306,8 @@ function O_PADEIRO_UTL(thisObj) {
 				for (var i = 0; i < app.project.selection.length; i++) {
 					var aItem = app.project.selection[i]; // item selecionado
 
-					// Se o item selecionado for uma composição
-					if (aItem instanceof CompItem) {
+					// Se o item selecionado for uma composição sem tag
+					if (aItem instanceof CompItem && aItem.comment === '') {
 						aItem.comment = 'EXPORTAR'; // Adiciona a tag 'EXPORTAR' como comentário
 					}
 				}

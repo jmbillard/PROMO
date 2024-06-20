@@ -181,7 +181,7 @@ copyInfBtn.onClick = function () {
 pasteInfBtn.onClick = function () {
 	// error...
 	if (!keyData.value) {
-		showTabErr('no keyframe data');
+		showTabErr('não existem dados de keyframe');
 		return;
 	}
 	var aItem = app.project.activeItem;
@@ -208,10 +208,10 @@ lockTrmBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
-	app.beginUndoGroup('lock transform properties');
+	app.beginUndoGroup('bloquear transformações');
 
 	for (i = 0; i < selLayers.length; i++) {
 		lockTrmProp(selLayers[i]);
@@ -227,7 +227,7 @@ layerRandBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length < 2) {
-		showTabErr('select 2 or more layers');
+		showTabErr('selecione 2 ou mais layers');
 		return;
 	}
 	var limit = parseInt(layerRandTxt.text.replace(/\D/g, ''));
@@ -236,7 +236,7 @@ layerRandBtn.onClick = function () {
 	var rMax = 0;
 	var rMin = 1;
 
-	app.beginUndoGroup('randomize layers');
+	app.beginUndoGroup('randomizar layers');
 
 	for (var j = 0; j < selLayers.length; j++) {
 		// generates a random integer between 0 and 1...
@@ -264,14 +264,14 @@ layerSeqBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length < 2) {
-		showTabErr('select 2 or more layers');
+		showTabErr('selecione 2 ou mais layers');
 		return;
 	}
 	var fDur = aItem.frameDuration;
 	var increment = parseInt(layerRandTxt.text.replace(/\D/g, '')) * fDur;
 	var stMin = aItem.duration;
 
-	app.beginUndoGroup('sequence layers');
+	app.beginUndoGroup('sequenciar layers');
 
 	for (var j = 0; j < selLayers.length; j++) {
 		stMin = Math.min(selLayers[j].inPoint, stMin);
@@ -364,10 +364,10 @@ arrowBtn.onClick = function () {
 
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('arrow rig');
+	app.beginUndoGroup('rig de seta simples');
 
 	var expFx = arrow();
 
@@ -423,13 +423,13 @@ counterBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	var valArray = [];
 
-	app.beginUndoGroup('counter');
+	app.beginUndoGroup('contador');
 
 	if (selLayers.length == 0) {
 		var cLayer = aItem.layers.addText('0');
@@ -479,11 +479,11 @@ guidesBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 
-	app.beginUndoGroup('column guides');
+	app.beginUndoGroup('criar guia de layout em colunas');
 
 	var guideLayer = app.project.activeItem.layers.addShape();
 	addPseudoEffect('guides', toolGuides);
@@ -500,13 +500,13 @@ wigBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var wLayer;
@@ -515,7 +515,7 @@ wigBtn.onClick = function () {
 	var expFx = w[0];
 	var expStr = w[1];
 
-	app.beginUndoGroup('wig rig');
+	app.beginUndoGroup('rig de wiggle');
 
 	for (i = 0; i < selLayers.length; i++) {
 		wLayer = selLayers[i];
@@ -536,16 +536,16 @@ ikBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length != 3) {
-		showTabErr('select 3 layers in order');
+		showTabErr('selecione 3 layers em ordem');
 		return;
 	}
-	app.beginUndoGroup('simple ik');
+	app.beginUndoGroup('ik simples');
 
 	var bone1 = selLayers[0];
 	var bone2 = selLayers[1];
@@ -637,13 +637,13 @@ typeAnimBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	var txtArray = [];
 
-	app.beginUndoGroup('typewriter');
+	app.beginUndoGroup('digitador');
 
 	if (selLayers.length == 0) {
 		selLayers.push(aItem.layers.addText('Lettering automático...'));
@@ -691,13 +691,13 @@ wordsBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	var txtArray = [];
 
-	app.beginUndoGroup('words');
+	app.beginUndoGroup('palavras');
 
 	if (selLayers.length == 0) {
 		selLayers.push(aItem.layers.addText('Lettering automático...'));
@@ -744,10 +744,10 @@ simpleBoxBtn.onClick = function () {
 	var aItem = app.project.activeItem;
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('simple box');
+	app.beginUndoGroup('tarja simples');
 
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 

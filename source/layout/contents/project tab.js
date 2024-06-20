@@ -120,10 +120,10 @@ renameItemBtn.addEventListener('click', function (c) {
 renameItemBtn.onClick = function () {
 	// error...
 	if (app.project.numItems == 0) {
-		showTabErr('empty project');
+		showTabErr('projeto vazio');
 		return;
 	}
-	app.beginUndoGroup('rename comps');
+	app.beginUndoGroup('renomear comps');
 
 	var dateStr = system
 		.callSystem('cmd.exe /c date /t')
@@ -164,7 +164,7 @@ projOrgBtn.onClick = function () {
 		for (var i = 0; i < app.project.selection.length; i++) {
 			var aItem = app.project.selection[i]; // item selecionado
 
-			// Se o item selecionado for uma composição
+			// Se o item selecionado for uma composição sem tag
 			if (aItem instanceof CompItem && aItem.comment === '') {
 				aItem.comment = 'EXPORTAR'; // Adiciona a tag 'EXPORTAR' como comentário
 			}
@@ -249,13 +249,15 @@ collectFontsBtn.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		// error...
 		if (app.project.numItems == 0) {
-			showTabErr('empty project');
+			showTabErr('projeto vazio');
 			return;
 		}
 
 		var currentProj = app.project.file;
-		var currentProjPath = decodeURI(currentProj.path) + '/FONTS'; // collect folder path...
 
+		if (currentProj == null) return; // O arquivo do projeto não existe
+
+		var currentProjPath = decodeURI(currentProj.path) + '/FONTS'; // collect folder path...
 		var fontsPath = fontCollect(currentProjPath);
 
 		openFolder(fontsPath);
@@ -267,7 +269,7 @@ collectFontsBtn.addEventListener('click', function (c) {
 fldProjBtn2.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	var currentProj = app.project.file;
@@ -275,7 +277,7 @@ fldProjBtn2.onClick = function () {
 	var fld = new Folder(currentProjPath);
 
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 	openFolder(decodeURI(fld.fullName));
@@ -286,7 +288,7 @@ fldProjBtn2.onClick = function () {
 fldProjBtn3.onClick = function () {
 	// error...
 	if (!netAccess()) {
-		showTabErr(netConfigName + ' not checked');
+		showTabErr(netConfigName + ' não habilitada');
 		return;
 	}
 	if (app.project.renderQueue.numItems < 1) return;
@@ -297,7 +299,7 @@ fldProjBtn3.onClick = function () {
 	var fld = new Folder(outputPath);
 
 	if (!fld.exists) {
-		showTabErr('this folder is not accessible...');
+		showTabErr('esta pasta não foi encontrada...');
 		return;
 	}
 
@@ -308,7 +310,7 @@ fldProjBtn3.addEventListener('click', function (c) {
 	if (c.button == 2) {
 		// error...
 		if (!netAccess()) {
-			showTabErr(netConfigName + ' not checked');
+			showTabErr(netConfigName + ' não habilitada');
 			return;
 		}
 		if (app.project.renderQueue.numItems < 2) return;
@@ -319,7 +321,7 @@ fldProjBtn3.addEventListener('click', function (c) {
 		var fld = new Folder(outputPath);
 
 		if (!fld.exists) {
-			showTabErr('this folder is not accessible...');
+			showTabErr('esta pasta não foi encontrada...');
 			return;
 		}
 

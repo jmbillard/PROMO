@@ -382,7 +382,7 @@ on the script preferences folder\n\
 	fldProjBtn.onClick = function () {
 		// error...
 		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
+			alert(netConfigName + ' não habilitada');
 			return;
 		}
 		var saveFolder = Folder.selectDialog();
@@ -398,7 +398,7 @@ on the script preferences folder\n\
 	resetFldProjBtn.onClick = function () {
 		// error...
 		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
+			alert(netConfigName + ' não habilitada');
 			return;
 		}
 		projPath = defPrefsObj.folders.projPath;
@@ -414,7 +414,7 @@ on the script preferences folder\n\
 		if (c.button == 2) {
 			// error...
 			if (!netAccess()) {
-				alert(netConfigName + ' not checked');
+				alert(netConfigName + ' não habilitada');
 				return;
 			}
 			openWebSite(repoURL); // → launch internet browser
@@ -426,7 +426,7 @@ on the script preferences folder\n\
 	updateBtn.onClick = function () {
 		// error...
 		if (!netAccess()) {
-			alert(netConfigName + ' not checked');
+			alert(netConfigName + ' não habilitada');
 			return;
 		}
 		var uiPath = scriptPreferencesPath + '/ScriptUI Panels';

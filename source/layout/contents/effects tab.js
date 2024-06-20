@@ -83,10 +83,10 @@ shpAdjBtn.onClick = function () {
 
 	// error...
 	if (!(aItem instanceof CompItem)) {
-		showTabErr('comp not selected');
+		showTabErr('selecione a comp');
 		return;
 	}
-	app.beginUndoGroup('create adj layer');
+	app.beginUndoGroup('criar adj layer');
 
 	var adjC = rgb(255, 255, 255);
 	var adjW = aItem.width;
@@ -121,7 +121,7 @@ curBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE CurvesCustom';
@@ -141,7 +141,7 @@ levBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Pro Levels2';
@@ -161,7 +161,7 @@ lumBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Lumetri';
@@ -181,7 +181,7 @@ gaublurBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Gaussian Blur 2';
@@ -201,7 +201,7 @@ comblurBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Compound Blur';
@@ -221,7 +221,7 @@ lensblurBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Camera Lens Blur';
@@ -241,7 +241,7 @@ fillBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Fill';
@@ -262,7 +262,7 @@ fracBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE Fractal Noise';
@@ -282,7 +282,7 @@ grainBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'VISINF Grain Implant';
@@ -302,7 +302,7 @@ glassBtn.onClick = function () {
 	var selLayers = aItem != null ? aItem.selectedLayers : [];
 	// error...
 	if (selLayers.length == 0) {
-		showTabErr('layer not selected');
+		showTabErr('selecione um layer');
 		return;
 	}
 	var fxName = 'ADBE 3D Glasses2';
