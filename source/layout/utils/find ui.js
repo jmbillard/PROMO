@@ -16,7 +16,7 @@
 //  jshint -W043
 
 function findDialog() {
-	var findW = new Window('palette', 'find...');
+	var findW = new Window('palette', 'BUSCAR...');
 	findW.spacing = 5;
 	findW.margins = 0;
 
@@ -190,7 +190,8 @@ function findDialog() {
 						.property('ADBE Text Properties')
 						.property('ADBE Text Document');
 
-					t = (aLayer.outPoint - aLayer.inPoint) / 2 + aLayer.inPoint;
+					t = comp.duration < 1 ? 0 : (aLayer.outPoint - aLayer.inPoint) / 2 + aLayer.inPoint;
+
 					aLayer.shy = false;
 					aLayer.selected = true;
 

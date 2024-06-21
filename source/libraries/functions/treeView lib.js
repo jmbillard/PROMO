@@ -183,7 +183,10 @@ function buildFindTree(tree, obj, compArray, progBar) {
 
 		// Itera sobre todas as camadas em cada composição
 		for (var l = 1; l <= compArray[i].numLayers; l++) {
-			if (!(compArray[i].layer(l) instanceof TextLayer)) continue; // Pula se não for camada de texto
+
+			
+			// Pula se a camada atual não for uma camada de texto
+			if (!(compArray[i].layer(l) instanceof TextLayer)) continue;
 
 			var compItem; // Variável para armazenar o item da composição na árvore
 			var txtLayer = compArray[i].layer(l); // Camada de texto atual
@@ -197,8 +200,9 @@ function buildFindTree(tree, obj, compArray, progBar) {
 					txtArray.push(textContent(txtLayer)); // Adiciona o conteúdo do texto ao array
 				}
 			} else {
+				var refTime = compArray[i].duration < 1 ? 0 : (txtLayer.inPoint + txtLayer.outPoint) / 2;
 				// Se a propriedade de texto tiver uma expressão
-				if (doc.expression != '') compArray[i].time = txtLayer.outPoint - 1; // Define o tempo para antes do ponto de saída da camada
+				if (doc.expression != '') compArray[i].time = refTime; // Define o tempo para antes do ponto de saída da camada
 				txtArray.push(textContent(txtLayer)); // Adiciona o conteúdo do texto ao array
 			}
 
@@ -241,6 +245,7 @@ function buildFindTree(tree, obj, compArray, progBar) {
 		}
 		progBar.value += progInc; // Incrementa a barra de progresso
 	}
+
 	progBar.value = 100; // Define a barra de progresso como 100%
 	 // Retorna o array de composições encontradas e a contagem de itens na árvore
 	return { 'resultArray': resultArray, 'count': count };
