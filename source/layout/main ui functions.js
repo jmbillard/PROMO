@@ -381,11 +381,11 @@ function getTabSubGroups() {
 }
 
 // Obtém todos os divisores de abas.
-function getTabDividers() {
+function getTabDividers(grp) {
 	var tabDividers = [];
 
-	for (var g = 0; g < tabsGrp.menu.children.length; g++) {
-		var div = tabsGrp.menu.children[g];
+	for (var g = 0; g < grp.children.length; g++) {
+		var div = grp.children[g];
 
 		// Verifica se o elemento é um painel.
 		if (div.toString() != '[object Panel]') continue;

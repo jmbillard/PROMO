@@ -13,7 +13,9 @@ function O_PADEIRO_UTL(thisObj) {
 
 	function O_PADEIRO_UI() {
 
-		#include 'source/layout/Utils/o padeiro ui.js'; // Layout da interface
+		// utilidades com interface
+		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
+		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
 		var PAD_w = {}; // Objeto que representa a janela da interface
 
 		// Cria a janela da interface (ou usa um painel existente)
@@ -51,13 +53,27 @@ function O_PADEIRO_UTL(thisObj) {
 		var PAD_outputFolderBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_OUTPUTFOLDER_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir Pasta de Saída"
 		PAD_outputFolderBtn.helpTip = '◖ → abir pasta do último item da fila de render\n\n◗ → abir pasta do penúltimo item da fila de render'; // Dica de ajuda
 
-		btnGrp2.add("panel"); // Separador visual
+		mainGrp.add("panel"); // Separador visual
 
-		var PAD_renameBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
+		var btnGrp3 = mainGrp.add('group'); // Grupo de botões inferior
+		btnGrp3.alignment = 'center';
+		btnGrp3.spacing = 2;
+
+		var PAD_renameBtn = btnGrp3.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
 		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
-		var PAD_OrgBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_ORG_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_OrgBtn.helpTip = 'selecione as comps que serão\nRENDERIZADAS primeiro!\n\n◖ → organizar o projeto';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+		var PAD_orgBtn = btnGrp3.add('iconbutton', undefined, O_PADEIRO_ORG_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
+		PAD_orgBtn.helpTip = 'selecione as comps que serão\nRENDERIZADAS primeiro!\n\n◖ → organizar o projeto';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+
+		mainGrp.add("panel"); // Separador visual
+
+		var btnGrp4 = mainGrp.add('group'); // Grupo de botões inferior
+		btnGrp4.alignment = 'center';
+		btnGrp4.spacing = 2;
+
+		var PAD_findBtn = btnGrp4.add('iconbutton', undefined, O_PADEIRO_FIND_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
+		PAD_findBtn.helpTip = '◖ → abrir a BUSCA em layers de texto'; // Dica de ajuda
+
 
 		// Rótulo da versão
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
@@ -91,12 +107,16 @@ function O_PADEIRO_UTL(thisObj) {
 			mainGrp.orientation = grpLayout;
 			btnGrp1.orientation = grpLayout;
 			btnGrp2.orientation = grpLayout;
+			btnGrp3.orientation = grpLayout;
+			btnGrp4.orientation = grpLayout;
 
 			// Aplica o alinhamento calculado ao rótulo de versão.
 			PAD_vLab.alignment = labLayout;
 
 			// Aplica as margens calculadas ao grupo principal.
 			mainGrp.margins = mainMargins;
+
+			getTabDividers(mainGrp);
 
 			// Atualiza o layout de todos os elementos na janela para que as alterações sejam visíveis.
 			btnGrp1.layout.layout(true);
@@ -274,7 +294,7 @@ function O_PADEIRO_UTL(thisObj) {
 			}
 		});
 
-		PAD_OrgBtn.onClick = function () {
+		PAD_orgBtn.onClick = function () {
 
 			// Verifica se há itens no projeto.
 			if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
@@ -303,7 +323,11 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
+		PAD_findBtn.onClick = function () {
 
+			findDialog();
+		};
+		
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.
 		return PAD_w;
 	}

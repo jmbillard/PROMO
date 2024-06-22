@@ -1,8 +1,3 @@
-/* eslint-disable no-with */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 /*
 
 ---------------------------------------------------------------
@@ -10,10 +5,6 @@
 ---------------------------------------------------------------
 
 */
-
-//  linter settings:
-//  jshint -W061
-//  jshint -W043
 
 function findDialog() {
 	var findW = new Window('palette', 'BUSCAR...');
@@ -45,7 +36,7 @@ function findDialog() {
 	optGrp5.spacing = 2;
 
 	var optCkb5 = optGrp5.add('checkbox');
-	optCkb5.value = true;
+	optCkb5.value = false;
 
 	var optIco5 = optGrp5.add('image', undefined, eyeOpenLabelIcon);
 	optCkb5.helpTip = optIco5.helpTip = '⦿ → apenas layers visíveis';
@@ -84,7 +75,7 @@ function findDialog() {
 	optCkb4.value = false;
 
 	var optTxt4 = optGrp4.add('statictext', undefined, '!=');
-	optCkb4.helpTip = optTxt4.helpTip = '⦿ → apenas textos que NÃO possuem a palavra buscada';
+	optCkb4.helpTip = optTxt4.helpTip = '⦿ → apenas textos que NÃO possuem o termo buscado';
 
 	//---------------------------------------------------------
 
