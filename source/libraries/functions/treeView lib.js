@@ -150,23 +150,15 @@ function buildFontTree(folder, tree) {
 }
 
 // Constrói a árvore de resultados da busca
-function buildFindTree(tree, obj, compArray, progBar) {
+function buildTxtSearchTree(tree, obj, compArray, progressBar) {
 	var sKey = obj.sKey;          // Palavra-chave de busca
 	var vis = obj.vis;            // Incluir camadas ocultas? (true/false)
 	var matchCase = obj.matchCase; // Diferenciar maiúsculas/minúsculas? (true/false)
 	var matchAccent = obj.matchAccent; // Diferenciar acentos? (true/false)
 	var invert = !obj.invert;      // Inverter a busca (não incluir a palavra-chave)? (true/false)
-	var regExp = obj.regExp;       // Usar expressões regulares? (true/false)
-	var resultArray = [];          // Array para armazenar as composições encontradas
 
-	// Se não houver palavra-chave, retorna um array vazio e contagem 0
-	if (sKey == '') return resultArray;
-
-	// Se a opção de expressão regular estiver marcada, converte a palavra-chave em uma expressão regular
-	if (regExp) {
-		var pattern = 'new RegExp(/' + sKey + '/);'; // Cria a string da expressão regular
-		sKey = eval(pattern); // Avalia a string para criar o objeto RegExp
-	}
+	if (!matchCase) sKey = sKey.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada
+	if (!matchAccent) sKey = sKey.replaceSpecialCharacters(); // Remove acentos da palavra-chave se a opção estiver desmarcada
 
 	// Remove todos os itens da árvore para começar do zero
 	while (tree.items.length > 0) {
@@ -174,120 +166,116 @@ function buildFindTree(tree, obj, compArray, progBar) {
 	}
 
 	// Inicializa a barra de progresso e a contagem de itens da árvore
-	progBar.value = 0;
-	count = 0;
-	var progInc = 100 / compArray.length; // Calcula o incremento da barra de progresso por composição
+	progressBar.maxvalue = compArray.length;
+	progressBar.value = 0;
 
 	// Itera sobre todas as composições no projeto
 	for (i = 0; i < compArray.length; i++) {
+		var comp = compArray[i];
+		var compName = limitNameSize(comp.name, 45); // Limita o tamanho do nome da composição
+		var compItem = tree.add('node', compName); // Adiciona o item da composição na árvore
+
+		compItem.image = compTogIcon.light;
+		compItem.comp = comp;
 
 		// Itera sobre todas as camadas em cada composição
-		for (var l = 1; l <= compArray[i].numLayers; l++) {
+		for (var l = 1; l <= comp.numLayers; l++) {
+			var txtLayer = comp.layer(l); // Camada de texto atual
 
-			
-			// Pula se a camada atual não for uma camada de texto
-			if (!(compArray[i].layer(l) instanceof TextLayer)) continue;
+			// Pula se layer atual não for um layer de texto
+			if (!(txtLayer instanceof TextLayer)) continue;
 
-			var compItem; // Variável para armazenar o item da composição na árvore
-			var txtLayer = compArray[i].layer(l); // Camada de texto atual
+			// Ignora camadas ocultas se a opção estiver desmarcada
+			if (vis && !txtLayer.enabled) continue;
+
+			var matchResult = false;
 			var doc = txtLayer.property('ADBE Text Properties').property('ADBE Text Document'); // Propriedade de texto da camada
-			var txtArray = []; // Array para armazenar o conteúdo do texto em cada keyframe
+			var refTime = comp.duration < 1 ? 0 : txtLayer.inPoint + (txtLayer.outPoint - txtLayer.inPoint) / 2;
+			var layerName = '#' + txtLayer.index + '  ' + limitNameSize(txtLayer.name, 35); // Limita o tamanho do nome da camada
+
+			if (refTime > comp.duration) refTime = comp.duration - comp.frameDuration;
+
+			// Se a propriedade de texto tiver uma expressão
+			if (doc.expression != '') comp.time = refTime; // Define o tempo para antes do ponto de saída da camada
+
+			var sTxt = textContent(txtLayer);
+			
+			if (doc.value.allCaps) sTxt = sTxt.toUpperCase(); // Ajusta a palavra-chave para maiúsculas se a opção estiver marcada
+			if (!matchCase) sTxt = sTxt.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada
+			if (!matchAccent) sTxt = sTxt.replaceSpecialCharacters(); // Remove acentos da palavra-chave se a opção estiver desmarcada
+			if (sTxt.match(sKey)) matchResult = true;
+			if (matchResult != invert) continue; // Ignora a correspondência se a opção de inverter estiver marcada
+
+			var txtItem = compItem.add('item', layerName);
+			txtItem.comp = comp;
+			txtItem.refTime = comp.time;
+			txtItem.txtLayer = txtLayer;
 
 			// Se a propriedade de texto tiver keyframes
 			if (doc.numKeys > 0) {
+				compItem.remove(txtItem);
+
 				for (var k = 1; k <= doc.numKeys; k++) {
-					compArray[i].time = doc.keyTime(k); // Define o tempo da composição para o keyframe atual
-					txtArray.push(textContent(txtLayer)); // Adiciona o conteúdo do texto ao array
+					comp.time = doc.keyTime(k); // Define o tempo da composição para o keyframe atual
+
+					sTxt = textContent(txtLayer);
+					
+					if (doc.value.allCaps) sTxt = sTxt.toUpperCase(); // Ajusta a palavra-chave para maiúsculas se a opção estiver marcada
+					if (!matchCase) sTxt = sTxt.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada
+					if (!matchAccent) sTxt = sTxt.replaceSpecialCharacters(); // Remove acentos da palavra-chave se a opção estiver desmarcada
+					if (sTxt.match(sKey)) matchResult = true;
+					if (matchResult != invert) continue; // Ignora a correspondência se a opção de inverter estiver marcada
+
+					var txtItem = compItem.add('item', layerName);
+					txtItem.comp = comp;
+					txtItem.refTime = comp.time;
+					txtItem.txtLayer = txtLayer;
 				}
-			} else {
-				var refTime = compArray[i].duration < 1 ? 0 : (txtLayer.inPoint + txtLayer.outPoint) / 2;
-				// Se a propriedade de texto tiver uma expressão
-				if (doc.expression != '') compArray[i].time = refTime; // Define o tempo para antes do ponto de saída da camada
-				txtArray.push(textContent(txtLayer)); // Adiciona o conteúdo do texto ao array
-			}
-
-			// Se não estiver usando expressões regulares, ajusta o texto para comparação
-			if (!regExp) {
-				for (var m = 0; m < txtArray.length; m++) {
-					// Respeita a opção ALL CAPS da camada
-					if (doc.value.allCaps) txtArray[m] = txtArray[m].toUpperCase();
-					if (!matchCase) txtArray[m] = txtArray[m].toLowerCase(); // Converte para minúsculas se a opção estiver desmarcada
-					if (!matchAccent) txtArray[m] = txtArray[m].replaceSpecialCharacters(); // Remove acentos se a opção estiver desmarcada
-				}
-				sKey = matchCase ? sKey : sKey.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada
-				sKey = matchAccent ? sKey : sKey.replaceSpecialCharacters(); // Remove acentos da palavra-chave se a opção estiver desmarcada
-			}
-
-			// Ignora camadas ocultas se a opção estiver desmarcada
-			if (vis && txtLayer.enabled == false) continue;
-
-			// Itera sobre o array de textos
-			for (var f = 0; f < txtArray.length; f++) {
-				var r = txtArray[f].match(sKey) == null ? false : true; // Verifica se há correspondência
-
-				if (r != invert) continue; // Ignora a correspondência se a opção de inverter estiver marcada
-
-				// Adiciona a composição na árvore se ainda não estiver presente
-				if (resultArray.indexOf(compArray[i]) < 0) {
-					var compName = limitNameSize(compArray[i].name, 45); // Limita o tamanho do nome da composição
-					compItem = tree.add('node', compName); // Adiciona o item da composição na árvore
-					compItem.image = compTogIcon.light;
-					count += 1;
-					resultArray.push(compArray[i]);
-				}
-
-				// Adiciona a camada de texto na árvore
-				var layerName = limitNameSize(txtLayer.name, 35); // Limita o tamanho do nome da camada
-				var txtItem = compItem.add('item', '(' + (f + 1) + ')   #' + txtLayer.index + '   ' + layerName);
-				txtItem.image = txtLayer.enabled ? eyeOpenIcon : eyeClosedIcon; // Define o ícone da camada (olho aberto ou fechado)
-				count += 1;
 			}
 		}
-		progBar.value += progInc; // Incrementa a barra de progresso
+		progressBar.value++; // Incrementa a barra de progresso
 	}
-
-	progBar.value = 100; // Define a barra de progresso como 100%
-	 // Retorna o array de composições encontradas e a contagem de itens na árvore
-	return { 'resultArray': resultArray, 'count': count };
+	cleanHierarchy(tree);
 }
 
 // Expande todos os nós de uma 'árvore de exibição' (tree view).
 function expandNodes(nodeTree) {
-	// Expande o nó atual e chama recursivamente a função para os seus subnós.
-	nodeTree.expanded = true;
-	
-	// Obtém os subnós do nó atual
-	var branches = nodeTree.items;
+	var count = 0
+	var branches = nodeTree.items; // Obtém os nodes do nó atual
 
-	// Percorre cada subnó
+	nodeTree.expanded = true; // Expande o nó atual
+
+	// Percorre cada node
 	for (var i = 0; i < branches.length; i++) {
-		// Se o subnó for um nó (node), chama a função recursivamente para expandir seus subnós
-		if (branches[i].type == 'node') expandNodes(branches[i]);
+		// Se for um node
+		if (branches[i].type == 'node') count += expandNodes(branches[i]); // Chama a função recursivamente
+		count++;
 	}
+	return count;
 }
 
 
 // Função recursiva que percorre uma 'árvore de exibição' (tree view)
 // e adiciona os nós que contêm uma determinada string na lista de resultados
 function findItem(nodeTree, list, searchTxt) {
-	
-	// Obtém os subnós do nó atual
+
+	// Obtém os nodes do nó atual
 	var branches = nodeTree.items;
 
-	// Percorre cada subnó
+	// Percorre cada node
 	for (var i = 0; i < branches.length; i++) {
-		
-		// Se o subnó for um nó (node), chama a função recursivamente para o seu subnó
+
+		// Se o node for um nó (node), chama a função recursivamente para o seu node
 		if (branches[i].type == 'node') findItem(branches[i], list, searchTxt);
 
-		// Verifica se o texto do subnó contém a string procurada
+		// Verifica se o texto do node contém a string procurada
 		if (branches[i].text.trim().toUpperCase().replaceSpecialCharacters().match(searchTxt)) {
-			
-			// Adiciona o subnó na lista de resultados
+
+			// Adiciona o node na lista de resultados
 			list.push(branches[i]);
 		}
 	}
-	
+
 	// Retorna a lista de resultados
 	return list;
 }

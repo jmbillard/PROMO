@@ -29,7 +29,7 @@ function findDialog() {
 	//---------------------------------------------------------
 
 	var optMainGrp = searchMainGrp.add('group');
-	optMainGrp.spacing = 15;
+	optMainGrp.spacing = 30;
 
 	var optGrp5 = optMainGrp.add('group');
 	optGrp5.alignChildren = ['center', 'top'];
@@ -79,47 +79,33 @@ function findDialog() {
 
 	//---------------------------------------------------------
 
-	var optGrp3 = optMainGrp.add('group');
-	optGrp3.alignChildren = ['center', 'top'];
-	optGrp3.spacing = 2;
-
-	var optCkb3 = optGrp3.add('checkbox');
-	optCkb3.value = false;
-
-	var optTxt3 = optGrp3.add('statictext', undefined, 'RegExp');
-	optCkb3.helpTip = optTxt3.helpTip = '⦿ → usar regular expression';
-
-	//---------------------------------------------------------
-
 	var infoBtn = optMainGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS';
 
-	var resultGrp = findW.add('group');
+	// var resultGrp = findW.add('group');
 
-	var findPb = findW.add('progressbar', [0, 0, 305, 5], undefined);
-	findPb.value = 100;
+	var findProgressBar = findW.add('progressbar', [0, 0, 305, 5], undefined);
+	findProgressBar.value = 100;
 
 	var resultTree = findW.add('treeview', [0, 0, 320, 0]);
 	resultTree.visible = false;
-	var resultArray = [];
 
 	//---------------------------------------------------------
-
 	findW.onShow = function () {
 		findEdTxt.active = true;
 	};
 
 	findEdTxt.onEnterKey = findBtn.onClick = function () {
 		// starting timer...
-		timer();
-		findW.text = 'searching...';
+		// timer();
+		findW.text = 'BUSCANDO...';
 		resultTree.visible = false;
 		resultTree.size.height = 0;
 		findW.layout.layout(true);
 
 		var sKey = findEdTxt.text;
 		if (sKey == '' || app.project.numItems == 0) {
-			findW.text = 'find...';
+			findW.text = 'BUSCAR...';
 			return;
 		}
 		var optObj = {
@@ -127,72 +113,41 @@ function findDialog() {
 			vis: optCkb5.value,
 			matchCase: optCkb1.value,
 			matchAccent: optCkb2.value,
-			regExp: optCkb3.value,
 			invert: optCkb4.value,
 		};
-		var selArray = getComps(); // → [all comps]
-		findTree = buildFindTree(resultTree, optObj, selArray, findPb); // → [filtered comps]
-		resultArray = findTree.resultArray; // → [filtered comps]
-		count = findTree.count; // → [filtered comps]
+		var compsArray = getComps(); // → [all comps]
+		buildTxtSearchTree(resultTree, optObj, compsArray, findProgressBar);
+		var count = expandNodes(resultTree);
 
-		if (resultArray.length == 0) {
-			findW.text = 'no matches - ' + timer() + 's  (っ °Д °;)っ';
+		if (count < 1) {
+			findW.text = 'sem matches... (っ °Д °;)っ';
 			return;
 		}
-		expandNodes(resultTree);
 		resultTree.visible = true;
 		resultTree.size.height = count >= 16 ? 320 : (count * 21) + 5;
-		findW.text = 'complete - ' + timer() + 's  (o °▽ °)o☆';
+		findW.text = 'busca concluída...  (o °▽ °)o☆';
 		findW.layout.layout(true);
 	};
 
 	//---------------------------------------------------------
 
-	optCkb3.onClick = function () {
-		optCkb1.enabled = optCkb2.enabled = !optCkb3.value;
-	};
-
-	//---------------------------------------------------------
-
 	resultTree.onChange = function () {
-		var comp;
-		var t;
+		var comp = resultTree.selection.comp;
+		var t = comp.time;
+		var txtLayer;
 
-		if (resultTree.selection.type == 'node') {
-			comp = resultArray[resultTree.selection.index];
-			t = comp.time;
-		}
 		if (resultTree.selection.type == 'item') {
-			comp = resultArray[resultTree.selection.parent.index];
-			var lArray = resultTree.selection.toString().split('   ');
-			var k = lArray[0] // → '(1)'
-				// eslint-disable-next-line no-useless-escape
-				.replace(/\(|\)/g, ''); // → '1'
-			var i = lArray[1] // → '# 3'
-				.replace('#', ''); // → '3'
+
+			txtLayer = resultTree.selection.txtLayer;
 
 			for (var l = 1; l <= comp.numLayers; l++) {
-				var aLayer = comp.layer(l);
-				aLayer.shy = true;
-				aLayer.selected = false;
-
-				if (l == parseInt(i)) {
-					var doc = aLayer
-						.property('ADBE Text Properties')
-						.property('ADBE Text Document');
-
-					t = comp.duration < 1 ? 0 : (aLayer.outPoint - aLayer.inPoint) / 2 + aLayer.inPoint;
-
-					aLayer.shy = false;
-					aLayer.selected = true;
-
-					if (doc.numKeys > 0) t = doc.keyTime(parseInt(k));
-
-					t = t < comp.duration ? t : comp.duration;
-					t = t < 0 ? 0 : t;
-				}
+				comp.layer(l).selected = false;
 			}
-			comp.hideShyLayers = true;
+
+			t = resultTree.selection.refTime;
+			comp.hideShyLayers = !txtLayer.shy;
+			// txtLayer.locked = false;
+			txtLayer.selected = true;
 		}
 		comp.openInViewer();
 		comp.time = t;
