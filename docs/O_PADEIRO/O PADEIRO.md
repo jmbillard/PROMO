@@ -193,62 +193,121 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 ---
 <br>
 
+## ✨ dicas
+
+não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúsculas**, o script e/ou o próprio template farão a conversão do texto.
+
+> 📋 *exemplo:*\
+> os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.
+
+é possível importar rapidamente qualquer template da lista executando um clique duplo no mesmo.
+
+---
+<br>
+
 ## outras utilidades...
 
 - **resolver fontes**:
 
   `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
 
-  > Apenas nos templates do padeiro!
-  > O script analisa o modelo e descobre quais fontes são necessárias.
+  Ao preencher o template pela interface do padeiro o script armazena no 'Source' dos metadados do projeto o caminho dos arquivos do template, assim é possível fazer a instalação das fontes necessárias facilmente. Após clicar no botão um script de 'powershell' copia todos os arquivos de fontes do projeto para a pasta de fontes do sistema.
 
-  `◗ clique direito` → Reúne cópias de todos os arquivos de fontes usadas no projeto em um só lugar.
+  > 📋 *exemplo:*\
+  > ![instalar fontes](gifs/instalar-fontes.gif)
 
-  > O script encontra todas as fontes que você usou no projeto e copia os seus arquivos para uma pasta a sua escolha.
+  > metadados do projeto:\
+  > ![metadados](images/metadata.png)
+
+  > powershell:\
+  > ![powershell](<images/instalar fontes.png>)
+
+  > 🚩 *obs:*\
+  > Como essa funcionalidade depende de metadados inseridos pelo padeiro, ela funcionará apenas nos templates preenchidos pelo padeiro!
+
+  <br>
+
+  `◗ clique direito` → Copia todos os arquivos de fontes usadas nos layers de textos do projeto em uma pasta selecionada pelo usuário.
+
+  O script varre todas os layers de texto de todas as comps do projeto e armazena todas as fontes usadas, depois, copia os seus arquivos para uma pasta a sua escolha.
+
+  > 📋 *exemplo:*\
+  > ![collect fontes](gifs/collect-de-fontes.gif)
+
+  > 🚩 *obs:*\
+  > Algumas fontes instaladas apenas na pasta do usuário podem retornar um erro na hora da cópia. Nesse caso, o script alertará quais fontes não puderam ser copiadas.
+
+  <br>
 
 - **abrir pastas**:
 
   `◖ clique esquerdo` → Abre a pasta onde o último vídeo da fila de render será / foi salvo.
 
-  > O script olha na fila de render o último caminho de pasta disponível e abre a pasta.
+  O script olha na fila de render o último caminho de pasta disponível e abre a pasta.
 
   `◗ clique direito` → Abre a pasta onde o projeto atual está guardado (se ele já tiver sido salvo antes).
 
-  > O script verifica se você já salvou o projeto.
-  > Se sim, ele abre a pasta do projeto no seu computador.
+  O script verifica se você já salvou o projeto. Se sim, ele abre a pasta.
+
+  > 🚩 *obs:*\
+  > Caso o caminho não seja encontrado por falta de permissão ou falta de mapeamento de pastas de rede, o script não retornara o caminho.
+
+  <br>
 
 - RENOMEAR COMPS
 
   `◖ clique esquerdo` → Altera o nome das comps selecionadas na janela do projeto.
 
-  > O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.
-  > Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.
-  > Caso você selecione uma pasta no projeto, o script renomeia todas as comps da pasta.
+  O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.\
+  Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.
+
+  > 📋 *exemplo:*\
+  > ![renomear comps](gifs/renomear-comps.gif)
+
+  > 🚩 *obs:*\
+  > Caso você selecione uma pasta no projeto, o script renomeará a pasta e todas as comps dentro da pasta.
+
+  <br>
 
   `◗ clique direito` → Altera o nome de todos os itens na fila de render.
 
-  > O nome das comps não será alterado!
-  > O script pega os nomes das comps de todos os itens da fila de render.
-  > Ele faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.
-  - RDP → *RODAPE*
-  - CRT → *CARTAO, CARTOES, CARTELA, CTO, CTL, CRT*
-  - LETT → *LETTERING*
-  - CONFRONTO → *CONFRONTO*
-  - TRJ → *TARJA, TAR*
-  - VHT → *VINHETA*
-  - ASSINA → *ASSINATURA, ASS*
-  - PASSAGEM → *PASSAGEM, PASSAGENS, TRANSICAO, LAPADA*
-  - REF → *REFERENCIA, PREVIEW*
+  O nome das comps não será alterado!
+  O script pega os nomes das comps de todos os itens da fila de render.
+  Ele faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.
+
+  > 📋 *exemplo:*\
+  > ![renomear output](renomear-output.gif)
+
+  > 🚩 *obs:*\
+  > No momento, outputs em sequânica de imagens ainda não são suportados.
+
+  **lista de prefixos e termos reconhecidos**:
+  - **RDP** → *RODAPE*
+  - **CRT** → *CARTAO, CARTOES, CARTELA, CTO, CTL*
+  - **LETT** → *LETTERING*
+  - **CONFRONTO**
+  - **TRJ** → *TARJA, TAR*
+  - **VHT** → *VINHETA*
+  - **ASSINA** → *ASSINATURA, ASS*
+  - **PASSAGEM** → *PASSAGENS, TRANSICAO, LAPADA*
+  - **REF** → *REFERENCIA, PREVIEW*
 
 <br>
 
 - ORGANIZAR PROJETO
 
   `◖ clique esquerdo` → Organiza o projeto de acordo com o modelo de projeto da PROMO.
-  > Você deve escolher as comps principais (as que serão renderizadas) antes de clicar.
-  > O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.
-  > As comps selecionadas inicialmente serão organizadas na pasta '01 COMPS'.
-  > O script separa outros arquivos (imagens, sons, etc.) nas pastas certas.
+  O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.
+  As comps selecionadas inicialmente serão organizadas na pasta '01 COMPS'.
+  O script separa outros arquivos (imagens, sons, etc.) nas pastas certas.
+
+  > 📋 *exemplo:*\
+  > ![organizar projeto](organizar-projeto.gif)
+
+  > 🚩 *obs:*\
+  > Você deve selecionar as comps principais (as que serão renderizadas) antes de clicar.\
+  > Todas as comps selecionadas no momento da organização serão colocadas na pasta '01 COMPS'.\
+  > As comps renomeadas pelo script também serão organizadas na pasta '01 COMPS' caso possuam algum termo reconhecido em seu nome e/ou nome da pasta em que estejam contidas.
 
 <br>
 
@@ -316,16 +375,3 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 - CIRCUITO SERTANEJO
   - [RODAPE_ATRACAO](templates_disponiveis/SHOWS/CIRCUITO_SERTANEJO/RODAPE_ATRACAO.md)
-
----
-
-<br>
-
-## ✨ dicas
-
-não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúsculas**, o script e/ou o próprio template farão a conversão do texto.
-
-> 📋 *exemplo:*\
-> os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.
-
-é possível importar rapidamente qualquer template da lista executando um clique duplo no mesmo.
