@@ -82,8 +82,6 @@ function findDialog() {
 	var infoBtn = optMainGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS';
 
-	// var resultGrp = findW.add('group');
-
 	var findProgressBar = findW.add('progressbar', [0, 0, 305, 5], undefined);
 	findProgressBar.value = 100;
 
@@ -120,12 +118,12 @@ function findDialog() {
 		var count = expandNodes(resultTree);
 
 		if (count < 1) {
-			findW.text = 'sem matches... (っ °Д °;)っ';
+			findW.text = 'SEM MATCHES... (っ °Д °;)っ';
 			return;
 		}
 		resultTree.visible = true;
 		resultTree.size.height = count >= 16 ? 320 : (count * 21) + 5;
-		findW.text = 'busca concluída...  (o °▽ °)o☆';
+		findW.text = 'BUSCA CONCLUÍDA...  (o °▽ °)o☆';
 		findW.layout.layout(true);
 	};
 
@@ -146,7 +144,6 @@ function findDialog() {
 
 			t = resultTree.selection.refTime;
 			comp.hideShyLayers = !txtLayer.shy;
-			// txtLayer.locked = false;
 			txtLayer.selected = true;
 		}
 		comp.openInViewer();
