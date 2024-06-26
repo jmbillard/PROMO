@@ -333,34 +333,19 @@ function padeiroTemplateDialog() {
 			return;                                // Encerra a função, pois não há mais nada a fazer
 		}
 
-		// Caso um template seja selecionado
-		var s = templateTree.selection;     // Obtém o item selecionado na árvore (o template)
-		var templateName = s.text;          // Obtém o nome do template a partir do texto do item
+		templateFile = templateTree.selection.file; // arquivo do template
 
-		// Constrói o caminho completo do arquivo do template
-		while (s.parent.parent.constructor.name != 'TreeView') { // Enquanto o pai do pai do item não for a raiz da árvore...
-			s = s.parent;                                        // Sobe um nível na hierarquia da árvore (vai para o pai do item atual)
-			templateName = s.text + '/' + templateName;          // Adiciona o nome do pai ao início do caminho do template
-		}
-		// Nomes dos arquivos relacionados ao template
-		templateName = templateName.replace(/\s+\/\s+/g, '/');
-		// Substitui a extensão do template por...
-		var imgName = templateName.replace(/\.[\w]+$/i, '_preview.png');    // '_preview.png' para o arquivo de preview
-		var configName = templateName.replace(/\.[\w]+$/i, '_config.json'); // '_config.json' para o arquivo de configuração
-		var scriptName = templateName.replace(/\.[\w]+$/i, '_script.js');   // '_script.js' para o arquivo de script (se houver)
+		var templateBase = templateFile.path + '/' + deleteFileExt(templateFile.displayName); // nome do template
 
 		// Criação dos objetos File para os arquivos do template
-		templateFile = new File(templatesPath + '/' + templateName); // arquivo do template
-		previewImgFile = new File(templatesPath + '/' + imgName);    // arquivo de preview
-		configFile = new File(templatesPath + '/' + configName);     // arquivo de configuração
-		scriptFile = new File(templatesPath + '/' + scriptName);     // arquivo de script (se houver)
+		previewImgFile = new File(templateBase + '_preview.png');    // arquivo de preview
+		configFile = new File(templateBase + '_config.json');     // arquivo de configuração
+		scriptFile = new File(templateBase + '_script.js');     // arquivo de script (se houver)
 
 		// Habilita o botão de importar se um template estiver selecionado
 		importBtn.enabled = templateTree.selection != null;
 
-		// Define a imagem de preview
 		// Verifica se o arquivo de preview existe
-		// Se existir...
 		if (previewImgFile.exists) {
 			//define a imagem de preview para o arquivo encontrado
 			previewImg.image = previewImgFile;
@@ -430,10 +415,11 @@ function padeiroTemplateDialog() {
 
 	// Função executada quando um template na árvore é ativado (clicado)
 	templateTree.onActivate = function () {
-		// Verifica se há dados de entrada válidos
 		// Verifica se o texto de entrada (edtText) não está vazio e se é diferente do exemplo padrão
 		hasData = (edtText.text.trim() != '' && edtText.text != exemple);
-		if (!hasData) edtText.text = exemple; // Se não houver dados, define o texto de entrada como o exemplo
+		
+		// Se não houver dados, define o texto de entrada como o exemplo
+		if (!hasData) edtText.text = exemple;
 
 		// Habilita o botão 'Criar' se um template for selecionado, houver dados de entrada e o template tiver inputs
 		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
@@ -449,7 +435,6 @@ function padeiroTemplateDialog() {
 
 	// Função executada enquanto o usuário está digitando na caixa de texto (edtText)
 	edtText.onChanging = function () {
-		// Verifica se há dados válidos na caixa de texto
 		// A variável 'hasData' se torna 'true' se o texto não estiver vazio e for diferente do exemplo padrão
 		hasData = (edtText.text.trim() != '' && edtText.text.trim() != exemple);
 
