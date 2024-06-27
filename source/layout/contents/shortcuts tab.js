@@ -57,7 +57,7 @@ outSPBtn.enabled = !homeOffice;
 // Botão para abrir a pasta de export dos editores
 var inFtgBtn = linksSubGrp2.add('iconbutton', iconSize, inFtgFolderIcon[iconTheme], { name: 'btn', style: 'toolbutton' });
 inFtgBtn.helpTip = 'pasta de export dos editores';
-outSPBtn.enabled = !homeOffice;
+inFtgBtn.enabled = !homeOffice;
 
 /*
   

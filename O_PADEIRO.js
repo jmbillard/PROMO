@@ -39,10 +39,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// Botões da interface
 		var PAD_launchBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir O Padeiro"
-		PAD_launchBtn.helpTip = '◖ → abrir O PADEIRO\n\n◗ → abrir a pasta de templates'; // Dica de ajuda
+		PAD_launchBtn.helpTip = 'O PADEIRO:\n\n◖ → abrir interface\n\n◗ → abrir a pasta de templates'; // Dica de ajuda
 
 		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Instalar Fontes"
-		PAD_fontBtn.helpTip = '◖ → instalar as fontes usadas no template\n\n◗ → fazer o collect das fontes usadas no projeto'; // Dica de ajuda
+		PAD_fontBtn.helpTip = 'RESOLVER FONTES:\n\n◖ → instalar as fontes usadas no template\n\n◗ → fazer o collect das fontes usadas no projeto'; // Dica de ajuda
 
 		mainGrp.add("panel"); // Separador visual
 
@@ -51,7 +51,7 @@ function O_PADEIRO_UTL(thisObj) {
 		btnGrp2.spacing = 2;
 
 		var PAD_outputFolderBtn = btnGrp2.add('iconbutton', undefined, O_PADEIRO_OUTPUTFOLDER_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir Pasta de Saída"
-		PAD_outputFolderBtn.helpTip = '◖ → abir pasta do último item da fila de render\n\n◗ → abir pasta do penúltimo item da fila de render'; // Dica de ajuda
+		PAD_outputFolderBtn.helpTip = 'ABRIR PASTAS:\n\n◖ → abir a pasta do último item da fila de render\n\n◗ → abir a pasta do projeto (caso esteja salvo)'; // Dica de ajuda
 
 		mainGrp.add("panel"); // Separador visual
 
@@ -60,10 +60,10 @@ function O_PADEIRO_UTL(thisObj) {
 		btnGrp3.spacing = 2;
 
 		var PAD_renameBtn = btnGrp3.add('iconbutton', undefined, O_PADEIRO_RENAME_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_renameBtn.helpTip = '◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+		PAD_renameBtn.helpTip = 'RENOMEAR:\n\n◖ → renomear comps selecionadas\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
 
 		var PAD_orgBtn = btnGrp3.add('iconbutton', undefined, O_PADEIRO_ORG_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_orgBtn.helpTip = 'selecione as comps que serão\nRENDERIZADAS primeiro!\n\n◖ → organizar o projeto';//\n\n◗ → renomear TODAS as saídas de render'; // Dica de ajuda
+		PAD_orgBtn.helpTip = 'ORGANIZAR:\n\nselecione as comps que serão\nRENDERIZADAS primeiro!\n\n◖ → organizar o projeto\n\n◗ → criar estrutura de pastas do projeto'; // Dica de ajuda
 
 		mainGrp.add("panel"); // Separador visual
 
@@ -72,7 +72,7 @@ function O_PADEIRO_UTL(thisObj) {
 		btnGrp4.spacing = 2;
 
 		var PAD_findBtn = btnGrp4.add('iconbutton', undefined, O_PADEIRO_FIND_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
-		PAD_findBtn.helpTip = '◖ → abrir a BUSCA em layers de texto'; // Dica de ajuda
+		PAD_findBtn.helpTip = 'BUSCA:\n\n◖ → abrir a BUSCA em layers de texto'; // Dica de ajuda
 
 
 		// Rótulo da versão
@@ -152,12 +152,11 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
 				// Verifica se a pasta de templates existe.
-				if (templatesFolder.exists) {
-					openFolder(templatesPath); // Se existir, abre a pasta de templates no sistema operacional.
-				} else {
-					// Se não existir, exibe um alerta informando que a pasta não foi encontrada.
-					alert(lol + '\na pasta de templates não foi localizada...');
+				if (!templatesFolder.exists) {
+					alert(lol + '\na pasta de templates não foi localizada...'); // mensagem de erro.
+					return;
 				}
+				openFolder(templatesPath); // abre a pasta de templates.
 			}
 		});
 
@@ -165,7 +164,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se há acesso à rede.
 			if (!netAccess()) {
-				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+				alert('sem acesso a rede... ' + lol + '\na funcionalidade será limitada');
 				return;
 			}
 
@@ -174,14 +173,18 @@ function O_PADEIRO_UTL(thisObj) {
 			var templateFontsPath = folderPath + '/FONTS';
 
 			// Se o caminho da pasta não for encontrado, a função é interrompida.
-			if (folderPath == '') return;
-
+			if (folderPath == '') {
+				alert(lol + '\nesse não foi preenchido pelo padeiro...')
+				return;
+			}
 			// Cria um objeto "Folder" para a pasta de fontes do template.
 			var templateFontsFolder = new Folder(templateFontsPath);
 
 			// Verifica se a pasta de fontes existe.
-			if (!templateFontsFolder.exists) return;
-
+			if (!templateFontsFolder.exists) {
+				alert(lol + '\na pasta de fontes não foi localizada...')
+				return;
+			}
 			// Se a pasta de fontes existe e o sistema operacional for Windows, instala as fontes.
 			if (appOs == 'Win') installWinFonts(templateFontsPath);
 		};
@@ -216,8 +219,10 @@ function O_PADEIRO_UTL(thisObj) {
 			}
 
 			// Verifica se há itens na fila de renderização.
-			if (app.project.renderQueue.numItems < 1) return;
-
+			if (app.project.renderQueue.numItems < 1) {
+				alert(lol + '\na fila de render está vazia...')
+				return;
+			}
 			// Obtém o último item da fila de renderização.
 			var item = app.project.renderQueue.item(app.project.renderQueue.numItems);
 
@@ -253,9 +258,10 @@ function O_PADEIRO_UTL(thisObj) {
 				var currentProj = app.project.file;
 
 				if (currentProj == null) {
-					alert(lol + '\no projeto atual ainda não foi salvo...')
+					alert(lol + '\no projeto atual ainda não foi salvo...');
+					return;
 				}
-				
+
 				var currentProjPath = decodeURI(currentProj.path);
 				var fld = new Folder(currentProjPath);
 
@@ -327,7 +333,20 @@ function O_PADEIRO_UTL(thisObj) {
 
 			findDialog();
 		};
-		
+
+		PAD_orgBtn.addEventListener('click', function (c) {
+
+			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
+			if (c.button == 2) {
+
+				app.beginUndoGroup('criar pastas do projeto');
+
+				projectTemplateFolders(projectMode); // cria a estrutura de pastas do projeto
+
+				app.endUndoGroup();
+			}
+		});
+
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.
 		return PAD_w;
 	}
