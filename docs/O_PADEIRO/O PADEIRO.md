@@ -22,23 +22,28 @@ ferramentas disponíveis em ordem:
 
 - **O PADEIRO**:
 `◖ clique esquerdo` → abre a janela de templates.
-`◗ clique direito` → abre a pasta de templates no servidor de arquivos.
+`◗ clique direito` → abre a pasta de templates no servidor.
   >
 - **RESOLVER FONTES**:
-`◖ clique esquerdo` → instala as fontes necessárias para o template criado.
-`◗ clique direito` → faz o collect dos arquivos de fonte usados no projeto.
+`◖ clique esquerdo` → instala as fontes necessárias para o template.
+`◗ clique direito` → faz o collect dos arquivos de fonte do projeto.
   >
 - **ABRIR PASTAS**:
 `◖ clique esquerdo` → abre a pasta de output do último item da fila de render.
 `◗ clique direito` → abre a pasta do projeto atual.
   > *se o projeto já foi salvo.*
-- **RENOMEAR ITENS**:
+- **RENOMEAR**:
 `◖ clique esquerdo` → renomeia comps selecionadas.
 `◗ clique direito` → renomeia todos os itens da fila de render.
   > *remove caracteres especiais, colocando tudo em CAIXA ALTA e acrescenta os prefixos para rodapés, cartões, letterings, etc.*
-- **ORGANIZAR PROJETO**:
-`◖ clique esquerdo` → organiza o projeto usando o modelo de organização da PROMO.
+- **ORGANIZAR**:
+`◖ clique esquerdo` → organiza o projeto.
+`◗ clique direito` → cria apenas a estrutura de pastas no projeto.
   > *antes de clicar,selecione as comps principais (as que devem ser renderizadas) para que elas sejam adicionadas a pasta '01 COMPS'*
+- **BUSCA**:
+`◖ clique esquerdo` → abre a janela de busca.
+  > *a busca funciona apenas no conteúdo dos layers de texto do projeto.*
+
 <br>
 
 ## 📍 instalação
@@ -161,7 +166,7 @@ o script executará as seguintes tarefas em ordem:
 - **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
 > 🚩 *obs:*\
-> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**).
+> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**) para artes com alpha.
 
 ---
 
@@ -207,12 +212,11 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
 ## outras utilidades...
 
-- **resolver fontes**:
+- **RESOLVER FONTES**:
 
   `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
 
-  Ao preencher o template pela interface do padeiro o script armazena no 'Source' dos metadados do projeto o caminho dos arquivos do template, assim é possível fazer a instalação das fontes necessárias facilmente. Após clicar no botão um script de 'powershell' copia todos os arquivos de fontes do projeto para a pasta de fontes do sistema.
-
+  *Ao preencher o template pela interface do padeiro o script armazena no 'Source' dos metadados do projeto o caminho dos arquivos do template, assim é possível fazer a instalação das fontes necessárias facilmente. Após clicar no botão um script de 'powershell' copia todos os arquivos de fontes do projeto para a pasta de fontes do sistema.*
   > 📋 *exemplo:*\
   > ![instalar fontes](gifs/instalar-fontes.gif)
 
@@ -229,7 +233,7 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
   `◗ clique direito` → Copia todos os arquivos de fontes usadas nos layers de textos do projeto em uma pasta selecionada pelo usuário.
 
-  O script varre todas os layers de texto de todas as comps do projeto e armazena todas as fontes usadas, depois, copia os seus arquivos para uma pasta a sua escolha.
+  *O script varre todas os layers de texto de todas as comps do projeto e armazena todas as fontes usadas, depois, copia os seus arquivos para uma pasta a sua escolha.*
 
   > 📋 *exemplo:*\
   > ![collect fontes](gifs/collect-de-fontes.gif)
@@ -237,29 +241,29 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
   > 🚩 *obs:*\
   > Algumas fontes instaladas apenas na pasta do usuário podem retornar um erro na hora da cópia. Nesse caso, o script alertará quais fontes não puderam ser copiadas.
 
-  <br>
+  <br><br>
 
-- **abrir pastas**:
+- **ABRIR PASTAS**:
 
   `◖ clique esquerdo` → Abre a pasta onde o último vídeo da fila de render será / foi salvo.
 
-  O script olha na fila de render o último caminho de pasta disponível e abre a pasta.
+  *O script olha na fila de render o último caminho de pasta disponível e abre a pasta.*
 
   `◗ clique direito` → Abre a pasta onde o projeto atual está guardado (se ele já tiver sido salvo antes).
 
-  O script verifica se você já salvou o projeto. Se sim, ele abre a pasta.
+  *O script verifica se você já salvou o projeto. Se sim, ele abre a pasta.*
 
   > 🚩 *obs:*\
   > Caso o caminho não seja encontrado por falta de permissão ou falta de mapeamento de pastas de rede, o script não retornara o caminho.
 
-  <br>
+  <br><br>
 
-- RENOMEAR COMPS
+- **RENOMEAR**:
 
   `◖ clique esquerdo` → Altera o nome das comps selecionadas na janela do projeto.
 
-  O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.\
-  Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.
+  *O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.\
+  Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.*
 
   > 📋 *exemplo:*\
   > ![renomear comps](gifs/renomear-comps.gif)
@@ -271,14 +275,13 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
   `◗ clique direito` → Altera o nome de todos os itens na fila de render.
 
-  O nome das comps não será alterado!
-  O script pega os nomes das comps de todos os itens da fila de render.
-  Ele faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.
+  *O script pega os nomes das comps de todos os itens da fila de render e faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.*
 
   > 📋 *exemplo:*\
-  > ![renomear output](renomear-output.gif)
+  > ![renomear output](gifs/renomear-output.gif)
 
   > 🚩 *obs:*\
+  > O NOME DAS COMPS NÃO SERÁ ALTERADO!
   > No momento, outputs em sequânica de imagens ainda não são suportados.
 
   **lista de prefixos e termos reconhecidos**:
@@ -292,22 +295,43 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
   - **PASSAGEM** → *PASSAGENS, TRANSICAO, LAPADA*
   - **REF** → *REFERENCIA, PREVIEW*
 
-<br>
+  <br><br>
 
-- ORGANIZAR PROJETO
+- **ORGANIZAR**:
 
   `◖ clique esquerdo` → Organiza o projeto de acordo com o modelo de projeto da PROMO.
-  O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.
-  As comps selecionadas inicialmente serão organizadas na pasta '01 COMPS'.
-  O script separa outros arquivos (imagens, sons, etc.) nas pastas certas.
+  *O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.*
+  *As comps selecionadas inicialmente serão organizadas na pasta '01 COMPS'.*
+  *O script separa outros arquivos (imagens, sons, etc.) nas pastas certas.*
 
   > 📋 *exemplo:*\
-  > ![organizar projeto](organizar-projeto.gif)
+  > ![organizar projeto](gifs/organizar-projeto.gif)
 
   > 🚩 *obs:*\
   > Você deve selecionar as comps principais (as que serão renderizadas) antes de clicar.\
   > Todas as comps selecionadas no momento da organização serão colocadas na pasta '01 COMPS'.\
   > As comps renomeadas pelo script também serão organizadas na pasta '01 COMPS' caso possuam algum termo reconhecido em seu nome e/ou nome da pasta em que estejam contidas.
+
+  <br>
+
+  `◗ clique direito` → Cria apenas a estrutura de pastas no projeto de acordo com o modelo da PROMO.
+
+  > 📋 *exemplo:*\
+  > ![estrutura projeto](images/estrutura_projeto_promo.png)
+
+  <br><br>
+
+- **BUSCA**:
+
+  `◖ clique esquerdo` → Abre a janela de busca em layers de texto do projeto.
+  *O script pesquisará em todos os layers de texto do projeto pelo termo buscado.*
+
+  > 📋 *exemplo:*\
+  > ![busca](images/busca_ui.png)
+
+  > 🚩 *obs:*\
+  > Por padrão a busca é feita ignorando acentuação e caixa do texto.\
+  > Assim uma busca rápida por 'amazonia' pode retornar todos os layers de texto contendo 'amazonia', 'Amazônia', 'AmAzOnIa'...
 
 <br>
 
@@ -329,8 +353,10 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
   - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/BRASILEIRAO/CONFRONTO.md)
 - INTEGRADA
   - [INTEGRADA](templates_disponiveis/ESPORTES/INTEGRADA/INTEGRADA.md)
+- GLOBO ESPORTE
+  - [BRODAPE_INFO](templates_disponiveis/ESPORTES/VERAO_ESPETACULAR/RODAPE_ATRACAO.md)
 - VERAO ESPETACULAR
-  - [BRASILEIRAO_CONFRONTO](templates_disponiveis/ESPORTES/VERAO_ESPETACULAR/RODAPE_ATRACAO.md)
+  - [RODAPE_ATRACAO](templates_disponiveis/ESPORTES/VERAO_ESPETACULAR/RODAPE_ATRACAO.md)
 
 ### NOVELAS:
 
