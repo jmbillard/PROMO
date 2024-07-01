@@ -74,6 +74,15 @@ function O_PADEIRO_UTL(thisObj) {
 		var PAD_findBtn = btnGrp4.add('iconbutton', undefined, O_PADEIRO_FIND_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
 		PAD_findBtn.helpTip = 'BUSCA:\n\n◖ → abrir a BUSCA em layers de texto'; // Dica de ajuda
 
+		mainGrp.add("panel"); // Separador visual
+
+		var btnGrp5 = mainGrp.add('group'); // Grupo de botões inferior
+		btnGrp5.alignment = 'center';
+		btnGrp5.spacing = 2;
+
+		var PAD_sheetBtn = btnGrp5.add('iconbutton', undefined, O_PADEIRO_SHEET_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Renomear Comps"
+		PAD_sheetBtn.helpTip = 'APONTAMENTO:\n\n◖ → abrir a planilha do apontamento de projetos no navegador'; // Dica de ajuda
+
 
 		// Rótulo da versão
 		var PAD_vLab = PAD_w.add('statictext', undefined, 'v' + PAD_v, { name: 'label', truncate: 'end' });
@@ -347,6 +356,19 @@ function O_PADEIRO_UTL(thisObj) {
 			}
 		});
 
+
+		PAD_sheetBtn.onClick = function () {
+			// error...
+			if (!netAccess()) {
+				alert(netConfigName + ' não habilitada');
+				return;
+			}
+			var apontamento = 'https://tvglobocorp.sharepoint.com/:x:/r/sites/Planejamento-DTEN/Planejamento/Documentos_Planejamento/02.%20Planejamento%20CDesign/03.%20Ciclo/Ciclo%202024/Planejamento%20Design%20Entretenimento/Planejamento%20Design%20Entretenimento%202024.xlsx?d=we7162eb9fc934539954c91aa53129c92&csf=1&web=1&e=BVGLPS&nav=MTVfezJBRThDRUM4LTc2MDktNEJFOS04NDY3LUQ5RTQyMkQyRTcwNH0';
+
+			openWebSite(apontamento);
+		};
+
+
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.
 		return PAD_w;
 	}
@@ -365,7 +387,7 @@ function O_PADEIRO_UTL(thisObj) {
 		// Verifica novamente se há acesso à rede.
 		if (!netAccess()) {
 			// Se ainda não houver acesso, exibe outro alerta informando que a funcionalidade será limitada.
-			alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+			alert('sem acesso a rede... ' + lol + '\na funcionalidade será limitada');
 		}
 	}
 
