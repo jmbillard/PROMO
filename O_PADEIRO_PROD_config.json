@@ -1,0 +1,16 @@
+{
+	"PRODUCOES": [
+		{
+			"name": "PROMO",
+			"templatesPath": "//10.228.183.165/VFX/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES PADEIRO"
+		},
+		{
+			"name": "PROD 1",
+			"templatesPath": "~/Desktop"
+		},
+		{
+			"name": "PROD 2",
+			"templatesPath": "~/Downloads"
+		}
+	]
+}
