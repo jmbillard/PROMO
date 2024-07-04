@@ -138,10 +138,12 @@ o script executará as seguintes tarefas em ordem:
 >   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
 >   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
 >  ],
->  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D". (opcional)
+>  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D". (opcional).
 >
->  "outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS", // → caminho padrão do output.
->  "alpha": true  // → aviso que o canal alpha é necessário.
+>  "outputPath": [ // → lista com caminhos do output.
+>    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
+>  ],
+> "alpha": true  // → aviso que o canal alpha é necessário.
 > }
 > ```
 

@@ -11,7 +11,9 @@
 	"inputLayers": [
 		{"layerIndex": 1, "method": "textContent"}
 	],
-	"outputPath": "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024",
+	"outputPath": [
+		"//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/ALTAS HORAS/2020-2024"
+	],
 	"importPath": "//10.193.48.13/promo_ber/BACKUP/edicao/Chamadas para Arte/ALTAS HORAS",
 	"alpha": false
 }

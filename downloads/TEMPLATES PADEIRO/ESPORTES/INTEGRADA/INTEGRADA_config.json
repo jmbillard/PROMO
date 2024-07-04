@@ -10,7 +10,9 @@
 	"textCase": "upperCase",
 	"inputLayers": [],
 
-	"outputPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024/SAIDAS",
+	"outputPath": [
+		"//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024/SAIDAS"
+	],
 	"importPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024/02 ARQUIVOS",
 	"alpha": true
 }

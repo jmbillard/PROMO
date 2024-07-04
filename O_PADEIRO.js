@@ -11,7 +11,20 @@ function O_PADEIRO_UTL(thisObj) {
 	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
 	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
 
+	function getPrdNames(prodDataObj) {
+		var prdNames = [];
+
+		for (var i = 0; i < prodDataObj.length; i++) {
+			prdNames.push(prodDataObj[i].name);
+		}
+		return prdNames;
+	}
+
 	function O_PADEIRO_UI() {
+
+		var configFile = new File('~/PROMO/O_PADEIRO_PROD_config.json'); // Caminho e nome do arquivo de configuração JSON
+		var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
+		prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
@@ -32,6 +45,12 @@ function O_PADEIRO_UTL(thisObj) {
 		// Grupos de elementos na interface
 		var mainGrp = PAD_w.add('group'); // Grupo principal
 		mainGrp.spacing = 10; // Espaçamento entre elementos do grupo
+
+		var btnGrp0 = mainGrp.add('group'); // Grupo de botões superior
+		btnGrp0.alignment = 'center'; // Alinhamento central
+		btnGrp0.spacing = 2; // Espaçamento entre botões
+		
+		var prodDrop = btnGrp0.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCOES));
 
 		var btnGrp1 = mainGrp.add('group'); // Grupo de botões superior
 		btnGrp1.alignment = 'center'; // Alinhamento central
@@ -140,6 +159,11 @@ function O_PADEIRO_UTL(thisObj) {
 			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script'; // Define o URL do site de documentação.
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
+
+		prodDrop.onChange = function () {
+			templatesPath = prodData.PRODUCOES[this.selection.index].templatesPath; // selected tab color...
+			templatesFolder = new Folder(templatesPath);
+		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
 		PAD_launchBtn.onClick = function () {

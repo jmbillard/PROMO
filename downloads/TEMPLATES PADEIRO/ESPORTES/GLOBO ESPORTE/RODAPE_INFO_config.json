@@ -13,6 +13,8 @@
 	],
 	"inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]},
 
-	"outputPath": "//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/ESPORTES/GLOBO ESPORTE/2022-2024/_LETTERINGS",
+	"outputPath": [
+		"//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/ESPORTES/GLOBO ESPORTE/2022-2024/_LETTERINGS"
+	],
 	"alpha": true
 }
