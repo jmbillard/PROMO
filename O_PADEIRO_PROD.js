@@ -139,6 +139,11 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
+		prodDrop.onChange = function () {
+			templatesPath = prodData.PRODUCOES[this.selection.index].templatesPath; // selected tab color...
+			templatesFolder = new Folder(templatesPath);
+		};
+	
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
 		PAD_launchBtn.onClick = function () {
 
