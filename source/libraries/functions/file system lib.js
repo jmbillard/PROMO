@@ -40,20 +40,20 @@ function openFolder(folderPath) {
 	  // Comando para abrir a pasta no Finder (macOS)
 	  system.callSystem('open "' + Folder.decode(folder.fsName) + '"');  
 	}
-  }
-  
+}
+
   // Abre um URL no navegador padrão do sistema operacional (Windows ou macOS).
-  function openWebSite(url) {
+function openWebSite(url) {
 	if (appOs === 'Win') {
-	  // Comando para abrir o URL no Windows Explorer (que também pode abrir URLs)
-	  system.callSystem('explorer ' + url);     
-  
+		// Comando para abrir o URL no Windows Explorer (que também pode abrir URLs)
+		system.callSystem('explorer ' + url);
+
 	} else if (appOs === 'Mac') {
-	  // Comando para abrir o URL no navegador padrão do macOS
-	  system.callSystem('open ' + url);        
+		// Comando para abrir o URL no navegador padrão do macOS
+		system.callSystem('open ' + url);        
 	}
-  }
-  
+}
+
 // Faz o download de conteúdo de URLs em um array para arquivos em um array de destinos (Windows e macOS).
 function getURLContent(urlArray, dstArray) {
 	// Verifica se os arrays têm o mesmo tamanho

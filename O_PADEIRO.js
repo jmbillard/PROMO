@@ -363,7 +363,7 @@ function O_PADEIRO_UTL(thisObj) {
 				alert(netConfigName + ' não habilitada');
 				return;
 			}
-			var apontamento = 'https://tvglobocorp.sharepoint.com/:x:/r/sites/Planejamento-DTEN/Planejamento/Documentos_Planejamento/02.%20Planejamento%20CDesign/03.%20Ciclo/Ciclo%202024/Planejamento%20Design%20Entretenimento/Planejamento%20Design%20Entretenimento%202024.xlsx?d=we7162eb9fc934539954c91aa53129c92&csf=1&web=1&e=BVGLPS&nav=MTVfezJBRThDRUM4LTc2MDktNEJFOS04NDY3LUQ5RTQyMkQyRTcwNH0';
+			var apontamento = '"https://tvglobocorp.sharepoint.com/:x:/s/Planejamento-DTEN/Planejamento/EbkuFueT_DlFlUyRqlMSnJIBRpRsPPY72NSDqgKq0DvOKg?e=T7sn7i"';
 
 			openWebSite(apontamento);
 		};

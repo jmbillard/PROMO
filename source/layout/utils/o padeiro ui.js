@@ -417,7 +417,7 @@ function padeiroTemplateDialog() {
 	templateTree.onActivate = function () {
 		// Verifica se o texto de entrada (edtText) não está vazio e se é diferente do exemplo padrão
 		hasData = (edtText.text.trim() != '' && edtText.text != exemple);
-		
+
 		// Se não houver dados, define o texto de entrada como o exemplo
 		if (!hasData) edtText.text = exemple;
 
@@ -481,7 +481,7 @@ function padeiroTemplateDialog() {
 			app.project.bitsPerChannel = 8;                  // Define a profundidade de bits por canal para 8 bits (padrão para a maioria dos projetos)
 			app.project.expressionEngine = 'javascript-1.0'; // Define o mecanismo de expressão como JavaScript 1.0
 			app.project.linearBlending = true;               // Habilita a mistura de cores linear (blending)
-			app.project.timeDisplayType = TimeDisplayType.TIMECODE; // Define a exibição de tempo como Timecode (00:00:00:00)
+			app.project.timeDisplayType = TimeDisplayType.TIMECODE; // Define a exibição de tempo como TimeCode (00:00:00:00)
 
 			// Em caso de erro
 		} catch (err) {
@@ -611,33 +611,39 @@ function padeiroTemplateDialog() {
 						// Verifica se um template de saída foi selecionado
 						if (padeiroOutputModuleTemplate != '') {
 
-							// Cria um objeto Folder para a pasta de saída definida em templateData
-							var outputFolder = new Folder(templateData.outputPath);
+							item.applyTemplate('Best Settings');                     // Aplica as melhores configurações de renderização ao item na fila
+							var outputPathArray = templateData.outputPath;
 
-							// Verifica se a pasta de saída está disponível
-							// evita delays em casos de problema na rede
-							if (folderNotAvailable || !outputFolder.exists) {
-								templateData.outputPath = defPadObj.outputPath;// se não estiver, usa a pasta padrão definida em defPadObj
-								// Define a variável de controle para indicar que a pasta original não está disponível
-								// assim pulamos a verificação em caso de problema na rede
-								folderNotAvailable = true;
+							for (var o = 0; o < outputPathArray.length; o++) {
+								
+								if (o > 0) item.outputModules.add();
+								
+								outputModule = item.outputModule(o + 1);
+								// Cria um objeto Folder para a pasta de saída definida em templateData
+								var outputFolder = new Folder(outputPathArray[o]);
+
+								// Verifica se a pasta de saída está disponível
+								// evita delays em casos de problema na rede
+								if (folderNotAvailable || !outputFolder.exists) {
+									outputPathArray[o] = defPadObj.outputPath;// se não estiver, usa a pasta padrão definida em defPadObj
+									// Define a variável de controle para indicar que a pasta original não está disponível
+									// assim pulamos a verificação em caso de problema na rede
+									folderNotAvailable = true;
+								}
+
+								try {
+									// Cria o arquivo de saída do render (nome do template + '.mov')
+									var outputFile = new File(outputPathArray[o] + '/' + template.name + '.mov');
+
+									outputModule.file = outputFile;                          // Define o arquivo de saída no módulo de render
+									outputModule.applyTemplate(padeiroOutputModuleTemplate); // Aplica o template de saída selecionado ao módulo de render
+									createdOutputModuleArray.push(outputModule);             // Adiciona o módulo de saída ao array
+
+									// Em caso de erro (por exemplo, problema ao acessar a pasta)
+								} catch (err) {
+									alert(err.message); // Exibe um alerta com a mensagem de erro
+								}
 							}
-
-							try {
-								// Cria o arquivo de saída do render (nome do template + '.mov')
-								var outputFile = new File(templateData.outputPath + '/' + template.name + '.mov');
-
-								outputModule.file = outputFile;                          // Define o arquivo de saída no módulo de render
-								outputModule.applyTemplate(padeiroOutputModuleTemplate); // Aplica o template de saída selecionado ao módulo de render
-								item.applyTemplate('Best Settings');                     // Aplica as melhores configurações de renderização ao item na fila
-
-								createdOutputModuleArray.push(outputModule);             // Adiciona o módulo de saída ao array
-
-								// Em caso de erro (por exemplo, problema ao acessar a pasta)
-							} catch (err) {
-								alert(err.message); // Exibe um alerta com a mensagem de erro
-							}
-
 							// Se nenhum template de saída for selecionado
 						} else {
 							item.remove(); // Remove o item da fila de render
@@ -710,7 +716,7 @@ function padeiroTemplateDialog() {
 				scriptFile.close();   // Fecha o arquivo de script
 
 			} catch (err) {           // Em caso de erro, exibe um alerta
-				alert('nope... (っ °Д °;)っ\n\n' + err.message);
+				alert('0 nope... (っ °Д °;)っ\n\n' + err.message);
 			}
 		}
 	};
