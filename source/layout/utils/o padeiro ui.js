@@ -6,7 +6,7 @@
 
 */
 // Declaração da versão do script 'O Padeiro'
-var PAD_v = '0.93-b';
+var PAD_v = '1.0';
 
 // Objeto que armazena as configurações padrão (default) do Padeiro
 var defPadObj = {
@@ -615,9 +615,9 @@ function padeiroTemplateDialog() {
 							var outputPathArray = templateData.outputPath;
 
 							for (var o = 0; o < outputPathArray.length; o++) {
-								
+
 								if (o > 0) item.outputModules.add();
-								
+
 								outputModule = item.outputModule(o + 1);
 								// Cria um objeto Folder para a pasta de saída definida em templateData
 								var outputFolder = new Folder(outputPathArray[o]);
@@ -736,6 +736,9 @@ function padeiroTemplateDialog() {
 			deleteProjectFolders();      // Exclui todas pastas do projeto.
 			populateProjectFolders();    // Organiza o projeto com os templates criados.
 			deleteEmptyProjectFolders(); // Exclui pastas vazias do projeto.
+
+			// Adiciona metadados XMP ao projeto indicando o caminho do template original
+			setXMPData('source', decodeURI(templateFile.path).toString());
 
 		} catch (err) { // Captura e trata qualquer erro que ocorra durante a importação
 			alert(err.message); // Exibe uma mensagem de alerta com a mensagem de erro

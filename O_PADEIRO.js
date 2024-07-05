@@ -22,7 +22,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 	function O_PADEIRO_UI() {
 
-		var configFile = new File('~/PROMO/O_PADEIRO_PROD_config.json'); // Caminho e nome do arquivo de configuração JSON
+		var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 		var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 		prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 
@@ -46,11 +46,7 @@ function O_PADEIRO_UTL(thisObj) {
 		var mainGrp = PAD_w.add('group'); // Grupo principal
 		mainGrp.spacing = 10; // Espaçamento entre elementos do grupo
 
-		var btnGrp0 = mainGrp.add('group'); // Grupo de botões superior
-		btnGrp0.alignment = 'center'; // Alinhamento central
-		btnGrp0.spacing = 2; // Espaçamento entre botões
-		
-		var prodDrop = btnGrp0.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCOES));
+		// mainGrp.add("panel"); // Separador visual
 
 		var btnGrp1 = mainGrp.add('group'); // Grupo de botões superior
 		btnGrp1.alignment = 'center'; // Alinhamento central
@@ -108,11 +104,25 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_vLab.alignment = 'right';
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
+		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
+		prodGrp.alignment = 'left'; // Alinhamento central
+		prodGrp.spacing = 6; // Espaçamento entre botões
+
+		var ICON = prodGrp.add('image', undefined, new File(prodData.PRODUCOES[0].icon));
+		ICON.preferredSize = [24, 24];
+		ICON.helpTip = prodData.PRODUCOES[0].name;
+
+		var prodDrop = prodGrp.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCOES));
+		prodDrop.selection = 0; // Seleciona a produção padrão.
+		prodDrop.preferredSize = [130, 24];
+		prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
+
 		PAD_w.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(PAD_vLab, '#FFFFFF', '#FF7B79'); // Cor de destaque do texto
+		setTxtHighlight(PAD_vLab, '#2A2A2A', '#FF7B79'); // Cor de destaque do texto
 		setBgColor(PAD_w, '#515D9E'); // Cor de fundo da janela
+
 
 		PAD_w.onShow = PAD_w.onResizing = function () { // Define uma função a ser executada quando a janela é exibida ou redimensionada.
 
@@ -125,14 +135,20 @@ function O_PADEIRO_UTL(thisObj) {
 			// Se a janela for mais larga, o rótulo será alinhado à direita.
 			// Se a janela for mais alta, o rótulo será alinhado embaixo.
 			var labLayout = PAD_w.size.width > PAD_w.size.height ? 'right' : 'bottom';
+			var prodLayout = PAD_w.size.width > PAD_w.size.height ? 'left' : 'top';
 
 			// Define as margens do grupo principal de elementos.
 			// Se a janela for mais larga, a margem direita será maior para acomodar o rótulo de versão.
 			// Se a janela for mais alta, a margem inferior será maior para acomodar o rótulo de versão.
-			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [0, 0, 40, 0] : [0, 0, 0, 20];
+			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [180, 0, 40, 0] : [0, 30, 0, 20];
+
+			if (grpLayout == 'column' && PAD_w.size.width < 170) {
+				prodDrop.size.width = PAD_w.size.width - 44;
+			}
 
 			// Aplica o layout calculado aos grupos de elementos.
 			mainGrp.orientation = grpLayout;
+			// prodGrp.orientation = grpLayout;
 			btnGrp1.orientation = grpLayout;
 			btnGrp2.orientation = grpLayout;
 			btnGrp3.orientation = grpLayout;
@@ -140,6 +156,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Aplica o alinhamento calculado ao rótulo de versão.
 			PAD_vLab.alignment = labLayout;
+			prodGrp.alignment = prodLayout;
 
 			// Aplica as margens calculadas ao grupo principal.
 			mainGrp.margins = mainMargins;
@@ -163,6 +180,9 @@ function O_PADEIRO_UTL(thisObj) {
 		prodDrop.onChange = function () {
 			templatesPath = prodData.PRODUCOES[this.selection.index].templatesPath; // selected tab color...
 			templatesFolder = new Folder(templatesPath);
+
+			ICON.image = new File(prodData.PRODUCOES[this.selection.index].icon)
+			ICON.helpTip = prodData.PRODUCOES[this.selection.index].name;
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
