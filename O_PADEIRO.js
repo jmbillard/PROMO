@@ -11,6 +11,22 @@ function O_PADEIRO_UTL(thisObj) {
 	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
 	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
 
+	// function compareProdNames(a, b) {
+	// 	if ( a.name < b.name ) return -1;
+	// 	if ( a.name > b.name ) return 1;
+
+	// 	return 0;
+	// }
+
+	function sortProdData(prodDataObj) {
+		return prodDataObj.sort(function(a, b) {
+			if ( a.name < b.name ) return -1;
+			if ( a.name > b.name ) return 1;
+	
+			return 0;
+		});
+	}
+
 	function getPrdNames(prodDataObj) {
 		var prdNames = [];
 
@@ -25,10 +41,12 @@ function O_PADEIRO_UTL(thisObj) {
 		var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 		var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 		prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+		var prodArray = sortProdData(prodData.PRODUCOES);
 
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
 		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
+		#include 'source/layout/Utils/o padeiro prod config ui.js'; // Busca em layers de texto
 		var PAD_w = {}; // Objeto que representa a janela da interface
 
 		// Cria a janela da interface (ou usa um painel existente)
@@ -105,22 +123,22 @@ function O_PADEIRO_UTL(thisObj) {
 		PAD_vLab.helpTip = 'ajuda | DOCS';
 
 		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
-		prodGrp.alignment = 'left'; // Alinhamento central
-		prodGrp.spacing = 6; // Espaçamento entre botões
+		prodGrp.spacing = 4; // Espaçamento entre botões
 
-		var ICON = prodGrp.add('image', undefined, new File(prodData.PRODUCOES[0].icon));
+		var ICON = prodGrp.add('image', undefined, new File(prodArray[0].icon));
 		ICON.preferredSize = [24, 24];
-		ICON.helpTip = prodData.PRODUCOES[0].name;
+		ICON.helpTip = prodArray[0].name;
 
-		var prodDrop = prodGrp.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCOES));
+		var prodDrop = prodGrp.add('dropdownlist', undefined, getPrdNames(prodArray));
 		prodDrop.selection = 0; // Seleciona a produção padrão.
 		prodDrop.preferredSize = [130, 24];
+		prodDrop.minimumSize = [50, 24];
 		prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
 
 		PAD_w.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(PAD_vLab, '#2A2A2A', '#FF7B79'); // Cor de destaque do texto
+		setTxtHighlight(PAD_vLab, '#000000', '#FF7B79'); // Cor de destaque do texto
 		setBgColor(PAD_w, '#515D9E'); // Cor de fundo da janela
 
 
@@ -140,15 +158,15 @@ function O_PADEIRO_UTL(thisObj) {
 			// Define as margens do grupo principal de elementos.
 			// Se a janela for mais larga, a margem direita será maior para acomodar o rótulo de versão.
 			// Se a janela for mais alta, a margem inferior será maior para acomodar o rótulo de versão.
-			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [180, 0, 40, 0] : [0, 30, 0, 20];
+			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [180, 0, 40, 0] : [0, 60, 0, 20];
 
-			if (grpLayout == 'column' && PAD_w.size.width < 170) {
-				prodDrop.size.width = PAD_w.size.width - 44;
+			if (grpLayout == 'column' && PAD_w.size.width < 150) {
+				prodDrop.size.width = PAD_w.size.width - 16;
 			}
 
 			// Aplica o layout calculado aos grupos de elementos.
 			mainGrp.orientation = grpLayout;
-			// prodGrp.orientation = grpLayout;
+			prodGrp.orientation = grpLayout;
 			btnGrp1.orientation = grpLayout;
 			btnGrp2.orientation = grpLayout;
 			btnGrp3.orientation = grpLayout;
@@ -177,12 +195,19 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
+		// Adiciona um "ouvinte" de evento ao rótulo de versão (ICON). 
+		ICON.addEventListener('mousedown', function () {
+			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
+			prodArray = PAD_CONFIG_Dialog(prodArray);
+			prodData.PRODUCOES =prodArray = sortProdData(prodArray);
+		});
+
 		prodDrop.onChange = function () {
-			templatesPath = prodData.PRODUCOES[this.selection.index].templatesPath; // selected tab color...
+			templatesPath = prodArray[this.selection.index].templatesPath; // selected tab color...
 			templatesFolder = new Folder(templatesPath);
 
-			ICON.image = new File(prodData.PRODUCOES[this.selection.index].icon)
-			ICON.helpTip = prodData.PRODUCOES[this.selection.index].name;
+			ICON.image = new File(prodArray[this.selection.index].icon)
+			ICON.helpTip = prodArray[this.selection.index].name;
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
