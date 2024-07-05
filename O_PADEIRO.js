@@ -11,18 +11,21 @@ function O_PADEIRO_UTL(thisObj) {
 	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
 	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
 
-	// function compareProdNames(a, b) {
-	// 	if ( a.name < b.name ) return -1;
-	// 	if ( a.name > b.name ) return 1;
-
-	// 	return 0;
-	// }
+	var defaultProdData = {
+		PRODUCOES: [
+			{
+				name: 'nome...',
+				icon: solTogIcon.dark,
+				templatesPath: '~/Desktop'
+			}
+		]
+	}
 
 	function sortProdData(prodDataObj) {
-		return prodDataObj.sort(function(a, b) {
-			if ( a.name < b.name ) return -1;
-			if ( a.name > b.name ) return 1;
-	
+		return prodDataObj.sort(function (a, b) {
+			if (a.name < b.name) return -1;
+			if (a.name > b.name) return 1;
+
 			return 0;
 		});
 	}
@@ -38,11 +41,17 @@ function O_PADEIRO_UTL(thisObj) {
 
 	function O_PADEIRO_UI() {
 
-		var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
-		var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
-		prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-		var prodArray = sortProdData(prodData.PRODUCOES);
+		var prodArray;
 
+		try {
+			var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
+			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
+			prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+			prodArray = sortProdData(prodData.PRODUCOES);
+		} catch (err) {
+			alert(lol + '\n' + err.message);
+			prodArray = defaultProdData.PRODUCOES;
+		}
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
 		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
@@ -125,7 +134,11 @@ function O_PADEIRO_UTL(thisObj) {
 		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
 		prodGrp.spacing = 4; // Espaçamento entre botões
 
-		var ICON = prodGrp.add('image', undefined, new File(prodArray[0].icon));
+		var mainIconFile = new File(prodArray[0].icon);
+
+		if (!mainIconFile.exists) mainIconFile = File.decode(solTogIcon.dark);;
+
+		var ICON = prodGrp.add('image', undefined, mainIconFile);
 		ICON.preferredSize = [24, 24];
 		ICON.helpTip = prodArray[0].name;
 
@@ -199,15 +212,26 @@ function O_PADEIRO_UTL(thisObj) {
 		ICON.addEventListener('mousedown', function () {
 			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
 			prodArray = PAD_CONFIG_Dialog(prodArray);
-			prodData.PRODUCOES =prodArray = sortProdData(prodArray);
+			prodData.PRODUCOES = prodArray = sortProdData(prodArray);
 		});
 
 		prodDrop.onChange = function () {
+			var tip = prodArray[this.selection.index].name;
+
 			templatesPath = prodArray[this.selection.index].templatesPath; // selected tab color...
 			templatesFolder = new Folder(templatesPath);
+			mainIconFile = new File(prodArray[this.selection.index].icon);
 
-			ICON.image = new File(prodArray[this.selection.index].icon)
-			ICON.helpTip = prodArray[this.selection.index].name;
+			if (!mainIconFile.exists) mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
+			if (!templatesFolder.exists) {
+				mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
+				templatesFolder = new Folder('~/Desktop');
+				tip = 'a pasta de templates não foi localizada...';
+				alert(lol + '\n' + tip);
+			}
+
+			ICON.image = mainIconFile;
+			ICON.helpTip = tip;
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
