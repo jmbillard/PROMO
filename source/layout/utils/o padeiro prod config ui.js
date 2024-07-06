@@ -69,9 +69,10 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 			if (newTemplatesPath == null) return; // Se a janela foi cancelada, não faz nada
 
-			this.properties.templatesPath = newTemplatesPath.fullName;
+			this.properties.prodPath = newTemplatesPath.fullName;
+			this.text = limitNameSize(newTemplatesPath.fullName, 40);
+			this.helpTip = 'caminho da pasta de templates:\n\n' + newTemplatesPath.fullName;
 		});
-
 
 		deleteBtn.onClick = function () {
 
