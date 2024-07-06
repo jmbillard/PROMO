@@ -8,31 +8,25 @@
 
 function PAD_CONFIG_Dialog(prodArray) {
 
-	alert('rodou!');
+	function addProdLine(prodObj) {
 
-	function addProdLine(p) {
+		var nameTxt = prodObj.name;
+		var iconFile = new File(prodObj.icon);
+		var pathTxt = limitNameSize(prodObj.templatesPath, 40);
 
-		var nameTxt = 'nome...';
-		var iconFile = File.decode(solTogIcon.dark);
-		var pathTxt = 'clique aqui para selecionar a pasta...';
-
-		if (p != null) {
-
-			nameTxt = prodArray[p].name;
-			iconFile = new File(prodArray[p].icon);
-
-			if (!iconFile.exists) iconFile = File.decode(solTogIcon.dark);
-			pathTxt = limitNameSize(prodArray[p].templatesPath, 40);
+		if (!iconFile.exists) {
+			iconFile = File.decode(solTogIcon.dark);
+			prodObj.icon = '';
 		}
 
-		var prodGrp = prodMainGrp.add('group', undefined, { name: 'prodGrp' + p });
+		var prodGrp = prodMainGrp.add('group', undefined);
 		prodGrp.orientation = 'column';
 		prodGrp.alignChildren = ['left', 'center'];
 		prodGrp.spacing = 10;
 
 		// ==========
 
-		var prodDataGrp = prodGrp.add('group', undefined, { name: 'prodBtnGrp' + p });
+		var prodDataGrp = prodGrp.add('group', undefined);
 		prodDataGrp.orientation = 'row';
 		prodDataGrp.alignChildren = ['left', 'center'];
 		prodDataGrp.spacing = 10;
@@ -40,55 +34,51 @@ function PAD_CONFIG_Dialog(prodArray) {
 		var div = prodGrp.add('panel');
 		div.alignment = 'fill';
 
-		// ==========
-
-		var nameGrp = prodDataGrp.add('group', undefined, { name: 'nameGrp' + p });
-		nameGrp.orientation = 'row';
-		nameGrp.spacing = 2;
-
-		var prodNameLab = nameGrp.add('statictext', undefined, 'nome:', { name: 'prodNameLab' + p });
-		setTxtColor(prodNameLab, '#000000');
-
-		var prodNameTxt = nameGrp.add('edittext', undefined, nameTxt, { name: 'prodNameTxt' + p });
+		var prodNameTxt = prodDataGrp.add('edittext', undefined, nameTxt);
 		prodNameTxt.helpTip = 'nome que aparecerá no menu';
 		prodNameTxt.preferredSize = [130, 24];
 
-		// ==========
-
-		var iconGrp = prodDataGrp.add('group', undefined, { name: 'iconGrp' + p });
-		iconGrp.orientation = 'row';
-		iconGrp.spacing = 2;
-
-		var prodIconLab = iconGrp.add('statictext', undefined, 'ícone:', { name: 'prodIconLab' + p });
-		setTxtColor(prodIconLab, '#000000');
-
-		var prodIconBtn = iconGrp.add('iconbutton', undefined, iconFile, { name: 'prodIconBtn' + p, style: 'toolbutton' });
+		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, iconFile, { style: 'toolbutton', prodIcon: prodObj.icon });
 		prodIconBtn.helpTip = 'selecione o icone que aparecerá no menu';
 		prodIconBtn.preferredSize = [36, 36];
 
-		// ==========
-
-		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { name: 'prodPathLab' + p });
-		prodPathLab.helpTip = 'caminho da pasta de templates';
+		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath });
+		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [230, 24];
 		setTxtHighlight(prodPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
-		var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.dark, { name: 'deleteBtn' + p, style: 'toolbutton' });
+		var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.dark, { style: 'toolbutton' });
 		deleteBtn.helpTip = 'deletar produção';
 		deleteBtn.preferredSize = [36, 36];
 
+		// ==========
+
 		prodIconBtn.onClick = function () {
 			iconFile = File.openDialog( 'selecione o ícone', "*.png", false );
-			prodIconBtn.image = iconFile;
+
+			if (iconFile != null) {
+				prodIconBtn.image = iconFile;
+				this.properties.prodIcon = iconFile.fullName;
+			}
 			this.parent.layout.layout(true);
 		}
 
+		prodPathLab.addEventListener('mousedown', function () {
+
+			var newTemplatesPath = Folder.selectDialog('selecione a pasta de templates'); // Abre a janela de seleção de pastas
+
+			if (newTemplatesPath == null) return; // Se a janela foi cancelada, não faz nada
+
+			this.properties.templatesPath = newTemplatesPath.fullName;
+		});
+
+
 		deleteBtn.onClick = function () {
+
 			prodMainGrp.remove(this.parent.parent);
 			prodMainGrp.layout.layout(true);
 			PAD_CONFIG_w.layout.layout(true);
 		}
-
 	}
 
 	// window...
@@ -106,8 +96,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 	prodMainGrp.spacing = 10;
 
 	for (var p = 0; p < prodArray.length; p++) {
-
-		addProdLine(p)
+		addProdLine(prodArray[p]);
 	}
 
 	// ===========
@@ -128,13 +117,38 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 	prodNewBtn.onClick = function () {
 
-		addProdLine(null);
+		addProdLine(defaultProdData.PRODUCOES[0]);
 
 		prodMainGrp.layout.layout(true);
 		PAD_CONFIG_w.layout.layout(true);
 	}
 
-	PAD_CONFIG_w.show();
+	prodSaveBtn.onClick = function () {
 
-	return prodArray;
+		try {
+
+			var tempArray = [];
+
+			for (var u = 0; u < prodMainGrp.children.length; u++) {
+				var subGrp = prodMainGrp.children[u].children[0];
+
+				var tempObj = {
+					name: subGrp.children[0].text,
+					icon: subGrp.children[1].properties.prodIcon,
+					templatesPath: subGrp.children[2].properties.prodPath
+				}
+
+				tempArray.push(tempObj);
+			}
+
+			saveProdData(sortProdData(tempArray))
+			alert(relax + 'lista salva!');
+			PAD_CONFIG_w.close();
+
+		} catch (err) {
+			alert(lol + err.message);
+		}
+	}
+
+	PAD_CONFIG_w.show();
 }

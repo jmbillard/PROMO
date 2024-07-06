@@ -16,7 +16,7 @@ function O_PADEIRO_UTL(thisObj) {
 			{
 				name: 'nome...',
 				icon: solTogIcon.dark,
-				templatesPath: '~/Desktop'
+				templatesPath: 'edite a pasta de templates...'
 			}
 		]
 	}
@@ -30,7 +30,7 @@ function O_PADEIRO_UTL(thisObj) {
 		});
 	}
 
-	function getPrdNames(prodDataObj) {
+	function getProdNames(prodDataObj) {
 		var prdNames = [];
 
 		for (var i = 0; i < prodDataObj.length; i++) {
@@ -39,19 +39,29 @@ function O_PADEIRO_UTL(thisObj) {
 		return prdNames;
 	}
 
-	function O_PADEIRO_UI() {
+	function saveProdData(prodDataArray) {
+		var prodData = { PRODUCOES: prodDataArray };
+		var configFile = new File(deleteFileExt($.fileName) + '_config.json');
+		var configContent = JSON.stringify(prodData, null, '\t');
+		writeFileContent(configFile, configContent);
+	}
 
-		var prodArray;
-
+	function updateProdData() {
 		try {
 			var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
-			prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-			prodArray = sortProdData(prodData.PRODUCOES);
+			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+			return sortProdData(prodData.PRODUCOES);
 		} catch (err) {
-			alert(lol + '\n' + err.message);
-			prodArray = defaultProdData.PRODUCOES;
+			alert(lol + err.message);
+			return defaultProdData.PRODUCOES;
 		}
+	}
+
+	function O_PADEIRO_UI() {
+
+		var PAD_prodArray = updateProdData();
+
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
 		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
@@ -134,15 +144,15 @@ function O_PADEIRO_UTL(thisObj) {
 		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
 		prodGrp.spacing = 4; // Espaçamento entre botões
 
-		var mainIconFile = new File(prodArray[0].icon);
+		var mainIconFile = new File(PAD_prodArray[0].icon);
 
 		if (!mainIconFile.exists) mainIconFile = File.decode(solTogIcon.dark);;
 
 		var ICON = prodGrp.add('image', undefined, mainIconFile);
 		ICON.preferredSize = [24, 24];
-		ICON.helpTip = prodArray[0].name;
+		ICON.helpTip = PAD_prodArray[0].name;
 
-		var prodDrop = prodGrp.add('dropdownlist', undefined, getPrdNames(prodArray));
+		var prodDrop = prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
 		prodDrop.selection = 0; // Seleciona a produção padrão.
 		prodDrop.preferredSize = [130, 24];
 		prodDrop.minimumSize = [50, 24];
@@ -211,23 +221,30 @@ function O_PADEIRO_UTL(thisObj) {
 		// Adiciona um "ouvinte" de evento ao rótulo de versão (ICON). 
 		ICON.addEventListener('mousedown', function () {
 			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
-			prodArray = PAD_CONFIG_Dialog(prodArray);
-			prodData.PRODUCOES = prodArray = sortProdData(prodArray);
+
+			PAD_CONFIG_Dialog(PAD_prodArray);
+			prodDrop.removeAll()
+			
+			PAD_prodArray = updateProdData();
+
+			populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
+
+			prodDrop.selection = 0;
 		});
 
 		prodDrop.onChange = function () {
-			var tip = prodArray[this.selection.index].name;
+			var tip = PAD_prodArray[this.selection.index].name;
 
-			templatesPath = prodArray[this.selection.index].templatesPath; // selected tab color...
+			templatesPath = PAD_prodArray[this.selection.index].templatesPath; // selected tab color...
 			templatesFolder = new Folder(templatesPath);
-			mainIconFile = new File(prodArray[this.selection.index].icon);
+			mainIconFile = new File(PAD_prodArray[this.selection.index].icon);
 
 			if (!mainIconFile.exists) mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
 			if (!templatesFolder.exists) {
 				mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
 				templatesFolder = new Folder('~/Desktop');
 				tip = 'a pasta de templates não foi localizada...';
-				alert(lol + '\n' + tip);
+				alert(lol + tip);
 			}
 
 			ICON.image = mainIconFile;
@@ -240,7 +257,7 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se há acesso à internet.
 			if (!netAccess()) {
 				// Se não houver acesso, exibe um alerta informando que a funcionalidade será limitada e encerra a função.
-				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+				alert(lol + 'sem acesso a rede...');
 				return;
 			}
 
@@ -255,7 +272,7 @@ function O_PADEIRO_UTL(thisObj) {
 			if (c.button == 2) {
 				// Verifica se a pasta de templates existe.
 				if (!templatesFolder.exists) {
-					alert(lol + '\na pasta de templates não foi localizada...'); // mensagem de erro.
+					alert(lol + 'a pasta de templates não foi localizada...'); // mensagem de erro.
 					return;
 				}
 				openFolder(templatesPath); // abre a pasta de templates.
@@ -266,7 +283,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se há acesso à rede.
 			if (!netAccess()) {
-				alert('sem acesso a rede... ' + lol + '\na funcionalidade será limitada');
+				alert(lol + 'sem acesso a rede...');
 				return;
 			}
 
@@ -284,7 +301,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se a pasta de fontes existe.
 			if (!templateFontsFolder.exists) {
-				alert(lol + '\na pasta de fontes não foi localizada...')
+				alert(lol + 'a pasta de fontes não foi localizada...')
 				return;
 			}
 			// Se a pasta de fontes existe e o sistema operacional for Windows, instala as fontes.
@@ -322,7 +339,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se há itens na fila de renderização.
 			if (app.project.renderQueue.numItems < 1) {
-				alert(lol + '\na fila de render está vazia...')
+				alert(lol + 'a fila de render está vazia...')
 				return;
 			}
 			// Obtém o último item da fila de renderização.
@@ -480,7 +497,7 @@ function O_PADEIRO_UTL(thisObj) {
 		// Verifica novamente se há acesso à rede.
 		if (!netAccess()) {
 			// Se ainda não houver acesso, exibe outro alerta informando que a funcionalidade será limitada.
-			alert('sem acesso a rede... ' + lol + '\na funcionalidade será limitada');
+			alert(lol + 'sem acesso a rede...');
 		}
 	}
 

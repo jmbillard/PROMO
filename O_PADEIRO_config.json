@@ -6,14 +6,14 @@
 			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES PADEIRO"
 		},
 		{
-			"name": "OLIMPIADAS 2024",
-			"icon": "~/Downloads/olimpiada.png",
-			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES OLIMPIADAS 2024"
-		},
-		{
 			"name": "DEV",
 			"icon": "~/Downloads/codigo.png",
 			"templatesPath": "~/PROMO/downloads/TEMPLATES PADEIRO"
+		},
+		{
+			"name": "OLIMPIADAS 2024",
+			"icon": "~/Downloads/olimpiada.png",
+			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES OLIMPIADAS 2024"
 		}
 	]
 }
