@@ -14,11 +14,6 @@
 			"name": "OLIMPIADAS 2024",
 			"icon": "~/Downloads/olimpiada.png",
 			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES OLIMPIADAS 2024"
-		},
-		{
-			"name": "baixadas",
-			"icon": "~/Pictures/Screenshots/doro.png",
-			"templatesPath": "~/Downloads"
 		}
 	]
 }
