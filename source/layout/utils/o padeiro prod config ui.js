@@ -93,7 +93,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 	// ===========
 
-	var prodMainGrp = PAD_CONFIG_w.add('group', undefined, { name: 'prodMainGrp' });
+	var prodMainGrp = PAD_CONFIG_w.add('group', undefined);
 	prodMainGrp.orientation = 'column';
 	prodMainGrp.alignChildren = ['left', 'center'];
 	prodMainGrp.spacing = 10;
@@ -104,16 +104,22 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 	// ===========
 
-	var BtnGrp = PAD_CONFIG_w.add('group', undefined, { name: 'BtnGrp' });
+	var BtnGrp = PAD_CONFIG_w.add('group', undefined);
 	BtnGrp.orientation = 'row';
 	BtnGrp.alignChildren = ['right', 'center'];
 	BtnGrp.spacing = 20;
 	BtnGrp.margins = [0, 15, 0, 0];
 
-	var prodNewBtn = BtnGrp.add('button', undefined, 'nova produção', { name: 'prodNewBtn' });
+	var prodImportBtn = BtnGrp.add('button', undefined, 'importar');
+	prodImportBtn.helpTip = 'importa uma lista de produções';
+
+	var prodExportBtn = BtnGrp.add('button', undefined, 'exportar');
+	prodExportBtn.helpTip = 'exporta a lista completa de produções';
+
+	var prodNewBtn = BtnGrp.add('button', undefined, 'nova produção');
 	prodNewBtn.helpTip = 'criar nova produção';
 
-	var prodSaveBtn = BtnGrp.add('button', undefined, 'salvar', { name: 'prodSaveBtn' });
+	var prodSaveBtn = BtnGrp.add('button', undefined, 'salvar');
 	prodSaveBtn.helpTip = 'salvar configuração';
 
 	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela

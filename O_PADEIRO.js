@@ -94,7 +94,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// Botões da interface
 		var PAD_launchBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir O Padeiro"
-		PAD_launchBtn.helpTip = 'O PADEIRO:\n\n◖ → abrir interface\n\n◗ → abrir a pasta de templates'; // Dica de ajuda
+		PAD_launchBtn.helpTip = 'O PADEIRO:\n\n◖ → abrir interface de templates\n\n◗ → criar novo template'; // Dica de ajuda
 
 		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Instalar Fontes"
 		PAD_fontBtn.helpTip = 'RESOLVER FONTES:\n\n◖ → instalar as fontes usadas no template\n\n◗ → fazer o collect das fontes usadas no projeto'; // Dica de ajuda
@@ -221,20 +221,22 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		// Adiciona um "ouvinte" de evento ao ICON.
-		ICON.addEventListener('mousedown', function () {
-			// Este ouvinte será acionado quando o usuário clicar.
+		ICON.addEventListener('click', function (c) {
 
-			PAD_CONFIG_Dialog(PAD_prodArray); // Chama a janela de configuração.
-			prodDrop.removeAll(); // Limpa a lista de produções do menu.
+			// Verifica se aconteceu um clique duplo (detail == 2).
+			if (c.detail == 2) {
 
-			// atualiza os dados das produções.
-			PAD_prodArray = updateProdData();
+				PAD_CONFIG_Dialog(PAD_prodArray); // Chama a janela de configuração.
+				prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
-			// Popula a lista de produções do menu
-			populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
+				// atualiza os dados das produções.
+				PAD_prodArray = updateProdData();
 
-			prodDrop.selection = 0; // Seleciona a primeira produção.
+				// Popula a lista de produções do menu
+				populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
+
+				prodDrop.selection = 0; // Seleciona a primeira produção.
+			}
 		});
 
 		prodDrop.onChange = function () {
