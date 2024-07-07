@@ -11,8 +11,9 @@ function O_PADEIRO_UTL(thisObj) {
 	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
 	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
 
+	// configurações iniciais de uma nova produção
 	var defaultProdData = {
-		PRODUCOES: [
+		PRODUCTIONS: [
 			{
 				name: 'nome...',
 				icon: solTogIcon.dark,
@@ -21,6 +22,7 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	}
 
+	// ordena as produções por nome
 	function sortProdData(prodDataObj) {
 		return prodDataObj.sort(function (a, b) {
 			if (a.name < b.name) return -1;
@@ -30,6 +32,7 @@ function O_PADEIRO_UTL(thisObj) {
 		});
 	}
 
+	// retorna os nomes das produções
 	function getProdNames(prodDataObj) {
 		var prdNames = [];
 
@@ -39,28 +42,30 @@ function O_PADEIRO_UTL(thisObj) {
 		return prdNames;
 	}
 
+	// salva os dados das produções
 	function saveProdData(prodDataArray) {
-		var prodData = { PRODUCOES: prodDataArray };
+		var prodData = { PRODUCTIONS: prodDataArray };
 		var configFile = new File(deleteFileExt($.fileName) + '_config.json');
 		var configContent = JSON.stringify(prodData, null, '\t');
 		writeFileContent(configFile, configContent);
 	}
 
+	// atualiza os dados das produções
 	function updateProdData() {
 		try {
 			var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-			return sortProdData(prodData.PRODUCOES);
+			return sortProdData(prodData.PRODUCTIONS);
 		} catch (err) {
 			alert(lol + err.message);
-			return defaultProdData.PRODUCOES;
+			return defaultProdData.PRODUCTIONS;
 		}
 	}
 
 	function O_PADEIRO_UI() {
 
-		var PAD_prodArray = updateProdData();
+		var PAD_prodArray = updateProdData(); // dados das produções
 
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
@@ -82,8 +87,6 @@ function O_PADEIRO_UTL(thisObj) {
 		// Grupos de elementos na interface
 		var mainGrp = PAD_w.add('group'); // Grupo principal
 		mainGrp.spacing = 10; // Espaçamento entre elementos do grupo
-
-		// mainGrp.add("panel"); // Separador visual
 
 		var btnGrp1 = mainGrp.add('group'); // Grupo de botões superior
 		btnGrp1.alignment = 'center'; // Alinhamento central
@@ -211,44 +214,54 @@ function O_PADEIRO_UTL(thisObj) {
 			PAD_w.layout.resize();
 		};
 
-		// Adiciona um "ouvinte" de evento ao rótulo de versão (PAD_vLab). 
+		// Adiciona um "ouvinte" de evento ao rótulo de versão (PAD_vLab).
 		PAD_vLab.addEventListener('mousedown', function () {
 			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
 			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script'; // Define o URL do site de documentação.
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		// Adiciona um "ouvinte" de evento ao rótulo de versão (ICON). 
+		// Adiciona um "ouvinte" de evento ao ICON.
 		ICON.addEventListener('mousedown', function () {
-			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
+			// Este ouvinte será acionado quando o usuário clicar.
 
-			PAD_CONFIG_Dialog(PAD_prodArray);
-			prodDrop.removeAll()
-			
+			PAD_CONFIG_Dialog(PAD_prodArray); // Chama a janela de configuração.
+			prodDrop.removeAll(); // Limpa a lista de produções do menu.
+
+			// atualiza os dados das produções.
 			PAD_prodArray = updateProdData();
 
+			// Popula a lista de produções do menu
 			populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
 
-			prodDrop.selection = 0;
+			prodDrop.selection = 0; // Seleciona a primeira produção.
 		});
 
 		prodDrop.onChange = function () {
-			var tip = PAD_prodArray[this.selection.index].name;
+			// Este ouvinte será acionado quando o usuário selecionar uma produção do menu.
 
-			templatesPath = PAD_prodArray[this.selection.index].templatesPath; // selected tab color...
-			templatesFolder = new Folder(templatesPath);
-			mainIconFile = new File(PAD_prodArray[this.selection.index].icon);
+			var tip = PAD_prodArray[this.selection.index].name; // texto de ajuda (NOME DA PRODUÇÃO SELECIONADA).
 
-			if (!mainIconFile.exists) mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
+			templatesPath = PAD_prodArray[this.selection.index].templatesPath; // caminho da pasta de templates.
+			templatesFolder = new Folder(templatesPath); // pasta de templates.
+			mainIconFile = new File(PAD_prodArray[this.selection.index].icon); // arquivo de imagem do ícone.
+
+			// Se o arquivo de imagem do ícone não existir, atribui um arquivo de imagem padrão.
+			if (!mainIconFile.exists) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
+
+			// Se a pasta de templates não existir.
 			if (!templatesFolder.exists) {
-				mainIconFile = File.decode(defaultProdData.PRODUCOES[0].icon);
-				templatesFolder = new Folder('~/Desktop');
+
+				mainIconFile = File.decode(exprTogIcon.dark); // Define o arquivo de imagem do ícone como indicador de erro.
+				templatesFolder = new Folder('~/Desktop'); // Define o caminho da pasta de templates como o Desktop.
+
+				// Mensagem de erro.
 				tip = 'a pasta de templates não foi localizada...';
 				alert(lol + tip);
 			}
 
-			ICON.image = mainIconFile;
-			ICON.helpTip = tip;
+			ICON.image = mainIconFile; // Define o ícone.
+			ICON.helpTip = tip; // Define o texto de ajuda.
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.

@@ -147,7 +147,7 @@ if (!Array.prototype.pop) {
 		if (this.length === 0) {
 			return undefined;
 		}
-		const lastElement = this[this.length - 1];
+		var lastElement = this[this.length - 1];
 		this.length--; // Reduz o tamanho do array
 		return lastElement;
 	};

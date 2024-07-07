@@ -50,7 +50,7 @@ function O_PADEIRO_UTL(thisObj) {
 		btnGrp0.alignment = 'center'; // Alinhamento central
 		btnGrp0.spacing = 2; // Espaçamento entre botões
 		
-		var prodDrop = btnGrp0.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCOES));
+		var prodDrop = btnGrp0.add('dropdownlist', undefined, getPrdNames(prodData.PRODUCTIONS));
 
 		// mainGrp.add("panel"); // Separador visual
 
@@ -140,7 +140,7 @@ function O_PADEIRO_UTL(thisObj) {
 		});
 
 		prodDrop.onChange = function () {
-			templatesPath = prodData.PRODUCOES[this.selection.index].templatesPath; // selected tab color...
+			templatesPath = prodData.PRODUCTIONS[this.selection.index].templatesPath; // selected tab color...
 			templatesFolder = new Folder(templatesPath);
 		};
 	

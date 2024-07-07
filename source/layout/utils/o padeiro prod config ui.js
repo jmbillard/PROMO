@@ -82,6 +82,8 @@ function PAD_CONFIG_Dialog(prodArray) {
 		}
 	}
 
+	// ===========
+
 	// window...
 	var PAD_CONFIG_w = new Window('dialog', 'LISTA DE PRODUÇÕES');
 	PAD_CONFIG_w.orientation = 'column';
@@ -118,7 +120,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 	prodNewBtn.onClick = function () {
 
-		addProdLine(defaultProdData.PRODUCOES[0]);
+		addProdLine(defaultProdData.PRODUCTIONS[0]);
 
 		prodMainGrp.layout.layout(true);
 		PAD_CONFIG_w.layout.layout(true);
