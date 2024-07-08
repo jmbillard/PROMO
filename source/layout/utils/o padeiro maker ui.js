@@ -13,7 +13,7 @@
 2. posicione a agulha da timeline em um frame de referencia (essa será a imagem de preview)
 3. selecione os layers de texto que serão editáveis no template (na ordem que deverão ser preenchidos)
 4. clique no botão capturar...
-	- incluir: comentario 'TEMPLATE'
+	- incluir: comentário 'TEMPLATE'
 	- extrair: nome da comp TEMPLATE, tempo de referencia, indices e nome dos layers selecionados...
 
 // ==========
