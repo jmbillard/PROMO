@@ -6,6 +6,58 @@
 
 */
 
+/*
+# UI 1
+0. salve o projeto!
+1. abra a comp do template que será salvo (ela precisa ter 'TEMPLATE' no nome)
+2. posicione a agulha da timeline em um frame de referencia (essa será a imagem de preview)
+3. selecione os layers de texto que serão editáveis no template (na ordem que deverão ser preenchidos)
+4. clique no botão capturar...
+	- incluir: comentario 'TEMPLATE'
+	- extrair: nome da comp TEMPLATE, tempo de referencia, indices e nome dos layers selecionados...
+
+// ==========
+
+# UI 2
+1. nome da configuração (ex: 'CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO')
+2. prefixo da arte (ex: 'RDP')
+3. dicas de preenchimento (ex: 'digite o texto em 1, 2 ou 3 linhas para nome e informação.')
+4. separador de informação (ex: '---')
+5. exemplos de preenchimento (ex: 'CÁSSIO\nGABUS MENDES\n---\nATOR')
+
+6. seletor de caixa de texto (ex: 'upperCase', 'lowerCase', 'titleCase')
+7. seletor de método de preenchimento (ex: 'textContent', 'layerName')
+8. navegar até os outputs (múltiplos outputs)
+9. checkbox de alpha (transparência)
+
+10. gerar template (navegar a té a pasta raiz da produção e criar o arquivo .aet, a imagem de preview e o arquivo de configuração)
+
+// ==========
+
+exemplo:
+{
+	"configName": "CONVERSA COM BIAL TARJA CONVIDADO",
+	"exemple": "PAULINHO\nDA VIOLA\n---\nMÚSICO",
+	"tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
+
+	"compName": "CRT - CONVIDADO TEMPLATE",
+	"prefix": "CRT",
+	"refTime": 2,
+	"separator": "---",
+	"textCase": "upperCase",
+	"inputLayers": [
+		{"layerIndex": 4, "method": "textContent"},
+		{"layerIndex": 5, "method": "textContent"}
+	],
+
+	"outputPath": [
+		"//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
+	],
+	"alpha": true
+}
+
+// ==========
+
 function PAD_CONFIG_Dialog(prodArray) {
 
 	function addProdLine(prodObj) {
