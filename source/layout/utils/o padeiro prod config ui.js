@@ -12,7 +12,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 		var nameTxt = prodObj.name;
 		var iconFile = new File(prodObj.icon);
-		var pathTxt = limitNameSize(prodObj.templatesPath, 40);
+		var pathTxt = limitNameSize(prodObj.templatesPath, 34);
 
 		if (!iconFile.exists) {
 			iconFile = File.decode(solTogIcon.dark);

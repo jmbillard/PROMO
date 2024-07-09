@@ -1,19 +1,29 @@
 {
 	"PRODUCTIONS": [
 		{
+			"name": "! DIA-A-DIA",
+			"icon": "",
+			"templatesPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES PADEIRO"
+		},
+		{
 			"name": "! HOME OFFICE",
-			"icon": "~/Downloads/padaria.png",
+			"icon": "",
 			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES PADEIRO"
 		},
 		{
 			"name": "DEV",
-			"icon": "~/Downloads/codigo.png",
+			"icon": "",
 			"templatesPath": "~/PROMO/downloads/TEMPLATES PADEIRO"
 		},
 		{
 			"name": "OLIMPIADAS 2024",
-			"icon": "~/Downloads/olimpiada.png",
-			"templatesPath": "O:/REDE - PROMO/templates/TEMPLATES OLIMPIADAS 2024"
+			"icon": "",
+			"templatesPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES OLIMPIADAS 2024"
+		},
+		{
+			"name": "teste",
+			"icon": "",
+			"templatesPath": "~/Creative Cloud Files"
 		}
 	]
 }
