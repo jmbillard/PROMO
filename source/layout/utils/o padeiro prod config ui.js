@@ -106,24 +106,19 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 	// ===========
 
+	// Criação do grupo de botões principal
 	var BtnGrp = PAD_CONFIG_w.add('group', undefined);
 	BtnGrp.orientation = 'stack';
 	BtnGrp.alignment = 'fill'
-	// BtnGrp.spacing = 20;
-	BtnGrp.margins = [0, 15, 0, 0];
-	// Criação do grupo de botões principal
-	// var bGrp = vGrp1.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
-	// bGrp.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
-	// bGrp.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
+	BtnGrp.margins = [0, 15, 0, 0]; // Margens do grupo de botões (15 pixels em cima)
 
 	// Grupo dos botões à esquerda
-	var bGrp1 = BtnGrp.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
-	bGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda
-	// bGrp1.spacing = 2;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
+	var bGrp1 = BtnGrp.add('group');
+	bGrp1.alignment = 'left'; // Alinha o subgrupo à esquerda
 
 	// Grupo do botão à direita
-	var bGrp2 = BtnGrp.add('group');      // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita
-	bGrp2.alignment = 'right';          // Alinha o subgrupo à direita
+	var bGrp2 = BtnGrp.add('group');
+	bGrp2.alignment = 'right'; // Alinha o subgrupo à direita
 
 	var prodImportBtn = bGrp1.add('button', undefined, 'importar');
 	prodImportBtn.helpTip = '◖ → importar uma lista de produções';

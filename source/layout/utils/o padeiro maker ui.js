@@ -27,10 +27,11 @@
 
 6. seletor de caixa de texto (ex: 'upperCase', 'lowerCase', 'titleCase')
 7. seletor de método de preenchimento (ex: 'textContent', 'layerName')
-8. navegar até os outputs (múltiplos outputs)
-9. checkbox de alpha (transparência)
+8. navegar até a pasta de mídia...
+9. navegar até os outputs (múltiplos outputs)
+10. checkbox de alpha (transparência)
 
-10. gerar template (navegar a té a pasta raiz da produção e criar o arquivo .aet, a imagem de preview e o arquivo de configuração)
+11. gerar template (navegar a té a pasta raiz da produção e criar o arquivo .aet, a imagem de preview e o arquivo de configuração)
 
 // ==========
 
@@ -57,167 +58,283 @@ exemplo:
 }
 
 // ==========
-
 function PAD_CONFIG_Dialog(prodArray) {
 
-	function addProdLine(prodObj) {
 
-		var nameTxt = prodObj.name;
-		var iconFile = new File(prodObj.icon);
-		var pathTxt = limitNameSize(prodObj.templatesPath, 40);
+/*
+Code for Import https://scriptui.joonas.me — (Triple click to select): 
+*/
 
-		if (!iconFile.exists) {
-			iconFile = File.decode(solTogIcon.dark);
-			prodObj.icon = '';
-		}
+// WIN
+// ===
+var win = new Window("palette", "NOVO TEMPLATE"); 
+    win.orientation = "row"; 
+    win.alignChildren = ["center","top"]; 
+    win.spacing = 10; 
+    win.margins = 16; 
 
-		var prodGrp = prodMainGrp.add('group', undefined);
-		prodGrp.orientation = 'column';
-		prodGrp.alignChildren = ['left', 'center'];
-		prodGrp.spacing = 10;
+// LAYOUTMAINGRP1
+// ==============
+var layoutMainGrp1 = win.add("group", undefined, {name: "layoutMainGrp1"}); 
+    layoutMainGrp1.orientation = "column"; 
+    layoutMainGrp1.alignChildren = ["left","top"]; 
+    layoutMainGrp1.spacing = 10; 
+    layoutMainGrp1.margins = 0; 
 
-		// ==========
+var labMain1 = layoutMainGrp1.add("statictext", undefined, undefined, {name: "labMain1"}); 
+    labMain1.text = "ETAPA 1:"; 
 
-		var prodDataGrp = prodGrp.add('group', undefined);
-		prodDataGrp.orientation = 'row';
-		prodDataGrp.alignChildren = ['left', 'center'];
-		prodDataGrp.spacing = 10;
+// FORMMAINGRP
+// ===========
+var formMainGrp = layoutMainGrp1.add("group", undefined, {name: "formMainGrp"}); 
+    formMainGrp.orientation = "column"; 
+    formMainGrp.alignChildren = ["left","center"]; 
+    formMainGrp.spacing = 20; 
+    formMainGrp.margins = 0; 
 
-		var div = prodGrp.add('panel');
-		div.alignment = 'fill';
+// INPUTGRP1
+// =========
+var inputGrp1 = formMainGrp.add("group", undefined, {name: "inputGrp1"}); 
+    inputGrp1.orientation = "column"; 
+    inputGrp1.alignChildren = ["left","center"]; 
+    inputGrp1.spacing = 2; 
+    inputGrp1.margins = 0; 
 
-		var prodNameTxt = prodDataGrp.add('edittext', undefined, nameTxt);
-		prodNameTxt.helpTip = 'nome que aparecerá no menu';
-		prodNameTxt.preferredSize = [130, 24];
+var statictext1 = inputGrp1.add("statictext", undefined, undefined, {name: "statictext1"}); 
+    statictext1.text = "nome da configuração:"; 
 
-		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, iconFile, { style: 'toolbutton', prodIcon: prodObj.icon });
-		prodIconBtn.helpTip = 'selecione o icone que aparecerá no menu';
-		prodIconBtn.preferredSize = [36, 36];
+var edittext1 = inputGrp1.add('edittext {properties: {name: "edittext1"}}'); 
+    edittext1.text = "+VC TARJA RODAPÉ CONVIDADO"; 
+    edittext1.preferredSize.width = 200; 
+    edittext1.preferredSize.height = 24; 
 
-		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath });
-		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
-		prodPathLab.preferredSize = [230, 24];
-		setTxtHighlight(prodPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+// INPUTGRP2
+// =========
+var inputGrp2 = formMainGrp.add("group", undefined, {name: "inputGrp2"}); 
+    inputGrp2.orientation = "column"; 
+    inputGrp2.alignChildren = ["left","center"]; 
+    inputGrp2.spacing = 2; 
+    inputGrp2.margins = 0; 
 
-		var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.dark, { style: 'toolbutton' });
-		deleteBtn.helpTip = 'deletar produção';
-		deleteBtn.preferredSize = [36, 36];
+var statictext2 = inputGrp2.add("statictext", undefined, undefined, {name: "statictext2"}); 
+    statictext2.text = "prefixo:"; 
 
-		// ==========
+var edittext2 = inputGrp2.add('edittext {properties: {name: "edittext2"}}'); 
+    edittext2.text = "RDP"; 
+    edittext2.preferredSize.width = 200; 
+    edittext2.preferredSize.height = 24; 
 
-		prodIconBtn.onClick = function () {
-			iconFile = File.openDialog( 'selecione o ícone', "*.png", false );
+// INPUTGRP3
+// =========
+var inputGrp3 = formMainGrp.add("group", undefined, {name: "inputGrp3"}); 
+    inputGrp3.orientation = "column"; 
+    inputGrp3.alignChildren = ["left","center"]; 
+    inputGrp3.spacing = 2; 
+    inputGrp3.margins = 0; 
 
-			if (iconFile != null) {
-				prodIconBtn.image = iconFile;
-				this.properties.prodIcon = iconFile.fullName;
-			}
-			this.parent.layout.layout(true);
-		}
+var statictext3 = inputGrp3.add("statictext", undefined, undefined, {name: "statictext3"}); 
+    statictext3.text = "dicas:"; 
 
-		prodPathLab.addEventListener('mousedown', function () {
+var edittext3 = inputGrp3.add('edittext {size: [200,80], properties: {name: "edittext3", multiline: true}}'); 
+    edittext3.text = "digite o texto em 1, 2 ou 3 \rlinhas para nome e informação."; 
 
-			var newTemplatesPath = Folder.selectDialog('selecione a pasta de templates'); // Abre a janela de seleção de pastas
+// INPUTGRP4
+// =========
+var inputGrp4 = formMainGrp.add("group", undefined, {name: "inputGrp4"}); 
+    inputGrp4.orientation = "column"; 
+    inputGrp4.alignChildren = ["left","center"]; 
+    inputGrp4.spacing = 2; 
+    inputGrp4.margins = 0; 
 
-			if (newTemplatesPath == null) return; // Se a janela foi cancelada, não faz nada
+var statictext4 = inputGrp4.add("statictext", undefined, undefined, {name: "statictext4"}); 
+    statictext4.text = "separador:"; 
 
-			this.properties.prodPath = newTemplatesPath.fullName;
-			this.text = limitNameSize(newTemplatesPath.fullName, 40);
-			this.helpTip = 'caminho da pasta de templates:\n\n' + newTemplatesPath.fullName;
-		});
+var edittext4 = inputGrp4.add('edittext {properties: {name: "edittext4"}}'); 
+    edittext4.text = "---"; 
+    edittext4.preferredSize.width = 200; 
+    edittext4.preferredSize.height = 24; 
 
-		deleteBtn.onClick = function () {
+// INPUTGRP5
+// =========
+var inputGrp5 = formMainGrp.add("group", undefined, {name: "inputGrp5"}); 
+    inputGrp5.orientation = "column"; 
+    inputGrp5.alignChildren = ["left","center"]; 
+    inputGrp5.spacing = 2; 
+    inputGrp5.margins = 0; 
 
-			prodMainGrp.remove(this.parent.parent);
-			prodMainGrp.layout.layout(true);
-			PAD_CONFIG_w.layout.layout(true);
-		}
-	}
+var statictext5 = inputGrp5.add("statictext", undefined, undefined, {name: "statictext5"}); 
+    statictext5.text = "exemplo de preenchimento:"; 
 
-	// ===========
+var edittext5 = inputGrp5.add('edittext {size: [200,80], properties: {name: "edittext5", multiline: true}}'); 
+    edittext5.text = "digite o texto em 1, 2 ou 3 \rlinhas para nome e informação."; 
 
-	// window...
-	var PAD_CONFIG_w = new Window('dialog', 'LISTA DE PRODUÇÕES');
-	PAD_CONFIG_w.orientation = 'column';
-	PAD_CONFIG_w.alignChildren = ['center', 'top'];
-	PAD_CONFIG_w.spacing = 10;
-	PAD_CONFIG_w.margins = 16;
+// WIN
+// ===
+var divider1 = win.add("panel", undefined, undefined, {name: "divider1"}); 
+    divider1.alignment = "fill"; 
 
-	// ===========
+// LAYOUTMAINGRP2
+// ==============
+var layoutMainGrp2 = win.add("group", undefined, {name: "layoutMainGrp2"}); 
+    layoutMainGrp2.orientation = "column"; 
+    layoutMainGrp2.alignChildren = ["left","top"]; 
+    layoutMainGrp2.spacing = 10; 
+    layoutMainGrp2.margins = 0; 
 
-	var prodMainGrp = PAD_CONFIG_w.add('group', undefined);
-	prodMainGrp.orientation = 'column';
-	prodMainGrp.alignChildren = ['left', 'center'];
-	prodMainGrp.spacing = 10;
+var labMain2 = layoutMainGrp2.add("statictext", undefined, undefined, {name: "labMain2"}); 
+    labMain2.text = "ETAPA 2:"; 
 
-	for (var p = 0; p < prodArray.length; p++) {
-		addProdLine(prodArray[p]);
-	}
+// TIPSGRP
+// =======
+var tipsGrp = layoutMainGrp2.add("group", undefined, {name: "tipsGrp"}); 
+    tipsGrp.orientation = "column"; 
+    tipsGrp.alignChildren = ["left","center"]; 
+    tipsGrp.spacing = 10; 
+    tipsGrp.margins = 0; 
 
-	// ===========
+var tipsLab = tipsGrp.add("statictext", undefined, undefined, {name: "tipsLab"}); 
+    tipsLab.text = "salve o projeto!"; 
 
-	var BtnGrp = PAD_CONFIG_w.add('group', undefined);
-	BtnGrp.orientation = 'row';
-	BtnGrp.alignChildren = ['right', 'center'];
-	BtnGrp.spacing = 20;
-	BtnGrp.margins = [0, 15, 0, 0];
+var captureBtn = tipsGrp.add("button", undefined, undefined, {name: "captureBtn"}); 
+    captureBtn.text = "capturar"; 
 
-	var prodImportBtn = BtnGrp.add('button', undefined, 'importar');
-	prodImportBtn.helpTip = 'importa uma lista de produções';
+// LAYOUTMAINGRP2
+// ==============
+var divider2 = layoutMainGrp2.add("panel", undefined, undefined, {name: "divider2"}); 
+    divider2.alignment = "fill"; 
 
-	var prodExportBtn = BtnGrp.add('button', undefined, 'exportar');
-	prodExportBtn.helpTip = 'exporta a lista completa de produções';
+// PROJGRP
+// =======
+var projGrp = layoutMainGrp2.add("group", undefined, {name: "projGrp"}); 
+    projGrp.orientation = "column"; 
+    projGrp.alignChildren = ["center","center"]; 
+    projGrp.spacing = 10; 
+    projGrp.margins = 0; 
 
-	var prodNewBtn = BtnGrp.add('button', undefined, 'nova produção');
-	prodNewBtn.helpTip = 'criar nova produção';
+// ALPHAGRP
+// ========
+var alphaGrp = projGrp.add("group", undefined, {name: "alphaGrp"}); 
+    alphaGrp.orientation = "row"; 
+    alphaGrp.alignChildren = ["left","center"]; 
+    alphaGrp.spacing = 10; 
+    alphaGrp.margins = 0; 
 
-	var prodSaveBtn = BtnGrp.add('button', undefined, 'salvar');
-	prodSaveBtn.helpTip = 'salvar configuração';
+var alphaLab = alphaGrp.add("statictext", undefined, undefined, {name: "alphaLab"}); 
+    alphaLab.text = "canal alpha:"; 
+    alphaLab.preferredSize.width = 90; 
 
-	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela
+var alphaCkb = alphaGrp.add("checkbox", undefined, undefined, {name: "alphaCkb"}); 
+    alphaCkb.preferredSize.width = 90; 
 
-	prodImportBtn.onClick = function () {
-		alert(wip);
-	}
+// GROUP1
+// ======
+var group1 = projGrp.add("group", undefined, {name: "group1"}); 
+    group1.orientation = "column"; 
+    group1.alignChildren = ["left","center"]; 
+    group1.spacing = 15; 
+    group1.margins = 0; 
 
-	prodExportBtn.onClick = function () {
-		alert(wip);
-	}
+// TEXTCASEGRP
+// ===========
+var textCaseGrp = group1.add("group", undefined, {name: "textCaseGrp"}); 
+    textCaseGrp.orientation = "row"; 
+    textCaseGrp.alignChildren = ["left","center"]; 
+    textCaseGrp.spacing = 10; 
+    textCaseGrp.margins = 0; 
 
-	prodNewBtn.onClick = function () {
+var caseLab = textCaseGrp.add("statictext", undefined, undefined, {name: "caseLab"}); 
+    caseLab.text = "caixa de texto:"; 
+    caseLab.preferredSize.width = 90; 
 
-		addProdLine(defaultProdData.PRODUCTIONS[0]);
+var caseDrop_array = ["ALTA","baixa","Título"]; 
+var caseDrop = textCaseGrp.add("dropdownlist", undefined, undefined, {name: "caseDrop", items: caseDrop_array}); 
+    caseDrop.selection = 0; 
+    caseDrop.preferredSize.width = 90; 
 
-		prodMainGrp.layout.layout(true);
-		PAD_CONFIG_w.layout.layout(true);
-	}
+// GROUP1
+// ======
+var divider3 = group1.add("panel", undefined, undefined, {name: "divider3"}); 
+    divider3.alignment = "fill"; 
 
-	prodSaveBtn.onClick = function () {
+// LAYERSMAINGRP
+// =============
+var layersMainGrp = group1.add("group", undefined, {name: "layersMainGrp"}); 
+    layersMainGrp.orientation = "column"; 
+    layersMainGrp.alignChildren = ["left","center"]; 
+    layersMainGrp.spacing = 10; 
+    layersMainGrp.margins = 0; 
 
-		try {
+// LAYERGRP
+// ========
+var layerGrp = layersMainGrp.add("group", undefined, {name: "layerGrp"}); 
+    layerGrp.orientation = "row"; 
+    layerGrp.alignChildren = ["left","center"]; 
+    layerGrp.spacing = 10; 
+    layerGrp.margins = 0; 
 
-			var tempArray = [];
+var layerLab = layerGrp.add("statictext", undefined, undefined, {name: "layerLab"}); 
+    layerLab.text = "layer 1:"; 
+    layerLab.preferredSize.width = 90; 
 
-			for (var u = 0; u < prodMainGrp.children.length; u++) {
-				var subGrp = prodMainGrp.children[u].children[0];
+var layerDrop_array = ["conteúdo","nome"]; 
+var layerDrop = layerGrp.add("dropdownlist", undefined, undefined, {name: "layerDrop", items: layerDrop_array}); 
+    layerDrop.selection = 0; 
+    layerDrop.preferredSize.width = 90; 
 
-				var tempObj = {
-					name: subGrp.children[0].text,
-					icon: subGrp.children[1].properties.prodIcon,
-					templatesPath: subGrp.children[2].properties.prodPath
-				}
+// GROUP1
+// ======
+var divider4 = group1.add("panel", undefined, undefined, {name: "divider4"}); 
+    divider4.alignment = "fill"; 
 
-				tempArray.push(tempObj);
-			}
+// IMPORTGRP
+// =========
+var importGrp = group1.add("group", undefined, {name: "importGrp"}); 
+    importGrp.orientation = "column"; 
+    importGrp.alignChildren = ["left","center"]; 
+    importGrp.spacing = 2; 
+    importGrp.margins = 0; 
 
-			saveProdData(sortProdData(tempArray))
-			alert(relax + 'lista salva!');
-			PAD_CONFIG_w.close();
+var importLab = importGrp.add("statictext", undefined, undefined, {name: "importLab"}); 
+    importLab.text = "pasta de mídias:"; 
 
-		} catch (err) {
-			alert(lol + err.message);
-		}
-	}
+var importPath = importGrp.add("statictext", undefined, undefined, {name: "importPath"}); 
+    importPath.text = "caminho da pasta..."; 
+    importPath.preferredSize.width = 150; 
+    importPath.preferredSize.height = 24; 
 
-	PAD_CONFIG_w.show();
-}
+// OUTPUTGRP
+// =========
+var outputGrp = group1.add("group", undefined, {name: "outputGrp"}); 
+    outputGrp.orientation = "column"; 
+    outputGrp.alignChildren = ["left","center"]; 
+    outputGrp.spacing = 2; 
+    outputGrp.margins = 0; 
+
+var outputLab = outputGrp.add("statictext", undefined, undefined, {name: "outputLab"}); 
+    outputLab.text = "pastas de output:"; 
+
+var outputPath = outputGrp.add("statictext", undefined, undefined, {name: "outputPath"}); 
+    outputPath.text = "caminho da pasta..."; 
+    outputPath.preferredSize.width = 150; 
+    outputPath.preferredSize.height = 24; 
+
+// LAYOUTMAINGRP2
+// ==============
+var divider5 = layoutMainGrp2.add("panel", undefined, undefined, {name: "divider5"}); 
+    divider5.alignment = "fill"; 
+
+// BTNGRP
+// ======
+var btnGrp = layoutMainGrp2.add("group", undefined, {name: "btnGrp"}); 
+    btnGrp.orientation = "row"; 
+    btnGrp.alignChildren = ["left","bottom"]; 
+    btnGrp.spacing = 10; 
+    btnGrp.margins = 0; 
+
+var newOutputBtn = btnGrp.add("button", undefined, undefined, {name: "newOutputBtn"}); 
+    newOutputBtn.text = "novo output"; 
+
+var makeBtn = btnGrp.add("button", undefined, undefined, {name: "makeBtn"}); 
+    makeBtn.text = "criar"; 
+
+win.show();
