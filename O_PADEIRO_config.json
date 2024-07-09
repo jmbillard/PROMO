@@ -2,7 +2,7 @@
 	"PRODUCTIONS": [
 		{
 			"name": "! DIA-A-DIA",
-			"icon": "",
+			"icon": "CARTAO_CONVIDADO_preview.png",
 			"templatesPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES PADEIRO"
 		},
 		{
@@ -12,18 +12,13 @@
 		},
 		{
 			"name": "DEV",
-			"icon": "",
+			"icon": "CARTAO_SERVICO_preview.png",
 			"templatesPath": "~/PROMO/downloads/TEMPLATES PADEIRO"
 		},
 		{
 			"name": "OLIMPIADAS 2024",
 			"icon": "",
 			"templatesPath": "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/TEMPLATES/TEMPLATES OLIMPIADAS 2024"
-		},
-		{
-			"name": "teste",
-			"icon": "",
-			"templatesPath": "~/Creative Cloud Files"
 		}
 	]
 }

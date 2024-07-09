@@ -11,11 +11,11 @@ function PAD_CONFIG_Dialog(prodArray) {
 	function addProdLine(prodObj) {
 
 		var nameTxt = prodObj.name;
-		var iconFile = new File(prodObj.icon);
-		var pathTxt = limitNameSize(prodObj.templatesPath, 34);
+		var iconFile = File(iconsFolder.fullName + '/' + prodObj.icon);
+		var pathTxt = limitNameSize(prodObj.templatesPath, 35);
 
-		if (!iconFile.exists) {
-			iconFile = File.decode(solTogIcon.dark);
+		if (!iconFile.exists || iconFile instanceof Folder) {
+			iconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
 			prodObj.icon = '';
 		}
 
@@ -54,11 +54,11 @@ function PAD_CONFIG_Dialog(prodArray) {
 		// ==========
 
 		prodIconBtn.onClick = function () {
-			iconFile = File.openDialog( 'selecione o ícone', "*.png", false );
+			iconFile = File.openDialog('selecione o ícone', "*.png", false);
 
 			if (iconFile != null) {
 				prodIconBtn.image = iconFile;
-				this.properties.prodIcon = iconFile.fullName;
+				this.properties.prodIcon = iconFile.fileName;
 			}
 			this.parent.layout.layout(true);
 		}
@@ -125,11 +125,65 @@ function PAD_CONFIG_Dialog(prodArray) {
 	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela
 
 	prodImportBtn.onClick = function () {
-		alert(wip);
+		tempConfigFile = File.openDialog('selecione o ícone', "*.json", false);
+
+		if (tempConfigFile != null && tempConfigFile instanceof File) {
+			var tempArray = updateProdData(tempConfigFile);
+
+			while (prodMainGrp.children.length > 0) {
+				prodMainGrp.remove(prodMainGrp.children[0]);
+			}
+
+			for (var j = 0; j < tempArray.length; j++) {
+				addProdLine(tempArray[j]);
+			}
+			prodMainGrp.layout.layout(true);
+			PAD_CONFIG_w.layout.layout(true);
+		}
 	}
 
 	prodExportBtn.onClick = function () {
-		alert(wip);
+
+		var tempConfigFile = File.saveDialog('salvar configuração', "*.json");
+
+		if (tempConfigFile != null) {
+
+			try {
+
+				var tempArray = [];
+
+				for (var u = 0; u < prodMainGrp.children.length; u++) {
+					var subGrp = prodMainGrp.children[u].children[0];
+					var tempIconPath = subGrp.children[1].properties.prodIcon;
+					var tempIconFile = File(iconsFolder.fullName + '/' + tempIconPath);
+
+					if (tempIconFile.exists && tempIconFile instanceof File && tempIconPath != '') {
+						try {
+							copyFile(tempIconFile.fullName, tempConfigFile.path + '/icons'); // copia o ícone
+
+						} catch (err) {
+							alert(lol + err.message);
+						}
+					}
+
+					var tempObj = {
+						name: subGrp.children[0].text,
+						icon: tempIconPath,
+						templatesPath: subGrp.children[2].properties.prodPath
+					}
+
+					tempArray.push(tempObj);
+				}
+
+				var tempConfigContent = JSON.stringify(sortProdData(tempArray), null, '\t');
+				writeFileContent(tempConfigFile, tempConfigContent);
+
+				PAD_CONFIG_w.close();
+
+			} catch (err) {
+				alert(lol + err.message);
+			}
+		}
 	}
 
 	prodNewBtn.onClick = function () {
@@ -148,18 +202,29 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 			for (var u = 0; u < prodMainGrp.children.length; u++) {
 				var subGrp = prodMainGrp.children[u].children[0];
+				var tempIconPath = subGrp.children[1].properties.prodIcon;
+				var tempIconFile = File(tempIconPath);
+
+				if (tempIconFile.exists && tempIconFile instanceof File) {
+					try {
+						copyFile(tempIconPath, iconsFolder.fullName); // copia o ícone
+						tempIconPath = iconsFolder.fullName + '/' + tempIconPath.split('/').pop();
+
+					} catch (err) {
+						alert(lol + err.message);
+					}
+				}
 
 				var tempObj = {
 					name: subGrp.children[0].text,
-					icon: subGrp.children[1].properties.prodIcon,
+					icon: tempIconPath,
 					templatesPath: subGrp.children[2].properties.prodPath
 				}
 
 				tempArray.push(tempObj);
 			}
 
-			saveProdData(sortProdData(tempArray))
-			alert(relax + 'lista salva!');
+			saveProdData(sortProdData(tempArray));
 			PAD_CONFIG_w.close();
 
 		} catch (err) {

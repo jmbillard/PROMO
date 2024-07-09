@@ -51,9 +51,9 @@ function O_PADEIRO_UTL(thisObj) {
 	}
 
 	// atualiza os dados das produções
-	function updateProdData() {
+	function updateProdData(configFile) {
 		try {
-			var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
+			// var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 			return sortProdData(prodData.PRODUCTIONS);
@@ -65,7 +65,8 @@ function O_PADEIRO_UTL(thisObj) {
 
 	function O_PADEIRO_UI() {
 
-		var PAD_prodArray = updateProdData(); // dados das produções
+		var PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json')); // dados das produções
+		var iconsFolder = new Folder(new File($.fileName).path + '/icons'); // pasta de ícones
 
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
@@ -95,6 +96,7 @@ function O_PADEIRO_UTL(thisObj) {
 		// Botões da interface
 		var PAD_launchBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Abrir O Padeiro"
 		PAD_launchBtn.helpTip = 'O PADEIRO:\n\n◖ → abrir interface de templates\n\n◗ → criar novo template'; // Dica de ajuda
+		PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
 
 		var PAD_fontBtn = btnGrp1.add('iconbutton', undefined, O_PADEIRO_FONT_ICON, { name: 'btn', style: 'toolbutton' }); // Botão "Instalar Fontes"
 		PAD_fontBtn.helpTip = 'RESOLVER FONTES:\n\n◖ → instalar as fontes usadas no template\n\n◗ → fazer o collect das fontes usadas no projeto'; // Dica de ajuda
@@ -147,9 +149,9 @@ function O_PADEIRO_UTL(thisObj) {
 		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
 		prodGrp.spacing = 4; // Espaçamento entre botões
 
-		var mainIconFile = new File(PAD_prodArray[0].icon);
+		var mainIconFile = File(iconsFolder.fullName + '/' + PAD_prodArray[0].icon);
 
-		if (!mainIconFile.exists) mainIconFile = File.decode(solTogIcon.dark);;
+		if (!mainIconFile.exists || mainIconFile instanceof Folder) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
 
 		var ICON = prodGrp.add('image', undefined, mainIconFile);
 		ICON.preferredSize = [24, 24];
@@ -230,7 +232,7 @@ function O_PADEIRO_UTL(thisObj) {
 				prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 				// atualiza os dados das produções.
-				PAD_prodArray = updateProdData();
+				PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json'));
 
 				// Popula a lista de produções do menu
 				populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
@@ -242,26 +244,25 @@ function O_PADEIRO_UTL(thisObj) {
 		prodDrop.onChange = function () {
 			// Este ouvinte será acionado quando o usuário selecionar uma produção do menu.
 
-			var tip = PAD_prodArray[this.selection.index].name; // texto de ajuda (NOME DA PRODUÇÃO SELECIONADA).
+			var i = this.selection.index;
+			var tip = PAD_prodArray[i].name; // texto de ajuda (NOME DA PRODUÇÃO SELECIONADA).
 
-			templatesPath = PAD_prodArray[this.selection.index].templatesPath; // caminho da pasta de templates.
+			templatesPath = PAD_prodArray[i].templatesPath; // caminho da pasta de templates.
 			templatesFolder = new Folder(templatesPath); // pasta de templates.
-			mainIconFile = new File(PAD_prodArray[this.selection.index].icon); // arquivo de imagem do ícone.
+			mainIconFile = new File(iconsFolder.fullName + '/' + PAD_prodArray[i].icon); // arquivo de imagem do ícone.
 
 			// Se o arquivo de imagem do ícone não existir, atribui um arquivo de imagem padrão.
-			if (!mainIconFile.exists) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
+			if (!mainIconFile.exists || mainIconFile instanceof Folder || PAD_prodArray[i].icon == '') mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
 
 			// Se a pasta de templates não existir.
 			if (!templatesFolder.exists) {
-
-				mainIconFile = File.decode(exprTogIcon.dark); // Define o arquivo de imagem do ícone como indicador de erro.
-				templatesFolder = new Folder('~/Desktop'); // Define o caminho da pasta de templates como o Desktop.
 
 				// Mensagem de erro.
 				tip = 'a pasta de templates não foi localizada...';
 				alert(lol + tip);
 			}
-
+			
+			PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
 			ICON.image = mainIconFile; // Define o ícone.
 			ICON.helpTip = tip; // Define o texto de ajuda.
 		};
