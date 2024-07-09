@@ -39,7 +39,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 		prodNameTxt.preferredSize = [130, 24];
 
 		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, iconFile, { style: 'toolbutton', prodIcon: prodObj.icon });
-		prodIconBtn.helpTip = 'selecione o icone que aparecerá no menu';
+		prodIconBtn.helpTip = 'ícone que aparecerá no menu';
 		prodIconBtn.preferredSize = [36, 36];
 
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath });
@@ -54,7 +54,8 @@ function PAD_CONFIG_Dialog(prodArray) {
 		// ==========
 
 		prodIconBtn.onClick = function () {
-			iconFile = File.openDialog('selecione o ícone', "*.png", false);
+			// var newIconFile = new File(iconsFolder.fullName + '/' + this.properties.prodIcon);
+			iconFile = iconFile.openDlg('selecione o ícone', "*.png", false);
 
 			if (iconFile != null) {
 				prodIconBtn.image = iconFile;
@@ -65,7 +66,8 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 		prodPathLab.addEventListener('mousedown', function () {
 
-			var newTemplatesPath = Folder.selectDialog('selecione a pasta de templates'); // Abre a janela de seleção de pastas
+			var newTemplatesFolder = new Folder(this.properties.prodPath)
+			var newTemplatesPath = newTemplatesFolder.selectDlg('selecione a pasta de templates'); // Abre a janela de seleção de pastas
 
 			if (newTemplatesPath == null) return; // Se a janela foi cancelada, não faz nada
 
@@ -105,22 +107,35 @@ function PAD_CONFIG_Dialog(prodArray) {
 	// ===========
 
 	var BtnGrp = PAD_CONFIG_w.add('group', undefined);
-	BtnGrp.orientation = 'row';
-	BtnGrp.alignChildren = ['right', 'center'];
-	BtnGrp.spacing = 20;
+	BtnGrp.orientation = 'stack';
+	BtnGrp.alignment = 'fill'
+	// BtnGrp.spacing = 20;
 	BtnGrp.margins = [0, 15, 0, 0];
+	// Criação do grupo de botões principal
+	// var bGrp = vGrp1.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
+	// bGrp.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
+	// bGrp.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
 
-	var prodImportBtn = BtnGrp.add('button', undefined, 'importar');
-	prodImportBtn.helpTip = 'importa uma lista de produções';
+	// Grupo dos botões à esquerda
+	var bGrp1 = BtnGrp.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
+	bGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda
+	// bGrp1.spacing = 2;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
 
-	var prodExportBtn = BtnGrp.add('button', undefined, 'exportar');
-	prodExportBtn.helpTip = 'exporta a lista completa de produções';
+	// Grupo do botão à direita
+	var bGrp2 = BtnGrp.add('group');      // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita
+	bGrp2.alignment = 'right';          // Alinha o subgrupo à direita
 
-	var prodNewBtn = BtnGrp.add('button', undefined, 'nova produção');
-	prodNewBtn.helpTip = 'criar nova produção';
+	var prodImportBtn = bGrp1.add('button', undefined, 'importar');
+	prodImportBtn.helpTip = '◖ → importar uma lista de produções';
 
-	var prodSaveBtn = BtnGrp.add('button', undefined, 'salvar');
-	prodSaveBtn.helpTip = 'salvar configuração';
+	var prodExportBtn = bGrp1.add('button', undefined, 'exportar');
+	prodExportBtn.helpTip = '◖ → exportar a lista completa de produções';
+
+	var prodNewBtn = bGrp2.add('button', undefined, 'nova produção');
+	prodNewBtn.helpTip = '◖ → criar nova produção';
+
+	var prodSaveBtn = bGrp2.add('button', undefined, 'salvar');
+	prodSaveBtn.helpTip = '◖ → salvar configuração';
 
 	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela
 
