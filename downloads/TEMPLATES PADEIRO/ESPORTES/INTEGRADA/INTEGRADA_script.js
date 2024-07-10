@@ -14,66 +14,68 @@ var logoComp;
 var date = inputList[0].replace(/[\/\\\|]/g, '-'); // -> 11-06 a 16-06
 
 
-var logoFolder = app.project.items.addFolder('MARCAS '+ date); // Cria uma pasta no projeto para organizar os logos importados.
+var logoFolder = app.project.items.addFolder('MARCAS ' + date); // Cria uma pasta no projeto para organizar os logos importados.
 
 // Verifica se o usuário selecionou algum arquivo de logo.
 if (logoArray != null) {
 
-    // Procura pela composição de logos no projeto.
-    for (var i = 1; i <= iNum; i++) {
-        var comp = app.project.item(i);
+	// Procura pela composição de logos no projeto.
+	for (var i = 1; i <= iNum; i++) {
+		var comp = app.project.item(i);
 
-        // Verifica se o item é uma composição e se tem o comentário "EDITAR" e se o nome é "LOGOS".
-        if (!(comp instanceof CompItem)) continue;
-        if (!comp.comment.match(/^EDITAR/)) continue;
-        if (comp.name != "LOGOS") continue;
+		// Verifica se o item é uma composição e se tem o comentário "EDITAR" e se o nome é "LOGOS".
+		if (!(comp instanceof CompItem)) continue;
+		if (!comp.comment.match(/^EDITAR/)) continue;
+		if (comp.name != "LOGOS") continue;
 
-        
-        logoComp = comp; // Atribui a composição encontrada à variável logoComp.
-    }
+		logoComp = comp; // Atribui a composição encontrada à variável logoComp.
+	}
 
-    // Verifica se a composição de logos foi encontrada.
-    if (logoComp != undefined) {
+	// Verifica se a composição de logos foi encontrada.
+	if (logoComp != undefined) {
 
-        // Atualiza as camadas de logo na composição.
-        for (var i = 1; i <= 8; i++) {
-            var logoLayer = logoComp.layer(i);
+		// Atualiza as camadas de logo na composição.
+		for (var i = 1; i <= 8; i++) {
+			var logoLayer = logoComp.layer(i);
 
-            // Desabilita camadas extras se houver menos logos que o esperado.
-            if (i > logoArray.length) {
-                logoLayer.enabled = false;
+			// Desabilita camadas extras se houver menos logos que o esperado.
+			if (i > logoArray.length) {
+				logoLayer.enabled = false;
 
-            } else {
-                var logoImg = logoArray[i - 1]; // novo logo
-                
-                logoImg.parentFolder = logoFolder; // Move o novo logo para a pasta criada anteriormente.
-                logoLayer.replaceSource(logoImg, false); // Substitui a imagem da camada pelo novo logo.
-            }
-        }
+			} else {
+				var logoImg = logoArray[i - 1]; // novo logo
 
-        // Define o arquivo de saída para cada módulo de saída.
-        for (var t = 0; t < createdOutputModuleArray.length; t++) {
-            outputFile = new File(templateData.outputPath + '/PATROCINADORES FUT 2024_' + date + '.mov'); // -> PATROCINADORES FUT 2024_11-06 a 16-06
-            createdOutputModuleArray[t].file = outputFile;
-        }
+				logoImg.parentFolder = logoFolder; // Move o novo logo para a pasta criada anteriormente.
+				logoLayer.replaceSource(logoImg, false); // Substitui a imagem da camada pelo novo logo.
+			}
+		}
 
-        // Ajusta a duração da composição com base na quantidade de logos.
-        if (logoArray.length == 7) exportComp.workAreaDuration = 14 + 5/30; // 7 logos
-        if (logoArray.length == 6) exportComp.workAreaDuration = 12 + 19/30; // 6 logos
+		var outputPathArray = templateData.outputPath;
+		// Define o arquivo de saída para cada módulo de saída.
+		for (var t = 0; t < createdOutputModuleArray.length; t++) {
+			var o = t % outputPathArray.length;
+		
+			var newOutputFile = new File(outputPathArray[o] + '/PATROCINADORES FUT 2024_' + date + '.[fileextension]'); // -> PATROCINADORES FUT 2024_11-06 a 16-06
+			createdOutputModuleArray[t].file = newOutputFile;
+		}
 
-        
-        logoComp.openInViewer(); // Abre a composição de logos no visualizador.
-        logoComp.time = 0; // posiciona a agulha no tempo zero.
-    }
+		// Ajusta a duração da composição com base na quantidade de logos.
+		if (logoArray.length == 7) exportComp.workAreaDuration = 14 + 5 / 30; // 7 logos
+		if (logoArray.length == 6) exportComp.workAreaDuration = 12 + 19 / 30; // 6 logos
 
-    // Tenta salvar o projeto em um caminho de rede específico.
-    try {
-        var savePath = "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024";
-        var projId = 'PATROCINADORES FUT 2024_' + date;
 
-        projFile = new File(savePath + '/01 PROJETOS/' + projId);
-        app.project.save(projFile);
+		logoComp.openInViewer(); // Abre a composição de logos no visualizador.
+		logoComp.time = 0; // posiciona a agulha no tempo zero.
+	}
 
-    // Se houver algum erro ao salvar, ele será ignorado.
-    } catch (error) { }
+	// Tenta salvar o projeto em um caminho de rede específico.
+	try {
+		var savePath = "//10.228.183.165/vfx/imagem/drive_l/Fileserver_3/ESPORTES/FUTEBOL/FUTEBOL 2024/CHAMADA PATROCINADORES 2024";
+		var projId = 'PATROCINADORES FUT 2024_' + date;
+
+		projFile = new File(savePath + '/01 PROJETOS/' + projId);
+		app.project.save(projFile);
+
+		// Se houver algum erro ao salvar, ele será ignorado.
+	} catch (error) { }
 }

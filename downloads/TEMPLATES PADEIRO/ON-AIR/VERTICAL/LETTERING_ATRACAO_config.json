@@ -13,6 +13,7 @@
 		{"layerIndex": 6, "method": "textContent"},
 		{"layerIndex": 7, "method": "textContent"}
 	],
+	"inputFx": {"layerIndex": 1, "fxName": "paleta", "optionIndex": 1, "options": ["MANHA","TARDE","NOITE"]},
 
 	"outputPath": [
 		"//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/INSTITUCIONAL/VERTICAIS/VERTICAL_ONAIR"
