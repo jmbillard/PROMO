@@ -6,7 +6,7 @@
 
 */
 
-function PAD_CONFIG_Dialog(prodArray) {
+function padConfigDialog(prodArray) {
 
 	function addProdLine(prodObj) {
 
@@ -55,7 +55,7 @@ function PAD_CONFIG_Dialog(prodArray) {
 
 		prodIconBtn.onClick = function () {
 			// var newIconFile = new File(iconsFolder.fullName + '/' + this.properties.prodIcon);
-			iconFile = iconFile.openDlg('selecione o ícone', "*.png", false);
+			iconFile = File.openDialog('selecione o ícone', "*.png", false);
 
 			if (iconFile != null) {
 				prodIconBtn.image = iconFile;

@@ -72,6 +72,7 @@ function O_PADEIRO_UTL(thisObj) {
 		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
 		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
 		#include 'source/layout/Utils/o padeiro prod config ui.js'; // Busca em layers de texto
+		#include 'source/layout/Utils/o padeiro maker ui.js'; // Busca em layers de texto
 		var PAD_w = {}; // Objeto que representa a janela da interface
 
 		// Cria a janela da interface (ou usa um painel existente)
@@ -228,7 +229,7 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se aconteceu um clique duplo (detail == 2).
 			if (c.detail == 2) {
 
-				PAD_CONFIG_Dialog(PAD_prodArray); // Chama a janela de configuração.
+				padConfigDialog(PAD_prodArray); // Chama a janela de configuração.
 				prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 				// atualiza os dados das produções.
@@ -287,11 +288,12 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
 				// Verifica se a pasta de templates existe.
-				if (!templatesFolder.exists) {
-					alert(lol + 'a pasta de templates não foi localizada...'); // mensagem de erro.
-					return;
-				}
-				openFolder(templatesPath); // abre a pasta de templates.
+				// if (!templatesFolder.exists) {
+				// 	alert(lol + 'a pasta de templates não foi localizada...'); // mensagem de erro.
+				// 	return;
+				// }
+				// openFolder(templatesPath); // abre a pasta de templates.
+				PadMakerDialog();
 			}
 		});
 
