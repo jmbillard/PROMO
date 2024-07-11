@@ -16,13 +16,14 @@
 //  jshint -W061
 
 try {
-  var scriptFile = new File('//10.228.183.165/VFX/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/SCRIPTS FREE/O_PADEIRO/O_PADEIRO.jsxbin');
+  var scriptMainPath = '//10.228.183.165/VFX/imagem/drive_l/Fileserver_3/INSTITUCIONAL/_adm-designers/SCRIPTS FREE/O_PADEIRO/';
+  var scriptMainFile = new File(scriptMainPath + 'O_PADEIRO.jsxbin');
 
-  scriptFile.open('r');
-  eval(scriptFile.read());
+  scriptMainFile.open('r');
+  eval(scriptMainFile.read());
 
-  scriptFile.close();
+  scriptMainFile.close();
 
 } catch (err) {
-  alert('nope... (っ °Д °;)っ\n\n' + err.message);
+  alert('(っ °Д °;)っ      #PAD_000 - ' + err.message);
 }
