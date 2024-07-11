@@ -216,10 +216,12 @@ function padConfigDialog(prodArray) {
 				var tempIconFile = File(tempIconPath);
 
 				if (tempIconFile.exists && tempIconFile instanceof File) {
-					try {
-						copyFile(tempIconPath, iconsFolder.fullName); // copia o ícone
-						tempIconPath = tempIconFile.displayName;
 
+					try {
+
+						if (tempIconFile.path != iconsFolder.fullName) copyFile(tempIconPath, iconsFolder.fullName); // copia o ícone
+
+						tempIconPath = tempIconFile.displayName;
 					} catch (err) {
 						alert(lol + '#PAD_015 - ' + err.message);
 					}

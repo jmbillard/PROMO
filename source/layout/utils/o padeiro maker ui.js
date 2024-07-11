@@ -25,6 +25,7 @@ function PadMakerDialog() {
 	layoutMainGrp1.margins = 0;
 
 	var labMain1 = layoutMainGrp1.add('statictext', undefined, 'ETAPA 1:');
+	setTxtColor(labMain1, monoColors[2]);
 
 	var formMainGrp = layoutMainGrp1.add('group', undefined);
 	formMainGrp.orientation = 'column';
@@ -95,6 +96,7 @@ function PadMakerDialog() {
 	layoutMainGrp2.margins = 0;
 
 	var labMain2 = layoutMainGrp2.add('statictext', undefined, 'ETAPA 2:');
+	setTxtColor(labMain2, monoColors[2]);
 
 	// ==============
 
@@ -110,6 +112,7 @@ function PadMakerDialog() {
 	layoutMainGrp3.margins = 0;
 
 	var labMain3 = layoutMainGrp3.add('statictext', undefined, 'ETAPA 3:');
+	setTxtColor(labMain3, monoColors[2]);
 
 	// ==============
 
@@ -125,6 +128,7 @@ posicione a agulha da timeline\nem um frame de referencia\n(essa será a imagem 
 selecione os layers de texto que\nserão editáveis no template\n(na ordem que deverão ser preenchidos)\n\
 clique no botão capturar...';
 	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
+	setTxtColor(tipsLab, mainColors[1]);
 
 	var div = layoutMainGrp2.add('panel', undefined, undefined);
 	div.alignment = 'fill';
@@ -230,29 +234,47 @@ clique no botão capturar...';
 
 	// ==============
 
-	var importGrp = projGeneralGrp.add('group', undefined);
-	importGrp.orientation = 'column';
+	var importMainGrp = projGeneralGrp.add('group', undefined);
+	importMainGrp.orientation = 'column';
+	importMainGrp.alignChildren = ['left', 'center'];
+	importMainGrp.spacing = 2;
+	importMainGrp.margins = 0;
+	
+	var importLab = importMainGrp.add('statictext', undefined, 'pastas de mídias:');
+
+	var importGrp = importMainGrp.add('group', undefined);
+	importGrp.orientation = 'row';
 	importGrp.alignChildren = ['left', 'center'];
-	importGrp.spacing = 2;
-	importGrp.margins = 0;
+	importGrp.spacing = 10;
 
-	var importLab = importGrp.add('statictext', undefined, 'pasta de mídias:');
-
-	var importPath = importGrp.add('statictext', undefined, 'caminho da pasta...');
-	importPath.preferredSize = [150, 24];
+	var importPathLab = importGrp.add('statictext', undefined, 'caminho da pasta...', { importPath: '' });
+	importPathLab.helpTip = 'caminho da pasta:';
+	importPathLab.preferredSize = [150, 24];
+	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
 	// ==============
 
-	var outputGrp = projGeneralGrp.add('group', undefined);
-	outputGrp.orientation = 'column';
+	var outputMainGrp = projGeneralGrp.add('group', undefined);
+	outputMainGrp.orientation = 'column';
+	outputMainGrp.alignChildren = ['left', 'center'];
+	outputMainGrp.spacing = 2;
+	outputMainGrp.margins = 0;
+	
+	var outputLab = outputMainGrp.add('statictext', undefined, 'pastas de output:');
+
+	var outputGrp = outputMainGrp.add('group', undefined);
+	outputGrp.orientation = 'row';
 	outputGrp.alignChildren = ['left', 'center'];
-	outputGrp.spacing = 2;
-	outputGrp.margins = 0;
+	outputGrp.spacing = 10;
 
-	var outputLab = outputGrp.add('statictext', undefined, 'pastas de output:');
+	var outputPathLab = outputGrp.add('statictext', undefined, 'caminho da pasta...', { outputPath: '' });
+	outputPathLab.helpTip = 'caminho da pasta:';
+	outputPathLab.preferredSize = [150, 24];
+	setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
-	var outputPath = outputGrp.add('statictext', undefined, 'caminho da pasta...');
-	outputPath.preferredSize = [150, 24];
+	var deleteBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
+	deleteBtn.helpTip = 'deletar caminho';
+	deleteBtn.preferredSize = [24, 24];
 
 	// ==============
 
