@@ -152,7 +152,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	var btnGrp1 = layoutMainGrp3.add('group', undefined);
 	btnGrp1.orientation = 'row';
-	btnGrp1.alignChildren = ['left', 'bottom'];
 	btnGrp1.spacing = 10;
 	btnGrp1.margins = 0;
 
@@ -237,8 +236,13 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	layerDrop.selection = 0;
 	layerDrop.preferredSize.width = 90;
 
-	var div = projGeneralGrp.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	var btnGrp4 = layoutMainGrp3.add('group', undefined);
+	btnGrp4.orientation = 'row';
+	btnGrp4.spacing = 10;
+	btnGrp4.margins = 0;
+
+	var selectLayersBtn = btnGrp4.add('button', undefined, 'selecionar layers');
+
 
 	// ==============
 
@@ -287,19 +291,22 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	deleteBtn.helpTip = 'deletar caminho';
 	deleteBtn.preferredSize = [24, 24];
 
-	var div = layoutMainGrp4.add('panel', undefined, undefined);
-	div.alignment = 'fill';
-
 	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
-	btnGrp2.alignChildren = ['left', 'bottom'];
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
 	var newOutputBtn = btnGrp2.add('button', undefined, 'novo output');
 
-	var makeBtn = btnGrp2.add('button', undefined, 'criar');
+	var div = layoutMainGrp4.add('panel', undefined, undefined);
+	div.alignment = 'fill';
 
+	var btnGrp3 = layoutMainGrp4.add('group', undefined);
+	btnGrp3.orientation = 'row';
+	btnGrp3.spacing = 10;
+	btnGrp3.margins = 0;
+
+	var makeBtn = btnGrp3.add('button', undefined, 'criar');
 
 	// ==============
 	PAD_MAKER_w.onShow = function () {
