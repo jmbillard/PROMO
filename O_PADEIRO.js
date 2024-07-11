@@ -152,7 +152,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 		var mainIconFile = File(iconsFolder.fullName + '/' + PAD_prodArray[0].icon);
 
-		if (!mainIconFile.exists || mainIconFile instanceof Folder || PAD_prodArray[0].icon == '') mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
+		if (!mainIconFile.exists || mainIconFile instanceof Folder) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
 
 		var ICON = prodGrp.add('image', undefined, mainIconFile);
 		ICON.preferredSize = [24, 24];
