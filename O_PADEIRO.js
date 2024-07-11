@@ -58,7 +58,7 @@ function O_PADEIRO_UTL(thisObj) {
 			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 			return sortProdData(prodData.PRODUCTIONS);
 		} catch (err) {
-			alert(lol + err.message);
+			alert(lol + '#PAD_001 - nenhum arquivo de configuração válido encontrado...');
 			return defaultProdData.PRODUCTIONS;
 		}
 	}
@@ -152,7 +152,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 		var mainIconFile = File(iconsFolder.fullName + '/' + PAD_prodArray[0].icon);
 
-		if (!mainIconFile.exists || mainIconFile instanceof Folder) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
+		if (!mainIconFile.exists || mainIconFile instanceof Folder || PAD_prodArray[0].icon == '') mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
 
 		var ICON = prodGrp.add('image', undefined, mainIconFile);
 		ICON.preferredSize = [24, 24];
@@ -248,8 +248,7 @@ function O_PADEIRO_UTL(thisObj) {
 			var i = this.selection.index;
 			var tip = PAD_prodArray[i].name; // texto de ajuda (NOME DA PRODUÇÃO SELECIONADA).
 
-			templatesPath = PAD_prodArray[i].templatesPath; // caminho da pasta de templates.
-			templatesFolder = new Folder(templatesPath); // pasta de templates.
+			templatesFolder = new Folder(PAD_prodArray[i].templatesPath); // pasta de templates.
 			mainIconFile = new File(iconsFolder.fullName + '/' + PAD_prodArray[i].icon); // arquivo de imagem do ícone.
 
 			// Se o arquivo de imagem do ícone não existir, atribui um arquivo de imagem padrão.
@@ -259,10 +258,10 @@ function O_PADEIRO_UTL(thisObj) {
 			if (!templatesFolder.exists) {
 
 				// Mensagem de erro.
-				tip = 'a pasta de templates não foi localizada...';
+				tip = '#PAD_002 - a pasta de templates não foi localizada...';
 				alert(lol + tip);
 			}
-			
+
 			PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
 			ICON.image = mainIconFile; // Define o ícone.
 			ICON.helpTip = tip; // Define o texto de ajuda.
@@ -274,7 +273,7 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se há acesso à internet.
 			if (!netAccess()) {
 				// Se não houver acesso, exibe um alerta informando que a funcionalidade será limitada e encerra a função.
-				alert(lol + 'sem acesso a rede...');
+				alert(lol + '#PAD_003 - sem acesso a rede...');
 				return;
 			}
 
@@ -301,7 +300,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se há acesso à rede.
 			if (!netAccess()) {
-				alert(lol + 'sem acesso a rede...');
+				alert(lol + '#PAD_004 - sem acesso a rede...');
 				return;
 			}
 
@@ -311,7 +310,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Se o caminho da pasta não for encontrado, a função é interrompida.
 			if (folderPath == '') {
-				alert(lol + '\nesse não foi preenchido pelo padeiro...')
+				alert(lol + '#PAD_005 - esse não foi preenchido pelo padeiro...')
 				return;
 			}
 			// Cria um objeto "Folder" para a pasta de fontes do template.
@@ -319,7 +318,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se a pasta de fontes existe.
 			if (!templateFontsFolder.exists) {
-				alert(lol + 'a pasta de fontes não foi localizada...')
+				alert(lol + '#PAD_006 - a pasta de fontes não foi localizada...')
 				return;
 			}
 			// Se a pasta de fontes existe e o sistema operacional for Windows, instala as fontes.
@@ -351,13 +350,13 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se há acesso à internet.
 			if (!netAccess()) {
-				alert('sem acesso a rede...  ' + lol + '\na funcionalidade será limitada');
+				alert(lol + '#PAD_007 - sem acesso a rede...');
 				return; // Encerra a função se não houver acesso à internet.
 			}
 
 			// Verifica se há itens na fila de renderização.
 			if (app.project.renderQueue.numItems < 1) {
-				alert(lol + 'a fila de render está vazia...')
+				alert(lol + '#PAD_008 - a fila de render está vazia...')
 				return;
 			}
 			// Obtém o último item da fila de renderização.
@@ -374,7 +373,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se a pasta de saída existe.
 			if (!fld.exists) {
-				alert(lol + '\na pasta não foi encontrada...'); // Exibe um erro se a pasta não for acessível.
+				alert(lol + '#PAD_009 - a pasta não foi encontrada...'); // Exibe um erro se a pasta não for acessível.
 				return; // Encerra a função se a pasta não existir.
 			}
 
@@ -387,15 +386,15 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
 
-				// error...
+				// Verifica se há acesso à internet.
 				if (!netAccess()) {
-					alert(netConfigName + ' não habilitada');
-					return;
+					alert(lol + '#PAD_007 - sem acesso a rede...');
+					return; // Encerra a função se não houver acesso à internet.
 				}
 				var currentProj = app.project.file;
 
 				if (currentProj == null) {
-					alert(lol + '\no projeto atual ainda não foi salvo...');
+					alert(lol + '#PAD_010 - o projeto atual ainda não foi salvo...');
 					return;
 				}
 
@@ -403,7 +402,7 @@ function O_PADEIRO_UTL(thisObj) {
 				var fld = new Folder(currentProjPath);
 
 				if (!fld.exists) {
-					alert('a pasta não foi encontrada...');
+					alert(lol + '#PAD_011 - a pasta não foi encontrada...');
 					return;
 				}
 				openFolder(decodeURI(fld.fullName));
@@ -486,10 +485,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 
 		PAD_sheetBtn.onClick = function () {
-			// error...
+
 			if (!netAccess()) {
-				alert(netConfigName + ' não habilitada');
-				return;
+				alert(lol + '#PAD_007 - sem acesso a rede...');
+				return; // Encerra a função se não houver acesso à internet.
 			}
 			var apontamento = '"https://tvglobocorp.sharepoint.com/:x:/s/Planejamento-DTEN/Planejamento/EbkuFueT_DlFlUyRqlMSnJIBRpRsPPY72NSDqgKq0DvOKg?e=T7sn7i"';
 
@@ -515,7 +514,7 @@ function O_PADEIRO_UTL(thisObj) {
 		// Verifica novamente se há acesso à rede.
 		if (!netAccess()) {
 			// Se ainda não houver acesso, exibe outro alerta informando que a funcionalidade será limitada.
-			alert(lol + 'sem acesso a rede...');
+			alert(lol + '#PAD_012 - sem acesso a rede...');
 		}
 	}
 

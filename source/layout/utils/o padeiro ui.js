@@ -398,7 +398,7 @@ function padeiroTemplateDialog() {
 			tipContentTxt.text = tipContent;
 
 		} catch (err) { // Em caso de erro durante o carregamento ou análise da configuração, exibe um alerta e sai da função
-			alert('esse template não tem um arquivo de configuração válido!\n\nerro: ' + err.message);
+			alert(lol + '#PAD_017 - esse template não tem um arquivo de configuração válido!');
 			return;
 		}
 
@@ -485,7 +485,7 @@ function padeiroTemplateDialog() {
 
 			// Em caso de erro
 		} catch (err) {
-			alert(err.message); // Exibe uma mensagem de erro
+			alert(lol + '#PAD_018 - ' + err.message); // Exibe uma mensagem de erro
 			return;
 		}
 
@@ -641,7 +641,7 @@ function padeiroTemplateDialog() {
 
 									// Em caso de erro (por exemplo, problema ao acessar a pasta)
 								} catch (err) {
-									alert(err.message); // Exibe um alerta com a mensagem de erro
+									alert(lol + '#PAD_019 - ' + err.message); // Exibe um alerta com a mensagem de erro
 								}
 							}
 							// Se nenhum template de saída for selecionado
@@ -700,7 +700,7 @@ function padeiroTemplateDialog() {
 		// Se a pasta de saída original não estava disponível
 		if (folderNotAvailable) {
 			// Exibe um alerta informando o usuário
-			alert(lol + '\n\no caminho pré-definido para\no output do render não pode ser acessado!');
+			alert(lol + '#PAD_020 - o caminho pré-definido para\no output do render não pode ser acessado!');
 		}
 
 		// Adiciona metadados XMP ao projeto indicando o caminho do template original
@@ -716,7 +716,7 @@ function padeiroTemplateDialog() {
 				scriptFile.close();   // Fecha o arquivo de script
 
 			} catch (err) {           // Em caso de erro, exibe um alerta
-				alert('0 nope... (っ °Д °;)っ\n\n' + err.message);
+				alert(lol + '#PAD_021 - ' + err.message);
 			}
 		}
 	};
@@ -741,7 +741,7 @@ function padeiroTemplateDialog() {
 			setXMPData('source', decodeURI(templateFile.path).toString());
 
 		} catch (err) { // Captura e trata qualquer erro que ocorra durante a importação
-			alert(err.message); // Exibe uma mensagem de alerta com a mensagem de erro
+			alert(lol + '#PAD_022 - ' + err.message); // Exibe uma mensagem de alerta com a mensagem de erro
 			return; // Sai da função para evitar mais processamento em caso de erro
 		}
 

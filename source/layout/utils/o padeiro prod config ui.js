@@ -54,12 +54,12 @@ function padConfigDialog(prodArray) {
 		// ==========
 
 		prodIconBtn.onClick = function () {
-			// var newIconFile = new File(iconsFolder.fullName + '/' + this.properties.prodIcon);
-			iconFile = File.openDialog('selecione o ícone', "*.png", false);
 
-			if (iconFile != null) {
-				prodIconBtn.image = iconFile;
-				this.properties.prodIcon = iconFile.fileName;
+			var newIconFile = File.openDialog('selecione o ícone', "*.png", false);
+
+			if (newIconFile != null) {
+				prodIconBtn.image = newIconFile;
+				this.properties.prodIcon = newIconFile.fullName;
 			}
 			this.parent.layout.layout(true);
 		}
@@ -165,14 +165,14 @@ function padConfigDialog(prodArray) {
 				for (var u = 0; u < prodMainGrp.children.length; u++) {
 					var subGrp = prodMainGrp.children[u].children[0];
 					var tempIconPath = subGrp.children[1].properties.prodIcon;
-					var tempIconFile = File(iconsFolder.fullName + '/' + tempIconPath);
+					var tempIconFile = File(tempIconPath);
 
 					if (tempIconFile.exists && tempIconFile instanceof File && tempIconPath != '') {
 						try {
 							copyFile(tempIconFile.fullName, tempConfigFile.path + '/icons'); // copia o ícone
 
 						} catch (err) {
-							alert(lol + err.message);
+							alert(lol + '#PAD_013 - ' + err.message);
 						}
 					}
 
@@ -191,7 +191,7 @@ function padConfigDialog(prodArray) {
 				PAD_CONFIG_w.close();
 
 			} catch (err) {
-				alert(lol + err.message);
+				alert(lol + '#PAD_014 - ' + err.message);
 			}
 		}
 	}
@@ -218,10 +218,10 @@ function padConfigDialog(prodArray) {
 				if (tempIconFile.exists && tempIconFile instanceof File) {
 					try {
 						copyFile(tempIconPath, iconsFolder.fullName); // copia o ícone
-						tempIconPath = iconsFolder.fullName + '/' + tempIconPath.split('/').pop();
+						tempIconPath = tempIconFile.displayName;
 
 					} catch (err) {
-						alert(lol + err.message);
+						alert(lol + '#PAD_015 - ' + err.message);
 					}
 				}
 
@@ -238,7 +238,7 @@ function padConfigDialog(prodArray) {
 			PAD_CONFIG_w.close();
 
 		} catch (err) {
-			alert(lol + err.message);
+			alert(lol + '#PAD_016 - ' + err.message);
 		}
 	}
 
