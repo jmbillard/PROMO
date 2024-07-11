@@ -67,12 +67,13 @@ function O_PADEIRO_UTL(thisObj) {
 
 		var PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json')); // dados das produções
 		var iconsFolder = new Folder(new File($.fileName).path + '/icons'); // pasta de ícones
+		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates
 
 		// utilidades com interface
-		#include 'source/layout/Utils/o padeiro ui.js'; // Sistema de templates
-		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
-		#include 'source/layout/Utils/o padeiro prod config ui.js'; // Busca em layers de texto
+		#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
+		#include 'source/layout/Utils/o padeiro folders ui.js'; // Busca em layers de texto
 		#include 'source/layout/Utils/o padeiro maker ui.js'; // Busca em layers de texto
+		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
 		var PAD_w = {}; // Objeto que representa a janela da interface
 
 		// Cria a janela da interface (ou usa um painel existente)

@@ -18,13 +18,43 @@ function PadMakerDialog() {
 
 	// ==============
 
+	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
+	layoutMainGrp2.orientation = 'column';
+	layoutMainGrp2.alignChildren = ['left', 'top'];
+	layoutMainGrp2.spacing = 10;
+	layoutMainGrp2.margins = 0;
+
+	var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	div.alignment = 'fill';
+
 	var layoutMainGrp1 = PAD_MAKER_w.add('group', undefined);
 	layoutMainGrp1.orientation = 'column';
 	layoutMainGrp1.alignChildren = ['left', 'top'];
 	layoutMainGrp1.spacing = 10;
 	layoutMainGrp1.margins = 0;
 
-	var labMain1 = layoutMainGrp1.add('statictext', undefined, 'ETAPA 1:');
+
+	var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	div.alignment = 'fill';
+
+	var layoutMainGrp3 = PAD_MAKER_w.add('group', undefined);
+	layoutMainGrp3.orientation = 'column';
+	layoutMainGrp3.alignChildren = ['left', 'top'];
+	layoutMainGrp3.spacing = 10;
+	layoutMainGrp3.margins = 0;
+
+
+	var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	div.alignment = 'fill';
+
+	var layoutMainGrp4 = PAD_MAKER_w.add('group', undefined);
+	layoutMainGrp4.orientation = 'column';
+	layoutMainGrp4.alignChildren = ['left', 'top'];
+	layoutMainGrp4.spacing = 10;
+	layoutMainGrp4.margins = 0;
+
+
+	var labMain1 = layoutMainGrp1.add('statictext', undefined, 'FORMULÁRIO:');
 	setTxtColor(labMain1, monoColors[2]);
 
 	var formMainGrp = layoutMainGrp1.add('group', undefined);
@@ -45,8 +75,7 @@ function PadMakerDialog() {
 
 	var edittext1 = inputGrp1.add('edittext', undefined, '+VC TARJA RODAPÉ CONVIDADO');
 	edittext1.preferredSize = [200, 24];
-
-	// ==============
+	edittext1.helpTip = 'identificador da configuração.';
 
 	var inputGrp2 = formMainGrp.add('group', undefined);
 	inputGrp2.orientation = 'column';
@@ -56,10 +85,9 @@ function PadMakerDialog() {
 
 	var statictext2 = inputGrp2.add('statictext', undefined, 'prefixo:');
 
-	var edittext2 = inputGrp2.add('edittext', undefined, 'RDP');
+	var edittext2 = inputGrp2.add('edittext', undefined, 'TARJA');
 	edittext2.preferredSize = [200, 24];
-
-	// ==============
+	edittext2.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
 
 	var inputGrp3 = formMainGrp.add('group', undefined);
 	inputGrp3.orientation = 'column';
@@ -69,9 +97,8 @@ function PadMakerDialog() {
 
 	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
 
-	var edittext3 = inputGrp3.add('edittext', [0, 0, 200, 200], 'digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.', {multiline: true});
-
-	// ==============
+	var edittext3 = inputGrp3.add('edittext', [0, 0, 200, 200], 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.', { multiline: true });
+	edittext3.helpTip = 'as dicas para ajudar no preenchimento.';
 
 	var inputGrp5 = formMainGrp.add('group', undefined);
 	inputGrp5.orientation = 'column';
@@ -82,39 +109,13 @@ function PadMakerDialog() {
 	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
 	statictext5.text = 'exemplo de preenchimento:';
 
-	var edittext5 = inputGrp5.add('edittext' , [0,0,200,80], 'CÁSSIO\nGABUS MENDES\n---\nATOR', { multiline: true });
-
-	var div = PAD_MAKER_w.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	var edittext5 = inputGrp5.add('edittext', [0, 0, 200, 80], 'CÁSSIO\nGABUS MENDES\n---\nATOR', { multiline: true });
+	edittext5.helpTip = 'apenas um exemplo.';
 
 	// ==============
 
-	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
-	layoutMainGrp2.orientation = 'column';
-	layoutMainGrp2.alignChildren = ['left', 'top'];
-	layoutMainGrp2.spacing = 10;
-	layoutMainGrp2.margins = 0;
-
-	var labMain2 = layoutMainGrp2.add('statictext', undefined, 'ETAPA 2:');
+	var labMain2 = layoutMainGrp2.add('statictext', undefined, 'GUIA BÁSICO:');
 	setTxtColor(labMain2, monoColors[2]);
-
-	// ==============
-
-	var div = PAD_MAKER_w.add('panel', undefined, undefined);
-	div.alignment = 'fill';
-
-	// ==============
-
-	var layoutMainGrp3 = PAD_MAKER_w.add('group', undefined);
-	layoutMainGrp3.orientation = 'column';
-	layoutMainGrp3.alignChildren = ['left', 'top'];
-	layoutMainGrp3.spacing = 10;
-	layoutMainGrp3.margins = 0;
-
-	var labMain3 = layoutMainGrp3.add('statictext', undefined, 'ETAPA 3:');
-	setTxtColor(labMain3, monoColors[2]);
-
-	// ==============
 
 	var tipsGrp = layoutMainGrp2.add('group', undefined);
 	tipsGrp.orientation = 'column';
@@ -122,31 +123,34 @@ function PadMakerDialog() {
 	tipsGrp.spacing = 10;
 	tipsGrp.margins = 0;
 
-	var instructionsTxt = 'salve o projeto!\n\
-abra a comp do template\n(ela precisa ter \'TEMPLATE\' no nome)\n\
-posicione a agulha da timeline\nem um frame de referencia\n(essa será a imagem de preview)\n\
-selecione os layers de texto que\nserão editáveis no template\n(na ordem que deverão ser preenchidos)\n\
-clique no botão capturar...';
+	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
+renomeie a comp principal, ela precisa ter \'TEMPLATE\' no final do nome.\n\
+posicione a agulha da timeline em um frame de referencia, essa será a imagem de preview do template.\n\
+selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
+adicione as pastas de mídia e outputs necessários.\n\
+em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' + relax + '\njean.billard';
 	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
 	setTxtColor(tipsLab, mainColors[1]);
 
-	var div = layoutMainGrp2.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var div = layoutMainGrp2.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
 
-	var previewGrp = layoutMainGrp2.add('group', undefined);
+	// ==============
+
+	var labMain3 = layoutMainGrp3.add('statictext', undefined, 'PREVIEW:');
+	setTxtColor(labMain3, monoColors[2]);
+
+	var previewGrp = layoutMainGrp3.add('group', undefined);
 	previewGrp.orientation = 'column';
 	previewGrp.alignChildren = ['left', 'center'];
 	previewGrp.spacing = 10;
 	previewGrp.margins = 0;
 
-	var previewLab = previewGrp.add('statictext', undefined, 'preview:');
+	// var previewLab = previewGrp.add('statictext', undefined, 'preview:');
 	var previewImg = previewGrp.add('image', undefined, no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
 	previewImg.size = [1920, 1080] * 0.1;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
-	
-	var div = layoutMainGrp2.add('panel', undefined, undefined);
-	div.alignment = 'fill';
 
-	var btnGrp1 = layoutMainGrp2.add('group', undefined);
+	var btnGrp1 = layoutMainGrp3.add('group', undefined);
 	btnGrp1.orientation = 'row';
 	btnGrp1.alignChildren = ['left', 'bottom'];
 	btnGrp1.spacing = 10;
@@ -154,7 +158,11 @@ clique no botão capturar...';
 
 	var captureBtn = btnGrp1.add('button', undefined, 'capturar');
 
-	// ==============
+	var div = layoutMainGrp3.add('panel', undefined, undefined);
+	div.alignment = 'fill';
+	
+	var labMain4 = layoutMainGrp3.add('statictext', undefined, 'PROJETO:');
+	setTxtColor(labMain4, monoColors[2]);
 
 	var projGrp = layoutMainGrp3.add('group', undefined);
 	projGrp.orientation = 'column';
@@ -234,12 +242,15 @@ clique no botão capturar...';
 
 	// ==============
 
-	var importMainGrp = projGeneralGrp.add('group', undefined);
+	var labMain5 = layoutMainGrp4.add('statictext', undefined, 'CAMINHOS:');
+	setTxtColor(labMain5, monoColors[2]);
+
+	var importMainGrp = layoutMainGrp4.add('group', undefined);
 	importMainGrp.orientation = 'column';
 	importMainGrp.alignChildren = ['left', 'center'];
 	importMainGrp.spacing = 2;
 	importMainGrp.margins = 0;
-	
+
 	var importLab = importMainGrp.add('statictext', undefined, 'pastas de mídias:');
 
 	var importGrp = importMainGrp.add('group', undefined);
@@ -254,12 +265,12 @@ clique no botão capturar...';
 
 	// ==============
 
-	var outputMainGrp = projGeneralGrp.add('group', undefined);
+	var outputMainGrp = layoutMainGrp4.add('group', undefined);
 	outputMainGrp.orientation = 'column';
 	outputMainGrp.alignChildren = ['left', 'center'];
 	outputMainGrp.spacing = 2;
 	outputMainGrp.margins = 0;
-	
+
 	var outputLab = outputMainGrp.add('statictext', undefined, 'pastas de output:');
 
 	var outputGrp = outputMainGrp.add('group', undefined);
@@ -276,14 +287,10 @@ clique no botão capturar...';
 	deleteBtn.helpTip = 'deletar caminho';
 	deleteBtn.preferredSize = [24, 24];
 
-	// ==============
-
-	var div = layoutMainGrp3.add('panel', undefined, undefined);
+	var div = layoutMainGrp4.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	// ==============
-
-	var btnGrp2 = layoutMainGrp3.add('group', undefined);
+	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
 	btnGrp2.alignChildren = ['left', 'bottom'];
 	btnGrp2.spacing = 10;
@@ -293,6 +300,8 @@ clique no botão capturar...';
 
 	var makeBtn = btnGrp2.add('button', undefined, 'criar');
 
+
+	// ==============
 	PAD_MAKER_w.onShow = function () {
 
 		var tempItem = app.project.activeItem;
