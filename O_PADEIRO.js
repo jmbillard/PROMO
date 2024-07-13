@@ -63,10 +63,34 @@ function O_PADEIRO_UTL(thisObj) {
 		}
 	}
 
+	function changeIcon(imageIndex, imagesGrp) {
+		for (var i = 0; i < imagesGrp.children.length; i++) {
+			imagesGrp.children[i].visible = i == imageIndex;
+		}
+	}
+
+	function populateMainIcons(prodDataArray, imagesGrp) {
+
+		while (imagesGrp.children.length > 0) {
+			imagesGrp.remove(imagesGrp.children[0]);
+		}
+
+		for (var i = 0; i < prodDataArray.length; i++) {
+			var newIcon = imagesGrp.add('image', undefined, undefined);
+			try {
+				newIcon.image = eval(prodDataArray[i].icon);
+			} catch (err) {
+				newIcon.image = defaultProdData.PRODUCTIONS[0].icon;
+			}
+			newIcon.helpTip = prodDataArray[0].name;
+			newIcon.preferredSize = [24, 24];
+			newIcon.visible = i == 0;
+		}
+	}
+
 	function O_PADEIRO_UI() {
 
 		var PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json')); // dados das produções
-		var iconsFolder = new Folder(new File($.fileName).path + '/icons'); // pasta de ícones
 		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates
 
 		// utilidades com interface
@@ -151,13 +175,9 @@ function O_PADEIRO_UTL(thisObj) {
 		var prodGrp = PAD_w.add('group'); // Grupo de botões superior
 		prodGrp.spacing = 4; // Espaçamento entre botões
 
-		var mainIconFile = File(iconsFolder.fullName + '/' + PAD_prodArray[0].icon);
-
-		if (!mainIconFile.exists || mainIconFile instanceof Folder) mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
-
-		var ICON = prodGrp.add('image', undefined, mainIconFile);
-		ICON.preferredSize = [24, 24];
-		ICON.helpTip = PAD_prodArray[0].name;
+		var iconGrp = prodGrp.add('group');
+		iconGrp.orientation = 'stack'; // Layout vertical
+		populateMainIcons(PAD_prodArray, iconGrp);
 
 		var prodDrop = prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
 		prodDrop.selection = 0; // Seleciona a produção padrão.
@@ -170,7 +190,6 @@ function O_PADEIRO_UTL(thisObj) {
 		// Estilização da interface
 		setTxtHighlight(PAD_vLab, '#000000', '#FF7B79'); // Cor de destaque do texto
 		setBgColor(PAD_w, '#515D9E'); // Cor de fundo da janela
-
 
 		PAD_w.onShow = PAD_w.onResizing = function () { // Define uma função a ser executada quando a janela é exibida ou redimensionada.
 
@@ -188,7 +207,7 @@ function O_PADEIRO_UTL(thisObj) {
 			// Define as margens do grupo principal de elementos.
 			// Se a janela for mais larga, a margem direita será maior para acomodar o rótulo de versão.
 			// Se a janela for mais alta, a margem inferior será maior para acomodar o rótulo de versão.
-			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [180, 0, 40, 0] : [0, 60, 0, 20];
+			var mainMargins = PAD_w.size.width > PAD_w.size.height ? [180, 0, 40, 0] : [0, 55, 0, 20];
 
 			if (grpLayout == 'column' && PAD_w.size.width < 150) {
 				prodDrop.size.width = PAD_w.size.width - 16;
@@ -225,7 +244,7 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		ICON.addEventListener('click', function (c) {
+		iconGrp.addEventListener('click', function (c) {
 
 			// Verifica se aconteceu um clique duplo (detail == 2).
 			if (c.detail == 2) {
@@ -238,34 +257,24 @@ function O_PADEIRO_UTL(thisObj) {
 
 				// Popula a lista de produções do menu
 				populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
+				populateMainIcons(PAD_prodArray, this);
 
 				prodDrop.selection = 0; // Seleciona a primeira produção.
+				this.layout.layout(true);
 			}
 		});
 
 		prodDrop.onChange = function () {
-			// Este ouvinte será acionado quando o usuário selecionar uma produção do menu.
 
 			var i = this.selection.index;
-			var tip = PAD_prodArray[i].name; // texto de ajuda (NOME DA PRODUÇÃO SELECIONADA).
+			changeIcon(i, iconGrp);
 
 			templatesFolder = new Folder(PAD_prodArray[i].templatesPath); // pasta de templates.
-			mainIconFile = new File(iconsFolder.fullName + '/' + PAD_prodArray[i].icon); // arquivo de imagem do ícone.
-
-			// Se o arquivo de imagem do ícone não existir, atribui um arquivo de imagem padrão.
-			if (!mainIconFile.exists || mainIconFile instanceof Folder || PAD_prodArray[i].icon == '') mainIconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
+			PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
 
 			// Se a pasta de templates não existir.
-			if (!templatesFolder.exists) {
+			if (!templatesFolder.exists) alert(lol + '#PAD_002 - a pasta de templates não foi localizada...');
 
-				// Mensagem de erro.
-				tip = '#PAD_002 - a pasta de templates não foi localizada...';
-				alert(lol + tip);
-			}
-
-			PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
-			ICON.image = mainIconFile; // Define o ícone.
-			ICON.helpTip = tip; // Define o texto de ajuda.
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.

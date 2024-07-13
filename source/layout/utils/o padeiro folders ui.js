@@ -11,13 +11,8 @@ function padConfigDialog(prodArray) {
 	function addProdLine(prodObj) {
 
 		var nameTxt = prodObj.name;
-		var iconFile = File(iconsFolder.fullName + '/' + prodObj.icon);
 		var pathTxt = limitNameSize(prodObj.templatesPath, 35);
-
-		if (!iconFile.exists || iconFile instanceof Folder) {
-			iconFile = File.decode(defaultProdData.PRODUCTIONS[0].icon);
-			prodObj.icon = '';
-		}
+		var iconImg = prodObj.icon;
 
 		var prodGrp = prodMainGrp.add('group', undefined);
 		prodGrp.orientation = 'column';
@@ -38,7 +33,12 @@ function padConfigDialog(prodArray) {
 		prodNameTxt.helpTip = 'nome que aparecerá no menu';
 		prodNameTxt.preferredSize = [130, 24];
 
-		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, iconFile, { style: 'toolbutton', prodIcon: prodObj.icon });
+		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, undefined, { style: 'toolbutton', prodIcon: prodObj.icon });
+		try {
+			prodIconBtn.image = eval(iconImg);
+		} catch (err) {
+			prodIconBtn.image = defaultProdData.PRODUCTIONS[0].icon;
+		}
 		prodIconBtn.helpTip = 'ícone que aparecerá no menu';
 		prodIconBtn.preferredSize = [36, 36];
 
@@ -58,8 +58,8 @@ function padConfigDialog(prodArray) {
 			var newIconFile = File.openDialog('selecione o ícone', "*.png", false);
 
 			if (newIconFile != null) {
-				prodIconBtn.image = newIconFile;
-				this.properties.prodIcon = newIconFile.fullName;
+				this.properties.prodIcon = fileToBinary(newIconFile);
+				this.image = newIconFile;
 			}
 			this.parent.layout.layout(true);
 		}
@@ -97,11 +97,16 @@ function padConfigDialog(prodArray) {
 
 	var prodMainGrp = PAD_CONFIG_w.add('group', undefined);
 	prodMainGrp.orientation = 'column';
-	prodMainGrp.alignChildren = ['left', 'center'];
 	prodMainGrp.spacing = 10;
 
-	for (var p = 0; p < prodArray.length; p++) {
-		addProdLine(prodArray[p]);
+	for (var u = 0; u < prodArray.length; u++) {
+
+		try{
+			addProdLine(prodArray[u]);
+		} catch(err) {
+			prodArray[u].icon = defPadObj.PRODUCTIONS[0].icon;
+			addProdLine(prodArray[u]);
+		}
 	}
 
 	// ===========
@@ -164,21 +169,10 @@ function padConfigDialog(prodArray) {
 
 				for (var u = 0; u < prodMainGrp.children.length; u++) {
 					var subGrp = prodMainGrp.children[u].children[0];
-					var tempIconPath = subGrp.children[1].properties.prodIcon;
-					var tempIconFile = File(tempIconPath);
-
-					if (tempIconFile.exists && tempIconFile instanceof File && tempIconPath != '') {
-						try {
-							copyFile(tempIconFile.fullName, tempConfigFile.path + '/icons'); // copia o ícone
-
-						} catch (err) {
-							alert(lol + '#PAD_013 - ' + err.message);
-						}
-					}
 
 					var tempObj = {
 						name: subGrp.children[0].text,
-						icon: tempIconPath,
+						icon: subGrp.children[1].properties.prodIcon,
 						templatesPath: subGrp.children[2].properties.prodPath
 					}
 
@@ -198,10 +192,16 @@ function padConfigDialog(prodArray) {
 
 	prodNewBtn.onClick = function () {
 
-		addProdLine(defaultProdData.PRODUCTIONS[0]);
+		try {
+			addProdLine(defaultProdData.PRODUCTIONS[0]);
+
+		} catch (err) {
+			alert(lol + '#PAD_013 - ' + err.message);
+		}
 
 		prodMainGrp.layout.layout(true);
 		PAD_CONFIG_w.layout.layout(true);
+
 	}
 
 	prodSaveBtn.onClick = function () {
@@ -212,24 +212,10 @@ function padConfigDialog(prodArray) {
 
 			for (var u = 0; u < prodMainGrp.children.length; u++) {
 				var subGrp = prodMainGrp.children[u].children[0];
-				var tempIconPath = subGrp.children[1].properties.prodIcon;
-				var tempIconFile = File(tempIconPath);
-
-				if (tempIconFile.exists && tempIconFile instanceof File) {
-
-					try {
-
-						if (tempIconFile.path != iconsFolder.fullName) copyFile(tempIconPath, iconsFolder.fullName); // copia o ícone
-
-						tempIconPath = tempIconFile.displayName;
-					} catch (err) {
-						alert(lol + '#PAD_015 - ' + err.message);
-					}
-				}
 
 				var tempObj = {
 					name: subGrp.children[0].text,
-					icon: tempIconPath,
+					icon: subGrp.children[1].properties.prodIcon,
 					templatesPath: subGrp.children[2].properties.prodPath
 				}
 
