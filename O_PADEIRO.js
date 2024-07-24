@@ -45,7 +45,7 @@ function O_PADEIRO_UTL(thisObj) {
 	// salva os dados das produções
 	function saveProdData(prodDataArray) {
 		var prodData = { PRODUCTIONS: prodDataArray };
-		var configFile = new File(deleteFileExt($.fileName) + '_config.json');
+		var configFile = new File(scriptMainPath + 'O_PADEIRO_config.json');
 		var configContent = JSON.stringify(prodData, null, '\t');
 		writeFileContent(configFile, configContent);
 	}
@@ -53,7 +53,6 @@ function O_PADEIRO_UTL(thisObj) {
 	// atualiza os dados das produções
 	function updateProdData(configFile) {
 		try {
-			// var configFile = new File(deleteFileExt($.fileName) + '_config.json'); // Caminho e nome do arquivo de configuração JSON
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 			return sortProdData(prodData.PRODUCTIONS);
@@ -90,7 +89,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 	function O_PADEIRO_UI() {
 
-		var PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json')); // dados das produções
+		var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
 		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates
 
 		// utilidades com interface
@@ -253,7 +252,7 @@ function O_PADEIRO_UTL(thisObj) {
 				prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 				// atualiza os dados das produções.
-				PAD_prodArray = updateProdData(new File(deleteFileExt($.fileName) + '_config.json'));
+				PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
 
 				// Popula a lista de produções do menu
 				populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
@@ -269,6 +268,7 @@ function O_PADEIRO_UTL(thisObj) {
 			var i = this.selection.index;
 			changeIcon(i, iconGrp);
 
+			templatesPath = PAD_prodArray[i].templatesPath;
 			templatesFolder = new Folder(PAD_prodArray[i].templatesPath); // pasta de templates.
 			PAD_launchBtn.enabled = templatesFolder.exists; // Habilita / Desabilita o botão "Abrir O Padeiro".
 
