@@ -1,5 +1,5 @@
 {
-	"configName": "OLIMPIADAS 2024 SERVICO DIA HORA",
+	"configName": "OLIMPIADAS 2024 CARTAO SERVICO DIA HORA",
 	"exemple": "DAQUI A\nPOUCO\n---\n8:00",
 	"tip": "digite o servico em 1, 2 ou 3 linhas e em seguida o horário.\n\nuse \"---\" para separa cada tipo de informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
