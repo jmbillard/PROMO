@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 CONFRONTO",
 	"exemple": "VÔLEI MASCULINO\n---\nBRASIL X PORTUGAL\n---\n2:00",
-	"tip": "digite o esporte na primeira linha seguido dos nomes dos países na segunda e horário na terceira.\n\nuse um \" X \" entre o nome dos 2 países.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"tip": "digite o esporte, seguido dos nomes dos países e horário.\n\nuse \"---\" para separa cada tipo de informação.\n\nuse um \" X \" entre o nome dos 2 países.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "CONFRONTO TEMPLATE",
 	"prefix": "CONFRONTO",
