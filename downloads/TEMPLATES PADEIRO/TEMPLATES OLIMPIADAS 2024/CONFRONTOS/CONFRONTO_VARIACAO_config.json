@@ -1,0 +1,23 @@
+{
+	"configName": "OLIMPIADAS 2024 CONFRONTO",
+	"exemple": "VÔLEI DE PRAIA FEMININO\n---\nBRASIL X ESTADOS UNIDOS\n---\nANA PATRÍCIA E DUDA\n---\nNUSS E KLOTH\n---\n4:00",
+	"tip": "digite o esporte na primeira linha seguido, nomes dos países, nomes dos atletas e horário.\n\nuse um \" X \" entre o nome dos 2 países.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+
+	"compName": "CONFRONTO VARIACAO TEMPLATE",
+	"prefix": "CONFRONTO",
+	"refTime": 4,
+	"separator": "---",
+	"textCase": "upperCase",
+	"inputLayers": [
+		{"layerIndex": 1, "method": "layerName"},
+		{"layerIndex": 2, "method": "layerName"},
+		{"layerIndex": 4, "method": "textContent"},
+		{"layerIndex": 5, "method": "textContent"},
+		{"layerIndex": 14, "method": "textContent"}
+	],
+
+	"outputPath": [
+		"//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/ESPORTES/OLIMPIADAS/OLIMPIADAS 2024/GRAFISMO EVENTOS OLIMPICOS/CONFRONTOS"
+	],
+	"alpha": true
+}

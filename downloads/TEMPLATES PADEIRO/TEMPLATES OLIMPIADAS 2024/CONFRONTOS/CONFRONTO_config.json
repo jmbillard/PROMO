@@ -5,7 +5,7 @@
 
 	"compName": "CONFRONTO TEMPLATE",
 	"prefix": "CONFRONTO",
-	"refTime": 2,
+	"refTime": 4,
 	"separator": "---",
 	"textCase": "upperCase",
 	"inputLayers": [
@@ -15,7 +15,7 @@
 	],
 
 	"outputPath": [
-		"//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/ESPORTES/OLIMPIADAS/OLIMPIADAS 2024/CONFRONTOS"
+		"//10.228.183.174/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE RJ/ESPORTES/OLIMPIADAS/OLIMPIADAS 2024/GRAFISMO EVENTOS OLIMPICOS/CONFRONTOS"
 	],
 	"alpha": true
 }
