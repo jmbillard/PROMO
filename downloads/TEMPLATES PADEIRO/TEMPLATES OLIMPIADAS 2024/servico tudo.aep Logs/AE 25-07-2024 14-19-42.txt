@@ -1,12 +1,0 @@
-Adobe After Effects v23.0 Windows 64 render log for project “servico tudo.aep”
-
-Rendering started on 25/07/2024 at 14:19:42
-
-  25/07/2024 14:19:42: Starting composition “CONFRONTO - VOLEI DE PRAIA FEMININO ANA PATRICIA E DUDA X NUSS E KLOTH 4 00”.
-
-  Output To: \\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\OLIMPIADAS\OLIMPIADAS 2024\GRAFISMO EVENTOS OLIMPICOS\CONFRONTOS\CONFRONTO - VOLEI DE PRAIA FEMININO BRASIL X ESTADOS UNIDOS ANA PATRICIADUDA NUSSKLOTH 4 00.mov  After Effects error: Can not run a script while a modal dialog is waiting for response.After Effects error: Can not run a script while a modal dialog is waiting for response.    Render stopped by user.    25/07/2024 14:19:55: Finished composition “CONFRONTO - VOLEI DE PRAIA FEMININO ANA PATRICIA E DUDA X NUSS E KLOTH 4 00”.
-
-
-  Total Time Elapsed: 12 Seconds
-Log closed on 25/07/2024 at 14:19:55
-
