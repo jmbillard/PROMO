@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 CONFRONTO VARIACAO",
-	"exemple": "VÔLEI DE PRAIA FEMININO\n---\nBRASIL X ESTADOS UNIDOS\n---\nANA PATRÍCIA/DUDA\n---\nNUSS/KLOTH\n---\n4:00",
-	"tip": "digite o esporte na primeira linha seguido, nomes dos países, nomes dos atletas e horário.\n\nuse \"---\" para separa cada tipo de informação.\n\nuse um \" X \" entre o nome dos 2 países.\n\nuse uma \" / \" entre o nome dos atletas da mesma equipe.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"exemple": "VÔLEI DE PRAIA\nFEMININO\nBRASIL X ESTADOS UNIDOS\nANA PATRÍCIA/DUDA\nNUSS/KLOTH\n4:00",
+	"tip": "digite em ordem:\nESPORTE\nGÊNERO\nPAÍS 1 X PAÍS 2\nATLETA 1 / ATLETA 2\nATLETA 3 / ATLETA 4\nHORÁRIO\n\nuse um \" X \" entre o nome dos 2 países.\n\nuse uma \" / \" entre o nome dos atletas da mesma equipe.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "CONFRONTO VARIACAO TEMPLATE",
 	"prefix": "CONFRONTO",
