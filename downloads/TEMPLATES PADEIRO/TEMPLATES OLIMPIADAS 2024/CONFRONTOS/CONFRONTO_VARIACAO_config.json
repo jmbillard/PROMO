@@ -6,10 +6,11 @@
 	"compName": "CONFRONTO VARIACAO TEMPLATE",
 	"prefix": "CONFRONTO",
 	"refTime": 4,
-	"separator": "---",
+	"separator": "\n",
 	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "layerName"},
+		{"layerIndex": 13, "method": "textContent"},
 		{"layerIndex": 2, "method": "layerName"},
 		{"layerIndex": 4, "method": "textContent"},
 		{"layerIndex": 5, "method": "textContent"},
