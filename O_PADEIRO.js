@@ -90,7 +90,8 @@ function O_PADEIRO_UTL(thisObj) {
 	function O_PADEIRO_UI() {
 
 		var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
-		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates
+		templatesPath = PAD_prodArray[0].templatesPath;
+		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
 
 		// utilidades com interface
 		#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
