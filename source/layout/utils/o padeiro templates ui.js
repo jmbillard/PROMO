@@ -6,7 +6,7 @@
 
 */
 // Declaração da versão do script 'O Padeiro'
-var PAD_v = '1.0';
+var PAD_v = '1.1';
 
 // Objeto que armazena as configurações padrão (default) do Padeiro
 var defPadObj = {
