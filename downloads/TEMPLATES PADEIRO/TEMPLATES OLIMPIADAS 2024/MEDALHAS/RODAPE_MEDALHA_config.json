@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 RODAPE MEDALHA",
-	"exemple": "OURO\nVÔLEI FEMININO",
-	"tip": "digite a medalha na primeira linha e o nome do atleta ou modalidade na segunda linha.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"exemple": "OURO\nVÔLEI\nFEMININO",
+	"tip": "digite o texto em ordem:\nMEDALHA\nESPORTE\nINFORMAÇÃO\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "RODAPE MEDALHA TEMPLATE",
 	"prefix": "RDP",
@@ -10,7 +10,8 @@
 	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 2, "method": "layerName"},
-		{"layerIndex": 3, "method": "textContent"}
+		{"layerIndex": 3, "method": "textContent"},
+		{"layerIndex": 4, "method": "textContent"}
 	],
 
 	"outputPath": [

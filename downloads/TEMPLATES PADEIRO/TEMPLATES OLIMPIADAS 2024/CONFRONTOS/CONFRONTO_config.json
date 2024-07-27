@@ -10,9 +10,9 @@
 	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "layerName"},
-		{"layerIndex": 11, "method": "textContent"},
+		{"layerIndex": 8, "method": "textContent"},
 		{"layerIndex": 2, "method": "layerName"},
-		{"layerIndex": 12, "method": "textContent"}
+		{"layerIndex": 9, "method": "textContent"}
 	],
 
 	"outputPath": [
