@@ -65,7 +65,7 @@ txtUpperBtn.onClick = function () {
   app.beginUndoGroup('mudar texto para caixa alta');
 
   for (var i = 0; i < selLayers.length; i++) {
-    var txt = textContent(selLayers[i]);
+    var txt = getTextLayerContent(selLayers[i]);
 
     if (txt == '') continue;
     selLayers[i]
@@ -89,7 +89,7 @@ txtLowerBtn.onClick = function () {
   app.beginUndoGroup('mudar texto para caixa baixa');
 
   for (i = 0; i < selLayers.length; i++) {
-    var txt = textContent(selLayers[i]);
+    var txt = getTextLayerContent(selLayers[i]);
 
     if (txt == '') continue;
     selLayers[i]
@@ -113,7 +113,7 @@ txtTitleBtn.onClick = function () {
   app.beginUndoGroup('mudar texto para caixa de título');
 
   for (i = 0; i < selLayers.length; i++) {
-    var txt = textContent(selLayers[i]);
+    var txt = getTextLayerContent(selLayers[i]);
 
     if (txt == '') continue;
     selLayers[i]

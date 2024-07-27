@@ -90,8 +90,8 @@ function objCode(obj) {
 		default:
 			valName = 'textDoc';
 			var textDoc = obj;
-			var textContent = textDoc.text.replace(/\n|\r/g, '\\n');
-			objValue += '\ttextDoc.text = \'' + textContent + '\';\
+			var getTextLayerContent = textDoc.text.replace(/\n|\r/g, '\\n');
+			objValue += '\ttextDoc.text = \'' + getTextLayerContent + '\';\
 \ttextDoc.font = \'' + textDoc.font + '\';\
 \ttextDoc.fontSize = ' + textDoc.fontSize + ';\
 \ttextDoc.applyStroke = ' + textDoc.applyStroke.toString() + ';\

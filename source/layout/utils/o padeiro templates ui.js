@@ -554,16 +554,16 @@ function padeiroTemplateDialog() {
 							// Pula para a próxima iteração se o texto estiver vazio
 							if (txtList[l] == '') continue;
 
-							// Se o método de entrada for 'textContent' (conteúdo de texto)
-							if (inputLayerList[l].method == 'textContent') {
+							// Se o método de entrada for 'getTextLayerContent' (conteúdo de texto)
+							if (inputLayerList[l].method == 'getTextLayerContent') {
 								if (!(inputLayer instanceof TextLayer)) continue; // Pula se a camada não for uma camada de texto
 
 								txtList[l] = txtList[l].trim(); // Remove espaços em branco do texto
-								var textContent = txtList[l];   // Obtém o conteúdo do texto
+								var getTextLayerContent = txtList[l];   // Obtém o conteúdo do texto
 								var text = inputLayer.property('ADBE Text Properties');  // Obtém a propriedade de texto da camada
 								var textDoc = text.property('ADBE Text Document').value; // Obtém o documento de texto da camada
 
-								textDoc.text = textContent;                                   // Define o novo conteúdo do texto
+								textDoc.text = getTextLayerContent;                                   // Define o novo conteúdo do texto
 								text.property('ADBE Text Document').setValue(textDoc);        // Aplica o novo conteúdo
 								txtList[l] = txtList[l].replaceSpecialCharacters();           // Remove caracteres especiais do texto
 							}

@@ -287,7 +287,7 @@ function LOGO_GLOBO() {
 
 */
 // Retorna o conteúdo de texto de uma camada de texto (TextLayer).
-function textContent(aLayer) {
+function getTextLayerContent(aLayer) {
 	// Retorna vazio se a camada for nula ou não for do tipo TextLayer
 	if (aLayer == null || !(aLayer instanceof TextLayer)) return '';
 
@@ -303,7 +303,7 @@ function cleanText(aLayer) {
 	if (!(aLayer instanceof TextLayer)) return;
 
 	var srcTxt = aLayer.property('ADBE Text Properties').property('ADBE Text Document'); // Documento de texto
-	var lineArray = textContent(aLayer).split(/[\n|\r]+/); // Divide o texto em linhas
+	var lineArray = getTextLayerContent(aLayer).split(/[\n|\r]+/); // Divide o texto em linhas
 
 	// Itera sobre as linhas e remove espaços extras
 	for (var t = 0; t < lineArray.length; t++) {
@@ -315,7 +315,7 @@ function cleanText(aLayer) {
 
 // Divide uma camada de texto em múltiplas colunas.
 function columnText(sLayer) {
-	var srcTxt = textContent(sLayer);                    // Obtém o conteúdo de texto da camada
+	var srcTxt = getTextLayerContent(sLayer);                    // Obtém o conteúdo de texto da camada
 	var txt = srcTxt.replace(/\s*[\r\n]{1,}\s*/g, '*|*') // Substitui quebras de linha e espaços por delimitadores
 		.replace(/\s*-{3,}\s*/g, '*|*')
 		.replace(/\s{2,}/g, '*|*');

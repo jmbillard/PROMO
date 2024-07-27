@@ -650,7 +650,7 @@ typeAnimBtn.onClick = function () {
 	}
 
 	for (var l = 0; l < selLayers.length; l++) {
-		var content = textContent(selLayers[l]).replace(/[\—\-\_\|]$/, '');
+		var content = getTextLayerContent(selLayers[l]).replace(/[\—\-\_\|]$/, '');
 
 		if (content == '') continue;
 		txtArray.push(content);
@@ -704,7 +704,7 @@ wordsBtn.onClick = function () {
 	}
 
 	for (var l = 0; l < selLayers.length; l++) {
-		var content = textContent(selLayers[l]).replace(/[\—\-\_\|]$/, '');
+		var content = getTextLayerContent(selLayers[l]).replace(/[\—\-\_\|]$/, '');
 
 		if (content == '') continue;
 		txtArray.push(content);

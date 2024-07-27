@@ -200,7 +200,7 @@ function buildTxtSearchTree(tree, obj, compArray, progressBar) {
 			// Se a propriedade de texto tiver uma expressão
 			if (doc.expression != '') comp.time = refTime; // Define o tempo para antes do ponto de saída da camada
 
-			var sTxt = textContent(txtLayer);
+			var sTxt = getTextLayerContent(txtLayer);
 			
 			if (doc.value.allCaps) sTxt = sTxt.toUpperCase(); // Ajusta a palavra-chave para maiúsculas se a opção estiver marcada
 			if (!matchCase) sTxt = sTxt.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada
@@ -220,7 +220,7 @@ function buildTxtSearchTree(tree, obj, compArray, progressBar) {
 				for (var k = 1; k <= doc.numKeys; k++) {
 					comp.time = doc.keyTime(k); // Define o tempo da composição para o keyframe atual
 
-					sTxt = textContent(txtLayer);
+					sTxt = getTextLayerContent(txtLayer);
 					
 					if (doc.value.allCaps) sTxt = sTxt.toUpperCase(); // Ajusta a palavra-chave para maiúsculas se a opção estiver marcada
 					if (!matchCase) sTxt = sTxt.toLowerCase(); // Ajusta a palavra-chave para minúsculas se a opção estiver desmarcada

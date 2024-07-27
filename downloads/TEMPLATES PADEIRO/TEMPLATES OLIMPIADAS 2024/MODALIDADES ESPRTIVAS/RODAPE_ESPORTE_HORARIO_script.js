@@ -11,15 +11,6 @@ function getTextLayerContent(aLayer) {
 		.trim();                                   // Remove espaços em branco no início e no fim
 }
 
-for (var t = 0; t < createdTemplatesArray.length; t++) {
-	var nameContent = createdTemplatesArray[t].layer(2).name.split(/\s+X\s+/i);
-
-	try {
-		createdTemplatesArray[t].layer(2).name = nameContent[0];
-		createdTemplatesArray[t].layer(3).name = nameContent[1];
-
-	} catch (err) { }
-}
 renamePromoComps(createdTemplatesArray);
 
 var outputPathArray = templateData.outputPath;
@@ -27,7 +18,7 @@ var outputPathArray = templateData.outputPath;
 for (var t = 0; t < createdOutputModuleArray.length; t++) {
 	var o = t % outputPathArray.length;
 	var comp = createdTemplatesArray[t];
-	var pathIncrement = getTextLayerContent(comp.layer(9)).replaceSpecialCharacters();
+	var pathIncrement = getTextLayerContent(comp.layer(5)).replaceSpecialCharacters();
 	var newPath = outputPathArray[o] + '/' + pathIncrement;
 	var newFolder = new Folder(newPath);
 
