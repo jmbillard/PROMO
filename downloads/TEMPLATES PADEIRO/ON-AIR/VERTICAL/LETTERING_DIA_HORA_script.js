@@ -2,6 +2,7 @@
 
 renamePromoComps(createdTemplatesArray);
 
+
 var pathIncrement = [
 	'/MANHA/TARJAS_DIA_HORA_MANHA/',
 	'/TARDE/TARJAS_DIA_HORA_TARDE/',

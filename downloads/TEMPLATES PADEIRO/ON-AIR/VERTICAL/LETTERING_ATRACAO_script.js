@@ -7,6 +7,7 @@ var pathIncrement = [
 ];
 var outputPathArray = templateData.outputPath;
 
+
 for (var t = 0; t < createdOutputModuleArray.length; t++) {
 
 	var o = t % outputPathArray.length;
