@@ -11,7 +11,7 @@ var iNum = app.project.numItems; // Número total de itens no projeto.
 var logoComp;
 
 // Obtém a data atual em um formato adequado para nomes de arquivo.
-var date = inputList[0].replace(/[\/\\\|]/g, '-'); // -> 11-06 a 16-06
+var date = inputList[0].replace(/[\/\\\|_]/g, '-'); // -> 11-06 a 16-06
 
 
 var logoFolder = app.project.items.addFolder('MARCAS ' + date); // Cria uma pasta no projeto para organizar os logos importados.

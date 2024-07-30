@@ -8,6 +8,76 @@
 
 function PadMakerDialog() {
 
+	function addLayers() {
+		var tempItem = app.project.activeItem;
+		var selLayers = tempItem.selectedLayers;
+
+		for (i = 0; i < selLayers.length; i++) {
+			var selLayer = selLayers[i];
+
+			if (selLayer.comment == 'TEMPLATE LAYER') continue;
+
+			var layerGrp = layersMainGrp.add('group', undefined);
+			layerGrp.orientation = 'row';
+			layerGrp.alignChildren = ['left', 'center'];
+			layerGrp.spacing = 10;
+			layerGrp.margins = 0;
+
+			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name);
+			layerLab.preferredSize.width = 90;
+
+			var layerDrop_array = ['conteúdo', 'nome'];
+			var layerDrop = layerGrp.add('dropdownlist', undefined, layerDrop_array);
+			layerDrop.selection = 0;
+			layerDrop.preferredSize.width = 90;
+
+			var excludeLayerBtn = layerGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton', selectedLayer: selLayer });
+			excludeLayerBtn.helpTip = 'excluir layer';
+			excludeLayerBtn.preferredSize = [24, 24];
+
+			excludeLayerBtn.onClick = function () {
+				try {
+					this.properties.selectedLayer.comment = '';
+				} catch (err) { }
+
+				this.parent.parent.remove(this.parent);
+
+				layersMainGrp.layout.layout(true);
+				PAD_MAKER_w.layout.layout(true);
+			}
+
+			selLayer.comment = 'TEMPLATE LAYER';
+		}
+		PAD_MAKER_w.layout.layout(true);
+	}
+
+	function addOutputFolder() {
+
+		var outputGrp = outputMainGrp.add('group', undefined);
+		outputGrp.orientation = 'row';
+		outputGrp.alignChildren = ['left', 'center'];
+		outputGrp.spacing = 10;
+
+		var outputPathLab = outputGrp.add('statictext', undefined, 'caminho da pasta...', { outputPath: '' });
+		outputPathLab.helpTip = 'caminho da pasta:';
+		outputPathLab.preferredSize = [150, 24];
+		setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+
+		var excludeOutputBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
+		excludeOutputBtn.helpTip = 'excluir caminho';
+		excludeOutputBtn.preferredSize = [24, 24];
+
+		excludeOutputBtn.onClick = function () {
+
+			if (this.parent.parent.children.length <= 1) return;
+
+			this.parent.parent.remove(this.parent);
+			outputMainGrp.layout.layout(true);
+			PAD_MAKER_w.layout.layout(true);
+		}
+		PAD_MAKER_w.layout.layout(true);
+	}
+
 	var tempPreviewFile;
 
 	// ==============
@@ -159,13 +229,13 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	var div = layoutMainGrp3.add('panel', undefined, undefined);
 	div.alignment = 'fill';
-	
+
 	var labMain4 = layoutMainGrp3.add('statictext', undefined, 'PROJETO:');
 	setTxtColor(labMain4, monoColors[2]);
 
 	var projGrp = layoutMainGrp3.add('group', undefined);
 	projGrp.orientation = 'column';
-	projGrp.alignChildren = ['center', 'center'];
+	projGrp.alignChildren = ['left', 'center'];
 	projGrp.spacing = 10;
 	projGrp.margins = 0;
 
@@ -222,27 +292,12 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	// ==============
 
-	var layerGrp = layersMainGrp.add('group', undefined);
-	layerGrp.orientation = 'row';
-	layerGrp.alignChildren = ['left', 'center'];
-	layerGrp.spacing = 10;
-	layerGrp.margins = 0;
-
-	var layerLab = layerGrp.add('statictext', undefined, 'layer 1:');
-	layerLab.preferredSize.width = 90;
-
-	var layerDrop_array = ['conteúdo', 'nome'];
-	var layerDrop = layerGrp.add('dropdownlist', undefined, layerDrop_array);
-	layerDrop.selection = 0;
-	layerDrop.preferredSize.width = 90;
-
 	var btnGrp4 = layoutMainGrp3.add('group', undefined);
 	btnGrp4.orientation = 'row';
 	btnGrp4.spacing = 10;
 	btnGrp4.margins = 0;
 
 	var selectLayersBtn = btnGrp4.add('button', undefined, 'selecionar layers');
-
 
 	// ==============
 
@@ -277,20 +332,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	var outputLab = outputMainGrp.add('statictext', undefined, 'pastas de output:');
 
-	var outputGrp = outputMainGrp.add('group', undefined);
-	outputGrp.orientation = 'row';
-	outputGrp.alignChildren = ['left', 'center'];
-	outputGrp.spacing = 10;
-
-	var outputPathLab = outputGrp.add('statictext', undefined, 'caminho da pasta...', { outputPath: '' });
-	outputPathLab.helpTip = 'caminho da pasta:';
-	outputPathLab.preferredSize = [150, 24];
-	setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
-
-	var deleteBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
-	deleteBtn.helpTip = 'deletar caminho';
-	deleteBtn.preferredSize = [24, 24];
-
 	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
 	btnGrp2.spacing = 10;
@@ -317,7 +358,20 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
 		previewImg.image = tempPreviewFile;
+
+		addLayers();
+		addOutputFolder();
 	};
+
+	selectLayersBtn.onClick = function () {
+
+		addLayers()
+	}
+
+	newOutputBtn.onClick = function () {
+
+		addOutputFolder();
+	}
 
 	PAD_MAKER_w.show();
 }
