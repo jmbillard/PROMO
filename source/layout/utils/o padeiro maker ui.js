@@ -9,8 +9,13 @@
 function PadMakerDialog() {
 
 	function addLayers() {
-		var tempItem = app.project.activeItem;
-		var selLayers = tempItem.selectedLayers;
+		var aItem = app.project.activeItem;
+
+		if (aItem.length == null) return;
+
+		var selLayers = aItem.selectedLayers;
+
+		if (selLayers.length == 0) return;
 
 		for (i = 0; i < selLayers.length; i++) {
 			var selLayer = selLayers[i];
@@ -23,8 +28,9 @@ function PadMakerDialog() {
 			layerGrp.spacing = 10;
 			layerGrp.margins = 0;
 
-			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name);
+			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name, { selectedLayer: selLayer });
 			layerLab.preferredSize.width = 90;
+			setTxtHighlight(layerLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
 			var layerDrop_array = ['conteúdo', 'nome'];
 			var layerDrop = layerGrp.add('dropdownlist', undefined, layerDrop_array);
@@ -35,6 +41,12 @@ function PadMakerDialog() {
 			excludeLayerBtn.helpTip = 'excluir layer';
 			excludeLayerBtn.preferredSize = [24, 24];
 
+			layerLab.addEventListener('mousedown', function () {
+				try {
+					this.properties.selectedLayer.selected = true;
+				} catch (err) { }
+			});
+	
 			excludeLayerBtn.onClick = function () {
 				try {
 					this.properties.selectedLayer.comment = '';
@@ -48,7 +60,6 @@ function PadMakerDialog() {
 
 			selLayer.comment = 'TEMPLATE LAYER';
 		}
-		PAD_MAKER_w.layout.layout(true);
 	}
 
 	function addOutputFolder() {
@@ -58,24 +69,34 @@ function PadMakerDialog() {
 		outputGrp.alignChildren = ['left', 'center'];
 		outputGrp.spacing = 10;
 
-		var outputPathLab = outputGrp.add('statictext', undefined, 'caminho da pasta...', { outputPath: '' });
+		var outputPathLab = outputGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { outputPath: '~/Desktop' });
 		outputPathLab.helpTip = 'caminho da pasta:';
-		outputPathLab.preferredSize = [150, 24];
 		setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
 		var excludeOutputBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
 		excludeOutputBtn.helpTip = 'excluir caminho';
 		excludeOutputBtn.preferredSize = [24, 24];
 
+		outputPathLab.addEventListener('mousedown', function () {
+
+			var newOutputFolder = new Folder(this.properties.outputPath)
+			var newOutputPath = newOutputFolder.selectDlg('selecione a pasta de output'); // Abre a janela de seleção de pastas
+
+			if (newOutputPath == null) return; // Se a janela foi cancelada, não faz nada
+
+			this.properties.outputPath = newOutputPath.fullName;
+			this.text = limitNameSize(newOutputPath.fullName, 30);
+			this.helpTip = 'caminho da pasta de output:\n\n' + newOutputPath.fullName;
+		});
+
 		excludeOutputBtn.onClick = function () {
 
-			if (this.parent.parent.children.length <= 1) return;
+			if (this.parent.parent.children.length <= 2) return;
 
 			this.parent.parent.remove(this.parent);
 			outputMainGrp.layout.layout(true);
 			PAD_MAKER_w.layout.layout(true);
 		}
-		PAD_MAKER_w.layout.layout(true);
 	}
 
 	var tempPreviewFile;
@@ -143,8 +164,7 @@ function PadMakerDialog() {
 
 	var statictext1 = inputGrp1.add('statictext', undefined, 'nome da configuração:');
 
-	var edittext1 = inputGrp1.add('edittext', undefined, '+VC TARJA RODAPÉ CONVIDADO');
-	edittext1.preferredSize = [200, 24];
+	var edittext1 = inputGrp1.add('edittext', [0, 0, 230, 24], '+VC TARJA RODAPÉ CONVIDADO');
 	edittext1.helpTip = 'identificador da configuração.';
 
 	var inputGrp2 = formMainGrp.add('group', undefined);
@@ -155,7 +175,7 @@ function PadMakerDialog() {
 
 	var statictext2 = inputGrp2.add('statictext', undefined, 'prefixo:');
 
-	var edittext2 = inputGrp2.add('edittext', undefined, 'TARJA');
+	var edittext2 = inputGrp2.add('edittext', [0, 0, 230, 24], 'TARJA');
 	edittext2.preferredSize = [200, 24];
 	edittext2.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
 
@@ -167,7 +187,7 @@ function PadMakerDialog() {
 
 	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
 
-	var edittext3 = inputGrp3.add('edittext', [0, 0, 200, 200], 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.', { multiline: true });
+	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 200], 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.', { multiline: true });
 	edittext3.helpTip = 'as dicas para ajudar no preenchimento.';
 
 	var inputGrp5 = formMainGrp.add('group', undefined);
@@ -179,7 +199,7 @@ function PadMakerDialog() {
 	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
 	statictext5.text = 'exemplo de preenchimento:';
 
-	var edittext5 = inputGrp5.add('edittext', [0, 0, 200, 80], 'CÁSSIO\nGABUS MENDES\n---\nATOR', { multiline: true });
+	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 80], 'CÁSSIO\nGABUS MENDES\n---\nATOR', { multiline: true });
 	edittext5.helpTip = 'apenas um exemplo.';
 
 	// ==============
@@ -202,9 +222,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
 	setTxtColor(tipsLab, mainColors[1]);
 
-	// var div = layoutMainGrp2.add('panel', undefined, undefined);
-	// div.alignment = 'fill';
-
 	// ==============
 
 	var labMain3 = layoutMainGrp3.add('statictext', undefined, 'PREVIEW:');
@@ -216,16 +233,16 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	previewGrp.spacing = 10;
 	previewGrp.margins = 0;
 
-	// var previewLab = previewGrp.add('statictext', undefined, 'preview:');
 	var previewImg = previewGrp.add('image', undefined, no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
-	previewImg.size = [1920, 1080] * 0.1;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
+	previewImg.size = [1920, 1080] * 0.12;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
 
 	var btnGrp1 = layoutMainGrp3.add('group', undefined);
 	btnGrp1.orientation = 'row';
 	btnGrp1.spacing = 10;
 	btnGrp1.margins = 0;
 
-	var captureBtn = btnGrp1.add('button', undefined, 'capturar');
+	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar', { comp: app.project.activeItem, ref_time: app.project.activeItem.time });
+	captureBtn.helpTip = 'captura o frame de preview,\na comp principal e o\ntempo de referência';
 
 	var div = layoutMainGrp3.add('panel', undefined, undefined);
 	div.alignment = 'fill';
@@ -248,7 +265,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	alphaGrp.margins = 0;
 
 	var alphaLab = alphaGrp.add('statictext', undefined, 'canal alpha:');
-	alphaLab.preferredSize.width = 90;
+	alphaLab.preferredSize.width = 130;
 
 	var alphaCkb = alphaGrp.add('checkbox', undefined, undefined);
 	alphaCkb.preferredSize.width = 90;
@@ -270,7 +287,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	textCaseGrp.margins = 0;
 
 	var caseLab = textCaseGrp.add('statictext', undefined, 'caixa de texto:');
-	caseLab.preferredSize.width = 90;
+	caseLab.preferredSize.width = 130;
 
 	var caseDrop_array = ['ALTA', 'baixa', 'Título'];
 	var caseDrop = textCaseGrp.add('dropdownlist', undefined, caseDrop_array);
@@ -297,7 +314,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	btnGrp4.spacing = 10;
 	btnGrp4.margins = 0;
 
-	var selectLayersBtn = btnGrp4.add('button', undefined, 'selecionar layers');
+	var selectLayersBtn = btnGrp4.add('button', [0, 0, 230, 24], 'selecionar layers');
 
 	// ==============
 
@@ -317,9 +334,8 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	importGrp.alignChildren = ['left', 'center'];
 	importGrp.spacing = 10;
 
-	var importPathLab = importGrp.add('statictext', undefined, 'caminho da pasta...', { importPath: '' });
+	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: '' });
 	importPathLab.helpTip = 'caminho da pasta:';
-	importPathLab.preferredSize = [150, 24];
 	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
 	// ==============
@@ -337,7 +353,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
-	var newOutputBtn = btnGrp2.add('button', undefined, 'novo output');
+	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], 'novo output');
 
 	var div = layoutMainGrp4.add('panel', undefined, undefined);
 	div.alignment = 'fill';
@@ -347,9 +363,10 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
-	var makeBtn = btnGrp3.add('button', undefined, 'criar');
+	var makeBtn = btnGrp3.add('button', [0, 0, 230, 24], 'criar');
 
 	// ==============
+
 	PAD_MAKER_w.onShow = function () {
 
 		var tempItem = app.project.activeItem;
@@ -361,12 +378,44 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 		addLayers();
 		addOutputFolder();
+
+		layersMainGrp.layout.layout(true);
+		outputMainGrp.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
 	};
+
+	captureBtn.onClick = function () {
+		var tempItem = app.project.activeItem;
+
+		this.properties.comp = tempItem;
+		this.properties.ref_time = tempItem.time
+
+		tempPreviewFile = new File('~/Desktop/' + tempItem.name.toUpperCase().replaceSpecialCharacters() + '_preview.png');
+		tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
+
+		previewImg.image = tempPreviewFile;
+
+		previewGrp.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
+	}
 
 	selectLayersBtn.onClick = function () {
 
 		addLayers()
 	}
+
+	importPathLab.addEventListener('mousedown', function () {
+
+		var newImportFolder = new Folder(this.properties.importPath)
+		var newImportPath = newImportFolder.selectDlg('selecione a pasta de mídias'); // Abre a janela de seleção de pastas
+
+		if (newImportPath == null) return; // Se a janela foi cancelada, não faz nada
+
+		this.properties.importPath = newImportPath.fullName;
+		this.text = limitNameSize(newImportPath.fullName, 25);
+		this.helpTip = 'caminho da pasta de mídias:\n\n' + newImportPath.fullName;
+	});
 
 	newOutputBtn.onClick = function () {
 
