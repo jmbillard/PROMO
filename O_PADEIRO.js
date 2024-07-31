@@ -297,12 +297,13 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 			if (c.button == 2) {
-				// Verifica se a pasta de templates existe.
-				// if (!templatesFolder.exists) {
-				// 	alert(lol + 'a pasta de templates não foi localizada...'); // mensagem de erro.
-				// 	return;
-				// }
-				// openFolder(templatesPath); // abre a pasta de templates.
+
+				if (app.project.numItems == 0) return;
+
+				var aItem = app.project.activeItem;
+
+				if (aItem == null) return;
+
 				PadMakerDialog();
 			}
 		});

@@ -11,7 +11,7 @@ function PadMakerDialog() {
 	function addLayers() {
 		var aItem = app.project.activeItem;
 
-		if (aItem.length == null) return;
+		if (aItem == null) return;
 
 		var selLayers = aItem.selectedLayers;
 
@@ -46,7 +46,7 @@ function PadMakerDialog() {
 					this.properties.selectedLayer.selected = true;
 				} catch (err) { }
 			});
-	
+
 			excludeLayerBtn.onClick = function () {
 				try {
 					this.properties.selectedLayer.comment = '';
@@ -54,8 +54,9 @@ function PadMakerDialog() {
 
 				this.parent.parent.remove(this.parent);
 
-				layersMainGrp.layout.layout(true);
 				PAD_MAKER_w.layout.layout(true);
+				layoutMainGrp3.layout.layout(true);
+				layersMainGrp.layout.layout(true);
 			}
 
 			selLayer.comment = 'TEMPLATE LAYER';
@@ -97,6 +98,22 @@ function PadMakerDialog() {
 			outputMainGrp.layout.layout(true);
 			PAD_MAKER_w.layout.layout(true);
 		}
+	}
+
+	function getTemplateLayers() {
+
+		var templateLayersArray = [];
+
+		for (var i = 0; i < layersMainGrp.children.length; i++) {
+
+			try {
+				var layerGrp = layersMainGrp.children[i];
+				templateLayersArray.push(layerGrp.children[2].properties.selectedLayer);
+
+			} catch (err) { }
+		}
+
+		return templateLayersArray;
 	}
 
 	var tempPreviewFile;
@@ -367,21 +384,25 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	// ==============
 
+	PAD_MAKER_w.onClose = function () {
+
+		var templateLayers = getTemplateLayers();
+
+		for (var i = 0; i < templateLayers.length; i++) {
+			templateLayers[i].comment = '';
+		}
+	};
+
 	PAD_MAKER_w.onShow = function () {
-
-		var tempItem = app.project.activeItem;
-
-		tempPreviewFile = new File('~/Desktop/' + tempItem.name.toUpperCase().replaceSpecialCharacters() + '_preview.png');
-		tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
-
-		previewImg.image = tempPreviewFile;
 
 		addLayers();
 		addOutputFolder();
 
-		layersMainGrp.layout.layout(true);
-		outputMainGrp.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		layoutMainGrp4.layout.layout(true);
+		outputMainGrp.layout.layout(true);
+		layersMainGrp.layout.layout(true);
 	};
 
 	captureBtn.onClick = function () {
@@ -390,19 +411,26 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		this.properties.comp = tempItem;
 		this.properties.ref_time = tempItem.time
 
+		try {
+			tempPreviewFile.remove();
+		} catch (err) { }
+
 		tempPreviewFile = new File('~/Desktop/' + tempItem.name.toUpperCase().replaceSpecialCharacters() + '_preview.png');
 		tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
 		previewImg.image = tempPreviewFile;
 
-		previewGrp.layout.layout(true);
-		layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		previewGrp.layout.layout(true);
 	}
 
 	selectLayersBtn.onClick = function () {
 
 		addLayers()
+		PAD_MAKER_w.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		layersMainGrp.layout.layout(true);
 	}
 
 	importPathLab.addEventListener('mousedown', function () {
@@ -420,6 +448,10 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	newOutputBtn.onClick = function () {
 
 		addOutputFolder();
+
+		PAD_MAKER_w.layout.layout(true);
+		layoutMainGrp4.layout.layout(true);
+		outputMainGrp.layout.layout(true);
 	}
 
 	PAD_MAKER_w.show();
