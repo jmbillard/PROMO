@@ -10,7 +10,7 @@
 
 ## PRINCIPAIS TEMPLATES DISPONÍVEIS...
 
-estes são os templates templates mais prováveis de serem utilizados e presentes no padeiro.
+estes são os templates templates mais prováveis de serem utilizados e estão todos disponíveis no padeiro.
 
 > 🚩 *obs:* caso precise editar ou adicionar um país ou esporte abra as respectivas precomps e edite o nome do layer desejado ou duplique / substitua o footage desejado.
 
@@ -27,7 +27,6 @@ deve ser preenchida sempre com o **nome do atleta** na primeira linha e a **moda
 BRONZE
 RAYSSA LEAL
 SKATE STREET FEMININO
-
 ```
 
 > 🎬 *preview:*\
