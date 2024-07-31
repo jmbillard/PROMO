@@ -1,12 +1,247 @@
 # 📓 OLIMPÍADAS 2024
 
-todos os templates disponíveis
-
 > 📂 **pastas:**\
-> • **projeto aberto** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\01 PROJETOS`
-> • **pictogramas** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\OLIMPIADAS 2024\05ENTRADA\Paris 2024 - Sports Pictograms`\
-> • **bandeiras** → `\\10.228.183.165\vfx\imagem\drive_l\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\OLIMPIADAS 2024\05ENTRADA\BANDEIRAS REDONDAS\selecionados`\
-> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\OLIMPIADAS\OLIMPIADAS 2024`
+> • **projeto aberto** → `L:\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\01 PROJETOS`\
+> • **pictogramas** → `L:\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\OLIMPIADAS 2024\05ENTRADA\Paris 2024 - Sports Pictograms`\
+> • **bandeiras** → `L:\Fileserver_3\ESPORTES\OLIMPIADAS PARIS 2024\OLIMPIADAS 2024\05ENTRADA\BANDEIRAS REDONDAS\selecionados`\
+> • **output** → `\\10.228.183.174\edit_in_place\PROMO\cdesign_output\C# ABERTA & INTER\ARTE RJ\ESPORTES\OLIMPIADAS\OLIMPIADAS 2024`\
+
+---
+
+## PRINCIPAIS TEMPLATES DISPONÍVEIS...
+
+estes são os templates templates mais prováveis de serem utilizados e presentes no padeiro.
+
+> 🚩 *obs:* caso precise editar ou adicionar um país ou esporte abra as respectivas precomps e edite o nome do layer desejado ou duplique / substitua o footage desejado.
+
+<br>
+
+### MEDALHA
+
+deve ser preenchida sempre com o **nome do atleta** na primeira linha e a **modalidade** na segunda.
+> 🚩 *obs:* em casos de **esportes coletivos**, a modalidade passa para a primeira linha.
+
+⌨ *input:*
+
+```text
+BRONZE
+RAYSSA LEAL
+SKATE STREET FEMININO
+
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/MEDALHA_BRONZE_preview.gif)
+
+<br><br>
+
+⌨ *input:*
+
+```text
+PRATA
+WILLIAN LIMA
+JUDÔ MASCULINO
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/MEDALHA_PRATA_preview.gif)
+
+<br><br>
+
+⌨ *input:*
+
+```text
+OURO
+VÔLEI DE PRAIA
+FEMININO
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/MEDALHA_OURO_preview.gif)
+
+---
+
+<br><br>
+
+### CARTAO MODALIDADE HORARIO
+
+a **modalidade** deve sempre ser preenchida.
+
+> 🚩 *obs:* o **horário**, na terceira linha, pode ser omitido (basta não preencher a respectiva linha).
+
+> 🚩 *obs:* o **output** deste template será colocado na pasta da sua respectiva **modalidade**
+
+⌨ *input:*
+
+```text
+SKATE STREET
+MASCULINO - FINAL
+12:00
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/CARTAO_MODALIDADE_HORARIO_preview.gif)
+
+<br><br>
+
+⌨ *input:*
+
+```text
+MARATONA
+FEMININA
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/CARTAO_MODALIDADE_HORARIO2_preview.gif)
+
+---
+
+<br><br>
+
+### RODAPE MODALIDADE HORARIO
+
+a **modalidade** deve sempre ser preenchida.
+
+> 🚩 *obs:* o **horário**, na terceira linha, pode ser omitido (basta não preencher a respectiva linha).
+
+> 🚩 *obs:* o **output** deste template será colocado na pasta da sua respectiva **modalidade**
+
+⌨ *input:*
+
+```text
+CANOAGEM SLALOM
+MASCULINO - FINAL
+11:45
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/RODAPE_MODALIDADE_HORARIO_preview.gif)
+
+<br><br>
+
+⌨ *input:*
+
+```text
+TÊNIS DE MESA
+DUPLAS MISTAS
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/RODAPE_MODALIDADE_HORARIO2_preview.gif)
+
+---
+
+<br><br>
+
+### CONFRONTO
+
+> 🚩 *obs:* apesar do template suportar sua omissão, o **horário** deve ser sempre preenchido.
+
+> 🚩 *obs:* o **output** deste template será colocado na pasta da sua respectiva **modalidade**
+
+⌨ *input:*
+
+```text
+FUTEBOL
+FEMININO
+BRASIL X PORTUGAL
+2:00
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/CONFRONTO_preview.gif)
+
+---
+
+<br><br>
+
+### CARTAO SERVICO DIA HORA
+
+> 🚩 *obs:* o **horário**, na última linha, pode ser omitido (basta não preencher a respectiva linha).
+
+⌨ *input:*
+
+```text
+DAQUI A
+POUCO
+---
+8:00
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/CARTAO_SERVICO_DIA_HORA_preview.gif)
+
+<br><br>
+
+### CARTAO SERVICO DIA HORA VARIACAO
+
+variação de cartão de serviço com paleta vertida, caso seja necessário.
+
+> 🚩 *obs:* o **horário**, na última linha, pode ser omitido (basta não preencher a respectiva linha).
+
+⌨ *input:*
+
+```text
+HOJE
+---
+1:40
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/CARTAO_SERVICO_DIA_HORA_VARIACAO_preview.gif)
+
+---
+
+<br><br>
+
+### RODAPE GENERICO
+
+usado para o serviço, o **horário** é sempre destacado.
+
+> 🚩 *obs:* esse template suporta apenas 1 linha por versão
+
+⌨ *input:*
+
+```text
+AMANHÃ 5:00
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/RODAPE_GENERICO_preview.gif)
+
+---
+
+<br><br>
+
+### RODAPE CREDITO ATLETA
+
+o **atleta** e **modalidade** devem sempre ser preenchidos.
+
+> 🚩 *obs:* o texto da última linha é opcional.
+
+⌨ *input:*
+
+```text
+SIMONE BILES
+GINASTICA ARTÍSTICA
+GINASTA
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/RODAPE_CREDITO_ATLETA_preview.gif)
+
+<br><br>
+
+⌨ *input:*
+
+```text
+MARCUS D'ALMEIDA
+TIRO COM ARCO
+```
+
+> 🎬 *preview:*\
+> ![preview](ARQUIVOS/RODAPE_CREDITO_ATLETA2_preview.gif)
+
 ---
 
 ## modalidades disponíveis
@@ -121,233 +356,3 @@ todos os templates disponíveis
 - Uruguai
 - Uzbequistão
 - Zâmbia
-
----
-
-<br>
-
-### MEDALHA
-
-⌨ *input:*
-
-```text
-BRONZE
-RAYSSA LEAL
-SKATE STREET FEMININO
-
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/MEDALHA_BRONZE_preview.gif)
-
-<br><br>
-
-⌨ *input:*
-
-```text
-PRATA
-WILLIAN LIMA
-JUDÔ MASCULINO
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/MEDALHA_PRATA_preview.gif)
-
-<br><br>
-
-⌨ *input:*
-
-```text
-OURO
-VÔLEI DE PRAIA
-FEMININO
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/MEDALHA_OURO_preview.gif)
-
----
-
-<br><br>
-
-### CARTAO MODALIDADE HORARIO
-
-⌨ *input:*
-
-```text
-SKATE STREET
-MASCULINO - FINAL
-12:00
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CARTAO_MODALIDADE_HORARIO_preview.gif)
-
-<br><br>
-
-⌨ *input:*
-
-```text
-MARATONA
-FEMININA
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CARTAO_MODALIDADE_HORARIO2_preview.gif)
-
----
-
-<br><br>
-
-### RODAPE MODALIDADE HORARIO
-
-⌨ *input:*
-
-```text
-CANOAGEM SLALOM
-MASCULINO - FINAL
-11:45
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/RODAPE_MODALIDADE_HORARIO_preview.gif)
-
-<br><br>
-
-⌨ *input:*
-
-```text
-TÊNIS DE MESA
-DUPLAS MISTAS
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/RODAPE_MODALIDADE_HORARIO2_preview.gif)
-
----
-
-<br><br>
-
-### CONFRONTO
-
-⌨ *input:*
-
-```text
-FUTEBOL
-FEMININO
-BRASIL X PORTUGAL
-2:00
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CONFRONTO_preview.gif)
-
-<br><br>
-
-### CONFRONTO VARIACAO
-
-⌨ *input:*
-
-```text
-VÔLEI DE PRAIA
-FEMININO
-BRASIL X ESPANHA
-ANA PATRÍCIA / DUDA
-LILIANA / PAULA GUTIÉRREZ
-4:00
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CONFRONTO_VARIACAO_preview.gif)
-
----
-
-<br><br>
-
-### CARTAO SERVICO DIA HORA
-
-⌨ *input:*
-
-```text
-DAQUI A
-POUCO
----
-8:00
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CARTAO_SERVICO_DIA_HORA_preview.gif)
-
-<br><br>
-
-### CARTAO SERVICO DIA HORA VARIACAO
-
-⌨ *input:*
-
-```text
-HOJE
----
-1:40
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CARTAO_SERVICO_DIA_HORA_VARIACAO_preview.gif)
-
----
-
-<br><br>
-
-### RODAPE GENERICO
-
-⌨ *input:*
-
-```text
-AMANHÃ 5:00
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/RODAPE_GENERICO_preview.gif)
-
----
-
-<br><br>
-
-### CARTAO CREDITO ATLETA
-
-⌨ *input:*
-
-```text
-REBECA ANDRADE
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/CARTAO_CREDITO_ATLETA_preview.gif)
-
----
-
-<br><br>
-
-### RODAPE CREDITO ATLETA
-
-⌨ *input:*
-
-```text
-SIMONE BILES
-GINASTICA ARTÍSTICA
-GINASTA
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/RODAPE_CREDITO_ATLETA_preview.gif)
-
-<br><br>
-
-⌨ *input:*
-
-```text
-MARCUS D'ALMEIDA
-TIRO COM ARCO
-```
-
-> 🎬 *preview:*\
-> ![preview](ARQUIVOS/RODAPE_CREDITO_ATLETA2_preview.gif)
