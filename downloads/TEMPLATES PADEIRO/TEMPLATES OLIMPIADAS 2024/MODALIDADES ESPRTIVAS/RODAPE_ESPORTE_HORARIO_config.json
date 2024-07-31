@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 RODAPE CATEGORIA ESPORTIVA",
-	"exemple": "11:45\nCANOAGEM SLALOM\nMASCULINO - FINAIS",
-	"tip": "digite em ordem:\nHORÁRIO\nESPORTE\nGENERO\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"exemple": "CANOAGEM SLALOM\nMASCULINO - FINAIS\n11:45",
+	"tip": "digite em ordem:\nESPORTE\nGENERO\nHORÁRIO\n\no GÊNERO pode ser acompanhado ou substituído por OUTRAS INFORMAÇÕES\n\no HORÁRIO é opcional para removê-lo basta deixar a terceira linha em branco\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "RDP - ESPORTE HORARIO TEMPLATE",
 	"prefix": "RDP",
@@ -9,9 +9,9 @@
 	"separator": "\n",
 	"textCase": "upperCase",
 	"inputLayers": [
-		{"layerIndex": 1, "method": "textContent"},
 		{"layerIndex": 2, "method": "layerName"},
-		{"layerIndex": 3, "method": "textContent"}
+		{"layerIndex": 3, "method": "textContent"},
+		{"layerIndex": 1, "method": "textContent"}
 	],
 
 	"outputPath": [
