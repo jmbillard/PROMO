@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 RODAPE CREDITO ATLETA",
-	"exemple": "SIMONE BILES\nGINASTA\nGINASTICA ARTÍSTICA",
-	"tip": "digite o texto em ordem:\nNOME\nINFORMAÇÃO\nESPORTE\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"exemple": "SIMONE BILES\nGINASTICA ARTÍSTICA\nGINASTA",
+	"tip": "digite o texto em ordem:\nNOME\nESPORTE\nINFORMAÇÃO\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "RDP - CREDITO ATLETA TEMPLATE",
 	"prefix": "RDP",
@@ -10,8 +10,8 @@
 	"textCase": "upperCase",
 	"inputLayers": [
 		{"layerIndex": 1, "method": "textContent"},
-		{"layerIndex": 2, "method": "textContent"},
-		{"layerIndex": 3, "method": "layerName"}
+		{"layerIndex": 3, "method": "layerName"},
+		{"layerIndex": 2, "method": "textContent"}
 	],
 
 	"outputPath": [
