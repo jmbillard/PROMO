@@ -75,7 +75,7 @@ function padeiroTemplateDialog() {
 
 	var wWidth;                        // Largura da janela sem a pré-visualização
 	var oWidth;                        // Largura da janela com a pré-visualização
-	var previewScale = 0.2;            // Fator de escala de preview da imagem
+	var previewScale = 0.23;            // Fator de escala de preview da imagem
 	var fileFilter = ['.aep', '.aet']; // Extensões de arquivo de template permitidas
 	var hasData = false;               // Indica se há dados de entrada
 	var hasInput = false;              // Indica se o template possui campos de entrada
@@ -223,7 +223,7 @@ function padeiroTemplateDialog() {
 	setTxtColor(inputLabTxt, monoColors[2]);                         // Define a cor do texto
 
 	// Criação da caixa de texto
-	var edtText = txtGrp.add('edittext', [0, 0, 185, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
+	var edtText = txtGrp.add('edittext', [0, 0, 260, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
 	edtText.enabled = false;                                         // A caixa de texto começa desabilitada
 
 	// Opções de Renderização
@@ -262,7 +262,7 @@ function padeiroTemplateDialog() {
 
 		// Calcula e armazena as dimensões da janela
 		oWidth = wPadeiroTemplates.size.width; // Armazena a largura original da janela (com a área de preview)
-		wWidth = oWidth - 405;                 // Calcula a largura da janela sem a área de preview
+		wWidth = oWidth - 475;                 // Calcula a largura da janela sem a área de preview
 
 		// Oculta elementos da interface
 		vGrp2.visible = false;      // Oculta o grupo que contém a pré-visualização do template e a área de entrada de dados

@@ -16,7 +16,7 @@ function PadMakerDialog() {
 		compName: '',
 		prefix: 'TARJA',
 		refTime: 3,
-		separator: '---',
+		separator: '\n',
 		textCase: '',
 		inputLayers: [],
 	
