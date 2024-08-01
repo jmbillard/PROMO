@@ -11,7 +11,7 @@ function PadMakerDialog() {
 	defaultConfigObj = {
 		configName: 'NOME DA CONFIGURAÇÃO',
 		exemple: 'informação lina 1\ninformação lina 2',
-		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.',
+		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse a quebra de linha para separar "informaÇão" 1 e "informação 2".\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.',
 	
 		compName: '',
 		prefix: 'TARJA',
