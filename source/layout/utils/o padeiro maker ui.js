@@ -8,6 +8,24 @@
 
 function PadMakerDialog() {
 
+	defaultConfigObj = {
+		configName: 'NOME DA CONFIGURAÇÃO',
+		exemple: 'informação lina 1\ninformação lina 2',
+		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.',
+	
+		compName: '',
+		prefix: 'TARJA',
+		refTime: 3,
+		separator: '---',
+		textCase: '',
+		inputLayers: [],
+	
+		outputPath: [
+			'~/Desktop'
+		],
+		alpha: true
+	};
+
 	function addLayers() {
 		var aItem = app.project.activeItem;
 
@@ -43,14 +61,17 @@ function PadMakerDialog() {
 
 			layerLab.addEventListener('mousedown', function () {
 				try {
-					this.properties.selectedLayer.selected = true;
+					this.properties.selectedLayer.selected = !this.properties.selectedLayer.selected;
 				} catch (err) { }
 			});
 
 			excludeLayerBtn.onClick = function () {
 				try {
 					this.properties.selectedLayer.comment = '';
-				} catch (err) { }
+
+				} catch (err) {
+					alert(lol + '#PAD_024 - ' + err.message); // Exibe uma mensagem de erro
+				 }
 
 				this.parent.parent.remove(this.parent);
 
@@ -108,7 +129,11 @@ function PadMakerDialog() {
 
 			try {
 				var layerGrp = layersMainGrp.children[i];
-				templateLayersArray.push(layerGrp.children[2].properties.selectedLayer);
+				var methodArray = ['textContent', 'layerName'];
+				var m = layerGrp.children[1].selection.index;
+				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
+
+				templateLayersArray.push([selectedLayer, methodArray[m]]);
 
 			} catch (err) { }
 		}
@@ -117,6 +142,8 @@ function PadMakerDialog() {
 	}
 
 	var tempPreviewFile;
+	var tempItem = app.project.activeItem;
+	var compName = tempItem !== null ? tempItem.name.replaceSpecialCharacters() : 'NOVO ITEM';
 
 	// ==============
 
@@ -181,7 +208,7 @@ function PadMakerDialog() {
 
 	var statictext1 = inputGrp1.add('statictext', undefined, 'nome da configuração:');
 
-	var edittext1 = inputGrp1.add('edittext', [0, 0, 230, 24], '+VC TARJA RODAPÉ CONVIDADO');
+	var edittext1 = inputGrp1.add('edittext', [0, 0, 230, 24], defaultConfigObj.configName);
 	edittext1.helpTip = 'identificador da configuração.';
 
 	var inputGrp2 = formMainGrp.add('group', undefined);
@@ -192,8 +219,7 @@ function PadMakerDialog() {
 
 	var statictext2 = inputGrp2.add('statictext', undefined, 'prefixo:');
 
-	var edittext2 = inputGrp2.add('edittext', [0, 0, 230, 24], 'TARJA');
-	edittext2.preferredSize = [200, 24];
+	var edittext2 = inputGrp2.add('edittext', [0, 0, 230, 24], defaultConfigObj.prefix);
 	edittext2.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
 
 	var inputGrp3 = formMainGrp.add('group', undefined);
@@ -204,7 +230,7 @@ function PadMakerDialog() {
 
 	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
 
-	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 200], 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse 1 linha com \'---\' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.', { multiline: true });
+	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 200], defaultConfigObj.tip, { multiline: true });
 	edittext3.helpTip = 'as dicas para ajudar no preenchimento.';
 
 	var inputGrp5 = formMainGrp.add('group', undefined);
@@ -216,7 +242,7 @@ function PadMakerDialog() {
 	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
 	statictext5.text = 'exemplo de preenchimento:';
 
-	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 80], 'CÁSSIO\nGABUS MENDES\n---\nATOR', { multiline: true });
+	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 80], defaultConfigObj.exemple, { multiline: true });
 	edittext5.helpTip = 'apenas um exemplo.';
 
 	// ==============
@@ -250,8 +276,8 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	previewGrp.spacing = 10;
 	previewGrp.margins = 0;
 
-	var previewImg = previewGrp.add('image', undefined, no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
-	previewImg.size = [1920, 1080] * 0.12;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
+	var previewImg = previewGrp.add('image', [0, 0, 230, 130], no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
+	// previewImg.size = [1920, 1080] * 0.12;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
 
 	var btnGrp1 = layoutMainGrp3.add('group', undefined);
 	btnGrp1.orientation = 'row';
@@ -285,6 +311,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	alphaLab.preferredSize.width = 130;
 
 	var alphaCkb = alphaGrp.add('checkbox', undefined, undefined);
+	alphaCkb.value = true;
 	alphaCkb.preferredSize.width = 90;
 
 	// ==============
@@ -310,6 +337,17 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	var caseDrop = textCaseGrp.add('dropdownlist', undefined, caseDrop_array);
 	caseDrop.selection = 0;
 	caseDrop.preferredSize.width = 90;
+
+	var separatorGrp = projGeneralGrp.add('group', undefined);
+	separatorGrp.alignChildren = ['left', 'center'];
+	separatorGrp.spacing = 10;
+	separatorGrp.margins = 0;
+
+	var separatorLab = separatorGrp.add('statictext', undefined, 'separador:');
+	separatorLab.preferredSize.width = 130;
+
+	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.separator);
+	separatorTxt.helpTip = 'separador de informações\n\nuse "\n" para colocar cada linha de texto em um layer diferente';
 
 	// ==============
 
@@ -380,7 +418,11 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
-	var makeBtn = btnGrp3.add('button', [0, 0, 230, 24], 'criar');
+	var testBtn = btnGrp3.add('button', [0, 0, 110, 24], 'testar');
+	testBtn.helpTip = 'testar preenchimento com o exemplo';
+
+	var makeBtn = btnGrp3.add('button', [0, 0, 110, 24], 'criar');
+	makeBtn.helpTip = 'salvar template';
 
 	// ==============
 
@@ -389,48 +431,94 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		var templateLayers = getTemplateLayers();
 
 		for (var i = 0; i < templateLayers.length; i++) {
-			templateLayers[i].comment = '';
+			templateLayers[i][0].comment = '';
 		}
 	};
 
 	PAD_MAKER_w.onShow = function () {
 
+		var tempItem = app.project.activeItem;
+
+		if (tempItem == null) return;
+
+		var tempPreviewName = tempItem.name.toUpperCase()
+			.replaceSpecialCharacters()
+			.replace(/\s+/g, '_') + '_preview.png';
+
+		captureBtn.properties.comp = tempItem;
+		captureBtn.properties.ref_time = tempItem.time;
+
+		try {
+			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempPreviewFile.remove();
+
+		} catch (err) {
+			alert(lol + '#PAD_027 - ' + err.message); // Exibe uma mensagem de erro
+		}
+
+		try {
+			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
+
+			$.sleep(300);
+			previewImg.image = tempPreviewFile;
+
+		} catch (err) {
+			alert(lol + '#PAD_026 - ' + err.message); // Exibe uma mensagem de erro
+		}
+
 		addLayers();
 		addOutputFolder();
 
-		PAD_MAKER_w.layout.layout(true);
+		layersMainGrp.layout.layout(true);
+		outputMainGrp.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		layoutMainGrp4.layout.layout(true);
-		outputMainGrp.layout.layout(true);
-		layersMainGrp.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
 	};
 
 	captureBtn.onClick = function () {
+
 		var tempItem = app.project.activeItem;
 
+		if (tempItem == null) return;
+
+		var tempPreviewName = tempItem.name.toUpperCase()
+			.replaceSpecialCharacters()
+			.replace(/\s+/g, '_') + '_preview.png';
+
 		this.properties.comp = tempItem;
-		this.properties.ref_time = tempItem.time
+		this.properties.ref_time = tempItem.time;
 
 		try {
+			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
 			tempPreviewFile.remove();
-		} catch (err) { }
 
-		tempPreviewFile = new File('~/Desktop/' + tempItem.name.toUpperCase().replaceSpecialCharacters() + '_preview.png');
-		tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
+		} catch (err) {
+			alert(lol + '#PAD_025 - ' + err.message); // Exibe uma mensagem de erro
+		}
 
-		previewImg.image = tempPreviewFile;
+		try {
+			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
-		PAD_MAKER_w.layout.layout(true);
-		layoutMainGrp3.layout.layout(true);
+			$.sleep(300);
+			previewImg.image = tempPreviewFile;
+
+		} catch (err) {
+			alert(lol + '#PAD_023 - ' + err.message); // Exibe uma mensagem de erro
+		}
 		previewGrp.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
 	}
 
 	selectLayersBtn.onClick = function () {
 
 		addLayers()
-		PAD_MAKER_w.layout.layout(true);
-		layoutMainGrp3.layout.layout(true);
 		layersMainGrp.layout.layout(true);
+		layoutMainGrp3.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
 	}
 
 	importPathLab.addEventListener('mousedown', function () {
@@ -445,13 +533,52 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		this.helpTip = 'caminho da pasta de mídias:\n\n' + newImportPath.fullName;
 	});
 
+	testBtn.onClick = function () {
+
+		var separador = separatorTxt.text.replace(/\\n/g, '\n');
+		var inputTxt = edittext5.text;
+		var txtCase = caseDrop.selection.index;
+		var templateLayers = getTemplateLayers();
+
+		if (txtCase == 0) inputTxt = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
+		if (txtCase == 1) inputTxt = inputTxt.toLowerCase(); // Converte para minúsculas
+		if (txtCase == 2) inputTxt = inputTxt.toTitleCase(); // Converte para 'Title Case'
+
+		var inputArray = inputTxt.split(separador);
+
+		if (templateLayers.length == 0) return;
+
+		app.beginUndoGroup('PADEIRO -testar preenchimento');
+
+		for (var i = 0; i < templateLayers.length; i++) {
+
+			var selectedLayer = templateLayers[i][0];
+			var method = templateLayers[i][1];
+
+			if (i > inputArray.length - 1) {
+				selectedLayer.enabled = false;
+				return;
+			}
+
+			if (method == 'textContent') {
+				selectedLayer.property('ADBE Text Properties') // Obtém a propriedade de texto
+				.property('ADBE Text Document')            // Obtém o documento de texto
+				.setValue(inputArray[i].trim());
+			}
+			if (method == 'layerName') {
+				selectedLayer.name = inputArray[i].trim();
+			}
+		}
+		app.endUndoGroup();
+	}
+
 	newOutputBtn.onClick = function () {
 
 		addOutputFolder();
 
-		PAD_MAKER_w.layout.layout(true);
-		layoutMainGrp4.layout.layout(true);
 		outputMainGrp.layout.layout(true);
+		layoutMainGrp4.layout.layout(true);
+		PAD_MAKER_w.layout.layout(true);
 	}
 
 	PAD_MAKER_w.show();
