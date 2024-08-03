@@ -11,15 +11,18 @@ function PadMakerDialog() {
 	defaultConfigObj = {
 		configName: 'NOME DA CONFIGURAÇÃO',
 		exemple: 'informação lina 1\ninformação lina 2',
-		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\n\nuse a quebra de linha para separar "informaÇão" 1 e "informação 2".\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer \'ctrl\'.',
-	
+		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\
+\nuse a quebra de linha para separar "informaÇão" 1 e "informação 2".\
+\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\
+\nuse os controles nos efeitos do layer \'ctrl\'.',
+
 		compName: '',
 		prefix: 'TARJA',
 		refTime: 3,
 		separator: '\n',
 		textCase: '',
 		inputLayers: [],
-	
+
 		outputPath: [
 			'~/Desktop'
 		],
@@ -71,7 +74,7 @@ function PadMakerDialog() {
 
 				} catch (err) {
 					alert(lol + '#PAD_024 - ' + err.message); // Exibe uma mensagem de erro
-				 }
+				}
 
 				this.parent.parent.remove(this.parent);
 
@@ -562,8 +565,8 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 			if (method == 'textContent') {
 				selectedLayer.property('ADBE Text Properties') // Obtém a propriedade de texto
-				.property('ADBE Text Document')            // Obtém o documento de texto
-				.setValue(inputArray[i].trim());
+					.property('ADBE Text Document')            // Obtém o documento de texto
+					.setValue(inputArray[i].trim());
 			}
 			if (method == 'layerName') {
 				selectedLayer.name = inputArray[i].trim();
