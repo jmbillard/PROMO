@@ -6,7 +6,7 @@
 
 */
 // Declaração da versão do script 'O Padeiro'
-var PAD_v = '1.1';
+var PAD_v = '1.2';
 
 // Objeto que armazena as configurações padrão (default) do Padeiro
 var defPadObj = {
@@ -138,10 +138,10 @@ function padeiroTemplateDialog() {
 	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
 
 	// Cria a caixa de pesquisa
-	var searchBox = treeGrp.add('edittext', [0, 0, 250, 24], '');
+	var searchBox = treeGrp.add('edittext', [0, 0, 320, 24], '');
 
 	// Cria a árvore de templates
-	var templateTree = treeGrp.add('treeview', [0, 0, 250, 464]);
+	var templateTree = treeGrp.add('treeview', [0, 0, 320, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter); // Constrói a árvore de templates
 
 	//---------------------------------------------------------
@@ -223,7 +223,7 @@ function padeiroTemplateDialog() {
 	setTxtColor(inputLabTxt, monoColors[2]);                         // Define a cor do texto
 
 	// Criação da caixa de texto
-	var edtText = txtGrp.add('edittext', [0, 0, 260, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
+	var edtText = txtGrp.add('edittext', [0, 0, 320, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
 	edtText.enabled = false;                                         // A caixa de texto começa desabilitada
 
 	// Opções de Renderização
@@ -262,7 +262,7 @@ function padeiroTemplateDialog() {
 
 		// Calcula e armazena as dimensões da janela
 		oWidth = wPadeiroTemplates.size.width; // Armazena a largura original da janela (com a área de preview)
-		wWidth = oWidth - 475;                 // Calcula a largura da janela sem a área de preview
+		wWidth = oWidth - 535;                 // Calcula a largura da janela sem a área de preview
 
 		// Oculta elementos da interface
 		vGrp2.visible = false;      // Oculta o grupo que contém a pré-visualização do template e a área de entrada de dados
