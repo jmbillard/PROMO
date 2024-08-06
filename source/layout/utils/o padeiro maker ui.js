@@ -559,11 +559,9 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 			var selectedLayer = templateLayers[i][0];
 			var method = templateLayers[i][1];
+			selectedLayer.enabled = i < inputArray.length;
 
-			if (i > inputArray.length - 1) {
-				selectedLayer.enabled = false;
-				return;
-			}
+			if (i > inputArray.length - 1) return;
 
 			if (method == 'textContent') {
 				selectedLayer.property('ADBE Text Properties') // Obtém a propriedade de texto
@@ -587,6 +585,21 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	}
 
 	makeBtn.onClick = function () {
+
+		var templateCompName = captureBtn.properties.comp.name;
+
+		if (templateCompName.match(/[\s_-]TEMPLATE$/i)) {
+			var msg = 'renomeie a comp:"' + templateCompName + '", o nome dela deve terminar com "TEMPLATE"';
+
+			alert(lol + '#PAD_029 "' + msg); // Exibe uma mensagem de erro
+			return;
+		}
+
+		var templateLayers = getTemplateLayers();
+
+		for (var i = 0; i < templateLayers.length; i++) {
+			templateLayers[i][0].comment = '';
+		}
 
 		captureBtn.properties.comp.comment = 'TEMPLATE';
 
@@ -637,6 +650,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		var currentProjBase = decodeURI(currentProj.fullName).replace(/\.ae[pt]/, '');
 
 		try {
+	
 			var configContent = JSON.stringify(defaultConfigObj, null, '\t');
 			var templateImg = new File(currentProjBase + '_preview.png');
 

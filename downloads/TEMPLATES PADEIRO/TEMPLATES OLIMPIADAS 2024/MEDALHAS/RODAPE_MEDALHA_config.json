@@ -1,7 +1,7 @@
 {
 	"configName": "OLIMPIADAS 2024 RODAPE MEDALHA",
-	"exemple": "BRONZE\nRAYSSA LEAL\nSKATE STREET FEMININO",
-	"tip": "digite o texto em ordem:\nMEDALHA\nESPORTE\nINFORMAÇÃO\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
+	"exemple": "BRONZE\nRAYSSA LEAL\nSKATE STREET",
+	"tip": "IMPORTANTE:\nPARA ESPORTES INDIVIDUAIS, NÃO COLOQUE O GÊNERO!\nESPORTES COLETIVOS PODEM TER GÊNERO!\n\ndigite o texto em ordem:\nMEDALHA\nESPORTE\nINFORMAÇÃO\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 
 	"compName": "RODAPE MEDALHA TEMPLATE",
 	"prefix": "RDP",
