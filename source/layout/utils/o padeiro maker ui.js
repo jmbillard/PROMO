@@ -12,20 +12,21 @@ function PadMakerDialog() {
 		configName: 'NOME DA CONFIGURAÇÃO',
 		exemple: 'informação lina 1\ninformação lina 2',
 		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\
-\nuse a quebra de linha para separar "informaÇão" 1 e "informação 2".\
+\nuse a quebra de linha para separar "informação" 1 e "informação 2".\
 \nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\
 \nuse os controles nos efeitos do layer \'ctrl\'.',
 
-		compName: '',
+		compName: 'COMP TEMPLATE',
 		prefix: 'TARJA',
-		refTime: 3,
+		refTime: 2,
 		separator: '\n',
-		textCase: '',
+		textCase: 'lowerCase',
 		inputLayers: [],
 
 		outputPath: [
 			'~/Desktop'
 		],
+		importPath: '~/Desktop',
 		alpha: true
 	};
 
@@ -261,7 +262,8 @@ function PadMakerDialog() {
 
 	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
 renomeie a comp principal, ela precisa ter \'TEMPLATE\' no final do nome.\n\
-posicione a agulha da timeline em um frame de referencia, essa será a imagem de preview do template.\n\
+posicione a agulha da timeline em um frame de referencia, e capture a imagem de preview do template.\n\
+edite os parâmetros globais do projeto.\n\
 selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
 adicione as pastas de mídia e outputs necessários.\n\
 em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' + relax + '\njean.billard';
@@ -349,8 +351,8 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	var separatorLab = separatorGrp.add('statictext', undefined, 'separador:');
 	separatorLab.preferredSize.width = 130;
 
-	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.separator);
-	separatorTxt.helpTip = 'separador de informações\n\nuse "\n" para colocar cada linha de texto em um layer diferente';
+	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.separator.replace(/\n|\r/g, '\\n'));
+	separatorTxt.helpTip = 'separador de informações\n\nuse "\\n" para colocar cada linha de texto em um layer diferente';
 
 	// ==============
 
@@ -392,7 +394,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	importGrp.alignChildren = ['left', 'center'];
 	importGrp.spacing = 10;
 
-	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: '' });
+	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath });
 	importPathLab.helpTip = 'caminho da pasta:';
 	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
@@ -584,7 +586,72 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		PAD_MAKER_w.layout.layout(true);
 	}
 
+	makeBtn.onClick = function () {
+
+		captureBtn.properties.comp.comment = 'TEMPLATE';
+
+		defaultConfigObj.configName = edittext1.text;
+		defaultConfigObj.exemple = edittext5.text;
+		defaultConfigObj.tip = edittext3.text;
+		defaultConfigObj.compName = captureBtn.properties.comp.name;
+		defaultConfigObj.prefix = edittext2.text;
+		defaultConfigObj.refTime = captureBtn.properties.ref_time;
+		defaultConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
+		defaultConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase'][caseDrop.selection.index];
+		defaultConfigObj.inputLayers = [];
+
+		for (var i = 0; i < layersMainGrp.children.length; i++) {
+
+			try {
+				var layerGrp = layersMainGrp.children[i];
+				var methodArray = ['textContent', 'layerName'];
+				var m = layerGrp.children[1].selection.index;
+				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
+
+				defaultConfigObj.inputLayers.push({ layerIndex: selectedLayer.index, method: methodArray[m] });
+
+			} catch (err) { }
+		}
+
+		defaultConfigObj.outputPath = [];
+
+		for (var o = 0; o < outputMainGrp.children.length; o++) {
+
+			try {
+				var outputGrp = outputMainGrp.children[o];
+				var outputPath = outputGrp.children[0].properties.outputPath;
+				defaultConfigObj.outputPath.push(outputPath);
+
+			} catch (err) { }
+		}
+
+		defaultConfigObj.importPath = importPathLab.properties.importPath;
+		defaultConfigObj.alpha = alphaCkb.value;
+
+		var isSaved = app.project.saveWithDialog();
+
+		if (!isSaved) return;
+
+		var currentProj = app.project.file;
+		var currentTemplateFolder = currentProj.parent;
+		var currentProjBase = decodeURI(currentProj.fullName).replace(/\.ae[pt]/, '');
+
+		try {
+			var configContent = JSON.stringify(defaultConfigObj, null, '\t');
+			var templateImg = new File(currentProjBase + '_preview.png');
+
+			tempPreviewFile.copy(templateImg);
+			saveTextFile(configContent, currentProjBase + '_config.json');
+			fontCollect(decodeURI(currentTemplateFolder.fullName) + '/FONTS'); // caminho final do collect
+
+			tempPreviewFile.remove();
+
+			openFolder(decodeURI(currentTemplateFolder.fullName));
+
+		} catch (err) {
+			alert(lol + '#PAD_028 - ' + err.message); // Exibe uma mensagem de erro
+		}
+	}
+
 	PAD_MAKER_w.show();
 }
-
-// PadMakerDialog();
