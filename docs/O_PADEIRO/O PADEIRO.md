@@ -20,9 +20,17 @@
 
 ferramentas disponíveis em ordem:
 
+- **ÍCONE DE PRODUÇÃO**:
+`◖ clique DUPLO esquerdo` → abre a janela de pastas de produção.
+  >
+
+- **MENU DE PRODUÇÃO**:
+`◖ clique esquerdo` → seleciona a pasta da produção atual.
+  >
+
 - **O PADEIRO**:
 `◖ clique esquerdo` → abre a janela de templates.
-`◗ clique direito` → abre a pasta de templates no servidor.
+`◗ clique direito` → abre a janela do criador de templates.
   >
 - **RESOLVER FONTES**:
 `◖ clique esquerdo` → instala as fontes necessárias para o template.
@@ -43,6 +51,8 @@ ferramentas disponíveis em ordem:
 - **BUSCA**:
 `◖ clique esquerdo` → abre a janela de busca.
   > *a busca funciona apenas no conteúdo dos layers de texto do projeto.*
+- **APONTAMENTO**:
+`◖ clique esquerdo` → abre a planilha de apontamento de projetos.
 
 <br>
 
@@ -61,10 +71,13 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 <br>
 
+## 📍 adicionando pastas de produção
+
 ## 📍 funcionamento básico
 
-acesse o menu `Window`, clique em '**O PADEIRO**' e em seguida no primeiro botão ('*abrir O PADEIRO*'):
+Se o script não estiver aberto, acesse o menu `Window` e clique em '**O PADEIRO**'
 
+1. clique no primeiro botão ('*abrir O PADEIRO*').
 1. faca uma busca ou navegue pela estrutura da lista.
 2. selecione o template desejado.
 3. preencha o campo '**input**' seguindo as '**dicas**'.

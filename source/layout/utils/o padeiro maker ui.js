@@ -10,11 +10,11 @@ function PadMakerDialog() {
 
 	defaultConfigObj = {
 		configName: 'NOME DA CONFIGURAÇÃO',
-		exemple: 'informação lina 1\ninformação lina 2',
-		tip: 'digite o texto em 1 ou 2 linhas para nome e informação.\
+		exemple: 'informação 1\ninformação 2',
+		tip: 'coloque aqui as instruções de preenchimento deste template.\nex:\
+\ndigite o texto em 1 ou 2 linhas.\
 \nuse a quebra de linha para separar "informação" 1 e "informação 2".\
-\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\
-\nuse os controles nos efeitos do layer \'ctrl\'.',
+\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.',
 
 		compName: 'COMP TEMPLATE',
 		prefix: 'TARJA',
@@ -50,13 +50,14 @@ function PadMakerDialog() {
 			layerGrp.spacing = 10;
 			layerGrp.margins = 0;
 
-			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name, { selectedLayer: selLayer });
-			layerLab.preferredSize.width = 90;
+			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name, { selectedLayer: selLayer, truncate: 'end' });
+			layerLab.preferredSize.width = 95;
 			setTxtHighlight(layerLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
-			var layerDrop_array = ['conteúdo', 'nome'];
+			var layerDrop_array = ['nome'];
+			if (selLayer instanceof TextLayer) layerDrop_array.push('conteúdo');
 			var layerDrop = layerGrp.add('dropdownlist', undefined, layerDrop_array);
-			layerDrop.selection = 0;
+			layerDrop.selection = selLayer instanceof TextLayer ? 1 : 0;
 			layerDrop.preferredSize.width = 90;
 
 			var excludeLayerBtn = layerGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton', selectedLayer: selLayer });
@@ -76,12 +77,14 @@ function PadMakerDialog() {
 				} catch (err) {
 					alert(lol + '#PAD_024 - ' + err.message); // Exibe uma mensagem de erro
 				}
-
 				this.parent.parent.remove(this.parent);
 
 				PAD_MAKER_w.layout.layout(true);
 				layoutMainGrp3.layout.layout(true);
 				layersMainGrp.layout.layout(true);
+
+				separatorTxt.enabled = (layersMainGrp.children.length > 1);
+				separatorLab.enabled = (layersMainGrp.children.length > 1);
 			}
 
 			selLayer.comment = 'TEMPLATE LAYER';
@@ -95,7 +98,7 @@ function PadMakerDialog() {
 		outputGrp.alignChildren = ['left', 'center'];
 		outputGrp.spacing = 10;
 
-		var outputPathLab = outputGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { outputPath: '~/Desktop' });
+		var outputPathLab = outputGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { outputPath: '~/Desktop', truncate: 'middle' });
 		outputPathLab.helpTip = 'caminho da pasta:';
 		setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
@@ -111,7 +114,7 @@ function PadMakerDialog() {
 			if (newOutputPath == null) return; // Se a janela foi cancelada, não faz nada
 
 			this.properties.outputPath = newOutputPath.fullName;
-			this.text = limitNameSize(newOutputPath.fullName, 30);
+			this.text = newOutputPath.fullName;
 			this.helpTip = 'caminho da pasta de output:\n\n' + newOutputPath.fullName;
 		});
 
@@ -133,7 +136,7 @@ function PadMakerDialog() {
 
 			try {
 				var layerGrp = layersMainGrp.children[i];
-				var methodArray = ['textContent', 'layerName'];
+				var methodArray = ['layerName', 'textContent'];
 				var m = layerGrp.children[1].selection.index;
 				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
 
@@ -172,7 +175,6 @@ function PadMakerDialog() {
 	layoutMainGrp1.spacing = 10;
 	layoutMainGrp1.margins = 0;
 
-
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
@@ -182,7 +184,6 @@ function PadMakerDialog() {
 	layoutMainGrp3.spacing = 10;
 	layoutMainGrp3.margins = 0;
 
-
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
@@ -191,7 +192,6 @@ function PadMakerDialog() {
 	layoutMainGrp4.alignChildren = ['left', 'top'];
 	layoutMainGrp4.spacing = 10;
 	layoutMainGrp4.margins = 0;
-
 
 	var labMain1 = layoutMainGrp1.add('statictext', undefined, 'FORMULÁRIO:');
 	setTxtColor(labMain1, monoColors[2]);
@@ -214,17 +214,6 @@ function PadMakerDialog() {
 
 	var edittext1 = inputGrp1.add('edittext', [0, 0, 230, 24], defaultConfigObj.configName);
 	edittext1.helpTip = 'identificador da configuração.';
-
-	var inputGrp2 = formMainGrp.add('group', undefined);
-	inputGrp2.orientation = 'column';
-	inputGrp2.alignChildren = ['left', 'center'];
-	inputGrp2.spacing = 2;
-	inputGrp2.margins = 0;
-
-	var statictext2 = inputGrp2.add('statictext', undefined, 'prefixo:');
-
-	var edittext2 = inputGrp2.add('edittext', [0, 0, 230, 24], defaultConfigObj.prefix);
-	edittext2.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
 
 	var inputGrp3 = formMainGrp.add('group', undefined);
 	inputGrp3.orientation = 'column';
@@ -261,10 +250,11 @@ function PadMakerDialog() {
 	tipsGrp.margins = 0;
 
 	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
-renomeie a comp principal, ela precisa ter \'TEMPLATE\' no final do nome.\n\
+preencha o os dados do formulário.\n\
 posicione a agulha da timeline em um frame de referencia, e capture a imagem de preview do template.\n\
-edite os parâmetros globais do projeto.\n\
+edite os parâmetros do projeto.\n\
 selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
+caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao painel "essential graphics" e use um layer de texto na comp principal para controlar o texto.\n\
 adicione as pastas de mídia e outputs necessários.\n\
 em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' + relax + '\njean.billard';
 	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
@@ -282,7 +272,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	previewGrp.margins = 0;
 
 	var previewImg = previewGrp.add('image', [0, 0, 230, 130], no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
-	// previewImg.size = [1920, 1080] * 0.12;    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
 
 	var btnGrp1 = layoutMainGrp3.add('group', undefined);
 	btnGrp1.orientation = 'row';
@@ -343,6 +332,17 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	caseDrop.selection = 0;
 	caseDrop.preferredSize.width = 90;
 
+	var prefixGrp = projGeneralGrp.add('group', undefined);
+	prefixGrp.alignChildren = ['left', 'center'];
+	prefixGrp.spacing = 10;
+	prefixGrp.margins = 0;
+
+	var prefixLab = prefixGrp.add('statictext', undefined, 'separador:');
+	prefixLab.preferredSize.width = 130;
+
+	var prefixTxt = prefixGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.prefix);
+	prefixTxt.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
+
 	var separatorGrp = projGeneralGrp.add('group', undefined);
 	separatorGrp.alignChildren = ['left', 'center'];
 	separatorGrp.spacing = 10;
@@ -394,7 +394,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	importGrp.alignChildren = ['left', 'center'];
 	importGrp.spacing = 10;
 
-	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath });
+	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath, truncate: 'middle' });
 	importPathLab.helpTip = 'caminho da pasta:';
 	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
@@ -438,6 +438,11 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		for (var i = 0; i < templateLayers.length; i++) {
 			templateLayers[i][0].comment = '';
 		}
+
+		try {
+			tempPreviewFile.remove();
+
+		} catch (err) { }
 	};
 
 	PAD_MAKER_w.onShow = function () {
@@ -455,14 +460,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 		try {
 			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
-			tempPreviewFile.remove();
-
-		} catch (err) {
-			alert(lol + '#PAD_027 - ' + err.message); // Exibe uma mensagem de erro
-		}
-
-		try {
-			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
 			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
 			$.sleep(300);
@@ -474,6 +471,9 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 		addLayers();
 		addOutputFolder();
+
+		separatorTxt.enabled = (layersMainGrp.children.length > 1);
+		separatorLab.enabled = (layersMainGrp.children.length > 1);
 
 		layersMainGrp.layout.layout(true);
 		outputMainGrp.layout.layout(true);
@@ -520,7 +520,11 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	selectLayersBtn.onClick = function () {
 
-		addLayers()
+		addLayers();
+
+		separatorTxt.enabled = (layersMainGrp.children.length > 1);
+		separatorLab.enabled = (layersMainGrp.children.length > 1);
+
 		layersMainGrp.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
@@ -534,16 +538,18 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		if (newImportPath == null) return; // Se a janela foi cancelada, não faz nada
 
 		this.properties.importPath = newImportPath.fullName;
-		this.text = limitNameSize(newImportPath.fullName, 25);
+		this.text = newImportPath.fullName;
 		this.helpTip = 'caminho da pasta de mídias:\n\n' + newImportPath.fullName;
 	});
 
 	testBtn.onClick = function () {
 
-		var separador = separatorTxt.text.replace(/\\n/g, '\n');
-		var inputTxt = edittext5.text;
+		var inputTxt = edittext5.text.split(/\n{2,}/)[0];
 		var txtCase = caseDrop.selection.index;
 		var templateLayers = getTemplateLayers();
+
+		var separador = separatorTxt.text.replace(/\\n|\\r/g, '\n');
+		if (separatorTxt.text == '' || templateLayers.length < 2) separador = '---';
 
 		if (txtCase == 0) inputTxt = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
 		if (txtCase == 1) inputTxt = inputTxt.toLowerCase(); // Converte para minúsculas
@@ -586,15 +592,6 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 	makeBtn.onClick = function () {
 
-		var templateCompName = captureBtn.properties.comp.name;
-
-		if (templateCompName.match(/[\s_-]TEMPLATE$/i)) {
-			var msg = 'renomeie a comp:"' + templateCompName + '", o nome dela deve terminar com "TEMPLATE"';
-
-			alert(lol + '#PAD_029 "' + msg); // Exibe uma mensagem de erro
-			return;
-		}
-
 		var templateLayers = getTemplateLayers();
 
 		for (var i = 0; i < templateLayers.length; i++) {
@@ -607,9 +604,12 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		defaultConfigObj.exemple = edittext5.text;
 		defaultConfigObj.tip = edittext3.text;
 		defaultConfigObj.compName = captureBtn.properties.comp.name;
-		defaultConfigObj.prefix = edittext2.text;
+		defaultConfigObj.prefix = prefixTxt.text;
 		defaultConfigObj.refTime = captureBtn.properties.ref_time;
+
 		defaultConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
+		if (separatorTxt.text == '' || templateLayers.length < 2) defaultConfigObj.separator = '---';
+
 		defaultConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase'][caseDrop.selection.index];
 		defaultConfigObj.inputLayers = [];
 
@@ -617,7 +617,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 
 			try {
 				var layerGrp = layersMainGrp.children[i];
-				var methodArray = ['textContent', 'layerName'];
+				var methodArray = ['layerName', 'textContent'];
 				var m = layerGrp.children[1].selection.index;
 				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
 
@@ -650,7 +650,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		var currentProjBase = decodeURI(currentProj.fullName).replace(/\.ae[pt]/, '');
 
 		try {
-	
+
 			var configContent = JSON.stringify(defaultConfigObj, null, '\t');
 			var templateImg = new File(currentProjBase + '_preview.png');
 
