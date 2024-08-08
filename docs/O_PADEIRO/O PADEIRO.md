@@ -2,14 +2,9 @@
 
 🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates e outras utilidades no After Effects ⚡
 
-> 📂 **pastas:**\
-> • **templates** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\TEMPLATES\TEMPLATES PADEIRO`
->
-> • **fontes** → `pasta do template\FONTS`
->
-> • **script** → `\\vfx-ml-sp.servicos.corp.tvglobo.com.br\VFX\imagem\drive_l\Fileserver_3\INSTITUCIONAL\_adm-designers\SCRIPTS FREE\O_PADEIRO`
-
-> 📑 ***O PADEIRO.jsx***
+> 📂 **arquivos:**\
+> • **O PADEIRO.jsx** → é o aquivo que deve ser instalado no after effects.\
+> • **O_PADEIRO_SOURCE.jsxbin** → é o arquivo que contém o binário do script.
 
 <br>
 
@@ -73,6 +68,28 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 > 📋 *exemplo:*\
 > ![ui](gifs/ui1.gif)
+
+<br>
+
+---
+
+<br>
+
+## 📍 adicionando pastas de produção
+
+interface do editor de pastas de produção:\
+![ui](images/pastas_ui.png)
+
+1. `◖ clique DUPLO esquerdo` no ícone da produção.
+2. clique no botão '*nova produção*'.
+3. edite a pasta de templates.
+4. selecione um ícone para a produção.
+5. edite o nome da produção.
+6. clique no botão '*salvar*'.
+
+> 🚩 *obs:*\
+> • as produções serão sempre organizadas alfabeticamente na lista.\
+> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.
 
 <br>
 
@@ -156,28 +173,6 @@ o script executará as seguintes tarefas em ordem:
 > • todo template pode ter múltiplas pastas de output.\
 > use essa opção para criar cópias do mesmo render em varias pastas.\
 > • ao clicar em '*testar*' um novo preview será capturado e o texto do exemplo de preenchimento terá sua caixa de texto convertida.
-
-<br>
-
----
-
-<br>
-
-## 📍 adicionando pastas de produção
-
-interface do editor de pastas de produção:\
-![ui](images/pastas_ui.png)
-
-1. `◖ clique DUPLO esquerdo` no ícone da produção.
-2. clique no botão '*nova produção*'.
-3. edite a pasta de templates.
-4. selecione um ícone para a produção.
-5. edite o nome da produção.
-6. clique no botão '*salvar*'.
-
-> 🚩 *obs:*\
-> • as produções serão sempre organizadas alfabeticamente na lista.\
-> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.
 
 <br>
 
