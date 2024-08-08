@@ -58,6 +58,10 @@ function O_PADEIRO_UTL(thisObj) {
 			return sortProdData(prodData.PRODUCTIONS);
 		} catch (err) {
 			alert(lol + '#PAD_001 - nenhum arquivo de configuração válido encontrado...');
+			
+			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
+			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
+
 			return defaultProdData.PRODUCTIONS;
 		}
 	}

@@ -82,7 +82,7 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 ## 📍 criando um novo template
 
-interface do criador de templates:
+interface do criador de templates:\
 ![ui](images/maker_ui.png)
 
 1. limpe o projeto, remova tudo o que não for necessário para a comp principal.
@@ -165,7 +165,7 @@ o script executará as seguintes tarefas em ordem:
 
 ## 📍 adicionando pastas de produção
 
-interface do editor de pastas de produção:
+interface do editor de pastas de produção:\
 ![ui](images/pastas_ui.png)
 
 1. `◖ clique DUPLO esquerdo` no ícone da produção.
@@ -187,7 +187,7 @@ interface do editor de pastas de produção:
 
 ## 📍 preenchendo templates
 
-interface de templates:
+interface de templates:\
 ![ui](images/o_padeiro_ui.png)
 
 1. `◖ clique esquerdo`  no botão com ícone de luva ('*abrir interface de templates*').
