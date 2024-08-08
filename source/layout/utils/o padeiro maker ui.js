@@ -14,7 +14,7 @@ function PadMakerDialog() {
 		tip: 'coloque aqui as instruções de preenchimento deste template.\nex:\
 \ndigite o texto em 1 ou 2 linhas.\
 \nuse a quebra de linha para separar "informação" 1 e "informação 2".\
-\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.',
+\nuse 1 linha vazia para criar mais de 1 versão do mesmo template selecionado.',
 
 		compName: 'COMP TEMPLATE',
 		prefix: 'TARJA',
@@ -301,7 +301,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	alphaGrp.spacing = 10;
 	alphaGrp.margins = 0;
 
-	var alphaLab = alphaGrp.add('statictext', undefined, 'canal alpha:');
+	var alphaLab = alphaGrp.add('statictext', undefined, 'alerta canal alpha:');
 	alphaLab.preferredSize.width = 130;
 
 	var alphaCkb = alphaGrp.add('checkbox', undefined, undefined);
@@ -327,7 +327,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	var caseLab = textCaseGrp.add('statictext', undefined, 'caixa de texto:');
 	caseLab.preferredSize.width = 130;
 
-	var caseDrop_array = ['ALTA', 'baixa', 'Título'];
+	var caseDrop_array = ['ALTA', 'baixa', 'Título', 'LiVrE'];
 	var caseDrop = textCaseGrp.add('dropdownlist', undefined, caseDrop_array);
 	caseDrop.selection = 0;
 	caseDrop.preferredSize.width = 90;
@@ -337,7 +337,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	prefixGrp.spacing = 10;
 	prefixGrp.margins = 0;
 
-	var prefixLab = prefixGrp.add('statictext', undefined, 'separador:');
+	var prefixLab = prefixGrp.add('statictext', undefined, 'prefixo:');
 	prefixLab.preferredSize.width = 130;
 
 	var prefixTxt = prefixGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.prefix);
@@ -387,7 +387,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	importMainGrp.spacing = 2;
 	importMainGrp.margins = 0;
 
-	var importLab = importMainGrp.add('statictext', undefined, 'pastas de mídias:');
+	var importLab = importMainGrp.add('statictext', undefined, 'pasta de mídias: (opcional)');
 
 	var importGrp = importMainGrp.add('group', undefined);
 	importGrp.orientation = 'row';
@@ -462,7 +462,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
 			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
-			$.sleep(300);
+			$.sleep(500);
 			previewImg.image = tempPreviewFile;
 
 		} catch (err) {
@@ -551,9 +551,9 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		var separador = separatorTxt.text.replace(/\\n|\\r/g, '\n');
 		if (separatorTxt.text == '' || templateLayers.length < 2) separador = '---';
 
-		if (txtCase == 0) inputTxt = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
-		if (txtCase == 1) inputTxt = inputTxt.toLowerCase(); // Converte para minúsculas
-		if (txtCase == 2) inputTxt = inputTxt.toTitleCase(); // Converte para 'Title Case'
+		if (txtCase == 0) inputTxt = edittext5.text = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
+		if (txtCase == 1) inputTxt = edittext5.text = inputTxt.toLowerCase(); // Converte para minúsculas
+		if (txtCase == 2) inputTxt = edittext5.text = inputTxt.toTitleCase(); // Converte para 'Title Case'
 
 		var inputArray = inputTxt.split(separador);
 
@@ -578,6 +578,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 				selectedLayer.name = inputArray[i].trim();
 			}
 		}
+		captureBtn.notify();
 		app.endUndoGroup();
 	}
 
@@ -610,7 +611,7 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 		defaultConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
 		if (separatorTxt.text == '' || templateLayers.length < 2) defaultConfigObj.separator = '---';
 
-		defaultConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase'][caseDrop.selection.index];
+		defaultConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase', 'freeCase'][caseDrop.selection.index];
 		defaultConfigObj.inputLayers = [];
 
 		for (var i = 0; i < layersMainGrp.children.length; i++) {

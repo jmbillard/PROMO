@@ -21,7 +21,7 @@
 ferramentas disponíveis em ordem:
 
 - **ÍCONE DE PRODUÇÃO**:
-`◖ clique DUPLO esquerdo` → abre a janela de pastas de produção.
+`◖ clique DUPLO esquerdo` → abre o editor de pastas de produção.
   >
 
 - **MENU DE PRODUÇÃO**:
@@ -29,25 +29,30 @@ ferramentas disponíveis em ordem:
   >
 
 - **O PADEIRO**:
-`◖ clique esquerdo` → abre a janela de templates.
-`◗ clique direito` → abre a janela do criador de templates.
+`◖ clique esquerdo` → abre a interface de templates.
+`◗ clique direito` → abre a interface do criador de templates.
   >
+
 - **RESOLVER FONTES**:
 `◖ clique esquerdo` → instala as fontes necessárias para o template.
 `◗ clique direito` → faz o collect dos arquivos de fonte do projeto.
   >
+
 - **ABRIR PASTAS**:
 `◖ clique esquerdo` → abre a pasta de output do último item da fila de render.
 `◗ clique direito` → abre a pasta do projeto atual.
   > *se o projeto já foi salvo.*
+
 - **RENOMEAR**:
 `◖ clique esquerdo` → renomeia comps selecionadas.
 `◗ clique direito` → renomeia todos os itens da fila de render.
   > *remove caracteres especiais, colocando tudo em CAIXA ALTA e acrescenta os prefixos para rodapés, cartões, letterings, etc.*
+
 - **ORGANIZAR**:
 `◖ clique esquerdo` → organiza o projeto.
 `◗ clique direito` → cria apenas a estrutura de pastas no projeto.
   > *antes de clicar,selecione as comps principais (as que devem ser renderizadas) para que elas sejam adicionadas a pasta '01 COMPS'*
+
 - **BUSCA**:
 `◖ clique esquerdo` → abre a janela de busca.
   > *a busca funciona apenas no conteúdo dos layers de texto do projeto.*
@@ -71,19 +76,127 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 <br>
 
+---
+
+<br>
+
+## 📍 criando um novo template
+
+interface do criador de templates:
+![ui](images/maker_ui.png)
+
+1. limpe o projeto, remova tudo o que não for necessário para a comp principal.
+2. `◗ clique direito` no botão com ícone de luva ('*abrir a interface do criador de templates*').
+3. preencha o '*nome da configuração*', as '*dicas*' e o '*exemplo de preenchimento*'.
+4. posicione a agulha da timeline em um frame de referência e clique no botão '*capturar*'.
+5. selecione / preencha o '*alerta canal alpha*', o padrão de '*caixa de texto*' do projeto, o '*prefixo*' e o '*separador*' de informações.
+6. selecione os layers editáveis em ordem de preenchimento e clique no botão '*selecionar layers*'.
+7. edite a '*pasta de mídia: (opcional)*' e as '*pastas de output*'.
+8. use o botão '*testar*' para verificar o preenchimento das informações inseridas no '*exemplo de preenchimento*'.
+9. clique no botão '*criar*' para salvar o template,preferencialmente com a extensão '.aet'.
+
+<br>
+
+o script executará as seguintes tarefas em ordem:
+
+1. adicionar o comentário 'TEMPLATE' na comp principal.
+2. salvar o projeto.
+3. gerar um preview da comp principal.
+4. gerar um arquivo de configuração do template.
+5. copiar todos os arquivos de fontes usados no projeto.
+6. abrir a pasta com todos os arquivos do template.
+
+### formulário
+
+![ui](images/formulario_ui.png)
+
+- **nome da configuração** → identificador da configuração do template.
+- **dicas** → instruções de como preencher o template.
+- **exemplo de preenchimento** → idealmente, será o input de texto usado para produzir a imagem do preview.
+
+> 🚩 *obs:*\
+> • o '*nome da configuração*' serve apenas para identificação do template no log do script.
+> • seja bastante claro nas dicas, inclua instruções para importar footages, controles de expressão e tudo o que for necessário.
+
+### preview e projeto
+
+![ui](images/projeto_ui.png)
+
+- **capturar** → gera o preview do template.
+
+<br>
+
+- **alerta canal alpha** → habilita um texto o alerta '*obs: requer canal alpha*' na seleção do preset para o render output.
+- **caixa de texto**
+  - **ALTA** → converte a caixa de texto do projeto para caixa ALTA.
+  - **baixa** → converte a caixa de texto do projeto para caixa baixa.
+  - **Título** → converte a caixa de texto do projeto para caixa Título.
+  - **LiVrE** → não executa nenhuma conversão da caixa de texto do projeto.
+- **prefixo** → prefixo adicionado em todas as versões geradas do template.
+- **separador** → o texto usado para separar as informações de tipos diferentes.
+- **selecionar layers** → seleciona em ordem de preenchimento os layers editáveis.
+
+> 🚩 *obs:*\
+> • todos os textos serão convertidos para a '*caixa de texto*' selecionada.\
+> para evitar essa conversão selecione a opção '*livre*'.\
+> • o separador só será usado caso exista mais de um layer editável no template.\
+> • os layers editáveis serão sempre preenchidos na ordem em que foram selecionados.
+
+### caminhos
+
+![ui](images/caminhos_ui.png)
+
+- **pasta de mídia** → seleciona a pasta padrão para a importação de arquivos do projeto.
+- **pastas de output** → seleciona a pasta padrão de output do projeto.
+- **novo output** → adiciona uma nova pasta de output.
+- **testar** → preenche os layers selecionados com o exemplo de preenchimento.
+- **criar** → salva o projeto e gera todos os arquivos necessários para o template.
+
+> 🚩 *obs:*\
+> • todo template pode ter múltiplas pastas de output.\
+> use essa opção para criar cópias do mesmo render em varias pastas.\
+> • ao clicar em '*testar*' um novo preview será capturado e o texto do exemplo de preenchimento terá sua caixa de texto convertida.
+
+<br>
+
+---
+
+<br>
+
 ## 📍 adicionando pastas de produção
 
-## 📍 funcionamento básico
+interface do editor de pastas de produção:
+![ui](images/pastas_ui.png)
 
-Se o script não estiver aberto, acesse o menu `Window` e clique em '**O PADEIRO**'
+1. `◖ clique DUPLO esquerdo` no ícone da produção.
+2. clique no botão '*nova produção*'.
+3. edite a pasta de templates.
+4. selecione um ícone para a produção.
+5. edite o nome da produção.
+6. clique no botão '*salvar*'.
 
-1. clique no primeiro botão ('*abrir O PADEIRO*').
-1. faca uma busca ou navegue pela estrutura da lista.
-2. selecione o template desejado.
-3. preencha o campo '**input**' seguindo as '**dicas**'.
-4. habilite ou não a opção '**adicionar a fila de render**'.
-5. clique no botão '**criar**'.
-6. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
+> 🚩 *obs:*\
+> • as produções serão sempre organizadas alfabeticamente na lista.\
+> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.
+
+<br>
+
+---
+
+<br>
+
+## 📍 preenchendo templates
+
+interface de templates:
+![ui](images/o_padeiro_ui.png)
+
+1. `◖ clique esquerdo`  no botão com ícone de luva ('*abrir interface de templates*').
+2. faca uma busca ou navegue pela estrutura da lista.
+3. selecione o template desejado.
+4. preencha o campo '**input**' seguindo as '**dicas**'.
+5. habilite ou não a opção '**adicionar a fila de render**'.
+6. clique no botão '**criar**'.
+7. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
 <br>
 
@@ -146,7 +259,7 @@ o script executará as seguintes tarefas em ordem:
 >  "prefix": "RDP", // → prefixo que o nome da comp editada receberá.
 >  "refTime": 2, // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
 >  "separator": "---", // → texto usado para separar as informações de tipos diferentes.
->  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase" ou "titleCase".
+>  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase", "titleCase" ou "freeCase".
 >  "inputLayers": [ // → lista com os layers editáveis da comp.
 >   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
 >   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
@@ -347,6 +460,10 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
   > 🚩 *obs:*\
   > Por padrão a busca é feita ignorando acentuação e caixa do texto.\
   > Assim uma busca rápida por 'amazonia' pode retornar todos os layers de texto contendo 'amazonia', 'Amazônia', 'AmAzOnIa'...
+
+<br>
+
+---
 
 <br>
 
