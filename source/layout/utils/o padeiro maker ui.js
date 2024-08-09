@@ -429,6 +429,8 @@ em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' +
 	var makeBtn = btnGrp3.add('button', [0, 0, 110, 24], 'criar');
 	makeBtn.helpTip = 'salvar template';
 
+	// setBgColor(PAD_MAKER_w, '#515D9E'); // Cor de fundo da janela
+
 	// ==============
 
 	PAD_MAKER_w.onClose = function () {

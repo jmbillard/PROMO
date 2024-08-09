@@ -11,6 +11,13 @@ function O_PADEIRO_UTL(thisObj) {
 	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
 	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
 
+	// utilidades com interface
+	#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
+	#include 'source/layout/Utils/o padeiro folders ui.js'; // Busca em layers de texto
+	#include 'source/layout/Utils/o padeiro maker ui.js'; // Busca em layers de texto
+	#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
+	
+
 	// configurações iniciais de uma nova produção
 	var defaultProdData = {
 		PRODUCTIONS: [
@@ -56,13 +63,18 @@ function O_PADEIRO_UTL(thisObj) {
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
 			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 			return sortProdData(prodData.PRODUCTIONS);
+
 		} catch (err) {
-			alert(lol + '#PAD_001 - nenhuma lista de produções encontrada...\n\nadicione uma nova produção e salve a lista');
-			
+			alert(lol + '#PAD_001 - nenhuma produção encontrada...\n\nadicione uma nova produção e salve a lista.');
+
 			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 
-			return defaultProdData.PRODUCTIONS;
+			padConfigDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração.
+
+			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
+			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+			return sortProdData(prodData.PRODUCTIONS);
 		}
 	}
 
@@ -96,14 +108,7 @@ function O_PADEIRO_UTL(thisObj) {
 		var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
 		templatesPath = PAD_prodArray[0].templatesPath;
 		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
-	
-		if (PAD_prodArray == defaultProdData.PRODUCTIONS) padConfigDialog(PAD_prodArray); // Chama a janela de configuração.
 
-		// utilidades com interface
-		#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
-		#include 'source/layout/Utils/o padeiro folders ui.js'; // Busca em layers de texto
-		#include 'source/layout/Utils/o padeiro maker ui.js'; // Busca em layers de texto
-		#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
 		var PAD_w = {}; // Objeto que representa a janela da interface
 
 		// Cria a janela da interface (ou usa um painel existente)

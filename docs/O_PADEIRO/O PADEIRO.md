@@ -15,44 +15,45 @@
 
 ferramentas disponíveis em ordem:
 
-- **ÍCONE DE PRODUÇÃO**:
+- **ÍCONE DE PRODUÇÃO**:\
 `◖ clique DUPLO esquerdo` → abre o editor de pastas de produção.
   >
 
-- **MENU DE PRODUÇÃO**:
+- **MENU DE PRODUÇÃO**:\
 `◖ clique esquerdo` → seleciona a pasta da produção atual.
   >
 
-- **O PADEIRO**:
-`◖ clique esquerdo` → abre a interface de templates.
+- **O PADEIRO**:\
+`◖ clique esquerdo` → abre a interface de templates.\
 `◗ clique direito` → abre a interface do criador de templates.
   >
 
-- **RESOLVER FONTES**:
-`◖ clique esquerdo` → instala as fontes necessárias para o template.
+- **RESOLVER FONTES**:\
+`◖ clique esquerdo` → instala as fontes necessárias para o template.\
 `◗ clique direito` → faz o collect dos arquivos de fonte do projeto.
   >
 
-- **ABRIR PASTAS**:
-`◖ clique esquerdo` → abre a pasta de output do último item da fila de render.
+- **ABRIR PASTAS**:\
+`◖ clique esquerdo` → abre a pasta de output do último item da fila de render.\
 `◗ clique direito` → abre a pasta do projeto atual.
   > *se o projeto já foi salvo.*
 
-- **RENOMEAR**:
-`◖ clique esquerdo` → renomeia comps selecionadas.
+- **RENOMEAR**:\
+`◖ clique esquerdo` → renomeia comps selecionadas.\
 `◗ clique direito` → renomeia todos os itens da fila de render.
   > *remove caracteres especiais, colocando tudo em CAIXA ALTA e acrescenta os prefixos para rodapés, cartões, letterings, etc.*
 
-- **ORGANIZAR**:
-`◖ clique esquerdo` → organiza o projeto.
+- **ORGANIZAR**:\
+`◖ clique esquerdo` → organiza o projeto.\
 `◗ clique direito` → cria apenas a estrutura de pastas no projeto.
   > *antes de clicar,selecione as comps principais (as que devem ser renderizadas) para que elas sejam adicionadas a pasta '01 COMPS'*
 
-- **BUSCA**:
+- **BUSCA**:\
 `◖ clique esquerdo` → abre a janela de busca.
   > *a busca funciona apenas no conteúdo dos layers de texto do projeto.*
-- **APONTAMENTO**:
-`◖ clique esquerdo` → abre a planilha de apontamento de projetos.
+
+<!-- - **APONTAMENTO**:\
+`◖ clique esquerdo` → abre a planilha de apontamento de projetos. -->
 
 <br>
 
@@ -77,10 +78,14 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 ## 📍 adicionando pastas de produção
 
-interface do editor de pastas de produção:\
-![ui](images/pastas_ui.png)
+ao executar o script pela primeira vez, você receberá um alerta:\
+`nenhuma produção encontrada... adicione uma nova produção e salve a lista.`\
+nesse caso, o editor de pastas de produção será aberto automaticamente.
 
-1. `◖ clique DUPLO esquerdo` no ícone da produção.
+> 📟 *interface do editor de pastas de produção:*\
+> ![ui](images/pastas_ui.png)
+
+1. `◖ clique DUPLO esquerdo` no ícone da produção para abrir o editor.
 2. clique no botão '*nova produção*'.
 3. edite a pasta de templates.
 4. selecione um ícone para a produção.
@@ -89,7 +94,8 @@ interface do editor de pastas de produção:\
 
 > 🚩 *obs:*\
 > • as produções serão sempre organizadas alfabeticamente na lista.\
-> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.
+> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.\
+> • é possível exportar e importar a lista completa de produções, incluindo seus respectivos ícones.
 
 <br>
 
@@ -99,11 +105,11 @@ interface do editor de pastas de produção:\
 
 ## 📍 criando um novo template
 
-interface do criador de templates:\
-![ui](images/maker_ui.png)
+> 📟 *interface do criador de templates:*\
+> ![ui](images/maker_ui.png)
 
 1. limpe o projeto, remova tudo o que não for necessário para a comp principal.
-2. `◗ clique direito` no botão com ícone de luva ('*abrir a interface do criador de templates*').
+2. `◗ clique direito` no botão com ícone de luva para abrir a interface do criador de templates.
 3. preencha o '*nome da configuração*', as '*dicas*' e o '*exemplo de preenchimento*'.
 4. posicione a agulha da timeline em um frame de referência e clique no botão '*capturar*'.
 5. selecione / preencha o '*alerta canal alpha*', o padrão de '*caixa de texto*' do projeto, o '*prefixo*' e o '*separador*' de informações.
@@ -182,10 +188,10 @@ o script executará as seguintes tarefas em ordem:
 
 ## 📍 preenchendo templates
 
-interface de templates:\
-![ui](images/o_padeiro_ui.png)
+> 📟 *interface de templates:*\
+> ![ui](images/o_padeiro_ui.png)
 
-1. `◖ clique esquerdo`  no botão com ícone de luva ('*abrir interface de templates*').
+1. `◖ clique esquerdo`  no botão com ícone de luva para abrir interface de templates.
 2. faca uma busca ou navegue pela estrutura da lista.
 3. selecione o template desejado.
 4. preencha o campo '**input**' seguindo as '**dicas**'.

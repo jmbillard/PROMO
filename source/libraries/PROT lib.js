@@ -38,22 +38,20 @@ if (!String.prototype.trim) {
 // replaces most of the special characters...
 String.prototype.replaceSpecialCharacters = function () {
 
-	return this.replace(/À|Á|Â|Ã|Ä|\u00C0|\u00C1|\u00C2|\u00C3|\u00C4/g, 'A')
-		.replace(/à|á|â|ã|ä|\u00E0|\u00E1|\u00E2|\u00E3|\u00E4/g, 'a')
-		.replace(/È|É|Ê|Ë|\u00C8|\u00C9|\u00CA|\u00CB/g, 'E')
-		.replace(/è|é|ê|ë|&|\u00E8|\u00E9|\u00EA|\u00EB/g, 'e')
-		.replace(/Ì|Í|Î|Ï|\u00CC|\u00CD|\u00CE|\u00CF/g, 'I')
-		.replace(/ì|í|î|ï|\u00EC|\u00ED|\u00EE|\u00EF/g, 'i')
-		.replace(/Ò|Ó|Ô|Õ|Ö|\u00D2|\u00D3|\u00D4|\u00D5|\u00D6/g, 'O')
-		.replace(/ò|ó|ô|õ|ö|\u00F2|\u00F3|\u00F4|\u00F5|\u00F6/g, 'o')
-		.replace(/Ù|Ú|Û|Ü|\u00D9|\u00DA|\u00DB|\u00DC/g, 'U')
-		.replace(/ù|ú|û|ü|\u00F9|\u00FA|\u00FB|\u00FC/g, 'u')
+	return this.replace(/\u00C0|\u00C1|\u00C2|\u00C3|\u00C4|[ÀÁÂÃÄ]/g, 'A')
+		.replace(/\u00E0|\u00E1|\u00E2|\u00E3|\u00E4|[àáâãä]/g, 'a')
+		.replace(/\u00C8|\u00C9|\u00CA|\u00CB|[ÈÉÊË]/g, 'E')
+		.replace(/\u00E8|\u00E9|\u00EA|\u00EB|[èéêë]/g, 'e')
+		.replace(/\u00CC|\u00CD|\u00CE|\u00CF|[ÍÍîï]/g, 'I')
+		.replace(/\u00EC|\u00ED|\u00EE|\u00EF|[ííîï]/g, 'i')
+		.replace(/\u00D2|\u00D3|\u00D4|\u00D5|\u00D6|[ÒÓÔÕÖ]/g, 'O')
+		.replace(/\u00F2|\u00F3|\u00F4|\u00F5|\u00F6|[òóôõö]/g, 'o')
+		.replace(/\u00D9|\u00DA|\u00DB|\u00DC|[ÙÚÛÜ]/g, 'U')
+		.replace(/\u00F9|\u00FA|\u00FB|\u00FC|[ùúûü]/g, 'u')
 		.replace(/Ç|\u00C7/g, 'C')
 		.replace(/ç|\u00E7/g, 'c')
-		.replace(/\n|\r/g, ' ') // replaces line breaks...
-		.replace(/\||-|\_|:/g, ' ')
-		.replace(/[^\w\s—]/ig, '') // replaces any non-word character except space...
-		.replace(/\s{2,}/g, ' ') // replaces 2 or more spaces...
+		.replace(/[^\w\s]/g, ' ') // replaces any letter character except space...
+		.replace(/[\s_]+/g, ' ') // replaces 2 or more spaces...
 		.trim();
 };
 
