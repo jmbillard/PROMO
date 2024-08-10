@@ -130,7 +130,7 @@ function padeiroTemplateDialog() {
 	infoGrp.alignment = 'right'; // Alinhamento à direita
 
 	// Cria o rótulo 'busca:'
-	var templateLabTxt = templatesGrp.add('statictext', undefined, 'busca:');
+	var templateLabTxt = templatesGrp.add('statictext', undefined, 'BUSCA:');
 	setTxtColor(templateLabTxt, monoColors[2]); // Define a cor do rótulo
 
 	// Cria o botão de informações
@@ -188,7 +188,7 @@ function padeiroTemplateDialog() {
 
 
 	// Rótulo de preview
-	var previewLabTxt = previewGrp.add('statictext', undefined, 'preview:'); // Adiciona um texto estático 'preview:' ao grupo de preview
+	var previewLabTxt = previewGrp.add('statictext', undefined, 'PREVIEW:'); // Adiciona um texto estático 'preview:' ao grupo de preview
 	setTxtColor(previewLabTxt, monoColors[2]);   // Define a cor do texto 'preview:'
 
 	// Imagem de preview
@@ -219,7 +219,7 @@ function padeiroTemplateDialog() {
 	tipGrp.alignChildren = 'left';                 // Alinha os elementos filhos à esquerda
 
 	// Elementos da Caixa de Texto
-	var inputLabTxt = txtGrp.add('statictext', undefined, 'input:'); // Adiciona um texto estático 'input:' para identificar a caixa de texto
+	var inputLabTxt = txtGrp.add('statictext', undefined, 'INPUT:'); // Adiciona um texto estático 'input:' para identificar a caixa de texto
 	setTxtColor(inputLabTxt, monoColors[2]);                         // Define a cor do texto
 
 	// Criação da caixa de texto
@@ -239,7 +239,7 @@ function padeiroTemplateDialog() {
 	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
 
 	// Dicas
-	var tipLabTxt = tipGrp.add('statictext', undefined, 'dicas:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
+	var tipLabTxt = tipGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
 	setTxtColor(tipLabTxt, monoColors[2]);                         // Define a cor do rótulo.
 
 	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 210], tipContent, { multiline: true }); // Cria um texto estático para exibir as dicas.
@@ -339,8 +339,8 @@ function padeiroTemplateDialog() {
 
 		// Criação dos objetos File para os arquivos do template
 		previewImgFile = new File(templateBase + '_preview.png');    // arquivo de preview
-		configFile = new File(templateBase + '_config.json');     // arquivo de configuração
-		scriptFile = new File(templateBase + '_script.js');     // arquivo de script (se houver)
+		configFile = new File(templateBase + '_config.json');        // arquivo de configuração
+		scriptFile = new File(templateBase + '_script.js');          // arquivo de script (se houver)
 
 		// Habilita o botão de importar se um template estiver selecionado
 		importBtn.enabled = templateTree.selection != null;
@@ -498,8 +498,8 @@ function padeiroTemplateDialog() {
 
 			// Verifica se o item é uma composição, se é um template e se o nome da composição
 			// corresponde ao nome definido no arquivo de configuração (templateData.compName)
-			if (!(comp instanceof CompItem)) continue; // Pula para a próxima iteração se o item não for uma composição (CompItem)
-			if (!comp.comment.match(/^TEMPLATE/)) continue; // Pula se a composição não tiver um comentário que comece com 'TEMPLATE'
+			if (!(comp instanceof CompItem)) continue;        // Pula para a próxima iteração se o item não for uma composição (CompItem)
+			if (!comp.comment.match(/^TEMPLATE/)) continue;   // Pula se a composição não tiver um comentário que comece com 'TEMPLATE'
 			if (comp.name != templateData.compName) continue; // Pula se o nome da composição não for o nome esperado do template
 
 			// Loop para cada linha de texto de entrada (cada item no array inputList)
@@ -521,8 +521,8 @@ function padeiroTemplateDialog() {
 					// apenas adicionada ao array de templates criados 
 					if (templateData.prefix != 'ignore') {
 						template = comp.duplicate(); // Duplica a composição original para criar um novo template
-						var inputLayerList = templateData.inputLayers; // Obtém a lista de camadas de entrada (inputLayers) do template
 
+						var inputLayerList = templateData.inputLayers;      // Obtém a lista de camadas de entrada (inputLayers) do template
 						var txtList = inputList[n].split(/[\n\r]-+[\n\r]/); // Divide o texto da linha atual em um array de strings, usando como separador uma ou mais ocorrências de hífen (-) e quebras de linha (\n ou \r)
 
 						// Se houver um separador personalizado definido, usa-o para dividir o texto

@@ -13,10 +13,9 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// utilidades com interface
 	#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
-	#include 'source/layout/Utils/o padeiro folders ui.js'; // Busca em layers de texto
-	#include 'source/layout/Utils/o padeiro maker ui.js'; // Busca em layers de texto
-	#include 'source/layout/Utils/find ui.js'; // Busca em layers de texto
-	
+	#include 'source/layout/Utils/o padeiro folders ui.js';   // Busca em layers de texto
+	#include 'source/layout/Utils/o padeiro maker ui.js';     // Busca em layers de texto
+	#include 'source/layout/Utils/find ui.js';                // Busca em layers de texto
 
 	// configurações iniciais de uma nova produção
 	var defaultProdData = {
@@ -65,10 +64,6 @@ function O_PADEIRO_UTL(thisObj) {
 			return sortProdData(prodData.PRODUCTIONS);
 
 		} catch (err) {
-			alert(lol + '#PAD_001 - nenhuma produção encontrada...\n\nadicione uma nova produção e salve a lista.');
-
-			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
-			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 
 			padConfigDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração.
 

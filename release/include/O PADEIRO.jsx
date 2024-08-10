@@ -25,5 +25,5 @@ try {
   scriptMainFile.close();
 
 } catch (err) {
-  alert('(っ °Д °;)っ      #PAD_000 - ' + err.message);
+  alert('(っ °Д °;)っ      #PAD_001 - ' + err.message);
 }

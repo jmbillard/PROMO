@@ -78,9 +78,8 @@ após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecer�
 
 ## 📍 adicionando pastas de produção
 
-ao executar o script pela primeira vez, você receberá um alerta:\
-`nenhuma produção encontrada... adicione uma nova produção e salve a lista.`\
-nesse caso, o editor de pastas de produção será aberto automaticamente.
+ao executar o script pela primeira vez ou caso não exista uma lista válida, o editor de pastas de produção será aberto automaticamente.\
+o arquivo da lista de produção será salvo na mesma pasta do script e será compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os usuários de uma equipe terão a mesma lista de produções.
 
 > 📟 *interface do editor de pastas de produção:*\
 > ![ui](images/pastas_ui.png)

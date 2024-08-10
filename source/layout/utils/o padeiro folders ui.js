@@ -8,7 +8,7 @@
 
 function padConfigDialog(prodArray) {
 
-	function addProdLine(prodObj) {
+	function addProductionLine(prodObj) {
 
 		var nameTxt = prodObj.name;
 		var pathTxt = limitNameSize(prodObj.templatesPath, 35);
@@ -18,8 +18,6 @@ function padConfigDialog(prodArray) {
 		prodGrp.orientation = 'column';
 		prodGrp.alignChildren = ['left', 'center'];
 		prodGrp.spacing = 10;
-
-		// ==========
 
 		var prodDataGrp = prodGrp.add('group', undefined);
 		prodDataGrp.orientation = 'row';
@@ -42,7 +40,7 @@ function padConfigDialog(prodArray) {
 		prodIconBtn.helpTip = 'ícone que aparecerá no menu';
 		prodIconBtn.preferredSize = [36, 36];
 
-		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath });
+		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'end' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [230, 24];
 		setTxtHighlight(prodPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
@@ -84,8 +82,6 @@ function padConfigDialog(prodArray) {
 		}
 	}
 
-	// ===========
-
 	// window...
 	var PAD_CONFIG_w = new Window('dialog', 'LISTA DE PRODUÇÕES');
 	PAD_CONFIG_w.orientation = 'column';
@@ -95,17 +91,38 @@ function padConfigDialog(prodArray) {
 
 	// ===========
 
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var headerGrp = PAD_CONFIG_w.add('group');
+	headerGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	headerGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+
+	// Cria um grupo para o botão de informações
+	var labGrp = headerGrp.add('group');
+	labGrp.alignment = 'left'; // Alinhamento à esquerda
+
+	// Cria um grupo para o botão de informações
+	var infoGrp = headerGrp.add('group');
+	infoGrp.alignment = 'right'; // Alinhamento à direita
+
+	// Rótulo de preview
+	var listLabTxt = labGrp.add('statictext', undefined, 'PRODUÇÕES:'); // Adiciona um texto estático
+	setTxtColor(listLabTxt, monoColors[2]);   // Define a cor do texto
+
+	// Cria o botão de informações
+	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
+	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+
 	var prodMainGrp = PAD_CONFIG_w.add('group', undefined);
 	prodMainGrp.orientation = 'column';
 	prodMainGrp.spacing = 10;
 
 	for (var u = 0; u < prodArray.length; u++) {
 
-		try{
-			addProdLine(prodArray[u]);
-		} catch(err) {
+		try {
+			addProductionLine(prodArray[u]);
+		} catch (err) {
 			prodArray[u].icon = defPadObj.PRODUCTIONS[0].icon;
-			addProdLine(prodArray[u]);
+			addProductionLine(prodArray[u]);
 		}
 	}
 
@@ -139,6 +156,12 @@ function padConfigDialog(prodArray) {
 
 	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela
 
+	infoBtn.onClick = function () {
+
+		var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
+		openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
+	}
+
 	prodImportBtn.onClick = function () {
 		tempConfigFile = File.openDialog('selecione o ícone', "*.json", false);
 
@@ -150,7 +173,7 @@ function padConfigDialog(prodArray) {
 			}
 
 			for (var j = 0; j < tempArray.length; j++) {
-				addProdLine(tempArray[j]);
+				addProductionLine(tempArray[j]);
 			}
 			prodMainGrp.layout.layout(true);
 			PAD_CONFIG_w.layout.layout(true);
@@ -193,7 +216,7 @@ function padConfigDialog(prodArray) {
 	prodNewBtn.onClick = function () {
 
 		try {
-			addProdLine(defaultProdData.PRODUCTIONS[0]);
+			addProductionLine(defaultProdData.PRODUCTIONS[0]);
 
 		} catch (err) {
 			alert(lol + '#PAD_013 - ' + err.message);
