@@ -45,7 +45,8 @@ o arquivo da lista de produção será salvo na mesma pasta do script e será co
 > 🚩 *obs:*\
 > • as produções serão sempre organizadas alfabeticamente na lista.\
 > • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.\
-> • é possível exportar e importar a lista completa de produções, incluindo seus respectivos ícones.
+> • é possível exportar e importar a lista completa de produções, incluindo seus respectivos ícones.\
+> • as dimensões sugeridas para um ícone são **24 x 24 pixels**, imagens maiores serão cropadas no preview e redimensionadas ao salvar os dados da lista.
 
 <br>
 
