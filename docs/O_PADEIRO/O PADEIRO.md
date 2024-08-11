@@ -8,9 +8,54 @@
 
 <br>
 
-## 📟 Interface
+## 📍 instalação
 
-> launcher:\
+instale o script pelo menu:\
+`File > Scrips > Install ScriptUI Panel...`
+
+> 📋 *exemplo:*\
+> ![ui](images/instalacao.png)
+
+após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
+
+> 📋 *exemplo:*\
+> ![ui](gifs/ui1.gif)
+
+<br>
+
+---
+
+<br>
+
+## 📍 adicionando pastas de produção
+
+ao executar o script pela primeira vez ou caso não exista uma lista válida, o editor de pastas de produção será aberto automaticamente.\
+o arquivo da lista de produção será salvo na mesma pasta do script e será compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os usuários de uma equipe terão a mesma lista de produções.
+
+> 📟 *interface do editor de pastas de produção:*\
+> ![ui](images/pastas_ui.png)
+
+1. `◖ clique DUPLO esquerdo` no ícone da produção para abrir o editor.
+2. clique no botão '*nova produção*'.
+3. edite a pasta de templates.
+4. selecione um ícone para a produção.
+5. edite o nome da produção.
+6. clique no botão '*salvar*'.
+
+> 🚩 *obs:*\
+> • as produções serão sempre organizadas alfabeticamente na lista.\
+> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.\
+> • é possível exportar e importar a lista completa de produções, incluindo seus respectivos ícones.
+
+<br>
+
+---
+
+<br>
+
+## 📍 a interface principal
+
+> 📟 launcher:\
 >![ui](images/ui1.png)
 
 ferramentas disponíveis em ordem:
@@ -57,52 +102,13 @@ ferramentas disponíveis em ordem:
 
 <br>
 
-## 📍 instalação
-
-instale o script pelo menu:\
-`File > Scrips > Install ScriptUI Panel...`
-
-> 📋 *exemplo:*\
-> ![ui](images/instalacao.png)
-
-após a instalação, **reinicie** o After Effects e o '**O PADEIRO**' aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
-
-> 📋 *exemplo:*\
-> ![ui](gifs/ui1.gif)
-
-<br>
-
----
-
-<br>
-
-## 📍 adicionando pastas de produção
-
-ao executar o script pela primeira vez ou caso não exista uma lista válida, o editor de pastas de produção será aberto automaticamente.\
-o arquivo da lista de produção será salvo na mesma pasta do script e será compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os usuários de uma equipe terão a mesma lista de produções.
-
-> 📟 *interface do editor de pastas de produção:*\
-> ![ui](images/pastas_ui.png)
-
-1. `◖ clique DUPLO esquerdo` no ícone da produção para abrir o editor.
-2. clique no botão '*nova produção*'.
-3. edite a pasta de templates.
-4. selecione um ícone para a produção.
-5. edite o nome da produção.
-6. clique no botão '*salvar*'.
-
-> 🚩 *obs:*\
-> • as produções serão sempre organizadas alfabeticamente na lista.\
-> • use caracteres especiais ou números no início do nome da produção para coloca-la no início da lista.\
-> • é possível exportar e importar a lista completa de produções, incluindo seus respectivos ícones.
-
-<br>
-
 ---
 
 <br>
 
 ## 📍 criando um novo template
+
+um template do padeiro é um conjunto de arquivos que inclui: um *projeto* do after effects com uma comp principal, preferencialmente salvo com a extensão '*.aet*', um arquivo de configuração '*_config.json*' com as informações necessárias para o preenchimento correto do template, uma imagem de preview '*_preview.png*' e uma pasta com todas os arquivos de fontes usadas no projeto.
 
 > 📟 *interface do criador de templates:*\
 > ![ui](images/maker_ui.png)
@@ -179,6 +185,40 @@ o script executará as seguintes tarefas em ordem:
 > use essa opção para criar cópias do mesmo render em varias pastas.\
 > • ao clicar em '*testar*' um novo preview será capturado e o texto do exemplo de preenchimento terá sua caixa de texto convertida.
 
+> 📋 *exemplo de arquivo de configuração:* *"RODAPE CONVIDADO_config.json"*
+>
+> ```json
+> // "\n" representa uma quebra de linha. :)
+> {
+>  "configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração.
+>  "exemple": "CÁSSIO\nGABUS MENDES\n---\nATOR", // → texto de exemplo do input.
+>  "tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento.
+>
+>  "compName": "RDP - CONVIDADO TEMPLATE", // → nome da comp a ser editada.
+>  "prefix": "RDP", // → prefixo que o nome da comp editada receberá.
+>  "refTime": 2, // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
+>  "separator": "---", // → texto usado para separar as informações de tipos diferentes.
+>  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase", "titleCase" ou "freeCase".
+>  "inputLayers": [ // → lista com os layers editáveis da comp.
+>   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
+>   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
+>  ],
+>  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D", na opção 1 do efeito "layout" no layer 1. (parâmetro opcional).
+>
+>  "outputPath": [ // → lista com caminhos do output.
+>    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
+>  ],
+> "alpha": true  // → aviso que o canal alpha é necessário.
+> }
+> ```
+
+> 🚩 *obs:*\
+> • o parâmetro '**inputFx**' ainda não está disponível para a interface do criador de templates mas pode ser adicionado manualmente no arquivo de configuração. ele consiste em indicar um efeito controlador de expressões em um layer da comp principal que controle variações de layout e um array com os sufixos que serão adicionados. útil para gerar variações de layouts ou paletas de cor.
+
+> 📋 *exemplo:*\
+> o primeiro layer da comp principal possui um efeito controlador de expressão chamado '**layout**' que controla o alinhamento da tarja. e efeito possui **2 opões** de alinhamento: esquerda e direita e os sufixos '**E**' e '**D**'.\
+> assim cada preenchimento deste template gerará **2 comps**, uma com layout alinhado a esquerda, com sufixo '**E**' e outra com layout alinhado a direita com sufixo '**D**'.
+
 <br>
 
 ---
@@ -245,33 +285,6 @@ o script executará as seguintes tarefas em ordem:
 - **texto** → campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
 - **adicionar a fila de render** → se habilitado, adiciona as comps criadas e o seus caminhos corretos no output automaticamente.
 - **dicas** → tópicos curtos explicando o preenchimento do template selecionado.
-
-> 📋 *exemplo de arquivo de configuração:* *"RODAPE CONVIDADO_config.json"*
->
-> ```json
-> // "\n" representa uma quebra de linha. :)
-> {
->  "configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração.
->  "exemple": "CÁSSIO\nGABUS MENDES\n---\nATOR", // → texto de exemplo do input.
->  "tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento.
->
->  "compName": "RDP - CONVIDADO TEMPLATE", // → nome da comp a ser editada.
->  "prefix": "RDP", // → prefixo que o nome da comp editada receberá.
->  "refTime": 2, // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
->  "separator": "---", // → texto usado para separar as informações de tipos diferentes.
->  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase", "titleCase" ou "freeCase".
->  "inputLayers": [ // → lista com os layers editáveis da comp.
->   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
->   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
->  ],
->  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D". (opcional).
->
->  "outputPath": [ // → lista com caminhos do output.
->    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
->  ],
-> "alpha": true  // → aviso que o canal alpha é necessário.
-> }
-> ```
 
 > 🚩 *obs:*\
 > • o '**input**' é pré preenchido com dados genéricos disponíveis no arquivo de configuração do template selecionado e usados para gerar a imagem do preview apenas para exemplificar.\

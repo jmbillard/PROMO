@@ -166,6 +166,47 @@ function PadMakerDialog() {
 	layoutMainGrp2.spacing = 10;
 	layoutMainGrp2.margins = 0;
 
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var headerGrp = layoutMainGrp2.add('group');
+	headerGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	headerGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+
+	// Cria um grupo para o botão de informações
+	var labGrp = headerGrp.add('group');
+	labGrp.alignment = 'left'; // Alinhamento à esquerda
+
+	// Cria um grupo para o botão de informações
+	var infoGrp = headerGrp.add('group');
+	infoGrp.alignment = 'right'; // Alinhamento à direita
+
+	// Rótulo de preview
+	var labMain2 = labGrp.add('statictext', undefined, 'GUIA BÁSICO:'); // Adiciona um texto estático
+	setTxtColor(labMain2, monoColors[2]);   // Define a cor do texto
+
+	// Cria o botão de informações
+	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
+	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+
+	
+	var tipsGrp = layoutMainGrp2.add('group', undefined);
+	tipsGrp.orientation = 'column';
+	tipsGrp.alignChildren = ['left', 'center'];
+	tipsGrp.spacing = 10;
+	tipsGrp.margins = 0;
+
+	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
+preencha o os dados do formulário.\n\
+posicione a agulha da timeline em um frame de referencia, e capture a imagem de preview do template.\n\
+edite os parâmetros do projeto.\n\
+selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
+caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao painel "essential graphics" e use um layer de texto na comp principal para controlar o texto.\n\
+adicione as pastas de mídia e outputs necessários.\n\
+em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\n' + relax + '\njean.billard';
+	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
+	setTxtColor(tipsLab, mainColors[1]);
+
+	// ==============
+
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
@@ -223,7 +264,7 @@ function PadMakerDialog() {
 
 	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
 
-	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 200], defaultConfigObj.tip, { multiline: true });
+	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 260], defaultConfigObj.tip, { multiline: true });
 	edittext3.helpTip = 'as dicas para ajudar no preenchimento.';
 
 	var inputGrp5 = formMainGrp.add('group', undefined);
@@ -235,30 +276,8 @@ function PadMakerDialog() {
 	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
 	statictext5.text = 'exemplo de preenchimento:';
 
-	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 80], defaultConfigObj.exemple, { multiline: true });
+	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 100], defaultConfigObj.exemple, { multiline: true });
 	edittext5.helpTip = 'apenas um exemplo.';
-
-	// ==============
-
-	var labMain2 = layoutMainGrp2.add('statictext', undefined, 'GUIA BÁSICO:');
-	setTxtColor(labMain2, monoColors[2]);
-
-	var tipsGrp = layoutMainGrp2.add('group', undefined);
-	tipsGrp.orientation = 'column';
-	tipsGrp.alignChildren = ['left', 'center'];
-	tipsGrp.spacing = 10;
-	tipsGrp.margins = 0;
-
-	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
-preencha o os dados do formulário.\n\
-posicione a agulha da timeline em um frame de referencia, e capture a imagem de preview do template.\n\
-edite os parâmetros do projeto.\n\
-selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
-caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao painel "essential graphics" e use um layer de texto na comp principal para controlar o texto.\n\
-adicione as pastas de mídia e outputs necessários.\n\
-em caso de dúvidas ou problemas, é só me mandar mensagem pelo teams...\n\n' + relax + '\njean.billard';
-	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
-	setTxtColor(tipsLab, mainColors[1]);
 
 	// ==============
 
