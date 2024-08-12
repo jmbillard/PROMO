@@ -438,7 +438,11 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp4.spacing = 10;
 	btnGrp4.margins = 0;
 
-	var selectLayersBtn = btnGrp4.add('button', [0, 0, 230, 24], 'adicionar layers editáveis');
+	var selectLayersBtn = btnGrp4.add('button', [0, 0, 110, 24], '+ layers');
+	
+	var testBtn = btnGrp4.add('button', [0, 0, 110, 24], 'testar');
+	testBtn.helpTip = 'testar preenchimento com o exemplo';
+
 
 	// ==============
 
@@ -476,7 +480,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
-	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], 'adicionar novo output');
+	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], '+ novo output');
 
 	var div = layoutMainGrp4.add('panel', undefined, undefined);
 	div.alignment = 'fill';
@@ -508,7 +512,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var infoLab2 = infoGrp2.add('statictext', undefined, 'fontes usadas:');
 	infoLab2.preferredSize.height = 18;
-	// var fontGrp = infoGrp2.add('group', undefined);
 	var fontList = getFontList();
 
 	for (var f = 0; f < fontList.length; f++) {
@@ -516,8 +519,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		infoText2.helpTip = fontList[f];
 		setTxtColor(infoText2, '#FF7B79'); // Cor de destaque do texto
 	}
-	// var div = bottomGrp4.add('panel', undefined, undefined);
-	// div.alignment = 'fill';
 
 	var bottomGrp4 = layoutGrp4.add('group', undefined);
 	bottomGrp4.orientation = 'column';
@@ -531,10 +532,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
-	var testBtn = btnGrp3.add('button', [0, 0, 110, 24], 'testar');
-	testBtn.helpTip = 'testar preenchimento com o exemplo';
-
-	var makeBtn = btnGrp3.add('button', [0, 0, 110, 24], 'criar');
+	var makeBtn = btnGrp3.add('button', [0, 0, 230, 24], 'criar');
 	makeBtn.helpTip = 'salvar template';
 
 	// ==============
@@ -580,8 +578,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		addLayers();
 		addOutputFolder();
 
-		// tipsText.size.height = (PAD_MAKER_w.size.height - 200) / 4 * 3;
-		// exempleText.size.height = (PAD_MAKER_w.size.height - 200) / 4;
 		separatorTxt.enabled = (layersMainGrp.children.length > 1);
 		separatorLab.enabled = (layersMainGrp.children.length > 1);
 
@@ -637,9 +633,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 		separatorTxt.enabled = (layersMainGrp.children.length > 1);
 		separatorLab.enabled = (layersMainGrp.children.length > 1);
-
-		// tipsText.size.height = (PAD_MAKER_w.size.height - 185) / 4 * 3;
-		// exempleText.size.height = (PAD_MAKER_w.size.height - 185) / 4;
 
 		tipsGrp.layout.layout(true);
 		exempleGrp.layout.layout(true);

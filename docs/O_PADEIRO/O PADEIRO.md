@@ -130,7 +130,7 @@ o script executará as seguintes tarefas em ordem:
 
 1. adicionar o comentário 'TEMPLATE' na comp principal.
 2. salvar o projeto.
-3. gerar um preview da comp principal.
+3. gerar um arquivo de preview da comp principal.
 4. gerar um arquivo de configuração do template.
 5. copiar todos os arquivos de fontes usados no projeto.
 6. abrir a pasta com todos os arquivos do template.
@@ -242,6 +242,21 @@ o script executará as seguintes tarefas em ordem:
 
 <br>
 
+### render setup
+
+a lista contém todos os presets disponíveis no After Effects.\
+caso deseje adicionar um novo preset acesse o menu:\
+`Edit > Templates > Presets > Output Module...`
+
+![ui](images/render_ui.png)
+
+- **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
+
+> 🚩 *obs:*\
+> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**) para artes com alpha.
+
+<br>
+
 o script executará as seguintes tarefas em ordem:
 
 1. importar os arquivos do projeto.
@@ -301,15 +316,6 @@ o script executará as seguintes tarefas em ordem:
 - **atualizar lista** → verifica e atualiza a lista de templates disponíveis.
 - **abrir pasta** → abre a pasta raiz de templates.
 - **criar** → inicia a execução do preenchimento automático.
-
-### render setup
-
-![ui](images/render_ui.png)
-
-- **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
-
-> 🚩 *obs:*\
-> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**) para artes com alpha.
 
 ---
 
