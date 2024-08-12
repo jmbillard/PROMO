@@ -77,6 +77,12 @@ function PadMakerDialog() {
 				} catch (err) {
 					alert(lol + '#PAD_024 - ' + err.message); // Exibe uma mensagem de erro
 				}
+
+				if (this.parent.parent.children.length > 4) {
+					tipsText.size.height -= 18;
+					exempleText.size.height -= 18;
+				}
+
 				this.parent.parent.remove(this.parent);
 
 				PAD_MAKER_w.layout.layout(true);
@@ -86,7 +92,10 @@ function PadMakerDialog() {
 				separatorTxt.enabled = (layersMainGrp.children.length > 1);
 				separatorLab.enabled = (layersMainGrp.children.length > 1);
 			}
-
+			if (layersMainGrp.children.length > 4) {
+				tipsText.size.height += 18;
+				exempleText.size.height += 18;
+			}
 			selLayer.comment = 'TEMPLATE LAYER';
 		}
 	}
@@ -148,6 +157,32 @@ function PadMakerDialog() {
 		return templateLayersArray;
 	}
 
+	function getFontList() {
+
+		var fontNameArray = []; // copied fonts array...
+		var compArray = getComps(); // all project comps...
+
+		for (var c = 0; c < compArray.length; c++) {
+			var comp = compArray[c]; // current comp...
+
+			for (var l = 1; l <= comp.numLayers; l++) {
+				var aLayer = comp.layer(l); // current layer...
+
+				if (!(aLayer instanceof TextLayer)) continue;
+				// current text layer...
+				var textDoc = aLayer
+					.property('ADBE Text Properties')
+					.property('ADBE Text Document').value;
+				var fontName = textDoc.font; // font name...
+
+				if (fontNameArray.indexOf(fontName) >= 0) continue; // already copied...
+
+				fontNameArray.push(fontName);
+			}
+		}
+		return fontNameArray;
+	}
+
 	var tempPreviewFile;
 
 	// ==============
@@ -179,18 +214,19 @@ function PadMakerDialog() {
 
 	// Rótulo de preview
 	var labMain2 = labGrp1.add('statictext', undefined, 'GUIA BÁSICO:'); // Adiciona um texto estático
+	labMain2.preferredSize.height = 24;
 	setTxtColor(labMain2, monoColors[2]);   // Define a cor do texto
 
 	// Cria o botão de informações
 	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
 	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
 
-	
-	var tipsGrp = layoutMainGrp1.add('group', undefined);
-	tipsGrp.orientation = 'column';
-	tipsGrp.alignChildren = ['left', 'center'];
-	tipsGrp.spacing = 10;
-	tipsGrp.margins = 0;
+
+	var helpGrp = layoutMainGrp1.add('group', undefined);
+	helpGrp.orientation = 'column';
+	helpGrp.alignChildren = ['left', 'center'];
+	helpGrp.spacing = 10;
+	helpGrp.margins = 0;
 
 	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
 preencha o os dados do formulário.\n\
@@ -200,8 +236,8 @@ selecione os layers editáveis do template, esses layers receberão o texto das 
 caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao painel "essential graphics" e use um layer de texto na comp principal para controlar o texto.\n\
 adicione as pastas de mídia e outputs necessários.\n\
 em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\njean.billard';
-	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
-	setTxtColor(tipsLab, mainColors[1]);
+	var helpLab = helpGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
+	setTxtColor(helpLab, mainColors[1]);
 
 	// ==============
 
@@ -211,7 +247,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
 	layoutMainGrp2.orientation = 'column';
 	layoutMainGrp2.alignChildren = ['left', 'top'];
-	layoutMainGrp2.spacing = 10;
+	layoutMainGrp2.spacing = 20;
 	layoutMainGrp2.margins = 0;
 
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
@@ -221,7 +257,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var layoutGrp3 = PAD_MAKER_w.add('group');
 	layoutGrp3.alignment = 'fill';      // Ocupa todo o espaço disponível
 	layoutGrp3.orientation = 'stack';   // Empilha os elementos verticalmente
-	
+
 	var layoutMainGrp3 = layoutGrp3.add('group', undefined);
 	layoutMainGrp3.orientation = 'column';
 	layoutMainGrp3.alignment = 'top';
@@ -236,15 +272,16 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var layoutGrp4 = PAD_MAKER_w.add('group');
 	layoutGrp4.alignment = 'fill';      // Ocupa todo o espaço disponível
 	layoutGrp4.orientation = 'stack';   // Empilha os elementos verticalmente
-	
+
 	var layoutMainGrp4 = layoutGrp4.add('group', undefined);
 	layoutMainGrp4.orientation = 'column';
 	layoutMainGrp4.alignment = 'top';
 	layoutMainGrp4.alignChildren = ['left', 'top'];
-	layoutMainGrp4.spacing = 10;
+	layoutMainGrp4.spacing = 20;
 	layoutMainGrp4.margins = 0;
 
 	var labMain1 = layoutMainGrp2.add('statictext', undefined, 'FORMULÁRIO:');
+	labMain1.preferredSize.height = 24;
 	setTxtColor(labMain1, monoColors[2]);
 
 	var formMainGrp = layoutMainGrp2.add('group', undefined);
@@ -255,39 +292,41 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	// ==============
 
-	var inputGrp1 = formMainGrp.add('group', undefined);
-	inputGrp1.orientation = 'column';
-	inputGrp1.alignChildren = ['left', 'center'];
-	inputGrp1.spacing = 5;
-	inputGrp1.margins = 0;
+	var configGrp = formMainGrp.add('group', undefined);
+	configGrp.orientation = 'column';
+	configGrp.alignChildren = ['left', 'center'];
+	configGrp.spacing = 5;
+	configGrp.margins = 0;
 
-	var statictext1 = inputGrp1.add('statictext', undefined, 'nome da configuração:');
+	var configLab = configGrp.add('statictext', undefined, 'nome da configuração:');
+	configLab.preferredSize.height = 18;
 
-	var edittext1 = inputGrp1.add('edittext', [0, 0, 230, 24], defaultConfigObj.configName);
-	edittext1.helpTip = 'identificador da configuração.';
+	var configText = configGrp.add('edittext', [0, 0, 230, 24], defaultConfigObj.configName);
+	configText.helpTip = 'identificador da configuração.';
 
-	var inputGrp3 = formMainGrp.add('group', undefined);
-	inputGrp3.orientation = 'column';
-	inputGrp3.alignChildren = ['left', 'center'];
-	inputGrp3.spacing = 5;
-	inputGrp3.margins = 0;
+	var tipsGrp = formMainGrp.add('group', undefined);
+	tipsGrp.orientation = 'column';
+	tipsGrp.alignChildren = ['left', 'center'];
+	tipsGrp.spacing = 5;
+	tipsGrp.margins = 0;
 
-	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
+	var tipsLab = tipsGrp.add('statictext', undefined, 'dicas:');
+	tipsLab.preferredSize.height = 18;
 
-	var edittext3 = inputGrp3.add('edittext', [0, 0, 230, 260], defaultConfigObj.tip, { multiline: true });
-	edittext3.helpTip = 'as dicas para ajudar no preenchimento.';
+	var tipsText = tipsGrp.add('edittext', [0, 0, 230, 260], defaultConfigObj.tip, { multiline: true });
+	tipsText.helpTip = 'as dicas para ajudar no preenchimento.';
 
-	var inputGrp5 = formMainGrp.add('group', undefined);
-	inputGrp5.orientation = 'column';
-	inputGrp5.alignChildren = ['left', 'center'];
-	inputGrp5.spacing = 5;
-	inputGrp5.margins = 0;
+	var exempleGrp = formMainGrp.add('group', undefined);
+	exempleGrp.orientation = 'column';
+	exempleGrp.alignChildren = ['left', 'center'];
+	exempleGrp.spacing = 5;
+	exempleGrp.margins = 0;
 
-	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
-	statictext5.text = 'exemplo de preenchimento:';
+	var exempleLab = exempleGrp.add('statictext', undefined, 'exemplo de preenchimento:');
+	exempleLab.preferredSize.height = 18;
 
-	var edittext5 = inputGrp5.add('edittext', [0, 0, 230, 100], defaultConfigObj.exemple, { multiline: true });
-	edittext5.helpTip = 'apenas um exemplo.';
+	var exempleText = exempleGrp.add('edittext', [0, 0, 230, 90], defaultConfigObj.exemple, { multiline: true });
+	exempleText.helpTip = 'apenas um exemplo.';
 
 	// ==============
 
@@ -298,12 +337,13 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	previewGrp.margins = 0;
 
 	var labMain3 = previewGrp.add('statictext', undefined, 'PROJETO:');
+	labMain3.preferredSize.height = 24;
 	setTxtColor(labMain3, monoColors[2]);
 
 	var previewMainGrp = previewGrp.add('group', undefined);
 	previewMainGrp.orientation = 'column';
 	previewMainGrp.alignChildren = ['left', 'center'];
-	previewMainGrp.spacing = 5;
+	previewMainGrp.spacing = 8;
 	previewMainGrp.margins = 0;
 
 	var previewImg = previewMainGrp.add('image', [0, 0, 230, 130], no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
@@ -332,7 +372,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var projGeneralGrp = projGrp.add('group', undefined);
 	projGeneralGrp.orientation = 'column';
 	projGeneralGrp.alignChildren = ['left', 'center'];
-	projGeneralGrp.spacing = 5;
+	projGeneralGrp.spacing = 10;
 	projGeneralGrp.margins = 0;
 
 	var textCaseGrp = projGeneralGrp.add('group', undefined);
@@ -381,8 +421,8 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var layersMainGrp = layoutMainGrp3.add('group', undefined);
 	layersMainGrp.orientation = 'column';
 	layersMainGrp.alignChildren = ['left', 'center'];
-	layersMainGrp.spacing = 5;
-	layersMainGrp.margins = 0;
+	layersMainGrp.spacing = 10;
+	layersMainGrp.margins = [0, 0, 0, 29];
 
 	// ==============
 
@@ -390,7 +430,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	bottomGrp3.orientation = 'column';
 	bottomGrp3.alignment = 'bottom';
 	bottomGrp3.alignChildren = ['left', 'top'];
-	bottomGrp3.spacing = 10;
+	bottomGrp3.spacing = 20;
 	bottomGrp3.margins = 0;
 
 	var btnGrp4 = bottomGrp3.add('group', undefined);
@@ -403,6 +443,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	// ==============
 
 	var labMain5 = layoutMainGrp4.add('statictext', undefined, 'CAMINHOS:');
+	labMain5.preferredSize.height = 24;
 	setTxtColor(labMain5, monoColors[2]);
 
 	var importMainGrp = layoutMainGrp4.add('group', undefined);
@@ -412,13 +453,9 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	importMainGrp.margins = 0;
 
 	var importLab = importMainGrp.add('statictext', undefined, 'pasta de mídias: (opcional)');
+	importLab.preferredSize.height = 18;
 
-	var importGrp = importMainGrp.add('group', undefined);
-	importGrp.orientation = 'row';
-	importGrp.alignChildren = ['left', 'center'];
-	importGrp.spacing = 10;
-
-	var importPathLab = importGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath, truncate: 'middle' });
+	var importPathLab = importMainGrp.add('statictext', [0, 0, 230, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath, truncate: 'middle' });
 	importPathLab.helpTip = 'caminho da pasta:';
 	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
@@ -431,6 +468,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	outputMainGrp.margins = 0;
 
 	var outputLab = outputMainGrp.add('statictext', undefined, 'pastas de output:');
+	outputLab.preferredSize.height = 18;
 
 	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
@@ -438,14 +476,58 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
-	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], 'novo output');
+	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], 'adicionar novo output');
 
 	var div = layoutMainGrp4.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var btnGrp3 = layoutGrp4.add('group', undefined);
+	var infoMainGrp = layoutMainGrp4.add('group', undefined);
+	infoMainGrp.orientation = 'column';
+	infoMainGrp.alignChildren = ['left', 'top'];
+	infoMainGrp.spacing = 10;
+	infoMainGrp.margins = 0;
+
+	var infoGrp1 = infoMainGrp.add('group', undefined);
+	infoGrp1.orientation = 'column';
+	infoGrp1.alignChildren = ['left', 'center'];
+	infoGrp1.spacing = 2;
+	infoGrp1.margins = 0;
+
+	var infoLab1 = infoGrp1.add('statictext', undefined, 'comp principal:');
+	infoLab1.preferredSize.height = 18;
+
+	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { truncate: 'end' });
+	infoText1.helpTip = 'comp principal do template';
+	setTxtColor(infoText1, '#FF7B79'); // Cor de destaque do texto
+
+	var infoGrp2 = infoMainGrp.add('group', undefined);
+	infoGrp2.orientation = 'column';
+	infoGrp2.alignChildren = ['left', 'center'];
+	infoGrp2.spacing = 2;
+	infoGrp2.margins = [0, 0, 0, 44];
+
+	var infoLab2 = infoGrp2.add('statictext', undefined, 'fontes usadas:');
+	infoLab2.preferredSize.height = 18;
+	// var fontGrp = infoGrp2.add('group', undefined);
+	var fontList = getFontList();
+
+	for (var f = 0; f < fontList.length; f++) {
+		var infoText2 = infoGrp2.add('statictext', [0, 0, 230, 18], fontList[f], { truncate: 'end' });
+		infoText2.helpTip = fontList[f];
+		setTxtColor(infoText2, '#FF7B79'); // Cor de destaque do texto
+	}
+	// var div = bottomGrp4.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
+
+	var bottomGrp4 = layoutGrp4.add('group', undefined);
+	bottomGrp4.orientation = 'column';
+	bottomGrp4.alignment = 'bottom';
+	bottomGrp4.alignChildren = ['left', 'top'];
+	bottomGrp4.spacing = 20;
+	bottomGrp4.margins = 0;
+
+	var btnGrp3 = bottomGrp4.add('group', undefined);
 	btnGrp3.orientation = 'row';
-	btnGrp3.alignment = 'bottom';
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
@@ -498,11 +580,16 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		addLayers();
 		addOutputFolder();
 
+		// tipsText.size.height = (PAD_MAKER_w.size.height - 200) / 4 * 3;
+		// exempleText.size.height = (PAD_MAKER_w.size.height - 200) / 4;
 		separatorTxt.enabled = (layersMainGrp.children.length > 1);
 		separatorLab.enabled = (layersMainGrp.children.length > 1);
 
 		layersMainGrp.layout.layout(true);
 		outputMainGrp.layout.layout(true);
+		tipsGrp.layout.layout(true);
+		exempleGrp.layout.layout(true);
+		layoutMainGrp2.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		layoutMainGrp4.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
@@ -551,6 +638,12 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		separatorTxt.enabled = (layersMainGrp.children.length > 1);
 		separatorLab.enabled = (layersMainGrp.children.length > 1);
 
+		// tipsText.size.height = (PAD_MAKER_w.size.height - 185) / 4 * 3;
+		// exempleText.size.height = (PAD_MAKER_w.size.height - 185) / 4;
+
+		tipsGrp.layout.layout(true);
+		exempleGrp.layout.layout(true);
+		layoutMainGrp2.layout.layout(true);
 		layersMainGrp.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
@@ -570,16 +663,16 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	testBtn.onClick = function () {
 
-		var inputTxt = edittext5.text.split(/\n{2,}/)[0];
+		var inputTxt = exempleText.text.split(/\n{2,}/)[0];
 		var txtCase = caseDrop.selection.index;
 		var templateLayers = getTemplateLayers();
 
 		var separador = separatorTxt.text.replace(/\\n|\\r/g, '\n');
 		if (separatorTxt.text == '' || templateLayers.length < 2) separador = '---';
 
-		if (txtCase == 0) inputTxt = edittext5.text = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
-		if (txtCase == 1) inputTxt = edittext5.text = inputTxt.toLowerCase(); // Converte para minúsculas
-		if (txtCase == 2) inputTxt = edittext5.text = inputTxt.toTitleCase(); // Converte para 'Title Case'
+		if (txtCase == 0) inputTxt = exempleText.text = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
+		if (txtCase == 1) inputTxt = exempleText.text = inputTxt.toLowerCase(); // Converte para minúsculas
+		if (txtCase == 2) inputTxt = exempleText.text = inputTxt.toTitleCase(); // Converte para 'Title Case'
 
 		var inputArray = inputTxt.split(separador);
 
@@ -627,9 +720,9 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 		captureBtn.properties.comp.comment = 'TEMPLATE';
 
-		defaultConfigObj.configName = edittext1.text;
-		defaultConfigObj.exemple = edittext5.text;
-		defaultConfigObj.tip = edittext3.text;
+		defaultConfigObj.configName = configText.text;
+		defaultConfigObj.exemple = exempleText.text;
+		defaultConfigObj.tip = tipsText.text;
 		defaultConfigObj.compName = captureBtn.properties.comp.name;
 		defaultConfigObj.prefix = prefixTxt.text;
 		defaultConfigObj.refTime = captureBtn.properties.ref_time;
