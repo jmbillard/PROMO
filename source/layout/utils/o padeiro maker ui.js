@@ -213,7 +213,7 @@ function PadMakerDialog() {
 	infoGrp.alignment = 'right'; // Alinhamento à direita
 
 	// Rótulo de preview
-	var labMain2 = labGrp1.add('statictext', undefined, 'GUIA BÁSICO:'); // Adiciona um texto estático
+	var labMain2 = labGrp1.add('statictext', undefined, 'AJUDA BÁSICA:'); // Adiciona um texto estático
 	labMain2.preferredSize.height = 24;
 	setTxtColor(labMain2, monoColors[2]);   // Define a cor do texto
 
@@ -508,16 +508,28 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	infoGrp2.orientation = 'column';
 	infoGrp2.alignChildren = ['left', 'center'];
 	infoGrp2.spacing = 2;
-	infoGrp2.margins = [0, 0, 0, 44];
+	infoGrp2.margins = 0;
 
-	var infoLab2 = infoGrp2.add('statictext', undefined, 'fontes usadas:');
+	var infoLab2 = infoGrp2.add('statictext', undefined, 'preview da nomenclatura:');
 	infoLab2.preferredSize.height = 18;
+
+	var infoText2 = infoGrp2.add('statictext', [0, 0, 230, 18], '...', { truncate: 'end' });
+	setTxtColor(infoText2, '#FF7B79'); // Cor de destaque do texto
+
+	var infoGrp3 = infoMainGrp.add('group', undefined);
+	infoGrp3.orientation = 'column';
+	infoGrp3.alignChildren = ['left', 'center'];
+	infoGrp3.spacing = 2;
+	infoGrp3.margins = [0, 0, 0, 44];
+
+	var infoLab3 = infoGrp3.add('statictext', undefined, 'fontes usadas:');
+	infoLab3.preferredSize.height = 18;
 	var fontList = getFontList();
 
 	for (var f = 0; f < fontList.length; f++) {
-		var infoText2 = infoGrp2.add('statictext', [0, 0, 230, 18], fontList[f], { truncate: 'end' });
-		infoText2.helpTip = fontList[f];
-		setTxtColor(infoText2, '#FF7B79'); // Cor de destaque do texto
+		var infoText3 = infoGrp3.add('statictext', [0, 0, 230, 18], fontList[f], { truncate: 'end' });
+		infoText3.helpTip = fontList[f];
+		setTxtColor(infoText3, '#FF7B79'); // Cor de destaque do texto
 	}
 
 	var bottomGrp4 = layoutGrp4.add('group', undefined);
@@ -590,6 +602,20 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		layoutMainGrp4.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
 	};
+
+	prefixTxt.onChanging = function () {
+		
+		var prefix = this.text.toUpperCase().replaceSpecialCharacters();
+		var inputTxt = exempleText.text.split(/\n{2,}/)[0];
+		infoText2.text = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
+	}
+
+	exempleText.onChanging = function () {
+		
+		var prefix = prefixTxt.text.toUpperCase().replaceSpecialCharacters();
+		var inputTxt = this.text.split(/\n{2,}/)[0];
+		infoText2.text = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
+	}
 
 	captureBtn.onClick = function () {
 
