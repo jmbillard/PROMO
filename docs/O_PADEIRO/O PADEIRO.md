@@ -98,8 +98,8 @@ ferramentas disponíveis em ordem:
 `◖ clique esquerdo` → abre a janela de busca.
   > *a busca funciona apenas no conteúdo dos layers de texto do projeto.*
 
-<!-- - **APONTAMENTO**:\
-`◖ clique esquerdo` → abre a planilha de apontamento de projetos. -->
+- **APONTAMENTO**:\
+`◖ clique esquerdo` → abre a planilha de apontamento de projetos.
 
 <br>
 
@@ -118,7 +118,7 @@ um template do padeiro é um conjunto de arquivos que inclui: um *projeto* do af
 2. `◗ clique direito` no botão com ícone de luva para abrir a interface do criador de templates.
 3. preencha o '*nome da configuração*', as '*dicas*' e o '*exemplo de preenchimento*'.
 4. posicione a agulha da timeline em um frame de referência e clique no botão '*capturar*'.
-5. selecione / preencha o '*alerta canal alpha*', o padrão de '*caixa de texto*' do projeto, o '*prefixo*' e o '*separador*' de informações.
+5. selecione / preencha o padrão de '*caixa de texto*' do projeto, o '*prefixo*' e o '*separador*' de informações.
 6. selecione os layers editáveis em ordem de preenchimento e clique no botão '*selecionar layers*'.
 7. edite a '*pasta de mídia: (opcional)*' e as '*pastas de output*'.
 8. use o botão '*testar*' para verificar o preenchimento das informações inseridas no '*exemplo de preenchimento*'.
@@ -192,24 +192,25 @@ o script executará as seguintes tarefas em ordem:
 > // "\n" representa uma quebra de linha. :)
 > {
 >  "configName": "CONVERSA COM BIAL TARJA RODAPÉ CONVIDADO", // → nome da configuração.
->  "exemple": "CÁSSIO\nGABUS MENDES\n---\nATOR", // → texto de exemplo do input.
+>  "exemple": "CÁSSIO\nGABUS MENDES\n---\nATOR",             // → texto de exemplo do input.
 >  "tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.", // → texto com as dicas de preenchimento.
 >
 >  "compName": "RDP - CONVIDADO TEMPLATE", // → nome da comp a ser editada.
->  "prefix": "RDP", // → prefixo que o nome da comp editada receberá.
->  "refTime": 2, // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
->  "separator": "---", // → texto usado para separar as informações de tipos diferentes.
->  "textCase": "upperCase", // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase", "titleCase" ou "freeCase".
->  "inputLayers": [ // → lista com os layers editáveis da comp.
+>  "prefix": "RDP",                        // → prefixo que o nome da comp editada receberá.
+>  "refTime": 2,                           // → tempo, em segundos, do momento em que todas as infos preenchidas estão visíveis na comp.
+>  "separator": "---",                     // → texto usado para separar as informações de tipos diferentes.
+>  "textCase": "upperCase",                // → o tipo de caixa de texto que o template deve receber: "upperCase", "lowerCase", "titleCase" ou "freeCase".
+>
+>  "inputLayers": [                             // → lista com os layers editáveis da comp.
 >   {"layerIndex": 4, "method": "textContent"}, // → índice do layer: 1, 2, 3, etc.
->   {"layerIndex": 5, "method": "textContent"} // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
+>   {"layerIndex": 5, "method": "textContent"}  // → método: "layerName" renomeia o layer ou "textContent" preenche o conteúdo de um layer de texto.
 >  ],
+>
 >  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D", na opção 1 do efeito "layout" no layer 1. (parâmetro opcional).
 >
 >  "outputPath": [ // → lista com caminhos do output.
 >    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
->  ],
-> "alpha": true  // → aviso que o canal alpha é necessário.
+>  ]
 > }
 > ```
 

@@ -149,38 +149,36 @@ function PadMakerDialog() {
 	}
 
 	var tempPreviewFile;
-	var tempItem = app.project.activeItem;
-	var compName = tempItem !== null ? tempItem.name.replaceSpecialCharacters() : 'NOVO ITEM';
 
 	// ==============
 
-	var PAD_MAKER_w = new Window('palette', 'NOVO TEMPLATE');
+	var PAD_MAKER_w = new Window('palette', 'EDITOR DE TEMPLATES');
 	PAD_MAKER_w.orientation = 'row';
 	PAD_MAKER_w.alignChildren = ['center', 'top'];
 
 	// ==============
 
-	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
-	layoutMainGrp2.orientation = 'column';
-	layoutMainGrp2.alignChildren = ['left', 'top'];
-	layoutMainGrp2.spacing = 10;
-	layoutMainGrp2.margins = 0;
+	var layoutMainGrp1 = PAD_MAKER_w.add('group', undefined);
+	layoutMainGrp1.orientation = 'column';
+	layoutMainGrp1.alignChildren = ['left', 'top'];
+	layoutMainGrp1.spacing = 10;
+	layoutMainGrp1.margins = 0;
 
 	// Cria um grupo para o cabeçalho da árvore de templates
-	var headerGrp = layoutMainGrp2.add('group');
-	headerGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
-	headerGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+	var headerGrp1 = layoutMainGrp1.add('group');
+	headerGrp1.alignment = 'fill';      // Ocupa todo o espaço disponível
+	headerGrp1.orientation = 'stack';   // Empilha os elementos verticalmente
 
 	// Cria um grupo para o botão de informações
-	var labGrp = headerGrp.add('group');
-	labGrp.alignment = 'left'; // Alinhamento à esquerda
+	var labGrp1 = headerGrp1.add('group');
+	labGrp1.alignment = 'left'; // Alinhamento à esquerda
 
 	// Cria um grupo para o botão de informações
-	var infoGrp = headerGrp.add('group');
+	var infoGrp = headerGrp1.add('group');
 	infoGrp.alignment = 'right'; // Alinhamento à direita
 
 	// Rótulo de preview
-	var labMain2 = labGrp.add('statictext', undefined, 'GUIA BÁSICO:'); // Adiciona um texto estático
+	var labMain2 = labGrp1.add('statictext', undefined, 'GUIA BÁSICO:'); // Adiciona um texto estático
 	setTxtColor(labMain2, monoColors[2]);   // Define a cor do texto
 
 	// Cria o botão de informações
@@ -188,7 +186,7 @@ function PadMakerDialog() {
 	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
 
 	
-	var tipsGrp = layoutMainGrp2.add('group', undefined);
+	var tipsGrp = layoutMainGrp1.add('group', undefined);
 	tipsGrp.orientation = 'column';
 	tipsGrp.alignChildren = ['left', 'center'];
 	tipsGrp.spacing = 10;
@@ -197,11 +195,11 @@ function PadMakerDialog() {
 	var instructionsTxt = 'limpe o projeto!\nremova tudo o que não for necessário para a comp principal.\n\
 preencha o os dados do formulário.\n\
 posicione a agulha da timeline em um frame de referencia, e capture a imagem de preview do template.\n\
-edite os parâmetros do projeto.\n\
+edite os demais parâmetros do projeto.\n\
 selecione os layers editáveis do template, esses layers receberão o texto das informações preenchidas no input.\n\
 caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao painel "essential graphics" e use um layer de texto na comp principal para controlar o texto.\n\
 adicione as pastas de mídia e outputs necessários.\n\
-em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\n' + relax + '\njean.billard';
+em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\njean.billard';
 	var tipsLab = tipsGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
 	setTxtColor(tipsLab, mainColors[1]);
 
@@ -210,34 +208,46 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var layoutMainGrp1 = PAD_MAKER_w.add('group', undefined);
-	layoutMainGrp1.orientation = 'column';
-	layoutMainGrp1.alignChildren = ['left', 'top'];
-	layoutMainGrp1.spacing = 10;
-	layoutMainGrp1.margins = 0;
+	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
+	layoutMainGrp2.orientation = 'column';
+	layoutMainGrp2.alignChildren = ['left', 'top'];
+	layoutMainGrp2.spacing = 10;
+	layoutMainGrp2.margins = 0;
 
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var layoutMainGrp3 = PAD_MAKER_w.add('group', undefined);
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var layoutGrp3 = PAD_MAKER_w.add('group');
+	layoutGrp3.alignment = 'fill';      // Ocupa todo o espaço disponível
+	layoutGrp3.orientation = 'stack';   // Empilha os elementos verticalmente
+	
+	var layoutMainGrp3 = layoutGrp3.add('group', undefined);
 	layoutMainGrp3.orientation = 'column';
+	layoutMainGrp3.alignment = 'top';
 	layoutMainGrp3.alignChildren = ['left', 'top'];
-	layoutMainGrp3.spacing = 10;
+	layoutMainGrp3.spacing = 20;
 	layoutMainGrp3.margins = 0;
 
 	var div = PAD_MAKER_w.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var layoutMainGrp4 = PAD_MAKER_w.add('group', undefined);
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var layoutGrp4 = PAD_MAKER_w.add('group');
+	layoutGrp4.alignment = 'fill';      // Ocupa todo o espaço disponível
+	layoutGrp4.orientation = 'stack';   // Empilha os elementos verticalmente
+	
+	var layoutMainGrp4 = layoutGrp4.add('group', undefined);
 	layoutMainGrp4.orientation = 'column';
+	layoutMainGrp4.alignment = 'top';
 	layoutMainGrp4.alignChildren = ['left', 'top'];
 	layoutMainGrp4.spacing = 10;
 	layoutMainGrp4.margins = 0;
 
-	var labMain1 = layoutMainGrp1.add('statictext', undefined, 'FORMULÁRIO:');
+	var labMain1 = layoutMainGrp2.add('statictext', undefined, 'FORMULÁRIO:');
 	setTxtColor(labMain1, monoColors[2]);
 
-	var formMainGrp = layoutMainGrp1.add('group', undefined);
+	var formMainGrp = layoutMainGrp2.add('group', undefined);
 	formMainGrp.orientation = 'column';
 	formMainGrp.alignChildren = ['left', 'center'];
 	formMainGrp.spacing = 20;
@@ -248,7 +258,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var inputGrp1 = formMainGrp.add('group', undefined);
 	inputGrp1.orientation = 'column';
 	inputGrp1.alignChildren = ['left', 'center'];
-	inputGrp1.spacing = 2;
+	inputGrp1.spacing = 5;
 	inputGrp1.margins = 0;
 
 	var statictext1 = inputGrp1.add('statictext', undefined, 'nome da configuração:');
@@ -259,7 +269,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var inputGrp3 = formMainGrp.add('group', undefined);
 	inputGrp3.orientation = 'column';
 	inputGrp3.alignChildren = ['left', 'center'];
-	inputGrp3.spacing = 2;
+	inputGrp3.spacing = 5;
 	inputGrp3.margins = 0;
 
 	var statictext3 = inputGrp3.add('statictext', undefined, 'dicas:');
@@ -270,7 +280,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var inputGrp5 = formMainGrp.add('group', undefined);
 	inputGrp5.orientation = 'column';
 	inputGrp5.alignChildren = ['left', 'center'];
-	inputGrp5.spacing = 2;
+	inputGrp5.spacing = 5;
 	inputGrp5.margins = 0;
 
 	var statictext5 = inputGrp5.add('statictext', undefined, undefined);
@@ -281,61 +291,49 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	// ==============
 
-	var labMain3 = layoutMainGrp3.add('statictext', undefined, 'PREVIEW:');
-	setTxtColor(labMain3, monoColors[2]);
-
 	var previewGrp = layoutMainGrp3.add('group', undefined);
 	previewGrp.orientation = 'column';
 	previewGrp.alignChildren = ['left', 'center'];
 	previewGrp.spacing = 10;
 	previewGrp.margins = 0;
 
-	var previewImg = previewGrp.add('image', [0, 0, 230, 130], no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
+	var labMain3 = previewGrp.add('statictext', undefined, 'PROJETO:');
+	setTxtColor(labMain3, monoColors[2]);
 
-	var btnGrp1 = layoutMainGrp3.add('group', undefined);
+	var previewMainGrp = previewGrp.add('group', undefined);
+	previewMainGrp.orientation = 'column';
+	previewMainGrp.alignChildren = ['left', 'center'];
+	previewMainGrp.spacing = 5;
+	previewMainGrp.margins = 0;
+
+	var previewImg = previewMainGrp.add('image', [0, 0, 230, 130], no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
+
+	var btnGrp1 = previewMainGrp.add('group', undefined);
 	btnGrp1.orientation = 'row';
 	btnGrp1.spacing = 10;
 	btnGrp1.margins = 0;
 
-	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar', { comp: app.project.activeItem, ref_time: app.project.activeItem.time });
+	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar preview', { comp: app.project.activeItem, ref_time: app.project.activeItem.time });
 	captureBtn.helpTip = 'captura o frame de preview,\na comp principal e o\ntempo de referência';
 
 	var div = layoutMainGrp3.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var labMain4 = layoutMainGrp3.add('statictext', undefined, 'PROJETO:');
-	setTxtColor(labMain4, monoColors[2]);
+	// ==============
 
 	var projGrp = layoutMainGrp3.add('group', undefined);
 	projGrp.orientation = 'column';
 	projGrp.alignChildren = ['left', 'center'];
-	projGrp.spacing = 10;
+	projGrp.spacing = 5;
 	projGrp.margins = 0;
-
-	// ==============
-
-	var alphaGrp = projGrp.add('group', undefined);
-	alphaGrp.orientation = 'row';
-	alphaGrp.alignChildren = ['left', 'center'];
-	alphaGrp.spacing = 10;
-	alphaGrp.margins = 0;
-
-	var alphaLab = alphaGrp.add('statictext', undefined, 'alerta canal alpha:');
-	alphaLab.preferredSize.width = 130;
-
-	var alphaCkb = alphaGrp.add('checkbox', undefined, undefined);
-	alphaCkb.value = true;
-	alphaCkb.preferredSize.width = 90;
 
 	// ==============
 
 	var projGeneralGrp = projGrp.add('group', undefined);
 	projGeneralGrp.orientation = 'column';
 	projGeneralGrp.alignChildren = ['left', 'center'];
-	projGeneralGrp.spacing = 15;
+	projGeneralGrp.spacing = 5;
 	projGeneralGrp.margins = 0;
-
-	// ==============
 
 	var textCaseGrp = projGeneralGrp.add('group', undefined);
 	textCaseGrp.orientation = 'row';
@@ -375,25 +373,32 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	// ==============
 
-	var div = projGeneralGrp.add('panel', undefined, undefined);
+	var div = layoutMainGrp3.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
 	// ==============
 
-	var layersMainGrp = projGeneralGrp.add('group', undefined);
+	var layersMainGrp = layoutMainGrp3.add('group', undefined);
 	layersMainGrp.orientation = 'column';
 	layersMainGrp.alignChildren = ['left', 'center'];
-	layersMainGrp.spacing = 10;
+	layersMainGrp.spacing = 5;
 	layersMainGrp.margins = 0;
 
 	// ==============
 
-	var btnGrp4 = layoutMainGrp3.add('group', undefined);
+	var bottomGrp3 = layoutGrp3.add('group', undefined);
+	bottomGrp3.orientation = 'column';
+	bottomGrp3.alignment = 'bottom';
+	bottomGrp3.alignChildren = ['left', 'top'];
+	bottomGrp3.spacing = 10;
+	bottomGrp3.margins = 0;
+
+	var btnGrp4 = bottomGrp3.add('group', undefined);
 	btnGrp4.orientation = 'row';
 	btnGrp4.spacing = 10;
 	btnGrp4.margins = 0;
 
-	var selectLayersBtn = btnGrp4.add('button', [0, 0, 230, 24], 'selecionar layers');
+	var selectLayersBtn = btnGrp4.add('button', [0, 0, 230, 24], 'adicionar layers editáveis');
 
 	// ==============
 
@@ -429,6 +434,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
+	btnGrp2.alignment = 'bottom';
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
@@ -437,8 +443,9 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var div = layoutMainGrp4.add('panel', undefined, undefined);
 	div.alignment = 'fill';
 
-	var btnGrp3 = layoutMainGrp4.add('group', undefined);
+	var btnGrp3 = layoutGrp4.add('group', undefined);
 	btnGrp3.orientation = 'row';
+	btnGrp3.alignment = 'bottom';
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
@@ -447,8 +454,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var makeBtn = btnGrp3.add('button', [0, 0, 110, 24], 'criar');
 	makeBtn.helpTip = 'salvar template';
-
-	// setBgColor(PAD_MAKER_w, '#515D9E'); // Cor de fundo da janela
 
 	// ==============
 

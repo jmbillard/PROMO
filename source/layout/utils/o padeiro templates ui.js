@@ -32,7 +32,7 @@ function renderTemplateDialog(array, alphaChannel) {
 	// Variáveis Locais
 	var renderTemplate = ''; // String que armazenará o nome do template de renderização selecionado pelo usuário
 	// Mensagem de ajuda, indicando se o template precisa ou não de canal alpha (transparência)
-	var txtHelp2Content = alphaChannel ? 'requer canal alpha!' : 'não requer canal alpha';
+	var txtHelp2Content = 'templates de render disponíveis em:\nEdit > Templates > Output Module';
 
 	// Criação da Janela de Diálogo
 	var wPref = new Window('dialog', 'render setup...');   // Cria uma nova janela de diálogo com o título 'render setup...'
