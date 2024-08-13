@@ -4,7 +4,7 @@
 	"tip": "digite o texto em 1 ou mais linhas.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.",
 	"compName": "RDP_GENERICO_3D_PEQUENO",
 	"prefix": "RDP",
-	"refTime": 2.43576910243577,
+	"refTime": 2,
 	"separator": "---",
 	"textCase": "titleCase",
 	"inputLayers": [
@@ -15,7 +15,5 @@
 	],
 	"outputPath": [
 		"/l/Fileserver_3/PROGRAMAS/ESTRELA DA CASA/05SAIDA/preview"
-	],
-	"importPath": "~/Desktop",
-	"alpha": true
+	]
 }
