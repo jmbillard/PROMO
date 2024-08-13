@@ -176,7 +176,6 @@ o script executará as seguintes tarefas em ordem:
 
 <br>
 
-- **alerta canal alpha** → habilita um texto o alerta '*obs: requer canal alpha*' na seleção do preset para o render output.
 - **caixa de texto**
   - **alta** → converte a caixa de texto do projeto para caixa ALTA.
   - **baixa** → converte a caixa de texto do projeto para caixa baixa.
