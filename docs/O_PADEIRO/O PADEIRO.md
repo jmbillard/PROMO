@@ -2,11 +2,10 @@
 
 🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates e outras utilidades no After Effects ⚡
 
-O script duplica, preenche e cria a fila de render em um projeto template.
-ideal para lidar com volumes grandes de "*artes iguais*" e caminhos de output longos e confusos.
+O script duplica comps, preenche conteúdo de texto e cria a fila de render em um projeto template. ideal para lidar com volumes grandes de "*artes iguais*" e caminhos de rede longos e confusos.
 
-a proposta de é criar um workflow simples de 3 etapas:\
-`1 buscar > 2 selecionar > 3 preencher​`
+a proposta de workflow é simples, são 3 etapas:\
+`1 buscar​` > ​`2 selecionar​` > ​`3 preencher​`
 
 > 📂 **arquivos:**\
 > • **O PADEIRO.jsx** → é o aquivo que deve ser instalado no after effects.\
@@ -16,9 +15,9 @@ a proposta de é criar um workflow simples de 3 etapas:\
 
 ## 📍 habilitando o acesso a rede
 
-*para que o sistema de templates funcione é preciso habilitar o acesso a rede, acesse:*\
-`Edit > Preferences > Scripting & Expressions...`\
-*e habilite a opção '**Allow Scripts to Write Files and Access Network**'.*
+para que o sistema de templates funcione é preciso habilitar o acesso a rede, acesse:\
+`Edit` > `Preferences` > `Scripting & Expressions...`\
+e habilite a opção '**Allow Scripts to Write Files and Access Network**'.
 
 > 📋 *exemplo:*\
 > ![ui](images/net_acssess.png)
@@ -29,12 +28,12 @@ a proposta de é criar um workflow simples de 3 etapas:\
 ## 📍 instalação
 
 instale o script pelo menu:\
-`File > Scrips > Install ScriptUI Panel...`
+`File` > `Scrips` > `Install ScriptUI Panel...`
 
 > 📋 *exemplo:*\
 > ![ui](images/instalacao.png)
 
-após a instalação, **reinicie** o After Effects e o `O PADEIRO` aparecerá na última seção do menu '*Window*' e poderá ser adicionado a qualquer painel da interface.
+após a instalação, **reinicie** o After Effects e o `O PADEIRO` aparecerá na última seção do menu '*Window*' e poderá ser acoplado a qualquer painel da interface.
 
 > 📋 *exemplo:*\
 > ![ui](gifs/ui1.gif)
@@ -47,8 +46,7 @@ após a instalação, **reinicie** o After Effects e o `O PADEIRO` aparecerá na
 
 ## 📍 adicionando pastas de produção
 
-uma pasta de produção é um pasta que contem ou irá conter templates do padeiro.\
-cada pasta pode conter subpastas com um ou mais templates.
+uma pasta de produção é um pasta que contem ou irá conter templates do padeiro. cada pasta pode conter outras subpastas com um ou mais templates.
 
 ao executar o script pela primeira vez, o editor de pastas de produção será aberto automaticamente.\
 o arquivo da lista de produção será salvo na mesma pasta do script e compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os membros de uma equipe terão a mesma lista de produções e seus respectivos templates.
@@ -77,8 +75,10 @@ o arquivo da lista de produção será salvo na mesma pasta do script e comparti
 
 ## 📍 a interface principal
 
+a interface principal do padeiro pode assumir um layout vertical ou horizontal de acordo com o tamanho do painel.
+
 > 📟 launcher:\
->![ui](images/ui1.png)
+> ![ui](images/ui1.png)
 
 ferramentas disponíveis em ordem:
 
@@ -122,6 +122,10 @@ ferramentas disponíveis em ordem:
 - **APONTAMENTO**:\
 `◖ clique esquerdo` → abre a planilha de apontamento de projetos.
 
+> 🚩 *obs:*\
+> • a versão atual do script é sempre exibida na lateral direita para o layout horizontal e no canto inferior para o layout vertical.\
+> • para atualizar o script, caso exista uma nova versão disponível, basta fechar o script e executa-lo novamente.
+
 <br>
 
 ---
@@ -158,7 +162,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### formulário
 
-![ui](images/formulario_ui.png)
+> ![ui](images/formulario_ui.png)
 
 - **nome da configuração** → identificador da configuração do template.
 - **dicas** → instruções de como preencher o template.
@@ -170,7 +174,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### preview e projeto
 
-![ui](images/projeto_ui.png)
+> ![ui](images/projeto_ui.png)
 
 - **capturar** → gera o preview do template.
 
@@ -195,7 +199,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### caminhos
 
-![ui](images/caminhos_ui.png)
+> ![ui](images/caminhos_ui.png)
 
 - **pasta de mídia** → seleciona a pasta padrão para a importação de arquivos do projeto.
 - **pastas de output** → seleciona a pasta padrão de output do projeto.
@@ -259,6 +263,9 @@ o script executará as seguintes tarefas em ordem:
 
 ## 📍 preenchendo templates
 
+a interface de templates sempre exibirá a lista de templates disponíveis na pasta de produção no '**menu de produção**'.\
+caso não exista nenhum template disponível, a lista aparecerá vazia, mostrando apenas a pasta de produção como raiz.
+
 > 📟 *interface de templates:*\
 > ![ui](images/o_padeiro_ui.png)
 
@@ -308,7 +315,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### templates
 
-![ui](images/templates_ui.png)
+> ![ui](images/templates_ui.png)
 
 - **busca** → retorna os templates ou pastas com o termo buscado.
 - **lista de templates** → árvore com todos os templates disponíveis na pasta de templates do script.
@@ -321,7 +328,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### preview
 
-![ui](images/preview_ui.png)
+> ![ui](images/preview_ui.png)
 
 - **imagem de preview** → exibe uma imagem de exemplo do template selecionado.
 
@@ -330,7 +337,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### input
 
-![ui](images/input_ui.png)
+> ![ui](images/input_ui.png)
 
 - **texto** → campo de texto editável multifuncional, é o responsável pelo preenchimento de qualquer possível campo de texto do template selecionado.
 - **adicionar a fila de render** → se habilitado, adiciona as comps criadas e o seus caminhos corretos no output automaticamente.
@@ -343,7 +350,7 @@ o script executará as seguintes tarefas em ordem:
 
 ### botões
 
-![ui](images/botoes_ui.png)
+> ![ui](images/botoes_ui.png)
 
 - **importar** → importa o arquivo '*.aet*' ou '*.aep*' do template selecionado para o projeto.
 - **atualizar lista** → verifica e atualiza a lista de templates disponíveis.
@@ -382,7 +389,7 @@ o script possui padrões internos caso não seja especificado um caminho de outp
 
 ## ✨ dicas
 
-não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúsculas**, o script e/ou o próprio template farão a conversão do texto.
+a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necessário se preocupar com o uso de letras **maiúsculas** ou **minúsculas**, o script fará a conversão do texto.
 
 > 📋 *exemplo:*\
 > os input "*cauã raymond*", "*CAUÃ RAYMOND*" ou "*cAuÃ raYMOnd*" serão exibidos como "*Cauã Raymond*" em um template que usa '*titleCase*' no arquivo de configuração.
@@ -398,14 +405,14 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
   `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
 
-  *Ao preencher o template pela interface do padeiro o script armazena no 'Source' dos metadados do projeto o caminho dos arquivos do template, assim é possível fazer a instalação das fontes necessárias facilmente. Após clicar no botão um script de 'powershell' copia todos os arquivos de fontes do projeto para a pasta de fontes do sistema.*
+  *Ao preencher o template pela interface do padeiro o script armazena no campo '**Source**' dos metadados do projeto o caminho dos arquivos do template, assim é possível fazer a instalação das fontes necessárias facilmente. Após clicar no botão um script de **powershell** copia todos os arquivos de fontes do projeto para a pasta de fontes do sistema.*
   > 📋 *exemplo:*\
   > ![instalar fontes](gifs/instalar-fontes.gif)
 
-  > metadados do projeto:\
+  > *metadados do projeto:*\
   > ![metadados](images/metadata.png)
 
-  > powershell:\
+  > *powershell:*\
   > ![powershell](<images/instalar fontes.png>)
 
   > 🚩 *obs:*\
@@ -413,9 +420,9 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
   <br>
 
-  `◗ clique direito` → Copia todos os arquivos de fontes usadas nos layers de textos do projeto em uma pasta selecionada pelo usuário.
+  `◗ clique direito` → Copia todos os arquivos de fontes usadas nos layers de texto do projeto em uma pasta selecionada pelo usuário.
 
-  *O script varre todas os layers de texto de todas as comps do projeto e armazena todas as fontes usadas, depois, copia os seus arquivos para uma pasta a sua escolha.*
+  *O script varre todas os layers de texto de todas as comps do projeto e armazena todas as fontes usadas, em seguida, copia os seus arquivos para uma pasta a sua escolha.*
 
   > 📋 *exemplo:*\
   > ![collect fontes](gifs/collect-de-fontes.gif)
@@ -427,16 +434,16 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
 - **ABRIR PASTAS**:
 
-  `◖ clique esquerdo` → Abre a pasta onde o último vídeo da fila de render será / foi salvo.
+  `◖ clique esquerdo` → Abre a pasta do **primeiro arquivo** de saída do **último item** da fila de render.
 
-  *O script olha na fila de render o último caminho de pasta disponível e abre a pasta.*
+  *O script analisa a fila de render e puxa o último caminho do último item disponível e em seguida abre a respectiva pasta.*
 
-  `◗ clique direito` → Abre a pasta onde o projeto atual está guardado (se ele já tiver sido salvo antes).
+  `◗ clique direito` → Abre a pasta do projeto atual, caso tenha sido salvo anteriormente.
 
-  *O script verifica se você já salvou o projeto. Se sim, ele abre a pasta.*
+  *O script verifica se o projeto já foi salvo. Se sim, ele abre a pasta.*
 
   > 🚩 *obs:*\
-  > Caso o caminho não seja encontrado por falta de permissão ou falta de mapeamento de pastas de rede, o script não retornara o caminho.
+  > Caso o caminho não seja encontrado por falta de permissão ou falha no mapeamento da rede, o script não retornara o caminho.
 
   <br><br>
 
@@ -444,27 +451,27 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
   `◖ clique esquerdo` → Altera o nome das comps selecionadas na janela do projeto.
 
-  *O script remove caracteres especiais dos nomes, deixa tudo em MAIÚSCULAS.\
-  Se as comps selecionadas estiverem dentro de uma pasta com um nome específico ou se o nome delas já tiver algum prefixo ou sufixo conhecido, todos essas comps receberão um prefixo no nome.*
+  *O script remove caracteres especiais dos nomes, convertendo tudo em MAIÚSCULAS.\
+  Caso as comps selecionadas estejam dentro de uma pasta com de nome específico ou o nome da respectiva comp já possuir algum prefixo / sufixo conhecido, todas comps receberão um prefixo no nome.*
 
   > 📋 *exemplo:*\
   > ![renomear comps](gifs/renomear-comps.gif)
 
   > 🚩 *obs:*\
-  > Caso você selecione uma pasta no projeto, o script renomeará a pasta e todas as comps dentro da pasta.
+  > Caso uma pasta no projeto esteja selecionada, o script renomeará a pasta e todas as comps dentro da mesma.
 
   <br>
 
   `◗ clique direito` → Altera o nome de todos os itens na fila de render.
 
-  *O script pega os nomes das comps de todos os itens da fila de render e faz as mesmas mudanças que no clique esquerdo: tira caracteres especiais, coloca em MAIÚSCULAS e adiciona prefixos.*
+  *O script analisa o nome das comps de todos os itens da fila de render e aplica as mesmas mudanças do clique esquerdo nos arquivos de saída: remove caracteres especiais, converte em MAIÚSCULAS e adiciona prefixos.*
 
   > 📋 *exemplo:*\
   > ![renomear output](gifs/renomear-output.gif)
 
   > 🚩 *obs:*\
   > O NOME DAS COMPS NÃO SERÁ ALTERADO!
-  > No momento, outputs em sequânica de imagens ainda não são suportados.
+  > No momento, outputs em sequânica de imagens não suportam subpastas.
 
   **lista de prefixos e termos reconhecidos**:
   - **RDP** → *RODAPE*
@@ -505,10 +512,10 @@ não é preciso se preocupar com o uso de letras **maiúsculas** ou **minúscula
 
 - **BUSCA**:
 
+  *O script pesquisará em todos os layers de texto do projeto pelo termo buscado.*\
   `◖ clique esquerdo` → Abre a janela de busca em layers de texto do projeto.
-  *O script pesquisará em todos os layers de texto do projeto pelo termo buscado.*
 
-  > 📋 *exemplo:*\
+  > 📟 *interface de busca:*\
   > ![busca](images/busca_ui.png)
 
   > 🚩 *obs:*\
