@@ -438,7 +438,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp4.margins = 0;
 
 	var selectLayersBtn = btnGrp4.add('button', [0, 0, 110, 24], '+ layers');
-	
+
 	var testBtn = btnGrp4.add('button', [0, 0, 110, 24], 'testar');
 	testBtn.helpTip = 'testar preenchimento com o exemplo';
 
@@ -602,7 +602,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	};
 
 	prefixTxt.onChanging = function () {
-		
+
 		var prefix = this.text.toUpperCase().replaceSpecialCharacters();
 		var inputTxt = exempleText.text.split(/\n{2,}/)[0];
 		infoText2.text = infoText2.helpTip = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
@@ -613,7 +613,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	};
 
 	exempleText.onChanging = function () {
-		
+
 		var prefix = prefixTxt.text.toUpperCase().replaceSpecialCharacters();
 		var inputTxt = this.text.split(/\n{2,}/)[0];
 		infoText2.text = infoText2.helpTip = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
@@ -805,6 +805,12 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 			alert(lol + '#PAD_028 - ' + err.message); // Exibe uma mensagem de erro
 		}
 		app.endUndoGroup();
+	};
+
+	// Função para abrir a página de documentação quando o botão 'Informações' é clicado
+	infoBtn.onClick = function () {
+		// Abre a página de documentação do script 'O Padeiro' no GitHub em um navegador web
+		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-criando-um-novo-template');
 	};
 
 	PAD_MAKER_w.show();

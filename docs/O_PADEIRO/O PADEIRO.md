@@ -2,6 +2,12 @@
 
 🗨️ **pt-BR** ⚡ Ferramenta de preenchimento em massa de templates e outras utilidades no After Effects ⚡
 
+O script duplica, preenche e cria a fila de render em um projeto template.
+ideal para lidar com volumes grandes de "*artes iguais*" e caminhos de output longos e confusos.
+
+a proposta de é criar um workflow simples de 3 etapas:\
+`1 buscar > 2 selecionar > 3 preencher​`
+
 > 📂 **arquivos:**\
 > • **O PADEIRO.jsx** → é o aquivo que deve ser instalado no after effects.\
 > • **O_PADEIRO_SOURCE.jsxbin** → é o arquivo que contém o binário do script.
@@ -222,7 +228,7 @@ o script executará as seguintes tarefas em ordem:
 >
 >  "importPath": "~/Downloads", // → Caminho padrão para importar novos footages.
 >  "outputPath": [              // → lista com caminhos do output.
->    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
+>    "//10.228.183.146/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE SP/CONVERSA COM BIAL/CONVIDADOS"
 >  ]
 > }
 > ```

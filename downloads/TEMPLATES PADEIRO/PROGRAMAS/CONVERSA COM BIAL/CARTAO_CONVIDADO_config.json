@@ -1,5 +1,5 @@
 {
-	"configName": "CONVERSA COM BIAL TARJA CONVIDADO",
+	"configName": "CONVERSA COM BIAL CARTAO CONVIDADO",
 	"exemple": "PAULINHO\nDA VIOLA\n---\nMÚSICO",
 	"tip": "digite o texto em 1, 2 ou 3 linhas para nome e informação.\n\nuse 1 linha com '---' para separar nome e informação.\n\nuse 1 linha vazia para separar mais de 1 versão do mesmo template selecionado.\n\nuse os controles nos efeitos do layer 'ctrl'.",
 
@@ -14,7 +14,7 @@
 	],
 
 	"outputPath": [
-		"//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
+		"//10.228.183.146/edit_in_place/PROMO/cdesign_output/C# ABERTA & INTER/ARTE SP/CONVERSA COM BIAL/CONVIDADOS"
 	],
 	"alpha": true
 }

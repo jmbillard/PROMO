@@ -776,7 +776,7 @@ function padeiroTemplateDialog() {
 	// Função para abrir a página de documentação quando o botão 'Informações' é clicado
 	infoBtn.onClick = function () {
 		// Abre a página de documentação do script 'O Padeiro' no GitHub em um navegador web
-		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script');
+		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-preenchendo-templates');
 	};
 
 	// Exibir a janela da interface do usuário

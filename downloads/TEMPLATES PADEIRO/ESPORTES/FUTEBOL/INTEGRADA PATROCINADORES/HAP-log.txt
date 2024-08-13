@@ -1,1 +1,0 @@
-output_module.cpp(36) [main] INFO: AEX output plugin exit
