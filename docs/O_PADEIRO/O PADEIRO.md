@@ -14,6 +14,18 @@ a proposta de é criar um workflow simples de 3 etapas:\
 
 <br>
 
+## 📍 habilitando o acesso a rede
+
+*para que o sistema de templates funcione é preciso habilitar o acesso a rede, acesse:*\
+`Edit > Preferences > Scripting & Expressions...`\
+*e habilite a opção '**Allow Scripts to Write Files and Access Network**'.*
+
+> 📋 *exemplo:*\
+> ![ui](images/net_acssess.png)
+> ![ui](images/scripting_preferences.png)
+
+<br>
+
 ## 📍 instalação
 
 instale o script pelo menu:\
