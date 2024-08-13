@@ -6,12 +6,12 @@
 
 */
 
-function padConfigDialog(prodArray) {
+function padProdFoldersDialog(prodArray) {
 
 	function addProductionLine(prodObj) {
 
 		var nameTxt = prodObj.name;
-		var pathTxt = limitNameSize(prodObj.templatesPath, 35);
+		var pathTxt = prodObj.templatesPath;
 		var iconImg = prodObj.icon;
 
 		var prodGrp = prodMainGrp.add('group', undefined);
@@ -34,13 +34,14 @@ function padConfigDialog(prodArray) {
 		var prodIconBtn = prodDataGrp.add('iconbutton', undefined, undefined, { style: 'toolbutton', prodIcon: prodObj.icon });
 		try {
 			prodIconBtn.image = eval(iconImg);
+
 		} catch (err) {
 			prodIconBtn.image = defaultProdData.PRODUCTIONS[0].icon;
 		}
 		prodIconBtn.helpTip = 'ícone que aparecerá no menu';
 		prodIconBtn.preferredSize = [36, 36];
 
-		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'end' });
+		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [230, 24];
 		setTxtHighlight(prodPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
@@ -60,7 +61,7 @@ function padConfigDialog(prodArray) {
 				this.image = newIconFile;
 			}
 			this.parent.layout.layout(true);
-		}
+		};
 
 		prodPathLab.addEventListener('mousedown', function () {
 
@@ -70,7 +71,7 @@ function padConfigDialog(prodArray) {
 			if (newTemplatesPath == null) return; // Se a janela foi cancelada, não faz nada
 
 			this.properties.prodPath = newTemplatesPath.fullName;
-			this.text = limitNameSize(newTemplatesPath.fullName, 40);
+			this.text = newTemplatesPath.fullName;
 			this.helpTip = 'caminho da pasta de templates:\n\n' + newTemplatesPath.fullName;
 		});
 
@@ -79,8 +80,8 @@ function padConfigDialog(prodArray) {
 			prodMainGrp.remove(this.parent.parent);
 			prodMainGrp.layout.layout(true);
 			PAD_CONFIG_w.layout.layout(true);
-		}
-	}
+		};
+	};
 
 	// window...
 	var PAD_CONFIG_w = new Window('dialog', 'LISTA DE PRODUÇÕES');
@@ -160,7 +161,7 @@ function padConfigDialog(prodArray) {
 
 		var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
 		openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
-	}
+	};
 
 	prodImportBtn.onClick = function () {
 		tempConfigFile = File.openDialog('selecione o ícone', "*.json", false);
@@ -178,7 +179,7 @@ function padConfigDialog(prodArray) {
 			prodMainGrp.layout.layout(true);
 			PAD_CONFIG_w.layout.layout(true);
 		}
-	}
+	};
 
 	prodExportBtn.onClick = function () {
 
@@ -211,7 +212,7 @@ function padConfigDialog(prodArray) {
 				alert(lol + '#PAD_014 - ' + err.message);
 			}
 		}
-	}
+	};
 
 	prodNewBtn.onClick = function () {
 
@@ -225,7 +226,7 @@ function padConfigDialog(prodArray) {
 		prodMainGrp.layout.layout(true);
 		PAD_CONFIG_w.layout.layout(true);
 
-	}
+	};
 
 	prodSaveBtn.onClick = function () {
 
@@ -251,7 +252,7 @@ function padConfigDialog(prodArray) {
 		} catch (err) {
 			alert(lol + '#PAD_016 - ' + err.message);
 		}
-	}
+	};
 
 	PAD_CONFIG_w.show();
 }

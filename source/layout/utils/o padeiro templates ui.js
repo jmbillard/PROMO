@@ -5,43 +5,22 @@
 ---------------------------------------------------------------
 
 */
-// Declaração da versão do script 'O Padeiro'
-var PAD_v = '1.2';
-
-// Objeto que armazena as configurações padrão (default) do Padeiro
-var defPadObj = {
-	configName: 'default config',           // Nome da configuração (usado para identificação no log)
-	exemple: '',                            // Exemplo de texto de entrada (será mostrado na interface se o template não tiver um exemplo próprio)
-	tip: '',                                // Dicas para o usuário sobre como usar o template
-
-	compName: '',                           // Nome da composição principal do template (a composição que será duplicada e manipulada)
-	prefix: '',                             // Prefixo que será adicionado ao nome de cada template gerado
-	refTime: 0,                             // Tempo de referência para os templates gerados (em segundos)
-	separator: '---',                       // Separador usado para dividir múltiplas linhas de texto em uma única entrada
-	textCase: 'upperCase',                  // Define o formato do texto de entrada: 'upperCase' (maiúsculas), 'lowerCase' (minúsculas) ou 'titleCase' (título)
-	inputLayers: null,                      // Array que define as camadas do template que receberão o texto de entrada (null por padrão)
-	inputFx: null,                          // Objeto que define informações sobre efeitos aplicados às camadas de entrada (null por padrão)
-
-	outputPath: '~/Desktop',                // Caminho padrão para salvar os renders dos templates gerados
-	importPath: '~/Desktop',                // Caminho padrão para importar novos templates para a pasta do Padeiro
-	alpha: true                             // Indica se o template precisa de canal alpha (transparência) para o render
-};
 
 // Função para criar a janela de diálogo de configuração do render
-function renderTemplateDialog(array, alphaChannel) {
+function renderTemplateDialog(array) {
 	// Variáveis Locais
 	var renderTemplate = ''; // String que armazenará o nome do template de renderização selecionado pelo usuário
 	// Mensagem de ajuda, indicando se o template precisa ou não de canal alpha (transparência)
 	var txtHelp2Content = 'templates de render disponíveis em:\nEdit > Templates > Output Module...';
 
 	// Criação da Janela de Diálogo
-	var wPref = new Window('dialog', 'render setup...');   // Cria uma nova janela de diálogo com o título 'render setup...'
-	wPref.alignChildren = ['left', 'top'];                 // Alinha todos os elementos da janela à esquerda e ao topo
-	wPref.spacing = 10;                                    // Define um espaçamento de 10 pixels entre os elementos da janela
+	var wPref = new Window('dialog', 'RENDER SETUP'); // Cria uma nova janela de diálogo com o título 'render setup...'
+	wPref.alignChildren = ['left', 'top'];            // Alinha todos os elementos da janela à esquerda e ao topo
+	wPref.spacing = 10;                               // Define um espaçamento de 10 pixels entre os elementos da janela
 
 	// Primeiro Texto de Ajuda
 	// Adiciona um texto estático à janela com instruções para o usuário
-	var helpTxt1 = wPref.add('statictext', undefined, 'selecione o template do render...');
+	var helpTxt1 = wPref.add('statictext', [0, 0, 250, 18], 'templates de render:');
 	setTxtColor(helpTxt1, monoColors[2]);                // Define a cor do texto
 
 	// Grupo para a Lista Suspensa
@@ -49,14 +28,14 @@ function renderTemplateDialog(array, alphaChannel) {
 
 	// Lista Suspensa dos Templates de Renderização
 	var renderDrop = renderGrp.add('dropdownlist', undefined, array); // Adiciona uma lista
-	renderDrop.preferredSize = [250, 24];              // Define um tamanho preferencial para a lista
+	renderDrop.preferredSize = [250, 24];                 // Define um tamanho preferencial para a lista
 
 	// Divisor Visual
 	var divider1 = wPref.add('panel');                    // Divisor visual para separar as seções da janela
 	divider1.alignment = 'fill';                          // Faz o divisor ocupar toda a largura da janela
 
 	// Segundo Texto de Ajuda (Canal Alpha)
-	var helpTxt2 = wPref.add('statictext', undefined, 'obs: ' + txtHelp2Content); // Indicação sobre a nescidade de canal alpha
+	var helpTxt2 = wPref.add('statictext', [0, 0, 250, 36], txtHelp2Content, { multiline: true }); // Indicação sobre a nescidade de canal alpha
 	setTxtColor(helpTxt2, mainColors[1]);                // Define a cor do texto
 
 	// Define uma função que será executada quando o usuário alterar a seleção na lista
@@ -230,13 +209,17 @@ function padeiroTemplateDialog() {
 	var renderGrp = txtGrp.add('group');                             // Cria um grupo para as opções de renderização (checkbox)
 	renderGrp.spacing = 15;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo
 
-	var renderLabTxt = renderGrp.add('statictext', [0, 0, 150, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
+	var renderLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
 	setTxtColor(renderLabTxt, monoColors[2]);                       // Define a cor do rótulo.
 	renderLabTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.'; // Define a dica da ferramenta
 
 	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);      // Cria a caixa de seleção (checkbox) para a opção de renderização.
 	renderCkb.value = true;                                         // Marca a caixa de seleção por padrão.
 	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
+
+	var countLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], '1 template será criado'); // Adiciona um rótulo para a contagem de templates
+	setTxtColor(countLabTxt, '#FF7B79');                       // Define a cor do rótulo.
+	countLabTxt.helpTip = 'numero de templates que serão produzidos.'; // Define a dica da ferramenta
 
 	// Dicas
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
@@ -409,6 +392,10 @@ function padeiroTemplateDialog() {
 		edtText.enabled = hasInput;      // Habilita ou desabilita a caixa de texto de entrada
 		renderCkb.enabled = hasInput;    // Habilita ou desabilita a caixa de seleção 'adicionar à fila de render'
 		renderLabTxt.enabled = hasInput; // Habilita ou desabilita o rótulo da caixa de seleção de renderização
+	
+		var count = edtText.text.split(/[\n\r]{2,}/).length;
+		var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
+		countLabTxt.text = count + suffix;
 	};
 
 	//---------------------------------------------------------
@@ -440,7 +427,15 @@ function padeiroTemplateDialog() {
 
 		// Habilita o botão 'Criar' se um template for selecionado, houver dados de entrada e o template tiver inputs
 		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
+
+		var count = this.text.split(/[\n\r]{2,}/).length;
+		var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
+		countLabTxt.text = count + suffix;
 	};
+
+	edtText.onChange = function () {
+		this.text = this.text.replace(/[\n\r]{2,}/g, '\n\n');
+	}
 
 	//---------------------------------------------------------
 
@@ -605,7 +600,7 @@ function padeiroTemplateDialog() {
 							}
 
 							// Ui para escolha de um template de saída
-							padeiroOutputModuleTemplate = renderTemplateDialog(tArray, templateData.alpha);
+							padeiroOutputModuleTemplate = renderTemplateDialog(tArray);
 						}
 
 						// Verifica se um template de saída foi selecionado

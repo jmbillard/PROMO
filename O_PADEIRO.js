@@ -2,6 +2,28 @@
 
 function O_PADEIRO_UTL(thisObj) {
 	var vStr = '';
+	// Declaração da versão do script 'O Padeiro'
+	var PAD_v = '1.3';
+
+	// Objeto que armazena as configurações padrão (default) do Padeiro
+	var defPadObj = {
+		configName: 'default config',           // Nome da configuração (usado para identificação no log)
+		exemple: '',                            // Exemplo de texto de entrada (será mostrado na interface se o template não tiver um exemplo próprio)
+		tip: '',                                // Dicas para o usuário sobre como usar o template
+
+		compName: '',                           // Nome da composição principal do template (a composição que será duplicada e manipulada)
+		prefix: '',                             // Prefixo que será adicionado ao nome de cada template gerado
+		refTime: 0,                             // Tempo de referência para os templates gerados (em segundos)
+		separator: '---',                       // Separador usado para dividir múltiplas linhas de texto em uma única entrada
+		textCase: 'upperCase',                  // Define o formato do texto de entrada: 'upperCase' (maiúsculas), 'lowerCase' (minúsculas) ou 'titleCase' (título)
+		inputLayers: null,                      // Array que define as camadas do template que receberão o texto de entrada (null por padrão)
+		inputFx: null,                          // Objeto que define informações sobre efeitos aplicados às camadas de entrada (null por padrão)
+
+		importPath: '~/Downloads',              // Caminho padrão para importar novos footages
+		outputPath: [                           // Lista de caminhos para salvar os renders dos templates gerados
+			'~/Desktop'
+		]
+	};
 
 	#include 'source/globals.js';                   // Inclui variáveis globais (usadas em todo o script)
 	#include 'source/layout/main ui functions.js';  // Inclui funções para criar a interface do usuário
@@ -13,8 +35,8 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// utilidades com interface
 	#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
-	#include 'source/layout/Utils/o padeiro folders ui.js';   // Busca em layers de texto
-	#include 'source/layout/Utils/o padeiro maker ui.js';     // Busca em layers de texto
+	#include 'source/layout/Utils/o padeiro folders ui.js';   // Lista de pastas de produção
+	#include 'source/layout/Utils/o padeiro maker ui.js';     // Editor de templates
 	#include 'source/layout/Utils/find ui.js';                // Busca em layers de texto
 
 	// configurações iniciais de uma nova produção
@@ -58,19 +80,22 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// atualiza os dados das produções
 	function updateProdData(configFile) {
+
+		var prodData;
+		if (!configFile.exists) padProdFoldersDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração.
+
+		$.sleep(300);
+
 		try {
 			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
-			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-			return sortProdData(prodData.PRODUCTIONS);
+			prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+			prodData = sortProdData(prodData.PRODUCTIONS);
 
 		} catch (err) {
-
-			padConfigDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração.
-
-			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
-			var prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-			return sortProdData(prodData.PRODUCTIONS);
+			prodData = defaultProdData.PRODUCTIONS;
 		}
+
+		return prodData;
 	}
 
 	function changeIcon(imageIndex, imagesGrp) {
@@ -255,7 +280,7 @@ function O_PADEIRO_UTL(thisObj) {
 			// Verifica se aconteceu um clique duplo (detail == 2).
 			if (c.detail == 2) {
 
-				padConfigDialog(PAD_prodArray); // Chama a janela de configuração.
+				padProdFoldersDialog(PAD_prodArray); // Chama a janela de configuração.
 				prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 				// atualiza os dados das produções.

@@ -8,7 +8,7 @@
 
 function PadMakerDialog() {
 
-	defaultConfigObj = {
+	var tempConfigObj = {
 		configName: 'NOME DA CONFIGURAÇÃO',
 		exemple: 'informação 1\ninformação 2',
 		tip: 'coloque aqui as instruções de preenchimento deste template.\nex:\
@@ -23,11 +23,10 @@ function PadMakerDialog() {
 		textCase: 'lowerCase',
 		inputLayers: [],
 
+		importPath: '~/Downloads',
 		outputPath: [
 			'~/Desktop'
-		],
-		importPath: '~/Desktop',
-		alpha: true
+		]
 	};
 
 	function addLayers() {
@@ -98,7 +97,7 @@ function PadMakerDialog() {
 			}
 			selLayer.comment = 'TEMPLATE LAYER';
 		}
-	}
+	};
 
 	function addOutputFolder() {
 
@@ -135,7 +134,7 @@ function PadMakerDialog() {
 			outputMainGrp.layout.layout(true);
 			PAD_MAKER_w.layout.layout(true);
 		}
-	}
+	};
 
 	function getTemplateLayers() {
 
@@ -155,7 +154,7 @@ function PadMakerDialog() {
 		}
 
 		return templateLayersArray;
-	}
+	};
 
 	function getFontList() {
 
@@ -181,7 +180,7 @@ function PadMakerDialog() {
 			}
 		}
 		return fontNameArray;
-	}
+	};
 
 	var tempPreviewFile;
 
@@ -301,7 +300,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var configLab = configGrp.add('statictext', undefined, 'nome da configuração:');
 	configLab.preferredSize.height = 18;
 
-	var configText = configGrp.add('edittext', [0, 0, 230, 24], defaultConfigObj.configName);
+	var configText = configGrp.add('edittext', [0, 0, 230, 24], tempConfigObj.configName);
 	configText.helpTip = 'identificador da configuração.';
 
 	var tipsGrp = formMainGrp.add('group', undefined);
@@ -313,7 +312,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var tipsLab = tipsGrp.add('statictext', undefined, 'dicas:');
 	tipsLab.preferredSize.height = 18;
 
-	var tipsText = tipsGrp.add('edittext', [0, 0, 230, 260], defaultConfigObj.tip, { multiline: true });
+	var tipsText = tipsGrp.add('edittext', [0, 0, 230, 260], tempConfigObj.tip, { multiline: true });
 	tipsText.helpTip = 'as dicas para ajudar no preenchimento.';
 
 	var exempleGrp = formMainGrp.add('group', undefined);
@@ -325,7 +324,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var exempleLab = exempleGrp.add('statictext', undefined, 'exemplo de preenchimento:');
 	exempleLab.preferredSize.height = 18;
 
-	var exempleText = exempleGrp.add('edittext', [0, 0, 230, 90], defaultConfigObj.exemple, { multiline: true });
+	var exempleText = exempleGrp.add('edittext', [0, 0, 230, 90], tempConfigObj.exemple, { multiline: true });
 	exempleText.helpTip = 'apenas um exemplo.';
 
 	// ==============
@@ -353,7 +352,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp1.spacing = 10;
 	btnGrp1.margins = 0;
 
-	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar preview', { comp: app.project.activeItem, ref_time: app.project.activeItem.time });
+	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar preview', { ref_time: app.project.activeItem.time });
 	captureBtn.helpTip = 'captura o frame de preview,\na comp principal e o\ntempo de referência';
 
 	var div = layoutMainGrp3.add('panel', undefined, undefined);
@@ -384,7 +383,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var caseLab = textCaseGrp.add('statictext', undefined, 'caixa de texto:');
 	caseLab.preferredSize.width = 130;
 
-	var caseDrop_array = ['ALTA', 'baixa', 'Título', 'LiVrE'];
+	var caseDrop_array = ['alta', 'baixa', 'título', 'livre'];
 	var caseDrop = textCaseGrp.add('dropdownlist', undefined, caseDrop_array);
 	caseDrop.selection = 0;
 	caseDrop.preferredSize.width = 90;
@@ -397,7 +396,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var prefixLab = prefixGrp.add('statictext', undefined, 'prefixo:');
 	prefixLab.preferredSize.width = 130;
 
-	var prefixTxt = prefixGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.prefix);
+	var prefixTxt = prefixGrp.add('edittext', [0, 0, 90, 24], tempConfigObj.prefix);
 	prefixTxt.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
 
 	var separatorGrp = projGeneralGrp.add('group', undefined);
@@ -408,7 +407,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var separatorLab = separatorGrp.add('statictext', undefined, 'separador:');
 	separatorLab.preferredSize.width = 130;
 
-	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], defaultConfigObj.separator.replace(/\n|\r/g, '\\n'));
+	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], tempConfigObj.separator.replace(/\n|\r/g, '\\n'));
 	separatorTxt.helpTip = 'separador de informações\n\nuse "\\n" para colocar cada linha de texto em um layer diferente';
 
 	// ==============
@@ -443,7 +442,6 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var testBtn = btnGrp4.add('button', [0, 0, 110, 24], 'testar');
 	testBtn.helpTip = 'testar preenchimento com o exemplo';
 
-
 	// ==============
 
 	var labMain5 = layoutMainGrp4.add('statictext', undefined, 'CAMINHOS:');
@@ -459,7 +457,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var importLab = importMainGrp.add('statictext', undefined, 'pasta de mídias: (opcional)');
 	importLab.preferredSize.height = 18;
 
-	var importPathLab = importMainGrp.add('statictext', [0, 0, 230, 24], 'caminho da pasta...', { importPath: defaultConfigObj.importPath, truncate: 'middle' });
+	var importPathLab = importMainGrp.add('statictext', [0, 0, 230, 24], 'caminho da pasta...', { importPath: tempConfigObj.importPath, truncate: 'middle' });
 	importPathLab.helpTip = 'caminho da pasta:';
 	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
 
@@ -500,7 +498,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	var infoLab1 = infoGrp1.add('statictext', undefined, 'comp principal:');
 	infoLab1.preferredSize.height = 18;
 
-	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { truncate: 'end' });
+	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { comp: app.project.activeItem, truncate: 'end' });
 	infoText1.helpTip = 'comp principal do template';
 	setTxtColor(infoText1, '#FF7B79'); // Cor de destaque do texto
 
@@ -577,7 +575,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		captureBtn.properties.ref_time = tempItem.time;
 
 		try {
-			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempPreviewFile = new File(tempPath + '/' + tempPreviewName);
 			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
 			$.sleep(500);
@@ -607,15 +605,19 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		
 		var prefix = this.text.toUpperCase().replaceSpecialCharacters();
 		var inputTxt = exempleText.text.split(/\n{2,}/)[0];
-		infoText2.text = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
-	}
+		infoText2.text = infoText2.helpTip = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
+	};
+
+	prefixTxt.onChange = function () {
+		this.text = this.text.toUpperCase().replaceSpecialCharacters();
+	};
 
 	exempleText.onChanging = function () {
 		
 		var prefix = prefixTxt.text.toUpperCase().replaceSpecialCharacters();
 		var inputTxt = this.text.split(/\n{2,}/)[0];
-		infoText2.text = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
-	}
+		infoText2.text = infoText2.helpTip = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
+	};
 
 	captureBtn.onClick = function () {
 
@@ -631,7 +633,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		this.properties.ref_time = tempItem.time;
 
 		try {
-			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempPreviewFile = new File(tempPath + '/' + tempPreviewName);
 			tempPreviewFile.remove();
 
 		} catch (err) {
@@ -639,7 +641,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		}
 
 		try {
-			tempPreviewFile = new File('~/Desktop/' + tempPreviewName);
+			tempPreviewFile = new File(tempPath + '/' + tempPreviewName);
 			tempItem.saveFrameToPng(tempItem.time, tempPreviewFile);
 
 			$.sleep(300);
@@ -651,7 +653,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		previewGrp.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
-	}
+	};
 
 	selectLayersBtn.onClick = function () {
 
@@ -666,7 +668,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		layersMainGrp.layout.layout(true);
 		layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
-	}
+	};
 
 	importPathLab.addEventListener('mousedown', function () {
 
@@ -697,7 +699,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 		if (templateLayers.length == 0) return;
 
-		app.beginUndoGroup('PADEIRO -testar preenchimento');
+		app.beginUndoGroup('PADEIRO - testar preenchimento');
 
 		for (var i = 0; i < templateLayers.length; i++) {
 
@@ -705,7 +707,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 			var method = templateLayers[i][1];
 			selectedLayer.enabled = i < inputArray.length;
 
-			if (i > inputArray.length - 1) return;
+			if (i > inputArray.length - 1) continue;
 
 			if (method == 'textContent') {
 				selectedLayer.property('ADBE Text Properties') // Obtém a propriedade de texto
@@ -718,7 +720,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		}
 		captureBtn.notify();
 		app.endUndoGroup();
-	}
+	};
 
 	newOutputBtn.onClick = function () {
 
@@ -727,9 +729,11 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		outputMainGrp.layout.layout(true);
 		layoutMainGrp4.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
-	}
+	};
 
 	makeBtn.onClick = function () {
+
+		app.beginUndoGroup('PADEIRO - criar template');
 
 		var templateLayers = getTemplateLayers();
 
@@ -737,20 +741,20 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 			templateLayers[i][0].comment = '';
 		}
 
-		captureBtn.properties.comp.comment = 'TEMPLATE';
+		infoText1.properties.comp.comment = 'TEMPLATE';
 
-		defaultConfigObj.configName = configText.text;
-		defaultConfigObj.exemple = exempleText.text;
-		defaultConfigObj.tip = tipsText.text;
-		defaultConfigObj.compName = captureBtn.properties.comp.name;
-		defaultConfigObj.prefix = prefixTxt.text;
-		defaultConfigObj.refTime = captureBtn.properties.ref_time;
+		tempConfigObj.configName = configText.text;
+		tempConfigObj.exemple = exempleText.text;
+		tempConfigObj.tip = tipsText.text;
+		tempConfigObj.compName = infoText1.properties.comp.name;
+		tempConfigObj.prefix = prefixTxt.text;
+		tempConfigObj.refTime = captureBtn.properties.ref_time;
 
-		defaultConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
-		if (separatorTxt.text == '' || templateLayers.length < 2) defaultConfigObj.separator = '---';
+		tempConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
+		if (separatorTxt.text == '' || templateLayers.length < 2) tempConfigObj.separator = '---';
 
-		defaultConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase', 'freeCase'][caseDrop.selection.index];
-		defaultConfigObj.inputLayers = [];
+		tempConfigObj.textCase = ['upperCase', 'lowerCase', 'titleCase', 'freeCase'][caseDrop.selection.index];
+		tempConfigObj.inputLayers = [];
 
 		for (var i = 0; i < layersMainGrp.children.length; i++) {
 
@@ -760,26 +764,23 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 				var m = layerGrp.children[1].selection.index;
 				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
 
-				defaultConfigObj.inputLayers.push({ layerIndex: selectedLayer.index, method: methodArray[m] });
+				tempConfigObj.inputLayers.push({ layerIndex: selectedLayer.index, method: methodArray[m] });
 
 			} catch (err) { }
 		}
 
-		defaultConfigObj.outputPath = [];
+		tempConfigObj.importPath = importPathLab.properties.importPath;
+		tempConfigObj.outputPath = [];
 
 		for (var o = 0; o < outputMainGrp.children.length; o++) {
 
 			try {
 				var outputGrp = outputMainGrp.children[o];
 				var outputPath = outputGrp.children[0].properties.outputPath;
-				defaultConfigObj.outputPath.push(outputPath);
+				tempConfigObj.outputPath.push(outputPath);
 
 			} catch (err) { }
 		}
-
-		defaultConfigObj.importPath = importPathLab.properties.importPath;
-		defaultConfigObj.alpha = alphaCkb.value;
-
 		var isSaved = app.project.saveWithDialog();
 
 		if (!isSaved) return;
@@ -789,8 +790,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		var currentProjBase = decodeURI(currentProj.fullName).replace(/\.ae[pt]/, '');
 
 		try {
-
-			var configContent = JSON.stringify(defaultConfigObj, null, '\t');
+			var configContent = JSON.stringify(tempConfigObj, null, '\t');
 			var templateImg = new File(currentProjBase + '_preview.png');
 
 			tempPreviewFile.copy(templateImg);
@@ -804,7 +804,8 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		} catch (err) {
 			alert(lol + '#PAD_028 - ' + err.message); // Exibe uma mensagem de erro
 		}
-	}
+		app.endUndoGroup();
+	};
 
 	PAD_MAKER_w.show();
 }

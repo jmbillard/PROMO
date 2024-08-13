@@ -29,8 +29,11 @@ após a instalação, **reinicie** o After Effects e o `O PADEIRO` aparecerá na
 
 ## 📍 adicionando pastas de produção
 
-ao executar o script pela primeira vez ou caso não exista uma lista válida, o editor de pastas de produção será aberto automaticamente.\
-o arquivo da lista de produção será salvo na mesma pasta do script e será compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os usuários de uma equipe terão a mesma lista de produções.
+uma pasta de produção é um pasta que contem ou irá conter templates do padeiro.\
+cada pasta pode conter subpastas com um ou mais templates.
+
+ao executar o script pela primeira vez, o editor de pastas de produção será aberto automaticamente.\
+o arquivo da lista de produção será salvo na mesma pasta do script e compartilhado entre todos os usuários que executarem o script a partir desta mesma pasta, assim todos os membros de uma equipe terão a mesma lista de produções e seus respectivos templates.
 
 > 📟 *interface do editor de pastas de produção:*\
 > ![ui](images/pastas_ui.png)
@@ -157,19 +160,21 @@ o script executará as seguintes tarefas em ordem:
 
 - **alerta canal alpha** → habilita um texto o alerta '*obs: requer canal alpha*' na seleção do preset para o render output.
 - **caixa de texto**
-  - **ALTA** → converte a caixa de texto do projeto para caixa ALTA.
+  - **alta** → converte a caixa de texto do projeto para caixa ALTA.
   - **baixa** → converte a caixa de texto do projeto para caixa baixa.
-  - **Título** → converte a caixa de texto do projeto para caixa Título.
-  - **LiVrE** → não executa nenhuma conversão da caixa de texto do projeto.
+  - **título** → converte a caixa de texto do projeto para caixa Título.
+  - **livre** → não executa nenhuma conversão da caixa de texto do projeto.
 - **prefixo** → prefixo adicionado em todas as versões geradas do template.
 - **separador** → o texto usado para separar as informações de tipos diferentes.
-- **selecionar layers** → seleciona em ordem de preenchimento os layers editáveis.
+- **+ layers** → adiciona os layers selecionados da comp principal.
+- **testar** → preenche os layers selecionados com o exemplo de preenchimento.
 
 > 🚩 *obs:*\
 > • todos os textos serão convertidos para a '*caixa de texto*' selecionada.\
 > para evitar essa conversão selecione a opção '*livre*'.\
 > • o separador só será usado caso exista mais de um layer editável no template.\
-> • os layers editáveis serão sempre preenchidos na ordem em que foram selecionados.
+> • os layers editáveis serão sempre preenchidos na ordem em que foram selecionados.\
+> • ao clicar em '*testar*' um novo preview será capturado e o texto do exemplo de preenchimento terá sua caixa de texto convertida.
 
 ### caminhos
 
@@ -177,14 +182,21 @@ o script executará as seguintes tarefas em ordem:
 
 - **pasta de mídia** → seleciona a pasta padrão para a importação de arquivos do projeto.
 - **pastas de output** → seleciona a pasta padrão de output do projeto.
-- **novo output** → adiciona uma nova pasta de output.
-- **testar** → preenche os layers selecionados com o exemplo de preenchimento.
+- **+ novo output** → adiciona uma nova pasta de output.
+
+<br>
+
+- **comp principal** → comp principal do projeto.
+- **preview da nomenclatura** → nome que a comp principal receberá ao ser preenchida com o exemplo de preenchimento.
+- **fontes usadas** → lista com o nome de todas as fontes usadas no projeto.
+
+<br>
+
 - **criar** → salva o projeto e gera todos os arquivos necessários para o template.
 
 > 🚩 *obs:*\
 > • todo template pode ter múltiplas pastas de output.\
 > use essa opção para criar cópias do mesmo render em varias pastas.\
-> • ao clicar em '*testar*' um novo preview será capturado e o texto do exemplo de preenchimento terá sua caixa de texto convertida.
 
 > 📋 *exemplo de arquivo de configuração:* *"RODAPE CONVIDADO_config.json"*
 >
@@ -208,7 +220,8 @@ o script executará as seguintes tarefas em ordem:
 >
 >  "inputFx": {"layerIndex": 1, "fxName": "layout", "optionIndex": 1, "options": ["E","D"]}, // → lista as opções de layout possíveis: "E" e "D", na opção 1 do efeito "layout" no layer 1. (parâmetro opcional).
 >
->  "outputPath": [ // → lista com caminhos do output.
+>  "importPath": "~/Downloads", // → Caminho padrão para importar novos footages.
+>  "outputPath": [              // → lista com caminhos do output.
 >    "//10.193.48.13/promo_ber/BACKUP/artes/ARTES PARA EDICAO/CONVERSA COM BIAL/CONVIDADOS"
 >  ]
 > }
@@ -238,22 +251,25 @@ o script executará as seguintes tarefas em ordem:
 4. preencha o campo '**input**' seguindo as '**dicas**'.
 5. habilite ou não a opção '**adicionar a fila de render**'.
 6. clique no botão '**criar**'.
-7. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
+7. caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output na interface '**RENDER SETUP**'.
 
 <br>
 
-### render setup
+> 📟 *render setup:*\
+> ![ui](images/render_ui.png)
 
-a lista contém todos os presets disponíveis no After Effects.\
-caso deseje adicionar um novo preset acesse o menu:\
-`Edit > Templates > Presets > Output Module...`
-
-![ui](images/render_ui.png)
+*lista todos os presets disponíveis no After Effects.*
 
 - **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
+caso deseje adicionar um novo preset acesse o menu:\
+`Edit > Templates > Presets > Output Module...`
+
+> 📋 *exemplo:*\
+> ![ui](images/templates_output_module.png)
+
 > 🚩 *obs:*\
-> • o export padrão é um arquivo '*.mov*' em '*QUICKTIME PRORES 422*' para artes sem alpha ou '*444 RGB+A*' (com alpha **STRAIGHT**) para artes com alpha.
+> • ao cancelar a seleção do preset, o script abortará a criação da fila de render.
 
 <br>
 
@@ -263,7 +279,7 @@ o script executará as seguintes tarefas em ordem:
 2. duplicar as comps necessárias.
 3. preencher as informações inseridas no input.
 4. renomear as comps com base no seu conteúdo.
-5. organizar o projeto seguindo o padrão da PROMO.
+5. organizar o projeto seguindo0 o padrão da PROMO.
 6. se habilitado, adicionar as comps criadas a fila de render
 7. setar os caminhos para o output.
 
