@@ -287,7 +287,7 @@ caso não exista nenhum template disponível, a lista aparecerá vazia, mostrand
 - **templates de render** → caso tenha habilitado '**adicionar a fila de render**', selecione um preset para o render output.
 
 caso deseje adicionar um novo preset acesse o menu:\
-`Edit > Templates > Presets > Output Module...`
+`Edit` > `Templates` > `Presets` > `Output Module...`
 
 > 📋 *exemplo:*\
 > ![ui](images/templates_output_module.png)
