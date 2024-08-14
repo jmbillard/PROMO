@@ -512,11 +512,23 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
 - **BUSCA**:
 
-  *O script pesquisará em todos os layers de texto do projeto pelo termo buscado.*\
-  `◖ clique esquerdo` → Abre a janela de busca em layers de texto do projeto.
+  O script pesquisará no conteúdo de todos os layers de texto do projeto pelo termo buscado.
 
   > 📟 *interface de busca:*\
   > ![busca](images/busca_ui.png)
+
+  `◖ clique esquerdo` → Abre a interface de busca.\
+  opções em ordem:
+
+  - buscar apenas em layers visíveis.
+  - respeitar a caixa de texto (MAIÚSCULAS e minúsculas).
+  - respeitar acentuação.
+  - inverter busca, busca por layers de texto que **NÃO** contenham o termo buscado.
+
+  <br>
+
+  > 📋 *exemplo:*\
+  > ![busca](gifs/busca.gif)
 
   > 🚩 *obs:*\
   > Por padrão a busca é feita ignorando acentuação e caixa do texto.\

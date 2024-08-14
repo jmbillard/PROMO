@@ -7,7 +7,7 @@
 */
 
 function findDialog() {
-	var findW = new Window('palette', 'BUSCAR...');
+	var findW = new Window('palette', 'BUSCA');
 	findW.spacing = 5;
 	findW.margins = 0;
 
