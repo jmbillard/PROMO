@@ -154,7 +154,7 @@ function findDialog() {
 
 	infoBtn.onClick = function () {
 
-		openWebSite('https://github.com/jmbillard/find#find-script');
+		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#busca');
 	};
 
 	findW.show();
