@@ -373,7 +373,7 @@ idealmente cada template deve possuir uma imagem com o mesmo **nome exato** do t
 > 📋 *exemplo:*\
 > um template chamado *"FOTO_CONVIDADO.aet"* deve estar acompanhado por uma imagem de preview *"FOTO_CONVIDADO_preview.png"* e um arquivo de configuração *"FOTO_CONVIDADO_config.json"*.
 
-o script possui padrões internos caso não seja especificado um caminho de output ou a pasta de destino não exista, o mesmo ocorre para o texto separador de informações diferentes.
+o sistema de templates possui padrões internos caso não seja especificado um caminho de output ou a pasta de destino não exista, o mesmo ocorre para o texto separador de informações diferentes.
 
 > 📋 *padrões internos:*\
 > • **caminho do output padrão** → '*\Desktop*'.\
