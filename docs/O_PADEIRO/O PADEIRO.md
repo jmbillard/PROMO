@@ -401,7 +401,7 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
 ## outras utilidades...
 
-- **RESOLVER FONTES**:
+- ### **RESOLVER FONTES**:
 
   `◖ clique esquerdo` → Instala as fontes que o template do padeiro precisa para funcionar corretamente.
 
@@ -432,7 +432,7 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
   <br><br>
 
-- **ABRIR PASTAS**:
+- ### **ABRIR PASTAS**:
 
   `◖ clique esquerdo` → Abre a pasta do **primeiro arquivo** de saída do **último item** da fila de render.
 
@@ -447,7 +447,7 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
   <br><br>
 
-- **RENOMEAR**:
+- ### **RENOMEAR**:
 
   `◖ clique esquerdo` → Altera o nome das comps selecionadas na janela do projeto.
 
@@ -486,7 +486,7 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
   <br><br>
 
-- **ORGANIZAR**:
+- ### **ORGANIZAR**:
 
   `◖ clique esquerdo` → Organiza o projeto de acordo com o modelo de projeto da PROMO.
   *O script cria várias pastas, como '01 COMPS', '02 PRECOMPS', '03 ARQUIVOS', etc.*
@@ -510,7 +510,7 @@ a menos que o projeto possua a '**caixa de texto**' '**livre**', não é necess�
 
   <br><br>
 
-- **BUSCA**:
+- ### **BUSCA**:
 
   O script pesquisará no conteúdo de todos os layers de texto do projeto pelo termo buscado.
 
