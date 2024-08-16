@@ -126,8 +126,8 @@ function O_PADEIRO_UTL(thisObj) {
 		$.sleep(300);
 
 		try {
-			var configContent = readFileContent(configFile);            // Lê o conteúdo do arquivo de configuração JSON
-			prodData = JSON.parse(configContent);                   // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
+			var configContent = readFileContent(configFile); // Lê o conteúdo do arquivo de configuração JSON
+			prodData = JSON.parse(configContent);            // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
 			prodData = sortProdData(prodData.PRODUCTIONS);
 
 		} catch (err) {
