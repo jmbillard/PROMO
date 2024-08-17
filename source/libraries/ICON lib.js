@@ -6,9 +6,42 @@
 
 */
 
-//  linter settings:
-//  jshint -W061
-//  jscs:disable maximumLineLength
+PAD_HOVER_STROKE = new File('~/PROMO/icons/main/stk.png');
+
+PAD_TEMPLATES_ICON = {
+	normal: new File('~/PROMO/icons/main/templates1.png'),
+	hover: new File('~/PROMO/icons/main/templates0.png')
+};
+
+PAD_FONTES_ICON = {
+	normal: new File('~/PROMO/icons/main/fontes1.png'),
+	hover: new File('~/PROMO/icons/main/fontes0.png')
+};
+
+PAD_PASTAS_ICON = {
+	normal: new File('~/PROMO/icons/main/pastas1.png'),
+	hover: new File('~/PROMO/icons/main/pastas0.png')
+};
+
+PAD_RENOMEAR_ICON = {
+	normal: new File('~/PROMO/icons/main/renomear1.png'),
+	hover: new File('~/PROMO/icons/main/renomear0.png')
+};
+
+PAD_ORGANIZAR_ICON = {
+	normal: new File('~/PROMO/icons/main/organizar1.png'),
+	hover: new File('~/PROMO/icons/main/organizar0.png')
+};
+
+PAD_BUSCAR_ICON = {
+	normal: new File('~/PROMO/icons/main/busca1.png'),
+	hover: new File('~/PROMO/icons/main/busca0.png')
+};
+
+PAD_ATALHOS_ICON = {
+	normal: new File('~/PROMO/icons/main/atalhos1.png'),
+	hover: new File('~/PROMO/icons/main/atalhos0.png')
+};
 
 // main menu logo image
 var LOGO_IMG = {
