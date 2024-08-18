@@ -4,6 +4,7 @@ function O_PADEIRO_UTL(thisObj) {
 	var vStr = '';
 	// Declaração da versão do script 'O Padeiro'
 	var PAD_v = '1.4';
+	var scriptName = 'O PADEIRO';
 
 	var bgColor = '#110B15';
 	var normalColor = '#007F9A';
@@ -126,6 +127,10 @@ function O_PADEIRO_UTL(thisObj) {
 			newIcon.visible = i == 0;
 		}
 	}
+	
+	var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
+	templatesPath = PAD_prodArray[0].templatesPath;
+	templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
 
 	var PAD_ui = {
 		buttonArray: [],
@@ -135,10 +140,6 @@ function O_PADEIRO_UTL(thisObj) {
 	function PAD_buildUi(window, structureObj, iObj) {
 
 		var sectionCounter = 0;
-		var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
-
-		templatesPath = PAD_prodArray[0].templatesPath;
-		templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
 
 		iObj.mainGrp = window.add('group'); // Grupo principal
 		iObj.sectionGrpArray.push(iObj.mainGrp);
@@ -157,7 +158,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 			for (var button in section) {
 				var buttonProp = section[button];
-				var labelTxt = button.replace(/_/g, ' ').toUpperCase();
+				var labelTxt = button.replace(/_/g, ' ').toLowerCase();
 				var tipTxt = labelTxt + ':\n\n' + buttonProp['tips'].join('\n\n'); // Dica de ajuda;
 				var btn = iObj[button] = {};
 
@@ -203,9 +204,9 @@ function O_PADEIRO_UTL(thisObj) {
 		iObj.prodGrp.spacing = 4; // Espaçamento entre botões
 		iObj.sectionGrpArray.push(iObj.prodGrp);
 
-		iObj.iconGrp = iObj.prodGrp.add('group');
-		iObj.iconGrp.orientation = 'stack'; // Layout vertical
-		populateMainIcons(PAD_prodArray, iObj.iconGrp);
+		iObj.prodIconGrp = iObj.prodGrp.add('group');
+		iObj.prodIconGrp.orientation = 'stack'; // Layout vertical
+		populateMainIcons(PAD_prodArray, iObj.prodIconGrp);
 
 		iObj.prodDrop = iObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
 		iObj.prodDrop.selection = 0; // Seleciona a produção padrão.
@@ -231,7 +232,7 @@ function O_PADEIRO_UTL(thisObj) {
 			PAD_setLayout(this, iObj);
 		};
 
-		window.onResizing = function () {
+		window.onResizing = window.onResize = function () {
 			PAD_setLayout(this, iObj);
 		};
 
@@ -396,7 +397,7 @@ function O_PADEIRO_UTL(thisObj) {
 		if (thisObj instanceof Panel) {
 			PAD_w = thisObj;
 		} else {
-			PAD_w = new Window('palette', 'O PADEIRO'); // Cria uma nova janela
+			PAD_w = new Window('palette', scriptName); // Cria uma nova janela
 		}
 
 		// Configurações da janela
@@ -412,22 +413,22 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		PAD_ui.iconGrp.addEventListener('click', function (c) {
+		PAD_ui.prodIconGrp.addEventListener('click', function (c) {
 
 			// Verifica se aconteceu um clique duplo (detail == 2).
 			if (c.detail == 2) {
 
 				padProdFoldersDialog(PAD_prodArray); // Chama a janela de configuração.
-				prodDrop.removeAll(); // Limpa a lista de produções do menu.
+				PAD_ui.prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 				// atualiza os dados das produções.
 				PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
 
 				// Popula a lista de produções do menu
-				populateDropdownList(getProdNames(PAD_prodArray), prodDrop);
+				populateDropdownList(getProdNames(PAD_prodArray), PAD_ui.prodDrop);
 				populateMainIcons(PAD_prodArray, this);
 
-				prodDrop.selection = 0; // Seleciona a primeira produção.
+				PAD_ui.prodDrop.selection = 0; // Seleciona a primeira produção.
 				this.layout.layout(true);
 			}
 		});
@@ -443,7 +444,6 @@ function O_PADEIRO_UTL(thisObj) {
 
 			// Se a pasta de templates não existir.
 			if (!templatesFolder.exists) alert(lol + '#PAD_002 - a pasta de templates não foi localizada...');
-
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
