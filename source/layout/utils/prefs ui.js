@@ -191,7 +191,7 @@ function prefsDialog() {
 
 	var tabColorBtn = wPref.add('iconbutton', undefined, undefined, { style: 'toolbutton' });
 	tabColorBtn.size = [208, 20];
-	setBtnColor(tabColorBtn, tabColors[0]);
+	setUiCtrlColor(tabColorBtn, tabColors[0]);
 	tabColorBtn.onDraw = customDraw;
 
 	//
@@ -410,7 +410,7 @@ function prefsDialog() {
 
 	colorDrop.onChange = function () {
 		var c = tabColors[this.selection.index]; // selected tab color...
-		setBtnColor(tabColorBtn, c); // update color preview swatch...
+		setUiCtrlColor(tabColorBtn, c); // update color preview swatch...
 		tabColorBtn.notify('onDraw'); // force ui update...
 	};
 
@@ -426,7 +426,7 @@ function prefsDialog() {
 			tabColors[colorDrop.selection.index] = configColor; // update color array...
 			JSONPrefsObj.color[colorDrop.selection][iconTheme] = rgbToHEX(configColor); // update preferences object...
 
-			setBtnColor(this, configColor); // update color preview swatch...
+			setUiCtrlColor(this, configColor); // update color preview swatch...
 			savePrefs(); // → save preferences.json
 			bgColor = tabColors[0];
 			setBgColor(w, bgColor);

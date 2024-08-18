@@ -6,9 +6,10 @@ function O_PADEIRO_UTL(thisObj) {
 	var PAD_v = '1.4';
 	var scriptName = 'O PADEIRO';
 
-	var bgColor = '#110B15';
-	var normalColor = '#007F9A';
-	var highlightColor = '#F9D0F9';
+	var bgColor = '#1C1222';
+	var divColor = '#3B2648';
+	var normalColor = '#9DF7F4';
+	var highlightColor = '#FA4180';
 
 	// Objeto que armazena as configurações padrão (default) do Padeiro
 	var defPadObj = {
@@ -125,9 +126,29 @@ function O_PADEIRO_UTL(thisObj) {
 			newIcon.helpTip = prodDataArray[0].name;
 			newIcon.preferredSize = [24, 24];
 			newIcon.visible = i == 0;
+
+			newIcon.addEventListener('click', function (c) {
+
+				// Verifica se aconteceu um clique duplo (detail == 2).
+				if (c.detail == 2) {
+
+					padProdFoldersDialog(prodDataArray); // Chama a janela de configuração.
+					PAD_ui.prodDrop.removeAll(); // Limpa a lista de produções do menu.
+
+					// atualiza os dados das produções.
+					prodDataArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
+
+					// Popula a lista de produções do menu
+					populateDropdownList(getProdNames(prodDataArray), imagesGrp.parent.children[1]);
+					populateMainIcons(prodDataArray, imagesGrp);
+
+					PAD_ui.prodDrop.selection = 0; // Seleciona a primeira produção.
+					imagesGrp.layout.layout(true);
+				}
+			});
 		}
 	}
-	
+
 	var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
 	templatesPath = PAD_prodArray[0].templatesPath;
 	templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
@@ -135,9 +156,49 @@ function O_PADEIRO_UTL(thisObj) {
 	var PAD_ui = {
 		buttonArray: [],
 		sectionGrpArray: [],
+		divArray: []
 	};
 
 	function PAD_buildUi(window, structureObj, iObj) {
+
+		function PAD_addDiv(sectionGrp, iObj) {
+			var newDiv = sectionGrp.add("customButton");
+			setUiCtrlColor(newDiv, divColor);
+			newDiv.onDraw = customDraw;
+			iObj.divArray.push(newDiv);
+		}
+
+		function PAD_addImageButton(sectionGrp, uiCtrlProp, iObj) {
+			var btn = iObj[uiCtrl] = {};
+
+			if (uiCtrlProp['icon']['hover'] == undefined) uiCtrlProp['icon']['hover'] = uiCtrlProp['icon']['normal'];
+
+			btn['btnGroup'] = sectionGrp.add('group'); // Grupo de botões superior
+
+			btn['iconGroup'] = btn['btnGroup'].add('group'); // Grupo de botões superior
+			btn['iconGroup'].orientation = 'stack'; // Alinhamento central
+
+			btn['leftClick'] = btn['iconGroup'].add('button', undefined, '');
+			btn['leftClick'].size = [0, 0];
+			btn['leftClick'].visible = false;
+
+			btn['rightClick'] = btn['iconGroup'].add('button', undefined, '');
+			btn['rightClick'].size = [0, 0];
+			btn['rightClick'].visible = false;
+
+			btn['hoverImg'] = btn['iconGroup'].add('image', undefined, uiCtrlProp['icon']['hover']);
+			btn['hoverImg'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
+			btn['hoverImg'].visible = false;
+
+			btn['normalImg'] = btn['iconGroup'].add('image', undefined, uiCtrlProp['icon']['normal']);
+			btn['normalImg'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
+
+			btn['label'] = btn['btnGroup'].add('statictext', undefined, uiCtrlProp['labelTxt'], { truncate: 'end' }); // Texto do botão
+			btn['label'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
+
+			setTxtColor(btn['label'], normalColor, highlightColor); // Cor de destaque do texto
+			iObj.buttonArray.push(btn);
+		}
 
 		var sectionCounter = 0;
 
@@ -147,60 +208,36 @@ function O_PADEIRO_UTL(thisObj) {
 		for (var sec in structureObj) {
 			var section = structureObj[sec];
 
-			if (sectionCounter > 0) {
-				var div = iObj.mainGrp.add("panel"); // Separador visual.
-				div.alignment = 'fill';              // Preencher o espaço.
-			}
+			if (sectionCounter > 0) PAD_addDiv(iObj.mainGrp, iObj);
 
 			var sectionGrp = iObj.mainGrp.add('group', undefined, { name: 'sectionGrp' }); // Grupo de botões superior
-			sectionGrp.alignment = ['center', 'top']; // Alinhamento central
+			sectionGrp.alignment = ['center', 'top']; // Alinhamento
 			iObj.sectionGrpArray.push(sectionGrp);
 
-			for (var button in section) {
-				var buttonProp = section[button];
-				var labelTxt = button.replace(/_/g, ' ').toLowerCase();
-				var tipTxt = labelTxt + ':\n\n' + buttonProp['tips'].join('\n\n'); // Dica de ajuda;
-				var btn = iObj[button] = {};
+			for (var uiCtrl in section) {
+				var uiCtrlProp = section[uiCtrl];
+				uiCtrlProp.labelTxt = uiCtrl.replace(/_/g, ' ').toLowerCase();
+				uiCtrlProp.tipTxt = uiCtrlProp.labelTxt + ':\n\n' + uiCtrlProp['tips'].join('\n\n'); // Dica de ajuda;
 
-				if (buttonProp['icon']['hover'] == undefined) buttonProp['icon']['hover'] = buttonProp['icon']['normal'];
-
-				btn['btnGroup'] = sectionGrp.add('group'); // Grupo de botões superior
-
-				btn['iconGroup'] = btn['btnGroup'].add('group'); // Grupo de botões superior
-				btn['iconGroup'].orientation = 'stack'; // Alinhamento central
-
-				btn['leftClick'] = btn['iconGroup'].add('button', undefined, '');
-				btn['leftClick'].size = [0, 0];
-				btn['leftClick'].visible = false;
-
-				btn['rightClick'] = btn['iconGroup'].add('button', undefined, '');
-				btn['rightClick'].size = [0, 0];
-				btn['rightClick'].visible = false;
-
-				btn['hoverImg'] = btn['iconGroup'].add('image', undefined, buttonProp['icon']['hover']);
-				btn['hoverImg'].preferredSize = [36, 36];
-				btn['hoverImg'].helpTip = tipTxt; // Dica de ajuda
-				btn['hoverImg'].visible = false;
-
-				btn['normalImg'] = btn['iconGroup'].add('image', undefined, buttonProp['icon']['normal']);
-				btn['normalImg'].preferredSize = [32, 32];
-				btn['normalImg'].helpTip = tipTxt; // Dica de ajuda
-
-				btn['label'] = btn['btnGroup'].add('statictext', undefined, labelTxt, { truncate: 'end' }); // Texto do botão
-				btn['label'].helpTip = tipTxt; // Dica de ajuda
-
-				setTxtColor(btn['label'], normalColor, highlightColor); // Cor de destaque do texto
-				iObj.buttonArray.push(btn);
+				if (uiCtrlProp.type == 'imageButton') PAD_addImageButton(sectionGrp, uiCtrlProp, iObj);
 			}
 			sectionCounter++;
 		}
 		// Rótulo da versão
-		iObj.vLab = window.add('statictext', undefined, 'v' + PAD_v, { truncate: 'end' });
+		iObj.infoGrp = window.add('group');
+		iObj.infoGrp.spacing = 0;
+		iObj.sectionGrpArray.push(iObj.infoGrp);
+		iObj.mainLogo = iObj.infoGrp.add('image', undefined, LOGO_IMG.light);
+		iObj.mainLogo.preferredSize = [70, 24];
+		iObj.mainLogo.minimumSize = [50, 24];
+
+		// iObj.mainLogo = aboutStr;
+		iObj.vLab = iObj.infoGrp.add('statictext', undefined, 'v' + PAD_v, { truncate: 'end' });
 		iObj.vLab.justify = 'center';
 		iObj.vLab.helpTip = 'ajuda | DOCS';
 
 		iObj.prodGrp = window.add('group'); // Grupo de botões superior
-		iObj.prodGrp.alignment = ['center', 'top']; // Alinhamento central
+		iObj.prodGrp.alignment = ['center', 'top']; // Alinhamento
 		iObj.prodGrp.spacing = 4; // Espaçamento entre botões
 		iObj.sectionGrpArray.push(iObj.prodGrp);
 
@@ -217,7 +254,7 @@ function O_PADEIRO_UTL(thisObj) {
 		window.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(iObj.vLab, normalColor, highlightColor); // Cor de destaque do texto
+		setTxtHighlight(iObj.vLab, '#EAEAEA', highlightColor); // Cor de destaque do texto
 		setBgColor(window, bgColor); // Cor de fundo da janela
 
 		// Define uma função a ser executada quando a janela é exibida ou redimensionada.
@@ -239,7 +276,6 @@ function O_PADEIRO_UTL(thisObj) {
 		for (var b = 0; b < iObj.buttonArray.length; b++) {
 
 			var btn = iObj.buttonArray[b];
-
 			// Ao passar o mouse por cima
 			btn.btnGroup.addEventListener('mouseover', function () {
 
@@ -288,27 +324,30 @@ function O_PADEIRO_UTL(thisObj) {
 				sectionGrp.orientation = grpOrientation;
 				sectionGrp.spacing = window.size.height < 72 ? 24 : 8;
 			}
+			for (var d = 0; d < iObj.divArray.length; d++) {
+				var div = iObj.divArray[d];
+				div.size = [1, 1];
+				div.alignment = isRow ? ['center', 'fill'] : ['fill', 'center'];
+			}
 			for (var b = 0; b < iObj.buttonArray.length; b++) {
 				var btn = iObj.buttonArray[b];
 				btn.btnGroup.orientation = btnOrientation;
 				btn.btnGroup.spacing = isRow ? 0 : 8; // Espaçamento entre botões
 
-				btn.normalImg.size = [32, 32];
-				btn.hoverImg.size = [36, 36];
+				btn.normalImg.size = btn.hoverImg.size = [32, 32];
 
 				btn.label.justify = isRow ? 'center' : 'left'; // Alinhamento central
-				btn.label.size = [64, 18];
+				btn.label.size = [60, 18];
 
-				if (window.size.width < 120) btn.label.size.width = window.size.width - 64;
+				if (window.size.width < 120) btn.label.size.width = window.size.width - 60;
 
-				if (window.size.width < 80 || window.size.height < 72) {
+				if (window.size.width < 88 || window.size.height < 72) {
 					btn.btnGroup.spacing = 0;
 					btn.label.size = [0, 0];
 				}
 				if (window.size.height < 44) {
 					btn.btnGroup.spacing = 0;
-					btn.hoverImg.size = [0, 0];
-					btn.normalImg.size = [0, 0];
+					btn.hoverImg.size = btn.normalImg.size = [0, 0];
 					btn.label.size = btn.label.preferredSize;
 				}
 			}
@@ -318,9 +357,10 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.prodGrp.alignment = isRow ? 'left' : 'top';
 			iObj.prodGrp.spacing = 8;
 
-			iObj.vLab.alignment = isRow ? 'right' : 'bottom';
+			iObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
 
 			iObj.prodDrop.size.width = window.size.width < 150 ? window.size.width - 16 : 130;
+			iObj.mainLogo.size.width = window.size.width < 78 ? window.size.width - 8 : 70;
 
 		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); }
 
@@ -331,6 +371,7 @@ function O_PADEIRO_UTL(thisObj) {
 	var PAD_mainGrpUiStructure = {
 		grp1: {
 			templates: {
+				type: 'imageButton',
 				icon: PAD_TEMPLATES_ICON,
 				tips: [
 					'◖ → preencher templates',
@@ -338,6 +379,7 @@ function O_PADEIRO_UTL(thisObj) {
 				]
 			},
 			fontes: {
+				type: 'imageButton',
 				icon: PAD_FONTES_ICON,
 				tips: [
 					'◖ → instalar as fontes usadas no template',
@@ -347,6 +389,7 @@ function O_PADEIRO_UTL(thisObj) {
 		},
 		grp2: {
 			pastas: {
+				type: 'imageButton',
 				icon: PAD_PASTAS_ICON,
 				tips: [
 					'◖ → abir a pasta do último item da fila de render',
@@ -356,6 +399,7 @@ function O_PADEIRO_UTL(thisObj) {
 		},
 		grp3: {
 			renomear: {
+				type: 'imageButton',
 				icon: PAD_RENOMEAR_ICON,
 				tips: [
 					'◖ → renomear comps selecionadas',
@@ -363,6 +407,7 @@ function O_PADEIRO_UTL(thisObj) {
 				]
 			},
 			organizar: {
+				type: 'imageButton',
 				icon: PAD_ORGANIZAR_ICON,
 				tips: [
 					'selecione as comps que serão\nRENDERIZADAS primeiro!',
@@ -373,6 +418,7 @@ function O_PADEIRO_UTL(thisObj) {
 		},
 		grp4: {
 			buscar: {
+				type: 'imageButton',
 				icon: PAD_BUSCAR_ICON,
 				tips: [
 					'◖ → abrir a BUSCA em layers de texto'
@@ -381,6 +427,7 @@ function O_PADEIRO_UTL(thisObj) {
 		},
 		grp5: {
 			atalhos: {
+				type: 'imageButton',
 				icon: PAD_ATALHOS_ICON,
 				tips: [
 					'◖ → abrir a planilha do apontamento de projetos no navegador'
@@ -401,7 +448,7 @@ function O_PADEIRO_UTL(thisObj) {
 		}
 
 		// Configurações da janela
-		PAD_w.margins = 5;      // Margens internas
+		PAD_w.margins = 4;      // Margens internas
 		PAD_w.orientation = 'stack'; // Layout vertical
 
 		PAD_buildUi(PAD_w, PAD_mainGrpUiStructure, PAD_ui);
@@ -413,30 +460,10 @@ function O_PADEIRO_UTL(thisObj) {
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		PAD_ui.prodIconGrp.addEventListener('click', function (c) {
-
-			// Verifica se aconteceu um clique duplo (detail == 2).
-			if (c.detail == 2) {
-
-				padProdFoldersDialog(PAD_prodArray); // Chama a janela de configuração.
-				PAD_ui.prodDrop.removeAll(); // Limpa a lista de produções do menu.
-
-				// atualiza os dados das produções.
-				PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
-
-				// Popula a lista de produções do menu
-				populateDropdownList(getProdNames(PAD_prodArray), PAD_ui.prodDrop);
-				populateMainIcons(PAD_prodArray, this);
-
-				PAD_ui.prodDrop.selection = 0; // Seleciona a primeira produção.
-				this.layout.layout(true);
-			}
-		});
-
 		PAD_ui.prodDrop.onChange = function () {
 
 			var i = this.selection.index;
-			changeIcon(i, iconGrp);
+			changeIcon(i, PAD_ui.prodIconGrp);
 
 			templatesPath = PAD_prodArray[i].templatesPath;
 			templatesFolder = new Folder(PAD_prodArray[i].templatesPath); // pasta de templates.
@@ -682,14 +709,10 @@ function O_PADEIRO_UTL(thisObj) {
 	}
 
 	// Verifica se a interface (O_PADEIRO_WINDOW) está sendo executada como uma janela flutuante.
-	if (O_PADEIRO_WINDOW.toString() != '[object Panel]') {
-		// Se for uma janela flutuante, exibe a janela.
-		O_PADEIRO_WINDOW.show();
-	}
-
+	if (!(O_PADEIRO_WINDOW instanceof Panel)) O_PADEIRO_WINDOW.show();
 	// Retorna o objeto da janela (O_PADEIRO_WINDOW).
 	return O_PADEIRO_WINDOW;
 }
 
-// Executo tudo... ヽ(✿ﾟ▽ﾟ)ノ
+// Executa tudo... ヽ(✿ﾟ▽ﾟ)ノ
 O_PADEIRO_UTL(this);

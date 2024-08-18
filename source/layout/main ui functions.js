@@ -17,7 +17,7 @@ function createColorButtons(colorArray, colorGrp) {
 		var colorBtn = colorGrp.add('iconbutton', undefined, undefined, { name: hex, style: 'toolbutton' });
 
 		colorBtn.size = [20, 20];          // Define o tamanho do botão (20x20 pixels).
-		setBtnColor(colorBtn, hex);        // Define a cor de fundo do botão.
+		setUiCtrlColor(colorBtn, hex);        // Define a cor de fundo do botão.
 		colorBtn.onDraw = customDraw;      // Define a função de desenho personalizado.
 
 		// Define o texto de ajuda (tooltip) com os valores RGB e hexadecimal da cor.
@@ -42,10 +42,10 @@ function setBgColor(w, hex) {
 }
 
 // Define a cor de um botão.
-function setBtnColor(btn, hex) {
+function setUiCtrlColor(ctrl, hex) {
 	var color = hexToRGB(hex);                           // Converte a cor hexadecimal em RGB.
-	var bType = w.graphics.BrushType.SOLID_COLOR;        // Define o tipo do pincel como cor sólida.
-	btn.fillBrush = btn.graphics.newBrush(bType, color); // Cria um novo pincel com a cor e o aplica ao botão.
+	var bType = ctrl.graphics.BrushType.SOLID_COLOR;        // Define o tipo do pincel como cor sólida.
+	ctrl.fillBrush = ctrl.graphics.newBrush(bType, color); // Cria um novo pincel com a cor e o aplica ao botão.
 }
 
 // Altera a cor de um texto estático.
