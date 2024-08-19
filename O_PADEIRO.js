@@ -274,6 +274,7 @@ function O_PADEIRO_UTL(thisObj) {
 			btn.normalImg.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
 
 			btn.label = btn.btnGroup.add('statictext', undefined, ctrlProperties.labelTxt, { truncate: 'end' }); // Texto do botão
+			btn.label.maximumSize = [60, 18]; // Dica de ajuda
 			btn.label.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
 
 			setTxtColor(btn.label, normalColor); // Cor de destaque do texto
@@ -342,7 +343,7 @@ function O_PADEIRO_UTL(thisObj) {
 		iObj.sectionGrpArray.push(iObj.infoGrp);
 
 		iObj.mainLogo = iObj.infoGrp.add('image', undefined, LOGO_IMG.light);
-		iObj.mainLogo.preferredSize = [70, 24];
+		iObj.mainLogo.maximumSize = [70, 24];
 		iObj.mainLogo.minimumSize = [50, 24];
 		iObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
 
@@ -361,8 +362,8 @@ function O_PADEIRO_UTL(thisObj) {
 
 		iObj.prodDrop = iObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
 		iObj.prodDrop.selection = 0; // Seleciona a produção padrão.
-		iObj.prodDrop.preferredSize = [130, 24];
-		iObj.prodDrop.minimumSize = [50, 24];
+		iObj.prodDrop.maximumSize = [140, 24];
+		iObj.prodDrop.minimumSize = [52, 24];
 		iObj.prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
 
 		window.layout.layout(true); // Aplica o layout
@@ -393,7 +394,7 @@ function O_PADEIRO_UTL(thisObj) {
 		var isRow = window.size.width > window.size.height;
 		var grpOrientation = isRow ? 'row' : 'column';
 		var btnOrientation = isRow ? 'column' : 'row';
-		var mainMargin = isRow ? [180, 0, 50, 0] : [4, 76, 4, 56];
+		var mainMargin = isRow ? [190, 0, 100, 0] : [4, 76, 4, 56];
 
 		try {
 			for (var s = 0; s < iObj.sectionGrpArray.length; s++) {
@@ -414,9 +415,7 @@ function O_PADEIRO_UTL(thisObj) {
 				btn.normalImg.size = btn.hoverImg.size = [32, 32];
 
 				btn.label.justify = isRow ? 'center' : 'left'; // Alinhamento central
-				btn.label.size = [60, 18];
-
-				if (window.size.width < 120) btn.label.size.width = window.size.width - 60;
+				btn.label.size = [window.size.width - 60, 18];
 
 				if (window.size.width < 88 || window.size.height < 72) {
 					btn.btnGroup.spacing = 0;
@@ -437,8 +436,8 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
 			iObj.infoGrp.spacing = 0;
 
-			iObj.prodDrop.size.width = window.size.width < 156 ? window.size.width - 12 : 140;
-			iObj.mainLogo.size.width = window.size.width < 78 ? window.size.width - 8 : 70;
+			iObj.prodDrop.size.width = window.size.width - 10;
+			iObj.mainLogo.size.width = window.size.width - 10;
 
 		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); }
 
