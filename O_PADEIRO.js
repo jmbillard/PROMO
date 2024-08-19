@@ -3,13 +3,107 @@
 function O_PADEIRO_UTL(thisObj) {
 	var vStr = '';
 	// Declaração da versão do script 'O Padeiro'
-	var PAD_v = '1.4';
 	var scriptName = 'O PADEIRO';
+	var PAD_v = 'v1.4';
 
 	var bgColor = '#1C1222';
 	var divColor = '#3B2648';
 	var normalColor = '#9DF7F4';
 	var highlightColor = '#FA4180';
+
+	#include 'source/globals.js';                   // Inclui variáveis globais (usadas em todo o script)
+	#include 'source/layout/main ui functions.js';  // Inclui funções para criar a interface do usuário
+	#include 'source/libraries/JSON lib.js';        // Inclui funções para trabalhar com dados JSON
+	#include 'source/libraries/FUNC lib.js';        // Inclui funções utilitárias gerais
+	#include 'source/libraries/PROT lib.js';        // Inclui funções que estendem objetos JavaScript (prototype)
+	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
+	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
+
+	// utilidades com interface
+	#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
+	#include 'source/layout/Utils/o padeiro folders ui.js';   // Lista de pastas de produção
+	#include 'source/layout/Utils/o padeiro maker ui.js';     // Editor de templates
+	#include 'source/layout/Utils/find ui.js';                // Busca em layers de texto
+
+	var lClick = '◖  →  ';
+	var rClick = ' ◗  →  ';
+	var dClick = '◖◖ →  ';
+
+	// estrutura da interface
+	var PAD_mainGrpUiStructure = {
+		section1: {
+			templates: {
+				labelTxt: 'Templates',
+				type: 'imageButton',
+				icon: PAD_TEMPLATES_ICON,
+				tips: [
+					lClick + 'preencher templates',
+					rClick + 'criar novo template'
+				]
+			},
+			fontes: {
+				labelTxt: 'Fontes',
+				type: 'imageButton',
+				icon: PAD_FONTES_ICON,
+				tips: [
+					lClick + 'instalar as fontes usadas no template',
+					rClick + 'fazer o collect das fontes usadas no projeto'
+				]
+			}
+		},
+		section2: {
+			pastas: {
+				labelTxt: 'Pastas',
+				type: 'imageButton',
+				icon: PAD_PASTAS_ICON,
+				tips: [
+					lClick + 'abir a pasta do último item da fila de render',
+					rClick + 'abir a pasta do projeto (caso esteja salvo)'
+				]
+			}
+		},
+		section3: {
+			renomear: {
+				labelTxt: 'Renomear',
+				type: 'imageButton',
+				icon: PAD_RENOMEAR_ICON,
+				tips: [
+					lClick + 'renomear comps selecionadas',
+					rClick + 'renomear TODAS as saídas de render'
+				]
+			},
+			organizar: {
+				labelTxt: 'Organizar',
+				type: 'imageButton',
+				icon: PAD_ORGANIZAR_ICON,
+				tips: [
+					'selecione as comps que serão\nRENDERIZADAS primeiro!',
+					lClick + 'organizar o projeto',
+					rClick + 'criar estrutura de pastas do projeto'
+				]
+			}
+		},
+		section4: {
+			buscar: {
+				labelTxt: 'Buscar',
+				type: 'imageButton',
+				icon: PAD_BUSCAR_ICON,
+				tips: [
+					lClick + 'abrir a BUSCA em layers de texto'
+				]
+			}
+		},
+		section5: {
+			atalhos: {
+				labelTxt: 'Atalhos',
+				type: 'imageButton',
+				icon: PAD_ATALHOS_ICON,
+				tips: [
+					lClick + 'abrir a planilha do apontamento de projetos no navegador'
+				]
+			}
+		}
+	};
 
 	// Objeto que armazena as configurações padrão (default) do Padeiro
 	var defPadObj = {
@@ -31,20 +125,6 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	};
 
-	#include 'source/globals.js';                   // Inclui variáveis globais (usadas em todo o script)
-	#include 'source/layout/main ui functions.js';  // Inclui funções para criar a interface do usuário
-	#include 'source/libraries/JSON lib.js';        // Inclui funções para trabalhar com dados JSON
-	#include 'source/libraries/FUNC lib.js';        // Inclui funções utilitárias gerais
-	#include 'source/libraries/PROT lib.js';        // Inclui funções que estendem objetos JavaScript (prototype)
-	#include 'source/libraries/EXPS lib.js';        // Inclui uma biblioteca de expressões para animações
-	#include 'source/libraries/ICON lib.js';        // Inclui ícones codificados para a interface
-
-	// utilidades com interface
-	#include 'source/layout/Utils/o padeiro templates ui.js'; // Sistema de templates
-	#include 'source/layout/Utils/o padeiro folders ui.js';   // Lista de pastas de produção
-	#include 'source/layout/Utils/o padeiro maker ui.js';     // Editor de templates
-	#include 'source/layout/Utils/find ui.js';                // Busca em layers de texto
-
 	// configurações iniciais de uma nova produção
 	var defaultProdData = {
 		PRODUCTIONS: [
@@ -54,7 +134,7 @@ function O_PADEIRO_UTL(thisObj) {
 				templatesPath: 'edite a pasta de templates...'
 			}
 		]
-	}
+	};
 
 	// ordena as produções por nome
 	function sortProdData(prodDataObj) {
@@ -168,36 +248,67 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.divArray.push(newDiv);
 		}
 
-		function PAD_addImageButton(sectionGrp, uiCtrlProp, iObj) {
-			var btn = iObj[uiCtrl] = {};
+		function PAD_addImageButton(sectionGrp, ctrlProperties, iObj) {
+			var btn = iObj[ctrlProperties.key] = {};
 
-			if (uiCtrlProp['icon']['hover'] == undefined) uiCtrlProp['icon']['hover'] = uiCtrlProp['icon']['normal'];
+			if (ctrlProperties.icon.hover == undefined) ctrlProperties.icon.hover = ctrlProperties.icon.normal;
 
-			btn['btnGroup'] = sectionGrp.add('group'); // Grupo de botões superior
+			btn.btnGroup = sectionGrp.add('group'); // Grupo de botões superior
 
-			btn['iconGroup'] = btn['btnGroup'].add('group'); // Grupo de botões superior
-			btn['iconGroup'].orientation = 'stack'; // Alinhamento central
+			btn.iconGroup = btn.btnGroup.add('group'); // Grupo de botões superior
+			btn.iconGroup.orientation = 'stack'; // Alinhamento central
 
-			btn['leftClick'] = btn['iconGroup'].add('button', undefined, '');
-			btn['leftClick'].size = [0, 0];
-			btn['leftClick'].visible = false;
+			btn.leftClick = btn.iconGroup.add('button', undefined, '');
+			btn.leftClick.size = [0, 0];
+			btn.leftClick.visible = false;
 
-			btn['rightClick'] = btn['iconGroup'].add('button', undefined, '');
-			btn['rightClick'].size = [0, 0];
-			btn['rightClick'].visible = false;
+			btn.rightClick = btn.iconGroup.add('button', undefined, '');
+			btn.rightClick.size = [0, 0];
+			btn.rightClick.visible = false;
 
-			btn['hoverImg'] = btn['iconGroup'].add('image', undefined, uiCtrlProp['icon']['hover']);
-			btn['hoverImg'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
-			btn['hoverImg'].visible = false;
+			btn.hoverImg = btn.iconGroup.add('image', undefined, ctrlProperties.icon.hover);
+			btn.hoverImg.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
+			btn.hoverImg.visible = false;
 
-			btn['normalImg'] = btn['iconGroup'].add('image', undefined, uiCtrlProp['icon']['normal']);
-			btn['normalImg'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
+			btn.normalImg = btn.iconGroup.add('image', undefined, ctrlProperties.icon.normal);
+			btn.normalImg.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
 
-			btn['label'] = btn['btnGroup'].add('statictext', undefined, uiCtrlProp['labelTxt'], { truncate: 'end' }); // Texto do botão
-			btn['label'].helpTip = uiCtrlProp['tipTxt']; // Dica de ajuda
+			btn.label = btn.btnGroup.add('statictext', undefined, ctrlProperties.labelTxt, { truncate: 'end' }); // Texto do botão
+			btn.label.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
 
-			setTxtColor(btn['label'], normalColor, highlightColor); // Cor de destaque do texto
+			setTxtColor(btn.label, normalColor); // Cor de destaque do texto
 			iObj.buttonArray.push(btn);
+
+			btn.btnGroup.addEventListener('mouseover', function () {
+
+				setTxtColor(this.children[1], highlightColor);
+				this.children[0].children[3].visible = false;
+				this.children[0].children[2].visible = true;
+			});
+
+			// Ao tirar o mouse de cima
+			btn.btnGroup.addEventListener('mouseout', function () {
+
+				setTxtColor(this.children[1], normalColor);
+				this.children[0].children[2].visible = false;
+				this.children[0].children[3].visible = true;
+			});
+
+			btn.label.addEventListener('click', function (c) {
+				if (c.button == 0) this.parent.children[0].children[0].notify();
+			});
+
+			btn.label.addEventListener('click', function (c) {
+				if (c.button == 2) this.parent.children[0].children[1].notify();
+			});
+
+			btn.hoverImg.addEventListener('click', function (c) {
+				if (c.button == 0) this.parent.children[0].notify();
+			});
+
+			btn.hoverImg.addEventListener('click', function (c) {
+				if (c.button == 2) this.parent.children[1].notify();
+			});
 		}
 
 		var sectionCounter = 0;
@@ -214,12 +325,14 @@ function O_PADEIRO_UTL(thisObj) {
 			sectionGrp.alignment = ['center', 'top']; // Alinhamento
 			iObj.sectionGrpArray.push(sectionGrp);
 
-			for (var uiCtrl in section) {
-				var uiCtrlProp = section[uiCtrl];
-				uiCtrlProp.labelTxt = uiCtrl.replace(/_/g, ' ').toLowerCase();
-				uiCtrlProp.tipTxt = uiCtrlProp.labelTxt + ':\n\n' + uiCtrlProp['tips'].join('\n\n'); // Dica de ajuda;
+			for (var ctrl in section) {
+				var ctrlProperties = section[ctrl];
+				ctrlProperties.tipTxt = ctrlProperties.labelTxt + ':\n\n' + ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
+				ctrlProperties.key = ctrl;
 
-				if (uiCtrlProp.type == 'imageButton') PAD_addImageButton(sectionGrp, uiCtrlProp, iObj);
+				if (ctrlProperties.labelTxt == undefined) ctrlProperties.labelTxt = ctrl.replace(/_/g, ' ').toTitleCase();
+
+				if (ctrlProperties.type == 'imageButton') PAD_addImageButton(sectionGrp, ctrlProperties, iObj);
 			}
 			sectionCounter++;
 		}
@@ -227,12 +340,13 @@ function O_PADEIRO_UTL(thisObj) {
 		iObj.infoGrp = window.add('group');
 		iObj.infoGrp.spacing = 0;
 		iObj.sectionGrpArray.push(iObj.infoGrp);
+
 		iObj.mainLogo = iObj.infoGrp.add('image', undefined, LOGO_IMG.light);
 		iObj.mainLogo.preferredSize = [70, 24];
 		iObj.mainLogo.minimumSize = [50, 24];
+		iObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
 
-		// iObj.mainLogo = aboutStr;
-		iObj.vLab = iObj.infoGrp.add('statictext', undefined, 'v' + PAD_v, { truncate: 'end' });
+		iObj.vLab = iObj.infoGrp.add('statictext', undefined, PAD_v, { truncate: 'end' });
 		iObj.vLab.justify = 'center';
 		iObj.vLab.helpTip = 'ajuda | DOCS';
 
@@ -272,43 +386,6 @@ function O_PADEIRO_UTL(thisObj) {
 		window.onResizing = window.onResize = function () {
 			PAD_setLayout(this, iObj);
 		};
-
-		for (var b = 0; b < iObj.buttonArray.length; b++) {
-
-			var btn = iObj.buttonArray[b];
-			// Ao passar o mouse por cima
-			btn.btnGroup.addEventListener('mouseover', function () {
-
-				setTxtColor(this.children[1], highlightColor);
-				this.children[0].children[3].visible = false;
-				this.children[0].children[2].visible = true;
-			});
-
-			// Ao tirar o mouse de cima
-			btn.btnGroup.addEventListener('mouseout', function () {
-
-				setTxtColor(this.children[1], normalColor);
-				this.children[0].children[2].visible = false;
-				this.children[0].children[3].visible = true;
-			});
-
-			btn.label.addEventListener('click', function (c) {
-				if (c.button == 0) this.parent.children[0].children[0].notify();
-			});
-
-			btn.label.addEventListener('click', function (c) {
-				if (c.button == 2) this.parent.children[0].children[1].notify();
-			});
-
-			btn.hoverImg.addEventListener('click', function (c) {
-				if (c.button == 0) this.parent.children[0].notify();
-			});
-
-			btn.hoverImg.addEventListener('click', function (c) {
-				if (c.button == 2) this.parent.children[1].notify();
-			});
-
-		}
 	}
 
 	function PAD_setLayout(window, iObj) {
@@ -316,7 +393,7 @@ function O_PADEIRO_UTL(thisObj) {
 		var isRow = window.size.width > window.size.height;
 		var grpOrientation = isRow ? 'row' : 'column';
 		var btnOrientation = isRow ? 'column' : 'row';
-		var mainMargin = isRow ? [180, 0, 50, 0] : [4, 60, 4, 20];
+		var mainMargin = isRow ? [180, 0, 50, 0] : [4, 76, 4, 56];
 
 		try {
 			for (var s = 0; s < iObj.sectionGrpArray.length; s++) {
@@ -358,8 +435,9 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.prodGrp.spacing = 8;
 
 			iObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
+			iObj.infoGrp.spacing = 0;
 
-			iObj.prodDrop.size.width = window.size.width < 150 ? window.size.width - 16 : 130;
+			iObj.prodDrop.size.width = window.size.width < 156 ? window.size.width - 12 : 140;
 			iObj.mainLogo.size.width = window.size.width < 78 ? window.size.width - 8 : 70;
 
 		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); }
@@ -368,84 +446,11 @@ function O_PADEIRO_UTL(thisObj) {
 		window.layout.resize();
 	}
 
-	var PAD_mainGrpUiStructure = {
-		grp1: {
-			templates: {
-				type: 'imageButton',
-				icon: PAD_TEMPLATES_ICON,
-				tips: [
-					'◖ → preencher templates',
-					'◗ → criar novo template'
-				]
-			},
-			fontes: {
-				type: 'imageButton',
-				icon: PAD_FONTES_ICON,
-				tips: [
-					'◖ → instalar as fontes usadas no template',
-					'◗ → fazer o collect das fontes usadas no projeto'
-				]
-			}
-		},
-		grp2: {
-			pastas: {
-				type: 'imageButton',
-				icon: PAD_PASTAS_ICON,
-				tips: [
-					'◖ → abir a pasta do último item da fila de render',
-					'◗ → abir a pasta do projeto (caso esteja salvo)'
-				]
-			}
-		},
-		grp3: {
-			renomear: {
-				type: 'imageButton',
-				icon: PAD_RENOMEAR_ICON,
-				tips: [
-					'◖ → renomear comps selecionadas',
-					'◗ → renomear TODAS as saídas de render'
-				]
-			},
-			organizar: {
-				type: 'imageButton',
-				icon: PAD_ORGANIZAR_ICON,
-				tips: [
-					'selecione as comps que serão\nRENDERIZADAS primeiro!',
-					'◖ → organizar o projeto',
-					'◗ → criar estrutura de pastas do projeto'
-				]
-			}
-		},
-		grp4: {
-			buscar: {
-				type: 'imageButton',
-				icon: PAD_BUSCAR_ICON,
-				tips: [
-					'◖ → abrir a BUSCA em layers de texto'
-				]
-			}
-		},
-		grp5: {
-			atalhos: {
-				type: 'imageButton',
-				icon: PAD_ATALHOS_ICON,
-				tips: [
-					'◖ → abrir a planilha do apontamento de projetos no navegador'
-				]
-			}
-		}
-	};
-
 	function O_PADEIRO_UI() {
 
-		var PAD_w = {}; // Objeto que representa a janela da interface
+		var PAD_w = thisObj;
 
-		// Cria a janela da interface (ou usa um painel existente)
-		if (thisObj instanceof Panel) {
-			PAD_w = thisObj;
-		} else {
-			PAD_w = new Window('palette', scriptName); // Cria uma nova janela
-		}
+		if (!(thisObj instanceof Panel)) PAD_w = new Window('palette', scriptName); // Cria uma nova janela
 
 		// Configurações da janela
 		PAD_w.margins = 4;      // Margens internas
@@ -455,8 +460,9 @@ function O_PADEIRO_UTL(thisObj) {
 
 		// Adiciona um "ouvinte" de evento ao rótulo de versão (vLab).
 		PAD_ui.vLab.addEventListener('mousedown', function () {
-			// Este ouvinte será acionado quando o usuário clicar (mousedown) no rótulo.
-			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script'; // Define o URL do site de documentação.
+
+			// Define o URL do site de documentação.
+			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script';
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
@@ -693,7 +699,7 @@ function O_PADEIRO_UTL(thisObj) {
 	// Cria a janela da interface chamando a função O_PADEIRO_UI e passando o objeto atual como argumento. O resultado é armazenado na variável O_PADEIRO_WINDOW.
 	var O_PADEIRO_WINDOW = O_PADEIRO_UI(thisObj);
 
-	// Verifica se o After Effects tem acesso à internet.
+	// Verifica o acesso à rede.
 	if (!netAccess()) {
 		// Se não houver acesso, exibe um alerta pedindo para habilitar o acesso à rede nas preferências.
 		alert('por favor, habilite a opção ' + netConfigName + ' nas preferencias');
