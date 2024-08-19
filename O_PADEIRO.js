@@ -29,7 +29,7 @@ function O_PADEIRO_UTL(thisObj) {
 	var rClick = ' ◗  →  ';
 	var dClick = '◖◖ →  ';
 
-	// estrutura da interface
+	// estrutura de 'ctrlProperties'
 	var PAD_mainGrpUiStructure = {
 		section1: {
 			templates: {
@@ -105,7 +105,7 @@ function O_PADEIRO_UTL(thisObj) {
 		}
 	};
 
-	// Objeto que armazena as configurações padrão (default) do Padeiro
+	// Objeto que armazena as propriedades padrão dos templates do Padeiro
 	var defPadObj = {
 		configName: 'default config',           // Nome da configuração (usado para identificação no log)
 		exemple: '',                            // Exemplo de texto de entrada (será mostrado na interface se o template não tiver um exemplo próprio)
@@ -125,7 +125,7 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	};
 
-	// configurações iniciais de uma nova produção
+	// Objeto com a lista inicial de produções
 	var defaultProdData = {
 		PRODUCTIONS: [
 			{
@@ -136,7 +136,8 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	};
 
-	// ordena as produções por nome
+	// Recebe uma lista de produções 'prodDataObj'
+	// Retorna a lista ordenada pela propriedade 'name'
 	function sortProdData(prodDataObj) {
 		return prodDataObj.sort(function (a, b) {
 			if (a.name < b.name) return -1;
@@ -146,7 +147,8 @@ function O_PADEIRO_UTL(thisObj) {
 		});
 	}
 
-	// retorna os nomes das produções
+	// Recebe uma lista de produções 'prodDataObj'
+	// Retorna uma lista com as propriedades 'name'
 	function getProdNames(prodDataObj) {
 		var prdNames = [];
 
@@ -156,29 +158,33 @@ function O_PADEIRO_UTL(thisObj) {
 		return prdNames;
 	}
 
-	// salva os dados das produções
+	// Recebe uma lista de produções 'prodDataArray'
+	// Salva e retorna um arquivo JSON com os dados salvos
 	function saveProdData(prodDataArray) {
 		var prodData = { PRODUCTIONS: prodDataArray };
 		var configFile = new File(scriptMainPath + 'O_PADEIRO_config.json');
 		var configContent = JSON.stringify(prodData, null, '\t');
 		writeFileContent(configFile, configContent);
+
+		return configFile;
 	}
 
-	// atualiza os dados das produções
+	// Atualiza os dados das produções a partir de um arquivo .json
+	// Retorna a lista de produções 'prodData' ordenado pela propriedade 'name'
 	function updateProdData(configFile) {
 
 		var prodData;
-		if (!configFile.exists) padProdFoldersDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração.
+		if (!configFile.exists) padProdFoldersDialog(defaultProdData.PRODUCTIONS); // Chama a janela de configuração das produções.
 
-		$.sleep(300);
+		$.sleep(300); // Espera 300ms antes de tentar ler o arquivo
 
 		try {
 			var configContent = readFileContent(configFile); // Lê o conteúdo do arquivo de configuração JSON
-			prodData = JSON.parse(configContent);            // Analisa o conteúdo JSON e o armazena no objeto 'templateData'
-			prodData = sortProdData(prodData.PRODUCTIONS);
+			prodData = JSON.parse(configContent);            // Analisa o conteúdo JSON e o armazena no objeto 'prodData'
+			prodData = sortProdData(prodData.PRODUCTIONS);   // Ordena as produções por nome
 
-		} catch (err) {
-			prodData = defaultProdData.PRODUCTIONS;
+		} catch (err) { //Em caso de erro...
+			prodData = defaultProdData.PRODUCTIONS; // Lista inicial de produções
 		}
 
 		return prodData;
@@ -200,10 +206,11 @@ function O_PADEIRO_UTL(thisObj) {
 			var newIcon = imagesGrp.add('image', undefined, undefined);
 			try {
 				newIcon.image = eval(prodDataArray[i].icon);
-			} catch (err) {
+
+			} catch (err) { //Em caso de erro...
 				newIcon.image = defaultProdData.PRODUCTIONS[0].icon;
 			}
-			newIcon.helpTip = prodDataArray[0].name;
+			newIcon.helpTip = prodDataArray[0].name + '\n\n' + dClick + ' para editar a lista de produções';
 			newIcon.preferredSize = [24, 24];
 			newIcon.visible = i == 0;
 
@@ -248,6 +255,8 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.divArray.push(newDiv);
 		}
 
+		// adiciona um 'imageButton' e com eventos na seção 'sectionGrp' usando as propriedades 'ctrlProperties'
+		// os botoes 'leftClick' e 'rightClick' serão usados posteriormente para eventos 'onClick' através do 'iObj'
 		function PAD_addImageButton(sectionGrp, ctrlProperties, iObj) {
 			var btn = iObj[ctrlProperties.key] = {};
 
@@ -439,7 +448,7 @@ function O_PADEIRO_UTL(thisObj) {
 			iObj.prodDrop.size.width = window.size.width - 10;
 			iObj.mainLogo.size.width = window.size.width - 10;
 
-		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); }
+		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); } //Em caso de erro...
 
 		window.layout.layout(true);
 		window.layout.resize();
