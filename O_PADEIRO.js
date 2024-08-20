@@ -136,10 +136,10 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	};
 
-	// Recebe uma lista de produções 'prodDataObj'
-	// Retorna a lista ordenada pela propriedade 'name'
-	function sortProdData(prodDataObj) {
-		return prodDataObj.sort(function (a, b) {
+	// Recebe uma lista de produções 'prodDataArray'
+	// Retorna a mesma lista 'prodDataArray' ordenada pela propriedade 'name'
+	function sortProdData(prodDataArray) {
+		return prodDataArray.sort(function (a, b) {
 			if (a.name < b.name) return -1;
 			if (a.name > b.name) return 1;
 
@@ -147,19 +147,19 @@ function O_PADEIRO_UTL(thisObj) {
 		});
 	}
 
-	// Recebe uma lista de produções 'prodDataObj'
-	// Retorna uma lista com as propriedades 'name'
-	function getProdNames(prodDataObj) {
-		var prdNames = [];
+	// Recebe uma lista de produções 'prodDataArray'
+	// Retorna uma lista 'prdNames' com as propriedades 'name'
+	function getProdNames(prodDataArray) {
+		var prdNamesArray = [];
 
-		for (var i = 0; i < prodDataObj.length; i++) {
-			prdNames.push(prodDataObj[i].name);
+		for (var i = 0; i < prodDataArray.length; i++) {
+			prdNamesArray.push(prodDataArray[i].name);
 		}
-		return prdNames;
+		return prdNamesArray;
 	}
 
 	// Recebe uma lista de produções 'prodDataArray'
-	// Salva e retorna um arquivo JSON com os dados salvos
+	// Salva e retorna um arquivo JSON 'configFile' com os dados salvos
 	function saveProdData(prodDataArray) {
 		var prodData = { PRODUCTIONS: prodDataArray };
 		var configFile = new File(scriptMainPath + 'O_PADEIRO_config.json');
@@ -169,7 +169,7 @@ function O_PADEIRO_UTL(thisObj) {
 		return configFile;
 	}
 
-	// Atualiza os dados das produções a partir de um arquivo .json
+	// Atualiza os dados das produções a partir de um arquivo JSON 'configFile'
 	// Retorna a lista de produções 'prodData' ordenado pela propriedade 'name'
 	function updateProdData(configFile) {
 
@@ -190,12 +190,16 @@ function O_PADEIRO_UTL(thisObj) {
 		return prodData;
 	}
 
+	// Recebe um índice 'imageIndex' e um grupo de imagens 'imagesGrp'
+	// Altera o grupo de imagens para mostrar apenas o índice selecionado
 	function changeIcon(imageIndex, imagesGrp) {
 		for (var i = 0; i < imagesGrp.children.length; i++) {
 			imagesGrp.children[i].visible = i == imageIndex;
 		}
 	}
 
+	// Recebe uma lista de produções 'prodDataArray' e um grupo de imagens 'imagesGrp'
+	// Popula o grupo de imagens com os ícones das produções
 	function populateMainIcons(prodDataArray, imagesGrp) {
 
 		while (imagesGrp.children.length > 0) {
@@ -240,25 +244,31 @@ function O_PADEIRO_UTL(thisObj) {
 	templatesPath = PAD_prodArray[0].templatesPath;
 	templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
 
+	// 'uiObj' armazena os controles da interface, grupos seus respectivos arrays
 	var PAD_ui = {
 		buttonArray: [],
 		sectionGrpArray: [],
 		divArray: []
 	};
 
-	function PAD_buildUi(window, structureObj, iObj) {
+	// Recebe a estrutura da ui 'structureObj' e um objeto para interação 'uiObj'
+	// Cria os controles da interface e define os eventos entre eles
+	function PAD_buildUi(structureObj, uiObj) {
 
-		function PAD_addDiv(sectionGrp, iObj) {
+		// Recebe um grupo 'sectionGrp' e um objeto para interação 'uiObj'
+		// Adiciona um divisor visual na seção 'sectionGrp'
+		function PAD_addDiv(sectionGrp, uiObj) {
 			var newDiv = sectionGrp.add("customButton");
 			setUiCtrlColor(newDiv, divColor);
 			newDiv.onDraw = customDraw;
-			iObj.divArray.push(newDiv);
+			uiObj.divArray.push(newDiv);
 		}
 
+		// Recebe um grupo 'sectionGrp', um objeto 'ctrlProperties' e um objeto para interação 'uiObj'
+		// as propriedades 'ctrlProperties' estão definidas na estrutura da ui 'structureObj'
 		// adiciona um 'imageButton' e com eventos na seção 'sectionGrp' usando as propriedades 'ctrlProperties'
-		// os botoes 'leftClick' e 'rightClick' serão usados posteriormente para eventos 'onClick' através do 'iObj'
-		function PAD_addImageButton(sectionGrp, ctrlProperties, iObj) {
-			var btn = iObj[ctrlProperties.key] = {};
+		function PAD_addImageButton(sectionGrp, ctrlProperties, uiObj) {
+			var btn = uiObj[ctrlProperties.key] = {};
 
 			if (ctrlProperties.icon.hover == undefined) ctrlProperties.icon.hover = ctrlProperties.icon.normal;
 
@@ -287,7 +297,7 @@ function O_PADEIRO_UTL(thisObj) {
 			btn.label.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
 
 			setTxtColor(btn.label, normalColor); // Cor de destaque do texto
-			iObj.buttonArray.push(btn);
+			uiObj.buttonArray.push(btn);
 
 			btn.btnGroup.addEventListener('mouseover', function () {
 
@@ -323,17 +333,17 @@ function O_PADEIRO_UTL(thisObj) {
 
 		var sectionCounter = 0;
 
-		iObj.mainGrp = window.add('group'); // Grupo principal
-		iObj.sectionGrpArray.push(iObj.mainGrp);
+		uiObj.mainGrp = uiObj.window.add('group'); // Grupo principal
+		uiObj.sectionGrpArray.push(uiObj.mainGrp);
 
 		for (var sec in structureObj) {
 			var section = structureObj[sec];
 
-			if (sectionCounter > 0) PAD_addDiv(iObj.mainGrp, iObj);
+			if (sectionCounter > 0) PAD_addDiv(uiObj.mainGrp, uiObj);
 
-			var sectionGrp = iObj.mainGrp.add('group', undefined, { name: 'sectionGrp' }); // Grupo de botões superior
+			var sectionGrp = uiObj.mainGrp.add('group', undefined, { name: 'sectionGrp' }); // Grupo de botões superior
 			sectionGrp.alignment = ['center', 'top']; // Alinhamento
-			iObj.sectionGrpArray.push(sectionGrp);
+			uiObj.sectionGrpArray.push(sectionGrp);
 
 			for (var ctrl in section) {
 				var ctrlProperties = section[ctrl];
@@ -342,116 +352,118 @@ function O_PADEIRO_UTL(thisObj) {
 
 				if (ctrlProperties.labelTxt == undefined) ctrlProperties.labelTxt = ctrl.replace(/_/g, ' ').toTitleCase();
 
-				if (ctrlProperties.type == 'imageButton') PAD_addImageButton(sectionGrp, ctrlProperties, iObj);
+				if (ctrlProperties.type == 'imageButton') PAD_addImageButton(sectionGrp, ctrlProperties, uiObj);
 			}
 			sectionCounter++;
 		}
 		// Rótulo da versão
-		iObj.infoGrp = window.add('group');
-		iObj.infoGrp.spacing = 0;
-		iObj.sectionGrpArray.push(iObj.infoGrp);
+		uiObj.infoGrp = uiObj.window.add('group');
+		uiObj.infoGrp.spacing = 0;
+		uiObj.sectionGrpArray.push(uiObj.infoGrp);
 
-		iObj.mainLogo = iObj.infoGrp.add('image', undefined, LOGO_IMG.light);
-		iObj.mainLogo.maximumSize = [70, 24];
-		iObj.mainLogo.minimumSize = [50, 24];
-		iObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
+		uiObj.mainLogo = uiObj.infoGrp.add('image', undefined, LOGO_IMG.light);
+		uiObj.mainLogo.maximumSize = [70, 24];
+		uiObj.mainLogo.minimumSize = [50, 24];
+		uiObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
 
-		iObj.vLab = iObj.infoGrp.add('statictext', undefined, PAD_v, { truncate: 'end' });
-		iObj.vLab.justify = 'center';
-		iObj.vLab.helpTip = 'ajuda | DOCS';
+		uiObj.vLab = uiObj.infoGrp.add('statictext', undefined, PAD_v, { truncate: 'end' });
+		uiObj.vLab.justify = 'center';
+		uiObj.vLab.helpTip = 'ajuda | DOCS';
 
-		iObj.prodGrp = window.add('group'); // Grupo de botões superior
-		iObj.prodGrp.alignment = ['center', 'top']; // Alinhamento
-		iObj.prodGrp.spacing = 4; // Espaçamento entre botões
-		iObj.sectionGrpArray.push(iObj.prodGrp);
+		uiObj.prodGrp = uiObj.window.add('group'); // Grupo de botões superior
+		uiObj.prodGrp.alignment = ['center', 'top']; // Alinhamento
+		uiObj.prodGrp.spacing = 4; // Espaçamento entre botões
+		uiObj.sectionGrpArray.push(uiObj.prodGrp);
 
-		iObj.prodIconGrp = iObj.prodGrp.add('group');
-		iObj.prodIconGrp.orientation = 'stack'; // Layout vertical
-		populateMainIcons(PAD_prodArray, iObj.prodIconGrp);
+		uiObj.prodIconGrp = uiObj.prodGrp.add('group');
+		uiObj.prodIconGrp.orientation = 'stack'; // Layout vertical
+		populateMainIcons(PAD_prodArray, uiObj.prodIconGrp);
 
-		iObj.prodDrop = iObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
-		iObj.prodDrop.selection = 0; // Seleciona a produção padrão.
-		iObj.prodDrop.maximumSize = [140, 24];
-		iObj.prodDrop.minimumSize = [52, 24];
-		iObj.prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
+		uiObj.prodDrop = uiObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
+		uiObj.prodDrop.selection = 0; // Seleciona a produção padrão.
+		uiObj.prodDrop.maximumSize = [140, 24];
+		uiObj.prodDrop.minimumSize = [52, 24];
+		uiObj.prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
 
-		window.layout.layout(true); // Aplica o layout
+		uiObj.window.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(iObj.vLab, '#EAEAEA', highlightColor); // Cor de destaque do texto
-		setBgColor(window, bgColor); // Cor de fundo da janela
+		setTxtHighlight(uiObj.vLab, '#EAEAEA', highlightColor); // Cor de destaque do texto
+		setBgColor(uiObj.window, bgColor); // Cor de fundo da janela
 
 		// Define uma função a ser executada quando a janela é exibida ou redimensionada.
-		window.onShow = function () {
+		uiObj.window.onShow = function () {
 
-			for (var b = 0; b < iObj.buttonArray.length; b++) {
+			for (var b = 0; b < uiObj.buttonArray.length; b++) {
 
-				var btn = iObj.buttonArray[b];
+				var btn = uiObj.buttonArray[b];
 				btn.label.preferredSize = btn.label.size;
 			}
 
-			PAD_setLayout(this, iObj);
+			PAD_setLayout(uiObj);
 		};
 
-		window.onResizing = window.onResize = function () {
-			PAD_setLayout(this, iObj);
+		uiObj.window.onResizing = uiObj.window.onResize = function () {
+			PAD_setLayout(uiObj);
 		};
 	}
 
-	function PAD_setLayout(window, iObj) {
+	// Recebe uma janela 'window' e um objeto para interação 'uiObj'
+	// Aplica o layout dos controles dependendo das dimensões da janela
+	function PAD_setLayout(uiObj) {
 
-		var isRow = window.size.width > window.size.height;
+		var isRow = uiObj.window.size.width > uiObj.window.size.height;
 		var grpOrientation = isRow ? 'row' : 'column';
 		var btnOrientation = isRow ? 'column' : 'row';
 		var mainMargin = isRow ? [190, 0, 100, 0] : [4, 76, 4, 56];
 
 		try {
-			for (var s = 0; s < iObj.sectionGrpArray.length; s++) {
-				var sectionGrp = iObj.sectionGrpArray[s];
+			for (var s = 0; s < uiObj.sectionGrpArray.length; s++) {
+				var sectionGrp = uiObj.sectionGrpArray[s];
 				sectionGrp.orientation = grpOrientation;
-				sectionGrp.spacing = window.size.height < 72 ? 24 : 8;
+				sectionGrp.spacing = uiObj.window.size.height < 72 ? 24 : 8;
 			}
-			for (var d = 0; d < iObj.divArray.length; d++) {
-				var div = iObj.divArray[d];
+			for (var d = 0; d < uiObj.divArray.length; d++) {
+				var div = uiObj.divArray[d];
 				div.size = [1, 1];
 				div.alignment = isRow ? ['center', 'fill'] : ['fill', 'center'];
 			}
-			for (var b = 0; b < iObj.buttonArray.length; b++) {
-				var btn = iObj.buttonArray[b];
+			for (var b = 0; b < uiObj.buttonArray.length; b++) {
+				var btn = uiObj.buttonArray[b];
 				btn.btnGroup.orientation = btnOrientation;
 				btn.btnGroup.spacing = isRow ? 0 : 8; // Espaçamento entre botões
 
 				btn.normalImg.size = btn.hoverImg.size = [32, 32];
 
 				btn.label.justify = isRow ? 'center' : 'left'; // Alinhamento central
-				btn.label.size = [window.size.width - 60, 18];
+				btn.label.size = [uiObj.window.size.width - 60, 18];
 
-				if (window.size.width < 88 || window.size.height < 72) {
+				if (uiObj.window.size.width < 88 || uiObj.window.size.height < 72) {
 					btn.btnGroup.spacing = 0;
 					btn.label.size = [0, 0];
 				}
-				if (window.size.height < 44) {
+				if (uiObj.window.size.height < 44) {
 					btn.btnGroup.spacing = 0;
 					btn.hoverImg.size = btn.normalImg.size = [0, 0];
 					btn.label.size = btn.label.preferredSize;
 				}
 			}
-			iObj.mainGrp.margins = mainMargin;
-			iObj.mainGrp.spacing = window.size.height < 44 ? 24 : 16;
+			uiObj.mainGrp.margins = mainMargin;
+			uiObj.mainGrp.spacing = uiObj.window.size.height < 44 ? 24 : 16;
 
-			iObj.prodGrp.alignment = isRow ? 'left' : 'top';
-			iObj.prodGrp.spacing = 8;
+			uiObj.prodGrp.alignment = isRow ? 'left' : 'top';
+			uiObj.prodGrp.spacing = 8;
 
-			iObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
-			iObj.infoGrp.spacing = 0;
+			uiObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
+			uiObj.infoGrp.spacing = 0;
 
-			iObj.prodDrop.size.width = window.size.width - 10;
-			iObj.mainLogo.size.width = window.size.width - 10;
+			uiObj.prodDrop.size.width = uiObj.window.size.width - 10;
+			uiObj.mainLogo.size.width = uiObj.window.size.width - 10;
 
 		} catch (err) { alert(lol + '#PAD_layout - ' + '' + err.message); } //Em caso de erro...
 
-		window.layout.layout(true);
-		window.layout.resize();
+		uiObj.window.layout.layout(true);
+		uiObj.window.layout.resize();
 	}
 
 	function O_PADEIRO_UI() {
@@ -463,8 +475,9 @@ function O_PADEIRO_UTL(thisObj) {
 		// Configurações da janela
 		PAD_w.margins = 4;      // Margens internas
 		PAD_w.orientation = 'stack'; // Layout vertical
+		PAD_ui.window = PAD_w;
 
-		PAD_buildUi(PAD_w, PAD_mainGrpUiStructure, PAD_ui);
+		PAD_buildUi(PAD_mainGrpUiStructure, PAD_ui);
 
 		// Adiciona um "ouvinte" de evento ao rótulo de versão (vLab).
 		PAD_ui.vLab.addEventListener('mousedown', function () {
@@ -490,7 +503,7 @@ function O_PADEIRO_UTL(thisObj) {
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
 		PAD_ui.templates.leftClick.onClick = function () {
 
-			// Verifica se há acesso à internet.
+			// Verifica se há acesso à rede.
 			if (!netAccess()) {
 				// Se não houver acesso, exibe um alerta informando que a funcionalidade será limitada e encerra a função.
 				alert(lol + '#PAD_003 - sem acesso a rede...');

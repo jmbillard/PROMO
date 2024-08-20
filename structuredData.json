@@ -1,0 +1,3570 @@
+{
+	"version": {
+		"json_export": "203",
+		"page_segmentation": "5",
+		"schema": "1.1.0",
+		"structure": "1.1099.0",
+		"table_structure": "5"
+	},
+	"extended_metadata": {
+		"ID_instance": "C5 1F D8 2C A2 BA B2 11 0A 00 67 45 8B 6B C6 23 ",
+		"ID_permanent": "39 44 20 44 34 20 43 45 20 32 43 20 41 32 20 42 41 20 42 32 20 31 31 20 30 41 20 30 30 20 36 37 20 34 35 20 38 42 20 36 42 20 43 36 20 32 33 20 ",
+		"has_acroform": false,
+		"has_embedded_files": false,
+		"is_XFA": false,
+		"is_certified": false,
+		"is_encrypted": false,
+		"is_digitally_signed": false,
+		"language": "pt",
+		"page_count": 29,
+		"pdf_version": "1.6",
+		"pdfa_compliance_level": "",
+		"pdfua_compliance_level": ""
+	},
+	"elements": [
+		{
+			"Bounds": [
+				15.774993896484375,
+				512.2262573242188,
+				47.1376953125,
+				525.0012512207031
+			],
+			"ObjectID": 401,
+			"Page": 0,
+			"Path": "//Document/Figure",
+			"attributes": {
+				"BBox": [
+					15.71939999999995,
+					512.1609999999928,
+					44.27819999999883,
+					522.8409999999858
+				],
+				"Placement": "Block"
+			},
+			"filePaths": [
+				"figures/fileoutpart0.png"
+			],
+			"elementId": 1
+		},
+		{
+			"Bounds": [
+				15.774993896484375,
+				512.2262573242188,
+				47.1376953125,
+				525.0012512207031
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 401,
+			"Page": 0,
+			"Path": "//Document/Figure",
+			"Text": "globo ",
+			"TextSize": 12.774993896484375,
+			"attributes": {
+				"BBox": [
+					15.71939999999995,
+					512.1609999999928,
+					44.27819999999883,
+					522.8409999999858
+				],
+				"Placement": "Block"
+			},
+			"elementId": 2
+		},
+		{
+			"Bounds": [
+				34.55000305175781,
+				265.8812561035156,
+				422.4247589111328,
+				411.60499572753906
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 402,
+			"Page": 0,
+			"Path": "//Document/Title",
+			"Text": "TEMPLATE DE CRÉDITOS ",
+			"TextSize": 66.07499694824219,
+			"attributes": {
+				"LineHeight": 79.625,
+				"SpaceAfter": 18
+			},
+			"elementId": 3
+		},
+		{
+			"Bounds": [
+				369,
+				-0.7498779296875,
+				960.75,
+				540.7501220703125
+			],
+			"ObjectID": 403,
+			"Page": 0,
+			"Path": "//Document/Figure[2]",
+			"attributes": {
+				"BBox": [
+					386.2639999999956,
+					0.0219726999999991,
+					959.9609999999811,
+					540
+				],
+				"Placement": "Block"
+			},
+			"filePaths": [
+				"figures/fileoutpart1.png"
+			],
+			"elementId": 4
+		},
+		{
+			"Bounds": [
+				66.64999389648438,
+				167.78750610351562,
+				357.3572692871094,
+				203.83749389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 404,
+			"Page": 0,
+			"Path": "//Document/P",
+			"Text": "dramaturgia longa ",
+			"TextSize": 36.05000305175781,
+			"attributes": {
+				"LineHeight": 43.25,
+				"SpaceAfter": 18
+			},
+			"elementId": 5
+		},
+		{
+			"Bounds": [
+				81.85000610351562,
+				41.51875305175781,
+				197.7466278076172,
+				71.54374694824219
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 405,
+			"Page": 0,
+			"Path": "//Document/P[2]",
+			"Text": "estúdios ",
+			"TextSize": 30.024993896484375,
+			"attributes": {
+				"LineHeight": 36,
+				"SpaceAfter": 18
+			},
+			"elementId": 6
+		},
+		{
+			"Bounds": [
+				199.5,
+				38.25,
+				331.5,
+				84
+			],
+			"ObjectID": 406,
+			"Page": 0,
+			"Path": "//Document/Figure[3]",
+			"attributes": {
+				"BBox": [
+					199.43199999999342,
+					38.30039999999826,
+					331.42699999999604,
+					84.01859999999942
+				],
+				"Placement": "Block"
+			},
+			"filePaths": [
+				"figures/fileoutpart2.png"
+			],
+			"elementId": 7
+		},
+		{
+			"Bounds": [
+				-34.5,
+				159,
+				712.9072265625,
+				529.75
+			],
+			"ClipBounds": [
+				-34.5,
+				159,
+				712.9072265625,
+				529.75
+			],
+			"ObjectID": 459,
+			"Page": 1,
+			"Path": "//Document/Figure[4]",
+			"attributes": {
+				"BBox": [
+					0,
+					159.01599999999598,
+					701.49099999998,
+					529.5599999999977
+				],
+				"BackgroundColor": [
+					0.83137499999998,
+					0.83137499999998,
+					0.83137499999998
+				],
+				"Placement": "Block"
+			},
+			"filePaths": [
+				"figures/fileoutpart3.png"
+			],
+			"elementId": 8
+		},
+		{
+			"Bounds": [
+				-34.5,
+				159,
+				712.9072265625,
+				529.75
+			],
+			"ClipBounds": [
+				-34.5,
+				159,
+				712.9072265625,
+				529.75
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 459,
+			"Page": 1,
+			"Path": "//Document/Figure[4]",
+			"Text": "CRÉDITOS DE ABERTURA ",
+			"TextSize": 50.32499694824219,
+			"attributes": {
+				"BBox": [
+					0,
+					159.01599999999598,
+					701.49099999998,
+					529.5599999999977
+				],
+				"BackgroundColor": [
+					0.83137499999998,
+					0.83137499999998,
+					0.83137499999998
+				],
+				"Placement": "Block"
+			},
+			"elementId": 9
+		},
+		{
+			"Bounds": [
+				37.5,
+				499.6237487792969,
+				182.1686248779297,
+				517.6487426757812
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 469,
+			"Page": 2,
+			"Path": "//Document/H1",
+			"Text": "Novela criada por : ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 5.375
+			},
+			"elementId": 10
+		},
+		{
+			"Bounds": [
+				37.5,
+				472.59375,
+				131.17605590820312,
+				490.6187438964844
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 470,
+			"Page": 2,
+			"Path": "//Document/H2",
+			"Text": "Duca Rachid ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 4.625
+			},
+			"elementId": 11
+		},
+		{
+			"Bounds": [
+				37.5,
+				446.2937469482422,
+				130.25662231445312,
+				464.3187561035156
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "de",
+			"ObjectID": 471,
+			"Page": 2,
+			"Path": "//Document/H2[2]",
+			"Text": "Júlio Fischer ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 18
+			},
+			"elementId": 12
+		},
+		{
+			"Bounds": [
+				807.1300048828125,
+				129.7137451171875,
+				899.3458862304688,
+				147.73875427246094
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 472,
+			"Page": 2,
+			"Path": "//Document/H1[2]",
+			"Text": "Escrita por : ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 13
+		},
+		{
+			"Bounds": [
+				807.1300048828125,
+				49.368743896484375,
+				914.6130218505859,
+				120.71875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 473,
+			"Page": 2,
+			"Path": "//Document/H2[3]",
+			"Text": "Duca Rachid Júlio Fischer Elisio Lopes Jr. ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 26.625
+			},
+			"elementId": 14
+		},
+		{
+			"Bounds": [
+				15.774993896484375,
+				512.2262573242188,
+				47.1376953125,
+				525.0012512207031
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 489,
+			"Page": 3,
+			"Path": "//Document/P[3]",
+			"Text": "globo ",
+			"TextSize": 12.774993896484375,
+			"attributes": {
+				"LineHeight": 15.375,
+				"SpaceAfter": 18
+			},
+			"elementId": 15
+		},
+		{
+			"Bounds": [
+				17.649993896484375,
+				105.11375427246094,
+				206.46189880371094,
+				123.13874816894531
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 490,
+			"Page": 3,
+			"Path": "//Document/H1[3]",
+			"Text": "Livremente inspirado em ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 16
+		},
+		{
+			"Bounds": [
+				17.649993896484375,
+				83.34375,
+				411.7049865722656,
+				104.03645324707031
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 491,
+			"Page": 3,
+			"Path": "//Document/P[4]",
+			"Text": "“Marcelino Pão e Vinho”, de José María Sánchez-Silva ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 17
+		},
+		{
+			"Bounds": [
+				796.9799957275391,
+				115.06474304199219,
+				925.7145538330078,
+				131.97219848632812
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 504,
+			"Page": 4,
+			"Path": "//Document/P[5]",
+			"Text": "Camila Queiroz ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 18
+			},
+			"elementId": 18
+		},
+		{
+			"Bounds": [
+				804.9700012207031,
+				70.13975524902344,
+				925.7194671630859,
+				87.04719543457031
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 505,
+			"Page": 4,
+			"Path": "//Document/P[6]",
+			"Text": "Diogo Almeida ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 19
+		},
+		{
+			"Bounds": [
+				802.5200042724609,
+				78.00625610351562,
+				924.636474609375,
+				98.28125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 520,
+			"Page": 5,
+			"Path": "//Document/H1[4]",
+			"Text": "Apresentando ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375,
+				"SpaceAfter": 4.625,
+				"TextAlign": "End"
+			},
+			"elementId": 20
+		},
+		{
+			"Bounds": [
+				729.0299987792969,
+				52.26875305175781,
+				923.9770812988281,
+				70.29374694824219
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 521,
+			"Page": 5,
+			"Path": "//Document/H2[4]",
+			"Text": "Levi Asaf como Marcelino ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 21
+		},
+		{
+			"Bounds": [
+				763.3800048828125,
+				103.86224365234375,
+				906.6227874755859,
+				122.88020324707031
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 534,
+			"Page": 6,
+			"Path": "//Document/H1[5]",
+			"Text": "Daniel Rangel ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 22
+		},
+		{
+			"Bounds": [
+				732.1300048828125,
+				50.48124694824219,
+				905.9797515869141,
+				97.80624389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "it",
+			"ObjectID": 535,
+			"Page": 6,
+			"Path": "//Document/H2[5]",
+			"Text": "Carmo Dalla Vecchia Ana Cecília Costa ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 27,
+				"TextAlign": "End"
+			},
+			"elementId": 23
+		},
+		{
+			"Bounds": [
+				734.1000061035156,
+				85.33724975585938,
+				833.5455932617188,
+				100.13420104980469
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 550,
+			"Page": 7,
+			"Path": "//Document/P[7]",
+			"Text": "Lucy Ramos ",
+			"TextSize": 15.774993896484375,
+			"attributes": {
+				"LineHeight": 18.875,
+				"TextAlign": "End"
+			},
+			"elementId": 24
+		},
+		{
+			"Bounds": [
+				706.1499938964844,
+				47.03724670410156,
+				860.886962890625,
+				81.35920715332031
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "en",
+			"ObjectID": 551,
+			"Page": 7,
+			"Path": "//Document/P[8]",
+			"Text": "Bukassa Kabengele Juliana Alves ",
+			"TextSize": 15.774993896484375,
+			"attributes": {
+				"LineHeight": 19.5,
+				"TextAlign": "Center"
+			},
+			"elementId": 25
+		},
+		{
+			"Bounds": [
+				100.5,
+				105.6512451171875,
+				244.77699279785156,
+				152.22625732421875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 561,
+			"Page": 8,
+			"Path": "//Document/H2[6]",
+			"Text": "Babu Santana Allan Souza Lima ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 26.25,
+				"TextAlign": "End"
+			},
+			"elementId": 26
+		},
+		{
+			"Bounds": [
+				815.3300018310547,
+				103.94500732421875,
+				930.1713562011719,
+				124.2449951171875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 562,
+			"Page": 8,
+			"Path": "//Document/H3/Sub",
+			"Text": "Chico Pelúcio ",
+			"TextSize": 20.300003051757812,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 27
+		},
+		{
+			"Bounds": [
+				777.25,
+				77.71725463867188,
+				930.9954833984375,
+				96.73519897460938
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 563,
+			"Page": 8,
+			"Path": "//Document/H3/Sub[2]",
+			"Text": "Bernardo Berro ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 28
+		},
+		{
+			"Bounds": [
+				755.3999938964844,
+				125.60125732421875,
+				911.0279541015625,
+				145.87625122070312
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 575,
+			"Page": 9,
+			"Path": "//Document/H4",
+			"Text": "Genézio de Barros ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375,
+				"SpaceAfter": 2.625
+			},
+			"elementId": 29
+		},
+		{
+			"Bounds": [
+				730.6699981689453,
+				99.39224243164062,
+				912.0242614746094,
+				118.41020202636719
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 576,
+			"Page": 9,
+			"Path": "//Document/H5",
+			"Text": "Bruno Montaleone ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 30
+		},
+		{
+			"Bounds": [
+				788.1300048828125,
+				72.30000305175781,
+				910.985595703125,
+				92.60000610351562
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 577,
+			"Page": 9,
+			"Path": "//Document/H6",
+			"Text": "Paulo Mendes ",
+			"TextSize": 20.300003051757812,
+			"attributes": {
+				"LineHeight": 24.375,
+				"TextAlign": "End"
+			},
+			"elementId": 31
+		},
+		{
+			"Bounds": [
+				761.5500030517578,
+				46.006256103515625,
+				910.8754119873047,
+				66.28125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 578,
+			"Page": 9,
+			"Path": "//Document/H6[2]",
+			"Text": "Cristiane Amorim ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 32
+		},
+		{
+			"Bounds": [
+				821.9199981689453,
+				133.06124877929688,
+				922.7476043701172,
+				153.33624267578125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 593,
+			"Page": 10,
+			"Path": "//Document/H6[3]/Sub",
+			"Text": "Carol Badra ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 33
+		},
+		{
+			"Bounds": [
+				761.2799987792969,
+				106.78125,
+				922.4055786132812,
+				127.05624389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 594,
+			"Page": 10,
+			"Path": "//Document/H6[3]/Sub[2]/Sub",
+			"Text": "Glicério do Rosário ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 34
+		},
+		{
+			"Bounds": [
+				810.3500061035156,
+				79.75,
+				922.4987487792969,
+				100.05000305175781
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 595,
+			"Page": 10,
+			"Path": "//Document/H6[3]/Sub[2]/Sub[2]",
+			"Text": "Raquel Karro ",
+			"TextSize": 20.300003051757812,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 35
+		},
+		{
+			"Bounds": [
+				810.3800048828125,
+				53.45625305175781,
+				922.3730773925781,
+				73.73124694824219
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 596,
+			"Page": 10,
+			"Path": "//Document/H6[3]/Sub[2]/Sub[3]",
+			"Text": "Beto Militani ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 36
+		},
+		{
+			"Bounds": [
+				777.5,
+				55.40625,
+				911.4268951416016,
+				155.30624389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 612,
+			"Page": 11,
+			"Path": "//Document/H6[4]",
+			"Text": "Bárbara Sut João Fernandes Iza Moreira Alan Rocha ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 26.625,
+				"TextAlign": "End"
+			},
+			"elementId": 37
+		},
+		{
+			"Bounds": [
+				67.77499389648438,
+				76.75,
+				199.9748077392578,
+				150.33624267578125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 627,
+			"Page": 12,
+			"Path": "//Document/H6[5]",
+			"Text": "Maria Gal Bruno Quixotte Jorge Florêncio ",
+			"TextSize": 20.300003051757812,
+			"attributes": {
+				"LineHeight": 26.625
+			},
+			"elementId": 38
+		},
+		{
+			"Bounds": [
+				746.9499969482422,
+				78.91474914550781,
+				910.6692810058594,
+				139.39219665527344
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "es",
+			"ObjectID": 628,
+			"Page": 12,
+			"Path": "//Document/P[9]",
+			"Text": "Kênia Bárbara Gustavo Arthidoro Malu Dimas ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.75,
+				"TextAlign": "End"
+			},
+			"elementId": 39
+		},
+		{
+			"Bounds": [
+				71.94999694824219,
+				99.70124816894531,
+				188.814208984375,
+				146.25625610351562
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 638,
+			"Page": 13,
+			"Path": "//Document/H6[6]",
+			"Text": "Cyda Moreno Rose Lima ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 26.25,
+				"SpaceAfter": 2.625
+			},
+			"elementId": 40
+		},
+		{
+			"Bounds": [
+				71.94999694824219,
+				72.65625,
+				223.769287109375,
+				92.93124389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 639,
+			"Page": 13,
+			"Path": "//Document/P[10]",
+			"Text": "RODRIGO DE ODÉ ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 41
+		},
+		{
+			"Bounds": [
+				757.6000061035156,
+				99.10624694824219,
+				876.2596130371094,
+				140.4012451171875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 640,
+			"Page": 13,
+			"Path": "//Document/P[11]",
+			"Text": "Karen Coelho Kyvilin Pádilha ",
+			"TextSize": 18.774993896484375,
+			"attributes": {
+				"LineHeight": 22.5,
+				"SpaceAfter": 3
+			},
+			"elementId": 42
+		},
+		{
+			"Bounds": [
+				734.8000030517578,
+				73.55624389648438,
+				876.4572448730469,
+				92.33125305175781
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "it",
+			"ObjectID": 641,
+			"Page": 13,
+			"Path": "//Document/P[12]",
+			"Text": "Breno DE FILIPPO ",
+			"TextSize": 18.774993896484375,
+			"attributes": {
+				"LineHeight": 22.5,
+				"TextAlign": "End"
+			},
+			"elementId": 43
+		},
+		{
+			"Bounds": [
+				625.4299926757812,
+				77.43974304199219,
+				888.5494842529297,
+				94.34719848632812
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 653,
+			"Page": 14,
+			"Path": "//Document/P[13]",
+			"Text": "Apresentando : Mestre Ivamar ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 44
+		},
+		{
+			"Bounds": [
+				755.6000061035156,
+				119.14375305175781,
+				918.4919281005859,
+				137.1687469482422
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 664,
+			"Page": 15,
+			"Path": "//Document/H2[7]/Sub",
+			"Text": "Crianças: Ygor Marçal ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 45
+		},
+		{
+			"Bounds": [
+				819.6999969482422,
+				95.09375,
+				918.567138671875,
+				113.11874389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 665,
+			"Page": 15,
+			"Path": "//Document/H2[7]/Sub[2]",
+			"Text": "Davi Queiroz ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 46
+		},
+		{
+			"Bounds": [
+				788.0500030517578,
+				70.31875610351562,
+				919.1723327636719,
+				88.34375
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 666,
+			"Page": 15,
+			"Path": "//Document/H2[7]/Sub[3]",
+			"Text": "Valentina Melleu ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 47
+		},
+		{
+			"Bounds": [
+				819.4799957275391,
+				45.54374694824219,
+				918.7440643310547,
+				63.568756103515625
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 667,
+			"Page": 15,
+			"Path": "//Document/H2[7]/Sub[4]",
+			"Text": "Vitória Pabst ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 48
+		},
+		{
+			"Bounds": [
+				778,
+				25.292251586914062,
+				937.6656188964844,
+				122.66874694824219
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "Arial-BoldMT",
+				"subset": false,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 680,
+			"Page": 16,
+			"Path": "//Document/H3[2]",
+			"Text": "Atores Convidados Tony Tornado Tonico Pereira Antônio Pitanga ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 26.625,
+				"TextAlign": "End"
+			},
+			"elementId": 49
+		},
+		{
+			"Bounds": [
+				770.0500030517578,
+				54.65625,
+				930.9741821289062,
+				128.25625610351562
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "en",
+			"ObjectID": 687,
+			"Page": 17,
+			"Path": "//Document/H1[6]",
+			"Text": "Atrizes Convidadas Isabel Fillardis Carol Castro ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 26.625,
+				"TextAlign": "End"
+			},
+			"elementId": 50
+		},
+		{
+			"Bounds": [
+				743.8800048828125,
+				84.08125305175781,
+				921.5903778076172,
+				104.35624694824219
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 694,
+			"Page": 18,
+			"Path": "//Document/H1[7]/Sub",
+			"Text": "Participação Especial ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 51
+		},
+		{
+			"Bounds": [
+				803.75,
+				57.806243896484375,
+				921.3855438232422,
+				78.08125305175781
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"ObjectID": 695,
+			"Page": 18,
+			"Path": "//Document/H1[7]/Sub[2]",
+			"Text": "Analu Prestes ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 52
+		},
+		{
+			"Bounds": [
+				689.6499938964844,
+				115.06474304199219,
+				904.8506164550781,
+				131.97219848632812
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 705,
+			"Page": 19,
+			"Path": "//Document/P[14]",
+			"Text": "Paulo Betti como Anselmo ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 18
+			},
+			"elementId": 53
+		},
+		{
+			"Bounds": [
+				676.6000061035156,
+				68.03974914550781,
+				911.7398681640625,
+				84.94720458984375
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 706,
+			"Page": 19,
+			"Path": "//Document/P[15]",
+			"Text": "Zezé Polessa como Candida ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 54
+		},
+		{
+			"Bounds": [
+				658.8200073242188,
+				79.53974914550781,
+				902.0672454833984,
+				96.44720458984375
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 728,
+			"Page": 20,
+			"Path": "//Document/P[16]",
+			"Text": "Thiago Lacerda como Gaspar ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 55
+		},
+		{
+			"Bounds": [
+				673.4499969482422,
+				72.21475219726562,
+				911.5061798095703,
+				89.1221923828125
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 757,
+			"Page": 21,
+			"Path": "//Document/P[17]",
+			"Text": "Paulo Gorgulho como Leonel ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 56
+		},
+		{
+			"Bounds": [
+				697.4700012207031,
+				40.86474609375,
+				938.1578216552734,
+				57.77220153808594
+			],
+			"Font": {
+				"alt_family_name": "Arial",
+				"embedded": false,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Arial MT",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "ArialMT",
+				"subset": false,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 771,
+			"Page": 22,
+			"Path": "//Document/P[18]",
+			"Text": "Mariana Ximenes como Gilda ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 57
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				469.5137481689453,
+				258.361572265625,
+				493.53875732421875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 784,
+			"Page": 23,
+			"Path": "//Document/H1[8]",
+			"Text": "Direção de Fotografia ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 58
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				445.6812438964844,
+				212.17774963378906,
+				465.9562530517578
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 785,
+			"Page": 23,
+			"Path": "//Document/H2[8]",
+			"Text": "Alexandre Fructuoso ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 59
+		},
+		{
+			"Bounds": [
+				746.1000061035156,
+				469.5137481689453,
+				906.7552642822266,
+				493.53875732421875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 786,
+			"Page": 23,
+			"Path": "//Document/H1[9]",
+			"Text": "Direção de Arte ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875,
+				"TextAlign": "End"
+			},
+			"elementId": 60
+		},
+		{
+			"Bounds": [
+				798.3999938964844,
+				445.6812438964844,
+				906.6483459472656,
+				465.9562530517578
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "en",
+			"ObjectID": 787,
+			"Page": 23,
+			"Path": "//Document/H2[9]",
+			"Text": "Billy Castilho ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375,
+				"TextAlign": "End"
+			},
+			"elementId": 61
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				387.6575012207031,
+				151.95242309570312,
+				411.70750427246094
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 788,
+			"Page": 23,
+			"Path": "//Document/H1[10]",
+			"Text": "Cenografia ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 62
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				359.1237487792969,
+				188.78512573242188,
+				383.14874267578125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 789,
+			"Page": 23,
+			"Path": "//Document/H2[10]",
+			"Text": "Mauro Vicente ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875,
+				"SpaceAfter": 18
+			},
+			"elementId": 63
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				301.2875061035156,
+				125.257080078125,
+				325.3374938964844
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 790,
+			"Page": 23,
+			"Path": "//Document/H1[11]",
+			"Text": "Figurino ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 64
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				272.7437438964844,
+				190.97157287597656,
+				296.7687530517578
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 791,
+			"Page": 23,
+			"Path": "//Document/H2[11]",
+			"Text": "Karla Monteiro ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 65
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				243.46749877929688,
+				185.28575134277344,
+				267.5175018310547
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 792,
+			"Page": 23,
+			"Path": "//Document/H2[12]",
+			"Text": "Daniela Garcia ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875,
+				"SpaceAfter": 18
+			},
+			"elementId": 66
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				185.62374877929688,
+				162.4297332763672,
+				209.64874267578125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 793,
+			"Page": 23,
+			"Path": "//Document/H1[12]",
+			"Text": "Edição Final ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 67
+		},
+		{
+			"Bounds": [
+				38.725006103515625,
+				161.78125,
+				189.91578674316406,
+				182.05624389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 794,
+			"Page": 23,
+			"Path": "//Document/H2[13]",
+			"Text": "Rodrigo Clemente ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 68
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				439.50750732421875,
+				267.98728942871094,
+				463.5574951171875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 828,
+			"Page": 24,
+			"Path": "//Document/H1[13]",
+			"Text": "Produção de Elenco ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 69
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				417.7437438964844,
+				239.83648681640625,
+				435.7687530517578
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 841,
+			"Page": 24,
+			"Path": "//Document/P[19]",
+			"Text": "MARCELLA BÉRGAMO. ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 70
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				393.8812561035156,
+				153.98797607421875,
+				414.15625
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 830,
+			"Page": 24,
+			"Path": "//Document/H2[14]/Sub",
+			"Text": "Luiza Toré ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 71
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				369.85125732421875,
+				181.56187438964844,
+				390.1262512207031
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 831,
+			"Page": 24,
+			"Path": "//Document/H2[14]/Sub[2]",
+			"Text": "Ingrid Amaral ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 72
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				311.8374938964844,
+				248.98760986328125,
+				335.8874969482422
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 832,
+			"Page": 24,
+			"Path": "//Document/H1[14]",
+			"Text": "Produção Musical ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 73
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				287.9812469482422,
+				188.3743896484375,
+				308.2562561035156
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 833,
+			"Page": 24,
+			"Path": "//Document/H2[15]",
+			"Text": "Sacha Amback ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375,
+				"SpaceAfter": 18
+			},
+			"elementId": 74
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				230.7137451171875,
+				246.29930114746094,
+				254.73875427246094
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 834,
+			"Page": 24,
+			"Path": "//Document/H1[15]",
+			"Text": "Produção de Arte ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 75
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				206.13125610351562,
+				165.6461639404297,
+				226.40625
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 835,
+			"Page": 24,
+			"Path": "//Document/H2[16]",
+			"Text": "Luiz Pereira ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375,
+				"SpaceAfter": 18
+			},
+			"elementId": 76
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				148.86749267578125,
+				218.42022705078125,
+				172.91749572753906
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 836,
+			"Page": 24,
+			"Path": "//Document/H1[16]",
+			"Text": "Caracterização ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 77
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				124.26124572753906,
+				200.35707092285156,
+				144.5362548828125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 837,
+			"Page": 24,
+			"Path": "//Document/H2[17]/Sub",
+			"Text": "Anna Van Steen ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 78
+		},
+		{
+			"Bounds": [
+				66.39999389648438,
+				100.23124694824219,
+				177.3651580810547,
+				120.50625610351562
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 838,
+			"Page": 24,
+			"Path": "//Document/H2[17]/Sub[2]",
+			"Text": "Marcelo Dias ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 79
+		},
+		{
+			"Bounds": [
+				37.5,
+				499.6237487792969,
+				131.2480010986328,
+				517.6487426757812
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 861,
+			"Page": 25,
+			"Path": "//Document/H3[3]",
+			"Text": "Escrita com: ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 5.375
+			},
+			"elementId": 80
+		},
+		{
+			"Bounds": [
+				37.5,
+				472.59375,
+				143.7032470703125,
+				490.6187438964844
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 862,
+			"Page": 25,
+			"Path": "//Document/H4[2]",
+			"Text": "Dora Castellar ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 4.625
+			},
+			"elementId": 81
+		},
+		{
+			"Bounds": [
+				37.5,
+				446.2937469482422,
+				110.104736328125,
+				464.3187561035156
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 863,
+			"Page": 25,
+			"Path": "//Document/H4[3]",
+			"Text": "Duba Elia ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625,
+				"SpaceAfter": 5.5
+			},
+			"elementId": 82
+		},
+		{
+			"Bounds": [
+				37.5,
+				419.2637481689453,
+				158.89840698242188,
+				437.28875732421875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 864,
+			"Page": 25,
+			"Path": "//Document/H4[4]",
+			"Text": "Mariani Ferreira ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"LineHeight": 21.625
+			},
+			"elementId": 83
+		},
+		{
+			"Bounds": [
+				825.3999938964844,
+				56.037506103515625,
+				925.4481811523438,
+				80.08749389648438
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 865,
+			"Page": 26,
+			"Path": "//Document/H1[17]",
+			"Text": "Produção ",
+			"TextSize": 24.050003051757812,
+			"attributes": {
+				"LineHeight": 28.875,
+				"TextAlign": "End"
+			},
+			"elementId": 84
+		},
+		{
+			"Bounds": [
+				739.5800018310547,
+				27.493743896484375,
+				925.4855804443359,
+				51.51875305175781
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 866,
+			"Page": 26,
+			"Path": "//Document/H2[18]",
+			"Text": "Mônica Fernandes ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 85
+		},
+		{
+			"Bounds": [
+				758.3500061035156,
+				2.90625,
+				925.0511779785156,
+				23.181243896484375
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 867,
+			"Page": 26,
+			"Path": "//Document/H3[4]",
+			"Text": "Isabel Telles Ribeiro ",
+			"TextSize": 20.274993896484375,
+			"attributes": {
+				"LineHeight": 24.375
+			},
+			"elementId": 86
+		},
+		{
+			"Bounds": [
+				862.9700012207031,
+				288.1437530517578,
+				944.3428497314453,
+				312.1687469482422
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 868,
+			"Page": 27,
+			"Path": "//Document/H1[18]",
+			"Text": "Direção ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875,
+				"TextAlign": "End"
+			},
+			"elementId": 87
+		},
+		{
+			"Bounds": [
+				825.5700073242188,
+				268.6237487792969,
+				942.8948364257812,
+				286.64874267578125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 871,
+			"Page": 27,
+			"Path": "//Document/P[20]/Sub",
+			"Text": "Oscar Francisco ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 88
+		},
+		{
+			"Bounds": [
+				801.8500061035156,
+				249.09375,
+				942.8596801757812,
+				267.1187438964844
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 872,
+			"Page": 27,
+			"Path": "//Document/P[20]/Sub[2]",
+			"Text": "Alexandre Macedo ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 89
+		},
+		{
+			"Bounds": [
+				810.75,
+				229.57374572753906,
+				942.7111358642578,
+				247.5987548828125
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 873,
+			"Page": 27,
+			"Path": "//Document/P[20]/Sub[3]",
+			"Text": "Joana Antonaccio ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 90
+		},
+		{
+			"Bounds": [
+				842.25,
+				210.0437469482422,
+				943.4424438476562,
+				228.06875610351562
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 874,
+			"Page": 27,
+			"Path": "//Document/P[20]/Sub[4]",
+			"Text": "Lucio Tavares ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 91
+		},
+		{
+			"Bounds": [
+				809.1699981689453,
+				190.5137481689453,
+				943.1499176025391,
+				208.53875732421875
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"ObjectID": 875,
+			"Page": 27,
+			"Path": "//Document/P[20]/Sub[5]",
+			"Text": "Larissa Fernandes ",
+			"TextSize": 18.024993896484375,
+			"attributes": {
+				"Placement": "Block"
+			},
+			"elementId": 92
+		},
+		{
+			"Bounds": [
+				752.1300048828125,
+				59.743743896484375,
+				921.5062866210938,
+				83.76875305175781
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDFEE+Calibri-Bold",
+				"subset": true,
+				"weight": 700
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 852,
+			"Page": 28,
+			"Path": "//Document/H1[19]",
+			"Text": "Direção Artística ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875,
+				"SpaceAfter": -2.499979999999937
+			},
+			"elementId": 93
+		},
+		{
+			"Bounds": [
+				777.25,
+				33.46875,
+				921.5922393798828,
+				57.493743896484375
+			],
+			"Font": {
+				"alt_family_name": "Calibri",
+				"embedded": true,
+				"encoding": "WinAnsiEncoding",
+				"family_name": "Calibri",
+				"font_type": "TrueType",
+				"italic": false,
+				"monospaced": false,
+				"name": "BCDEEE+Calibri",
+				"subset": true,
+				"weight": 400
+			},
+			"HasClip": true,
+			"Lang": "pt",
+			"ObjectID": 853,
+			"Page": 28,
+			"Path": "//Document/H2[19]",
+			"Text": "André Câmara ",
+			"TextSize": 24.024993896484375,
+			"attributes": {
+				"LineHeight": 28.875
+			},
+			"elementId": 94
+		}
+	],
+	"pages": [
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 0,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 1,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 2,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 3,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 4,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 5,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 6,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 7,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 8,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 9,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 10,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 11,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 12,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 13,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 14,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 15,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 16,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 17,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 18,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 19,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 20,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 21,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 22,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 23,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 24,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 25,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 26,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 27,
+			"rotation": 0,
+			"width": 960
+		},
+		{
+			"boxes": {
+				"CropBox": [
+					0,
+					0,
+					960,
+					540
+				],
+				"MediaBox": [
+					0,
+					0,
+					960,
+					540
+				]
+			},
+			"height": 540,
+			"is_scanned": false,
+			"page_number": 28,
+			"rotation": 0,
+			"width": 960
+		}
+	]
+}

@@ -7,6 +7,12 @@
 */
 
 function padProdFoldersDialog(prodArray) {
+	// Altera a cor de um texto estático.
+	function setTxtColor(sTxt, hex) {
+		var color = hexToRGB(hex);         // Converte a cor hexadecimal em RGB.
+		var pType = sTxt.graphics.PenType.SOLID_COLOR; // Define o tipo da caneta como cor sólida.
+		sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1); // Cria uma nova caneta com a cor e a aplica ao texto.
+	}
 
 	function addProductionLine(prodObj) {
 
@@ -24,8 +30,10 @@ function padProdFoldersDialog(prodArray) {
 		prodDataGrp.alignChildren = ['left', 'center'];
 		prodDataGrp.spacing = 10;
 
-		var div = prodGrp.add('panel');
-		div.alignment = 'fill';
+		var newDiv = prodMainGrp.add("customButton", [0, 0, 1, 1]);
+		newDiv.alignment = ['fill', 'center'];
+		setUiCtrlColor(newDiv, divColor);
+		newDiv.onDraw = customDraw;
 
 		var prodNameTxt = prodDataGrp.add('edittext', undefined, nameTxt);
 		prodNameTxt.helpTip = 'nome que aparecerá no menu';
@@ -44,7 +52,7 @@ function padProdFoldersDialog(prodArray) {
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [230, 24];
-		setTxtHighlight(prodPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+		setTxtHighlight(prodPathLab, normalColor, highlightColor); // Cor de destaque do texto
 
 		var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.dark, { style: 'toolbutton' });
 		deleteBtn.helpTip = 'deletar produção';
@@ -143,19 +151,22 @@ function padProdFoldersDialog(prodArray) {
 	var bGrp2 = BtnGrp.add('group');
 	bGrp2.alignment = 'right'; // Alinha o subgrupo à direita
 
+	// var prodImportBtn = bGrp1.add('statictext', [0, 0, 100, 30], 'importar');
+	// prodImportBtn.text = 'importar';
 	var prodImportBtn = bGrp1.add('button', undefined, 'importar');
-	prodImportBtn.helpTip = '◖ → importar uma lista de produções';
+	prodImportBtn.helpTip = lClick + 'importar uma lista de produções';
+	// prodImportBtn.onDraw = customBtnDraw();
 
 	var prodExportBtn = bGrp1.add('button', undefined, 'exportar');
-	prodExportBtn.helpTip = '◖ → exportar a lista completa de produções';
+	prodExportBtn.helpTip = lClick + 'exportar a lista completa de produções';
 
 	var prodNewBtn = bGrp2.add('button', undefined, 'nova produção');
-	prodNewBtn.helpTip = '◖ → criar nova produção';
+	prodNewBtn.helpTip = lClick + 'criar nova produção';
 
 	var prodSaveBtn = bGrp2.add('button', undefined, 'salvar');
-	prodSaveBtn.helpTip = '◖ → salvar configuração';
+	prodSaveBtn.helpTip = lClick + 'salvar configuração';
 
-	setBgColor(PAD_CONFIG_w, '#515D9E'); // Cor de fundo da janela
+	setBgColor(PAD_CONFIG_w, bgColor); // Cor de fundo da janela
 
 	infoBtn.onClick = function () {
 
