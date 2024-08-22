@@ -27,7 +27,7 @@ function buildComps(structureObj) {
 	var compDuration = 6;
 	var compFPS = 29.97;
 
-	var comp = app.project.items.addComp('tela ' + currentPage, compW, compH, compAspect, compDuration, compFPS);
+	var comp = app.project.items.addComp('tela ' + (currentPage + 1), compW, compH, compAspect, compDuration, compFPS);
 
 	for (var i = 0; i < structureObj.elements.length; i++) {
 
@@ -40,7 +40,7 @@ function buildComps(structureObj) {
 
 		if (page != currentPage) {
 			currentPage = page;
-			comp = app.project.items.addComp('tela ' + currentPage, compW, compH, compAspect, compDuration, compFPS);
+			comp = app.project.items.addComp('tela ' + (currentPage + 1), compW, compH, compAspect, compDuration, compFPS);
 		}
 
 		var currentText = comp.layers.addBoxText([bounds[2] - bounds[0], bounds[3] - bounds[1]]);
