@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable no-empty */
-/* eslint-disable no-prototype-builtins */
 /*
 
 ---------------------------- info ----------------------------
@@ -174,7 +170,7 @@ function animCode(prop, varName) {
 		var easeIn = '';
 		var easeOut = '';
 
-		anim += '\t// key ' + k + ' ease...';
+		anim += '\t// key ' + k + ' ease...\n';
 
 		if (Array.isArray(val)) {
 			val = '[' + val.toString() + ']';
@@ -251,12 +247,10 @@ function layerCode(layer) {
 			var pName = pProp.name
 				.replace(/^[\d]+/, 'n')
 				.toCamelCase()
-				//.replace(/[-&|.]+/, '_')
 				.replace(/[^a-z0-9_]/ig, '');
 			var pName2 = pProp.parentProperty.name
 				.replace(/^[\d]+/, 'n')
 				.toCamelCase()
-				//.replace(/[-&|.]+/, '_')
 				.replace(/[^a-z0-9_]/ig, '') + (D - 1);
 			var var2 = (pProp.propertyDepth == 1) ? pName : pName + '_' + pName2;
 			var varN = cProp.name
@@ -266,7 +260,6 @@ function layerCode(layer) {
 			var exp;
 			var var1 = cProp.name.replace(/^[\d]+/, 'n')
 				.toCamelCase()
-				//.replace(/[-&|.]+/, '_')
 				.replace(/[^a-z0-9_]/ig, '') + '_' + pName + D;
 
 			if (cProp.numProperties > 0) {
@@ -294,7 +287,7 @@ function layerCode(layer) {
 				try {
 					getProperties(cProp);
 				} catch (err) { }
-				
+
 				if (pProp == masks) {
 					layerStr += '\t' + var1 + '.maskMode = ' + cProp.maskMode + ';\n';
 					if (cProp.inverted) layerStr += '\t' + var1 + '.inverted = true;\n';
@@ -307,30 +300,34 @@ function layerCode(layer) {
 
 			} else {
 
-				if (cProp.isModified) {
+				// algumas propriedades não possuem valor, são grupos de propriedades...
+				try {
 
-					if (pProp.canAddProperty(mn)) {
-						layerStr += '\t' + var1 + ' = ' + var2 + '.addProperty(\'' + mn + '\');\n';
-					}
-					var val = cProp.value;
-					exp = cProp.expression;
-					try {
-						cProp.setValue(val);
-						layerStr += valueCode(cProp, var2);
+					if (cProp.isModified) {
 
-						if (exp != '') {
-							layerStr += '\n\t// ' + pProp.name
-								.toLowerCase() + ' ' + cProp.name
-								.toLowerCase() + ' expression...\
+						if (pProp.canAddProperty(mn)) {
+							layerStr += '\t' + var1 + ' = ' + var2 + '.addProperty(\'' + mn + '\');\n';
+						}
+						var val = cProp.value;
+						exp = cProp.expression;
+						try {
+							cProp.setValue(val);
+							layerStr += valueCode(cProp, var2);
+
+							if (exp != '') {
+								layerStr += '\n\t// ' + pProp.name
+									.toLowerCase() + ' ' + cProp.name
+										.toLowerCase() + ' expression...\
 \texp = \'' + expCode(exp) + '\';\
 \t' + var2 + '.property(\'' + mn + '\').expression = exp;\n\n';
-						}
-					} catch (err) { }
+							}
+						} catch (err) { }
 
-					if (cProp.numKeys > 0) {
-						layerStr += animCode(cProp, var2);
+						if (cProp.numKeys > 0) {
+							layerStr += animCode(cProp, var2);
+						}
 					}
-				}
+				} catch (err) { }
 			}
 		}
 		return layerStr;
@@ -422,12 +419,12 @@ function layerCode(layer) {
 \tlayer.label = ' + layer.label + ';\
 \tlayer.inPoint = ' + layer.inPoint + ';\
 \tlayer.outPoint = ' + layer.outPoint + ';';
-	
+
 	if (layer.autoOrient != 4212) layerStr += '\n\tlayer.autoOrient = ' + layer.autoOrient + ';';
 	if (layer.comment != '') layerStr += '\n\tlayer.comment = \'' + layer.comment + '\';';
 	if (layer.locked) layerStr += '\n\tlayer.locked = true;';
 	if (layer.guideLayer) layerStr += '\n\tlayer.guideLayer = true;';
-	
+
 	layerStr += '\n\n\treturn layer;\n}\n\n';
 	layerStr += lName
 		.replaceSpecialCharacters()
