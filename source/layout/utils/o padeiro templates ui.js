@@ -56,8 +56,8 @@ function padeiroTemplateDialog() {
 	var oWidth;                        // Largura da janela com a pré-visualização
 	var previewScale = 0.23;            // Fator de escala de preview da imagem
 	var fileFilter = ['.aep', '.aet']; // Extensões de arquivo de template permitidas
-	var hasData = false;               // Indica se há dados de entrada
-	var hasInput = false;              // Indica se o template possui campos de entrada
+	var hasTextInputData = false;               // Indica se há dados de entrada
+	var hasInputLayers = false;              // Indica se o template possui campos de entrada
 	var exemple = '';                  // Exemplo de texto de entrada
 	var padeiroOutputModuleTemplate;   // Variável para armazenar o template do módulo de saída
 
@@ -70,10 +70,10 @@ function padeiroTemplateDialog() {
 	var tipContent = '...';
 
 	// Cria a janela principal do 'O Padeiro'
-	var wPadeiroTemplates = new Window('dialog', 'O PADEIRO ' + PAD_v);
+	var PAD_TEMPLATES_w = new Window('dialog', 'O PADEIRO ' + PAD_v);
 
 	// Cria o grupo principal que conterá todos os elementos da interface
-	var mainGrp = wPadeiroTemplates.add('group');
+	var mainGrp = PAD_TEMPLATES_w.add('group');
 
 	// Cria o grupo vertical à esquerda para os elementos de seleção do template
 	var vGrp1 = mainGrp.add('group');
@@ -81,7 +81,12 @@ function padeiroTemplateDialog() {
 	vGrp1.alignment = ['center', 'top']; // Alinhamento no centro e no topo
 	vGrp1.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
 
-	divider = mainGrp.add('panel'); // Divisor visual para separar as seções da janela
+	// divider = mainGrp.add('panel'); // Divisor visual para separar as seções da janela
+	// var newDiv = mainGrp.add('customButton', [0, 0, 1, 1]);
+	// newDiv.alignment = ['center', 'fill'];
+	// setUiCtrlColor(newDiv, divColor);
+	// newDiv.onDraw = customDraw;
+
 
 	// Cria o grupo vertical à direita para a pré-visualização e entrada de dados
 	var vGrp2 = mainGrp.add('group');
@@ -122,6 +127,7 @@ function padeiroTemplateDialog() {
 	// Cria a árvore de templates
 	var templateTree = treeGrp.add('treeview', [0, 0, 320, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter); // Constrói a árvore de templates
+	setTxtColor(templateTree, normalColor); // Cor de fundo da janela
 
 	//---------------------------------------------------------
 
@@ -142,21 +148,29 @@ function padeiroTemplateDialog() {
 	// Botões à esquerda
 	// Botão 'Importar'
 	var importBtn = bGrp1.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-	importBtn.helpTip = '◖ → importar template selecionado'; // Define a dica da ferramenta
+	importBtn.helpTip = lClick + 'importar template selecionado'; // Define a dica da ferramenta
 
 	// Botão 'Atualizar'
 	var refreshBtn = bGrp1.add('iconbutton', iconSize, refreshIcon.light, { style: 'toolbutton' });
-	refreshBtn.helpTip = '◖ → atualizar lista'; // Define a dica da ferramenta
+	refreshBtn.helpTip = lClick + 'atualizar lista'; // Define a dica da ferramenta
 
 	// Botão 'Abrir Pasta'
 	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
-	openFldBtn.helpTip = '◖ → abrir a pasta de templates'; // Define a dica da ferramenta
+	openFldBtn.helpTip = lClick + 'abrir a pasta de templates'; // Define a dica da ferramenta
 
 	// Botões à direita
 	// Botão 'Criar'
-	var makeBtn = bGrp2.add('button', undefined, 'criar');   // Adiciona um botão de texto com o rótulo 'criar'
-	makeBtn.helpTip = '◖ → criar e preencher o template selecionado'; // Define a dica da ferramenta
-	makeBtn.enabled = false;                               // O botão 'Criar' começa desabilitado
+	// var makeBtn = bGrp2.add('button', undefined, 'criar');   // Adiciona um botão de texto com o rótulo 'criar'
+	// var makeBtn = new themeButton(bGrp2, {
+	// 	width: 120,
+	// 	height: 36,
+	// 	textColor: bgColor,
+	// 	buttonColor: normalColor,
+	// 	text: 'preencher'
+	// });
+
+	// makeBtn.helpTip = lClick + 'criar e preencher o template selecionado'; // Define a dica da ferramenta
+	// makeBtn.enabled = false;                               // O botão 'Criar' começa desabilitado
 
 	//---------------------------------------------------------
 
@@ -175,8 +189,13 @@ function padeiroTemplateDialog() {
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
 
 	// Divisor de preview
-	divider = vGrp2.add('panel');                                    // Divisor visual para separar as seções da janela
-	divider.alignment = 'fill';                                      // Faz o divisor ocupar toda a largura disponível
+	var newDiv = vGrp2.add('customButton', [0, 0, 1, 1]);
+	newDiv.alignment = ['fill', 'center'];
+	setUiCtrlColor(newDiv, divColor);
+	newDiv.onDraw = customDraw;
+
+	// divider = vGrp2.add('panel');                                    // Divisor visual para separar as seções da janela
+	// divider.alignment = 'fill';                                      // Faz o divisor ocupar toda a largura disponível
 
 
 	// Criação do Grupo de Entrada de Dados (inputGrp)
@@ -208,6 +227,16 @@ function padeiroTemplateDialog() {
 	// Opções de Renderização
 	var renderGrp = txtGrp.add('group');                             // Cria um grupo para as opções de renderização (checkbox)
 	renderGrp.spacing = 15;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo
+	// renderGrp.margins = [0, 8, 0, 0];
+
+	var makeBtn = new themeButton(renderGrp, {
+		width: 120,
+		height: 36,
+		textColor: bgColor,
+		buttonColor: normalColor,
+		text: 'preencher: 1'
+	});
+	makeBtn.helpTip = lClick + 'criar e preencher o template selecionado'; // Define a dica da ferramenta
 
 	var renderLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
 	setTxtColor(renderLabTxt, monoColors[2]);                       // Define a cor do rótulo.
@@ -217,21 +246,24 @@ function padeiroTemplateDialog() {
 	renderCkb.value = true;                                         // Marca a caixa de seleção por padrão.
 	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
 
-	var countLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], '1 template será criado'); // Adiciona um rótulo para a contagem de templates
-	setTxtColor(countLabTxt, '#FF7B79');                       // Define a cor do rótulo.
-	countLabTxt.helpTip = 'numero de templates que serão produzidos.'; // Define a dica da ferramenta
+	// var countLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], '1 versão será criada'); // Adiciona um rótulo para a contagem de templates
+	// setTxtColor(countLabTxt, highlightColor);                       // Define a cor do rótulo.
+	// countLabTxt.helpTip = 'numero de templates que serão produzidos.'; // Define a dica da ferramenta
 
 	// Dicas
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
 	setTxtColor(tipLabTxt, monoColors[2]);                         // Define a cor do rótulo.
 
 	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 210], tipContent, { multiline: true }); // Cria um texto estático para exibir as dicas.
-	setTxtColor(tipContentTxt, mainColors[1]);                    // Define a cor do texto das dicas.
+	setTxtColor(tipContentTxt, highlightColor);                    // Define a cor do texto das dicas.
+
+	setBgColor(PAD_TEMPLATES_w, bgColor); // Cor de fundo da janela
+	// setUiCtrlColor(templateTree, divColor);
 
 	//---------------------------------------------------------
 
 	// Função executada quando a janela 'O Padeiro' é exibida
-	wPadeiroTemplates.onShow = function () {
+	PAD_TEMPLATES_w.onShow = function () {
 		// Expandir a raiz da árvore de templates
 		templateTree.expanded = true;      // Expande o nível principal da árvore de templates (a raiz).
 		var branches = templateTree.items; // Obtém todos os itens (nós e folhas) da árvore de templates.
@@ -244,13 +276,13 @@ function padeiroTemplateDialog() {
 		}
 
 		// Calcula e armazena as dimensões da janela
-		oWidth = wPadeiroTemplates.size.width; // Armazena a largura original da janela (com a área de preview)
-		wWidth = oWidth - 535;                 // Calcula a largura da janela sem a área de preview
+		oWidth = PAD_TEMPLATES_w.size.width; // Armazena a largura original da janela (com a área de preview)
+		wWidth = oWidth - 520;                 // Calcula a largura da janela sem a área de preview
 
 		// Oculta elementos da interface
 		vGrp2.visible = false;      // Oculta o grupo que contém a pré-visualização do template e a área de entrada de dados
 		divider.visible = false;    // Oculta o divisor que separa a pré-visualização dos outros elementos
-		wPadeiroTemplates.size.width = wWidth; // Redimensiona a janela para a largura sem pré-visualização
+		PAD_TEMPLATES_w.size.width = wWidth; // Redimensiona a janela para a largura sem pré-visualização
 
 		// Foco na caixa de pesquisa
 		// Define o foco (cursor) na caixa de pesquisa para que o usuário possa começar a digitar imediatamente
@@ -310,7 +342,7 @@ function padeiroTemplateDialog() {
 
 		// Caso nenhum template seja selecionado
 		if (templateTree.selection == null) {
-			wPadeiroTemplates.size.width = wWidth; // Redimensiona a janela para o tamanho menor (sem a pré-visualização)
+			PAD_TEMPLATES_w.size.width = wWidth; // Redimensiona a janela para o tamanho menor (sem a pré-visualização)
 			vGrp2.visible = false;                 // Oculta a área de preview
 			divider.visible = false;               // Oculta o divisor de preview
 			return;                                // Encerra a função, pois não há mais nada a fazer
@@ -342,11 +374,11 @@ function padeiroTemplateDialog() {
 		// Mostra a área de preview e ajusta a janela
 		vGrp2.visible = true;       // Torna o grupo de preview visível
 		divider.visible = true;     // Torna o divisor de preview visível
-		wPadeiroTemplates.size.width = oWidth; // Redimensiona a janela para incluir a área de preview
+		PAD_TEMPLATES_w.size.width = oWidth; // Redimensiona a janela para incluir a área de preview
 
 		// Bloco try...catch para lidar com possíveis erros durante o carregamento e análise da configuração
 		try {
-			hasInput = false; // Inicializa a variável 'hasInput' como falso
+			hasInputLayers = false; // Inicializa a variável 'hasInputLayers' como falso
 			exemple = lol + '\n\nesse template não pode ser editado pelo padeiro.'; // Mensagem padrão
 			tipContent = 'clique no botão importar e edite o template manualmente.'; // Dica padrão
 
@@ -367,17 +399,17 @@ function padeiroTemplateDialog() {
 				}
 
 				// Verifica se o template possui camadas de entrada (inputs)
-				hasInput = templateData.inputLayers != null;
+				hasInputLayers = templateData.inputLayers != null;
 
 				// Se houver camadas de entrada, atualiza as mensagens de exemplo e dica
-				if (hasInput) {
+				if (hasInputLayers) {
 					exemple = templateData.exemple;
 					tipContent = templateData.tip;
 				}
 			}
 
 			// Atualiza o texto na caixa de entrada de texto e nas dicas com base no resultado da análise da configuração
-			if (!hasData) edtText.text = exemple;
+			if (!hasTextInputData) edtText.text = exemple;
 			tipContentTxt.text = tipContent;
 
 		} catch (err) { // Em caso de erro durante o carregamento ou análise da configuração, exibe um alerta e sai da função
@@ -387,15 +419,15 @@ function padeiroTemplateDialog() {
 
 		// Atualiza o estado dos elementos da interface com base na presença de campos de entrada (inputs) e dados
 		// Habilita o botão 'Criar' se um template for selecionado, houver dados de entrada e o template tiver inputs
-		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
-		inputLabTxt.enabled = hasInput;  // Habilita ou desabilita o rótulo 'input:'
-		edtText.enabled = hasInput;      // Habilita ou desabilita a caixa de texto de entrada
-		renderCkb.enabled = hasInput;    // Habilita ou desabilita a caixa de seleção 'adicionar à fila de render'
-		renderLabTxt.enabled = hasInput; // Habilita ou desabilita o rótulo da caixa de seleção de renderização
+		// makeBtn.enabled = (hasTextInputData && hasInputLayers);
+		inputLabTxt.enabled = hasInputLayers;  // Habilita ou desabilita o rótulo 'input:'
+		edtText.enabled = hasInputLayers;      // Habilita ou desabilita a caixa de texto de entrada
+		renderCkb.enabled = hasInputLayers;    // Habilita ou desabilita a caixa de seleção 'adicionar à fila de render'
+		renderLabTxt.enabled = hasInputLayers; // Habilita ou desabilita o rótulo da caixa de seleção de renderização
 	
 		var count = edtText.text.split(/[\n\r]{2,}/).length;
-		var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
-		countLabTxt.text = count + suffix;
+		// var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
+		makeBtn.text = 'preencher: ' + count;
 	};
 
 	//---------------------------------------------------------
@@ -403,38 +435,38 @@ function padeiroTemplateDialog() {
 	// Função executada quando um template na árvore é ativado (clicado)
 	templateTree.onActivate = function () {
 		// Verifica se o texto de entrada (edtText) não está vazio e se é diferente do exemplo padrão
-		hasData = (edtText.text.trim() != '' && edtText.text != exemple);
+		hasTextInputData = (edtText.text.trim() != '' && edtText.text != exemple);
 
 		// Se não houver dados, define o texto de entrada como o exemplo
-		if (!hasData) edtText.text = exemple;
+		if (!hasTextInputData) edtText.text = exemple;
 
 		// Habilita o botão 'Criar' se um template for selecionado, houver dados de entrada e o template tiver inputs
-		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
+		// makeBtn.enabled = (hasTextInputData && hasInputLayers);
 
 		// Habilita/desabilita os elementos da interface de acordo com a presença de inputs no template
-		inputLabTxt.enabled = hasInput;     // Rótulo 'input:'
-		edtText.enabled = hasInput;         // Caixa de texto de entrada
-		renderCkb.enabled = hasInput;       // Caixa de seleção 'adicionar à fila de render'
-		renderLabTxt.enabled = hasInput;    // Rótulo da caixa de seleção de renderização
+		inputLabTxt.enabled = hasInputLayers;     // Rótulo 'input:'
+		edtText.enabled = hasInputLayers;         // Caixa de texto de entrada
+		renderCkb.enabled = hasInputLayers;       // Caixa de seleção 'adicionar à fila de render'
+		renderLabTxt.enabled = hasInputLayers;    // Rótulo da caixa de seleção de renderização
 	};
 
 	//---------------------------------------------------------
 
 	// Função executada enquanto o usuário está digitando na caixa de texto (edtText)
 	edtText.onChanging = function () {
-		// A variável 'hasData' se torna 'true' se o texto não estiver vazio e for diferente do exemplo padrão
-		hasData = (edtText.text.trim() != '' && edtText.text.trim() != exemple);
+		// A variável 'hasTextInputData' se torna 'true' se o texto não estiver vazio e for diferente do exemplo padrão
+		hasTextInputData = (edtText.text.trim() != '');
 
 		// Habilita o botão 'Criar' se um template for selecionado, houver dados de entrada e o template tiver inputs
-		makeBtn.enabled = (templateTree.selection != null && hasData && hasInput);
+		makeBtn.enabled = (hasTextInputData && hasInputLayers);
 
 		var count = this.text.split(/[\n\r]{2,}/).length;
-		var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
-		countLabTxt.text = count + suffix;
+		// var suffix = count == 1 ? ' versão será criada' : ' versões serão criadas';
+		makeBtn.text = 'preencher: ' + count;
 	};
 
 	edtText.onChange = function () {
-		this.text = this.text.replace(/[\n\r]{2,}/g, '\n\n');
+		this.text = this.text.replace(/[\n\r]{3,}/g, '\n\n');
 	}
 
 	//---------------------------------------------------------
@@ -448,8 +480,8 @@ function padeiroTemplateDialog() {
 		var createdOutputModuleArray = [];    // Array para armazenar os módulos de saída do render (configurações de exportação)
 
 		// Preparação da Interface
-		wPadeiroTemplates.size.height = 10;    // Minimiza a altura da janela principal (simula o fechamento)
-		wPadeiroTemplates.text = 'processando os templates...'; // Altera o texto da janela
+		PAD_TEMPLATES_w.size.height = 10;    // Minimiza a altura da janela principal (simula o fechamento)
+		PAD_TEMPLATES_w.text = 'processando os templates...'; // Altera o texto da janela
 		mainGrp.visible = false;               // Oculta o grupo principal
 
 		// Verificações Iniciais
@@ -664,7 +696,7 @@ function padeiroTemplateDialog() {
 		populateProjectFolders();    // Organiza o projeto com os templates criados.
 		deleteEmptyProjectFolders(); // Exclui pastas vazias do projeto.
 
-		wPadeiroTemplates.close();   // Fecha a janela da interface do 'O Padeiro'.
+		PAD_TEMPLATES_w.close();   // Fecha a janela da interface do 'O Padeiro'.
 
 		// Registro de Dados (Log)
 		// os Logs ainda não são 100% confiáveis devido a
@@ -740,7 +772,7 @@ function padeiroTemplateDialog() {
 			return; // Sai da função para evitar mais processamento em caso de erro
 		}
 
-		wPadeiroTemplates.close(); // Fecha a janela da interface do 'O Padeiro'
+		PAD_TEMPLATES_w.close(); // Fecha a janela da interface do 'O Padeiro'
 	};
 
 	//---------------------------------------------------------
@@ -780,5 +812,5 @@ function padeiroTemplateDialog() {
 	};
 
 	// Exibir a janela da interface do usuário
-	wPadeiroTemplates.show();  // Mostra a janela principal da interface do usuário 'O Padeiro'
+	PAD_TEMPLATES_w.show();  // Mostra a janela principal da interface do usuário 'O Padeiro'
 }

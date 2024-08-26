@@ -7,6 +7,62 @@
 */
 
 //
+
+function themeButton(parentGroup, paramsObj) {
+	var newBtn = parentGroup.add('customButton');
+	newBtn.width = paramsObj.width;
+	newBtn.height = paramsObj.height;
+	newBtn.text = paramsObj.text;
+	newBtn.buttonColor = divColor;
+	newBtn.textColor = normalColor;
+
+	if (paramsObj.buttonColor != undefined) newBtn.buttonColor = paramsObj.buttonColor;
+	if (paramsObj.textColor != undefined) newBtn.textColor = paramsObj.textColor;
+
+	newBtn.preferredSize = [newBtn.width, newBtn.height];
+	newBtn.minimumSize = [68, 34];
+
+	drawThemeButton(newBtn, false);
+
+	newBtn.addEventListener('mouseover', function () {
+		drawThemeButton(this, true);
+	});
+
+	newBtn.addEventListener('mouseout', function () {
+		drawThemeButton(this, false);
+	});
+
+	return newBtn;
+}
+
+function drawThemeButton(button, hover) {
+	var g = button.graphics;
+	var textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(button.textColor), 1);
+	var fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(button.buttonColor));
+	var textSize = g.measureString(button.text);
+
+	if (hover) {
+		textPen = g.newPen(g.PenType.SOLID_COLOR, [1, 1, 1, 1], 1);
+		fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(highlightColor));
+	}
+
+	button.onDraw = function () {
+		if (!this.enabled) {
+			textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(divColor), 1);
+			fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(bgColor));
+		}
+		g.newPath();
+		g.ellipsePath(0, 0, this.height, this.height);
+		g.fillPath(fillBrush);
+		g.ellipsePath(this.width - this.height, 0, this.height, this.height);
+		g.rectPath(this.height / 2, 0, this.width - this.height, this.height);
+		// g.strokePath(textPen);
+		g.fillPath(fillBrush);
+
+		g.drawString(this.text, textPen, (this.width - textSize.width) / 2, this.height / 2 - textSize.height);
+	}
+}
+
 // Cria botões de cor com base em um array de cores.
 function createColorButtons(colorArray, colorGrp) {
 	for (var c = 0; c < colorArray.length; c++) {
