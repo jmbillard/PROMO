@@ -104,15 +104,21 @@ function padeiroTemplateDialog() {
 
 	// Cria um grupo para o botão de informações
 	var infoGrp = headerGrp.add('group');
-	infoGrp.alignment = 'right'; // Alinhamento à direita
+	infoGrp.alignment = ['right', 'center']; // Alinhamento à direita
 
 	// Cria o rótulo 'busca:'
 	var templateLabTxt = templatesGrp.add('statictext', undefined, 'BUSCA:');
 	setTxtColor(templateLabTxt, monoColors[2]); // Define a cor do rótulo
 
 	// Cria o botão de informações
-	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
-	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+	// var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
+	// infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+	var infoBtn = new themeIconButton(infoGrp, {
+		icon: PAD_INFO_ICON,
+		tips: [
+			lClick + 'ajuda | DOCS'
+		]
+	});
 
 	// Cria a caixa de pesquisa
 	var searchBox = treeGrp.add('edittext', [0, 0, 320, 24], '');
@@ -777,7 +783,7 @@ function padeiroTemplateDialog() {
 	};
 
 	// Função para abrir a página de documentação quando o botão 'Informações' é clicado
-	infoBtn.onClick = function () {
+	infoBtn.leftClick.onClick = function () {
 		// Abre a página de documentação do script 'O Padeiro' no GitHub em um navegador web
 		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-preenchendo-templates');
 	};

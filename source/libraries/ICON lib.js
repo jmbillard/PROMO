@@ -5,10 +5,19 @@
 ---------------------------------------------------------------
 
 */
+var infoIcon = {
+	light: '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\b\x06\x00\x00\x00\u008D2\u00CF\u00BD\x00\x00\x00\tpHYs\x00\x00\x0B\x12\x00\x00\x0B\x12\x01\u00D2\u00DD~\u00FC\x00\x00\x006IDAT\x18\u0095c|\u00FD\u00FA\u00F5L\x06"\x00\x131\u008A\x18\u00B0)\x14\x11\x11I\x07atq\x16t\u00817o\u00DE`u\n\u00D1&\u0092\u00EFF\u008A\x15\u0092\u00EF\x19\u00AC\u0080\u0081\u0081\x01\x00m\u00D3\f\u00B8\u00D6\u00D6t;\x00\x00\x00\x00IEND\u00AEB`\u0082',
+	dark:  '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\b\x06\x00\x00\x00\u008D2\u00CF\u00BD\x00\x00\x00/IDAT\x18\u0095c\u0094\u0096\u0096\u009E\u00C9@\x04`"F\x11V\u0085O\u009F>M\x7F\u00FA\u00F4i:\u00BA8#\u00D9V\u00E32\u0091|7R\u00AC\u0090|\u00CF\u00E0\x02\x00\u00AC\u009A\x0F(\u0082\u00D5\u00F7\'\x00\x00\x00\x00IEND\u00AEB`\u0082'
+};
 
 PAD_HOVER_STROKE = new File('~/PROMO/icons/main/stk.png');
 
 //
+
+PAD_INFO_ICON = {
+	normal: infoIcon.light,
+	hover: new File('~/PROMO/icons/main/info0.png')
+};
 
 PAD_ATUALIZAR_ICON = {
 	normal: new File('~/PROMO/icons/main/refresh1.png'),
