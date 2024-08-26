@@ -7,20 +7,151 @@
 */
 
 //
+// Recebe um grupo 'sectionGrp' e um objeto para interação 'uiObj'
+// Adiciona um divisor visual na seção 'sectionGrp'
+function themeDivider(sectionGrp) {
+	var newDiv = sectionGrp.add("customButton", [0, 0, 1, 1]);
+	setUiCtrlColor(newDiv, divColor);
+	newDiv.onDraw = customDraw;
 
-function themeButton(parentGroup, paramsObj) {
-	var newBtn = parentGroup.add('customButton');
-	newBtn.width = paramsObj.width;
-	newBtn.height = paramsObj.height;
-	newBtn.text = paramsObj.text;
+	return newDiv;
+}
+
+// Recebe um grupo 'sectionGrp', um objeto 'ctrlProperties'
+function themeIconButton(sectionGrp, ctrlProperties) {
+
+	var newUiCtrlObj = {};
+	var tipTxt = ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
+
+	if (ctrlProperties.icon.hover == undefined) ctrlProperties.icon.hover = ctrlProperties.icon.normal;
+
+	var btnGroup = sectionGrp.add('group'); // Grupo de botões superior
+
+	var iconGroup = btnGroup.add('group'); // Grupo de botões superior
+	iconGroup.orientation = 'stack'; // Alinhamento central
+
+	newUiCtrlObj.leftClick = iconGroup.add('button', undefined, '');
+	newUiCtrlObj.leftClick.size = [0, 0];
+	newUiCtrlObj.leftClick.visible = false;
+
+	newUiCtrlObj.rightClick = iconGroup.add('button', undefined, '');
+	newUiCtrlObj.rightClick.size = [0, 0];
+	newUiCtrlObj.rightClick.visible = false;
+
+	var hoverImg = iconGroup.add('image', undefined, ctrlProperties.icon.hover);
+	hoverImg.helpTip = tipTxt; // Dica de ajuda
+	hoverImg.visible = false;
+
+	var normalImg = iconGroup.add('image', undefined, ctrlProperties.icon.normal);
+	normalImg.helpTip = tipTxt; // Dica de ajuda
+
+	btnGroup.addEventListener('mouseover', function () {
+
+		this.children[0].children[3].visible = false;
+		this.children[0].children[2].visible = true;
+	});
+
+	// Ao tirar o mouse de cima
+	btnGroup.addEventListener('mouseout', function () {
+
+		this.children[0].children[2].visible = false;
+		this.children[0].children[3].visible = true;
+	});
+
+	hoverImg.addEventListener('click', function (c) {
+		if (c.button == 0) this.parent.children[0].notify();
+	});
+
+	hoverImg.addEventListener('click', function (c) {
+		if (c.button == 2) this.parent.children[1].notify();
+	});
+
+	return newUiCtrlObj;
+}
+
+// Recebe um grupo 'sectionGrp' e um objeto 'ctrlProperties'
+// as propriedades 'ctrlProperties' estão definidas na estrutura da ui 'structureObj'
+function themeImageButton(sectionGrp, ctrlProperties) {
+	var newUiCtrlObj = {};
+	var newBtn = newUiCtrlObj[ctrlProperties.key] = {};
+	var tipTxt = ctrlProperties.labelTxt + ':\n\n' + ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
+
+	if (ctrlProperties.icon.hover == undefined) ctrlProperties.icon.hover = ctrlProperties.icon.normal;
+
+	newBtn.btnGroup = sectionGrp.add('group'); // Grupo de botões superior
+
+	newBtn.iconGroup = newBtn.btnGroup.add('group'); // Grupo de botões superior
+	newBtn.iconGroup.orientation = 'stack'; // Alinhamento central
+
+	newBtn.leftClick = newBtn.iconGroup.add('button', undefined, '');
+	newBtn.leftClick.size = [0, 0];
+	newBtn.leftClick.visible = false;
+
+	newBtn.rightClick = newBtn.iconGroup.add('button', undefined, '');
+	newBtn.rightClick.size = [0, 0];
+	newBtn.rightClick.visible = false;
+
+	newBtn.hoverImg = newBtn.iconGroup.add('image', undefined, ctrlProperties.icon.hover);
+	newBtn.hoverImg.helpTip = tipTxt; // Dica de ajuda
+	newBtn.hoverImg.visible = false;
+
+	newBtn.normalImg = newBtn.iconGroup.add('image', undefined, ctrlProperties.icon.normal);
+	newBtn.normalImg.helpTip = tipTxt; // Dica de ajuda
+
+	newBtn.label = newBtn.btnGroup.add('statictext', undefined, ctrlProperties.labelTxt, { truncate: 'end' }); // Texto do botão
+	newBtn.label.maximumSize = [60, 18]; // Dica de ajuda
+	newBtn.label.helpTip = tipTxt; // Dica de ajuda
+
+	setTxtColor(newBtn.label, normalColor); // Cor de destaque do texto
+
+	newBtn.btnGroup.addEventListener('mouseover', function () {
+
+		setTxtColor(this.children[1], highlightColor);
+		this.children[0].children[3].visible = false;
+		this.children[0].children[2].visible = true;
+	});
+
+	newBtn.btnGroup.addEventListener('mouseout', function () {
+
+		setTxtColor(this.children[1], normalColor);
+		this.children[0].children[2].visible = false;
+		this.children[0].children[3].visible = true;
+	});
+
+	newBtn.label.addEventListener('click', function (c) {
+		if (c.button == 0) this.parent.children[0].children[0].notify();
+	});
+
+	newBtn.label.addEventListener('click', function (c) {
+		if (c.button == 2) this.parent.children[0].children[1].notify();
+	});
+
+	newBtn.hoverImg.addEventListener('click', function (c) {
+		if (c.button == 0) this.parent.children[0].notify();
+	});
+
+	newBtn.hoverImg.addEventListener('click', function (c) {
+		if (c.button == 2) this.parent.children[1].notify();
+	});
+
+	return newBtn;
+}
+
+function themeButton(sectionGrp, ctrlProperties) {
+	var tipTxt = ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
+	var newBtn = sectionGrp.add('customButton');
+	newBtn.width = ctrlProperties.width;
+	newBtn.height = ctrlProperties.height;
+	newBtn.text = ctrlProperties.labelTxt;
 	newBtn.buttonColor = divColor;
 	newBtn.textColor = normalColor;
 
-	if (paramsObj.buttonColor != undefined) newBtn.buttonColor = paramsObj.buttonColor;
-	if (paramsObj.textColor != undefined) newBtn.textColor = paramsObj.textColor;
+	if (ctrlProperties.buttonColor != undefined) newBtn.buttonColor = ctrlProperties.buttonColor;
+	if (ctrlProperties.textColor != undefined) newBtn.textColor = ctrlProperties.textColor;
 
 	newBtn.preferredSize = [newBtn.width, newBtn.height];
 	newBtn.minimumSize = [68, 34];
+	newBtn.helpTip = tipTxt;
 
 	drawThemeButton(newBtn, false);
 

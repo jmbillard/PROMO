@@ -255,81 +255,6 @@ function O_PADEIRO_UTL(thisObj) {
 	// Cria os controles da interface e define os eventos entre eles
 	function PAD_buildUi(structureObj, uiObj) {
 
-		// Recebe um grupo 'sectionGrp' e um objeto para interação 'uiObj'
-		// Adiciona um divisor visual na seção 'sectionGrp'
-		function PAD_addDiv(sectionGrp, uiObj) {
-			var newDiv = sectionGrp.add("customButton");
-			setUiCtrlColor(newDiv, divColor);
-			newDiv.onDraw = customDraw;
-			uiObj.divArray.push(newDiv);
-		}
-
-		// Recebe um grupo 'sectionGrp', um objeto 'ctrlProperties' e um objeto para interação 'uiObj'
-		// as propriedades 'ctrlProperties' estão definidas na estrutura da ui 'structureObj'
-		// adiciona um 'imageButton' e com eventos na seção 'sectionGrp' usando as propriedades 'ctrlProperties'
-		function PAD_addImageButton(sectionGrp, ctrlProperties, uiObj) {
-			var btn = uiObj[ctrlProperties.key] = {};
-
-			if (ctrlProperties.icon.hover == undefined) ctrlProperties.icon.hover = ctrlProperties.icon.normal;
-
-			btn.btnGroup = sectionGrp.add('group'); // Grupo de botões superior
-
-			btn.iconGroup = btn.btnGroup.add('group'); // Grupo de botões superior
-			btn.iconGroup.orientation = 'stack'; // Alinhamento central
-
-			btn.leftClick = btn.iconGroup.add('button', undefined, '');
-			btn.leftClick.size = [0, 0];
-			btn.leftClick.visible = false;
-
-			btn.rightClick = btn.iconGroup.add('button', undefined, '');
-			btn.rightClick.size = [0, 0];
-			btn.rightClick.visible = false;
-
-			btn.hoverImg = btn.iconGroup.add('image', undefined, ctrlProperties.icon.hover);
-			btn.hoverImg.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
-			btn.hoverImg.visible = false;
-
-			btn.normalImg = btn.iconGroup.add('image', undefined, ctrlProperties.icon.normal);
-			btn.normalImg.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
-
-			btn.label = btn.btnGroup.add('statictext', undefined, ctrlProperties.labelTxt, { truncate: 'end' }); // Texto do botão
-			btn.label.maximumSize = [60, 18]; // Dica de ajuda
-			btn.label.helpTip = ctrlProperties.tipTxt; // Dica de ajuda
-
-			setTxtColor(btn.label, normalColor); // Cor de destaque do texto
-			uiObj.buttonArray.push(btn);
-
-			btn.btnGroup.addEventListener('mouseover', function () {
-
-				setTxtColor(this.children[1], highlightColor);
-				this.children[0].children[3].visible = false;
-				this.children[0].children[2].visible = true;
-			});
-
-			// Ao tirar o mouse de cima
-			btn.btnGroup.addEventListener('mouseout', function () {
-
-				setTxtColor(this.children[1], normalColor);
-				this.children[0].children[2].visible = false;
-				this.children[0].children[3].visible = true;
-			});
-
-			btn.label.addEventListener('click', function (c) {
-				if (c.button == 0) this.parent.children[0].children[0].notify();
-			});
-
-			btn.label.addEventListener('click', function (c) {
-				if (c.button == 2) this.parent.children[0].children[1].notify();
-			});
-
-			btn.hoverImg.addEventListener('click', function (c) {
-				if (c.button == 0) this.parent.children[0].notify();
-			});
-
-			btn.hoverImg.addEventListener('click', function (c) {
-				if (c.button == 2) this.parent.children[1].notify();
-			});
-		}
 
 		var sectionCounter = 0;
 
@@ -339,7 +264,7 @@ function O_PADEIRO_UTL(thisObj) {
 		for (var sec in structureObj) {
 			var section = structureObj[sec];
 
-			if (sectionCounter > 0) PAD_addDiv(uiObj.mainGrp, uiObj);
+			if (sectionCounter > 0) uiObj.divArray.push(new themeDivider(uiObj.mainGrp));
 
 			var sectionGrp = uiObj.mainGrp.add('group', undefined, { name: 'sectionGrp' }); // Grupo de botões superior
 			sectionGrp.alignment = ['center', 'top']; // Alinhamento
@@ -347,12 +272,14 @@ function O_PADEIRO_UTL(thisObj) {
 
 			for (var ctrl in section) {
 				var ctrlProperties = section[ctrl];
-				ctrlProperties.tipTxt = ctrlProperties.labelTxt + ':\n\n' + ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
 				ctrlProperties.key = ctrl;
 
 				if (ctrlProperties.labelTxt == undefined) ctrlProperties.labelTxt = ctrl.replace(/_/g, ' ').toTitleCase();
 
-				if (ctrlProperties.type == 'imageButton') PAD_addImageButton(sectionGrp, ctrlProperties, uiObj);
+				if (ctrlProperties.type == 'imageButton') {
+					uiObj[ctrl] = new themeImageButton(sectionGrp, ctrlProperties);
+					uiObj.buttonArray.push(uiObj[ctrl]);
+				}
 			}
 			sectionCounter++;
 		}

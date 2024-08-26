@@ -81,13 +81,6 @@ function padeiroTemplateDialog() {
 	vGrp1.alignment = ['center', 'top']; // Alinhamento no centro e no topo
 	vGrp1.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
 
-	// divider = mainGrp.add('panel'); // Divisor visual para separar as seções da janela
-	// var newDiv = mainGrp.add('customButton', [0, 0, 1, 1]);
-	// newDiv.alignment = ['center', 'fill'];
-	// setUiCtrlColor(newDiv, divColor);
-	// newDiv.onDraw = customDraw;
-
-
 	// Cria o grupo vertical à direita para a pré-visualização e entrada de dados
 	var vGrp2 = mainGrp.add('group');
 	vGrp2.orientation = 'column';        // Orientação vertical
@@ -127,7 +120,7 @@ function padeiroTemplateDialog() {
 	// Cria a árvore de templates
 	var templateTree = treeGrp.add('treeview', [0, 0, 320, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter); // Constrói a árvore de templates
-	setTxtColor(templateTree, normalColor); // Cor de fundo da janela
+	// setTxtColor(templateTree, normalColor); // Cor de fundo da janela
 
 	//---------------------------------------------------------
 
@@ -135,42 +128,30 @@ function padeiroTemplateDialog() {
 	var bGrp = vGrp1.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
 	bGrp.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
 	bGrp.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
+	bGrp.margins = [0, 8, 0, 0];
 
 	// Grupo dos botões à esquerda
 	var bGrp1 = bGrp.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
 	bGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda
-	bGrp1.spacing = 2;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
+	bGrp1.spacing = 16;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
 
 	// Grupo do botão à direita
 	var bGrp2 = bGrp.add('group');      // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita
 	bGrp2.alignment = 'right';          // Alinha o subgrupo à direita
 
-	// Botões à esquerda
-	// Botão 'Importar'
-	var importBtn = bGrp1.add('iconbutton', iconSize, downloadIcon.light, { style: 'toolbutton' });
-	importBtn.helpTip = lClick + 'importar template selecionado'; // Define a dica da ferramenta
+	var refreshBtn = new themeIconButton(bGrp1, {
+		icon: PAD_ATUALIZAR_ICON,
+		tips: [
+			lClick + 'atualizar lista de templates'
+		]
+	});
 
-	// Botão 'Atualizar'
-	var refreshBtn = bGrp1.add('iconbutton', iconSize, refreshIcon.light, { style: 'toolbutton' });
-	refreshBtn.helpTip = lClick + 'atualizar lista'; // Define a dica da ferramenta
-
-	// Botão 'Abrir Pasta'
-	var openFldBtn = bGrp1.add('iconbutton', iconSize, folderIcon.light, { style: 'toolbutton' });
-	openFldBtn.helpTip = lClick + 'abrir a pasta de templates'; // Define a dica da ferramenta
-
-	// Botões à direita
-	// Botão 'Criar'
-	// var makeBtn = bGrp2.add('button', undefined, 'criar');   // Adiciona um botão de texto com o rótulo 'criar'
-	// var makeBtn = new themeButton(bGrp2, {
-	// 	width: 120,
-	// 	height: 36,
-	// 	textColor: bgColor,
-	// 	buttonColor: normalColor,
-	// 	text: 'preencher'
-	// });
-
-	// makeBtn.helpTip = lClick + 'criar e preencher o template selecionado'; // Define a dica da ferramenta
-	// makeBtn.enabled = false;                               // O botão 'Criar' começa desabilitado
+	var openFldBtn = new themeIconButton(bGrp1, {
+		icon: PAD_PASTA_ICON,
+		tips: [
+			lClick + 'abrir pasta de templates'
+		]
+	});
 
 	//---------------------------------------------------------
 
@@ -189,14 +170,8 @@ function padeiroTemplateDialog() {
 	previewImg.size = [1920 * previewScale, 1080 * previewScale];    // Define o tamanho da imagem de preview, aplicando um fator de escala ('previewScale')
 
 	// Divisor de preview
-	var newDiv = vGrp2.add('customButton', [0, 0, 1, 1]);
+	var newDiv = themeDivider(vGrp2);
 	newDiv.alignment = ['fill', 'center'];
-	setUiCtrlColor(newDiv, divColor);
-	newDiv.onDraw = customDraw;
-
-	// divider = vGrp2.add('panel');                                    // Divisor visual para separar as seções da janela
-	// divider.alignment = 'fill';                                      // Faz o divisor ocupar toda a largura disponível
-
 
 	// Criação do Grupo de Entrada de Dados (inputGrp)
 	var inputGrp = vGrp2.add('group');                              // Cria um grupo para conter os elementos relacionados à entrada de dados e dicas
@@ -227,16 +202,17 @@ function padeiroTemplateDialog() {
 	// Opções de Renderização
 	var renderGrp = txtGrp.add('group');                             // Cria um grupo para as opções de renderização (checkbox)
 	renderGrp.spacing = 15;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo
-	// renderGrp.margins = [0, 8, 0, 0];
 
 	var makeBtn = new themeButton(renderGrp, {
 		width: 120,
-		height: 36,
+		height: 32,
 		textColor: bgColor,
 		buttonColor: normalColor,
-		text: 'preencher: 1'
+		labelTxt: 'preencher: 1',
+		tips: [
+			lClick + 'criar e preencher o template selecionado'
+		]
 	});
-	makeBtn.helpTip = lClick + 'criar e preencher o template selecionado'; // Define a dica da ferramenta
 
 	var renderLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
 	setTxtColor(renderLabTxt, monoColors[2]);                       // Define a cor do rótulo.
@@ -246,10 +222,6 @@ function padeiroTemplateDialog() {
 	renderCkb.value = true;                                         // Marca a caixa de seleção por padrão.
 	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
 
-	// var countLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], '1 versão será criada'); // Adiciona um rótulo para a contagem de templates
-	// setTxtColor(countLabTxt, highlightColor);                       // Define a cor do rótulo.
-	// countLabTxt.helpTip = 'numero de templates que serão produzidos.'; // Define a dica da ferramenta
-
 	// Dicas
 	var tipLabTxt = tipGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
 	setTxtColor(tipLabTxt, monoColors[2]);                         // Define a cor do rótulo.
@@ -258,7 +230,6 @@ function padeiroTemplateDialog() {
 	setTxtColor(tipContentTxt, highlightColor);                    // Define a cor do texto das dicas.
 
 	setBgColor(PAD_TEMPLATES_w, bgColor); // Cor de fundo da janela
-	// setUiCtrlColor(templateTree, divColor);
 
 	//---------------------------------------------------------
 
@@ -281,7 +252,7 @@ function padeiroTemplateDialog() {
 
 		// Oculta elementos da interface
 		vGrp2.visible = false;      // Oculta o grupo que contém a pré-visualização do template e a área de entrada de dados
-		divider.visible = false;    // Oculta o divisor que separa a pré-visualização dos outros elementos
+		newDiv.visible = false;    // Oculta o divisor que separa a pré-visualização dos outros elementos
 		PAD_TEMPLATES_w.size.width = wWidth; // Redimensiona a janela para a largura sem pré-visualização
 
 		// Foco na caixa de pesquisa
@@ -344,7 +315,7 @@ function padeiroTemplateDialog() {
 		if (templateTree.selection == null) {
 			PAD_TEMPLATES_w.size.width = wWidth; // Redimensiona a janela para o tamanho menor (sem a pré-visualização)
 			vGrp2.visible = false;                 // Oculta a área de preview
-			divider.visible = false;               // Oculta o divisor de preview
+			newDiv.visible = false;               // Oculta o divisor de preview
 			return;                                // Encerra a função, pois não há mais nada a fazer
 		}
 
@@ -358,7 +329,7 @@ function padeiroTemplateDialog() {
 		scriptFile = new File(templateBase + '_script.js');          // arquivo de script (se houver)
 
 		// Habilita o botão de importar se um template estiver selecionado
-		importBtn.enabled = templateTree.selection != null;
+		// importBtn.enabled = templateTree.selection != null;
 
 		// Verifica se o arquivo de preview existe
 		if (previewImgFile.exists) {
@@ -373,7 +344,7 @@ function padeiroTemplateDialog() {
 
 		// Mostra a área de preview e ajusta a janela
 		vGrp2.visible = true;       // Torna o grupo de preview visível
-		divider.visible = true;     // Torna o divisor de preview visível
+		newDiv.visible = true;     // Torna o divisor de preview visível
 		PAD_TEMPLATES_w.size.width = oWidth; // Redimensiona a janela para incluir a área de preview
 
 		// Bloco try...catch para lidar com possíveis erros durante o carregamento e análise da configuração
@@ -424,7 +395,7 @@ function padeiroTemplateDialog() {
 		edtText.enabled = hasInputLayers;      // Habilita ou desabilita a caixa de texto de entrada
 		renderCkb.enabled = hasInputLayers;    // Habilita ou desabilita a caixa de seleção 'adicionar à fila de render'
 		renderLabTxt.enabled = hasInputLayers; // Habilita ou desabilita o rótulo da caixa de seleção de renderização
-	
+
 		var count = edtText.text.split(/[\n\r]{2,}/).length;
 		// var suffix = count == 1 ? ' template será criado' : ' templates serão criados';
 		makeBtn.text = 'preencher: ' + count;
@@ -752,7 +723,7 @@ function padeiroTemplateDialog() {
 
 	// Função executada ao clicar no botão 'Importar' ou ao dar duplo clique em um template na árvore
 	// Atribui a mesma função para o evento onClick do botão e onDoubleClick da árvore de templates
-	importBtn.onClick = templateTree.onDoubleClick = function () {
+	templateTree.onDoubleClick = function () {
 
 		try { // Tentar importar o template
 			var IO = new ImportOptions(templateFile); // Opções de importação
@@ -778,7 +749,7 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// Função para atualizar a árvore de templates quando o botão 'Atualizar' (refreshBtn) é clicado
-	refreshBtn.onClick = function () {
+	refreshBtn.leftClick.onClick = function () {
 		// Atualiza a árvore de templates chamando a função 'buildTree'
 		buildTree(templatesFolder, templateTree, fileFilter);
 
@@ -798,7 +769,7 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// Função para abrir a pasta de templates quando o botão 'Abrir Pasta' é clicado
-	openFldBtn.onClick = function () {
+	openFldBtn.leftClick.onClick = function () {
 		if (!templatesFolder.exists) {           // Verifica se a pasta de templates ainda não existe
 			templatesFolder.create();            // Se não existir, cria a pasta de templates
 		}

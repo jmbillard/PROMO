@@ -8,6 +8,25 @@
 
 PAD_HOVER_STROKE = new File('~/PROMO/icons/main/stk.png');
 
+//
+
+PAD_ATUALIZAR_ICON = {
+	normal: new File('~/PROMO/icons/main/refresh1.png'),
+	hover: new File('~/PROMO/icons/main/refresh0.png')
+};
+
+PAD_PASTA_ICON = {
+	normal: new File('~/PROMO/icons/main/open1.png'),
+	hover: new File('~/PROMO/icons/main/open0.png')
+};
+
+PAD_FECHAR_ICON = {
+	normal: new File('~/PROMO/icons/main/close1.png'),
+	hover: new File('~/PROMO/icons/main/close0.png')
+};
+
+//
+
 PAD_TEMPLATES_ICON = {
 	normal: new File('~/PROMO/icons/main/templates1.png'),
 	hover: new File('~/PROMO/icons/main/templates0.png')

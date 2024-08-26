@@ -7,22 +7,21 @@
 */
 
 function padProdFoldersDialog(prodArray) {
+
 	function addProductionLine(prodObj) {
 
 		var nameTxt = prodObj.name;
 		var pathTxt = prodObj.templatesPath;
 		var iconImg = prodObj.icon;
-
-		var newDiv = prodMainGrp.add('customButton', [0, 0, 1, 1]);
-		newDiv.alignment = ['fill', 'center'];
-		setUiCtrlColor(newDiv, divColor);
-		newDiv.onDraw = customDraw;
-
+		
 		var prodGrp = prodMainGrp.add('group', undefined);
 		prodGrp.orientation = 'column';
 		prodGrp.alignChildren = ['left', 'center'];
 		prodGrp.spacing = 10;
 
+		var newDiv = themeDivider(prodGrp);
+		newDiv.alignment = ['fill', 'center'];
+		
 		var prodDataGrp = prodGrp.add('group', undefined);
 		prodDataGrp.orientation = 'row';
 		prodDataGrp.alignChildren = ['left', 'center'];
@@ -44,13 +43,17 @@ function padProdFoldersDialog(prodArray) {
 
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
-		prodPathLab.preferredSize = [230, 24];
+		prodPathLab.preferredSize = [300, 24];
 		setTxtHighlight(prodPathLab, normalColor, highlightColor); // Cor de destaque do texto
 
-		var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
-		deleteBtn.helpTip = 'deletar produção';
-		deleteBtn.preferredSize = [36, 36];
-
+		// var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
+		var deleteBtn = new themeIconButton(prodDataGrp, {
+			icon: PAD_FECHAR_ICON,
+			tips: [
+				lClick + 'deletar produção'
+			]
+		});
+	
 		// ==========
 
 		prodIconBtn.onClick = function () {
@@ -76,10 +79,10 @@ function padProdFoldersDialog(prodArray) {
 			this.helpTip = 'caminho da pasta de templates:\n\n' + newTemplatesPath.fullName;
 		});
 
-		deleteBtn.onClick = function () {
+		deleteBtn.leftClick.onClick = function () {
 
-			prodMainGrp.remove(this.parent.parent);
-			prodMainGrp.layout.layout(true);
+			prodMainGrp.remove(this.parent.parent.parent.parent);
+			PAD_CONFIG_w.layout.layout(true);
 			PAD_CONFIG_w.layout.resize();
 		};
 	};
@@ -146,34 +149,41 @@ function padProdFoldersDialog(prodArray) {
 
 	var prodImportBtn = new themeButton(bGrp1, {
 		width: 80,
-		height: 36,
-		text: 'importar'
+		height: 32,
+		labelTxt: 'importar',
+		tips: [
+			lClick + 'importar uma lista de produções'
+		]
 	});
-	prodImportBtn.helpTip = lClick + 'importar uma lista de produções';
 
 	var prodExportBtn = new themeButton(bGrp1, {
 		width: 80,
-		height: 36,
-		text: 'exportar'
+		height: 32,
+		labelTxt: 'exportar',
+		tips: [
+			lClick + 'exportar a lista completa de produções'
+		]
 	});
-	prodExportBtn.helpTip = lClick + 'exportar a lista completa de produções';
 
 	var prodNewBtn = new themeButton(bGrp2, {
 		width: 120,
-		height: 36,
-		text: '+ nova produção'
+		height: 32,
+		labelTxt: '+ nova produção',
+		tips: [
+			lClick + 'criar nova produção'
+		]
 	});
-	prodNewBtn.helpTip = lClick + 'criar nova produção';
 
 	var prodSaveBtn = new themeButton(bGrp2, {
 		width: 120,
-		height: 36,
+		height: 32,
 		textColor: bgColor,
 		buttonColor: normalColor,
-		text: 'salvar lista'
+		labelTxt: 'salvar a lista',
+		tips: [
+			lClick + 'salvar a lista de produções'
+		]
 	});
-	prodSaveBtn.helpTip = lClick + 'salvar lista de produções';
-	// prodSaveBtn.enabled = false;
 
 	setBgColor(PAD_CONFIG_w, bgColor); // Cor de fundo da janela
 
@@ -181,9 +191,6 @@ function padProdFoldersDialog(prodArray) {
 
 		var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
 		openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
-		// prodSaveBtn.enabled = true;
-		// PAD_CONFIG_w.notify('onDraw');
-		// PAD_CONFIG_w.layout.layout(true);
 	};
 
 	prodImportBtn.onClick = function () {
@@ -248,7 +255,6 @@ function padProdFoldersDialog(prodArray) {
 
 		prodMainGrp.layout.layout(true);
 		PAD_CONFIG_w.layout.layout(true);
-
 	};
 
 	prodSaveBtn.onClick = function () {
