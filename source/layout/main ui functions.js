@@ -11,7 +11,7 @@
 // Adiciona um divisor visual na seção 'sectionGrp'
 function themeDivider(sectionGrp) {
 	var newDiv = sectionGrp.add("customButton", [0, 0, 1, 1]);
-	setUiCtrlColor(newDiv, divColor);
+	setUiCtrlColor(newDiv, divColor1);
 	newDiv.onDraw = customDraw;
 
 	return newDiv;
@@ -102,18 +102,18 @@ function themeImageButton(sectionGrp, ctrlProperties) {
 	newBtn.label.maximumSize = [60, 18]; // Dica de ajuda
 	newBtn.label.helpTip = tipTxt; // Dica de ajuda
 
-	setTxtColor(newBtn.label, normalColor); // Cor de destaque do texto
+	setFgColor(newBtn.label, normalColor1); // Cor de destaque do texto
 
 	newBtn.btnGroup.addEventListener('mouseover', function () {
 
-		setTxtColor(this.children[1], highlightColor);
+		setFgColor(this.children[1], highlightColor1);
 		this.children[0].children[3].visible = false;
 		this.children[0].children[2].visible = true;
 	});
 
 	newBtn.btnGroup.addEventListener('mouseout', function () {
 
-		setTxtColor(this.children[1], normalColor);
+		setFgColor(this.children[1], normalColor1);
 		this.children[0].children[2].visible = false;
 		this.children[0].children[3].visible = true;
 	});
@@ -143,8 +143,8 @@ function themeButton(sectionGrp, ctrlProperties) {
 	newBtn.width = ctrlProperties.width;
 	newBtn.height = ctrlProperties.height;
 	newBtn.text = ctrlProperties.labelTxt;
-	newBtn.buttonColor = divColor;
-	newBtn.textColor = normalColor;
+	newBtn.buttonColor = divColor1;
+	newBtn.textColor = normalColor1;
 
 	if (ctrlProperties.buttonColor != undefined) newBtn.buttonColor = ctrlProperties.buttonColor;
 	if (ctrlProperties.textColor != undefined) newBtn.textColor = ctrlProperties.textColor;
@@ -174,12 +174,12 @@ function drawThemeButton(button, hover) {
 
 	if (hover) {
 		textPen = g.newPen(g.PenType.SOLID_COLOR, [1, 1, 1, 1], 1);
-		fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(highlightColor));
+		fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(highlightColor1));
 	}
 
 	button.onDraw = function () {
 		if (!this.enabled) {
-			textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(divColor), 1);
+			textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(divColor1), 1);
 			fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(bgColor));
 		}
 		g.newPath();
@@ -284,21 +284,21 @@ function setUiCtrlColor(ctrl, hex) {
 }
 
 // Altera a cor de um texto estático.
-function setTxtColor(sTxt, hex) {
+function setFgColor(sTxt, hex) {
 	var color = hexToRGB(hex);         // Converte a cor hexadecimal em RGB.
 	var pType = sTxt.graphics.PenType.SOLID_COLOR; // Define o tipo da caneta como cor sólida.
 	sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1); // Cria uma nova caneta com a cor e a aplica ao texto.
 }
 
 // Adiciona efeito de destaque (highlight) ao texto estático quando o mouse passa por cima.
-function setTxtHighlight(sTxt, normalColor, highlightColor) {
-	setTxtColor(sTxt, normalColor);     // Define a cor normal do texto.
+function setTxtHighlight(sTxt, normalColor1, highlightColor1) {
+	setFgColor(sTxt, normalColor1);     // Define a cor normal do texto.
 
 	sTxt.addEventListener('mouseover', function () { // Ao passar o mouse por cima do texto:
-		setTxtColor(sTxt, highlightColor); // Muda para a cor de destaque.
+		setFgColor(sTxt, highlightColor1); // Muda para a cor de destaque.
 	});
 	sTxt.addEventListener('mouseout', function () {  // Ao tirar o mouse de cima do texto:
-		setTxtColor(sTxt, normalColor);  // Retorna para a cor normal.
+		setFgColor(sTxt, normalColor1);  // Retorna para a cor normal.
 	});
 }
 
@@ -687,7 +687,7 @@ function getStaticTextLabels(grp, resultArray) {
 			resultArray.push(lab); // Adiciona o rótulo ao array resultante.
 
 			// Define a cor do texto do rótulo com base no tema de ícones (iconTheme).
-			setTxtColor(lab, sTxtColor[iconTheme]);
+			setFgColor(lab, sTxtColor[iconTheme]);
 		}
 	}
 	return resultArray; // Retorna o array com todos os rótulos encontrados.

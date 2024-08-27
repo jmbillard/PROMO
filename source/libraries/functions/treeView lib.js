@@ -84,7 +84,7 @@ function createHierarchy(array, node, fileTypes) {
 				// Filtra os arquivos com base nas extensões permitidas em fileTypes
 				if (fileTypes.indexOf(getFileExt(nodeName)) >= 0) {
 					var templateItem = node.add('item', nodeName); // Adiciona um nó de arquivo na árvore
-					templateItem.image = templateListIcon.light;  // Define o ícone do arquivo
+					templateItem.image = PAD_AE_ICON; // Define o ícone do arquivo
 					templateItem.file = array[n];  // Define o ícone do arquivo
 				}
 			} catch (error) { }

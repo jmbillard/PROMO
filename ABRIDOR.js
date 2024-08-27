@@ -91,3 +91,9 @@ if (structureFile != null) {
 
 	buildComps(structureObj);
 }
+
+function ABRIDOR_UI() {
+	var ABRIDOR_w = new Window('dialog', scriptName + ' ' + scriptVersion);
+	var mainGroup = ABRIDOR_w.add('group');
+	var siteBtn = mainGroup.add('button', undefined, 'abrir\nconversor online');
+}

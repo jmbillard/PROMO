@@ -44,7 +44,7 @@ function padProdFoldersDialog(prodArray) {
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [300, 24];
-		setTxtHighlight(prodPathLab, normalColor, highlightColor); // Cor de destaque do texto
+		setTxtHighlight(prodPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
 		// var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
 		var deleteBtn = new themeIconButton(prodDataGrp, {
@@ -111,11 +111,18 @@ function padProdFoldersDialog(prodArray) {
 
 	// Rótulo de preview
 	var listLabTxt = labGrp.add('statictext', undefined, 'PRODUÇÕES:'); // Adiciona um texto estático
-	setTxtColor(listLabTxt, monoColors[2]);   // Define a cor do texto
+	setFgColor(listLabTxt, normalColor1);   // Define a cor do texto
 
 	// Cria o botão de informações
-	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
-	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+	// var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
+	// infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+	var infoBtn = new themeIconButton(infoGrp, {
+		icon: PAD_INFO_ICON,
+		tips: [
+			lClick + 'ajuda | DOCS'
+		]
+	});
+
 
 	var prodMainGrp = PAD_CONFIG_w.add('group', undefined);
 	prodMainGrp.orientation = 'column';
@@ -177,17 +184,17 @@ function padProdFoldersDialog(prodArray) {
 	var prodSaveBtn = new themeButton(bGrp2, {
 		width: 120,
 		height: 32,
-		textColor: bgColor,
-		buttonColor: normalColor,
+		textColor: bgColor1,
+		buttonColor: normalColor1,
 		labelTxt: 'salvar a lista',
 		tips: [
 			lClick + 'salvar a lista de produções'
 		]
 	});
 
-	setBgColor(PAD_CONFIG_w, bgColor); // Cor de fundo da janela
+	setBgColor(PAD_CONFIG_w, bgColor1); // Cor de fundo da janela
 
-	infoBtn.onClick = function () {
+	infoBtn.leftClick.onClick = function () {
 
 		var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-adicionando-pastas-de-produ%C3%A7%C3%A3o'; // Define o URL do site de documentação.
 		openWebSite(siteUrl); // Abre o site de documentação em um navegador web.

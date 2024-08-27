@@ -21,7 +21,7 @@ function renderTemplateDialog(array) {
 	// Primeiro Texto de Ajuda
 	// Adiciona um texto estático à janela com instruções para o usuário
 	var helpTxt1 = wPref.add('statictext', [0, 0, 250, 18], 'templates de render:');
-	setTxtColor(helpTxt1, monoColors[2]);                // Define a cor do texto
+	setFgColor(helpTxt1, txtColor);                // Define a cor do texto
 
 	// Grupo para a Lista Suspensa
 	var renderGrp = wPref.add('group');                   // Cria um grupo para organizar a lista e facilitar o layout
@@ -36,7 +36,7 @@ function renderTemplateDialog(array) {
 
 	// Segundo Texto de Ajuda (Canal Alpha)
 	var helpTxt2 = wPref.add('statictext', [0, 0, 250, 36], txtHelp2Content, { multiline: true }); // Indicação sobre a nescidade de canal alpha
-	setTxtColor(helpTxt2, mainColors[1]);                // Define a cor do texto
+	setFgColor(helpTxt2, mainColors[1]);                // Define a cor do texto
 
 	// Define uma função que será executada quando o usuário alterar a seleção na lista
 	renderDrop.onChange = function () {
@@ -74,41 +74,44 @@ function padeiroTemplateDialog() {
 
 	// Cria o grupo principal que conterá todos os elementos da interface
 	var mainGrp = PAD_TEMPLATES_w.add('group');
+	mainGrp.spacing = 12;
 
 	// Cria o grupo vertical à esquerda para os elementos de seleção do template
 	var vGrp1 = mainGrp.add('group');
 	vGrp1.orientation = 'column';        // Orientação vertical
 	vGrp1.alignment = ['center', 'top']; // Alinhamento no centro e no topo
 	vGrp1.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
+	vGrp1.spacing = 12;        // Alinhamento dos elementos filhos à esquerda
 
 	// Cria o grupo vertical à direita para a pré-visualização e entrada de dados
 	var vGrp2 = mainGrp.add('group');
 	vGrp2.orientation = 'column';        // Orientação vertical
 	vGrp2.alignment = ['center', 'top']; // Alinhamento no centro e no topo
 	vGrp2.alignChildren = 'left';        // Alinhamento dos elementos filhos à esquerda
+	vGrp2.spacing = 12;        // Alinhamento dos elementos filhos à esquerda
 	vGrp2.visible = false;               // Inicialmente oculta a pré-visualização
+
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var templatesHeaderGrp = vGrp1.add('group');
+	templatesHeaderGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	templatesHeaderGrp.orientation = 'stack';   // Empilha os elementos verticalmente
 
 	// Cria um grupo para a árvore de templates
 	var treeGrp = vGrp1.add('group');
 	treeGrp.orientation = 'column'; // Orientação vertical
-	treeGrp.spacing = 5;            // Espaçamento entre os elementos
-
-	// Cria um grupo para o cabeçalho da árvore de templates
-	var headerGrp = treeGrp.add('group');
-	headerGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
-	headerGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+	treeGrp.spacing = 4;            // Espaçamento entre os elementos
 
 	// Cria um grupo para o rótulo e a caixa de pesquisa dos templates
-	var templatesGrp = headerGrp.add('group');
-	templatesGrp.alignment = 'left'; // Alinhamento à esquerda
+	var templateLabGrp = templatesHeaderGrp.add('group');
+	templateLabGrp.alignment = 'left'; // Alinhamento à esquerda
 
 	// Cria um grupo para o botão de informações
-	var infoGrp = headerGrp.add('group');
+	var infoGrp = templatesHeaderGrp.add('group');
 	infoGrp.alignment = ['right', 'center']; // Alinhamento à direita
 
 	// Cria o rótulo 'busca:'
-	var templateLabTxt = templatesGrp.add('statictext', undefined, 'BUSCA:');
-	setTxtColor(templateLabTxt, monoColors[2]); // Define a cor do rótulo
+	var templateLabTxt = templateLabGrp.add('statictext', undefined, 'BUSCA:');
+	setFgColor(templateLabTxt, normalColor1); // Define a cor do rótulo
 
 	// Cria o botão de informações
 	// var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
@@ -126,33 +129,33 @@ function padeiroTemplateDialog() {
 	// Cria a árvore de templates
 	var templateTree = treeGrp.add('treeview', [0, 0, 320, 464]);
 	buildTree(templatesFolder, templateTree, fileFilter); // Constrói a árvore de templates
-	// setTxtColor(templateTree, normalColor); // Cor de fundo da janela
+	setFgColor(templateTree, monoColor2);
 
 	//---------------------------------------------------------
 
 	// Criação do grupo de botões principal
-	var bGrp = vGrp1.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
-	bGrp.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
-	bGrp.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
-	bGrp.margins = [0, 8, 0, 0];
+	var mainBtnGrp1 = vGrp1.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
+	mainBtnGrp1.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
+	mainBtnGrp1.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
+	mainBtnGrp1.margins = [0, 8, 0, 0];
 
 	// Grupo dos botões à esquerda
-	var bGrp1 = bGrp.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
-	bGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda
-	bGrp1.spacing = 16;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
+	var lBtnGrp1 = mainBtnGrp1.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
+	lBtnGrp1.alignment = 'left';           // Alinha o subgrupo à esquerda
+	lBtnGrp1.spacing = 16;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
 
-	// Grupo do botão à direita
-	var bGrp2 = bGrp.add('group');      // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita
-	bGrp2.alignment = 'right';          // Alinha o subgrupo à direita
+	// // Grupo do botão à direita
+	// var bGrp2 = bGrp.add('group');      // Cria outro subgrupo dentro do grupo principal para o botão que ficará à direita
+	// bGrp2.alignment = 'right';          // Alinha o subgrupo à direita
 
-	var refreshBtn = new themeIconButton(bGrp1, {
+	var refreshBtn = new themeIconButton(lBtnGrp1, {
 		icon: PAD_ATUALIZAR_ICON,
 		tips: [
 			lClick + 'atualizar lista de templates'
 		]
 	});
 
-	var openFldBtn = new themeIconButton(bGrp1, {
+	var openFldBtn = new themeIconButton(lBtnGrp1, {
 		icon: PAD_PASTA_ICON,
 		tips: [
 			lClick + 'abrir pasta de templates'
@@ -161,15 +164,23 @@ function padeiroTemplateDialog() {
 
 	//---------------------------------------------------------
 
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var previewHeaderGrp = vGrp2.add('group');
+	previewHeaderGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	previewHeaderGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+
 	// Criação do Grupo de preview
 	var previewGrp = vGrp2.add('group'); // Cria um grupo para organizar à pré-visualização do template
 	previewGrp.orientation = 'column';   // Define a orientação do grupo como 'column' (coluna)
 	previewGrp.alignChildren = 'left';   // Alinha os elementos filhos do grupo à esquerda.
 
+	// Cria um grupo para o rótulo e a caixa de pesquisa dos templates
+	var previewLabGrp = previewHeaderGrp.add('group');
+	previewLabGrp.alignment = 'left'; // Alinhamento à esquerda
 
 	// Rótulo de preview
-	var previewLabTxt = previewGrp.add('statictext', undefined, 'PREVIEW:'); // Adiciona um texto estático 'preview:' ao grupo de preview
-	setTxtColor(previewLabTxt, monoColors[2]);   // Define a cor do texto 'preview:'
+	var previewLabTxt = previewLabGrp.add('statictext', undefined, 'PREVIEW:'); // Adiciona um texto estático 'preview:' ao grupo de preview
+	setFgColor(previewLabTxt, normalColor1);   // Define a cor do texto 'preview:'
 
 	// Imagem de preview
 	var previewImg = previewGrp.add('image', undefined, no_preview); // Adiciona um elemento de imagem ao grupo de preview. 'no_preview'
@@ -182,8 +193,7 @@ function padeiroTemplateDialog() {
 	// Criação do Grupo de Entrada de Dados (inputGrp)
 	var inputGrp = vGrp2.add('group');                              // Cria um grupo para conter os elementos relacionados à entrada de dados e dicas
 	inputGrp.alignment = ['left', 'top'];                           // Alinha o grupo à esquerda e ao topo
-
-	// Criação de Subgrupos para Organização
+	inputGrp.spacing = 12;                           // Alinha o grupo à esquerda e ao topo
 
 	// Subgrupo para a caixa de texto e opções de render
 	var txtGrp = inputGrp.add('group');            // Cria um subgrupo para conter a caixa de texto e as opções de renderização
@@ -197,45 +207,74 @@ function padeiroTemplateDialog() {
 	tipGrp.alignment = ['left', 'top'];            // Alinha o subgrupo à esquerda e ao topo
 	tipGrp.alignChildren = 'left';                 // Alinha os elementos filhos à esquerda
 
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var inputHeaderGrp = txtGrp.add('group');
+	inputHeaderGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	inputHeaderGrp.orientation = 'stack';   // Empilha os elementos verticalmente
+
+	// Cria um grupo para o rótulo e a caixa de pesquisa dos templates
+	var inputLabGrp = inputHeaderGrp.add('group');
+	inputLabGrp.alignment = 'left'; // Alinhamento à esquerda
+
 	// Elementos da Caixa de Texto
-	var inputLabTxt = txtGrp.add('statictext', undefined, 'INPUT:'); // Adiciona um texto estático 'input:' para identificar a caixa de texto
-	setTxtColor(inputLabTxt, monoColors[2]);                         // Define a cor do texto
+	var inputLabTxt = inputLabGrp.add('statictext', undefined, 'INPUT:'); // Adiciona um texto estático 'input:' para identificar a caixa de texto
+	setFgColor(inputLabTxt, normalColor1);                         // Define a cor do texto
 
 	// Criação da caixa de texto
-	var edtText = txtGrp.add('edittext', [0, 0, 320, 200], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
+	var edtText = txtGrp.add('edittext', [0, 0, 316, 192], '', { multiline: true }); // Cria uma caixa de texto editável (multiline) inicialmente vazia
 	edtText.enabled = false;                                         // A caixa de texto começa desabilitada
 
-	// Opções de Renderização
-	var renderGrp = txtGrp.add('group');                             // Cria um grupo para as opções de renderização (checkbox)
-	renderGrp.spacing = 15;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo
+	// Criação do grupo de botões principal
+	var mainBtnGrp2 = vGrp2.add('group');      // Cria um grupo para organizar os botões dentro do grupo vertical à esquerda (vGrp1)
+	mainBtnGrp2.orientation = 'stack';         // Define a orientação do grupo como 'stack' (empilhamento)
+	mainBtnGrp2.alignment = 'fill';            // Faz o grupo ocupar toda a largura disponível
 
-	var makeBtn = new themeButton(renderGrp, {
+	// Grupo dos botões à esquerda
+	var lBtnGrp2 = mainBtnGrp2.add('group');      // Cria um subgrupo dentro do grupo principal (bGrp) para os botões que ficarão à esquerda
+	lBtnGrp2.alignment = 'left';           // Alinha o subgrupo à esquerda
+	lBtnGrp2.spacing = 16;                  // Define um pequeno espaçamento de 2 pixels entre os botões dentro deste subgrupo
+
+	var makeBtn = new themeButton(lBtnGrp2, {
 		width: 120,
 		height: 32,
-		textColor: bgColor,
-		buttonColor: normalColor,
+		textColor: bgColor1,
+		buttonColor: normalColor1,
 		labelTxt: 'preencher: 1',
 		tips: [
 			lClick + 'criar e preencher o template selecionado'
 		]
 	});
 
-	var renderLabTxt = renderGrp.add('statictext', [0, 0, 130, 18], 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
-	setTxtColor(renderLabTxt, monoColors[2]);                       // Define a cor do rótulo.
+	// Opções de Renderização
+	var renderGrp = lBtnGrp2.add('group');                             // Cria um grupo para as opções de renderização (checkbox)
+	renderGrp.spacing = 8;                                          // Define um espaçamento de 15 pixels entre os elementos do grupo
+
+	var renderLabTxt = renderGrp.add('statictext', undefined, 'adicionar a fila de render:'); // Adiciona um rótulo para a caixa de seleção de renderização
+	setFgColor(renderLabTxt, txtColor);                       // Define a cor do rótulo.
 	renderLabTxt.helpTip = 'adiciona automaticamente os templates\na fila de render, ao clicar no botão \'criar\'.'; // Define a dica da ferramenta
 
-	var renderCkb = renderGrp.add('checkbox', [8, 4, 24, 18]);      // Cria a caixa de seleção (checkbox) para a opção de renderização.
+	var renderCkb = renderGrp.add('checkbox', [4, 4, 20, 18]);      // Cria a caixa de seleção (checkbox) para a opção de renderização.
 	renderCkb.value = true;                                         // Marca a caixa de seleção por padrão.
 	renderCkb.enabled = false;                                      // Desabilita a caixa de seleção inicialmente.
 
 	// Dicas
-	var tipLabTxt = tipGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
-	setTxtColor(tipLabTxt, monoColors[2]);                         // Define a cor do rótulo.
 
-	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 210], tipContent, { multiline: true }); // Cria um texto estático para exibir as dicas.
-	setTxtColor(tipContentTxt, highlightColor);                    // Define a cor do texto das dicas.
+	// Cria um grupo para o cabeçalho da árvore de templates
+	var tipHeaderGrp = tipGrp.add('group');
+	tipHeaderGrp.alignment = 'fill';      // Ocupa todo o espaço disponível
+	tipHeaderGrp.orientation = 'stack';   // Empilha os elementos verticalmente
 
-	setBgColor(PAD_TEMPLATES_w, bgColor); // Cor de fundo da janela
+	// Cria um grupo para o rótulo e a caixa de pesquisa dos templates
+	var tipLabGrp = tipHeaderGrp.add('group');
+	tipLabGrp.alignment = 'left'; // Alinhamento à esquerda
+
+	var tipLabTxt = tipLabGrp.add('statictext', undefined, 'DICAS:'); // Adiciona o rótulo 'dicas:' ao grupo de dicas.
+	setFgColor(tipLabTxt, normalColor1);                         // Define a cor do rótulo.
+
+	var tipContentTxt = tipGrp.add('statictext', [0, 0, 180, 192], tipContent, { multiline: true }); // Cria um texto estático para exibir as dicas.
+	setFgColor(tipContentTxt, normalColor2);                    // Define a cor do texto das dicas.
+
+	setBgColor(PAD_TEMPLATES_w, bgColor1); // Cor de fundo da janela
 
 	//---------------------------------------------------------
 

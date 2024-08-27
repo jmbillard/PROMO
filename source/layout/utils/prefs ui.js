@@ -55,7 +55,7 @@ function prefsDialog() {
 	layerGrp.spacing = 2;
 
 	var layerGrpTxt = layerGrp.add('statictext', undefined, 'novos layers:');
-	setTxtColor(layerGrpTxt, sTxtColor.light);
+	setFgColor(layerGrpTxt, sTxtColor.light);
 
 	//
 
@@ -94,7 +94,7 @@ function prefsDialog() {
 	projectGrp.spacing = 2;
 
 	var projectGrpTxt = projectGrp.add('statictext', undefined, 'projeto:');
-	setTxtColor(projectGrpTxt, sTxtColor.light);
+	setFgColor(projectGrpTxt, sTxtColor.light);
 
 	//
 
@@ -160,7 +160,7 @@ function prefsDialog() {
 	themeGrp.spacing = 2;
 
 	var themeGrpTxt = themeGrp.add('statictext', undefined, 'ícones:');
-	setTxtColor(themeGrpTxt, sTxtColor.light);
+	setFgColor(themeGrpTxt, sTxtColor.light);
 
 	//
 
@@ -217,7 +217,7 @@ function prefsDialog() {
 	// 	modeGrp.spacing = 2;
 
 	// 	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
-	// 	setTxtColor(modeGrpTxt, sTxtColor.light);
+	// 	setFgColor(modeGrpTxt, sTxtColor.light);
 
 	// 	//
 
@@ -279,7 +279,7 @@ function prefsDialog() {
 	setupGrp.spacing = 2;
 
 	var setupGrpTxt = setupGrp.add('statictext', undefined, 'setup do AE:');
-	setTxtColor(setupGrpTxt, sTxtColor.light);
+	setFgColor(setupGrpTxt, sTxtColor.light);
 
 	var setupColorLabelsGrp = setupGrp.add('group');
 	setupColorLabelsGrp.spacing = btnGrpSpacing;

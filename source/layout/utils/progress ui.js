@@ -25,7 +25,7 @@ function progressDialog (text) {
 
 	var progLabelTxt = progW.add('statictext', undefined, text);
 	progLabelTxt.size = [430, 24];
-	// setTxtColor(progLabelTxt, sTxtColor.light);
+	// setFgColor(progLabelTxt, sTxtColor.light);
 
 	var progPb = progW.add('progressbar', [0, 0, 430, 5], 0);
   
@@ -35,6 +35,6 @@ function progressDialog (text) {
 	var keyLabelTxt = progW.add('statictext', undefined, '"ENTER" to proceed                                                                                   "ESC" to cancel');
 
 	setBgColor(progW, '#FFFFFF');
-	setTxtColor(progLabelTxt, rgb(20, 20, 20));
+	setFgColor(progLabelTxt, rgb(20, 20, 20));
 	return progW;
 }

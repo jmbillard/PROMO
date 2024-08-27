@@ -50,7 +50,7 @@ function prefsDialog() {
 	layerGrp.spacing = 2;
 
 	var layerGrpTxt = layerGrp.add('statictext', undefined, 'layer types:');
-	setTxtColor(layerGrpTxt, sTxtColor.light);
+	setFgColor(layerGrpTxt, sTxtColor.light);
 
 	//
 
@@ -89,7 +89,7 @@ function prefsDialog() {
 	projectGrp.spacing = 2;
 
 	var projectGrpTxt = projectGrp.add('statictext', undefined, 'project:');
-	setTxtColor(projectGrpTxt, sTxtColor.light);
+	setFgColor(projectGrpTxt, sTxtColor.light);
 
 	//
 
@@ -156,7 +156,7 @@ function prefsDialog() {
 	themeGrp.spacing = 2;
 
 	var themeGrpTxt = themeGrp.add('statictext', undefined, 'theme:');
-	setTxtColor(themeGrpTxt, sTxtColor.light);
+	setFgColor(themeGrpTxt, sTxtColor.light);
 
 	//
 
@@ -213,7 +213,7 @@ function prefsDialog() {
 	modeGrp.spacing = 2;
 
 	var modeGrpTxt = modeGrp.add('statictext', undefined, 'modes:');
-	setTxtColor(modeGrpTxt, sTxtColor.light);
+	setFgColor(modeGrpTxt, sTxtColor.light);
 
 	//
 

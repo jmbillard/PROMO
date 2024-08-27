@@ -10,12 +10,12 @@ var infoIcon = {
 	dark:  '\u0089PNG\r\n\x1A\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\b\x06\x00\x00\x00\u008D2\u00CF\u00BD\x00\x00\x00/IDAT\x18\u0095c\u0094\u0096\u0096\u009E\u00C9@\x04`"F\x11V\u0085O\u009F>M\x7F\u00FA\u00F4i:\u00BA8#\u00D9V\u00E32\u0091|7R\u00AC\u0090|\u00CF\u00E0\x02\x00\u00AC\u009A\x0F(\u0082\u00D5\u00F7\'\x00\x00\x00\x00IEND\u00AEB`\u0082'
 };
 
-PAD_HOVER_STROKE = new File('~/PROMO/icons/main/stk.png');
+PAD_AE_ICON = new File('~/PROMO/icons/main/ae.png');
 
 //
 
 PAD_INFO_ICON = {
-	normal: infoIcon.light,
+	normal: new File('~/PROMO/icons/main/info1.png'),
 	hover: new File('~/PROMO/icons/main/info0.png')
 };
 

@@ -214,7 +214,7 @@ function PadMakerDialog() {
 	// Rótulo de preview
 	var labMain2 = labGrp1.add('statictext', undefined, 'AJUDA BÁSICA:'); // Adiciona um texto estático
 	labMain2.preferredSize.height = 24;
-	setTxtColor(labMain2, monoColors[2]);   // Define a cor do texto
+	setFgColor(labMain2, monoColors[2]);   // Define a cor do texto
 
 	// Cria o botão de informações
 	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
@@ -236,7 +236,7 @@ caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao pai
 adicione as pastas de mídia e outputs necessários.\n\
 em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\njean.billard';
 	var helpLab = helpGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
-	setTxtColor(helpLab, mainColors[1]);
+	setFgColor(helpLab, mainColors[1]);
 
 	// ==============
 
@@ -281,7 +281,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var labMain1 = layoutMainGrp2.add('statictext', undefined, 'FORMULÁRIO:');
 	labMain1.preferredSize.height = 24;
-	setTxtColor(labMain1, monoColors[2]);
+	setFgColor(labMain1, monoColors[2]);
 
 	var formMainGrp = layoutMainGrp2.add('group', undefined);
 	formMainGrp.orientation = 'column';
@@ -337,7 +337,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var labMain3 = previewGrp.add('statictext', undefined, 'PROJETO:');
 	labMain3.preferredSize.height = 24;
-	setTxtColor(labMain3, monoColors[2]);
+	setFgColor(labMain3, monoColors[2]);
 
 	var previewMainGrp = previewGrp.add('group', undefined);
 	previewMainGrp.orientation = 'column';
@@ -446,7 +446,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var labMain5 = layoutMainGrp4.add('statictext', undefined, 'CAMINHOS:');
 	labMain5.preferredSize.height = 24;
-	setTxtColor(labMain5, monoColors[2]);
+	setFgColor(labMain5, monoColors[2]);
 
 	var importMainGrp = layoutMainGrp4.add('group', undefined);
 	importMainGrp.orientation = 'column';
@@ -500,7 +500,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { comp: app.project.activeItem, truncate: 'end' });
 	infoText1.helpTip = 'comp principal do template';
-	setTxtColor(infoText1, '#FF7B79'); // Cor de destaque do texto
+	setFgColor(infoText1, '#FF7B79'); // Cor de destaque do texto
 
 	var infoGrp2 = infoMainGrp.add('group', undefined);
 	infoGrp2.orientation = 'column';
@@ -512,7 +512,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	infoLab2.preferredSize.height = 18;
 
 	var infoText2 = infoGrp2.add('statictext', [0, 0, 230, 18], '...', { truncate: 'end' });
-	setTxtColor(infoText2, '#FF7B79'); // Cor de destaque do texto
+	setFgColor(infoText2, '#FF7B79'); // Cor de destaque do texto
 
 	var infoGrp3 = infoMainGrp.add('group', undefined);
 	infoGrp3.orientation = 'column';
@@ -527,7 +527,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	for (var f = 0; f < fontList.length; f++) {
 		var infoText3 = infoGrp3.add('statictext', [0, 0, 230, 18], fontList[f], { truncate: 'end' });
 		infoText3.helpTip = fontList[f];
-		setTxtColor(infoText3, '#FF7B79'); // Cor de destaque do texto
+		setFgColor(infoText3, '#FF7B79'); // Cor de destaque do texto
 	}
 
 	var bottomGrp4 = layoutGrp4.add('group', undefined);

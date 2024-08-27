@@ -6,10 +6,18 @@ function O_PADEIRO_UTL(thisObj) {
 	var scriptName = 'O PADEIRO';
 	var PAD_v = 'v1.4';
 
-	var bgColor = '#1C1222';
-	var divColor = '#3B2648';
-	var normalColor = '#9DF7F4';
-	var highlightColor = '#FA4180';
+	var txtColor = '#F2F2F2';
+	var monoColor1 = '#C7C8CA';
+	var monoColor2 = '#939598';
+	var monoColor3 = '#4B4C4E';
+	var bgColor1 = '#0B0D0E';
+	var bgColor2 = '#060F13';
+	var divColor1 = '#002133';
+	var divColor2 = '#004266';
+	var normalColor1 = '#05A6FF';
+	var normalColor2 = '#80D2FF';
+	var highlightColor1 = '#8800f8';
+	var highlightColor2 = '#8640BF';
 
 	#include 'source/globals.js';                   // Inclui variáveis globais (usadas em todo o script)
 	#include 'source/layout/main ui functions.js';  // Inclui funções para criar a interface do usuário
@@ -315,8 +323,10 @@ function O_PADEIRO_UTL(thisObj) {
 		uiObj.window.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(uiObj.vLab, '#EAEAEA', highlightColor); // Cor de destaque do texto
-		setBgColor(uiObj.window, bgColor); // Cor de fundo da janela
+		setTxtHighlight(uiObj.vLab, '#EAEAEA', highlightColor1); // Cor de destaque do texto
+		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
+		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
+		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
 
 		// Define uma função a ser executada quando a janela é exibida ou redimensionada.
 		uiObj.window.onShow = function () {
