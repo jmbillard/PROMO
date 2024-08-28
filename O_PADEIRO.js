@@ -39,77 +39,99 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// estrutura de 'ctrlProperties'
 	var PAD_mainGrpUiStructure = {
-		section1: {
-			templates: {
-				labelTxt: 'Templates',
-				type: 'imageButton',
-				icon: PAD_TEMPLATES_ICON,
-				tips: [
-					lClick + 'preencher templates',
-					rClick + 'criar novo template'
-				]
+		pinGrp: {
+			section0: {
+				links: {
+					type: 'iconButton',
+					labelTxt: 'Links',
+					icon: PAD_LINKS_ICON,
+					tips: [
+						lClick + 'abrir lista de links úteis',
+					]
+				}//,
+				// diretorios: {
+				// 	type: 'iconButton',
+				// 	labelTxt: 'Diretórios',
+				// 	icon: PAD_PASTA_ICON,
+				// 	tips: [
+				// 		lClick + 'abrir lista de diretórios da rede',
+				// 	]
+				// }
+			}
+		},
+		mainGrp: {
+			section1: {
+				templates: {
+					type: 'imageButton',
+					labelTxt: 'Templates',
+					icon: PAD_TEMPLATES_ICON,
+					tips: [
+						lClick + 'preencher templates',
+						rClick + 'criar novo template'
+					]
+				},
+				fontes: {
+					type: 'imageButton',
+					labelTxt: 'Fontes',
+					icon: PAD_FONTES_ICON,
+					tips: [
+						lClick + 'instalar as fontes usadas no template',
+						rClick + 'fazer o collect das fontes usadas no projeto'
+					]
+				}
 			},
-			fontes: {
-				labelTxt: 'Fontes',
-				type: 'imageButton',
-				icon: PAD_FONTES_ICON,
-				tips: [
-					lClick + 'instalar as fontes usadas no template',
-					rClick + 'fazer o collect das fontes usadas no projeto'
-				]
-			}
-		},
-		section2: {
-			pastas: {
-				labelTxt: 'Pastas',
-				type: 'imageButton',
-				icon: PAD_PASTAS_ICON,
-				tips: [
-					lClick + 'abir a pasta do último item da fila de render',
-					rClick + 'abir a pasta do projeto (caso esteja salvo)'
-				]
-			}
-		},
-		section3: {
-			renomear: {
-				labelTxt: 'Renomear',
-				type: 'imageButton',
-				icon: PAD_RENOMEAR_ICON,
-				tips: [
-					lClick + 'renomear comps selecionadas',
-					rClick + 'renomear TODAS as saídas de render'
-				]
+			section2: {
+				pastas: {
+					type: 'imageButton',
+					labelTxt: 'Pastas',
+					icon: PAD_PASTAS_ICON,
+					tips: [
+						lClick + 'abir a pasta do último item da fila de render',
+						rClick + 'abir a pasta do projeto (caso esteja salvo)'
+					]
+				}
 			},
-			organizar: {
-				labelTxt: 'Organizar',
-				type: 'imageButton',
-				icon: PAD_ORGANIZAR_ICON,
-				tips: [
-					'selecione as comps que serão\nRENDERIZADAS primeiro!',
-					lClick + 'organizar o projeto',
-					rClick + 'criar estrutura de pastas do projeto'
-				]
-			}
-		},
-		section4: {
-			buscar: {
-				labelTxt: 'Buscar',
-				type: 'imageButton',
-				icon: PAD_BUSCAR_ICON,
-				tips: [
-					lClick + 'abrir a BUSCA em layers de texto'
-				]
-			}
-		},
-		section5: {
-			atalhos: {
-				labelTxt: 'Atalhos',
-				type: 'imageButton',
-				icon: PAD_ATALHOS_ICON,
-				tips: [
-					lClick + 'abrir a planilha do apontamento de projetos no navegador'
-				]
-			}
+			section3: {
+				renomear: {
+					type: 'imageButton',
+					labelTxt: 'Renomear',
+					icon: PAD_RENOMEAR_ICON,
+					tips: [
+						lClick + 'renomear comps selecionadas',
+						rClick + 'renomear TODAS as saídas de render'
+					]
+				},
+				organizar: {
+					type: 'imageButton',
+					labelTxt: 'Organizar',
+					icon: PAD_ORGANIZAR_ICON,
+					tips: [
+						'selecione as comps que serão\nRENDERIZADAS primeiro!',
+						lClick + 'organizar o projeto',
+						rClick + 'criar estrutura de pastas do projeto'
+					]
+				}
+			},
+			section4: {
+				buscar: {
+					type: 'imageButton',
+					labelTxt: 'Buscar',
+					icon: PAD_BUSCAR_ICON,
+					tips: [
+						lClick + 'abrir a BUSCA em layers de texto'
+					]
+				}
+			}//,
+			// section5: {
+			// 	atalhos: {
+			// 		type: 'imageButton',
+			// 		labelTxt: 'Atalhos',
+			// 		icon: PAD_ATALHOS_ICON,
+			// 		tips: [
+			// 			lClick + 'abrir a planilha do apontamento de projetos no navegador'
+			// 		]
+			// 	}
+			// }
 		}
 	};
 
@@ -254,7 +276,8 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// 'uiObj' armazena os controles da interface, grupos seus respectivos arrays
 	var PAD_ui = {
-		buttonArray: [],
+		iconButtonArray: [],
+		imageButtonArray: [],
 		sectionGrpArray: [],
 		divArray: []
 	};
@@ -263,14 +286,79 @@ function O_PADEIRO_UTL(thisObj) {
 	// Cria os controles da interface e define os eventos entre eles
 	function PAD_buildUi(structureObj, uiObj) {
 
-
-		var sectionCounter = 0;
-
 		uiObj.mainGrp = uiObj.window.add('group'); // Grupo principal
 		uiObj.sectionGrpArray.push(uiObj.mainGrp);
+		// Rótulo da versão
+		uiObj.infoGrp = uiObj.window.add('group');
+		uiObj.infoGrp.spacing = 0;
+		uiObj.sectionGrpArray.push(uiObj.infoGrp);
 
-		for (var sec in structureObj) {
-			var section = structureObj[sec];
+		uiObj.mainLogo = uiObj.infoGrp.add('image', undefined, LOGO_IMG.light);
+		uiObj.mainLogo.maximumSize = [70, 24];
+		uiObj.mainLogo.minimumSize = [50, 24];
+		uiObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
+
+		uiObj.vLab = uiObj.infoGrp.add('statictext', undefined, PAD_v, { truncate: 'end' });
+		uiObj.vLab.justify = 'center';
+		uiObj.vLab.helpTip = 'ajuda | DOCS';
+
+		uiObj.pinGrp = uiObj.window.add('group'); // Grupo de botões superior
+		uiObj.pinGrp.alignment = ['center', 'top']; // Alinhamento
+		uiObj.pinGrp.spacing = 16; // Espaçamento entre botões
+		uiObj.sectionGrpArray.push(uiObj.pinGrp);
+
+		uiObj.prodGrp = uiObj.pinGrp.add('group');
+		uiObj.sectionGrpArray.push(uiObj.prodGrp);
+
+		uiObj.prodIconGrp = uiObj.prodGrp.add('group');
+		uiObj.prodIconGrp.orientation = 'stack'; // Layout vertical
+		populateMainIcons(PAD_prodArray, uiObj.prodIconGrp);
+
+		uiObj.prodDrop = uiObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
+		uiObj.prodDrop.selection = 0; // Seleciona a produção padrão.
+		uiObj.prodDrop.maximumSize = [140, 24];
+		uiObj.prodDrop.minimumSize = [52, 24];
+		uiObj.prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
+
+		uiObj.iconBtnMainGrp = uiObj.pinGrp.add('group');
+
+		uiObj.iconBtnGrp0 = uiObj.iconBtnMainGrp.add('group');
+		uiObj.sectionGrpArray.push(uiObj.iconBtnGrp0);
+
+		uiObj.iconBtnGrp1 = uiObj.iconBtnMainGrp.add('group');
+		uiObj.sectionGrpArray.push(uiObj.iconBtnGrp1);
+
+		var sectionCounter = 0;
+		var ctrlCounter = 0;
+
+		for (var sec in structureObj.pinGrp) {
+			var section = structureObj['pinGrp'][sec];
+
+			if (sectionCounter > 0) uiObj.divArray.push(new themeDivider(uiObj.mainGrp));
+
+			var sectionGrp = uiObj.mainGrp.add('group', undefined, { name: 'sectionGrp' }); // Grupo de botões superior
+			sectionGrp.alignment = ['center', 'top']; // Alinhamento
+			uiObj.sectionGrpArray.push(sectionGrp);
+
+			for (var ctrl in section) {
+				var ctrlProperties = section[ctrl];
+				ctrlProperties.key = ctrl;
+
+				if (ctrlProperties.labelTxt == undefined) ctrlProperties.labelTxt = ctrl.replace(/_/g, ' ').toTitleCase();
+
+				if (ctrlProperties.type == 'iconButton') {
+					uiObj[ctrl] = new themeIconButton(uiObj['iconBtnGrp' + ctrlCounter % 2], ctrlProperties);
+					uiObj.iconButtonArray.push(uiObj[ctrl]);
+				}
+				ctrlCounter++;
+			}
+			sectionCounter++;
+		}
+
+		sectionCounter = 0;
+
+		for (var sec in structureObj.mainGrp) {
+			var section = structureObj['mainGrp'][sec];
 
 			if (sectionCounter > 0) uiObj.divArray.push(new themeDivider(uiObj.mainGrp));
 
@@ -286,54 +374,24 @@ function O_PADEIRO_UTL(thisObj) {
 
 				if (ctrlProperties.type == 'imageButton') {
 					uiObj[ctrl] = new themeImageButton(sectionGrp, ctrlProperties);
-					uiObj.buttonArray.push(uiObj[ctrl]);
+					uiObj.imageButtonArray.push(uiObj[ctrl]);
 				}
 			}
 			sectionCounter++;
 		}
-		// Rótulo da versão
-		uiObj.infoGrp = uiObj.window.add('group');
-		uiObj.infoGrp.spacing = 0;
-		uiObj.sectionGrpArray.push(uiObj.infoGrp);
-
-		uiObj.mainLogo = uiObj.infoGrp.add('image', undefined, LOGO_IMG.light);
-		uiObj.mainLogo.maximumSize = [70, 24];
-		uiObj.mainLogo.minimumSize = [50, 24];
-		uiObj.mainLogo.helpTip = [scriptName, PAD_v, '| Jean-Marc Billard'].join(' ');
-
-		uiObj.vLab = uiObj.infoGrp.add('statictext', undefined, PAD_v, { truncate: 'end' });
-		uiObj.vLab.justify = 'center';
-		uiObj.vLab.helpTip = 'ajuda | DOCS';
-
-		uiObj.prodGrp = uiObj.window.add('group'); // Grupo de botões superior
-		uiObj.prodGrp.alignment = ['center', 'top']; // Alinhamento
-		uiObj.prodGrp.spacing = 4; // Espaçamento entre botões
-		uiObj.sectionGrpArray.push(uiObj.prodGrp);
-
-		uiObj.prodIconGrp = uiObj.prodGrp.add('group');
-		uiObj.prodIconGrp.orientation = 'stack'; // Layout vertical
-		populateMainIcons(PAD_prodArray, uiObj.prodIconGrp);
-
-		uiObj.prodDrop = uiObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
-		uiObj.prodDrop.selection = 0; // Seleciona a produção padrão.
-		uiObj.prodDrop.maximumSize = [140, 24];
-		uiObj.prodDrop.minimumSize = [52, 24];
-		uiObj.prodDrop.helpTip = "PRODUÇÃO SELECIONADA"; // Dica de ajuda
 
 		uiObj.window.layout.layout(true); // Aplica o layout
 
 		// Estilização da interface
-		setTxtHighlight(uiObj.vLab, '#EAEAEA', highlightColor1); // Cor de destaque do texto
-		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
-		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
+		setCtrlHighlight(uiObj.vLab, txtColor, highlightColor1); // Cor de destaque do texto
 		setBgColor(uiObj.window, bgColor1); // Cor de fundo da janela
 
 		// Define uma função a ser executada quando a janela é exibida ou redimensionada.
 		uiObj.window.onShow = function () {
 
-			for (var b = 0; b < uiObj.buttonArray.length; b++) {
+			for (var b = 0; b < uiObj.imageButtonArray.length; b++) {
 
-				var btn = uiObj.buttonArray[b];
+				var btn = uiObj.imageButtonArray[b];
 				btn.label.preferredSize = btn.label.size;
 			}
 
@@ -352,7 +410,13 @@ function O_PADEIRO_UTL(thisObj) {
 		var isRow = uiObj.window.size.width > uiObj.window.size.height;
 		var grpOrientation = isRow ? 'row' : 'column';
 		var btnOrientation = isRow ? 'column' : 'row';
-		var mainMargin = isRow ? [190, 0, 100, 0] : [4, 76, 4, 56];
+		var iconOrientation = uiObj.window.size.width < 70 ? 'column' : 'row';
+		var pinGap = isRow ? 190 : 80;
+		var infoGap = isRow ? 110 : 56;
+		var iconGap = uiObj.iconButtonArray.length * 28;
+
+		if (!isRow && uiObj.window.size.width >= 70) iconGap = Math.ceil(uiObj.iconButtonArray.length / 2) * 28;
+		pinGap += iconGap;
 
 		try {
 			for (var s = 0; s < uiObj.sectionGrpArray.length; s++) {
@@ -365,8 +429,8 @@ function O_PADEIRO_UTL(thisObj) {
 				div.size = [1, 1];
 				div.alignment = isRow ? ['center', 'fill'] : ['fill', 'center'];
 			}
-			for (var b = 0; b < uiObj.buttonArray.length; b++) {
-				var btn = uiObj.buttonArray[b];
+			for (var b = 0; b < uiObj.imageButtonArray.length; b++) {
+				var btn = uiObj.imageButtonArray[b];
 				btn.btnGroup.orientation = btnOrientation;
 				btn.btnGroup.spacing = isRow ? 0 : 8; // Espaçamento entre botões
 
@@ -379,17 +443,25 @@ function O_PADEIRO_UTL(thisObj) {
 					btn.btnGroup.spacing = 0;
 					btn.label.size = [0, 0];
 				}
+
 				if (uiObj.window.size.height < 44) {
 					btn.btnGroup.spacing = 0;
 					btn.hoverImg.size = btn.normalImg.size = [0, 0];
 					btn.label.size = btn.label.preferredSize;
 				}
 			}
-			uiObj.mainGrp.margins = mainMargin;
+			uiObj.mainGrp.margins = isRow ? [pinGap, 0, infoGap, 0] : [4, pinGap, 4, infoGap];;
 			uiObj.mainGrp.spacing = uiObj.window.size.height < 44 ? 24 : 16;
 
-			uiObj.prodGrp.alignment = isRow ? 'left' : 'top';
-			uiObj.prodGrp.spacing = 8;
+			uiObj.pinGrp.alignment = isRow ? 'left' : 'top';
+			uiObj.pinGrp.spacing = 20;
+
+			uiObj.prodGrp.spacing = 4;
+
+			uiObj.iconBtnMainGrp.orientation = iconOrientation;
+			uiObj.iconBtnMainGrp.spacing = 4; // Espaçamento entre botões
+			uiObj.iconBtnGrp0.spacing = 4;
+			uiObj.iconBtnGrp1.spacing = 4;
 
 			uiObj.infoGrp.alignment = isRow ? 'right' : 'bottom';
 			uiObj.infoGrp.spacing = 0;
@@ -460,7 +532,10 @@ function O_PADEIRO_UTL(thisObj) {
 
 			if (aItem == null) return;
 
-			PadMakerDialog();
+			try {
+
+				PadMakerDialog();
+			} catch (err) { alert(lol + '#PAD_MAKER - ' + '' + err.message); }
 		};
 
 		PAD_ui.fontes.leftClick.onClick = function () { // Define a função a ser executada quando o botão "Instalar Fontes" for clicado.
@@ -639,7 +714,7 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
-		PAD_ui.atalhos.leftClick.onClick = function () {
+		PAD_ui.links.leftClick.onClick = function () {
 
 			if (!netAccess()) {
 				alert(lol + '#PAD_007 - sem acesso a rede...');

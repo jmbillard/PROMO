@@ -8,6 +8,9 @@
 
 function PadMakerDialog() {
 
+	var scriptName = 'EDITOR DE TEMPLATES';
+	var scriptVersion = PAD_v;
+
 	var tempConfigObj = {
 		configName: 'NOME DA CONFIGURAÇÃO',
 		exemple: 'informação 1\ninformação 2',
@@ -51,7 +54,7 @@ function PadMakerDialog() {
 
 			var layerLab = layerGrp.add('statictext', undefined, selLayer.index + '   ' + selLayer.name, { selectedLayer: selLayer, truncate: 'end' });
 			layerLab.preferredSize.width = 95;
-			setTxtHighlight(layerLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+			setCtrlHighlight(layerLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
 			var layerDrop_array = ['nome'];
 			if (selLayer instanceof TextLayer) layerDrop_array.push('conteúdo');
@@ -59,30 +62,36 @@ function PadMakerDialog() {
 			layerDrop.selection = selLayer instanceof TextLayer ? 1 : 0;
 			layerDrop.preferredSize.width = 90;
 
-			var excludeLayerBtn = layerGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton', selectedLayer: selLayer });
-			excludeLayerBtn.helpTip = 'excluir layer';
-			excludeLayerBtn.preferredSize = [24, 24];
-
+			// var excludeLayerBtn = layerGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton', selectedLayer: selLayer });
+			// excludeLayerBtn.helpTip = 'excluir layer';
+			// excludeLayerBtn.preferredSize = [24, 24];
+			var excludeLayerBtn = new themeIconButton(layerGrp, {
+				icon: PAD_FECHAR_ICON,
+				tips: [
+					lClick + 'remover layer'
+				]
+			});
+	
 			layerLab.addEventListener('mousedown', function () {
 				try {
 					this.properties.selectedLayer.selected = !this.properties.selectedLayer.selected;
 				} catch (err) { }
 			});
 
-			excludeLayerBtn.onClick = function () {
+			excludeLayerBtn.leftClick.onClick = function () {
 				try {
-					this.properties.selectedLayer.comment = '';
+					this.parent.parent.parent.children[0].properties.selectedLayer.comment = '';
 
 				} catch (err) {
 					alert(lol + '#PAD_024 - ' + err.message); // Exibe uma mensagem de erro
 				}
 
-				if (this.parent.parent.children.length > 4) {
+				if (this.parent.parent.parent.parent.children.length > 4) {
 					tipsText.size.height -= 18;
 					exempleText.size.height -= 18;
 				}
 
-				this.parent.parent.remove(this.parent);
+				this.parent.parent.parent.parent.remove(this.parent.parent.parent);
 
 				PAD_MAKER_w.layout.layout(true);
 				layoutMainGrp3.layout.layout(true);
@@ -108,11 +117,17 @@ function PadMakerDialog() {
 
 		var outputPathLab = outputGrp.add('statictext', [0, 0, 190, 24], 'caminho da pasta...', { outputPath: '~/Desktop', truncate: 'middle' });
 		outputPathLab.helpTip = 'caminho da pasta:';
-		setTxtHighlight(outputPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+		setCtrlHighlight(outputPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
-		var excludeOutputBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
-		excludeOutputBtn.helpTip = 'excluir caminho';
-		excludeOutputBtn.preferredSize = [24, 24];
+		// var excludeOutputBtn = outputGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
+		// excludeOutputBtn.helpTip = 'excluir caminho';
+		// excludeOutputBtn.preferredSize = [24, 24];
+		var excludeOutputBtn = new themeIconButton(outputGrp, {
+			icon: PAD_FECHAR_ICON,
+			tips: [
+				lClick + 'remover output'
+			]
+		});
 
 		outputPathLab.addEventListener('mousedown', function () {
 
@@ -126,12 +141,12 @@ function PadMakerDialog() {
 			this.helpTip = 'caminho da pasta de output:\n\n' + newOutputPath.fullName;
 		});
 
-		excludeOutputBtn.onClick = function () {
+		excludeOutputBtn.leftClick.onClick = function () {
 
-			if (this.parent.parent.children.length <= 2) return;
+			if (this.parent.parent.parent.parent.children.length <= 2) return;
 
-			this.parent.parent.remove(this.parent);
-			outputMainGrp.layout.layout(true);
+			this.parent.parent.parent.parent.remove(this.parent.parent.parent);
+			// outputMainGrp.layout.layout(true);
 			PAD_MAKER_w.layout.layout(true);
 		}
 	};
@@ -146,7 +161,7 @@ function PadMakerDialog() {
 				var layerGrp = layersMainGrp.children[i];
 				var methodArray = ['layerName', 'textContent'];
 				var m = layerGrp.children[1].selection.index;
-				var selectedLayer = layerGrp.children[2].properties.selectedLayer;
+				var selectedLayer = layerGrp.children[0].properties.selectedLayer;
 
 				templateLayersArray.push([selectedLayer, methodArray[m]]);
 
@@ -186,7 +201,7 @@ function PadMakerDialog() {
 
 	// ==============
 
-	var PAD_MAKER_w = new Window('palette', 'EDITOR DE TEMPLATES');
+	var PAD_MAKER_w = new Window('palette', scriptName + ' ' + scriptVersion);
 	PAD_MAKER_w.orientation = 'row';
 	PAD_MAKER_w.alignChildren = ['center', 'top'];
 
@@ -214,12 +229,17 @@ function PadMakerDialog() {
 	// Rótulo de preview
 	var labMain2 = labGrp1.add('statictext', undefined, 'AJUDA BÁSICA:'); // Adiciona um texto estático
 	labMain2.preferredSize.height = 24;
-	setFgColor(labMain2, monoColors[2]);   // Define a cor do texto
+	setFgColor(labMain2, normalColor1);   // Define a cor do texto
 
 	// Cria o botão de informações
-	var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
-	infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
-
+	// var infoBtn = infoGrp.add('iconbutton', undefined, infoIcon.light, { style: 'toolbutton' });
+	// infoBtn.helpTip = 'ajuda | DOCS'; // Define a dica da ferramenta
+	var infoBtn = new themeIconButton(infoGrp, {
+		icon: PAD_INFO_ICON,
+		tips: [
+			lClick + 'ajuda | DOCS'
+		]
+	});
 
 	var helpGrp = layoutMainGrp1.add('group', undefined);
 	helpGrp.orientation = 'column';
@@ -236,12 +256,15 @@ caso o texto esteja em uma pre-comp, adicione a propriedade "source text" ao pai
 adicione as pastas de mídia e outputs necessários.\n\
 em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n\njean.billard';
 	var helpLab = helpGrp.add('statictext', undefined, instructionsTxt, { multiline: true });
-	setFgColor(helpLab, mainColors[1]);
+	setFgColor(helpLab, normalColor2);
 
 	// ==============
 
-	var div = PAD_MAKER_w.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	// 	var newDiv = themeDivider(PAD_MAKER_w);
+	var newDiv = themeDivider(PAD_MAKER_w);
+	newDiv.alignment = ['center', 'fill'];
+
 
 	var layoutMainGrp2 = PAD_MAKER_w.add('group', undefined);
 	layoutMainGrp2.orientation = 'column';
@@ -249,8 +272,10 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	layoutMainGrp2.spacing = 20;
 	layoutMainGrp2.margins = 0;
 
-	var div = PAD_MAKER_w.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
+	var newDiv = themeDivider(PAD_MAKER_w);
+	newDiv.alignment = ['center', 'fill'];
 
 	// Cria um grupo para o cabeçalho da árvore de templates
 	var layoutGrp3 = PAD_MAKER_w.add('group');
@@ -264,8 +289,10 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	layoutMainGrp3.spacing = 20;
 	layoutMainGrp3.margins = 0;
 
-	var div = PAD_MAKER_w.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var div = PAD_MAKER_w.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
+	var newDiv = themeDivider(PAD_MAKER_w);
+	newDiv.alignment = ['center', 'fill'];
 
 	// Cria um grupo para o cabeçalho da árvore de templates
 	var layoutGrp4 = PAD_MAKER_w.add('group');
@@ -281,7 +308,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var labMain1 = layoutMainGrp2.add('statictext', undefined, 'FORMULÁRIO:');
 	labMain1.preferredSize.height = 24;
-	setFgColor(labMain1, monoColors[2]);
+	setFgColor(labMain1, normalColor1);
 
 	var formMainGrp = layoutMainGrp2.add('group', undefined);
 	formMainGrp.orientation = 'column';
@@ -299,6 +326,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var configLab = configGrp.add('statictext', undefined, 'nome da configuração:');
 	configLab.preferredSize.height = 18;
+	setFgColor(configLab, txtColor);
 
 	var configText = configGrp.add('edittext', [0, 0, 230, 24], tempConfigObj.configName);
 	configText.helpTip = 'identificador da configuração.';
@@ -311,6 +339,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var tipsLab = tipsGrp.add('statictext', undefined, 'dicas:');
 	tipsLab.preferredSize.height = 18;
+	setFgColor(tipsLab, txtColor);
 
 	var tipsText = tipsGrp.add('edittext', [0, 0, 230, 260], tempConfigObj.tip, { multiline: true });
 	tipsText.helpTip = 'as dicas para ajudar no preenchimento.';
@@ -323,6 +352,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var exempleLab = exempleGrp.add('statictext', undefined, 'exemplo de preenchimento:');
 	exempleLab.preferredSize.height = 18;
+	setFgColor(exempleLab, txtColor);
 
 	var exempleText = exempleGrp.add('edittext', [0, 0, 230, 90], tempConfigObj.exemple, { multiline: true });
 	exempleText.helpTip = 'apenas um exemplo.';
@@ -337,7 +367,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var labMain3 = previewGrp.add('statictext', undefined, 'PROJETO:');
 	labMain3.preferredSize.height = 24;
-	setFgColor(labMain3, monoColors[2]);
+	setFgColor(labMain3, normalColor1);
 
 	var previewMainGrp = previewGrp.add('group', undefined);
 	previewMainGrp.orientation = 'column';
@@ -352,11 +382,23 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp1.spacing = 10;
 	btnGrp1.margins = 0;
 
-	var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar preview', { ref_time: app.project.activeItem.time });
-	captureBtn.helpTip = 'captura o frame de preview,\na comp principal e o\ntempo de referência';
+	// var captureBtn = btnGrp1.add('button', [0, 0, 230, 24], 'capturar preview', { ref_time: app.project.activeItem.time });
+	// captureBtn.helpTip = 'captura o frame de preview,\na comp principal e o\ntempo de referência';
+	var captureBtn = new themeButton(btnGrp1, {
+		width: 230,
+		height: 32,
+		// textColor: bgColor1,
+		// buttonColor: normalColor1,
+		labelTxt: 'capturar preview',
+		tips: [
+			lClick + 'capturar o frame de preview,\na comp principal e o\ntempo de referência',
+		]
+	});
 
-	var div = layoutMainGrp3.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var div = layoutMainGrp3.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
+	var newDiv = themeDivider(layoutMainGrp3);
+	newDiv.alignment = ['fill', 'center'];
 
 	// ==============
 
@@ -382,6 +424,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var caseLab = textCaseGrp.add('statictext', undefined, 'caixa de texto:');
 	caseLab.preferredSize.width = 130;
+	setFgColor(caseLab, txtColor);
 
 	var caseDrop_array = ['alta', 'baixa', 'título', 'livre'];
 	var caseDrop = textCaseGrp.add('dropdownlist', undefined, caseDrop_array);
@@ -395,6 +438,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var prefixLab = prefixGrp.add('statictext', undefined, 'prefixo:');
 	prefixLab.preferredSize.width = 130;
+	setFgColor(prefixLab, txtColor);
 
 	var prefixTxt = prefixGrp.add('edittext', [0, 0, 90, 24], tempConfigObj.prefix);
 	prefixTxt.helpTip = 'prefixo que será inserido no nome final de todas as versões desse template.';
@@ -406,14 +450,16 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var separatorLab = separatorGrp.add('statictext', undefined, 'separador:');
 	separatorLab.preferredSize.width = 130;
+	setFgColor(separatorLab, txtColor);
 
 	var separatorTxt = separatorGrp.add('edittext', [0, 0, 90, 24], tempConfigObj.separator.replace(/\n|\r/g, '\\n'));
 	separatorTxt.helpTip = 'separador de informações\n\nuse "\\n" para colocar cada linha de texto em um layer diferente';
 
 	// ==============
 
-	var div = layoutMainGrp3.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+	// var newDiv = layoutMainGrp3.add('panel', undefined, undefined);
+	var newDiv = themeDivider(layoutMainGrp3);
+	newDiv.alignment = ['fill', 'center'];
 
 	// ==============
 
@@ -437,16 +483,36 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp4.spacing = 10;
 	btnGrp4.margins = 0;
 
-	var selectLayersBtn = btnGrp4.add('button', [0, 0, 110, 24], '+ layers');
+	// var selectLayersBtn = btnGrp4.add('button', [0, 0, 110, 24], '+ layers');
+	var selectLayersBtn = new themeButton(btnGrp4, {
+		width: 110,
+		height: 32,
+		// textColor: bgColor1,
+		// buttonColor: normalColor1,
+		labelTxt: '+ layers',
+		tips: [
+			lClick + 'adicionar layers selecionados a configuração do template',
+		]
+	});
 
-	var testBtn = btnGrp4.add('button', [0, 0, 110, 24], 'testar');
-	testBtn.helpTip = 'testar preenchimento com o exemplo';
+	// var testBtn = btnGrp4.add('button', [0, 0, 110, 24], 'testar');
+	// testBtn.helpTip = 'testar preenchimento com o exemplo';
+	var testBtn = new themeButton(btnGrp4, {
+		width: 110,
+		height: 32,
+		// textColor: bgColor1,
+		// buttonColor: normalColor1,
+		labelTxt: 'testar agora',
+		tips: [
+			lClick + 'testar preenchimento com o exemplo',
+		]
+	});
 
 	// ==============
 
 	var labMain5 = layoutMainGrp4.add('statictext', undefined, 'CAMINHOS:');
 	labMain5.preferredSize.height = 24;
-	setFgColor(labMain5, monoColors[2]);
+	setFgColor(labMain5, normalColor1);
 
 	var importMainGrp = layoutMainGrp4.add('group', undefined);
 	importMainGrp.orientation = 'column';
@@ -456,10 +522,11 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var importLab = importMainGrp.add('statictext', undefined, 'pasta de mídias: (opcional)');
 	importLab.preferredSize.height = 18;
+	setFgColor(importLab, txtColor);
 
 	var importPathLab = importMainGrp.add('statictext', [0, 0, 230, 24], 'caminho da pasta...', { importPath: tempConfigObj.importPath, truncate: 'middle' });
 	importPathLab.helpTip = 'caminho da pasta:';
-	setTxtHighlight(importPathLab, '#FFD88E', '#FF7B79'); // Cor de destaque do texto
+	setCtrlHighlight(importPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
 	// ==============
 
@@ -471,6 +538,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var outputLab = outputMainGrp.add('statictext', undefined, 'pastas de output:');
 	outputLab.preferredSize.height = 18;
+	setFgColor(outputLab, txtColor);
 
 	var btnGrp2 = layoutMainGrp4.add('group', undefined);
 	btnGrp2.orientation = 'row';
@@ -478,10 +546,23 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp2.spacing = 10;
 	btnGrp2.margins = 0;
 
-	var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], '+ novo output');
+	// var newOutputBtn = btnGrp2.add('button', [0, 0, 230, 24], '+ novo output');
+	var newOutputBtn = new themeButton(btnGrp2, {
+		width: 230,
+		height: 32,
+		// textColor: bgColor1,
+		// buttonColor: normalColor1,
+		labelTxt: '+ novo output',
+		tips: [
+			lClick + 'adicionar um novo output a configuração do template',
+		]
+	});
 
-	var div = layoutMainGrp4.add('panel', undefined, undefined);
-	div.alignment = 'fill';
+
+	// var div = layoutMainGrp4.add('panel', undefined, undefined);
+	// div.alignment = 'fill';
+	var newDiv = themeDivider(layoutMainGrp4);
+	newDiv.alignment = ['fill', 'center'];
 
 	var infoMainGrp = layoutMainGrp4.add('group', undefined);
 	infoMainGrp.orientation = 'column';
@@ -497,10 +578,11 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var infoLab1 = infoGrp1.add('statictext', undefined, 'comp principal:');
 	infoLab1.preferredSize.height = 18;
+	setFgColor(infoLab1, txtColor);
 
-	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { comp: app.project.activeItem, truncate: 'end' });
+	var infoText1 = infoGrp1.add('statictext', [0, 0, 230, 18], app.project.activeItem.name, { comp: app.project.activeItem, ref_time: app.project.activeItem.time, truncate: 'end' });
 	infoText1.helpTip = 'comp principal do template';
-	setFgColor(infoText1, '#FF7B79'); // Cor de destaque do texto
+	setFgColor(infoText1, normalColor2); // Cor de destaque do texto
 
 	var infoGrp2 = infoMainGrp.add('group', undefined);
 	infoGrp2.orientation = 'column';
@@ -510,9 +592,10 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var infoLab2 = infoGrp2.add('statictext', undefined, 'preview da nomenclatura:');
 	infoLab2.preferredSize.height = 18;
+	setFgColor(infoLab2, txtColor);
 
 	var infoText2 = infoGrp2.add('statictext', [0, 0, 230, 18], '...', { truncate: 'end' });
-	setFgColor(infoText2, '#FF7B79'); // Cor de destaque do texto
+	setFgColor(infoText2, normalColor2); // Cor de destaque do texto
 
 	var infoGrp3 = infoMainGrp.add('group', undefined);
 	infoGrp3.orientation = 'column';
@@ -522,12 +605,14 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 
 	var infoLab3 = infoGrp3.add('statictext', undefined, 'fontes usadas:');
 	infoLab3.preferredSize.height = 18;
+	setFgColor(infoLab3, txtColor);
+
 	var fontList = getFontList();
 
 	for (var f = 0; f < fontList.length; f++) {
 		var infoText3 = infoGrp3.add('statictext', [0, 0, 230, 18], fontList[f], { truncate: 'end' });
 		infoText3.helpTip = fontList[f];
-		setFgColor(infoText3, '#FF7B79'); // Cor de destaque do texto
+		setFgColor(infoText3, normalColor2); // Cor de destaque do texto
 	}
 
 	var bottomGrp4 = layoutGrp4.add('group', undefined);
@@ -542,8 +627,20 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	btnGrp3.spacing = 10;
 	btnGrp3.margins = 0;
 
-	var makeBtn = btnGrp3.add('button', [0, 0, 230, 24], 'criar');
-	makeBtn.helpTip = 'salvar template';
+	// var makeBtn = btnGrp3.add('button', [0, 0, 230, 24], 'criar');
+	// makeBtn.helpTip = 'salvar template';
+	var makeBtn = new themeButton(btnGrp3, {
+		width: 230,
+		height: 32,
+		textColor: bgColor1,
+		buttonColor: normalColor1,
+		labelTxt: 'salvar template',
+		tips: [
+			lClick + 'salvar novo template',
+		]
+	});
+
+	setBgColor(PAD_MAKER_w, bgColor1); // Cor de fundo da janela
 
 	// ==============
 
@@ -571,8 +668,8 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 			.replaceSpecialCharacters()
 			.replace(/\s+/g, '_') + '_preview.png';
 
-		captureBtn.properties.comp = tempItem;
-		captureBtn.properties.ref_time = tempItem.time;
+		infoText1.properties.comp = tempItem;
+		infoText1.properties.ref_time = tempItem.time;
 
 		try {
 			tempPreviewFile = new File(tempPath + '/' + tempPreviewName);
@@ -619,8 +716,9 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		infoText2.text = infoText2.helpTip = prefix + ' - ' + inputTxt.toUpperCase().replaceSpecialCharacters();
 	};
 
-	captureBtn.onClick = function () {
+	captureBtn.leftClick.onClick = function () {
 
+		// alert(0);
 		var tempItem = app.project.activeItem;
 
 		if (tempItem == null) return;
@@ -629,8 +727,8 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 			.replaceSpecialCharacters()
 			.replace(/\s+/g, '_') + '_preview.png';
 
-		this.properties.comp = tempItem;
-		this.properties.ref_time = tempItem.time;
+		infoText1.properties.comp = tempItem;
+		infoText1.properties.ref_time = tempItem.time;
 
 		try {
 			tempPreviewFile = new File(tempPath + '/' + tempPreviewName);
@@ -650,12 +748,12 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		} catch (err) {
 			alert(lol + '#PAD_023 - ' + err.message); // Exibe uma mensagem de erro
 		}
-		previewGrp.layout.layout(true);
-		layoutMainGrp3.layout.layout(true);
+		// previewGrp.layout.layout(true);
+		// layoutMainGrp3.layout.layout(true);
 		PAD_MAKER_w.layout.layout(true);
 	};
 
-	selectLayersBtn.onClick = function () {
+	selectLayersBtn.leftClick.onClick = function () {
 
 		addLayers();
 
@@ -682,13 +780,13 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		this.helpTip = 'caminho da pasta de mídias:\n\n' + newImportPath.fullName;
 	});
 
-	testBtn.onClick = function () {
+	testBtn.leftClick.onClick = function () {
 
 		var inputTxt = exempleText.text.split(/\n{2,}/)[0];
 		var txtCase = caseDrop.selection.index;
 		var templateLayers = getTemplateLayers();
-
 		var separador = separatorTxt.text.replace(/\\n|\\r/g, '\n');
+	
 		if (separatorTxt.text == '' || templateLayers.length < 2) separador = '---';
 
 		if (txtCase == 0) inputTxt = exempleText.text = inputTxt.toUpperCase(); // Converte para MAIÚSCULAS
@@ -718,11 +816,11 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 				selectedLayer.name = inputArray[i].trim();
 			}
 		}
-		captureBtn.notify();
 		app.endUndoGroup();
+		captureBtn.leftClick.notify();
 	};
 
-	newOutputBtn.onClick = function () {
+	newOutputBtn.leftClick.onClick = function () {
 
 		addOutputFolder();
 
@@ -731,7 +829,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		PAD_MAKER_w.layout.layout(true);
 	};
 
-	makeBtn.onClick = function () {
+	makeBtn.leftClick.onClick = function () {
 
 		app.beginUndoGroup('PADEIRO - criar template');
 
@@ -748,7 +846,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 		tempConfigObj.tip = tipsText.text;
 		tempConfigObj.compName = infoText1.properties.comp.name;
 		tempConfigObj.prefix = prefixTxt.text;
-		tempConfigObj.refTime = captureBtn.properties.ref_time;
+		tempConfigObj.refTime = infoText1.properties.ref_time;
 
 		tempConfigObj.separator = separatorTxt.text.replace(/\\n|\\r/g, '\n');
 		if (separatorTxt.text == '' || templateLayers.length < 2) tempConfigObj.separator = '---';
@@ -808,7 +906,7 @@ em caso de dúvidas, problemas ou sugestões, mande uma mensagem pelo teams...\n
 	};
 
 	// Função para abrir a página de documentação quando o botão 'Informações' é clicado
-	infoBtn.onClick = function () {
+	infoBtn.leftClick.onClick = function () {
 		// Abre a página de documentação do script 'O Padeiro' no GitHub em um navegador web
 		openWebSite('https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-criando-um-novo-template');
 	};

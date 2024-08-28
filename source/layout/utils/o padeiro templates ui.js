@@ -488,7 +488,7 @@ function padeiroTemplateDialog() {
 	//---------------------------------------------------------
 
 	// Função executada quando o botão é clicado
-	makeBtn.onClick = function () {
+	makeBtn.leftClick.onClick = function () {
 
 		// Inicialização de variáveis
 		var logCount = 0;                     // Contador de templates processados

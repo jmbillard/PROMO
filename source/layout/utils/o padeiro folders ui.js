@@ -8,12 +8,15 @@
 
 function padProdFoldersDialog(prodArray) {
 
+	var scriptName = 'LISTA DE PRODUÇÕES';
+	var scriptVersion = PAD_v;
+
 	function addProductionLine(prodObj) {
 
 		var nameTxt = prodObj.name;
 		var pathTxt = prodObj.templatesPath;
 		var iconImg = prodObj.icon;
-		
+
 		var prodGrp = prodMainGrp.add('group', undefined);
 		prodGrp.orientation = 'column';
 		prodGrp.alignChildren = ['left', 'center'];
@@ -21,7 +24,7 @@ function padProdFoldersDialog(prodArray) {
 
 		var newDiv = themeDivider(prodGrp);
 		newDiv.alignment = ['fill', 'center'];
-		
+
 		var prodDataGrp = prodGrp.add('group', undefined);
 		prodDataGrp.orientation = 'row';
 		prodDataGrp.alignChildren = ['left', 'center'];
@@ -44,7 +47,7 @@ function padProdFoldersDialog(prodArray) {
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
 		prodPathLab.preferredSize = [300, 24];
-		setTxtHighlight(prodPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
+		setCtrlHighlight(prodPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
 		// var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
 		var deleteBtn = new themeIconButton(prodDataGrp, {
@@ -53,7 +56,7 @@ function padProdFoldersDialog(prodArray) {
 				lClick + 'deletar produção'
 			]
 		});
-	
+
 		// ==========
 
 		prodIconBtn.onClick = function () {
@@ -88,7 +91,7 @@ function padProdFoldersDialog(prodArray) {
 	};
 
 	// window...
-	var PAD_CONFIG_w = new Window('dialog', 'LISTA DE PRODUÇÕES');
+	var PAD_CONFIG_w = new Window('dialog', scriptName + ' - ' + scriptVersion);
 	PAD_CONFIG_w.orientation = 'column';
 	PAD_CONFIG_w.alignChildren = ['center', 'top'];
 	PAD_CONFIG_w.spacing = 10;
@@ -200,7 +203,7 @@ function padProdFoldersDialog(prodArray) {
 		openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 	};
 
-	prodImportBtn.onClick = function () {
+	prodImportBtn.leftClick.onClick = function () {
 		tempConfigFile = File.openDialog('selecione o ícone', '*.json', false);
 
 		if (tempConfigFile != null && tempConfigFile instanceof File) {
@@ -218,7 +221,7 @@ function padProdFoldersDialog(prodArray) {
 		}
 	};
 
-	prodExportBtn.onClick = function () {
+	prodExportBtn.leftClick.onClick = function () {
 
 		var tempConfigFile = File.saveDialog('salvar configuração', '*.json');
 
@@ -251,7 +254,7 @@ function padProdFoldersDialog(prodArray) {
 		}
 	};
 
-	prodNewBtn.onClick = function () {
+	prodNewBtn.leftClick.onClick = function () {
 
 		try {
 			addProductionLine(defaultProdData.PRODUCTIONS[0]);
@@ -264,7 +267,7 @@ function padProdFoldersDialog(prodArray) {
 		PAD_CONFIG_w.layout.layout(true);
 	};
 
-	prodSaveBtn.onClick = function () {
+	prodSaveBtn.leftClick.onClick = function () {
 
 		try {
 

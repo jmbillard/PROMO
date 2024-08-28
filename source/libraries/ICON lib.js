@@ -14,6 +14,16 @@ PAD_AE_ICON = new File('~/PROMO/icons/main/ae.png');
 
 //
 
+PAD_LINKS_ICON = {
+	normal: new File('~/PROMO/icons/main/link1.png'),
+	hover: new File('~/PROMO/icons/main/link0.png')
+};
+
+PAD_DIRETORIOS_ICON = {
+	normal: new File('~/PROMO/icons/main/diretorio1.png'),
+	hover: new File('~/PROMO/icons/main/diretorio0.png')
+};
+
 PAD_INFO_ICON = {
 	normal: new File('~/PROMO/icons/main/info1.png'),
 	hover: new File('~/PROMO/icons/main/info0.png')

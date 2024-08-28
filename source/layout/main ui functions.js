@@ -138,32 +138,51 @@ function themeImageButton(sectionGrp, ctrlProperties) {
 }
 
 function themeButton(sectionGrp, ctrlProperties) {
+	var newUiCtrlObj = {};
 	var tipTxt = ctrlProperties.tips.join('\n\n'); // Dica de ajuda;
-	var newBtn = sectionGrp.add('customButton');
-	newBtn.width = ctrlProperties.width;
-	newBtn.height = ctrlProperties.height;
-	newBtn.text = ctrlProperties.labelTxt;
-	newBtn.buttonColor = divColor1;
-	newBtn.textColor = normalColor1;
+	var newBtnGrp = sectionGrp.add('group');
+	newBtnGrp.orientation = 'stack';
 
-	if (ctrlProperties.buttonColor != undefined) newBtn.buttonColor = ctrlProperties.buttonColor;
-	if (ctrlProperties.textColor != undefined) newBtn.textColor = ctrlProperties.textColor;
+	newUiCtrlObj.leftClick = newBtnGrp.add('button', undefined, '');
+	newUiCtrlObj.leftClick.size = [0, 0];
+	newUiCtrlObj.leftClick.visible = false;
+	newUiCtrlObj.rightClick = newBtnGrp.add('button', undefined, '');
+	newUiCtrlObj.rightClick.size = [0, 0];
+	newUiCtrlObj.rightClick.visible = false;
 
-	newBtn.preferredSize = [newBtn.width, newBtn.height];
-	newBtn.minimumSize = [68, 34];
-	newBtn.helpTip = tipTxt;
+	newUiCtrlObj.newBtn = newBtnGrp.add('customButton');
+	newUiCtrlObj.newBtn.width = ctrlProperties.width;
+	newUiCtrlObj.newBtn.height = ctrlProperties.height;
+	newUiCtrlObj.newBtn.text = ctrlProperties.labelTxt;
+	newUiCtrlObj.newBtn.buttonColor = divColor1;
+	newUiCtrlObj.newBtn.textColor = normalColor1;
 
-	drawThemeButton(newBtn, false);
+	if (ctrlProperties.buttonColor != undefined) newUiCtrlObj.newBtn.buttonColor = ctrlProperties.buttonColor;
+	if (ctrlProperties.textColor != undefined) newUiCtrlObj.newBtn.textColor = ctrlProperties.textColor;
 
-	newBtn.addEventListener('mouseover', function () {
+	newUiCtrlObj.newBtn.preferredSize = [newUiCtrlObj.newBtn.width, newUiCtrlObj.newBtn.height];
+	newUiCtrlObj.newBtn.minimumSize = [68, 34];
+	newUiCtrlObj.newBtn.helpTip = tipTxt;
+
+	drawThemeButton(newUiCtrlObj.newBtn, false);
+
+	newUiCtrlObj.newBtn.addEventListener('mouseover', function () {
 		drawThemeButton(this, true);
 	});
 
-	newBtn.addEventListener('mouseout', function () {
+	newUiCtrlObj.newBtn.addEventListener('mouseout', function () {
 		drawThemeButton(this, false);
 	});
 
-	return newBtn;
+	newUiCtrlObj.newBtn.onClick = function () {
+		this.parent.children[0].notify();
+	};
+
+	newUiCtrlObj.newBtn.addEventListener('click', function (c) {
+		if (c.button == 2) this.parent.children[1].notify();
+	});
+
+	return newUiCtrlObj;
 }
 
 function drawThemeButton(button, hover) {
@@ -291,7 +310,7 @@ function setFgColor(sTxt, hex) {
 }
 
 // Adiciona efeito de destaque (highlight) ao texto estático quando o mouse passa por cima.
-function setTxtHighlight(sTxt, normalColor1, highlightColor1) {
+function setCtrlHighlight(sTxt, normalColor1, highlightColor1) {
 	setFgColor(sTxt, normalColor1);     // Define a cor normal do texto.
 
 	sTxt.addEventListener('mouseover', function () { // Ao passar o mouse por cima do texto:
@@ -661,7 +680,7 @@ function highlighMenuLabels() {
 	for (var l = 0; l < uiLabels.length; l++) {  // Para cada rótulo...
 		var lab = uiLabels[l];
 		// Aplica o efeito de destaque com cores definidas em sTxtColor e '#8A8A8A'.
-		setTxtHighlight(lab, sTxtColor[iconTheme], '#8A8A8A');
+		setCtrlHighlight(lab, sTxtColor[iconTheme], '#8A8A8A');
 
 		// Simula um clique no botão correspondente ao rótulo quando o rótulo é clicado.
 		setTxtBtnLink(lab, lab.parent.children[0]);
