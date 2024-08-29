@@ -46,7 +46,7 @@ function O_PADEIRO_UTL(thisObj) {
 					labelTxt: 'Links',
 					icon: PAD_LINKS_ICON,
 					tips: [
-						lClick + 'abrir lista de links úteis',
+						lClick + 'abrir apontamento de projetos',
 					]
 				}//,
 				// diretorios: {
