@@ -20,7 +20,7 @@ function renderTemplateDialog(array) {
 
 	// Primeiro Texto de Ajuda
 	// Adiciona um texto estático à janela com instruções para o usuário
-	var helpTxt1 = wPref.add('statictext', [0, 0, 250, 18], 'templates de render:');
+	var helpTxt1 = wPref.add('statictext', [0, 0, 250, 18], 'TEMPLATES DE RENDER:');
 	setFgColor(helpTxt1, txtColor);                // Define a cor do texto
 
 	// Grupo para a Lista Suspensa
@@ -31,12 +31,17 @@ function renderTemplateDialog(array) {
 	renderDrop.preferredSize = [250, 24];                 // Define um tamanho preferencial para a lista
 
 	// Divisor Visual
-	var divider1 = wPref.add('panel');                    // Divisor visual para separar as seções da janela
-	divider1.alignment = 'fill';                          // Faz o divisor ocupar toda a largura da janela
+	// var divider1 = wPref.add('panel');                    // Divisor visual para separar as seções da janela
+	// divider1.alignment = 'fill';                          // Faz o divisor ocupar toda a largura da janela
+	var newDiv = themeDivider(wPref);
+	newDiv.alignment = ['fill', 'center'];
 
 	// Segundo Texto de Ajuda (Canal Alpha)
 	var helpTxt2 = wPref.add('statictext', [0, 0, 250, 36], txtHelp2Content, { multiline: true }); // Indicação sobre a nescidade de canal alpha
-	setFgColor(helpTxt2, mainColors[1]);                // Define a cor do texto
+	setFgColor(helpTxt1, normalColor1);                // Define a cor do texto
+	setFgColor(helpTxt2, normalColor2);                // Define a cor do texto
+
+	setBgColor(wPref, bgColor1); // Cor de fundo da janela
 
 	// Define uma função que será executada quando o usuário alterar a seleção na lista
 	renderDrop.onChange = function () {
@@ -478,7 +483,7 @@ function padeiroTemplateDialog() {
 
 		var count = this.text.split(/[\n\r]{2,}/).length;
 		// var suffix = count == 1 ? ' versão será criada' : ' versões serão criadas';
-		makeBtn.text = 'preencher: ' + count;
+		makeBtn.label.text = 'preencher: ' + count;
 	};
 
 	edtText.onChange = function () {

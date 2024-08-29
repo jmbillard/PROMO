@@ -150,35 +150,35 @@ function themeButton(sectionGrp, ctrlProperties) {
 	newUiCtrlObj.rightClick.size = [0, 0];
 	newUiCtrlObj.rightClick.visible = false;
 
-	newUiCtrlObj.newBtn = newBtnGrp.add('customButton');
-	newUiCtrlObj.newBtn.width = ctrlProperties.width;
-	newUiCtrlObj.newBtn.height = ctrlProperties.height;
-	newUiCtrlObj.newBtn.text = ctrlProperties.labelTxt;
-	newUiCtrlObj.newBtn.buttonColor = divColor1;
-	newUiCtrlObj.newBtn.textColor = normalColor1;
+	newUiCtrlObj.label = newBtnGrp.add('customButton');
+	newUiCtrlObj.label.width = ctrlProperties.width;
+	newUiCtrlObj.label.height = ctrlProperties.height;
+	newUiCtrlObj.label.text = ctrlProperties.labelTxt;
+	newUiCtrlObj.label.buttonColor = divColor1;
+	newUiCtrlObj.label.textColor = normalColor1;
 
-	if (ctrlProperties.buttonColor != undefined) newUiCtrlObj.newBtn.buttonColor = ctrlProperties.buttonColor;
-	if (ctrlProperties.textColor != undefined) newUiCtrlObj.newBtn.textColor = ctrlProperties.textColor;
+	if (ctrlProperties.buttonColor != undefined) newUiCtrlObj.label.buttonColor = ctrlProperties.buttonColor;
+	if (ctrlProperties.textColor != undefined) newUiCtrlObj.label.textColor = ctrlProperties.textColor;
 
-	newUiCtrlObj.newBtn.preferredSize = [newUiCtrlObj.newBtn.width, newUiCtrlObj.newBtn.height];
-	newUiCtrlObj.newBtn.minimumSize = [68, 34];
-	newUiCtrlObj.newBtn.helpTip = tipTxt;
+	newUiCtrlObj.label.preferredSize = [newUiCtrlObj.label.width, newUiCtrlObj.label.height];
+	newUiCtrlObj.label.minimumSize = [68, 34];
+	newUiCtrlObj.label.helpTip = tipTxt;
 
-	drawThemeButton(newUiCtrlObj.newBtn, false);
+	drawThemeButton(newUiCtrlObj.label, false);
 
-	newUiCtrlObj.newBtn.addEventListener('mouseover', function () {
+	newUiCtrlObj.label.addEventListener('mouseover', function () {
 		drawThemeButton(this, true);
 	});
 
-	newUiCtrlObj.newBtn.addEventListener('mouseout', function () {
+	newUiCtrlObj.label.addEventListener('mouseout', function () {
 		drawThemeButton(this, false);
 	});
 
-	newUiCtrlObj.newBtn.onClick = function () {
+	newUiCtrlObj.label.onClick = function () {
 		this.parent.children[0].notify();
 	};
 
-	newUiCtrlObj.newBtn.addEventListener('click', function (c) {
+	newUiCtrlObj.label.addEventListener('click', function (c) {
 		if (c.button == 2) this.parent.children[1].notify();
 	});
 
