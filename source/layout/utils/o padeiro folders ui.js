@@ -20,7 +20,7 @@ function padProdFoldersDialog(prodArray) {
 		var prodGrp = prodMainGrp.add('group', undefined);
 		prodGrp.orientation = 'column';
 		prodGrp.alignChildren = ['left', 'center'];
-		prodGrp.spacing = 10;
+		prodGrp.spacing = 8;
 
 		var newDiv = themeDivider(prodGrp);
 		newDiv.alignment = ['fill', 'center'];
@@ -28,7 +28,7 @@ function padProdFoldersDialog(prodArray) {
 		var prodDataGrp = prodGrp.add('group', undefined);
 		prodDataGrp.orientation = 'row';
 		prodDataGrp.alignChildren = ['left', 'center'];
-		prodDataGrp.spacing = 10;
+		prodDataGrp.spacing = 8;
 
 		var prodNameTxt = prodDataGrp.add('edittext', undefined, nameTxt);
 		prodNameTxt.helpTip = 'nome que aparecerá no menu';
@@ -46,7 +46,7 @@ function padProdFoldersDialog(prodArray) {
 
 		var prodPathLab = prodDataGrp.add('statictext', undefined, pathTxt, { prodPath: prodObj.templatesPath, truncate: 'middle' });
 		prodPathLab.helpTip = 'caminho da pasta de templates:\n\n' + prodObj.templatesPath;
-		prodPathLab.preferredSize = [300, 24];
+		prodPathLab.preferredSize = [400, 24];
 		setCtrlHighlight(prodPathLab, normalColor2, highlightColor1); // Cor de destaque do texto
 
 		// var deleteBtn = prodDataGrp.add('iconbutton', undefined, closeIcon.light, { style: 'toolbutton' });
@@ -94,7 +94,7 @@ function padProdFoldersDialog(prodArray) {
 	var PAD_CONFIG_w = new Window('dialog', scriptName + ' - ' + scriptVersion);
 	PAD_CONFIG_w.orientation = 'column';
 	PAD_CONFIG_w.alignChildren = ['center', 'top'];
-	PAD_CONFIG_w.spacing = 10;
+	PAD_CONFIG_w.spacing = 12;
 	PAD_CONFIG_w.margins = 16;
 
 	// ===========
@@ -206,51 +206,53 @@ function padProdFoldersDialog(prodArray) {
 	prodImportBtn.leftClick.onClick = function () {
 		tempConfigFile = File.openDialog('selecione o ícone', '*.json', false);
 
-		if (tempConfigFile != null && tempConfigFile instanceof File) {
-			var tempArray = updateProdData(tempConfigFile);
+		if (tempConfigFile == null || !(tempConfigFile instanceof File)) return;
 
-			while (prodMainGrp.children.length > 0) {
-				prodMainGrp.remove(prodMainGrp.children[0]);
-			}
+		var tempArray = updateProdData(tempConfigFile);
 
-			for (var j = 0; j < tempArray.length; j++) {
-				addProductionLine(tempArray[j]);
-			}
-			prodMainGrp.layout.layout(true);
-			updateThemeButton(prodSaveBtn, true);
+		while (prodMainGrp.children.length > 0) {
+			prodMainGrp.remove(prodMainGrp.children[0]);
 		}
+
+		for (var j = 0; j < tempArray.length; j++) {
+			addProductionLine(tempArray[j]);
+		}
+		PAD_CONFIG_w.layout.layout(true);
+		updateThemeButton(prodSaveBtn, true);
 	};
 
 	prodExportBtn.leftClick.onClick = function () {
 
 		var tempConfigFile = File.saveDialog('salvar configuração', '*.json');
 
-		if (tempConfigFile != null) {
+		if (tempConfigFile == null) return;
 
-			try {
+		try {
 
-				var tempArray = [];
+			var tempConfigObj = {
+				PRODUCTIONS: []
+			};
 
-				for (var u = 0; u < prodMainGrp.children.length; u++) {
-					var subGrp = prodMainGrp.children[u].children[0];
+			for (var u = 0; u < prodMainGrp.children.length; u++) {
+				var subGrp = prodMainGrp.children[u].children[1];
 
-					var tempObj = {
-						name: subGrp.children[0].text,
-						icon: subGrp.children[1].properties.prodIcon,
-						templatesPath: subGrp.children[2].properties.prodPath
-					}
-
-					tempArray.push(tempObj);
+				var tempObj = {
+					name: subGrp.children[0].text,
+					icon: subGrp.children[1].properties.prodIcon,
+					templatesPath: subGrp.children[2].properties.prodPath
 				}
 
-				var tempConfigContent = JSON.stringify(sortProdData(tempArray), null, '\t');
-				writeFileContent(tempConfigFile, tempConfigContent);
-
-				PAD_CONFIG_w.close();
-
-			} catch (err) {
-				alert(lol + '#PAD_014 - ' + err.message);
+				tempConfigObj.PRODUCTIONS.push(tempObj);
 			}
+			sortProdData(tempConfigObj.PRODUCTIONS);
+
+			var tempConfigContent = JSON.stringify(tempConfigObj, null, '\t');
+			writeFileContent(tempConfigFile, tempConfigContent);
+
+			PAD_CONFIG_w.close();
+
+		} catch (err) {
+			alert(lol + '#PAD_014 - ' + err.message);
 		}
 	};
 
@@ -271,10 +273,12 @@ function padProdFoldersDialog(prodArray) {
 
 		try {
 
-			var tempArray = [];
+			var tempConfigObj = {
+				PRODUCTIONS: []
+			};
 
 			for (var u = 0; u < prodMainGrp.children.length; u++) {
-				var subGrp = prodMainGrp.children[u].children[0];
+				var subGrp = prodMainGrp.children[u].children[1];
 
 				var tempObj = {
 					name: subGrp.children[0].text,
@@ -282,10 +286,10 @@ function padProdFoldersDialog(prodArray) {
 					templatesPath: subGrp.children[2].properties.prodPath
 				}
 
-				tempArray.push(tempObj);
+				tempConfigObj.PRODUCTIONS.push(tempObj);
 			}
-
-			saveProdData(sortProdData(tempArray));
+			sortProdData(tempConfigObj.PRODUCTIONS);
+			saveProdData(tempConfigObj.PRODUCTIONS);
 			PAD_CONFIG_w.close();
 
 		} catch (err) {

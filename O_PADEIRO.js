@@ -166,6 +166,10 @@ function O_PADEIRO_UTL(thisObj) {
 		]
 	};
 
+	var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
+	templatesPath = PAD_prodArray[0].templatesPath;
+	templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
+
 	// Recebe uma lista de produções 'prodDataArray'
 	// Retorna a mesma lista 'prodDataArray' ordenada pela propriedade 'name'
 	function sortProdData(prodDataArray) {
@@ -230,21 +234,21 @@ function O_PADEIRO_UTL(thisObj) {
 
 	// Recebe uma lista de produções 'prodDataArray' e um grupo de imagens 'imagesGrp'
 	// Popula o grupo de imagens com os ícones das produções
-	function populateMainIcons(prodDataArray, imagesGrp) {
+	function populateMainIcons(imagesGrp) {
 
 		while (imagesGrp.children.length > 0) {
 			imagesGrp.remove(imagesGrp.children[0]);
 		}
 
-		for (var i = 0; i < prodDataArray.length; i++) {
+		for (var i = 0; i < PAD_prodArray.length; i++) {
 			var newIcon = imagesGrp.add('image', undefined, undefined);
 			try {
-				newIcon.image = eval(prodDataArray[i].icon);
+				newIcon.image = eval(PAD_prodArray[i].icon);
 
 			} catch (err) { //Em caso de erro...
 				newIcon.image = defaultProdData.PRODUCTIONS[0].icon;
 			}
-			newIcon.helpTip = prodDataArray[0].name + '\n\n' + dClick + ' para editar a lista de produções';
+			newIcon.helpTip = PAD_prodArray[0].name + '\n\n' + dClick + ' para editar a lista de produções';
 			newIcon.preferredSize = [24, 24];
 			newIcon.visible = i == 0;
 
@@ -253,15 +257,15 @@ function O_PADEIRO_UTL(thisObj) {
 				// Verifica se aconteceu um clique duplo (detail == 2).
 				if (c.detail == 2) {
 
-					padProdFoldersDialog(prodDataArray); // Chama a janela de configuração.
+					padProdFoldersDialog(PAD_prodArray); // Chama a janela de configuração.
 					PAD_ui.prodDrop.removeAll(); // Limpa a lista de produções do menu.
 
 					// atualiza os dados das produções.
-					prodDataArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
+					PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json'));
 
 					// Popula a lista de produções do menu
-					populateDropdownList(getProdNames(prodDataArray), imagesGrp.parent.children[1]);
-					populateMainIcons(prodDataArray, imagesGrp);
+					populateDropdownList(getProdNames(PAD_prodArray), imagesGrp.parent.children[1]);
+					populateMainIcons(imagesGrp);
 
 					PAD_ui.prodDrop.selection = 0; // Seleciona a primeira produção.
 					imagesGrp.layout.layout(true);
@@ -269,10 +273,6 @@ function O_PADEIRO_UTL(thisObj) {
 			});
 		}
 	}
-
-	var PAD_prodArray = updateProdData(new File(scriptMainPath + 'O_PADEIRO_config.json')); // dados das produções
-	templatesPath = PAD_prodArray[0].templatesPath;
-	templatesFolder = new Folder(PAD_prodArray[0].templatesPath); // pasta de templates.
 
 	// 'uiObj' armazena os controles da interface, grupos seus respectivos arrays
 	var PAD_ui = {
@@ -312,7 +312,7 @@ function O_PADEIRO_UTL(thisObj) {
 
 		uiObj.prodIconGrp = uiObj.prodGrp.add('group');
 		uiObj.prodIconGrp.orientation = 'stack'; // Layout vertical
-		populateMainIcons(PAD_prodArray, uiObj.prodIconGrp);
+		populateMainIcons(uiObj.prodIconGrp);
 
 		uiObj.prodDrop = uiObj.prodGrp.add('dropdownlist', undefined, getProdNames(PAD_prodArray));
 		uiObj.prodDrop.selection = 0; // Seleciona a produção padrão.
