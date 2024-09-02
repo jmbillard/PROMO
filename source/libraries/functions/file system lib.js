@@ -331,6 +331,7 @@ function readFileContent(file) {
 	var fileContent;
 
 	file.open('r');
+	file.encoding = 'UTF-8'; // → file encoding
 	fileContent = file.read();
 	file.close();
 
