@@ -12,7 +12,7 @@ function readFileContent(file) {
 	return fileContent.toString();
 }
 
-function buildComps(structureObj) {
+function buildComp(structureObj, imagesArray) {
 
 	app.beginUndoGroup('criar comp de abertura');
 
@@ -21,14 +21,15 @@ function buildComps(structureObj) {
 
 	var pageCount = structureObj.extended_metadata.page_count;
 	var textArray = [];
-	
+
 	var compDuration = 60; // em segundos
 	var compW = 1920;
 	var compH = 1080;
 	var compAspect = 1;
 	var compFPS = 29.97;
 	var comp = app.project.items.addComp('LAYOUT ABERTURA', compW, compH, compAspect, compDuration, compFPS);
-	
+	var f = 1;
+
 	var layerDuration = compDuration / pageCount;
 	var layerInPoint;
 	var layerOutPoint;
@@ -46,7 +47,7 @@ function buildComps(structureObj) {
 		var pageH = structureObj.pages[page].height;
 		var fW = compW / pageW;
 		var fH = compH / pageH;
-		var f = Math.min(fW, fH);
+		f = Math.min(fW, fH);
 
 		var currentText = comp.layers.addBoxText([(bounds[2] - bounds[0]) * fW, (bounds[3] - bounds[1]) * fH]);
 
@@ -65,6 +66,7 @@ function buildComps(structureObj) {
 		if (element.attributes.LineHeight != undefined) txtProp.leading = element.attributes.LineHeight * fH;
 
 		for (var p in txtProp) {
+
 			textDoc[p] = txtProp[p];
 			textProp.setValue(textDoc);
 		}
@@ -81,7 +83,7 @@ function buildComps(structureObj) {
 
 		// transformations...
 		var transform = currentText.property('ADBE Transform Group');
-	
+
 		var posX = (bounds[0] + (bounds[2] - bounds[0]) / 2) * fW;
 		var posY = (pageH - bounds[1] - (bounds[3] - bounds[1]) / 2) * fH;
 		transform.property('ADBE Position').setValue([posX, posY, 0]);
@@ -94,21 +96,36 @@ function buildComps(structureObj) {
 		currentText.outPoint = layerOutPoint;
 		textArray.push(currentText);
 	}
+
+	var refFolder = app.project.items.addFolder('ABERTURA REF'); // Cria uma pasta no projeto.
+
+	for (var l = 0; l < imagesArray.length; l++) {
+
+		imagesArray[l].parentFolder = refFolder; // Move o novo logo para a pasta criada anteriormente.
+		var refImage = comp.layers.add(imagesArray[l]);
+		refImage.moveToEnd();
+
+		var transform = refImage.property('ADBE Transform Group');
+		// transform.property('ADBE Scale').setValue([f * 100, f * 100, f * 100]);
+		layerInPoint = l * layerDuration;
+		layerOutPoint = layerInPoint + layerDuration;
+
+		refImage.inPoint = layerInPoint;
+		refImage.outPoint = layerOutPoint;
+		refImage.guideLayer = true;
+		refImage.locked = true;
+	}
 	app.endUndoGroup();
 }
 
 var structureFile = File.openDialog('selecione o arquivo de estrutura', "*.json", false);
+var refImagesArray = app.project.importFileWithDialog();
 
 if (structureFile != null) {
-	structureFile.encoding = 'UTF-8';
 	var structureContent = readFileContent(structureFile);
 	var structureObj = JSON.parse(structureContent);
 
-	buildComps(structureObj);
-}
+	app.project.setDefaultImportFolder(structureFile.parent);
 
-function ABRIDOR_UI() {
-	var ABRIDOR_w = new Window('dialog', scriptName + ' ' + scriptVersion);
-	var mainGroup = ABRIDOR_w.add('group');
-	var siteBtn = mainGroup.add('button', undefined, 'abrir\nconversor online');
+	buildComp(structureObj, refImagesArray);
 }
