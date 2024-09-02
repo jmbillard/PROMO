@@ -274,21 +274,18 @@ function O_PADEIRO_UTL(thisObj) {
 		}
 	}
 
-	// 'uiObj' armazena os controles da interface, grupos seus respectivos arrays
-	var PAD_ui = {
-		iconButtonArray: [],
-		imageButtonArray: [],
-		sectionGrpArray: [],
-		divArray: []
-	};
-
 	// Recebe a estrutura da ui 'structureObj' e um objeto para interação 'uiObj'
 	// Cria os controles da interface e define os eventos entre eles
-	function PAD_buildUi(structureObj, uiObj) {
+	function PAD_BUILD_UI(structureObj, uiObj) {
+
+		// // Configurações da janela
+		uiObj.window.margins = 4;      // Margens internas
+		uiObj.window.orientation = 'stack'; // Layout vertical
+
 
 		uiObj.mainGrp = uiObj.window.add('group'); // Grupo principal
 		uiObj.sectionGrpArray.push(uiObj.mainGrp);
-		// Rótulo da versão
+
 		uiObj.infoGrp = uiObj.window.add('group');
 		uiObj.infoGrp.spacing = 0;
 		uiObj.sectionGrpArray.push(uiObj.infoGrp);
@@ -395,17 +392,19 @@ function O_PADEIRO_UTL(thisObj) {
 				btn.label.preferredSize = btn.label.size;
 			}
 
-			PAD_setLayout(uiObj);
+			PAD_LAYOUT(uiObj);
 		};
 
 		uiObj.window.onResizing = uiObj.window.onResize = function () {
-			PAD_setLayout(uiObj);
+			PAD_LAYOUT(uiObj);
 		};
+
+		PAD_UI_EVENTS(uiObj);
 	}
 
 	// Recebe uma janela 'window' e um objeto para interação 'uiObj'
 	// Aplica o layout dos controles dependendo das dimensões da janela
-	function PAD_setLayout(uiObj) {
+	function PAD_LAYOUT(uiObj) {
 
 		var isRow = uiObj.window.size.width > uiObj.window.size.height;
 		var grpOrientation = isRow ? 'row' : 'column';
@@ -475,31 +474,20 @@ function O_PADEIRO_UTL(thisObj) {
 		uiObj.window.layout.resize();
 	}
 
-	function O_PADEIRO_UI() {
-
-		var PAD_w = thisObj;
-
-		if (!(thisObj instanceof Panel)) PAD_w = new Window('palette', scriptName); // Cria uma nova janela
-
-		// Configurações da janela
-		PAD_w.margins = 4;      // Margens internas
-		PAD_w.orientation = 'stack'; // Layout vertical
-		PAD_ui.window = PAD_w;
-
-		PAD_buildUi(PAD_mainGrpUiStructure, PAD_ui);
+	function PAD_UI_EVENTS(uiObj) {
 
 		// Adiciona um "ouvinte" de evento ao rótulo de versão (vLab).
-		PAD_ui.vLab.addEventListener('mousedown', function () {
+		uiObj.vLab.addEventListener('mousedown', function () {
 
 			// Define o URL do site de documentação.
 			var siteUrl = 'https://github.com/jmbillard/PROMO/blob/main/docs/O_PADEIRO/O%20PADEIRO.md#-o-padeiro-script';
 			openWebSite(siteUrl); // Abre o site de documentação em um navegador web.
 		});
 
-		PAD_ui.prodDrop.onChange = function () {
+		uiObj.prodDrop.onChange = function () {
 
 			var i = this.selection.index;
-			changeIcon(i, PAD_ui.prodIconGrp);
+			changeIcon(i, uiObj.prodIconGrp);
 
 			templatesPath = PAD_prodArray[i].templatesPath;
 			templatesFolder = new Folder(PAD_prodArray[i].templatesPath); // pasta de templates.
@@ -510,7 +498,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Define a função a ser executada quando o botão "Abrir O Padeiro" for clicado.
-		PAD_ui.templates.leftClick.onClick = function () {
+		uiObj.templates.leftClick.onClick = function () {
 
 			// Verifica se há acesso à rede.
 			if (!netAccess()) {
@@ -524,7 +512,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Adiciona um ouvinte de evento de clique ao botão "Abrir O Padeiro". 
-		PAD_ui.templates.rightClick.onClick = function () {
+		uiObj.templates.rightClick.onClick = function () {
 
 			if (app.project.numItems == 0) return;
 
@@ -538,7 +526,7 @@ function O_PADEIRO_UTL(thisObj) {
 			} catch (err) { alert(lol + '#PAD_MAKER - ' + '' + err.message); }
 		};
 
-		PAD_ui.fontes.leftClick.onClick = function () { // Define a função a ser executada quando o botão "Instalar Fontes" for clicado.
+		uiObj.fontes.leftClick.onClick = function () { // Define a função a ser executada quando o botão "Instalar Fontes" for clicado.
 
 			// Verifica se há acesso à rede.
 			if (!netAccess()) {
@@ -568,7 +556,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Adiciona um ouvinte de evento de clique ao botão "Instalar Fontes".
-		PAD_ui.fontes.rightClick.onClick = function () {
+		uiObj.fontes.rightClick.onClick = function () {
 
 
 			// Verifica se há itens no projeto.
@@ -585,7 +573,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Define a função a ser executada quando o botão "Abrir Pasta de Saída" for clicado.
-		PAD_ui.pastas.leftClick.onClick = function () {
+		uiObj.pastas.leftClick.onClick = function () {
 
 			// Verifica se há acesso à internet.
 			if (!netAccess()) {
@@ -621,7 +609,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Adiciona um ouvinte de evento de clique ao botão "Abrir Pasta de Saída".
-		PAD_ui.pastas.rightClick.onClick = function () {
+		uiObj.pastas.rightClick.onClick = function () {
 			// Verifica se o botão clicado foi o botão direito do mouse (código 2).
 
 			// Verifica se há acesso à internet.
@@ -647,7 +635,7 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Define a função a ser executada quando o botão "Renomear Comps" for clicado.
-		PAD_ui.renomear.leftClick.onClick = function () {
+		uiObj.renomear.leftClick.onClick = function () {
 
 			// Verifica se há itens no projeto.
 			if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
@@ -662,7 +650,7 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
-		PAD_ui.renomear.rightClick.onClick = function () {
+		uiObj.renomear.rightClick.onClick = function () {
 
 			app.beginUndoGroup('renomear outputs');
 
@@ -671,7 +659,7 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
-		PAD_ui.organizar.leftClick.onClick = function () {
+		uiObj.organizar.leftClick.onClick = function () {
 
 			// Verifica se há itens no projeto.
 			if (app.project.numItems == 0) return; // Encerra a função se não houver itens.
@@ -700,12 +688,12 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
-		PAD_ui.buscar.leftClick.onClick = function () {
+		uiObj.buscar.leftClick.onClick = function () {
 
 			findDialog();
 		};
 
-		PAD_ui.organizar.rightClick.onClick = function () {
+		uiObj.organizar.rightClick.onClick = function () {
 
 			app.beginUndoGroup('criar pastas do projeto');
 
@@ -714,7 +702,7 @@ function O_PADEIRO_UTL(thisObj) {
 			app.endUndoGroup();
 		};
 
-		PAD_ui.links.leftClick.onClick = function () {
+		uiObj.links.leftClick.onClick = function () {
 
 			if (!netAccess()) {
 				alert(lol + '#PAD_007 - sem acesso a rede...');
@@ -726,11 +714,28 @@ function O_PADEIRO_UTL(thisObj) {
 		};
 
 		// Retorna o objeto da janela (PAD_w) para que ele possa ser exibido ou manipulado posteriormente.
-		return PAD_w;
 	}
 
-	// Cria a janela da interface chamando a função O_PADEIRO_UI e passando o objeto atual como argumento. O resultado é armazenado na variável O_PADEIRO_WINDOW.
-	var O_PADEIRO_WINDOW = O_PADEIRO_UI(thisObj);
+	// 'uiObj' armazena os controles da interface, grupos seus respectivos arrays
+	var PAD_ui = {
+		iconButtonArray: [],
+		imageButtonArray: [],
+		sectionGrpArray: [],
+		divArray: []
+	};
+
+	function PAD_WINDOW(thisObj) {
+		PAD_ui.window = thisObj;
+
+		if (!(thisObj instanceof Panel)) PAD_ui.window = new Window('palette', scriptName); // Cria uma nova janela
+
+		PAD_BUILD_UI(PAD_mainGrpUiStructure, PAD_ui);
+
+		return PAD_ui.window;
+	}
+
+	// Cria a janela da interface chamando a função PAD_UI_EVENTS e passando o objeto atual como argumento. O resultado é armazenado na variável O_PADEIRO_WINDOW.
+	var O_PADEIRO_WINDOW = PAD_WINDOW(thisObj);
 
 	// Verifica o acesso à rede.
 	if (!netAccess()) {
