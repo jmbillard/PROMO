@@ -39,6 +39,7 @@ function buildComp(structureObj, imagesArray) {
 		var element = structureObj.elements[i];
 
 		if (!element.Text) continue;
+		if (element.Path.match(/Figure/i)) continue;
 
 		// alert (element.Text);
 		var page = element.Page;
@@ -98,15 +99,17 @@ function buildComp(structureObj, imagesArray) {
 	}
 
 	var refFolder = app.project.items.addFolder('ABERTURA REF'); // Cria uma pasta no projeto.
+	// alert(f);
 
 	for (var l = 0; l < imagesArray.length; l++) {
 
 		imagesArray[l].parentFolder = refFolder; // Move o novo logo para a pasta criada anteriormente.
 		var refImage = comp.layers.add(imagesArray[l]);
 		refImage.moveToEnd();
+		f = compW / refImage.width * 100;
 
 		var transform = refImage.property('ADBE Transform Group');
-		// transform.property('ADBE Scale').setValue([f * 100, f * 100, f * 100]);
+		transform.property('ADBE Scale').setValue([f, f, f]);
 		layerInPoint = l * layerDuration;
 		layerOutPoint = layerInPoint + layerDuration;
 
@@ -115,6 +118,8 @@ function buildComp(structureObj, imagesArray) {
 		refImage.guideLayer = true;
 		refImage.locked = true;
 	}
+	comp.openInViewer();
+
 	app.endUndoGroup();
 }
 
