@@ -5,7 +5,7 @@
 O script cria o layout de uma abertura a partir de um arquivo de estrutura **JSON** contendo os textos dos créditos, posições aproximadas e alinhamentos.
 
 > 📂 **arquivos:**\
-> • **ABRIDOR.jsxbin** → é o aquivo que deve ser executado no after effects.
+> • **ABRIDOR 0.1b.jsxbin** → é o aquivo que deve ser executado no after effects.
 
 <br>
 
@@ -95,7 +95,7 @@ clique no botão '**Download JSON**' no topo da janela do lado direito.
 
 > ![ui](img/save.png)
 
-um **zip** será salvo, extraia o arquivo **JSON** com a estrutura da abertura.
+um **zip** será salvo... extraia o arquivo **JSON** com a estrutura da abertura.
 
 > ![ui](img/file.png)
 
