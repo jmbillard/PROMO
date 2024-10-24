@@ -187,19 +187,19 @@ function themeButton(sectionGrp, ctrlProperties) {
 
 function drawThemeButton(button, hover) {
 	var g = button.graphics;
-	var textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(button.textColor), 1);
-	var fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(button.buttonColor));
+	var textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRgb(button.textColor), 1);
+	var fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRgb(button.buttonColor));
 	var textSize = g.measureString(button.text);
 
 	if (hover) {
 		textPen = g.newPen(g.PenType.SOLID_COLOR, [1, 1, 1, 1], 1);
-		fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(highlightColor1));
+		fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRgb(highlightColor1));
 	}
 
 	button.onDraw = function () {
 		if (!this.enabled) {
-			textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRGB(divColor1), 1);
-			fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRGB(bgColor));
+			textPen = g.newPen(g.PenType.SOLID_COLOR, hexToRgb(divColor1), 1);
+			fillBrush = g.newBrush(g.BrushType.SOLID_COLOR, hexToRgb(bgColor));
 		}
 		g.newPath();
 		g.ellipsePath(0, 0, this.height, this.height);
@@ -217,7 +217,7 @@ function drawThemeButton(button, hover) {
 function createColorButtons(colorArray, colorGrp) {
 	for (var c = 0; c < colorArray.length; c++) {
 		var hex = colorArray[c];          // Obtém o código hexadecimal da cor.
-		var rgb = hexToRGB(hex) * 255;    // Converte para RGB (0-255).
+		var rgb = hexToRgb(hex) * 255;    // Converte para RGB (0-255).
 
 		// Cria um botão com ícone, nomeado com o código hexadecimal e estilo 'toolbutton'.
 		var colorBtn = colorGrp.add('iconbutton', undefined, undefined, { name: hex, style: 'toolbutton' });
@@ -290,21 +290,21 @@ function drawRoundedRect(g, brush, width, height, cornerRadius, x, y) {
 
 // Altera a cor de fundo da janela.
 function setBgColor(w, hex) {
-	var color = hexToRGB(hex);                    // Converte a cor hexadecimal em RGB.
+	var color = hexToRgb(hex);                    // Converte a cor hexadecimal em RGB.
 	var bType = w.graphics.BrushType.SOLID_COLOR; // Define o tipo do pincel como cor sólida.
 	w.graphics.backgroundColor = w.graphics.newBrush(bType, color); // Aplica o pincel com a nova cor à janela.
 }
 
 // Define a cor de um botão.
 function setUiCtrlColor(ctrl, hex) {
-	var color = hexToRGB(hex);                           // Converte a cor hexadecimal em RGB.
+	var color = hexToRgb(hex);                           // Converte a cor hexadecimal em RGB.
 	var bType = ctrl.graphics.BrushType.SOLID_COLOR;        // Define o tipo do pincel como cor sólida.
 	ctrl.fillBrush = ctrl.graphics.newBrush(bType, color); // Cria um novo pincel com a cor e o aplica ao botão.
 }
 
 // Altera a cor de um texto estático.
 function setFgColor(sTxt, hex) {
-	var color = hexToRGB(hex);         // Converte a cor hexadecimal em RGB.
+	var color = hexToRgb(hex);         // Converte a cor hexadecimal em RGB.
 	var pType = sTxt.graphics.PenType.SOLID_COLOR; // Define o tipo da caneta como cor sólida.
 	sTxt.graphics.foregroundColor = sTxt.graphics.newPen(pType, color, 1); // Cria uma nova caneta com a cor e a aplica ao texto.
 }

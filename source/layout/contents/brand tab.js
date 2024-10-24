@@ -49,7 +49,7 @@ for (var i = 1; i < colorSubGrp1.children.length; i++) {
 	colorSubGrp1.children[i].onClick = function () {
 		var hex = this.properties.name;
 
-		batchFill(hex, hexToRGB(hex));
+		batchFill(hex, hexToRgb(hex));
 	};
 }
 
@@ -57,7 +57,7 @@ for (var j = 1; j < colorSubGrp2.children.length; j++) {
 	colorSubGrp2.children[j].onClick = function () {
 		var hex = this.properties.name;
 
-		batchFill(hex, hexToRGB(hex));
+		batchFill(hex, hexToRgb(hex));
 	};
 }
 
